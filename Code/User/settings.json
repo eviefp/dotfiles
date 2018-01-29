@@ -1,0 +1,13 @@
+{
+    "window.zoomLevel": 0,
+    "spellright.language": "en",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "workbench.iconTheme": "vscode-icons",
+    "spellright.documentTypes": [
+        "markdown",
+        "latex"
+    ],
+    "git.autofetch": true,
+    "vim.useCtrlKeys": false
+}
