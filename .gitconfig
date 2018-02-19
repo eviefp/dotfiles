@@ -3,7 +3,7 @@
 	excludesfile = C:\\Users\\rhaaw\\Documents\\gitignore_global.txt
 [user]
 	name = Vladimir Ciobanu
-	email = git@cvlad.info
+	email = admin@cvlad.info
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
