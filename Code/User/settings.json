@@ -9,5 +9,20 @@
         "latex"
     ],
     "git.autofetch": true,
-    "vim.useCtrlKeys": false
+    "vim.useCtrlKeys": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "files.eol": "\n",
+    "files.trimFinalNewlines": true,
+    "editor.renderWhitespace": "boundary",
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnPaste": true,
+    "editor.renderControlCharacters": true,
+    "editor.renderLineHighlight": "all",
+    "editor.rulers": [
+        80,
+        100
+    ],
+    "editor.tabSize": 2,
+
 }
