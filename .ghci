@@ -1,0 +1,3 @@
+import Prelude
+
+:set prompt "λ "
