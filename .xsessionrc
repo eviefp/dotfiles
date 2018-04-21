@@ -4,16 +4,6 @@
 
 xrdb -merge .Xresources
 
-# Set up an icon tray
-stalonetray &
-
-# Fire up apps
-
-xscreensaver -no-splash &
-
-if [ -x /usr/bin/nm-applet ] ; then
-   nm-applet --sm-disable &
-fi
 
 dbus-launch --exit-with-session /usr/bin/xmonad
 
