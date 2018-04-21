@@ -1,0 +1,16 @@
+GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_THEME=Evermeet_Ubuntu
+source ~/.bash-git-prompt/gitprompt.sh
+
+clip() {
+    scrot -s ~/screenshot.png
+    xclip -selection clipboard -t image/png ~/screenshot.png
+    rm ~/screenshot.png
+}
+
+saveDotFiles() {
+    cd ~
+    cp .bash_extras .ghci .gitconfig .gitignore .spacemacs .stalonetrayrc .xmobarrc .xsessionrc code/dotfiles
+    cp -R .xmonad code/dotfiles
+    cd code/dotfiles
+}
