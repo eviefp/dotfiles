@@ -1,6 +1,6 @@
 [core]
 	autocrlf = true
-	excludesfile = C:\\Users\\rhaaw\\Documents\\gitignore_global.txt
+	excludesfile = ~/.gitignore
 [user]
 	name = Vladimir Ciobanu
 	email = admin@cvlad.info

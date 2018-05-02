@@ -34,7 +34,6 @@ newBindings x = [ ((modMask x, xK_Right  ), nextWS)
                 , ((0        , 0x1008ff12), spawn "amixer -D pulse sset Master 1+ toggle")
                 , ((0        , 0x1008ff11), spawn "amixer -D pulse sset Master 10%-")
                 , ((0        , 0x1008ff13), spawn "amixer -D pulse sset Master 10%+")
-                , ((0        , 0x0000ff56), spawn "vlc") -- >> toggleOrView "5. fullscreen")
                 ]
 
 myKeys x = M.union (keys defaultConfig x) (M.fromList (newBindings x))
