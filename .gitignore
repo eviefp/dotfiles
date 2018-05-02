@@ -1,1 +1,6 @@
 TAGS
+**/auto
+_*_.pdf
+_*_.tex
+prv_*.pdf
+package-lock.json
