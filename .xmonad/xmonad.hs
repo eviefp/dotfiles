@@ -1,17 +1,18 @@
-import qualified Data.Map as M
-import XMonad
-import XMonad.Actions.CycleWS
-import XMonad.Config.Gnome
-import XMonad.Core
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
-import XMonad.Layout.NoBorders
-import XMonad.Util.Dzen
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
-import XMonad.Util.SpawnOnce
-import System.IO
+import qualified Data.Map                    as M
+import           System.IO
+import           XMonad
+import           XMonad.Actions.CycleWS
+import           XMonad.Config.Gnome
+import           XMonad.Core
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.InsertPosition
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Layout.NoBorders
+import           XMonad.Util.Dzen
+import           XMonad.Util.EZConfig        (additionalKeys)
+import           XMonad.Util.Run             (spawnPipe)
+import           XMonad.Util.SpawnOnce
 
 myManageHook = composeAll (
     [ manageHook gnomeConfig
@@ -44,7 +45,7 @@ main = do
     xmproc <- spawnPipe "xmobar"
 
     xmonad $ gnomeConfig
-        { manageHook = myManageHook
+        { manageHook = insertPosition Below Newer <+> myManageHook
         , layoutHook = avoidStruts  $ smartBorders $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
