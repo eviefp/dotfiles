@@ -10,10 +10,11 @@ clip() {
 
 saveDotFiles() {
     cd ~
-    cp .bash_extras .bashrc .ghci .gitconfig .gitignore .profile .spacemacs .stalonetrayrc .xmobarrc .xsessionrc code/dotfiles
-    cp .xmonad/*.sh code/dotfiles
-    cp .xmonad/*.hs code/dotfiles
-    cp .emacs.d/init.el code/dotfiles/.emacs.d
-    cp -R .config/.spacemacs/ code/.config/.spacemacs
+    cp .bash_extras .ghci .gitconfig .gitignore .spacemacs .stalonetrayrc .xmobarrc .xsessionrc code/dotfiles
+    cp -R .xmonad code/dotfiles
     cd code/dotfiles
+}
+
+re() {
+    emacs25 --insecure . &>/dev/null 2>&1 &
 }
