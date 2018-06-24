@@ -4,3 +4,7 @@ _*_.pdf
 _*_.tex
 prv_*.pdf
 package-lock.json
+.xmonad/xmonad-x86_64-linux
+.xmonad/xmonad.errors
+.xmonad/xmonad.hi
+.xmonad/xmonad.o
