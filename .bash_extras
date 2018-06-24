@@ -18,3 +18,16 @@ saveDotFiles() {
 re() {
     emacs25 --insecure . &>/dev/null 2>&1 &
 }
+
+swapui() {
+    if [ -f ~/.xsessionrc ]; then
+        mv ~/.xsessionrc ~/.xsessionrc-skip
+        sudo systemctl restart lightdm.service
+    elif [ -f ~/.xsessionrc-skip ]; then
+        mv ~/.xsessionrc-skip ~/.xsessionrc
+        sudo systemctl restart lightdm.service
+    else
+        echo "Error: can't find either ~/.xsessionrc or ~/.xsessionrc-skip. Aborting..."
+    fi
+
+}
