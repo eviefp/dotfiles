@@ -1,6 +1,7 @@
 [core]
-	autocrlf = true
 	excludesfile = ~/.gitignore
+	eol = lf
+	autocrlf = input
 [user]
 	name = Vladimir Ciobanu
 	email = admin@cvlad.info

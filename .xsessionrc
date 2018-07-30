@@ -6,6 +6,4 @@ xrdb -merge .Xresources
 
 dbus-launch --exit-with-session /usr/bin/xmonad
 
-feh --bg-scale /usr/share/backgrounds/haskell.jpg
-
 exec xmonad
