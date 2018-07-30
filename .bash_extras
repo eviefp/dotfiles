@@ -31,3 +31,8 @@ swapui() {
     fi
 
 }
+
+fixUI() {
+    xrandr --output HDMI-0 --scale 1.5x1.5
+    feh --bg-scale /usr/share/backgrounds/haskell.jpg
+}

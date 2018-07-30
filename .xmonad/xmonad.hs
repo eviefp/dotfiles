@@ -39,7 +39,8 @@ newBindings x = [ ((modMask x, xK_Right  ), nextWS)
 
 myKeys x = M.union (keys defaultConfig x) (M.fromList (newBindings x))
 
-myWorkspaces = ["1. dev", "2. web", "3. slack", "4. steam", "5. fullscreen" ] ++ map show [6 .. 9]
+myWorkspaces = map show [1 .. 9]
+  -- [1. dev", "2. web", "3. slack", "4. steam", "5. fullscreen" ] ++ map show [6 .. 9]
 
 main = do
     xmproc <- spawnPipe "xmobar"
