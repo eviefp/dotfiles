@@ -1,24 +1,33 @@
-# Path to Oh My Fish install.
-set -q XDG_DATA_HOME
-  and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
-  or set -gx OMF_PATH "$HOME/.local/share/omf"
+source ~/.config/fish/init.fish
 
-# Load Oh My Fish configuration.
-source $OMF_PATH/init.fish
-function clip
-    scrot -s ~/screenshot.png
-    xclip -selection clipboard -t image/png ~/screenshot.png
-    rm ~/screenshot.png
-end
+## other theme
+# set fish_greeting ""
+# set -g fish_prompt_pwd_dir_length 4
+# set -g theme_display_user "yes"
+# set -g theme_hostname "always"
 
-function re
-    emacs25 --insecure . > /dev/null ^ /dev/null &
-end
-
-function fixUI
-    xrandr --output HDMI-0 --scale 1.5x1.5
-    feh --bg-scale /usr/share/backgrounds/haskell.jpg
-end
-
-set -x PATH $HOME/bin $HOME/bin/purescript $HOME/.local/bin $HOME/.local/bin/FlameGraph $HOME/.cargo/bin $PATH $HOME/hems/bin
-set -x GEM_HOME $HOME/gems
+# bob the fish theme
+set -g theme_display_git yes
+set -g theme_display_git_dirty yes
+set -g theme_display_git_untracked yes
+set -g theme_display_git_ahead_verbose yes
+set -g theme_display_git_dirty_verbose yes
+set -g theme_display_git_master_branch yes
+set -g theme_git_worktree_support yes
+set -g theme_display_vagrant yes
+set -g theme_display_docker_machine yes
+set -g theme_display_k8s_context yes
+set -g theme_display_hg yes
+set -g theme_display_virtualenv yes
+set -g theme_display_ruby no
+set -g theme_display_user yes
+set -g theme_display_hostname yes
+set -g theme_display_vi no
+set -g theme_avoid_ambiguous_glyphs no
+set -g theme_powerline_fonts yes
+set -g theme_nerd_fonts no
+set -g theme_show_exit_status yes
+set -g theme_color_scheme dark
+set -g fish_prompt_pwd_dir_length 8
+set -g theme_project_dir_length 1
+set -g theme_newline_cursor no
