@@ -1,4 +1,7 @@
 source ~/.config/fish/init.fish
+source /home/vlad/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
+
+set -xg PATH ~/.psvm/current/bin ~/code/k/k-distribution/target/release/k/bin $PATH
 
 ## other theme
 # set fish_greeting ""
