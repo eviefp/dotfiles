@@ -9,6 +9,8 @@ import           XMonad.Hooks.InsertPosition
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.NoBorders
+import           XMonad.Operations
+import qualified XMonad.StackSet as W
 import           XMonad.Util.Dzen
 import           XMonad.Util.EZConfig        (additionalKeys)
 import           XMonad.Util.Run             (spawnPipe)
@@ -16,31 +18,46 @@ import           XMonad.Util.SpawnOnce
 
 myManageHook = composeAll (
     [ manageHook gnomeConfig
-    , resource  =? "stalonetray"   --> doShift "1. dev" -- >>= doIgnore
-    , className =? "Google-chrome" --> doShift "2. web"
-    , className =? "slack"         --> doShift "3. slack"
-    , className =? "Steam"         --> doShift "4. steam"
-    , className =? "steam"         --> doIgnore
-    , className =? "vlc"           --> doFullFloat
+    , resource  =? "stalonetray"       --> doIgnore
+    , className =? "Unity-2d-panel"    --> doIgnore
+    , className =? "Unity-2d-launcher" --> doIgnore
+    , className =? "chrome"            --> doShift "2"
+    , className =? "slack"             --> doShift "3"
+    , className =? "Steam"             --> doShift "4"
+    , className =? "steam"             --> doShift "4"
+    , className =? "vlc"               --> doFullFloat
     , manageDocks
     ])
 
 myStartupHook = do
-  spawnOnce "stalonetray --dockapp-mode simple"
-  spawnOnce "unity-settings-daemon"
-  spawnOnce "nm-applet"
+  spawn "gnome-session --session gnome-flashback-xmonad"
+  spawn "stalonetray --dockapp-mode simple"
+  spawn "nm-applet"
+  spawn "feh --bg-scale /usr/share/backgrounds/haskell.jpg"
 
-newBindings x = [ ((modMask x, xK_Right  ), nextWS)
-                , ((modMask x, xK_Left   ), prevWS)
+screenshotCommand = "/usr/bin/import /home/vlad/.screenshot.png; xclip -selection clipboard -t image/png /home/vlad/.screenshot.png; rm /home/vlad/.screenshot.png"
+
+newBindings x = [ ((modMask x, xK_Right                  ), nextWS)
+                , ((modMask x, xK_Left                   ), prevWS)
+                , ((modMask x, xK_BackSpace              ), spawn "gnome-screensaver-command -l")
+                , ((modMask x .|. shiftMask, xK_BackSpace), spawn "systemctl suspend -i")
                 , ((0        , 0x1008ff12), spawn "amixer -D pulse sset Master 1+ toggle")
                 , ((0        , 0x1008ff11), spawn "amixer -D pulse sset Master 10%-")
                 , ((0        , 0x1008ff13), spawn "amixer -D pulse sset Master 10%+")
+                , ((0        , 0x1008ffb2), spawn "amixer set Capture toggle")
+                , ((0        , 0x1008ff03), spawn "xbacklight -10")
+                , ((0        , 0x1008ff02), spawn "xbacklight +10")
+                , ((0        , 0x1008ff59), spawn "echo projector")
+--                , ((0        , 0x1008ff95), spawn "echo wifi")
+                , ((0        , 0x1008ff81), spawn "echo settings")
+                , ((0        , xK_Print  ), spawn screenshotCommand)
+                , ((modMask x, xK_j      ), windows W.focusUp)
+                , ((modMask x, xK_k      ), windows W.focusDown)
                 ]
 
-myKeys x = M.union (keys defaultConfig x) (M.fromList (newBindings x))
+myKeys x = M.union (M.fromList (newBindings x)) (keys defaultConfig x) 
 
 myWorkspaces = map show [1 .. 9]
-  -- [1. dev", "2. web", "3. slack", "4. steam", "5. fullscreen" ] ++ map show [6 .. 9]
 
 main = do
     xmproc <- spawnPipe "xmobar"
