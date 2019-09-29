@@ -1,7 +1,11 @@
 source ~/.config/fish/init.fish
-source /home/vlad/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
+source ~/.config/fish/completions/exercism.fish
+# source /home/vlad/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
 
-set -xg PATH ~/.psvm/current/bin ~/code/k/k-distribution/target/release/k/bin $PATH
+set -xg PATH ~/.psvm/current/bin ~/.local/gems/bin ~/code/k/k-distribution/target/release/k/bin ~/.idris2/bin   $PATH
+set TERM 'alacritty'
+
+set GEM_HOME ~/.local/gems
 
 ## other theme
 # set fish_greeting ""
@@ -16,7 +20,7 @@ set -g theme_display_git_untracked yes
 set -g theme_display_git_ahead_verbose yes
 set -g theme_display_git_dirty_verbose yes
 set -g theme_display_git_master_branch yes
-set -g theme_git_worktree_support yes
+#set -g theme_git_worktree_support yes
 set -g theme_display_vagrant yes
 set -g theme_display_docker_machine yes
 set -g theme_display_k8s_context yes
@@ -34,3 +38,11 @@ set -g theme_color_scheme dark
 set -g fish_prompt_pwd_dir_length 8
 set -g theme_project_dir_length 1
 set -g theme_newline_cursor no
+
+set -g XMODIFIERS "@im=none"
+
+# Nix
+fenv source $HOME/.nix-profile/etc/profile.d/nix.sh
+set -xg LC_ALL en_US.UTF-8
+set -xg LANG en_US.UTF-8
+# End Nix

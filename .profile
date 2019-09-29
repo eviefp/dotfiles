@@ -20,3 +20,4 @@ fi
 PATH="$HOME/bin:$HOME/bin/purescript:$HOME/.local/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+if [ -e /home/vlad/.nix-profile/etc/profile.d/nix.sh ]; then . /home/vlad/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

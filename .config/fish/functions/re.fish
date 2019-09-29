@@ -1,4 +1,4 @@
 function re -d "Run emacs"
-  emacs25 --insecure . > /dev/null ^ /dev/null &
+  emacs25 > /dev/null ^ /dev/null &
 end
 
