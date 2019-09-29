@@ -33,6 +33,22 @@ swapui() {
 }
 
 fixUI() {
-    xrandr --output HDMI-0 --scale 1.5x1.5
     feh --bg-scale /usr/share/backgrounds/haskell.jpg
+}
+
+lock() {
+    gnome-screensaver-command -l
+}
+
+chrome() {
+    google-chrome --force-device-scale-factor=1.5
+}
+
+resetTouchpad() {
+    sudo modprobe -r psmouse
+    sudo modprobe psmouse
+}
+
+brightness() {
+    brightness-controller-simple
 }

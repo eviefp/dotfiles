@@ -40,6 +40,9 @@
 (setq display-line-numbers-type 'relative)
 (global-hl-line-mode 1)
 
+; hack for projectile's replace problem
+; https://github.com/bbatsov/projectile/issues/1382
+(require 'subr-x)
 ; Package management
 (require 'package)
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
@@ -84,9 +87,12 @@
                       fish-mode
                       ;; Markdown
                       markdown-mode
+		      ;; Dhall
+		      dhall-mode
                       ;; PureScript
-                      ; psc-ide
-                      ; purescript-mode
+                      psc-ide
+                      purescript-mode
+		      xah-math-input
                       ;; Rust
                       ; cargo
                       ; rust-mode
@@ -117,6 +123,15 @@
 
 (require 'use-package)
 
+(add-to-list 'load-path "/home/vlad/code/install/floskell/contrib")
+(require 'floskell)
+
+(add-to-list 'load-path "/home/vlad/code/install/emacs")
+(require 'hs-lint)
+
+(load-library "k3-mode")
+(add-to-list 'auto-mode-alist '("\\.k$" . k3-mode)) ;; to launch k3-mode for .k files
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil
@@ -136,6 +151,7 @@
         "SPC w s" 'split-window-right
         "SPC w v" 'split-window-below
         "SPC w d" 'kill-this-buffer
+	"SPC w w" 'window-swap-states
 
         "SPC b d" 'kill-this-buffer
         "SPC b b" 'switch-to-buffer
@@ -144,7 +160,10 @@
 
         "C-="     'text-scale-increase
         "C--"     'text-scale-decrease
-        "C-0"     '(lambda() (interactive) (text-scale-set 1))))
+        "C-0"     '(lambda() (interactive) (text-scale-set 1)))
+
+        "SPC f q" 'turn-off-fci-mode
+        "SPC f s" 'turn-on-fci-mode)
 
 (use-package evil
     :ensure t
@@ -196,10 +215,11 @@
     :general
     (general-define-key
         :keymaps 'normal
-        "SPC p f" 'projectile-find-file
-        "SPC f f" 'projectile-find-file
-        "SPC SPC" 'projectile-find-file)
+        "SPC SPC" 'projectile-find-file
+        "SPC p r" 'projectile-replace
+        "SPC p x" 'projectile-replace-regexp)
     :config
+    (setq projectile-project-search-path '("~/code"))
     (setq projectile-completion-system 'ivy)
     (projectile-mode 1))
 
@@ -277,8 +297,8 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (require 'fill-column-indicator)
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+; (global-fci-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org
@@ -295,6 +315,7 @@
                         "SPC m s" 'org-schedule
                         "SPC m d" 'org-deadline
 			"SPC m t" 'org-shiftright
+			"SPC m c" 'org-toggle-checkbox
                         "SPC m e" 'org-export-dispatch)
     :init
     (setq org-agenda-files (list "~/code/todo/todo.org"))
@@ -321,6 +342,51 @@
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode))
     :init (setq markdown-command "multimarkdown"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Dhall
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package dhall-mode
+  :ensure t
+  :mode "\\.dhall\\'")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Purescript
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package purescript-mode
+  :ensure t
+  :diminish 'purescript-indentation-mode)
+
+(use-package xah-math-input
+  :ensure t)
+
+(defun vlad/purescript-hook ()
+  "My PureScript mode hook"
+  (turn-on-purescript-indentation)
+  (psc-ide-mode)
+  (company-mode)
+  (flycheck-mode)
+  (hasklig-mode)
+  (setq-local flycheck-check-syntax-automatically '(mode-enabled save)))
+
+(use-package psc-ide
+  :ensure t
+  :init (add-hook 'purescript-mode-hook 'vlad/purescript-hook)
+  :config (setq psc-ide-editor-mode t)
+  :general
+  (general-define-key :keymaps 'purescript-mode-map
+		      :states '(normal visual)
+		      ", s"	'psc-ide-server-start
+		      ", l"	'psc-ide-load-all
+		      ", q"	'psc-ide-server-quit
+		      ", t"	'psc-ide-show-type
+		      ", b"	'psc-ide-rebuild
+		      ", g g"	'psc-ide-goto-definition
+		      ", f n"	'flycheck-next-error
+		      ", c s"	'psc-ide-case-split
+		      ", a c"	'psc-ide-add-clause
+		      ", a i"	'psc-ide-add-import
+		      ", a s"	'psc-ide-flycheck-insert-suggestion))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Themes
@@ -362,6 +428,7 @@
     (add-hook 'haskell-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'haskell-mode-hook #'display-line-numbers-mode)
     (add-hook 'haskell-mode-hook #'turn-off-eldoc-mode)
+    (add-hook 'haskell-mode-hook #'floskell-mode)
     ;; (add-hook 'haskell-mode-hook #'flycheck-mode)
     ;; (add-hook 'haskell-interactive-mode-hook #'company-mode)
     (add-hook 'haskell-mode-hook #'hhp-init)
@@ -384,7 +451,9 @@
         "SPC m e" 'hhp-display-errors
         "SPC m i" 'hhp-show-info
         "SPC m t" 'hhp-show-type
-        "SPC m i" 'hhp-import-module))
+        "SPC m i" 'hhp-insert-module
+	"SPC m h" 'hs-lint
+	))
 
 (use-package company-ghci :ensure t
     :commands company-ghci
@@ -412,7 +481,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "43b219a31db8fddfdc8fdbfdbd97e3d64c09c1c9fdd5dff83f3ffc2ddb8f0ba0" "aaffceb9b0f539b6ad6becb8e96a04f2140c8faa1de8039a343a4f1e009174fb" default)))
+    ("49ec957b508c7d64708b40b0273697a84d3fee4f15dd9fc4a9588016adee3dad" "10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "43b219a31db8fddfdc8fdbfdbd97e3d64c09c1c9fdd5dff83f3ffc2ddb8f0ba0" "aaffceb9b0f539b6ad6becb8e96a04f2140c8faa1de8039a343a4f1e009174fb" default)))
+ '(idris-interpreter-path "idris2")
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
@@ -424,3 +494,6 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
