@@ -18,6 +18,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Support for '.editorconfig' files
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'scrooloose/nerdtree'
+
 " Status bar & themes.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -53,7 +55,7 @@ Plug 'tpope/vim-fugitive'
 " Additional plugin for github (pretty much for :Gbrowse I think)
 Plug 'tpope/vim-rhubarb'
 " Git gutter, must read more 
-Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 
 " Try out: https://github.com/jreybert/vimagit
 
@@ -71,10 +73,8 @@ Plug 'tpope/vim-markdown'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'nbouscal/vim-stylish-haskell'
 
-
-" Haskell
+" <C-y> to insert function above, [[ and ]] to navigate
 Plug 'edkolev/curry.vim'
-" Plug 'parsonsmatt/vim2hs'
 Plug 'enomsg/vim-haskellConcealPlus'
 
 " Coq
@@ -89,16 +89,14 @@ Plug 'vim-syntastic/syntastic'
 Plug 'derekelkins/agda-vim'
 
 """ Colorschemes
-" Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
-" Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'fatih/molokai'
 Plug 'lifepillar/vim-solarized8'
 
 " Initialize plugin system
 call plug#end()
 
 " Plugin setup
+set updatetime=100
 
 " rainbow
 let g:rainbow_active=1
@@ -129,8 +127,9 @@ set splitbelow splitright
 " Theme and stuff?
 set background=dark
 set termguicolors
-colorscheme OceanicNext
-let g:airline_theme = 'oceanicnext'
+colorscheme molokai
+
+"let g:airline_theme = 'gruvbox'
 let g:palenight_terminal_italics=1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -138,10 +137,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:signify_vcs_list = ['git']
 
 " highlight Conceal ctermbg=NONE guibg=NONE
-map <Leader>cl :set background=light<cr>:colorscheme solarized8<cr>let g:airline_theme = 'base16'<cr>
-map <Leader>cd :set background=dark<cr>:colorscheme gruvbox<cr>let g:airline_theme = 'gruvbox'<cr>
+map <Leader>cl :set background=light<cr>:colorscheme solarized8<cr>
+map <Leader>cd :set background=dark<cr>:colorscheme molokai<cr>
 
 " Haskell
+set concealcursor=nciv
 let g:haskell_conceal = 0
 let g:haskell_conceal_wide = 0
 let g:haskell_coneal_enumerations = 0
@@ -149,7 +149,8 @@ let g:haskell_hsp = 0
 
 let g:idris_conceal = 1
 
-let hscoptions="bfl↱tT"
+" TODO: there's a bug with 'S'
+let hscoptions="STEMsrl↱w-tBQZNDC"
 
 " No-op the arrow keys in normal mode
 " noremap <Up> <nop>
@@ -185,6 +186,9 @@ let g:LanguageClient_serverCommands = {
 
 tnoremap <Esc> <C-\><C-n>
 
+" NERDTree
+map <Leader>nt :NERDTreeToggle<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf - find - f
 map <Leader><Space> :Files<CR>
@@ -197,7 +201,7 @@ map <Leader>fc      :Commits<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " window - w
 map <Leader>ws :vsplit<CR>
-map <Leader>wh :split<CR>
+map <Leader>we :split<CR>
 
 map <Leader>ww <C-w><C-w>
 
