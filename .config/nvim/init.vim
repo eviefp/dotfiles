@@ -1,7 +1,3 @@
-" Leader setup
-let mapleader = ' '
-let maplocalleader = ','
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -10,82 +6,68 @@ let maplocalleader = ','
 "
 " Note: the autoload directory for nvim seems to be
 " ~/.local/share/nvim/site/autoload
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 """ General vim stuff
-
 " Support for '.editorconfig' files
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'scrooloose/nerdtree'
-
 " Status bar & themes.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 " FuZzy Find, need to install fzf first
 Plug 'junegunn/fzf', {
     \ 'dir': '~/.fzf',
     \ 'do': './install --all'
     \ }
 Plug 'junegunn/fzf.vim'
+" Multiple cursor edit. Select word, use <C-n> then c or something.
+Plug 'terryma/vim-multiple-cursors'
 
 """ Generic coding helpers
-
 " gc / gcc for commenting stuff
 Plug 'tpope/vim-commentary'
-
 " Select and Tabularize /= for aligning around equals sign
 Plug 'godlygeek/tabular'
-
 " Surround is awesome.
 Plug 'tpope/vim-surround'
-
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
-
 " Indentation guides
 Plug 'nathanaelkane/vim-indent-guides'
 
 """ Git
-
 " Basic git plugin, g? for help in gstatus
 Plug 'tpope/vim-fugitive'
 " Additional plugin for github (pretty much for :Gbrowse I think)
 Plug 'tpope/vim-rhubarb'
 " Git gutter, must read more 
 Plug 'airblade/vim-gitgutter'
-
 " Try out: https://github.com/jreybert/vimagit
 
-" Multiple cursor edit. Select word, use <C-n> then c or something.
-Plug 'terryma/vim-multiple-cursors'
-
-""" Language-Server Client
+""" Coding
+" Language Server
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-""" Markdown
+" Markdown
 Plug 'tpope/vim-markdown'
 
 """ Haskell
 " Indentation and syntax highlighting
 Plug 'neovimhaskell/haskell-vim'
 Plug 'nbouscal/vim-stylish-haskell'
-
 " <C-y> to insert function above, [[ and ]] to navigate
 Plug 'edkolev/curry.vim'
 Plug 'enomsg/vim-haskellConcealPlus'
 
-" Coq
+""" Coq
 Plug 'the-lambda-church/coquille'
 Plug 'let-def/vimbufsync'
 
-" Idris
+""" Idris
 Plug 'idris-hackers/idris-vim'
 Plug 'vim-syntastic/syntastic'
 
-" Agda
+""" Agda
 Plug 'derekelkins/agda-vim'
 
 """ Colorschemes
@@ -95,50 +77,62 @@ Plug 'lifepillar/vim-solarized8'
 " Initialize plugin system
 call plug#end()
 
-" Plugin setup
-set updatetime=100
-
-" rainbow
-let g:rainbow_active=1
-
-" indent guides
-let g:indent_guides_enable_on_vim_startup = 1
-
-" Not sure
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Generic vim setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Leader setup
+let mapleader = ' '
+let maplocalleader = ','
+" Not sure what these are
 execute "set t_8f=\e[38;2;%lu;%lu;%lum"
-
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-
-" au TermOpen * setlocal nonumber norelativenumber
-set number
+" Relative line numbers
+set relativenumber
+set rnu
+" Fill column indicator
 set colorcolumn=81
-
+" TODO: Figure out what each of these are.
 set tabstop=4
 set shiftwidth=0
 set expandtab
 set autoindent
-
+" These seem like they turn on indentation by plugins and syntax highlighting.
 filetype plugin indent on
 syntax on
+" Better search
+set incsearch
+set hlsearch
+set smartcase
+" Not sure what these are
+au InsertEnter * set nocursorline
+au InsertLeave * set cursorline
+set cursorline
+set cursorcolumn
+set ruler
+" Things like "zb" will keep 3 lines below target
+set scrolloff=3
+" Disable folding, what does this do?
+set nofoldenable
 
-" fzf
+""" Plugin-specific
+" Shorter update time, added for gitgutter
+set updatetime=100
+" Enable rainbow parentheses
+let g:rainbow_active=1
+" Enable indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+" Added for fzf
 set splitbelow splitright
 
-" Theme and stuff?
+" Theme and stuff
 set background=dark
 set termguicolors
 colorscheme molokai
 
-"let g:airline_theme = 'gruvbox'
+" Airline
+let g:airline_theme = 'molokai'
 let g:palenight_terminal_italics=1
 let g:airline#extensions#tabline#enabled = 1
-
-" signify
-let g:signify_vcs_list = ['git']
-
-" highlight Conceal ctermbg=NONE guibg=NONE
-map <Leader>cl :set background=light<cr>:colorscheme solarized8<cr>
-map <Leader>cd :set background=dark<cr>:colorscheme molokai<cr>
 
 " Haskell
 set concealcursor=nciv
@@ -147,49 +141,29 @@ let g:haskell_conceal_wide = 0
 let g:haskell_coneal_enumerations = 0
 let g:haskell_hsp = 0
 
+" Idris
 let g:idris_conceal = 1
 
+" haskellConcealPlus settings
 " TODO: there's a bug with 'S'
 let hscoptions="STEMsrl↱w-tBQZNDC"
 
-" No-op the arrow keys in normal mode
-" noremap <Up> <nop>
-" noremap <Down> <nop>
-" noremap <Left> <nop>
-" noremap <Right> <nop>
-" noremap <PageUp> <nop>
-" noremap <PageDown> <nop>
-
-" Better search
-set incsearch
-set hlsearch
-set smartcase
-
-au InsertEnter * set nocursorline
-au InsertLeave * set cursorline
-
-set cursorline
-set cursorcolumn
-
-set scrolloff=5
-
-" Disable folding
-set nofoldenable
-
-set ruler
-
-" LSP
+" CoC setup
 let g:LanguageClient_rootMarkers = ['*.cabal', 'stack.yaml']
 let g:LanguageClient_serverCommands = {
     \ 'haskell': ['ghcide', '--lsp'],
     \ }
 
-tnoremap <Esc> <C-\><C-n>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Keyboard customization
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Light/dark theme
+map <Leader>cl :set background=light<cr>:colorscheme solarized8<cr>
+map <Leader>cd :set background=dark<cr>:colorscheme molokai<cr>
 
 " NERDTree
 map <Leader>nt :NERDTreeToggle<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf - find - f
 map <Leader><Space> :Files<CR>
 map <Leader>fg      :GFiles?<CR>
@@ -198,7 +172,6 @@ map <Leader>bb      :Buffers<CR>
 map <Leader>ft      :tag <C-r><C-w><CR>
 map <Leader>fc      :Commits<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " window - w
 map <Leader>ws :vsplit<CR>
 map <Leader>we :split<CR>
@@ -212,16 +185,15 @@ map <Leader>wk <C-w><C-k>
 
 map <Leader>wr <C-w>r
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " term - t
 map <Leader>tt :vsplit<CR>:term<CR>
 map <Leader>th :split<CR>:term<CR>
+" Get out of terminal mode
+tnoremap <Esc> <C-\><C-n>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffer - b
 map <Leader>bd :bd<Cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " git stuff - g
 map <Leader>gg :Gstatus<CR>
 map <Leader>gs :Gstatus<CR>
@@ -232,20 +204,16 @@ map <Leader>dl :diffget //3<CR>:diffupdate<CR>
 map <Leader>gw :Gwrite<CR>
 map <Leader>du :diffupdate<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme - t
 " map <Leader>tt :Tags<CR>
 map <Leader>tc :Colors<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other - r
 nnoremap <Leader>fed :e ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>fer :so ~/.config/nvim/init.vim<CR>
 map <Leader>fs :Rg<CR>
 
-
 """ Testing stuff
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
