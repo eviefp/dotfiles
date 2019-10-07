@@ -11,7 +11,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 """ General vim stuff
 " Support for '.editorconfig' files
 Plug 'editorconfig/editorconfig-vim'
+" Nerd tree
 Plug 'scrooloose/nerdtree'
+" dev icons
+Plug 'ryanoasis/vim-devicons'
 " Status bar & themes.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -57,7 +60,19 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'nbouscal/vim-stylish-haskell'
 " <C-y> to insert function above, [[ and ]] to navigate
 Plug 'edkolev/curry.vim'
-Plug 'enomsg/vim-haskellConcealPlus'
+"Plug 'enomsg/vim-haskellConcealPlus'
+
+""" PureScript
+"Plug 'purescript-contrib/purescript-vim'
+"Plug 'FrigoEU/psc-ide-vim'
+
+""" Rust
+"Plug 'rust-lang/rust.vim'
+"Plug 'sebastianmarkow/deoplete-rust'
+"Plug 'racer-rust/vim-racer'
+
+""" Nix
+Plug 'LnL7/vim-nix'
 
 """ Coq
 Plug 'the-lambda-church/coquille'
@@ -87,8 +102,9 @@ let maplocalleader = ','
 execute "set t_8f=\e[38;2;%lu;%lu;%lum"
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 " Relative line numbers
-set relativenumber
-set rnu
+set number relativenumber
+set nu rnu
+au TermOpen * setlocal nonumber norelativenumber
 " Fill column indicator
 set colorcolumn=81
 " TODO: Figure out what each of these are.
@@ -115,6 +131,8 @@ set scrolloff=3
 set nofoldenable
 
 """ Plugin-specific
+" for vim-devicons
+set encoding=UTF-8
 " Shorter update time, added for gitgutter
 set updatetime=100
 " Enable rainbow parentheses
