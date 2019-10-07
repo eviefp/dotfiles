@@ -1,3 +1,8 @@
+# In order to customize the Multi_key, we need to edit
+# /etc/default/keyboard
+# And add the following line:
+# XKBOPTIONS="compose:caps"
+
 # Greek letters
 <Multi_key> <A>     : "Α"   U0391 # greek capital letter alpha
 <Multi_key> <B>     : "Β"   U0392 # greek capital letter beta
