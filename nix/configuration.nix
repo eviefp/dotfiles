@@ -43,14 +43,16 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    haskellPackages.cabal2nix haskell.packages.ghc865.ghc haskellPackages.ghcid stack cabal-install
-    haskellPackages.niv
-    # (import (/home/vlad/tools/ghcide-nix/default.nix) {}).ghcide-ghc865
-    (import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable") {}).pkgs.neovim
-    haskellPackages.xmobar scrot rxvt_unicode dmenu gmrun acpilight sqlitebrowser gitAndTools.hub fpp
-    slack pass passff-host dbus pinentry_gnome httpie transmission-gtk libsForQt5.vlc mpv pavucontrol
-    firefox wget tmux konsole fzf vim xclip xorg.xmodmap xorg.xev zathura bat z-lua lua
-    fish git-radar ripgrep nodejs gnumake dbmate yq direnv mailutils
+    haskell.packages.ghc865.ghc
+    # (import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable") {}).pkgs.neovim
+    # ^ is broken so we're pinning to the last known good commit:
+    (import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/c8718e29b3740b9094aee842e7b157872d98942e") {}).pkgs.neovim
+    haskellPackages.xmobar dmenu gmrun acpilight
+    pass passff-host dbus pinentry_gnome transmission-gtk libsForQt5.vlc pavucontrol
+    konsole xorg.xmodmap xorg.xev
+    git-radar mailutils
+    python3 # tridactyl native thing
+    xdg_utils
   ];
 
   fonts.fonts = with pkgs; [
@@ -80,6 +82,7 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.acpilight.enable = true;
 
   services.xserver.windowManager = {
     xmonad.enable = true;
@@ -112,7 +115,11 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vlad = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups =
+      [ "wheel"            # enable sudo
+        "networkmanager"   # control wi-fi
+        "video"            # control backlight
+      ];
   };
   users.users.root.initialHashedPassword = "";
 
@@ -121,8 +128,6 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
-
-  services.postfix.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 80 8080 ];
   # services.nginx = {
