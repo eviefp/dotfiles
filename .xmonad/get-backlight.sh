@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/run/current-system/sw/bin/bash
 
-backlight=$(xbacklight | awk '{printf "%d", $1}')
+backlight=$(xbacklight -get)
 
 echo $backlight
 

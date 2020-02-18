@@ -5,14 +5,12 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
        , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 15
                     , Run Memory ["-t", "<usedbar>"] 100
                     , Run BatteryP ["BAT0"] ["-t", "<acstatus> <left>%", "-h", "green", "-n", "yellow", "-l", "red"] 50
-                    , Run Com "/bin/bash" ["-c", "~/.xmonad/get-volume.sh"] "volume" 10
-                    , Run Com "/bin/bash" ["-c", "~/.xmonad/get-mic.sh"] "microphone" 10
-                    , Run Com "/bin/bash" ["-c", "~/.xmonad/get-backlight.sh"] "backlight" 10
-                    , Run DateZone "%a %d %b %Y - %H:%M:%S" "en_UK.UTF-8" "UTC" "date" 10
+                    , Run Com "/run/current-system/sw/bin/bash" ["-c", "~/.xmonad/get-backlight.sh"] "backlight" 10
+		    , Run Com "/run/current-system/sw/bin/date" [] "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %battery% | ☀ %backlight% | ♪ %volume% [%microphone%] | %date% "}
+       , template = "%StdinReader% }{ %cpu% | %memory% | %battery% | ☀ %backlight% | %date% "}
        , lowerOnStart = False
        }

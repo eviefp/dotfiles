@@ -1,8 +1,3 @@
-# In order to customize the Multi_key, we need to edit
-# /etc/default/keyboard
-# And add the following line:
-# XKBOPTIONS="compose:caps"
-
 # Greek letters
 <Multi_key> <A>     : "Α"   U0391 # greek capital letter alpha
 <Multi_key> <B>     : "Β"   U0392 # greek capital letter beta
@@ -14,8 +9,7 @@
 <Multi_key> <H>     : "Θ"   U0398 # greek capital letter theta
 <Multi_key> <I>     : "Ι"   U0399 # greek capital letter iota
 <Multi_key> <K>     : "Κ"   U039A # greek capital letter kappa
-<Multi_key> <L>     : "Λ"   U039B # greek capital letter lambda
-<Multi_key> <M>     : "Μ"   U039C # greek capital letter mu
+<Multi_key> <L>     : "Λ"   U039B # greek capital letter lambda <Multi_key> <M>     : "Μ"   U039C # greek capital letter mu
 <Multi_key> <N>     : "Ν"   U039D # greek capital letter nu
 <Multi_key> <J>     : "Ξ"   U039E # greek capital letter xi
 <Multi_key> <O>     : "Ο"   U039F # greek capital letter omicron
@@ -80,6 +74,12 @@
 <Multi_key> <asciitilde> <bar> <equal> : "⊨" U22A8
 <Multi_key> <asciitilde> <D> : "◇" U25C7
 <Multi_key> <asciitilde> <B> : "◻" U25A1
+<Multi_key> <asciitilde> <0> : "∅" U2205
+<Multi_key> <asciitilde> <I> : "∈" U2208
+<Multi_key> <asciitilde> <N> : "∉" U2209
+<Multi_key> <asciitilde> <C> : "∘" U2218
+<Multi_key> <asciitilde> <S> : "⊕" U2295
+<Multi_key> <asciitilde> <P> : "⊗" U2297
 
 
 

@@ -23,29 +23,26 @@ myManageHook = composeAll (
     , manageDocks
     ])
 
-myStartupHook = do
-  spawn "gnome-session --session gnome-flashback-xmonad"
-  spawn "stalonetray --dockapp-mode simple"
-  spawn "nm-applet"
-  spawn "feh --bg-scale /usr/share/backgrounds/haskell.jpg"
+myStartupHook = pure ()
 
-screenshotCommand = "/usr/bin/import /home/vlad/.screenshot.png; xclip -selection clipboard -t image/png /home/vlad/.screenshot.png; rm /home/vlad/.screenshot.png"
+screenshotCommand = "/usr/bin/env fish --command clip"
 
 newBindings x = [ ((modMask x, xK_Right                  ), nextWS)
                 , ((modMask x, xK_Left                   ), prevWS)
-                , ((modMask x, xK_BackSpace              ), spawn "gnome-screensaver-command -l")
-                , ((modMask x .|. shiftMask, xK_BackSpace), spawn "systemctl suspend -i")
-                , ((0        , 0x1008ff12), spawn "amixer -D pulse sset Master 1+ toggle")
-                , ((0        , 0x1008ff11), spawn "amixer -D pulse sset Master 10%-")
-                , ((0        , 0x1008ff13), spawn "amixer -D pulse sset Master 10%+")
+                -- , ((modMask x, xK_BackSpace              ), spawn "gnome-screensaver-command -l")
+                -- , ((modMask x .|. shiftMask, xK_BackSpace), spawn "systemctl suspend -i")
+                , ((0        , 0x1008ff12), spawn "amixer set Master 1+ toggle")
+                , ((0        , 0x1008ff11), spawn "amixer set Master 10%-")
+                , ((0        , 0x1008ff13), spawn "amixer set Master 10%+")
                 , ((0        , 0x1008ffb2), spawn "amixer set Capture toggle")
                 , ((0        , 0x1008ff03), spawn "xbacklight -10")
                 , ((0        , 0x1008ff02), spawn "xbacklight +10")
+                , ((modMask x, xK_F1     ), spawn "autorandr --change")
                 , ((0        , xK_Print  ), spawn screenshotCommand)
                 , ((modMask x, xK_j      ), windows W.focusUp)
                 , ((modMask x, xK_k      ), windows W.focusDown)
-                , ((modMask x, xK_w      ), viewScreen (P 0))
-                , ((modMask x, xK_e      ), viewScreen (P 1))
+                , ((modMask x, xK_w      ), viewScreen horizontalScreenOrderer (P 0))
+                , ((modMask x, xK_e      ), viewScreen horizontalScreenOrderer (P 1))
                 ]
 
 myKeys x = M.union (M.fromList (newBindings x)) (keys defaultConfig x)
@@ -65,7 +62,7 @@ main = do
         , startupHook = myStartupHook
         , modMask = mod4Mask
         , keys = myKeys
-        , terminal = "alacritty"
+        , terminal = "konsole"
         , workspaces = myWorkspaces
         , handleEventHook =
           mconcat [ docksEventHook
