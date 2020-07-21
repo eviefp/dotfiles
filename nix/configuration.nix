@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+#.enable = true;c Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -8,12 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./cachix.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.initrd.network.ssh.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -43,10 +44,9 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    haskell.packages.ghc865.ghc
-    # (import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable") {}).pkgs.neovim
-    # ^ is broken so we're pinning to the last known good commit:
-    (import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/c8718e29b3740b9094aee842e7b157872d98942e") {}).pkgs.neovim
+    haskell.packages.ghc865.ghc cachix
+    (import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable") {}).pkgs.haskell.packages.ghc882.ghc
+    neovim
     haskellPackages.xmobar dmenu gmrun acpilight
     pass passff-host dbus pinentry_gnome transmission-gtk libsForQt5.vlc pavucontrol
     konsole xorg.xmodmap xorg.xev
@@ -59,10 +59,13 @@
     nerdfonts
   ];
 
+  programs.fish.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  services.sshd.enable = true;
 
   # List services that you want to enable:
 
@@ -81,7 +84,17 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.extraConfig = "
+    [General]
+    Enable=Source,Sink,Media,Socket
+  ";
+  services.blueman.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
+    package = pkgs.pulseaudioFull;
+  };
   hardware.acpilight.enable = true;
 
   services.xserver.windowManager = {
@@ -103,7 +116,7 @@
   services.xserver.videoDrivers = ["intel"];
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
-  services.compton.enable = true;
+  # services.compton.enable = true;
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
@@ -111,6 +124,19 @@
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = false;
   services.xserver.desktopManager.plasma5.enable = false;
+
+  # ${pkgs.autorandr}/bin/autorandr --change --batch"
+  #  SUBSYSTEM=="usb", ID_VENDOR="Razer", RUN+="${pkgs.coreutils}/bin/touch /home/vlad/test2"
+  #  SUBSYSTEM=="usb", ID_VENDOR="Razer", RUN+="${pkgs.coreutils}/bin/echo $USER > /home/vlad/test"
+  # SUBSYSTEM=="usb", ID_VENDOR="Razer", RUN+="${pkgs.xorg.setxkbmap}/bin/setxkbmap -option caps:none"
+  # SUBSYSTEM=="usb", ID_VENDOR="Razer", RUN+="${pkgs.xorg.xmodmap}/bin/xmodmap -e 'keycode 66 = Multi_key'"
+  services.udev.extraRules = ''
+
+    KERNEL=="card0", SUBSYSTEM=="drm", ENV{XAUTHORITY}="/home/vlad/.Xauthority", RUN+="${pkgs.autorandr}/bin/autorandr --change --batch"
+    ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.setxkbmap}/bin/setxkbmap -option caps:none"
+    ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.xmodmap}/bin/xmodmap -e \"keycode 66 = Multi_key\""
+  '';
+  services.udev.path = [ pkgs.autorandr pkgs.xorg.xmodmap pkgs.su pkgs.coreutils pkgs.xorg.setxkbmap ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vlad = {
@@ -120,6 +146,7 @@
         "networkmanager"   # control wi-fi
         "video"            # control backlight
       ];
+    shell = pkgs.fish;
   };
   users.users.root.initialHashedPassword = "";
 
@@ -129,7 +156,7 @@
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
 
-  networking.firewall.allowedTCPPorts = [ 80 8080 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 8080 ];
   # services.nginx = {
   #   enable = true;
   #   virtualHosts."localhost" = {
@@ -150,5 +177,21 @@
   #     '';
   #   };
   # };
+
+  nix.binaryCaches = [
+    "https://cache.nixos.org"
+    "https://kore.cachix.org"
+  ];
+
+  nix.binaryCachePublicKeys = [
+    "kore.cachix.org-1:JdRLRmla/geeYkiwRBCRds0rHDgiv/heOxRQmLGDHSI="
+  ];
+
+  nix.extraOptions = ''
+    binary-caches-parallel-connections = 5
+  '';
+
+  services.lorri.enable = true;
+  services.logind.lidSwitchExternalPower = "ignore";
 }
 
