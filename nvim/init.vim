@@ -106,11 +106,14 @@ Plug 'mbbill/undotree'
 Plug 'kshenoy/vim-signature'
 Plug 'plasticboy/vim-markdown'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
+Plug 'lervag/wiki.vim'
+Plug 'lervag/wiki-ft.vim'
 
 Plug 'justinmk/vim-sneak'
 
 Plug 'scalameta/coc-metals'
+Plug 'liuchengxu/vista.vim'
 
 Plug 'thanethomson/vim-jenkinsfile'
 " Initialize plugin system
@@ -120,7 +123,8 @@ call plug#end()
 " Generic vim setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki
-set nocompatible
+" set nocompatible
+let g:wiki_root = '~/Documents/wiki'
 
 set autoread
 " Forgive me, padre
@@ -223,6 +227,15 @@ set nowritebackup
 set shortmess+=c
 set signcolumn=yes
 
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+let g:vista_default_executive = 'coc'
+let g:vista#renderer#enable_icon = 0
+" let g:vista#renderer#icons = {
+" \   "function": "\uf794",
+" \   "variable": "\uf71b",
+" \  }
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keyboard customization
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -238,6 +251,8 @@ map <Leader>cd :set background=dark<cr>:colorscheme molokai<cr>
 map <Leader>nt :NERDTreeToggle<CR>
 
 map <Leader>ar  :Tabularize /
+
+map <Leader>v :Vista!!<CR>
 
 " fzf - find - f
 map <Leader><Space> :call fzf#run(fzf#wrap({'source': 'git ls-files --exclude-standard --others --cached'}))<CR>
