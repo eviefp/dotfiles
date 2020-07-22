@@ -16,25 +16,24 @@
 
   boot.initrd.network.ssh.enable = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "desktop"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.wlp2s0.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+  font = "Lat2-Terminus16";
+    keyMap = "us";
   };
 
   # Set your time zone.
@@ -45,7 +44,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     haskell.packages.ghc865.ghc cachix
-    (import (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable") {}).pkgs.haskell.packages.ghc882.ghc
+    haskell.packages.ghc882.ghc # do I need this?
     neovim
     haskellPackages.xmobar dmenu gmrun acpilight
     pass passff-host dbus pinentry_gnome transmission-gtk libsForQt5.vlc pavucontrol
@@ -53,6 +52,7 @@
     git-radar mailutils
     python3 # tridactyl native thing
     xdg_utils
+    git
   ];
 
   fonts.fonts = with pkgs; [
@@ -84,36 +84,31 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.extraConfig = "
-    [General]
-    Enable=Source,Sink,Media,Socket
-  ";
-  services.blueman.enable = true;
   hardware.pulseaudio = {
     enable = true;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
   };
-  hardware.acpilight.enable = true;
+  hardware.pulseaudio.support32Bit = true;
 
   services.xserver.windowManager = {
     xmonad.enable = true;
     xmonad.enableContribAndExtras = true;
-    default = "xmonad";
   };
+
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.desktopManager.default = "none";
   services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.displayManager.defaultSession = "none+xmonad";
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.sessionCommands = ''
     setxkbmap -option caps:none
     xmodmap -e "keycode 66 = Multi_key"
     export XCOMPOSEFILE = /home/vlad/.XCompose
   '';
-  services.xserver.videoDrivers = ["intel"];
+  services.xserver.videoDrivers = ["nvidia"];
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
   # services.compton.enable = true;
@@ -148,13 +143,13 @@
       ];
     shell = pkgs.fish;
   };
-  users.users.root.initialHashedPassword = "";
+  # users.users.root.initialHashedPassword = "";
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.09"; # Did you read the comment?
+  system.stateVersion = "20.03"; # Did you read the comment?
 
   networking.firewall.allowedTCPPorts = [ 22 80 8080 ];
   # services.nginx = {
@@ -183,15 +178,10 @@
     "https://kore.cachix.org"
   ];
 
-  nix.binaryCachePublicKeys = [
-    "kore.cachix.org-1:JdRLRmla/geeYkiwRBCRds0rHDgiv/heOxRQmLGDHSI="
-  ];
-
   nix.extraOptions = ''
     binary-caches-parallel-connections = 5
   '';
 
   services.lorri.enable = true;
-  services.logind.lidSwitchExternalPower = "ignore";
 }
 
