@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Load resources
-
-xrdb -merge .Xresources
-
-dbus-launch --exit-with-session /usr/bin/xmonad
-
-exec xmonad

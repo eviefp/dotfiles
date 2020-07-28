@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
-let g:netrw_dirhist_7='/home/vlad/code/hash'
-let g:netrw_dirhist_6='/home/vlad'
-let g:netrw_dirhist_5='/home/vlad/code'
-let g:netrw_dirhist_4='/home/vlad/code/kore'
-let g:netrw_dirhist_3='/home/vlad/code/kore/deps'
-let g:netrw_dirhist_2='/home/vlad/code/kore'
-let g:netrw_dirhist_1='/home/vlad'
