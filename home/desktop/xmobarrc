@@ -4,13 +4,11 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
        , position = TopW L 93
        , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 15
                     , Run Memory ["-t", "<usedbar>"] 100
-                    , Run BatteryP ["BAT0"] ["-t", "<acstatus> <left>%", "-h", "green", "-n", "yellow", "-l", "red"] 50
-                    , Run Com "/run/current-system/sw/bin/bash" ["-c", "~/.xmonad/get-backlight.sh"] "backlight" 10
-		    , Run Com "/run/current-system/sw/bin/date" [] "date" 10
+                    , Run Com "/run/current-system/sw/bin/date" [] "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %battery% | ☀ %backlight% | %date% "}
+       , template = "%StdinReader% }{ %cpu% | %memory% | %date% "}
        , lowerOnStart = False
        }
