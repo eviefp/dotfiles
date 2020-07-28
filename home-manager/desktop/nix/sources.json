@@ -22,5 +22,17 @@
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/2faa76db27c4a8045d050d9b390dbb2249b0f3c0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "reddup": {
+        "branch": "master",
+        "description": "Helping you keep your workstation nice and tidy",
+        "homepage": "",
+        "owner": "joelmccracken",
+        "repo": "reddup",
+        "rev": "63d34bf38b3423aa1bbe829968fe22401eb7d896",
+        "sha256": "1v4gmi5hxn8vyq9rmvjlq2jvrl4gmgv66kc47grb889p3qidpvj1",
+        "type": "tarball",
+        "url": "https://github.com/joelmccracken/reddup/archive/63d34bf38b3423aa1bbe829968fe22401eb7d896.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

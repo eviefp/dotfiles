@@ -1,6 +1,7 @@
 let
   sources = import ./nix/sources.nix;
 
+  reddup = import sources.reddup;
   nixpkgs = import sources.nixpkgs { config.allowUnfree = true; };
   pkgs = nixpkgs.pkgs;
 
@@ -58,6 +59,7 @@ in
     # testing
     chatterino2 xmagnify
     kitty
+    reddup
   ];
 
   home.sessionVariables = {
