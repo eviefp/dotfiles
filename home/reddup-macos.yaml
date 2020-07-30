@@ -1,0 +1,20 @@
+locations:
+    - type: git
+      location: ~/code/courses
+      force: true
+    - type: git
+      location: ~/code/dotfiles
+      force: true
+    - type: git
+      location: ~/Documents/wiki
+      force: true
+handlers:
+  inbox:
+    commands:
+      - name: (o)pen
+        cmd: open "$FILE"
+        key: o
+      - name: open (d)irectory
+        cmd: open .
+        key: d
+    refile_dests:
