@@ -1,16 +1,22 @@
 locations:
     - type: git
       location: ~/code/courses
+      force: true
     - type: git
       location: ~/code/dotfiles
+      force: true
     - type: git
       location: ~/code/reddup
+      force: true
     - type: git
       location: ~/code/roll
+      force: true
     - type: git
       location: ~/.password-store
+      force: true
     - type: git
       location: ~/Documents/wiki
+      force: true
 handlers:
   inbox:
     commands:
