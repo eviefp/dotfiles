@@ -28,7 +28,6 @@ let
       discord
       firefox
       fdk_aac
-      ffmpeg-full
       kitty
     ];
 
@@ -63,6 +62,7 @@ let
     ];
 
     streaming = [
+      ffmpeg-full
       chatterino2
     ];
 
