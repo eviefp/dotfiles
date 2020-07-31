@@ -57,8 +57,9 @@ in
     tectonic
 
     # testing
-    chatterino2 xmagnify
+    chatterino2
     kitty
+    ranger
     reddup
   ];
 
