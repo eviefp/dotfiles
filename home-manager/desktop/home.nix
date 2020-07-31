@@ -9,6 +9,7 @@ in
     common.packages.generic
     ++ common.packages.nixos
     ++ common.packages.programming
+    ++ common.packages.haskell
     ++ common.packages.provers
     ++ common.packages.scala
     ++ common.packages.latex
