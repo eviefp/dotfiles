@@ -102,7 +102,7 @@ main = do
         , startupHook = myStartupHook
         , modMask = mod4Mask
         , keys = myKeys
-        , terminal = "konsole"
+        , terminal = "kitty"
         , workspaces = myWorkspaces
         , handleEventHook =
           mconcat [ docksEventHook
