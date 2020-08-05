@@ -83,10 +83,7 @@ myOtherKeys =
 
 myWorkspaces = map show [1 .. 9]
 
-workspaceScreens ws
-  | ws == "8" = 1
-  | ws == "9" = 2
-  | otherwise = 0
+workspaceScreens = read
 
 
 main = do
