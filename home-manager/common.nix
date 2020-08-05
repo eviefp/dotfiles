@@ -35,6 +35,7 @@ let
       gnumake
       neovim
       vscode
+      racket
     ];
 
     haskell = [
@@ -45,9 +46,9 @@ let
     ];
 
     provers = [
-    AgdaStdlib
-    haskellPackages.Agda
-    idris
+      AgdaStdlib
+      haskellPackages.Agda
+      idris
     ];
 
     scala = [

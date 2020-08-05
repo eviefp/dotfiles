@@ -113,7 +113,7 @@ Plug 'lervag/wiki-ft.vim'
 Plug 'justinmk/vim-sneak'
 
 Plug 'scalameta/coc-metals'
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 
 Plug 'thanethomson/vim-jenkinsfile'
 " Initialize plugin system
