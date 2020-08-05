@@ -5,6 +5,12 @@ locations:
     - type: git
       location: ~/code/roll
       force: true
+    - type: git
+      location: ~/Documents/wiki
+      force: true
+    - type: git
+      location: ~/.password-store
+      force: true
 handlers:
   inbox:
     commands:
