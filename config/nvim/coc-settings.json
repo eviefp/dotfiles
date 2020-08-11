@@ -24,32 +24,25 @@
                 [ "dhall"
                 ],
         },
-        "haskell": {
-            "command": "ghcide",
-            "args": ["--lsp"],
-            "rootPatterns": [
-                "stack.yaml",
-                ".stack.yaml",
-                ".hie-bios",
-                "BUILD.bazel",
-                "cabal.config",
-                "package.yaml"
-            ],
-            "filetypes": [
-                "hs",
-                "lhs",
-                "haskell"
-            ],
-        },
-        "metals": {
-            "command": "metals-vim",
-            "rootPatterns": ["build.sbt"],
-            "filetypes": ["scala", "sbt"]
-        },
-        "latex": {
-            "command": "texlab",
-            "ignoredRootPaths": ["~"],
-            "filetypes": ["tex", "bib", "plaintex", "context"]
-        }
-    },
+  "haskell": {
+    "command": "haskell-language-server-wrapper",
+    "args": ["--lsp"],
+    "rootPatterns": [
+      "hie.yaml",
+      "*.cabal",
+      "stack.yaml",
+      "cabal.project",
+      "package.yaml"
+    ],
+    "filetypes": [
+      "hs",
+      "lhs",
+      "haskell"
+    ],
+    "initializationOptions": {
+      "haskell": {
+      }
+    }
+  }
+}
 }

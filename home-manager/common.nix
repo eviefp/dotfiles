@@ -29,6 +29,7 @@ let
       firefox
       fdk_aac
       kitty
+      feh
     ];
 
     programming = [

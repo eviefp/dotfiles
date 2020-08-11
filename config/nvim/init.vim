@@ -43,7 +43,7 @@ Plug 'tpope/vim-surround'
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
 " Indentation guides
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 " %S stuff
 Plug 'tpope/vim-abolish'
 
@@ -53,7 +53,7 @@ Plug 'tpope/vim-fugitive'
 " Additional plugin for github (pretty much for :Gbrowse I think)
 Plug 'tpope/vim-rhubarb'
 " Git gutter, must read more
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 " Try out: https://github.com/jreybert/vimagit
 
 """ Coding
@@ -65,7 +65,7 @@ Plug 'tpope/vim-markdown'
 """ Haskell
 " Indentation and syntax highlighting
 Plug 'vladciobanu/haskell-vim'
-Plug 'vladciobanu/vim-stylish-haskell'
+" Plug 'vladciobanu/vim-stylish-haskell'
 " <C-y> to insert function above, [[ and ]] to navigate
 Plug 'edkolev/curry.vim'
 "Plug 'enomsg/vim-haskellConcealPlus'
@@ -99,6 +99,10 @@ Plug 'vmchale/dhall-vim'
 """ Colorschemes
 Plug 'fatih/molokai'
 Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
+Plug 'jnurmine/Zenburn'
+Plug 'jacoborus/tender.vim'
+Plug 'sjl/badwolf'
 
 """ Testing
 Plug 'xuyuanp/nerdtree-git-plugin'
@@ -122,53 +126,64 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Generic vim setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwiki
-" set nocompatible
 let g:wiki_root = '~/Documents/wiki'
 
 set autoread
-" Forgive me, padre
-let g:stylish_haskell_command = "floskell"
-let g:stylish_haskell_dont_override = "on"
+
+" let g:stylish_haskell_command = "stylish-haskell"
+" let g:stylish_haskell_dont_override = "false"
 
 " Leader setup
 let mapleader = ' '
 let maplocalleader = ','
+
 " Not sure what these are
-execute "set t_8f=\e[38;2;%lu;%lu;%lum"
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+" execute "set t_8f=\e[38;2;%lu;%lu;%lum"
+" let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+
 " Relative line numbers
-set number relativenumber
-set nu rnu
-au TermOpen * setlocal nonumber norelativenumber
+" set number relativenumber
+" set nu rnu
+" au TermOpen * setlocal nonumber norelativenumber
+
 " Fill column indicator
 set colorcolumn=81
 " TODO: Figure out what each of these are.
 set tabstop=4
 set shiftwidth=0
 set expandtab
+"
 set autoindent
+
 " These seem like they turn on indentation by plugins and syntax highlighting.
 filetype plugin indent on
 syntax on
+
 " Better search
 set incsearch
 set hlsearch
 set smartcase
+
 " Not sure what these are
 " au InsertEnter * set nocursorline
-au InsertLeave * set cursorline
-set cursorline
-set cursorcolumn
-set ruler
+" au InsertLeave * set cursorline
+
+" set cursorline
+" set cursorcolumn
+
+" set ruler
+
 " Things like "zb" will keep 3 lines below target
 set scrolloff=3
+
 " Disable folding, what does this do?
 set nofoldenable
+
 " Basic setup for text files
-" autocmd FileType md setlocal textwidth=80 spell
-" autocmd FileType txt setlocal textwidth=80 spell
-" autocmd FileType tex setlocal textwidth=80 spell
+autocmd FileType md setlocal textwidth=80 spell
+autocmd FileType txt setlocal textwidth=80 spell
+autocmd FileType tex setlocal textwidth=80 spell
+
 " Show substitutions as you type them
 set inccommand=nosplit
 
@@ -179,22 +194,24 @@ let g:agda_extraincpaths = [ "/nix/store/d31lf1zq5mwfi3hw276hpnb45hkd3yvc-agda-s
 """ Plugin-specific
 " for vim-devicons
 set encoding=UTF-8
-" Shorter update time, added for gitgutter
-set updatetime=100
+
 " Enable rainbow parentheses
 let g:rainbow_active=1
+
 " Enable indent guides
-let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_enable_on_vim_startup = 1
+
 " Added for fzf
 set splitbelow splitright
 
 " Theme and stuff
 set background=dark
 set termguicolors
-colorscheme molokai
+colorscheme tender
+hi Normal guibg=NONE ctermbg=NONE
 
 " Airline
-let g:airline_theme = 'molokai'
+" let g:airline_theme = 'molokai'
 let g:palenight_terminal_italics=1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -204,6 +221,7 @@ let g:haskell_conceal = 0
 let g:haskell_conceal_wide = 0
 let g:haskell_coneal_enumerations = 0
 let g:haskell_hsp = 0
+
 " haskell-vim
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
@@ -215,7 +233,6 @@ let g_haskell_indent_do = 4
 let g_haskell_indent_in = 2
 
 " Idris
-
 " haskellConcealPlus settings
 " TODO: there's a bug with 'S'
 let hscoptions="STEMsrl↱w-tBQZNDC"
@@ -225,16 +242,7 @@ set hidden
 set nobackup
 set nowritebackup
 set shortmess+=c
-set signcolumn=yes
-
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-let g:vista_default_executive = 'coc'
-let g:vista#renderer#enable_icon = 0
-" let g:vista#renderer#icons = {
-" \   "function": "\uf794",
-" \   "variable": "\uf71b",
-" \  }
+" set signcolumn=yes
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keyboard customization
