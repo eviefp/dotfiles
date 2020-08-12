@@ -79,7 +79,7 @@ checkAll() {
                 success "${inputs[$i]}"
                 ;;
             "2")
-                ln -s "${inputs[$i]}" ${outputs[$i]} 2> /dev/null
+                ln -s "$(pwd)/${inputs[$i]}" "${outputs[$i]}" 2> /dev/null
                 if [ "$?" -eq 0 ]; then
                     success "Created symlink for ${inputs[$i]} at ${outputs[$i]}."
                 else
@@ -113,14 +113,14 @@ main() {
     setMachine
 
     inputs=(
-        "./config/nvim/init.vim"
-        "./config/nvim/coc-settings.json"
-        "./home-manager/$machine/home.nix"
-        "./home/ghci"
-        "./home/reddup-$env.yaml"
-        "./home-manager/$machine/home.nix"
-        "./config/fish/functions/clip.fish"
-        "./config/kitty/kitty.conf"
+        "config/nvim/init.vim"
+        "config/nvim/coc-settings.json"
+        "home-manager/$machine/home.nix"
+        "home/ghci"
+        "home/reddup-$env.yaml"
+        "home-manager/$machine/home.nix"
+        "config/fish/functions/clip.fish"
+        "config/kitty/kitty.conf"
     )
     echo -e "\e[35m${env}\e[0m/\e[36m${machine}\e[0m detected..."
     checkAll
