@@ -306,6 +306,13 @@ nnoremap <Leader>fed :e ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>fer :so ~/.config/nvim/init.vim<CR>
 map <Leader>fs :Rg<CR>
 
+""" tex stuff
+nnoremap <localleader>ls o\begin{lstlisting}[language=Scala]<CR>\end{lstlisting}<ESC>O
+nnoremap <localleader>it o\begin{itemize}[language=Scala]<CR>\end{itemize}<ESC>O
+nnoremap <localleader>p $a \pause<ESC>
+nnoremap <localleader>lp i~\pause~<ESC>
+nnoremap <localleader>eq o\setcounter{equation}{0}<CR>\begin{eqnarray}<CR>\end{eqnarray}<ESC>O
+
 """ Testing stuff
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
