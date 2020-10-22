@@ -121,6 +121,10 @@ Plug 'scalameta/coc-metals'
 
 Plug 'thanethomson/vim-jenkinsfile'
 " Initialize plugin system
+
+Plug 'reedes/vim-lexical'
+
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -155,9 +159,23 @@ set expandtab
 "
 set autoindent
 
+"""
+" let g:purescript_disable_indent=1
+"""
+
 " These seem like they turn on indentation by plugins and syntax highlighting.
 filetype plugin indent on
 syntax on
+
+set nocompatible
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType tex call lexical#init()
+  autocmd FileType text call lexical#init()
+augroup END
 
 " Better search
 set incsearch
@@ -250,6 +268,7 @@ set shortmess+=c
 " Which-key
 nnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
+nnoremap \ "_
 
 " Light/dark theme
 map <Leader>cl :set background=light<cr>:colorscheme solarized8<cr>
@@ -352,3 +371,4 @@ nmap <leader>f <Plug>(coc-format-selected)
 """ Under test
 nnoremap <leader>ut :UndotreeToggle<cr>
 
+nmap <silent> <leader>cf :call CocAction('format')<cr>
