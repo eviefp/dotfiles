@@ -5,6 +5,7 @@ let
   nixpkgs = import sources.nixpkgs { config.allowUnfree = true; };
   pkgs = nixpkgs.pkgs;
   amethyst = import ./dependencies/amethyst.nix { pkgs = pkgs; };
+  font = pkgs.hasklig;
 in
 {
   # Let Home Manager install and manage itself.
@@ -18,8 +19,6 @@ in
     haskellPackages.niv
 
     ## CLI
-    jq
-    yq
     httpie
     fish
     ripgrep
@@ -27,8 +26,7 @@ in
 
     ## Dev
     neovim
-    emacs
-    hasklig
+    font
     lorri
 
     ## Nix
@@ -39,9 +37,9 @@ in
 
     ## Other
     nodejs
-    # haskellPackages.Agda
+    agda
+    agdaPackages.standard-library
     # Idris
-    # AgdaStdlib broken iirc
 
     ## Scala
     sbt
@@ -53,6 +51,29 @@ in
     # UI
     amethyst
   ];
+
+  # home.file = {
+    # ".emacs.d/modules" = {
+    #   source = ../modules;
+    #   recursive = true;
+    # };
+
+    # ".emacs.d/init.el".text = ''
+    #   (setq nix-config #s(hash-table
+    #                       test equal
+    #                       data (
+    #                             "paths" #s(hash-table
+    #                                        test equal
+    #                                        data (
+    #                                              "rg" "${pkgs.ripgrep}/bin/rg"
+    #                                              "git" "${pkgs.git}/bin/git"
+    #                                              "msmtp" "${pkgs.msmtp}/bin/msmtp"
+    #                                              "shell" "${pkgs.stdenv.shell}"
+    #                                        ))
+    #                             )))
+    #   (load (concat user-emacs-directory "modules/init"))
+    # '';
+  # };
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -105,7 +126,7 @@ in
 
       haskell = {
         symbol = " ";
-        disabled = false;
+        disabled = true;
       };
     };
   };
