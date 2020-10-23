@@ -34,5 +34,29 @@
         "type": "tarball",
         "url": "https://github.com/joelmccracken/reddup/archive/1bce9371d79c410b30b91c10bf040777260777ad.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "sowon": {
+        "branch": "master",
+        "description": "Starting Soon Timer for Tsoding Streams",
+        "homepage": "",
+        "owner": "tsoding",
+        "repo": "sowon",
+        "rev": "b6583ddd9334fd1e9ec3cc4cf19073cb4596ac31",
+        "sha256": "1br4x0il7vwdpvn8ymcdc0k2m0r0nsx0cz83v0zyl16z2451yqfs",
+        "type": "tarball",
+        "url": "https://github.com/tsoding/sowon/archive/b6583ddd9334fd1e9ec3cc4cf19073cb4596ac31.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "thing": {
+        "branch": "main",
+        "description": null,
+        "homepage": null,
+        "owner": "vladciobanu",
+        "repo": "thing",
+        "rev": "0ed02405d9aaff6f881e9c9f9465c15cf9b84d96",
+        "sha256": "1pakn231x1ljiy7qndjwaf24a6sbz56dzqk9kb68v5dhyk6r1f7s",
+        "type": "tarball",
+        "url": "https://github.com/vladciobanu/thing/archive/0ed02405d9aaff6f881e9c9f9465c15cf9b84d96.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
