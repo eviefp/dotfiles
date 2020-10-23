@@ -1,4 +1,5 @@
 {
+    "coc.preferences.formatOnSaveFiletypes": [ "hs", "hls", "haskell" ],
     "languageserver": {
         "purescript": {
             "command": "npx",
@@ -7,6 +8,7 @@
                 "bower.json",
                 "psc-package.json",
                 "spago.dhall",
+                "packages.dhall",
             ],
             "filetypes": [ "purescript" ],
             "settings": {
@@ -41,6 +43,7 @@
     ],
     "initializationOptions": {
       "haskell": {
+        "formattingProvider": "stylish-haskell"
       }
     }
   }

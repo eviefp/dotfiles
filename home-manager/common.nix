@@ -1,8 +1,20 @@
 let
   sources = import ./nix/sources.nix;
   reddup = import sources.reddup;
+  thing = import sources.thing;
   nixpkgs = import sources.nixpkgs { config.allowUnfree = true; };
   pkgs = nixpkgs.pkgs;
+  sowon = pkgs.stdenv.mkDerivation {
+    buildInputs = [ pkgs.pkg-config pkgs.SDL2 ];
+    name = "sowon";
+    src = sources.sowon;
+    installPhase = ''
+      mkdir -p $out/bin
+      cp digits.png $out/bin/
+      cp sowon $out/bin/
+    '';
+  };
+  # myEmacs = import ./emacs.nix { pkgs = pkgs; };
 
   #########################################################
   ## Packages
@@ -15,12 +27,15 @@ let
       nodejs
       ranger
       reddup
+      thing
+      sowon
       ripgrep
       slack
       unzip
       wget
       yq
       zip
+      # myEmacs
     ];
 
     nixos = [
