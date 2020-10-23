@@ -5,10 +5,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "ab9cc41caf44d1f1d465d8028e4bc0096fd73238",
-        "sha256": "17k52n8zwp832cqifsc4458mhy4044wmk22f807171hf6p7l4xvr",
+        "rev": "29ddaaf4e099c3ac0647f5b652469dfc79cd3b53",
+        "sha256": "1va6myp07gkspgxfch8z3rs9nyvys6jmgzkys6a2c4j09qxp1bs0",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/ab9cc41caf44d1f1d465d8028e4bc0096fd73238.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/29ddaaf4e099c3ac0647f5b652469dfc79cd3b53.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -17,10 +17,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7c85b91589222b3710e9ff24b228b83f8be8e937",
-        "sha256": "1cgvlc92gkpwy5i8f7li9051jypaq20631l735j9z03ajv80jvxm",
+        "rev": "b4db68ff563895eea6aab4ff24fa04ef403dfe14",
+        "sha256": "1qbs7p0mmcmpg70ibd437hl57byqx5q0pc61p1dckrkazj7kq0pc",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/7c85b91589222b3710e9ff24b228b83f8be8e937.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/b4db68ff563895eea6aab4ff24fa04ef403dfe14.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "reddup": {
@@ -29,10 +29,34 @@
         "homepage": "",
         "owner": "joelmccracken",
         "repo": "reddup",
-        "rev": "db3bb0f8909ba3c26e8fb51ef76399457c02b707",
-        "sha256": "0j7xva7lj3rs9h9f3f311j0k14ifra6bdsg0d7537049s4bcd424",
+        "rev": "1bce9371d79c410b30b91c10bf040777260777ad",
+        "sha256": "06kay0h72k3zr98svg2c7gsbdywz8kybzbnj6640whdm7rglncf4",
         "type": "tarball",
-        "url": "https://github.com/joelmccracken/reddup/archive/db3bb0f8909ba3c26e8fb51ef76399457c02b707.tar.gz",
+        "url": "https://github.com/joelmccracken/reddup/archive/1bce9371d79c410b30b91c10bf040777260777ad.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "sowon": {
+        "branch": "master",
+        "description": "Starting Soon Timer for Tsoding Streams",
+        "homepage": "",
+        "owner": "tsoding",
+        "repo": "sowon",
+        "rev": "b6583ddd9334fd1e9ec3cc4cf19073cb4596ac31",
+        "sha256": "1br4x0il7vwdpvn8ymcdc0k2m0r0nsx0cz83v0zyl16z2451yqfs",
+        "type": "tarball",
+        "url": "https://github.com/tsoding/sowon/archive/b6583ddd9334fd1e9ec3cc4cf19073cb4596ac31.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "thing": {
+        "branch": "main",
+        "description": null,
+        "homepage": null,
+        "owner": "vladciobanu",
+        "repo": "thing",
+        "rev": "d53f22e3793b12649d9dee9eb14fccf8061c4383",
+        "sha256": "0wm12hlqwhxy3qnp3xl8m6h59wwyixdj9c00arpwyx3wy5cgkjb5",
+        "type": "tarball",
+        "url": "https://github.com/vladciobanu/thing/archive/d53f22e3793b12649d9dee9eb14fccf8061c4383.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

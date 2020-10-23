@@ -45,8 +45,8 @@ in
     sbt
 
     ## Latex
-    tectonic
-    texlab
+    # tectonic
+    # texlab
 
     # UI
     amethyst

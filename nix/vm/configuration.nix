@@ -8,6 +8,7 @@
 	  imports =
 	    [ # Include the results of the hardware scan.
 	      ./hardware-configuration.nix
+          ./cachix.nix
 	    ];
 
 	  # Use the GRUB 2 boot loader.
@@ -62,7 +63,7 @@
 	    linuxPackages.virtualboxGuestAdditions
 	  ];
 
-	  fonts.fonts = [ pkgs.nerdfonts ];
+	  fonts.fonts = [ pkgs.nerdfonts pkgs.font-awesome pkgs.font-awesome_4 ];
 
 	  programs.fish.enable = true;
 	  programs.mtr.enable = true;
@@ -75,7 +76,7 @@
 	  services.openssh.enable = true;
 
 	  # Open ports in the firewall.
-	  # networking.firewall.allowedTCPPorts = [ ... ];
+	  networking.firewall.allowedTCPPorts = [ 3000 ];
 	  # networking.firewall.allowedUDPPorts = [ ... ];
 	  # Or disable the firewall altogether.
 	  # networking.firewall.enable = false;
