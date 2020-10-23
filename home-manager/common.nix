@@ -1,6 +1,5 @@
 let
   sources = import ./nix/sources.nix;
-
   reddup = import sources.reddup;
   nixpkgs = import sources.nixpkgs { config.allowUnfree = true; };
   pkgs = nixpkgs.pkgs;
@@ -28,7 +27,6 @@ let
       discord
       firefox
       fdk_aac
-      kitty
       feh
     ];
 
@@ -176,10 +174,30 @@ let
   services = {
     picom.enable = true;
   };
+
+  ## Helpers
+  mkKitty = extraSettings: {
+    kitty = {
+      enable = true;
+      settings = {
+        "font_family"        = "Hasklug Nerd Font Complete Mono";
+        "bold_font"          = "Hasklug Bold Nerd Font Complete Mono";
+        "italic_font"        = "Hasklug Italic Nerd Font Complete Mono";
+        "bold_italic_font"   = "Hasklug Bold Italic Nerd Font Complete Mono";
+        "disable_ligatures"  = "never";
+        "font_size"          = "16.0";
+        "background_opacity" = "0.8";
+        "background"         = "#2b2b2b";
+      } // extraSettings;
+    };
+  };
 in
 {
   packages = packages;
   sessionVariables = sessionVariables;
-  programs = programs;
+  programs = programs // mkKitty {};
   services = services;
+  helpers = {
+    inherit mkKitty;
+  };
 }

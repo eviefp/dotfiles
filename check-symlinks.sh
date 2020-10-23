@@ -13,7 +13,6 @@ outputs=(
   "${HOME}/.reddup.yml"
   "${HOME}/.config/nixpkgs/home.nix"
   "${HOME}/.config/fish/functions/clip.fish"
-  "${HOME}/.config/kitty/kitty.conf"
 )
 
 should_check() {
@@ -66,6 +65,7 @@ setMachine() {
     case "${hostOut}" in
         "vm")       machine=vm;;
         "laptop")   machine=laptop;;
+	"carbon")   machine=carbon;;
         *)          machine="UNKNOWN:${hostOut}"
     esac
 }
@@ -120,7 +120,6 @@ main() {
         "home/reddup-$env.yaml"
         "home-manager/$machine/home.nix"
         "config/fish/functions/clip.fish"
-        "config/kitty/kitty.conf"
     )
     echo -e "\e[35m${env}\e[0m/\e[36m${machine}\e[0m detected..."
     checkAll
