@@ -91,11 +91,15 @@
   # networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplip pkgs.gutenprint ];
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
   hardware.video.hidpi.enable = true;
 
   # Enable the X11 windowing system.
@@ -135,6 +139,12 @@
 
   services.lorri.enable = true;
 
+  services.udev.extraRules = ''
+    KERNEL=="card0", SUBSYSTEM=="drm", ENV{XAUTHORITY}="/home/vlad/.Xauthority", RUN+="${pkgs.autorandr}/bin/autorandr --change --batch"
+    ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.setxkbmap}/bin/setxkbmap -option caps:none"
+    ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.xmodmap}/bin/xmodmap -e \"keycode 66 = Multi_key\""
+  '';
+  services.udev.path = [ pkgs.autorandr pkgs.xorg.xmodmap pkgs.su pkgs.coreutils pkgs.xorg.setxkbmap ];
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vlad = {
     isNormalUser = true;
