@@ -124,7 +124,7 @@ Plug 'thanethomson/vim-jenkinsfile'
 
 Plug 'reedes/vim-lexical'
 
-
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -140,6 +140,34 @@ set autoread
 " Leader setup
 let mapleader = ' '
 let maplocalleader = ','
+
+au BufEnter github.com_*.txt set filetype=markdown
+
+let g:firenvim_config = {
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'priority': 0,
+            \ 'selector': 'textarea',
+            \ 'takeover': 'always',
+        \ },
+    \ }
+\ }
+
+if exists('g:started_by_firenvim')
+  let g:airline_disable_statusline = 1
+  let g:airline#extensions#tabline#enabled = 0
+  set laststatus=0
+else
+  let g:airline#extensions#tabline#enabled = 1
+  set laststatus=2
+endif
+
+" let fc = g:firenvim_config['localSettings']
+" let fc['https?://[^/]+\.co\.uk/'] = { 'takeover': 'never', 'priority': 1 }
 
 " Not sure what these are
 " execute "set t_8f=\e[38;2;%lu;%lu;%lum"
@@ -231,7 +259,6 @@ hi Normal guibg=NONE ctermbg=NONE
 " Airline
 " let g:airline_theme = 'molokai'
 let g:palenight_terminal_italics=1
-let g:airline#extensions#tabline#enabled = 1
 
 " Haskell
 set concealcursor=nciv

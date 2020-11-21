@@ -30,7 +30,8 @@ myManageHook = composeAll (
     , manageDocks
     ])
 
-myStartupHook = pure ()
+myStartupHook :: X ()
+myStartupHook = spawn "stalonetray"
 
 screenshotCommand = "/usr/bin/env fish --command clip"
 

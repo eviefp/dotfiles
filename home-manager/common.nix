@@ -1,5 +1,6 @@
 let
   sources = import ./nix/sources.nix;
+  mail = import ./email.nix { inherit pkgs; };
   reddup = import sources.reddup;
   thing = import sources.thing;
   nixpkgs = import sources.nixpkgs { config.allowUnfree = true; };
@@ -43,6 +44,13 @@ let
       firefox
       fdk_aac
       feh
+      xournal
+      chromium
+      lua51Packages.luabitop
+      lua
+      steam
+      mailcap
+      w3m
     ];
 
     programming = [
@@ -130,8 +138,8 @@ let
         work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
       };
       ignores = [ "TAGS" ];
-      userEmail = "admin@cvlad.info";
-      userName = "Vladimir Ciobanu";
+      userEmail = mail.gmail.userName;
+      userName = mail.gmail.realName;
     };
 
     home-manager = {
@@ -179,15 +187,152 @@ let
     };
 
     zathura = {
-        enable = true;
-      };
+      enable = true;
+    };
 
+    astroid = {
+      enable = true;
+    };
+
+    alot = {
+      enable = true;
+    };
+
+    neomutt = {
+      enable = true;
+      extraConfig = ''
+auto_view text/html
+alternative_order text/enriched text/plain text/html text
+
+set index_format = "%Z %{%D} %-15.15L %-5.5Y %s"
+
+mailboxes "/home/vlad/Maildir/gmail/Sent"
+mailboxes "/home/vlad/Maildir/gmail/[Gmail]/Sent Mail"
+
+unbind *
+
+bind generic : enter-command
+bind generic q exit
+bind generic gg first-entry
+bind generic } half-down
+bind generic { half-up
+bind generic ? help
+bind generic G last-entry
+bind generic ^R refresh
+bind generic / search
+bind generic * search-next
+bind generic \# search-opposite
+bind generic x select-entry
+bind generic t tag-entry
+bind generic j next-entry
+bind generic k previous-entry
+
+bind index c copy-message
+bind index dd delete-message
+bind index <Space> display-message
+bind index f forward-message
+bind index m mail
+bind index j next-undeleted
+bind index | pipe-message
+bind index k previous-undeleted
+bind index q quit
+bind index r reply
+bind index l sidebar-next
+bind index h sidebar-prev
+bind index O sidebar-open
+bind index N toggle-new
+bind index v view-attachments
+
+bind pager j next-line
+bind pager k previous-line
+bind pager c copy-message
+bind pager C decode-copy
+bind pager e edit
+bind pager L edit-label
+bind pager q exit
+bind pager f forward-message
+bind pager R group-reply
+bind pager m mail
+bind pager t modify-tags
+bind pager | pipe-message
+bind pager s save-message
+bind pager / search
+bind pager * search-next
+bind pager \# search-opposite
+bind pager l sidebar-next
+bind pager h sidebar-prev
+bind pager O sidebar-open
+bind pager gg top
+bind pager G bottom
+
+bind attach <Space> view-attach
+bind attach s save-entry
+
+bind compose x send-message
+bind compose a attach-file
+bind compose v view-attach
+bind compose c edit-cc
+bind compose b edit-bcc
+bind compose h edit-headers
+bind compose e edit-message
+bind compose s edit-subject
+bind compose t edit-to
+bind compose i ispell
+
+set nm_default_uri = /home/vlad/Maildir
+'';
+      sidebar = {
+        enable = true;
+        shortPath = true;
+      };
+      sort = "reverse-threads";
+    };
+
+    mbsync.enable = true;
+    msmtp.enable = true;
+    notmuch = {
+      enable = true;
+      hooks.preNew = "mbsync --all";
+    };
+
+  };
+
+  #########################################################
+  ## File
+  file = {
+    ".mailcap" = {
+      text = ''
+text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
+'';
+    };
   };
 
   #########################################################
   ## Services
   services = {
     picom.enable = true;
+    mbsync.enable = true;
+    stalonetray = {
+      enable = true;
+      package = pkgs.stalonetray;
+      config = {
+        decorations = "all";
+        transparent = true;
+        dockapp_mode = "none";
+        geometry = "9x1-0+0";
+        background = "#000000";
+        kludges = "force_icons_size";
+        grow_gravity = "NW";
+        icon_gravity = "NE";
+        icon_size = 30;
+        sticky = true;
+        window_strut = "auto";
+        window_type = "dock";
+        window_layer = "bottom";
+        no_shrink  = false;
+        skip_taskbar = true;
+      };
+    };
   };
 
   ## Helpers
@@ -206,8 +351,12 @@ let
       } // extraSettings;
     };
   };
+  accounts.email.accounts = {
+    gmail = mail.gmail;
+  };
 in
 {
+  accounts = accounts;
   packages = packages;
   sessionVariables = sessionVariables;
   programs = programs // mkKitty {};
@@ -215,4 +364,5 @@ in
   helpers = {
     inherit mkKitty;
   };
+  file = file;
 }

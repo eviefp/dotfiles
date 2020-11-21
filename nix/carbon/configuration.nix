@@ -16,20 +16,7 @@
 
   networking.hostName = "carbon"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.wireless.networks = {
-    hello = {
-      psk = "mamaliga666";
-      priority = 100;
-    };
-    hello_5G = {
-      psk = "mamaliga666";
-      priority = 50;
-    };
-    ASUS = {
-      psk = "jimmysnacks";
-      priority = 10;
-    };
-  };
+  networking.wireless.networks = import ./networks.nix;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -66,6 +53,8 @@
     pass passff-host dbus pinentry_gnome transmission-gtk pavucontrol
     konsole xorg.xmodmap xorg.xev firefox
     xdg_utils git
+    #
+    paprefs
   ];
 
   fonts.fonts = [ pkgs.nerdfonts ];
@@ -78,6 +67,8 @@
     enableSSHSupport = true;
     pinentryFlavor = "gnome3";
   };
+
+  programs.dconf.enable = true;
 
   # List services that you want to enable:
 
@@ -96,15 +87,20 @@
 
   # Enable sound.
   sound.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
   hardware.pulseaudio = {
     enable = true;
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
   };
   hardware.video.hidpi.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
+    videoDrivers = [ "intel" ];
     dpi = 200;
     monitorSection = ''
       Option "DPMS" "false"
@@ -146,11 +142,14 @@
   '';
   services.udev.path = [ pkgs.autorandr pkgs.xorg.xmodmap pkgs.su pkgs.coreutils pkgs.xorg.setxkbmap ];
   # Define a user account. Don't forget to set a password with ‘passwd’.
+
   users.users.vlad = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
+
+  security.sudo.wheelNeedsPassword = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
