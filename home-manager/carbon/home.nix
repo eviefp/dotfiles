@@ -6,6 +6,8 @@ in
 {
   nixpkgs.config.nixpkgs.config.allowUnfree = true;
 
+  accounts = common.accounts;
+
   home.packages =
     common.packages.generic
     ++ common.packages.nixos
@@ -17,6 +19,7 @@ in
     ++ common.packages.streaming;
 
   home.sessionVariables = common.sessionVariables;
+  home.file = common.file;
 
   programs = common.programs // common.helpers.mkKitty {
     "font_size" = "24.0";

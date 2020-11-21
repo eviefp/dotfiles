@@ -5,6 +5,10 @@ set -o pipefail
 env="macos"
 machine=""
 
+secrets=(
+    "./nix/carbon/networks.nix.gpg"
+)
+
 outputs=(
   "${HOME}/.config/nvim/init.vim"
   "${HOME}/.config/nvim/coc-settings.json"
@@ -37,6 +41,22 @@ check_file() {
     else
         return 3
     fi
+}
+
+unpackSecrets() {
+    for i in "${!secrets[@]}"
+    do
+        enc=${secrets[$i]}
+        file=$(basename $enc .gpg)
+        base=${enc%/*}
+        file="$base/$(basename $enc .gpg)"
+        if [ -f "$file" ]; then
+            success "$enc"
+        else
+            gpg --output "$file" --decrypt "$enc"
+            success "$enc"
+        fi
+    done
 }
 
 success() {
@@ -111,6 +131,7 @@ main() {
     echo ""
     setEnv
     setMachine
+    unpackSecrets
 
     inputs=(
         "config/nvim/init.vim"
