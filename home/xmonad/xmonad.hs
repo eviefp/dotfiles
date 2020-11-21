@@ -31,7 +31,9 @@ myManageHook = composeAll (
     ])
 
 myStartupHook :: X ()
-myStartupHook = spawn "stalonetray"
+myStartupHook = do
+    installSignalHandlers
+    spawn "stalonetray"
 
 screenshotCommand = "/usr/bin/env fish --command clip"
 
