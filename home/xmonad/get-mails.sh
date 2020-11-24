@@ -3,6 +3,6 @@
 notmuch new --quiet
 res=$(notmuch count tag:unread folder:'gmail/Inbox')
 
-echo $vol
+echo $res
 
 exit 0

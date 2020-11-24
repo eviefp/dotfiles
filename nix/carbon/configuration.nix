@@ -15,7 +15,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "carbon"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.wireless.networks = import ./networks.nix;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
