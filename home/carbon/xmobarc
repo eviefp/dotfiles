@@ -13,6 +13,6 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %wlp2s0wi% |%default:Master% | %battery% | %mails% | %date% "
+       , template = "%StdinReader% }{ %cpu% | %memory% | %wlp2s0wi% | %default:Master% | %battery% | %mails% | %date% "
        , lowerOnStart = False
        }

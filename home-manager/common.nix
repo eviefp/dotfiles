@@ -51,6 +51,7 @@ let
       steam
       mailcap
       w3m
+      networkmanagerapplet
     ];
 
     programming = [
@@ -242,6 +243,8 @@ bind index h sidebar-prev
 bind index O sidebar-open
 bind index N toggle-new
 bind index v view-attachments
+bind index [ next-unread
+bind index ] previous-unread
 
 bind pager j next-line
 bind pager k previous-line
@@ -264,6 +267,7 @@ bind pager h sidebar-prev
 bind pager O sidebar-open
 bind pager gg top
 bind pager G bottom
+bind pager v view-attachments
 
 bind attach <Space> view-attach
 bind attach s save-entry

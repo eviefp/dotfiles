@@ -34,6 +34,7 @@ myStartupHook :: X ()
 myStartupHook = do
     installSignalHandlers
     spawn "stalonetray"
+    spawn "nm-applet"
 
 screenshotCommand = "/usr/bin/env fish --command clip"
 
