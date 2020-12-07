@@ -1,87 +1,66 @@
 { pkgs }:
 
 let
-  myEmacs = pkgs.emacs26;
+  # TODO: try updating nixpkgs to get emacs27
+  # TODO: use display-fill-column-indicator-mode w/ e27
+  file = {
+    ".emacs.d/init.el".source = ./init.el;
 
-in
-  pkgs.emacsWithPackages (epkgs: (with epkgs; [
-    aggressive-indent
-    # cask-mode
+  };
+  emacsWithPackages = pkgs.emacs26WithPackages;
+  deriv = emacsWithPackages (epkgs: (with epkgs; [
+    # TODO: sort this
+    doom-themes
     company
-    company-emoji
-    company-lsp
-    company-quickhelp
+    ivy
     counsel
-    counsel-projectile
-    csv-mode
-    # delight
+    swiper
     direnv
     dhall-mode
-    # dockerfile-mode
-    # edit-indirect
-    editorconfig emojify
+    editorconfig
     evil
-    evil-collection
     evil-goggles
-    evil-org
-    evil-magit
-    evil-smartparens
-    fill-column-indicator
-    flow-minor-mode
-    flx
+    evil-surround
+    evil-collection # keymaps more stuff to evil
     flycheck
-    flycheck-haskell
-    flycheck-pos-tip
     general
     git-gutter
-    # haskell-mode
-    helpful
-    highlight-numbers
+    haskell-mode
     hl-todo
-    imenu-list
-    indent-guide
-    ivy
-    link-hint
-    lsp-mode
-    lsp-ui
     magit
     markdown-mode
-    mmm-mode
-    mode-icons
     neotree
     nix-mode
-    org-bullets
     pdf-tools
-    # pkgbuild-mode
-    powerline
-    powerline-evil
-    projectile
-    psc-ide
-    purescript-mode
+    doom-modeline
+    all-the-icons
     rainbow-delimiters
-    rainbow-mode
-    ranger
-    # rust-mode
-    smartparens
-    solarized-theme
-    swiper
-    # typescript-mode
-    unicode-fonts
+    purescript-mode
+    psc-ide
     use-package
-    # web-mode
     which-key
-    ws-butler
     yaml-mode
-    # zoom-frm
-    ## Scala
-    scala-mode
-    sbt-mode
-    lsp-metals
-    lsp-ui
-    yasnippet
-    posframe
-    dap-mode
+    notmuch
 
-    ## Haskell
+    # ## Haskell
+    lsp-mode
+    lsp-ui
     lsp-haskell
-  ]))
+
+    ## org stuff
+    # evil-org
+    # org-bullets
+
+    # projectile # maybe?
+
+    ## later
+    # yasnippet
+    # ws-butler # websockets I think
+    # ranger
+    # edit-indirect # galaxy brain figure it out later
+  ]));
+in
+  {
+    derivation = deriv;
+    file = file;
+  }
