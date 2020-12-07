@@ -50,12 +50,15 @@ let
     ## org stuff
     # evil-org
     # org-bullets
+    # org-tree-slide
 
     # projectile # maybe?
+    # diminish?
 
     ## later
     # yasnippet
     # ws-butler # websockets I think
+    # restclient
     # ranger
     # edit-indirect # galaxy brain figure it out later
   ]));
