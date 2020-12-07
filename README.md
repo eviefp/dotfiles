@@ -15,8 +15,7 @@ TODO:
 Emacs stuff:
 - [x] emacs 28
 - [x] figure out why the `emacsWithPackagesFromUsePackage` does not work (i.e. does not load `init.el`)
-- [ ] bind a few extra keys in magit mode (e.g. I can't space b b to see buffers)
-- [ ] use display-fill-column-indicator-mode
+- [x] use display-fill-column-indicator-mode
 - [ ] allow different font per machine
 - [ ] haskell-mode config
 - [ ] emacsclient thing
