@@ -9,16 +9,6 @@ let
     overlays = [ emacsOverlay ];
   };
   pkgs = nixpkgs.pkgs;
-  sowon = pkgs.stdenv.mkDerivation {
-    buildInputs = [ pkgs.pkg-config pkgs.SDL2 ];
-    name = "sowon";
-    src = sources.sowon;
-    installPhase = ''
-      mkdir -p $out/bin
-      cp digits.png $out/bin/
-      cp sowon $out/bin/
-    '';
-  };
   #########################################################
   ## Packages
   packages = with pkgs; {
@@ -31,7 +21,6 @@ let
       ranger
       reddup
       thing
-      sowon
       ripgrep
       slack
       unzip
