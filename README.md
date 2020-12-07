@@ -1,7 +1,8 @@
 TODO:
-- [ ] rename branch to main
-- [ ] niv update
-- [ ] rename `home` to `config` or something
+- [x] rename branch to main
+- [x] niv update
+- [ ] check-symlinks:
+    - [ ] migrate all non-nix files to home-manager
 - [ ] Create a Makefile
     - [ ] format all (nix) files
 	- [ ] check they are formatted (for CI?)
