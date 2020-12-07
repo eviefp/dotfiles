@@ -5,10 +5,9 @@ let
   # TODO: use display-fill-column-indicator-mode w/ e27
   file = {
     ".emacs.d/init.el".source = ./init.el;
-
   };
-  emacsWithPackages = pkgs.emacs26WithPackages;
-  deriv = emacsWithPackages (epkgs: (with epkgs; [
+  ewp = pkgs.emacsPackagesGen pkgs.emacsGit;
+  deriv = ewp.emacsWithPackages (epkgs: (with epkgs; [
     # TODO: sort this
     doom-themes
     company

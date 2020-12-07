@@ -28,7 +28,7 @@
 
 ;; Setting up font and size
 (set-face-attribute 'default nil :family "Hasklug Nerd Font")
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 150) 
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
