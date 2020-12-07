@@ -5,6 +5,10 @@ set -o pipefail
 env="macos"
 machine=""
 
+secrets=(
+    "./nix/carbon/networks.nix.gpg"
+)
+
 outputs=(
   "${HOME}/.config/nvim/init.vim"
   "${HOME}/.config/nvim/coc-settings.json"
@@ -13,7 +17,6 @@ outputs=(
   "${HOME}/.reddup.yml"
   "${HOME}/.config/nixpkgs/home.nix"
   "${HOME}/.config/fish/functions/clip.fish"
-  "${HOME}/.config/kitty/kitty.conf"
 )
 
 should_check() {
@@ -40,6 +43,22 @@ check_file() {
     fi
 }
 
+unpackSecrets() {
+    for i in "${!secrets[@]}"
+    do
+        enc=${secrets[$i]}
+        file=$(basename $enc .gpg)
+        base=${enc%/*}
+        file="$base/$(basename $enc .gpg)"
+        if [ -f "$file" ]; then
+            success "$enc"
+        else
+            gpg --output "$file" --decrypt "$enc"
+            success "$enc"
+        fi
+    done
+}
+
 success() {
     echo -e "\e[32m[√]\e[0m $1"
 }
@@ -64,10 +83,9 @@ setEnv() {
 setMachine() {
     hostOut="$(hostname)"
     case "${hostOut}" in
-        "vm")                machine=vm;;
-        "laptop")            machine=laptop;;
-        "APM3LC02CD0J3MD6M") machine=macos;;
-        *)                   machine="UNKNOWN:${hostOut}"
+        "vm")       machine=vm;;
+        "carbon")   machine=carbon;;
+        *)          machine="UNKNOWN:${hostOut}"
     esac
 }
 
@@ -112,6 +130,7 @@ main() {
     echo ""
     setEnv
     setMachine
+    unpackSecrets
 
     inputs=(
         "config/nvim/init.vim"
@@ -121,7 +140,6 @@ main() {
         "home/reddup-$machine.yaml"
         "home-manager/$machine/home.nix"
         "config/fish/functions/clip.fish"
-        "config/kitty/kitty.conf"
     )
     echo -e "\e[35m${env}\e[0m/\e[36m${machine}\e[0m detected..."
     checkAll
