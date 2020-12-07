@@ -1,18 +1,18 @@
-Things to do now:
-- [x] nix
-    - [x] create directories for each device
-    - [x] move files there and symlink
-- [x] home-manager
-    - [x] do same as for nix
-- [x] symlink the rest of the home files
-- [x] symlink the rest of the config files
-- [x] xmonad specific config for streaming pc
-- [x] configure reddup and store its config here as well
+TODO:
+- [ ] rename branch to main
+- [ ] niv update
+- [ ] rename `home` to `config` or something
+- [ ] Create a Makefile
+    - [ ] format all (nix) files
+	- [ ] check they are formatted (for CI?)
+	- [ ] niv update script?
+	- [ ] is there a way to test they... "compile"?
+- [ ] setup home-manager via configuration.nix
+- [ ] export NIX_PATH from configuration.nix and use that 'globally'
+- [ ] Look into nixops
 
-
-Bikeshedding for next time:
-- [ ] look into nixops
-- [ ] refactor/merge nix files
-- [ ] do the same for home-manager
-- [ ] write scripts to do the symlinking?
-- [ ] setup nvim via home-manager
+Emacs stuff:
+- [ ] haskell-mode config
+- [ ] emacsclient thing
+- [ ] latex stuff (tex-site & company-acutex?)
+- [ ] idris & agda modes
