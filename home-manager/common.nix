@@ -259,11 +259,14 @@ let
   #########################################################
   ## File
   file = {
-    ".mailcap" = {
-      text = ''
+    ".mailcap".text = ''
         text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
       '';
-    };
+    ".config/nvim/init.vim".source = ../config/nvim/init.vim;
+    ".config/nvim/coc-settings.json".source = ../config/nvim/coc-settings.json;
+    ".ghci".source = ../config/ghci;
+    ".config/fish/functions/clip.fish".source = ../config/fish/functions/clip.fish;
+    ".XCompose".source = ../config/XCompose;
   };
 
   #########################################################

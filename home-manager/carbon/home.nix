@@ -23,7 +23,19 @@ in
     ++ common.packages.streaming;
 
     home.sessionVariables = common.sessionVariables;
-    home.file = common.file // emacs.file;
+    home.file = common.file // emacs.file // {
+      ".xmobarrc".source = ../../config/carbon/xmobarrc;
+      ".xmonad/xmonad.hs".source = ../../config/xmonad/xmonad.hs;
+      ".xmonad/get-mails.sh".source = ../../config/xmonad/get-mails.sh;
+      ".xmonad/get-mic.sh".source = ../../config/xmonad/get-mic.sh;
+      ".xmonad/get-volume.sh".source = ../../config/xmonad/get-volume.sh;
+      ".config/fish/functions/fixUI.fish".source = ../../config/fish/functions/fixUI.fish;
+      ".config/fish/functions/m0.fish".source = ../../config/fish/functions/m0.fish;
+      ".config/fish/functions/m1.fish".source = ../../config/fish/functions/m1.fish;
+      ".config/fish/functions/m2.fish".source = ../../config/fish/functions/m2.fish;
+      ".config/fish/functions/rt.fish".source = ../../config/fish/functions/rt.fish;
+      ".config/fish/functions/ssh.fish".source = ../../config/fish/functions/ssh.fish;
+    };
 
     programs = common.programs // common.helpers.mkKitty {
       "font_size" = "12.0";
