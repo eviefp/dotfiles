@@ -13,9 +13,21 @@ TODO:
 - [ ] Look into nixops
 
 Emacs stuff:
-- [x] emacs 27
+- [x] emacs 28
+- [x] figure out why the `emacsWithPackagesFromUsePackage` does not work (i.e. does not load `init.el`)
+- [ ] bind a few extra keys in magit mode (e.g. I can't space b b to see buffers)
+- [ ] use display-fill-column-indicator-mode
 - [ ] allow different font per machine
 - [ ] haskell-mode config
 - [ ] emacsclient thing
-- [ ] latex stuff (tex-site & company-acutex?)
-- [ ] idris & agda modes
+- [ ] extra packages to try out / install:
+	- [ ] latex stuff (tex-site & company-acutex?)
+	- [ ] idris & agda modes
+	- [ ] org stuff (evil-org, org-bullets, org-tree-slide)
+	- [ ] projectile
+	- [ ] diminish
+	- [ ] yasnippet
+    - [ ] ws-butler # websockets I think
+    - [ ] restclient
+    - [ ] ranger
+    - [ ] edit-indirect # galaxy brain figure it out later

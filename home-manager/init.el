@@ -1,3 +1,6 @@
+;; IMPORTANT: Remember to add `:ensure t` to use-package in order to add them to
+;; the available packages.
+
 ;; Not sure what this does. This bit was copy/pasted from the NixOS manual.
 (require 'package)
 
@@ -261,11 +264,12 @@
    :states '(normal visual)
    ", s" 'psc-ide-server-start
    ", l" 'psc-ide-load-all
-   ", q" 'psc-ide-server-quit
+   ", Q" 'psc-ide-server-quit
    ", t" 'psc-ide-show-type
    ", b" 'psc-ide-rebuild
    ", g g" 'psc-ide-goto-definition
-   ", a i" 'psc-ide-add-import))
+   ", a i" 'psc-ide-add-import
+   ", q f" 'psc-ide-flycheck-insert-suggestion))
 
 ;; nix
 (use-package nix-mode
