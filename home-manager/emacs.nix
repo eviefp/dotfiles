@@ -9,6 +9,9 @@ let
     pkgs.emacsWithPackagesFromUsePackage {
       config = ./init.el;
       package = pkgs.emacsGit;
+      extraEmacsPackages = epkgs: [
+        epkgs.rainbow-delimiters
+      ];
     };
 in
   {

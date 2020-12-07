@@ -1,6 +1,9 @@
 let
   common = import ../common.nix;
-  emacs = import ../emacs.nix { pkgs = common.nixpkgs; };
+  emacs = import ../emacs.nix {
+    pkgs = common.nixpkgs;
+    locals = ./locals.el;
+  };
 
 in
 {
