@@ -29,9 +29,16 @@
 (setq fill-column 80)
 (global-display-line-numbers-mode 1)
 
-;; Setting up font and size
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Default config
+(setq cvlad-font-size 60)
+
+
+;; Load config
+(ignore-errors (load "~/.emacs.d/locals.el"))
+
 (set-face-attribute 'default nil :family "Hasklug Nerd Font")
-(set-face-attribute 'default nil :height 150) 
+(set-face-attribute 'default nil :height cvlad-font-size)
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
