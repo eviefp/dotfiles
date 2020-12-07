@@ -102,7 +102,7 @@
   services.xserver = {
     enable = true;
     videoDrivers = [ "intel" ];
-    dpi = 200;
+    # dpi = 100;
     monitorSection = ''
       Option "DPMS" "false"
     '';
