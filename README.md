@@ -16,7 +16,7 @@ Emacs stuff:
 - [x] emacs 28
 - [x] figure out why the `emacsWithPackagesFromUsePackage` does not work (i.e. does not load `init.el`)
 - [x] use display-fill-column-indicator-mode
-- [ ] allow different font per machine
+- [x] allow different confing per machine
 - [ ] haskell-mode config
 - [ ] emacsclient thing
 - [ ] extra packages to try out / install:
