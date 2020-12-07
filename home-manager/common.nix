@@ -19,8 +19,6 @@ let
       cp sowon $out/bin/
     '';
   };
-  # myEmacs = import ./emacs.nix { pkgs = pkgs; };
-
   #########################################################
   ## Packages
   packages = with pkgs; {
@@ -41,7 +39,6 @@ let
       yq
       zip
       nixfmt
-      # myEmacs
     ];
 
     nixos = [

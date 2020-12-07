@@ -9,9 +9,12 @@ TODO:
 	- [ ] is there a way to test they... "compile"?
 - [ ] setup home-manager via configuration.nix
 - [ ] export NIX_PATH from configuration.nix and use that 'globally'
+- [ ] chromium settings & plugin settings
 - [ ] Look into nixops
 
 Emacs stuff:
+- [x] emacs 27
+- [ ] allow different font per machine
 - [ ] haskell-mode config
 - [ ] emacsclient thing
 - [ ] latex stuff (tex-site & company-acutex?)
