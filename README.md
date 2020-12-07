@@ -1,8 +1,8 @@
 TODO:
 - [x] rename branch to main
 - [x] niv update
-- [ ] check-symlinks:
-    - [ ] migrate all non-nix files to home-manager
+- [x] check-symlinks:
+    - [x] migrate all non-nix files to home-manager
 - [ ] Create a Makefile
     - [ ] format all (nix) files
 	- [ ] check they are formatted (for CI?)
@@ -17,6 +17,7 @@ Emacs stuff:
 - [x] figure out why the `emacsWithPackagesFromUsePackage` does not work (i.e. does not load `init.el`)
 - [x] use display-fill-column-indicator-mode
 - [x] allow different confing per machine
+- [ ] notmuch not working
 - [ ] haskell-mode config
     - [ ] Update the Haskell `thing` template:
 		- [ ] languages pragmas, warnings, ghc version

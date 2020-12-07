@@ -10,13 +10,6 @@ secrets=(
 )
 
 outputs=(
-  "${HOME}/.config/nvim/init.vim"
-  "${HOME}/.config/nvim/coc-settings.json"
-  "${HOME}/.config/nixpkgs/home.nix"
-  "${HOME}/.ghci"
-  "${HOME}/.reddup.yml"
-  "${HOME}/.config/nixpkgs/home.nix"
-  "${HOME}/.config/fish/functions/clip.fish"
 )
 
 should_check() {
@@ -111,16 +104,16 @@ checkAll() {
     done
     if [ "$env" = "nixos" ]; then
         if [ -L "/etc/nixos/configuration.nix" ]; then
-            success "/etc/nixos.configuration.nix"
+            success "/etc/nixos/configuration.nix"
         else
             fail "Please setup configuration.nix symlink!"
         fi
 
         if [ -L "${HOME}/.config/nixpkgs/home.nix" ]; then
-            success "./home-manager/$machine/home.nix"
+            success "home-manager/$machine/home.nix"
         else
             ln -s "./home-manager/$machine/home.nix" "${HOME}/.config/nixpkgs/home.nix" 2> /dev/null
-            success "Created symlink for ./home-manager/$machine/home.nix at ${HOME}/.config/nixpkgs/home.nix"
+            success "Created symlink for home-manager/$machine/home.nix at ${HOME}/.config/nixpkgs/home.nix"
         fi
     fi
 
@@ -133,13 +126,6 @@ main() {
     unpackSecrets
 
     inputs=(
-        "config/nvim/init.vim"
-        "config/nvim/coc-settings.json"
-        "home-manager/$machine/home.nix"
-        "home/ghci"
-        "home/reddup-$machine.yaml"
-        "home-manager/$machine/home.nix"
-        "config/fish/functions/clip.fish"
     )
     echo -e "\e[35m${env}\e[0m/\e[36m${machine}\e[0m detected..."
     checkAll
