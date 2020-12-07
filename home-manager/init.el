@@ -47,6 +47,11 @@
 ;; Package config
 (require 'use-package)
 
+;; This is broken, no idea why. Try again later.
+; ; email
+; (use-package notmuch
+;     :ensure t)
+
 ;; evil
 (use-package evil
     :ensure t
@@ -346,9 +351,6 @@
       "R"   'neotree-refresh
       "n"   'neotree-create-node))
 
-;; email
-(use-package notmuch
-    :ensure t)
 
 ;; theme
 (use-package doom-themes
