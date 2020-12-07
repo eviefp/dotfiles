@@ -1,46 +1,69 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs }:
 
 let
-  emacs = pkgs.emacs26;
-  emacsWithPackages = (pkgs.emacsPackagesGen emacs).emacsWithPackages;
-in
-  emacsWithPackages (epkgs: (with epkgs.melpaStablePackages; [
-    evil
-    evil-commentary
-    evil-escape
-    evil-leader
-    evil-magit
-    evil-org
-    evil-smartparens
-    evil-surround
-    evil-visual-mark-mode
+  # TODO: try updating nixpkgs to get emacs27
+  # TODO: use display-fill-column-indicator-mode w/ e27
+  file = {
+    ".emacs.d/init.el".source = ./init.el;
+
+  };
+  emacsWithPackages = pkgs.emacs26WithPackages;
+  deriv = emacsWithPackages (epkgs: (with epkgs; [
+    # TODO: sort this
+    doom-themes
+    company
     ivy
-    ivy-bibtex
-    ivy-dired-history
     counsel
     swiper
-    which-key
-    company
-    company-ctags
-    company-coq
-    company-shell
-    company-stan
-    diminish
-    hl-todo
-    doom-themes
-    all-the-icons
-    smartparens
-    doom-modeline
+    direnv
+    dhall-mode
+    editorconfig
+    evil
+    evil-goggles
+    evil-surround
+    evil-collection # keymaps more stuff to evil
     flycheck
-    magit
-    magithub
-    magit-todos
-    magit-gh-pulls
-    fill-column-indicator
-  ]) ++ (with epkgs.elpaPackages; [
     general
-    ivy-todo
+    git-gutter
+    haskell-mode
+    hl-todo
+    magit
+    markdown-mode
+    neotree
+    nix-mode
+    pdf-tools
+    doom-modeline
+    all-the-icons
+    rainbow-delimiters
     purescript-mode
     psc-ide
-    evil-replace
-  ]))
+    use-package
+    which-key
+    yaml-mode
+    notmuch
+
+    # ## Haskell
+    lsp-mode
+    lsp-ui
+    lsp-haskell
+
+    ## org stuff
+    # evil-org
+    # org-bullets
+    # org-tree-slide
+
+    # projectile # maybe?
+    # diminish?
+
+    ## later
+    # yasnippet
+    # ws-butler # websockets I think
+    # restclient
+    # ranger
+    # edit-indirect # galaxy brain figure it out later
+  ]));
+in
+  {
+    derivation = deriv;
+    file = file;
+  }

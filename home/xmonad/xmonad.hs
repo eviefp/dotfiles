@@ -30,7 +30,11 @@ myManageHook = composeAll (
     , manageDocks
     ])
 
-myStartupHook = pure ()
+myStartupHook :: X ()
+myStartupHook = do
+    installSignalHandlers
+    spawn "stalonetray"
+    spawn "nm-applet"
 
 screenshotCommand = "/usr/bin/env fish --command clip"
 
@@ -64,7 +68,7 @@ main = do
         , layoutHook = avoidStruts  $ smartBorders $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "green" "" . shorten 50
+                        , ppTitle = xmobarColor "green" "" . shorten 100
                         }
         , startupHook = myStartupHook
         , modMask = mod4Mask

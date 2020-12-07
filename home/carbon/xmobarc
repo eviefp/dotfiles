@@ -1,0 +1,18 @@
+Config { font = "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
+       , bgColor = "#222222"
+       , fgColor = "grey"
+       , position = TopW L 93
+       , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 15
+                    , Run Memory ["-t", "<usedbar>"] 100
+                    , Run Volume "default" "Master" [] 10
+                    , Run Wireless "wlp2s0" [] 100
+                    , Run BatteryP ["BAT0"] ["-t", "<acstatus> <left>%", "-h", "green", "-n", "yellow", "-l", "red"] 50
+                    , Run Com "/run/current-system/sw/bin/bash" ["-c", "~/.xmonad/get-mails.sh"] "mails" 3000
+                    , Run DateZone "%a %d %b %Y - %H:%M:%S" "en_UK.UTF-8" "EET" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %wlp2s0wi% | %default:Master% | %battery% | %mails% | %date% "
+       , lowerOnStart = False
+       }
