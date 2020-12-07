@@ -26,7 +26,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editing
-(setq default-fill-column 80)
+(setq fill-column 80)
 (global-display-line-numbers-mode 1)
 
 ;; Setting up font and size
@@ -347,3 +347,5 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+(global-display-fill-column-indicator-mode)
