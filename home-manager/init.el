@@ -247,7 +247,16 @@
       :ensure t)
 
 (use-package lsp-haskell
-  :ensure t)
+  :ensure t
+  :config
+  (setq lsp-haskell-hlint-on t)
+  (setq lsp-haskell-max-number-of-problems 100)
+  (setq lsp-haskell-diagnostics-on-change t)
+  (setq lsp-haskell-liquid-on nil)
+  (setq lsp-haskell-completion-snippets-on t)
+  (setq lsp-haskell-format-on-import-on t)
+  (setq lsp-haskell-formatting-provider "stylish-haskell")
+  )
 
 ;; purescript
 (use-package purescript-mode

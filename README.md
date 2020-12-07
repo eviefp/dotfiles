@@ -6,7 +6,6 @@ TODO:
 - [ ] Create a Makefile
     - [ ] format all (nix) files
 	- [ ] check they are formatted (for CI?)
-	- [ ] niv update script?
 	- [ ] is there a way to test they... "compile"?
 - [ ] setup home-manager via configuration.nix
 - [ ] export NIX_PATH from configuration.nix and use that 'globally'
@@ -19,6 +18,13 @@ Emacs stuff:
 - [x] use display-fill-column-indicator-mode
 - [x] allow different confing per machine
 - [ ] haskell-mode config
+    - [ ] Update the Haskell `thing` template:
+		- [ ] languages pragmas, warnings, ghc version
+		- [ ] review the stylish-haskell.yaml file
+		- [ ] add a hlint file
+	- [ ] start ghci from haskell-mode
+	- [ ] run tests/compile from emacs
+    - [ ] lsp-haskell HaRe stuff https://github.com/emacs-lsp/lsp-haskell/blob/master/lsp-haskell.el#L128
 - [ ] emacsclient thing
 - [ ] extra packages to try out / install:
 	- [ ] latex stuff (tex-site & company-acutex?)
