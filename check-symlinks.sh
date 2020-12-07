@@ -64,9 +64,10 @@ setEnv() {
 setMachine() {
     hostOut="$(hostname)"
     case "${hostOut}" in
-        "vm")       machine=vm;;
-        "laptop")   machine=laptop;;
-        *)          machine="UNKNOWN:${hostOut}"
+        "vm")                machine=vm;;
+        "laptop")            machine=laptop;;
+        "APM3LC02CD0J3MD6M") machine=macos;;
+        *)                   machine="UNKNOWN:${hostOut}"
     esac
 }
 
@@ -117,7 +118,7 @@ main() {
         "config/nvim/coc-settings.json"
         "home-manager/$machine/home.nix"
         "home/ghci"
-        "home/reddup-$env.yaml"
+        "home/reddup-$machine.yaml"
         "home-manager/$machine/home.nix"
         "config/fish/functions/clip.fish"
         "config/kitty/kitty.conf"

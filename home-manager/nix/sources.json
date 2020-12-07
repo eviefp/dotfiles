@@ -53,10 +53,10 @@
         "homepage": null,
         "owner": "vladciobanu",
         "repo": "thing",
-        "rev": "d53f22e3793b12649d9dee9eb14fccf8061c4383",
-        "sha256": "0wm12hlqwhxy3qnp3xl8m6h59wwyixdj9c00arpwyx3wy5cgkjb5",
+        "rev": "447901789b70541c7376543829a6c750a13528e2",
+        "sha256": "0hlc3dnzkkvggr9g4qa4sn99k8glzb0805v2zq2i6racxb7w3w9g",
         "type": "tarball",
-        "url": "https://github.com/vladciobanu/thing/archive/d53f22e3793b12649d9dee9eb14fccf8061c4383.tar.gz",
+        "url": "https://github.com/vladciobanu/thing/archive/447901789b70541c7376543829a6c750a13528e2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
