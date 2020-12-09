@@ -3,6 +3,7 @@ TODO:
 - [x] niv update
 - [x] check-symlinks:
     - [x] migrate all non-nix files to home-manager
+- [ ] how to update home manager?
 - [ ] Create a Makefile
     - [ ] format all (nix) files
 	- [ ] check they are formatted (for CI?)
@@ -24,8 +25,6 @@ Emacs stuff:
 		- [x] review the stylish-haskell.yaml file
 		- [x] add a hlint file
 	- [x] start ghci from haskell-mode
-- [ ] emacsclient thing
-- [ ] notmuch not working
 - [ ] extra packages to try out / install:
 	- [ ] latex stuff (tex-site & company-acutex?)
 	- [ ] idris & agda modes
@@ -37,4 +36,6 @@ Emacs stuff:
     - [ ] restclient
     - [ ] ranger
     - [ ] edit-indirect # galaxy brain figure it out later
+- [ ] notmuch not working
+- [ ] emacsclient thing - seems broken in home-manager for now (not working with emacs28; and I have a too old home-manager version for services to work)
 - [ ] lsp-haskell HaRe stuff https://github.com/emacs-lsp/lsp-haskell/blob/master/lsp-haskell.el#L128 seems broken?
