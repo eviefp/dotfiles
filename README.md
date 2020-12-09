@@ -17,16 +17,17 @@ Emacs stuff:
 - [x] figure out why the `emacsWithPackagesFromUsePackage` does not work (i.e. does not load `init.el`)
 - [x] use display-fill-column-indicator-mode
 - [x] allow different confing per machine
-- [ ] notmuch not working
+- [x] vterm
 - [ ] haskell-mode config
-    - [ ] Update the Haskell `thing` template:
-		- [ ] languages pragmas, warnings, ghc version
-		- [ ] review the stylish-haskell.yaml file
-		- [ ] add a hlint file
+    - [x] Update the Haskell `thing` template:
+		- [x] languages pragmas, warnings, ghc version
+		- [x] review the stylish-haskell.yaml file
+		- [x] add a hlint file
 	- [ ] start ghci from haskell-mode
 	- [ ] run tests/compile from emacs
     - [ ] lsp-haskell HaRe stuff https://github.com/emacs-lsp/lsp-haskell/blob/master/lsp-haskell.el#L128
 - [ ] emacsclient thing
+- [ ] notmuch not working
 - [ ] extra packages to try out / install:
 	- [ ] latex stuff (tex-site & company-acutex?)
 	- [ ] idris & agda modes

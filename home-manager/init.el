@@ -118,7 +118,7 @@
      "SPC TAB" 'switch-to-previous-buffer
      "SPC t f" 'display-fill-column-indicator-mode
      "SPC w s" 'evil-window-vsplit
-     "SPC t t" 'start-term
+     "SPC t e" 'start-term
      "C-+" 'text-scale-increase
      "C--" 'text-scale-decrease
      "C-=" '(lambda () (interactive) (text-scale-set 0))))
@@ -228,7 +228,9 @@
     (general-define-key
      :keymaps 'normal
      "[ g" 'flycheck-next-error
-     "] g" 'flycheck-previous-error))
+     "] g" 'flycheck-previous-error
+     "SPC e e" 'flycheck-explain-error-at-point
+     "SPC e l" 'flycheck-list-errors))
 
 ;; completion
 (use-package company
@@ -310,6 +312,7 @@
 
 ;; yaml
 (use-package yaml-mode
+  :ensure t
   :mode (("\\.yml$" . yaml-mode)
          ("\\.yaml$" . yaml-mode)
          ("\\.yml\\.example$" . yaml-mode)))
@@ -332,6 +335,14 @@
   :init
   (pdf-tools-install))
   ;; TODO: evil keybindings
+
+;; term
+(use-package vterm
+  :ensure t
+  :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC t t" 'vterm-other-window))
 
 ;; neotree
 (use-package neotree
