@@ -18,14 +18,12 @@ Emacs stuff:
 - [x] use display-fill-column-indicator-mode
 - [x] allow different confing per machine
 - [x] vterm
-- [ ] haskell-mode config
+- [x] haskell-mode config
     - [x] Update the Haskell `thing` template:
 		- [x] languages pragmas, warnings, ghc version
 		- [x] review the stylish-haskell.yaml file
 		- [x] add a hlint file
-	- [ ] start ghci from haskell-mode
-	- [ ] run tests/compile from emacs
-    - [ ] lsp-haskell HaRe stuff https://github.com/emacs-lsp/lsp-haskell/blob/master/lsp-haskell.el#L128
+	- [x] start ghci from haskell-mode
 - [ ] emacsclient thing
 - [ ] notmuch not working
 - [ ] extra packages to try out / install:
@@ -39,3 +37,4 @@ Emacs stuff:
     - [ ] restclient
     - [ ] ranger
     - [ ] edit-indirect # galaxy brain figure it out later
+- [ ] lsp-haskell HaRe stuff https://github.com/emacs-lsp/lsp-haskell/blob/master/lsp-haskell.el#L128 seems broken?
