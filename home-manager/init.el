@@ -209,7 +209,9 @@
     :general
     (general-define-key
      :keymaps 'normal
-     "K" 'lsp-describe-thing-at-point))
+     "K" 'lsp-describe-thing-at-point
+     ", i" 'interactive-haskell-mode
+     ", l" 'haskell-process-load-file))
      ;; 'lsp-organize-imports
      ;; 'lsp-format-buffer
 
