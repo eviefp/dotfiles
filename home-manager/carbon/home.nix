@@ -13,7 +13,6 @@ in
 
   home.packages =
     common.packages.generic
-    ++ [ emacs.derivation ]
     ++ common.packages.nixos
     ++ common.packages.programming
     ++ common.packages.haskell
@@ -41,5 +40,13 @@ in
       "font_size" = "12.0";
     };
 
-    services = common.services;
+    # This does not currently work because package is non-definable.
+    # Need to update home-manager, I think.
+    # services = common.services // {
+    #   emacs = {
+    #     enable = true;
+    #     package = emacs;
+    #     client.enable = true;
+    #   };
+    # };
 }
