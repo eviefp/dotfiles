@@ -30,8 +30,8 @@ Emacs stuff:
 - [ ] extra packages to try out / install:
 	- [x] projectile
 	- [ ] org stuff
-	    - [ ] evil-org
-		- [ ] org-bullets
+	    - [x] evil-org (still playing with shortcuts)
+		- [x] org-bullets
 		- [ ] org-tree-slide
 		- [ ] notes
 		- [ ] todo's
