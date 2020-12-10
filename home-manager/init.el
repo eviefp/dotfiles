@@ -49,8 +49,8 @@
 
 ;; This is broken, no idea why. Try again later.
 ; ; email
-; (use-package notmuch
-;     :ensure t)
+;; (use-package notmuch
+;;   :ensure t)
 
 ;; evil
 (use-package evil
@@ -139,7 +139,7 @@
  :init
      (projectile-mode +1)
  :config
-     (setq projectile-project-search-path '("~/code/"))
+     (setq projectile-project-search-path '("~/code/" "~/Documents/"))
      (projectile-discover-projects-in-search-path)
  :general
   (general-define-key
@@ -346,6 +346,18 @@
   :init
   (pdf-tools-install))
   ;; TODO: evil keybindings
+
+;; org
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme)))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 ;; term
 (use-package vterm

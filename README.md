@@ -29,7 +29,13 @@ Emacs stuff:
 	- [x] start ghci from haskell-mode
 - [ ] extra packages to try out / install:
 	- [x] projectile
-	- [ ] org stuff (evil-org, org-bullets, org-tree-slide)
+	- [ ] org stuff
+	    - [ ] evil-org
+		- [ ] org-bullets
+		- [ ] org-tree-slide
+		- [ ] notes
+		- [ ] todo's
+		- [ ] agenda/calendar
 	- [ ] idris & agda modes
 	- [ ] latex stuff (tex-site & company-acutex?)
 	- [ ] yasnippet
