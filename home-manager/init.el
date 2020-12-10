@@ -134,16 +134,25 @@
   (editorconfig-mode 1))
 
 ;;;; projectile
-;;(use-package projectile
-;;  :ensure t
-;;  :init
-;;      (projectile-mode +1)
-;;  :config
-;;      (setq projectile-project-search-path '("~/code/"))
-;;   :general
-;;   (general-define-key
-;;    :keymaps 'normal
-;;      "SPC p s" 'projectile-switch-project))
+(use-package projectile
+ :ensure t
+ :init
+     (projectile-mode +1)
+ :config
+     (setq projectile-project-search-path '("~/code/"))
+     (projectile-discover-projects-in-search-path)
+ :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC p s" 'projectile-switch-project
+   "SPC p f" 'projectile--find-file
+   "SPC P r" 'projectile-ripgrep
+   "SPC p d" 'projectile-dired-other-frame
+   "SPC p b" 'projectile-switch-to-buffer
+   "SPC p w" 'projectile-switch-to-buffer-other-frame
+   "SPC p q" 'projectile-kill-buffers
+   "SPC p i" 'projectile-project-info))
+
 
 ;; magit
 (use-package magit

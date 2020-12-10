@@ -3,12 +3,14 @@ TODO:
 - [x] niv update
 - [x] check-symlinks:
     - [x] migrate all non-nix files to home-manager
-- [ ] how to update home manager?
+- [ ] Update strategy
+    - [ ] create a shell.nix in the root, move the niv stuff here
+	- [ ] export NIX_PATH w/ `nixpkgs` and `home-manager`
+	- [ ] `nixos-rebuild switch` / `nix-env -u home-manager`
 - [ ] Create a Makefile
     - [ ] format all (nix) files
 	- [ ] check they are formatted (for CI?)
 	- [ ] is there a way to test they... "compile"?
-- [ ] setup home-manager via configuration.nix
 - [ ] export NIX_PATH from configuration.nix and use that 'globally'
 - [ ] chromium settings & plugin settings
 - [ ] Look into nixops
@@ -26,16 +28,16 @@ Emacs stuff:
 		- [x] add a hlint file
 	- [x] start ghci from haskell-mode
 - [ ] extra packages to try out / install:
-	- [ ] latex stuff (tex-site & company-acutex?)
-	- [ ] idris & agda modes
+	- [x] projectile
 	- [ ] org stuff (evil-org, org-bullets, org-tree-slide)
-	- [ ] projectile
-	- [ ] diminish
+	- [ ] idris & agda modes
+	- [ ] latex stuff (tex-site & company-acutex?)
 	- [ ] yasnippet
     - [ ] ws-butler # websockets I think
     - [ ] restclient
     - [ ] ranger
     - [ ] edit-indirect # galaxy brain figure it out later
+	- [ ] diminish
 - [ ] notmuch not working
 - [ ] emacsclient thing - seems broken in home-manager for now (not working with emacs28; and I have a too old home-manager version for services to work)
 - [ ] lsp-haskell HaRe stuff https://github.com/emacs-lsp/lsp-haskell/blob/master/lsp-haskell.el#L128 seems broken?
