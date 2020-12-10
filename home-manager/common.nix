@@ -50,7 +50,7 @@ let
 
     haskell = [ haskellPackages.hp2html haskellPackages.hp2pretty ghcid stack ];
 
-    provers = [ AgdaStdlib haskellPackages.Agda idris ];
+    provers = [ agda agdaPackages.standard-library idris2 ];
 
     scala = [ jdk metals sbt ];
 
@@ -114,8 +114,7 @@ let
 
     obs-studio = {
       enable = true;
-      # broken ?
-      plugins = [ pkgs.obs-linuxbrowser ];
+      plugins = [ ];
     };
 
     starship = {
