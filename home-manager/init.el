@@ -359,6 +359,10 @@
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 
+(use-package org-bullets
+  :ensure t
+  :hook(org-mode . org-bullets-mode))
+
 ;; term
 (use-package vterm
   :ensure t
