@@ -41,5 +41,13 @@ in
       "font_size" = "12.0";
     };
 
-    services = common.services;
+    # This does not currently work because package is non-definable.
+    # Need to update home-manager, I think.
+    # services = common.services // {
+    #   emacs = {
+    #     enable = true;
+    #     package = emacs;
+    #     client.enable = true;
+    #   };
+    # };
 }

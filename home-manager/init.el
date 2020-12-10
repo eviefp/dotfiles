@@ -118,7 +118,7 @@
      "SPC TAB" 'switch-to-previous-buffer
      "SPC t f" 'display-fill-column-indicator-mode
      "SPC w s" 'evil-window-vsplit
-     "SPC t t" 'start-term
+     "SPC t e" 'start-term
      "C-+" 'text-scale-increase
      "C--" 'text-scale-decrease
      "C-=" '(lambda () (interactive) (text-scale-set 0))))
@@ -134,16 +134,25 @@
   (editorconfig-mode 1))
 
 ;;;; projectile
-;;(use-package projectile
-;;  :ensure t
-;;  :init
-;;      (projectile-mode +1)
-;;  :config
-;;      (setq projectile-project-search-path '("~/code/"))
-;;   :general
-;;   (general-define-key
-;;    :keymaps 'normal
-;;      "SPC p s" 'projectile-switch-project))
+(use-package projectile
+ :ensure t
+ :init
+     (projectile-mode +1)
+ :config
+     (setq projectile-project-search-path '("~/code/"))
+     (projectile-discover-projects-in-search-path)
+ :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC p s" 'projectile-switch-project
+   "SPC p f" 'projectile--find-file
+   "SPC P r" 'projectile-ripgrep
+   "SPC p d" 'projectile-dired-other-frame
+   "SPC p b" 'projectile-switch-to-buffer
+   "SPC p w" 'projectile-switch-to-buffer-other-frame
+   "SPC p q" 'projectile-kill-buffers
+   "SPC p i" 'projectile-project-info))
+
 
 ;; magit
 (use-package magit
@@ -209,7 +218,9 @@
     :general
     (general-define-key
      :keymaps 'normal
-     "K" 'lsp-describe-thing-at-point))
+     "K" 'lsp-describe-thing-at-point
+     ", i" 'interactive-haskell-mode
+     ", l" 'haskell-process-load-file))
      ;; 'lsp-organize-imports
      ;; 'lsp-format-buffer
 
@@ -228,7 +239,9 @@
     (general-define-key
      :keymaps 'normal
      "[ g" 'flycheck-next-error
-     "] g" 'flycheck-previous-error))
+     "] g" 'flycheck-previous-error
+     "SPC e e" 'flycheck-explain-error-at-point
+     "SPC e l" 'flycheck-list-errors))
 
 ;; completion
 (use-package company
@@ -310,6 +323,7 @@
 
 ;; yaml
 (use-package yaml-mode
+  :ensure t
   :mode (("\\.yml$" . yaml-mode)
          ("\\.yaml$" . yaml-mode)
          ("\\.yml\\.example$" . yaml-mode)))
@@ -332,6 +346,14 @@
   :init
   (pdf-tools-install))
   ;; TODO: evil keybindings
+
+;; term
+(use-package vterm
+  :ensure t
+  :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC t t" 'vterm-other-window))
 
 ;; neotree
 (use-package neotree
