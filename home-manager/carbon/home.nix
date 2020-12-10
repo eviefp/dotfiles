@@ -13,6 +13,7 @@ in
 
   home.packages =
     common.packages.generic
+    ++ [ emacs.derivation ]
     ++ common.packages.nixos
     ++ common.packages.programming
     ++ common.packages.haskell
