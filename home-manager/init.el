@@ -49,8 +49,8 @@
 
 ;; This is broken, no idea why. Try again later.
 ; ; email
-; (use-package notmuch
-;     :ensure t)
+;; (use-package notmuch
+;;   :ensure t)
 
 ;; evil
 (use-package evil
@@ -76,7 +76,7 @@
   (progn
     (global-evil-surround-mode 1)
     (evil-define-key 'visual evil-surround-mode-map "s" 'evil-surround-region)
-    (evil-define-key 'visual evil-surround-mode-map "S" 'evil-substitute)))
+    (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)))
 
 ;; rainbow-delimiters doesn't work with use-package
 ;; but also, I don't think I like smartparens
@@ -98,6 +98,16 @@
   (evil-window-vsplit)
   (eshell))
 
+(defun cvlad-open-user-init-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
+  (find-file-other-window "~/code/dotfiles/home-manager/init.el"))
+
+(defun cvlad-open-org-refile-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
+  (find-file-other-window "~/Documents/wiki/refile.org"))
+
 ;; general
 (use-package general :ensure t
     :config
@@ -117,12 +127,18 @@
      "SPC a d" 'dired
      "SPC TAB" 'switch-to-previous-buffer
      "SPC t f" 'display-fill-column-indicator-mode
+     "SPC t e" 'ielm
      "SPC w s" 'evil-window-vsplit
-     "SPC t e" 'start-term
+     "SPC t E" 'start-term
      "C-+" 'text-scale-increase
      "C--" 'text-scale-decrease
-     "C-=" '(lambda () (interactive) (text-scale-set 0))))
-
+     "C-=" '(lambda () (interactive) (text-scale-set 0))
+     "SPC o a" 'org-cycle-agenda-files
+     "SPC o c" 'calendar
+     "SPC o C" 'org-capture 
+     "SPC o r" 'cvlad-open-org-refile-file
+     "SPC f e d" 'cvlad-open-user-init-file
+     ))
 ;; environment stuff
 (use-package direnv
     :ensure t
@@ -139,7 +155,7 @@
  :init
      (projectile-mode +1)
  :config
-     (setq projectile-project-search-path '("~/code/"))
+     (setq projectile-project-search-path '("~/code/" "~/Documents/"))
      (projectile-discover-projects-in-search-path)
  :general
   (general-define-key
@@ -347,6 +363,22 @@
   (pdf-tools-install))
   ;; TODO: evil keybindings
 
+;; org
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme)))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode))
+
 ;; term
 (use-package vterm
   :ensure t
@@ -389,3 +421,40 @@
   :init (doom-modeline-mode 1))
 
 (global-display-fill-column-indicator-mode)
+
+(setq org-agenda-files (quote ("~/Documents/wiki/todo.org")))
+(setq org-default-notes-file "~/Documents/wiki/notes.org")
+
+(custom-set-variables
+ '(org-agenda-ndays 7)
+ '(org-deadline-warning-days 14)
+ '(org-agenda-show-all-dates t)
+ '(org-agenda-skip-deadline-if-done t)
+ '(org-agenda-skip-scheduled-if-done t)
+ '(org-agenda-start-on-weekday nil)
+ '(org-reverse-note-order t))
+
+(setq org-directory "~/Documents/wiki")
+(setq org-default-notes-file "~/Documents/wiki/refile.org")
+
+(setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                 (org-agenda-files :maxlevel . 9))))
+
+;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
+(setq org-capture-templates
+      (quote (("t" "todo" entry (file "~/Documents/wiki/refile.org")
+               "* TODO %?\n")
+              ("r" "respond" entry (file "~/Documents/wiki/refile.org")
+               "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+              ("n" "note" entry (file "~/Documents/wiki/refile.org")
+               "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("j" "Journal" entry (file+datetree "~/Documents/wiki/diary.org")
+               "* %?\n%U\n" :clock-in t :clock-resume t)
+              ("w" "org-protocol" entry (file "~/Documents/wiki/refile.org")
+               "* TODO Review %c\n%U\n" :immediate-finish t)
+              ("m" "Meeting" entry (file "~/Documents/wiki/refile.org")
+               "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+              ("p" "Phone call" entry (file "~/Documents/wiki/refile.org")
+               "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+              ("h" "Habit" entry (file "~/Documents/wiki/refile.org")
+               "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
