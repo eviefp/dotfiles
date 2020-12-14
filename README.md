@@ -1,49 +1,13 @@
-TODO:
-- [x] rename branch to main
-- [x] niv update
-- [x] check-symlinks:
-    - [x] migrate all non-nix files to home-manager
-- [ ] Update strategy
-    - [ ] create a shell.nix in the root, move the niv stuff here
-	- [ ] export NIX_PATH w/ `nixpkgs` and `home-manager`
-	- [ ] `nixos-rebuild switch` / `nix-env -u home-manager`
-- [ ] Create a Makefile
-    - [ ] format all (nix) files
-	- [ ] check they are formatted (for CI?)
-	- [ ] is there a way to test they... "compile"?
-- [ ] export NIX_PATH from configuration.nix and use that 'globally'
-- [ ] chromium settings & plugin settings
-- [ ] Look into nixops
+# My dotfiles
 
-Emacs stuff:
-- [x] emacs 28
-- [x] figure out why the `emacsWithPackagesFromUsePackage` does not work (i.e. does not load `init.el`)
-- [x] use display-fill-column-indicator-mode
-- [x] allow different confing per machine
-- [x] vterm
-- [x] haskell-mode config
-    - [x] Update the Haskell `thing` template:
-		- [x] languages pragmas, warnings, ghc version
-		- [x] review the stylish-haskell.yaml file
-		- [x] add a hlint file
-	- [x] start ghci from haskell-mode
-- [ ] extra packages to try out / install:
-	- [x] projectile
-	- [ ] org stuff
-	    - [x] evil-org (still playing with shortcuts)
-		- [x] org-bullets
-		- [ ] org-tree-slide
-		- [ ] notes
-		- [ ] todo's
-		- [ ] agenda/calendar
-	- [ ] idris & agda modes
-	- [ ] latex stuff (tex-site & company-acutex?)
-	- [ ] yasnippet
-    - [ ] ws-butler # websockets I think
-    - [ ] restclient
-    - [ ] ranger
-    - [ ] edit-indirect # galaxy brain figure it out later
-	- [ ] diminish
-- [ ] notmuch not working
-- [ ] emacsclient thing - seems broken in home-manager for now (not working with emacs28; and I have a too old home-manager version for services to work)
-- [ ] lsp-haskell HaRe stuff https://github.com/emacs-lsp/lsp-haskell/blob/master/lsp-haskell.el#L128 seems broken?
+## Just show me your vim/emacs config
+
+Vim: config/nvim/init.vim
+Emacs: home-manager/emacs.nix
+
+NOTE that the emacs config will need some tweaking, since it's designed
+to run under `nix`.
+
+## How do things work?
+
+TODO: fill this in as soon as I end up the `shell.nix` update-nix idea.
