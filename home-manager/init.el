@@ -379,6 +379,11 @@
   :ensure t
   :hook (org-mode . org-bullets-mode))
 
+(use-package org-roam
+  :ensure t)
+
+(add-hook 'after-init-hook 'org-roam-mode)
+
 ;; term
 (use-package vterm
   :ensure t
@@ -436,6 +441,8 @@
 
 (setq org-directory "~/Documents/wiki")
 (setq org-default-notes-file "~/Documents/wiki/refile.org")
+(setq org-roam-directory "~/Documents/wiki/roam")
+
 
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                  (org-agenda-files :maxlevel . 9))))

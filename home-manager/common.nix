@@ -27,6 +27,7 @@ let
       wget
       yq
       zip
+      sqlite
       nixfmt
     ];
 
