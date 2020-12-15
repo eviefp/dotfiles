@@ -121,6 +121,7 @@
      "SPC a r" 'align-regexp)
     (general-define-key
      :keymaps 'normal
+     "g c c"   'comment-line
      "SPC b d" 'kill-this-buffer
      "SPC b b" 'switch-to-buffer
      "SPC q"   'save-buffers-kill-terminal
@@ -129,6 +130,7 @@
      "SPC t f" 'display-fill-column-indicator-mode
      "SPC t e" 'ielm
      "SPC w s" 'evil-window-vsplit
+     "SPC w w" 'windmove-swap-states-left
      "SPC t E" 'start-term
      "C-+" 'text-scale-increase
      "C--" 'text-scale-decrease
@@ -262,10 +264,10 @@
 ;; completion
 (use-package company
     :ensure t
-    ;; :diminish company-mode
     :config
-    (global-company-mode)
+    (add-to-list 'company-backends 'company-capf)
     (setq company-idle-delay 0.25)
+    (global-company-mode)
     :general
     (general-define-key
      :keymaps 'insert
@@ -380,9 +382,25 @@
   :hook (org-mode . org-bullets-mode))
 
 (use-package org-roam
-  :ensure t)
+  :ensure t
+  :init
+    (setq org-roam-directory "~/Documents/wiki/roam")
+    (setq org-roam-index-file "~/Documents/wiki/roam/index.org")
+    (setq org-roam-update-method 'idle-timer)
+    (setq org-roam-db-update-idle-seconds 5)
+  :config (org-roam-db-build-cache)
+  :hook (after-init . org-roam-mode)
+  :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC r f" 'org-roam-find-file
+   "SPC r d" 'org-roam-db-build-cache
+   "SPC r i" 'org-roam-insert
+   "SPC r r" 'org-roam
+   "SPC r g" 'org-roam-graph
+   "SPC r i" 'org-roam-jump-to-index))
 
-(add-hook 'after-init-hook 'org-roam-mode)
+;; (add-hook 'after-init-hook 'org-roam-mode)
 
 ;; term
 (use-package vterm
@@ -441,7 +459,6 @@
 
 (setq org-directory "~/Documents/wiki")
 (setq org-default-notes-file "~/Documents/wiki/refile.org")
-(setq org-roam-directory "~/Documents/wiki/roam")
 
 
 (setq org-refile-targets (quote ((nil :maxlevel . 9)

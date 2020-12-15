@@ -28,6 +28,7 @@ let
       yq
       zip
       sqlite
+      graphviz
       nixfmt
     ];
 
