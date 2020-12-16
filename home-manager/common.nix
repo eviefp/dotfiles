@@ -46,6 +46,8 @@ let
       w3m
       networkmanagerapplet
       killall
+      xclip
+      scrot
     ];
 
     programming = [ gnumake neovim vscode racket ];
