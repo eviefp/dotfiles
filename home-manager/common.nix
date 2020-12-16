@@ -62,7 +62,7 @@ let
 
   };
 
-  sessionVariables = { EDITOR = "nvim"; };
+  sessionVariables = { EDITOR = "emacs"; };
 
   #########################################################
   ## Programs
