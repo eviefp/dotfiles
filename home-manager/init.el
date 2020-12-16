@@ -140,6 +140,7 @@
      "SPC o a" 'org-agenda
      "SPC o c" 'calendar
      "SPC o C" 'org-capture 
+     "SPC o w" 'org-refile
      "SPC o r" 'cvlad-open-org-refile-file
      ))
 ;; environment stuff
@@ -369,12 +370,12 @@
 ;; org
 (use-package evil-org
   :ensure t
-  :after org
+  :after evil
   :config
   (add-hook 'org-mode-hook 'evil-org-mode)
   (add-hook 'evil-org-mode-hook
             (lambda ()
-              (evil-org-set-key-theme)))
+              (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys)
   :general
@@ -382,7 +383,11 @@
    :keymaps 'normal
    "C-SPC"   'org-toggle-checkbox
    "SPC o s" 'org-schedule
-   "SPC o t" 'org-set-tags-command))
+   "SPC o d" 'org-deadline
+   "SPC o t" 'org-set-tags-command
+   :keymaps 'visual
+   ">"       'org-demote-subtree
+   "<"       'org-promote-subtree))
 
 (use-package org-bullets
   :ensure t
@@ -406,7 +411,7 @@
    "SPC r r" 'org-roam
    "SPC r g" 'org-roam-graph
    "RET"     'org-open-at-point
-   "SPC r i" 'org-roam-jump-to-index))
+   "SPC r I" 'org-roam-jump-to-index))
 
 ;; (add-hook 'after-init-hook 'org-roam-mode)
 
