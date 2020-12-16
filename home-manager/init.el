@@ -135,11 +135,12 @@
      "C-+" 'text-scale-increase
      "C--" 'text-scale-decrease
      "C-=" '(lambda () (interactive) (text-scale-set 0))
-     "SPC o a" 'org-cycle-agenda-files
+     "SPC f e d" 'cvlad-open-user-init-file
+     "SPC o f" 'org-cycle-agenda-files
+     "SPC o a" 'org-agenda
      "SPC o c" 'calendar
      "SPC o C" 'org-capture 
      "SPC o r" 'cvlad-open-org-refile-file
-     "SPC f e d" 'cvlad-open-user-init-file
      ))
 ;; environment stuff
 (use-package direnv
@@ -375,7 +376,13 @@
             (lambda ()
               (evil-org-set-key-theme)))
   (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  :general
+  (general-define-key
+   :keymaps 'normal
+   "C-SPC"   'org-toggle-checkbox
+   "SPC o s" 'org-schedule
+   "SPC o t" 'org-set-tags-command))
 
 (use-package org-bullets
   :ensure t
@@ -398,6 +405,7 @@
    "SPC r i" 'org-roam-insert
    "SPC r r" 'org-roam
    "SPC r g" 'org-roam-graph
+   "RET"     'org-open-at-point
    "SPC r i" 'org-roam-jump-to-index))
 
 ;; (add-hook 'after-init-hook 'org-roam-mode)
@@ -427,7 +435,6 @@
       "c"   'neotree-copy-node
       "R"   'neotree-refresh
       "n"   'neotree-create-node))
-
 
 ;; theme
 (use-package doom-themes
