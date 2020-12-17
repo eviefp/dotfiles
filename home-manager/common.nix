@@ -1,5 +1,5 @@
 let
-  sources = import ./nix/sources.nix;
+  sources = import ../nix/sources.nix;
   mail = import ./email.nix { inherit pkgs; };
   reddup = import sources.reddup;
   thing = import sources.thing;
