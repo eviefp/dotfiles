@@ -457,7 +457,8 @@
 
 (global-display-fill-column-indicator-mode)
 
-(setq org-agenda-files (quote ("~/Documents/wiki/todo.org")))
+(setq org-agenda-files (quote ("~/Documents/wiki/todo.org"
+			       "~/Documents/wiki/todo-history.org")))
 (setq org-default-notes-file "~/Documents/wiki/notes.org")
 
 (custom-set-variables
