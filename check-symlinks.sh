@@ -6,7 +6,7 @@ env="macos"
 machine=""
 
 secrets=(
-    "./nix/carbon/networks.nix.gpg"
+    "./system/carbon/networks.nix.gpg"
 )
 
 outputs=(
