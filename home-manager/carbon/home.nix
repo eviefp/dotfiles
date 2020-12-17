@@ -43,7 +43,7 @@ in
 
     # This does not currently work because package is non-definable.
     # Need to update home-manager, I think.
-    # services = common.services // {
+    services = common.services; # // {
     #   emacs = {
     #     enable = true;
     #     package = emacs;
