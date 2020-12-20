@@ -270,6 +270,7 @@ let
     ".ghci".source = ../config/ghci;
     ".config/fish/functions/clip.fish".source = ../config/fish/functions/clip.fish;
     ".XCompose".source = ../config/XCompose;
+    ".reddup.yml".source = ./reddup.yml;
   };
 
   #########################################################
