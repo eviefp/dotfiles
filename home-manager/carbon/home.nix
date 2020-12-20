@@ -43,11 +43,12 @@ in
 
     # This does not currently work because package is non-definable.
     # Need to update home-manager, I think.
-    services = common.services; # // {
-    #   emacs = {
-    #     enable = true;
-    #     package = emacs;
-    #     client.enable = true;
-    #   };
-    # };
+    services = common.services // {
+      emacs = {
+        enable = true;
+        package = emacs.derivation;
+        client.enable = true;
+        socketActivation.enable = true;
+      };
+    };
 }
