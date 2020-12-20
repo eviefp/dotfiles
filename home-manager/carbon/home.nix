@@ -35,6 +35,7 @@ in
       ".config/fish/functions/m2.fish".source = ../../config/fish/functions/m2.fish;
       ".config/fish/functions/rt.fish".source = ../../config/fish/functions/rt.fish;
       ".config/fish/functions/ssh.fish".source = ../../config/fish/functions/ssh.fish;
+      ".config/fish/functions/ec.fish".source = ../../config/fish/functions/ec.fish;
     };
 
     programs = common.programs // common.helpers.mkKitty {
@@ -47,7 +48,10 @@ in
       emacs = {
         enable = true;
         package = emacs.derivation;
-        client.enable = true;
+        client = {
+          enable = true;
+          arguments = [ "-c" ];
+        };
         socketActivation.enable = true;
       };
     };

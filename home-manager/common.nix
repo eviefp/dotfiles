@@ -123,22 +123,25 @@ let
       enable = true;
       enableFishIntegration = true;
       settings = {
-        add_newline = true;
+        add_newline = false;
 
         character = {
-          symbol = "λ";
-          error_symbol = "✗";
+          success_symbol = "[λ](bold green)";
+          error_symbol = "[✗](bold red)";
+          vicmd_symbol = "[λ](bold yellow)";
           use_symbol_for_status = true;
         };
 
         cmd_duration = {
           min_time = 100;
-          prefix = "underwent ";
+          format = "underwent [$duration]($style) ";
         };
 
-        haskell = {
-          symbol = " ";
-          disabled = true;
+        nix_shell = {
+          disabled = false;
+          impure_msg = "[impure](bold red)";
+          pure_msg = "[pure](bold green)";
+          format = "[$state](bold blue) ";
         };
       };
     };
