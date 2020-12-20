@@ -381,6 +381,8 @@
   :general
   (general-define-key
    :keymaps 'normal
+   "TAB"     'org-cycle
+   "<tab>"   'org-cycle
    "C-SPC"   'org-toggle-checkbox
    "SPC o s" 'org-schedule
    "SPC o d" 'org-deadline
