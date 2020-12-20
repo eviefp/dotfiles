@@ -1,7 +1,6 @@
 let
   sources = import ../nix/sources.nix;
   mail = import ./email.nix { inherit pkgs; };
-  reddup = import sources.reddup;
   thing = import sources.thing;
   emacsOverlay = import sources.emacs-overlay;
   nixpkgs = import sources.nixpkgs {
@@ -19,7 +18,6 @@ let
       jq
       nodejs
       ranger
-      reddup
       thing
       ripgrep
       slack
@@ -270,7 +268,6 @@ let
     ".ghci".source = ../config/ghci;
     ".config/fish/functions/clip.fish".source = ../config/fish/functions/clip.fish;
     ".XCompose".source = ../config/XCompose;
-    ".reddup.yml".source = ./reddup.yml;
   };
 
   #########################################################
