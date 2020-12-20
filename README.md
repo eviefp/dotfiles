@@ -5,6 +5,7 @@
 Vim: config/nvim/init.vim
 Emacs: home-manager/emacs.nix
 
+
 NOTE that the emacs config will need some tweaking, since it's designed
 to run under `nix`.
 
