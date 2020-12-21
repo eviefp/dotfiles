@@ -141,6 +141,7 @@
     (general-define-key
      :keymaps 'normal
      "g c c"   'comment-line
+     "SPC n"   'notmuch
      "SPC b d" 'kill-this-buffer
      "SPC b b" 'switch-to-buffer
      "SPC q"   'save-buffers-kill-terminal
@@ -156,6 +157,7 @@
      "C-=" '(lambda () (interactive) (text-scale-set 0))
      "SPC f e d" 'cvlad-open-user-init-file
      "SPC o f" 'org-cycle-agenda-files
+     "SPC o o" 'org-todo
      "SPC o a" 'org-agenda
      "SPC o c" 'calendar
      "SPC o C" 'org-capture 
@@ -448,7 +450,7 @@
     :general
     (general-define-key
       :keymaps 'normal
-      "SPC n t" 'neotree-toggle)
+      "SPC t n" 'neotree-toggle)
     (general-define-key
       :keymaps 'neotree-mode-map
       "RET" 'neotree-quick-look
