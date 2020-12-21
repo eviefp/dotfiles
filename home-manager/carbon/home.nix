@@ -36,6 +36,7 @@ in
       ".config/fish/functions/rt.fish".source = ../../config/fish/functions/rt.fish;
       ".config/fish/functions/ssh.fish".source = ../../config/fish/functions/ssh.fish;
       ".config/fish/functions/ec.fish".source = ../../config/fish/functions/ec.fish;
+      ".config/fish/functions/ed.fish".source = ../../config/fish/functions/ed.fish;
     };
 
     programs = common.programs // common.helpers.mkKitty {
