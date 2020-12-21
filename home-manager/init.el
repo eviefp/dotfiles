@@ -381,8 +381,6 @@
   :general
   (general-define-key
    :keymaps 'normal
-   "TAB"     'org-cycle
-   "<tab>"   'org-cycle
    "C-SPC"   'org-toggle-checkbox
    "SPC o s" 'org-schedule
    "SPC o d" 'org-deadline
@@ -442,6 +440,21 @@
       "c"   'neotree-copy-node
       "R"   'neotree-refresh
       "n"   'neotree-create-node))
+
+;; colors
+(use-package rainbow-mode
+  :ensure t
+  :general
+  (general-define-key
+   :keymaps 'normal
+   ("SPC c m" 'rainbow-mode)))
+
+(use-package zenity-color-picker
+  :ensure t
+  :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC c c" 'zenity-cp-color-at-point-dwim))
 
 ;; theme
 (use-package doom-themes
