@@ -45,12 +45,27 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
-(require 'use-package)
+(require 'use-package) 
 
 ;; This is broken, no idea why. Try again later.
 ; ; email
-;; (use-package notmuch
-;;   :ensure t)
+(use-package notmuch
+  :ensure t
+  :after evil-collection
+  :config
+  (setq notmuch-saved-searches
+    '((:name "unread"
+       :query "tag:inbox and tag:unread"
+       :sort-order newest-first)
+      (:name "inbox"
+       :query "tag:inbox"
+       :sort-order newest-first))))
+
+  ;; :general
+  ;; (general-define-key
+  ;;  :states '(normal visual)
+  ;;  :keymaps 'notmuch-search-mode-map
+  ;;  "RET" 'notmuch-search-show-thread))
 
 ;; evil
 (use-package evil
@@ -114,7 +129,11 @@
     (general-evil-setup)
     (setq general-default-keymaps 'evil-normal-state-map)
     ; unbind space from dired map to allow for git status
-    ; (general-define-key :keymaps 'dired-mode-map "SPC" nil)
+    (general-define-key
+     :states '(normal visual)
+     :keymaps 'notmuch-search-mode-map
+     "RET" 'notmuch-search-show-thread)
+    (general-define-key :keymaps 'dired-mode-map "SPC" nil)
     (general-define-key
      :keymaps 'visual
      "g c c"   'comment-or-uncomment-region
@@ -410,7 +429,7 @@
    "SPC r i" 'org-roam-insert
    "SPC r r" 'org-roam
    "SPC r g" 'org-roam-graph
-   "RET"     'org-open-at-point
+;; "RET"     'org-open-at-point
    "SPC r I" 'org-roam-jump-to-index))
 
 ;; (add-hook 'after-init-hook 'org-roam-mode)
