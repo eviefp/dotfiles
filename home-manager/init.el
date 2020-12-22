@@ -468,7 +468,7 @@
   :general
   (general-define-key
    :keymaps 'normal
-   ("SPC c m" 'rainbow-mode)))
+   "SPC c m" 'rainbow-mode))
 
 (use-package zenity-color-picker
   :ensure t
