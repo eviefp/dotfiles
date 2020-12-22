@@ -51,7 +51,6 @@
 ; ; email
 (use-package notmuch
   :ensure t
-  :after evil-collection
   :config
   (setq notmuch-saved-searches
     '((:name "unread"
@@ -80,7 +79,7 @@
         (evil-declare-change-repeat 'company-complete)))
 
 (use-package evil-collection
-  :after evil
+  :after (evil notmuch)
   :ensure t
   :config
   (evil-collection-init))
@@ -129,10 +128,15 @@
     (general-evil-setup)
     (setq general-default-keymaps 'evil-normal-state-map)
     ; unbind space from dired map to allow for git status
-    (general-define-key
-     :states '(normal visual)
-     :keymaps 'notmuch-search-mode-map
-     "RET" 'notmuch-search-show-thread)
+    ;; (general-define-key
+    ;;  :states '(normal visual)
+    ;;  :keymaps 'notmuch-search-mode-map
+    ;;  "RET" 'notmuch-search-show-thread
+    ;;  "d" 'evil-collection-notmuch-search-toggle-delete
+    ;;  "u" 'evil-collection-notmuch-search-toggle-unread
+    ;;  "t" 'notmuch-search-add-tag
+    ;;  "T" 'notmuch-search-remove-tag
+    ;;  "f" 'notmuch-search-filter-by-tag)
     (general-define-key :keymaps 'dired-mode-map "SPC" nil)
     (general-define-key
      :keymaps 'visual
@@ -141,7 +145,7 @@
     (general-define-key
      :keymaps 'normal
      "g c c"   'comment-line
-     "SPC n"   'notmuch
+     "SPC n n"   'notmuch
      "SPC b d" 'kill-this-buffer
      "SPC b b" 'switch-to-buffer
      "SPC q"   'save-buffers-kill-terminal
