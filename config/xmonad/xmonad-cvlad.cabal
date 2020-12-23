@@ -1,0 +1,69 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.34.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           xmonad-cvlad
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/vladciobanu/xmonad-cvlad#readme>
+homepage:       https://github.com/vladciobanu/xmonad-cvlad#readme
+bug-reports:    https://github.com/vladciobanu/xmonad-cvlad/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        Unlicense
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/vladciobanu/xmonad-cvlad
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_xmonad_cvlad
+  hs-source-dirs:
+      src
+  default-extensions: ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies DerivingVia DuplicateRecordFields EmptyCase EmptyDataDecls EmptyDataDeriving ExistentialQuantification ExplicitNamespaces FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving ImportQualifiedPost InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns NamedWildCards NoImplicitPrelude NoMonomorphismRestriction NumericUnderscores OverloadedLabels OverloadedStrings PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RoleAnnotations ScopedTypeVariables StandaloneDeriving StandaloneKindSignatures TemplateHaskell TupleSections TypeApplications TypeFamilies TypeFamilyDependencies TypeOperators ViewPatterns
+  ghc-options: -Weverything -Wno-missing-home-modules -Wno-redundant-constraints -Wno-missed-specialisations -Wno-all-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-unsafe -Wno-safe -Wno-monomorphism-restriction -Wno-missing-safe-haskell-mode -Wno-prepositive-qualified-module
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , xmonad
+    , xmonad-contrib
+  default-language: Haskell2010
+
+executable xmonad-cvlad
+  main-is: xmonad.hs
+  other-modules:
+      Paths_xmonad_cvlad
+  default-extensions: ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies DerivingVia DuplicateRecordFields EmptyCase EmptyDataDecls EmptyDataDeriving ExistentialQuantification ExplicitNamespaces FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving ImportQualifiedPost InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns NamedWildCards NoImplicitPrelude NoMonomorphismRestriction NumericUnderscores OverloadedLabels OverloadedStrings PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RoleAnnotations ScopedTypeVariables StandaloneDeriving StandaloneKindSignatures TemplateHaskell TupleSections TypeApplications TypeFamilies TypeFamilyDependencies TypeOperators ViewPatterns
+  ghc-options: -Weverything -Wno-missing-home-modules -Wno-redundant-constraints -Wno-missed-specialisations -Wno-all-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-unsafe -Wno-safe -Wno-monomorphism-restriction -Wno-missing-safe-haskell-mode -Wno-prepositive-qualified-module -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , xmonad
+    , xmonad-contrib
+    , xmonad-cvlad
+  default-language: Haskell2010
+
+test-suite xmonad-cvlad-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_xmonad_cvlad
+  hs-source-dirs:
+      test
+  default-extensions: ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies DerivingVia DuplicateRecordFields EmptyCase EmptyDataDecls EmptyDataDeriving ExistentialQuantification ExplicitNamespaces FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving ImportQualifiedPost InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns NamedWildCards NoImplicitPrelude NoMonomorphismRestriction NumericUnderscores OverloadedLabels OverloadedStrings PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RoleAnnotations ScopedTypeVariables StandaloneDeriving StandaloneKindSignatures TemplateHaskell TupleSections TypeApplications TypeFamilies TypeFamilyDependencies TypeOperators ViewPatterns
+  ghc-options: -Weverything -Wno-missing-home-modules -Wno-redundant-constraints -Wno-missed-specialisations -Wno-all-missed-specialisations -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-unsafe -Wno-safe -Wno-monomorphism-restriction -Wno-missing-safe-haskell-mode -Wno-prepositive-qualified-module -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , xmonad
+    , xmonad-contrib
+    , xmonad-cvlad
+  default-language: Haskell2010
