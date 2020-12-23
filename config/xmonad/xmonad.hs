@@ -1,7 +1,4 @@
---
-import Data.List
-import Data.Maybe
---
+import Prelude
 
 import qualified Data.Map                       as M
 import           System.IO
@@ -9,26 +6,20 @@ import           XMonad
 import           XMonad.Actions.CycleWS
 import           XMonad.Actions.PhysicalScreens
 import           XMonad.Config.Gnome
-import           XMonad.Core
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.InsertPosition
 import           XMonad.Hooks.ManageDocks
-import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.NoBorders
-import           XMonad.Operations
 import qualified XMonad.StackSet                as W
-import           XMonad.Util.Dzen
-import           XMonad.Util.EZConfig           (additionalKeys, additionalKeysP)
-import           XMonad.Util.Run                (spawnPipe)
-import           XMonad.Util.SpawnOnce
+import           XMonad.Util.Run
+    (spawnPipe)
 
---
-
-myManageHook = composeAll (
+myManageHook :: ManageHook
+myManageHook = composeAll
     [ manageHook gnomeConfig
     , resource  =? "stalonetray"       --> doIgnore
     , manageDocks
-    ])
+    ]
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -36,12 +27,12 @@ myStartupHook = do
     spawn "stalonetray"
     spawn "nm-applet"
 
+screenshotCommand :: String
 screenshotCommand = "/usr/bin/env fish --command clip"
 
+newBindings :: XConfig l -> [((KeyMask, KeySym), X ())]
 newBindings x = [ ((modMask x, xK_Right                  ), nextWS)
                 , ((modMask x, xK_Left                   ), prevWS)
-                -- , ((modMask x, xK_BackSpace              ), spawn "gnome-screensaver-command -l")
-                -- , ((modMask x .|. shiftMask, xK_BackSpace), spawn "systemctl suspend -i")
                 , ((0        , 0x1008ff12), spawn "amixer set Master 1+ toggle")
                 , ((0        , 0x1008ff11), spawn "amixer set Master 10%-")
                 , ((0        , 0x1008ff13), spawn "amixer set Master 10%+")
@@ -56,16 +47,19 @@ newBindings x = [ ((modMask x, xK_Right                  ), nextWS)
                 , ((modMask x, xK_e      ), viewScreen horizontalScreenOrderer (P 1))
                 ]
 
-myKeys x = M.union (M.fromList (newBindings x)) (keys defaultConfig x)
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeys x = M.union (M.fromList (newBindings x)) (keys def x)
 
-myWorkspaces = map show [1 .. 9]
+myWorkspaces :: [String]
+myWorkspaces = fmap (show @Int) [1 .. 9]
 
+main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
 
     xmonad $ gnomeConfig
         { manageHook = insertPosition Below Newer <+> myManageHook
-        , layoutHook = avoidStruts  $ smartBorders $ layoutHook defaultConfig
+        , layoutHook = avoidStruts . smartBorders $ layoutHook def
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
@@ -77,7 +71,7 @@ main = do
         , workspaces = myWorkspaces
         , handleEventHook =
           mconcat [ docksEventHook
-                  , handleEventHook defaultConfig
+                  , handleEventHook def
                   ]
         }
 
