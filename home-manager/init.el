@@ -54,7 +54,16 @@
   :config
   (setq notmuch-saved-searches
     '((:name "unread"
-       :query "tag:inbox and tag:unread"
+       :query "tag:unread"
+       :sort-order newest-first)
+      (:name "keep"
+       :query "tag:keep"
+       :sort-order newest-first)
+      (:name "Statically Typed"
+       :query "tag:st"
+       :sort-order newest-first)
+      (:name "sent"
+       :query "tag:sent"
        :sort-order newest-first)
       (:name "inbox"
        :query "tag:inbox"
@@ -230,6 +239,7 @@
     (setq ivy-use-virtual-buffers t)
     (setq ivy-height 15)
     (setq ivy-count-format "(%d/%d) ")
+    (setq ivy-use-selectable-prompt t)
     :general
     (general-define-key
      :keymaps 'ivy-minibuffer-map
@@ -395,12 +405,11 @@
 ;; org
 (use-package evil-org
   :ensure t
-  :after evil
+  :after (evil org)
+  :hook ((org-mode . evil-org-mode)
+         (org-agenda . evil-org-mode))
   :config
-  (add-hook 'org-mode-hook 'evil-org-mode)
-  (add-hook 'evil-org-mode-hook
-            (lambda ()
-              (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))))
+  (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading calendar))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys)
   :general
@@ -409,10 +418,10 @@
    "C-SPC"   'org-toggle-checkbox
    "SPC o s" 'org-schedule
    "SPC o d" 'org-deadline
-   "SPC o t" 'org-set-tags-command
-   :keymaps 'visual
-   ">"       'org-demote-subtree
-   "<"       'org-promote-subtree))
+   "SPC o t" 'org-set-tags-command))
+   ;; :keymaps 'visual
+   ;; ">"       'org-demote-subtree
+   ;; "<"       'org-promote-subtree))
 
 (use-package org-bullets
   :ensure t
