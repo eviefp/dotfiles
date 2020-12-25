@@ -1,3 +1,5 @@
+{-# language TypeApplications #-}
+
 import Prelude
 
 import qualified Data.Map                       as M
