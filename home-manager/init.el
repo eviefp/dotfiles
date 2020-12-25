@@ -52,6 +52,7 @@
 (use-package notmuch
   :ensure t
   :config
+  (setq send-mail-function 'sendmail-send-it)
   (setq notmuch-saved-searches
     '((:name "unread"
        :query "tag:unread"
@@ -153,6 +154,7 @@
      "SPC a r" 'align-regexp)
     (general-define-key
      :keymaps 'normal
+     "q" nil
      "g c c"   'comment-line
      "SPC n n"   'notmuch
      "SPC b d" 'kill-this-buffer
