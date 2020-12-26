@@ -43,17 +43,16 @@ in
       "font_size" = "12.0";
     };
 
-    # This does not currently work because package is non-definable.
-    # Need to update home-manager, I think.
+    # This suddently stopped working. I don't care enough to investigate.
     services = common.services // {
-      emacs = {
-        enable = true;
-        package = emacs.derivation;
-        client = {
-          enable = true;
-          arguments = [ "-c" ];
-        };
-        socketActivation.enable = true;
-      };
+      # emacs = {
+      #   enable = true;
+      #   package = emacs.derivation;
+      #   client = {
+      #     enable = true;
+      #     arguments = [ "-c" ];
+      #   };
+      #   socketActivation.enable = true;
+      # };
     };
 }
