@@ -416,7 +416,9 @@
   (evil-org-agenda-set-keys)
   :general
   (general-define-key
-   :keymaps 'normal
+  :states  'normal
+  :keymaps 'org-mode-map
+   "RET"     'org-open-at-point
    "C-SPC"   'org-toggle-checkbox
    "SPC o s" 'org-schedule
    "SPC o d" 'org-deadline
@@ -432,6 +434,13 @@
 (use-package org-roam
   :ensure t
   :init
+    (setq org-roam-capture-templates
+	  '(("d" "default" plain
+	     (function org-roam--capture-get-point)
+	     "%?"
+	     :file-name "%<%Y%m%d%H%M%S>-${slug}"
+	     :head "#+title: ${title}\n#+created: %U\n#last_modified: %U\n#+roam_alias:\n#+roam_tags:\n#+roam_key:\n\n"
+	     :unnarrowed t)))
     (setq org-roam-directory "~/Documents/wiki/roam")
     (setq org-roam-index-file "~/Documents/wiki/roam/index.org")
     (setq org-roam-update-method 'idle-timer)
@@ -446,7 +455,6 @@
    "SPC r i" 'org-roam-insert
    "SPC r r" 'org-roam
    "SPC r g" 'org-roam-graph
-;; "RET"     'org-open-at-point
    "SPC r I" 'org-roam-jump-to-index))
 
 ;; (add-hook 'after-init-hook 'org-roam-mode)
@@ -505,6 +513,17 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+(use-package ranger
+  :ensure t
+  :config
+  (ranger-override-dired-mode t)
+  (setq helm-descbinds-window-style 'same-window)
+  (setq ranger-cleanup-on-disable t)
+  (setq ranger-cleanup-eagerly t)
+  (setq ranger-show-hidden t)
+  (setq ranger-modify-header t)
+  (setq ranger-preview-file t))
 
 (global-display-fill-column-indicator-mode)
 
