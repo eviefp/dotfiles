@@ -28,7 +28,7 @@ let
     imap.host = "imap.gmail.com";
     realName = "Vladimir Ciobanu";
     userName = "admin@cvlad.info";
-    passwordCommand = "${pass} Email/cvlad-app";
+    passwordCommand = "cat /home/vlad/.secrets/cvlad.pwd";
     neomutt = {
       enable = true;
       sendMailCommand = "msmtpq --read-envelope-from --read-recipients";
