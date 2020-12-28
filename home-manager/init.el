@@ -1,6 +1,9 @@
 ;; IMPORTANT: Remember to add `:ensure t` to use-package in order to add them to
 ;; the available packages.
 
+;;  TODO: this has to be manually run on first install.
+;;  (all-the-icons-install-fonts))
+
 ;; Not sure what this does. This bit was copy/pasted from the NixOS manual.
 (require 'package)
 
@@ -507,8 +510,6 @@
 
 (use-package all-the-icons
   :ensure t)
-;;  :init ;; this only needs to happen once
-;;  (all-the-icons-install-fonts))
 
 (use-package doom-modeline
   :ensure t
