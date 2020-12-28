@@ -45,6 +45,7 @@ in
 
     # This suddently stopped working. I don't care enough to investigate.
     services = common.services // {
+      picom.enable = true;
       # emacs = {
       #   enable = true;
       #   package = emacs.derivation;

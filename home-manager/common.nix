@@ -312,7 +312,6 @@ set fish_color_error "#c33759"
   #########################################################
   ## Services
   services = {
-    picom.enable = true;
     mbsync.enable = true;
     stalonetray = {
       enable = true;
