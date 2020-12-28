@@ -1,6 +1,7 @@
+{ asMailServer ? false }:
 let
   sources = import ../nix/sources.nix;
-  mail = import ./email.nix { inherit pkgs; };
+  mail = import ./email.nix { inherit pkgs; asServer = asMailServer; };
   thing = import sources.thing;
   emacsOverlay = import sources.emacs-overlay;
   nixpkgs = import sources.nixpkgs {
@@ -287,11 +288,11 @@ set fish_color_error "#c33759"
       sort = "reverse-threads";
     };
 
-    mbsync.enable = true;
+    mbsync.enable = asMailServer;
     msmtp.enable = true;
     notmuch = {
       enable = true;
-      hooks.preNew = "mbsync --all";
+      hooks.preNew = if asMailServer then "mbsync --all" else "";
     };
 
   };
@@ -312,7 +313,7 @@ set fish_color_error "#c33759"
   #########################################################
   ## Services
   services = {
-    mbsync.enable = true;
+    mbsync.enable = asMailServer;
     stalonetray = {
       enable = true;
       package = pkgs.stalonetray;

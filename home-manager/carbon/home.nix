@@ -1,5 +1,5 @@
 let
-  common = import ../common.nix;
+  common = import ../common.nix { asMailServer = true; };
   emacs = import ../emacs.nix {
     pkgs = common.nixpkgs;
     locals = ./locals.el;
@@ -46,6 +46,15 @@ in
     # This suddently stopped working. I don't care enough to investigate.
     services = common.services // {
       picom.enable = true;
+      muchsync.remotes = {
+        desktop = {
+          local.checkForModifiedFiles = true;
+          remote = {
+            checkForModifiedFiles = true;
+            host = "192.168.10.25";
+          };
+        };
+      };
       # emacs = {
       #   enable = true;
       #   package = emacs.derivation;

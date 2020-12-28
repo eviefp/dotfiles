@@ -1,5 +1,5 @@
 let
-  common = import ../common.nix;
+  common = import ../common.nix { asMailServer = false; };
   emacs = import ../emacs.nix {
     pkgs = common.nixpkgs;
     locals = ./locals.el;
@@ -45,6 +45,15 @@ in
 
     # This suddently stopped working. I don't care enough to investigate.
     services = common.services // {
+      muchsync.remotes = {
+        carbon = {
+          local.checkForModifiedFiles = true;
+          remote = {
+            checkForModifiedFiles = true;
+            host = "192.168.1.67";
+          };
+        };
+      };
       # emacs = {
       #   enable = true;
       #   package = emacs.derivation;
