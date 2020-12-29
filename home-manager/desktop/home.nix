@@ -50,7 +50,7 @@ in
           local.checkForModifiedFiles = true;
           remote = {
             checkForModifiedFiles = true;
-            host = "192.168.1.67";
+            host = "192.168.10.25";
           };
         };
       };

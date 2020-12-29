@@ -48,6 +48,7 @@ let
       xclip
       scrot
       gnome3.zenity
+      muchsync
     ];
 
     programming = [ gnumake neovim vscode racket ];
@@ -292,7 +293,7 @@ set fish_color_error "#c33759"
     msmtp.enable = true;
     notmuch = {
       enable = true;
-      hooks.preNew = if asMailServer then "mbsync --all" else "";
+      hooks.preNew = if asMailServer then "${pkgs.isync}/bin/mbsync --all" else "";
     };
 
   };

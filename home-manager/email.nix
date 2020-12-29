@@ -34,7 +34,7 @@ let
         else null;
     realName = "Vladimir Ciobanu";
     userName = "admin@cvlad.info";
-    passwordCommand = "cat /home/vlad/.secrets/cvlad.pwd";
+    passwordCommand = "${pkgs.coreutils}/bin/cat /home/vlad/.secrets/cvlad.pwd";
     neomutt = {
       enable = true;
       sendMailCommand = "msmtpq --read-envelope-from --read-recipients";
