@@ -43,7 +43,6 @@ in
       "font_size" = "14.0";
     };
 
-    # This suddently stopped working. I don't care enough to investigate.
     services = common.services // {
       muchsync.remotes = {
         carbon = {
@@ -54,6 +53,7 @@ in
           };
         };
       };
+    # This suddently stopped working. I don't care enough to investigate.
       # emacs = {
       #   enable = true;
       #   package = emacs.derivation;

@@ -354,7 +354,7 @@ set fish_color_error "#c33759"
       } // extraSettings;
     };
   };
-  accounts.email.accounts = { gmail = mail.gmail; };
+  accounts.email.accounts = { gmail = mail.gmail; hasura = mail.hasura; };
 in {
   nixpkgs = nixpkgs;
   accounts = accounts;

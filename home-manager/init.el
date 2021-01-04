@@ -63,6 +63,9 @@
       (:name "keep"
        :query "tag:keep"
        :sort-order newest-first)
+      (:name "Hasura"
+       :query "tag:hasura OR path:hasura/**"
+       :sort-order newest-first)
       (:name "Statically Typed"
        :query "tag:st"
        :sort-order newest-first)

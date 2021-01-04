@@ -2,7 +2,8 @@
 
 notmuch new --quiet
 res=$(notmuch count tag:unread folder:'gmail/Inbox')
+res2=$(notmuch count tag:unread folder:'hasura/Inbox')
 
-echo $res
+echo "G$res:H$res2"
 
 exit 0
