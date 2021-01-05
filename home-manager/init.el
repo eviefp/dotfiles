@@ -201,7 +201,7 @@
  :init
      (projectile-mode +1)
  :config
-     (setq projectile-project-search-path '("~/code/" "~/Documents/"))
+     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/graphql-engine-mono/"))
      (projectile-discover-projects-in-search-path)
  :general
   (general-define-key
@@ -276,6 +276,8 @@
 ;; lsp
 (use-package lsp-mode
     :ensure t
+    :config
+	(setq lsp-file-watch-threshold 500)
     :hook ((haskell-mode . lsp)
            (lsp-mode . lsp-enable-which-key-integration))
     :general
