@@ -33,6 +33,7 @@ let
 
     nixos = [
       discord
+      signal-desktop
       firefox
       fdk_aac
       feh
