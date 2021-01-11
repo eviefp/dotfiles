@@ -54,7 +54,7 @@
 ; ; email
 (use-package notmuch
   :ensure t
-  :config
+  :init
   (setq send-mail-function 'sendmail-send-it)
   (setq notmuch-saved-searches
     '((:name "unread"
@@ -199,10 +199,10 @@
 (use-package projectile
  :ensure t
  :init
-     (projectile-mode +1)
- :config
      (setq projectile-project-search-path '("~/code/" "~/Documents/"))
+ :config
      (projectile-discover-projects-in-search-path)
+     (projectile-mode +1)
  :general
   (general-define-key
    :keymaps 'normal
@@ -223,7 +223,7 @@
    (general-define-key
     :keymaps 'normal
     "SPC g s" 'magit-status)
-   :config
+   :init
    (setq magit-completing-read-function 'ivy-completing-read))
 
 (use-package git-gutter
@@ -242,12 +242,13 @@
     :ensure t
     ;; :diminish ivy-mode
     :demand t
-    :config
-    (ivy-mode 1)
+    :init
     (setq ivy-use-virtual-buffers t)
     (setq ivy-height 15)
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-use-selectable-prompt t)
+    :config
+    (ivy-mode 1)
     :general
     (general-define-key
      :keymaps 'ivy-minibuffer-map
@@ -276,6 +277,13 @@
 ;; lsp
 (use-package lsp-mode
     :ensure t
+    :init
+      (setq lsp-enable-file-watchers nil)
+      (setq lsp-enable-symbol-highlighting nil)
+      (setq lsp-log-io nil)
+      (setq lsp-modeline-code-actions-face '((t nil)))
+      (setq lsp-modeline-code-actions-segments '(icon name))
+      (setq lsp-modeline-diagnostics-enable nil)
     :hook ((haskell-mode . lsp)
            (lsp-mode . lsp-enable-which-key-integration))
     :general
@@ -283,6 +291,7 @@
      :keymaps 'normal
      "K" 'lsp-describe-thing-at-point
      ", i" 'interactive-haskell-mode
+     ", c" 'lsp-execute-code-action
      ", l" 'haskell-process-load-file))
      ;; 'lsp-organize-imports
      ;; 'lsp-format-buffer
@@ -290,6 +299,11 @@
 (use-package lsp-ui
     :ensure t
     :commands lsp-ui-mode
+    :init
+      (setq lsp-ui-doc-alignment 'window)
+      (setq lsp-ui-doc-delay 1)
+      (setq lsp-ui-doc-max-height 20)
+      (setq lsp-ui-doc-max-width 200)
     :general
     (general-define-key
      :keymaps 'normal
@@ -298,6 +312,10 @@
 ;; error checking
 (use-package flycheck
     :ensure t
+    :init
+      (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
+      (setq flycheck-idle-change-delay 3)
+      (setq flycheck-standard-error-navigation nil)
     :general
     (general-define-key
      :keymaps 'normal
@@ -325,17 +343,19 @@
 
 ;; haskell
 (use-package haskell-mode
-      :ensure t)
+  :ensure t
+  :init
+    (setq haskell-stylish-on-save t))
 
 (use-package lsp-haskell
   :ensure t
-  :config
+  :init
   (setq lsp-haskell-hlint-on t)
   (setq lsp-haskell-max-number-of-problems 100)
-  (setq lsp-haskell-diagnostics-on-change t)
+  (setq lsp-haskell-diagnostics-on-change nil)
   (setq lsp-haskell-liquid-on nil)
   (setq lsp-haskell-completion-snippets-on t)
-  (setq lsp-haskell-format-on-import-on t)
+  (setq lsp-haskell-format-on-import-on nil)
   (setq lsp-haskell-formatting-provider "stylish-haskell")
   )
 
@@ -520,14 +540,15 @@
 
 (use-package ranger
   :ensure t
-  :config
-  (ranger-override-dired-mode t)
+  :init
   (setq helm-descbinds-window-style 'same-window)
   (setq ranger-cleanup-on-disable t)
   (setq ranger-cleanup-eagerly t)
   (setq ranger-show-hidden t)
   (setq ranger-modify-header t)
-  (setq ranger-preview-file t))
+  (setq ranger-preview-file t)
+  :config
+  (ranger-override-dired-mode t))
 
 (global-display-fill-column-indicator-mode)
 
