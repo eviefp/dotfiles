@@ -277,6 +277,7 @@
 ;; lsp
 (use-package lsp-mode
     :ensure t
+<<<<<<< HEAD
     :init
       (setq lsp-enable-file-watchers nil)
       (setq lsp-enable-symbol-highlighting nil)
@@ -284,6 +285,10 @@
       (setq lsp-modeline-code-actions-face '((t nil)))
       (setq lsp-modeline-code-actions-segments '(icon name))
       (setq lsp-modeline-diagnostics-enable nil)
+=======
+    :config
+	(setq lsp-file-watch-threshold 500)
+>>>>>>> 4f5f8006b9b55aa741a8b96da8208a402d695e61
     :hook ((haskell-mode . lsp)
            (lsp-mode . lsp-enable-which-key-integration))
     :general
