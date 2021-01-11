@@ -139,11 +139,15 @@
 
   users.users.vlad = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" "docker" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
 
   security.sudo.wheelNeedsPassword = false;
+
+  virtualisation.docker = {
+    enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
