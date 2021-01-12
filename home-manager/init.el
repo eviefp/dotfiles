@@ -222,7 +222,10 @@
    :general
    (general-define-key
     :keymaps 'normal
-    "SPC g s" 'magit-status)
+    "SPC g s" 'magit-status
+    "SPC g b" 'magit-blame
+    "SPC g c" 'magit-blame-cycle-style
+    )
    :init
    (setq magit-completing-read-function 'ivy-completing-read))
 
