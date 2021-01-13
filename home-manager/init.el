@@ -435,6 +435,8 @@
   ;; TODO: evil keybindings
 
 ;; org
+(setq org-edit-src-content-indentation nil)
+
 (use-package evil-org
   :ensure t
   :after (evil org)
