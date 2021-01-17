@@ -14,13 +14,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "desktop"; # Define your hostname.
+  networking.hostName = "thelxinoe"; # Define your hostname.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp0s31f6.useDHCP = true;
+  networking.interfaces.enp4s0.useDHCP = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -34,7 +34,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     haskell.packages.ghc865.ghc
     cachix
@@ -42,15 +41,12 @@
     haskellPackages.xmobar
     dmenu
     gmrun
-    # apcilight
     pass passff-host dbus pinentry_gnome transmission-gtk pavucontrol
     xorg.xmodmap xorg.xev firefox
     xdg_utils git
     #
     paprefs
   ];
-
-  fonts.fonts = [ pkgs.nerdfonts ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -79,16 +75,13 @@
 
   # Enable sound.
   sound.enable = true;
-  # hardware.bluetooth.enable = true;
-  # services.blueman.enable = true;
+  # hardware.pulseaudio.enable = true;
   hardware.pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull;
   };
-  # hardware.video.hidpi.enable = true;
-  hardware.opengl.driSupport32Bit = true;
 
-  # Enable the X11 windowing system.
+  hardware.opengl.driSupport32Bit = true;
 
   services.xserver = {
     enable = true;
@@ -154,3 +147,4 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
+
