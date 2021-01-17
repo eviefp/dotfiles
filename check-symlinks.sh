@@ -76,9 +76,10 @@ setEnv() {
 setMachine() {
     hostOut="$(hostname)"
     case "${hostOut}" in
-        "vm")       machine=vm;;
-        "carbon")   machine=carbon;;
-        *)          machine="UNKNOWN:${hostOut}"
+        "vm")        machine=vm;;
+        "carbon")    machine=carbon;;
+	"thelxinoe") machine=thelxinoe;;
+        *)           machine="UNKNOWN:${hostOut}"
     esac
 }
 
