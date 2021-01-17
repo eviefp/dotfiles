@@ -199,7 +199,7 @@
 (use-package projectile
  :ensure t
  :init
-     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/"))
+     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/" "~/code/tests/"))
  :config
      (projectile-discover-projects-in-search-path)
      (projectile-mode +1)
