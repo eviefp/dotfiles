@@ -47,6 +47,7 @@ newBindings x = [ ((modMask x, xK_Right                  ), nextWS)
                 , ((modMask x, xK_k      ), windows W.focusDown)
                 , ((modMask x, xK_w      ), viewScreen horizontalScreenOrderer (P 0))
                 , ((modMask x, xK_e      ), viewScreen horizontalScreenOrderer (P 1))
+                , ((modMask x, xK_r      ), viewScreen horizontalScreenOrderer (P 2))
                 ]
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
