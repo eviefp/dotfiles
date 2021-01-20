@@ -43,16 +43,16 @@ in
       "font_size" = "12.0";
     };
 
-    services = common.services // {
-      muchsync.remotes = {
-        carbon = {
-          local.checkForModifiedFiles = true;
-          remote = {
-            checkForModifiedFiles = true;
-            host = "192.168.10.25";
-          };
-        };
-      };
+    services = common.services; # // {
+      # muchsync.remotes = {
+      #   carbon = {
+      #     local.checkForModifiedFiles = true;
+      #     remote = {
+      #       checkForModifiedFiles = true;
+      #       host = "192.168.10.25";
+      #     };
+      #   };
+      # };
     # This suddently stopped working. I don't care enough to investigate.
       # emacs = {
       #   enable = true;
@@ -63,5 +63,5 @@ in
       #   };
       #   socketActivation.enable = true;
       # };
-    };
+      # };
 }
