@@ -134,6 +134,7 @@ set fish_color_error "#c33759"
 
     git = {
       enable = true;
+      delta.enable = true;
       aliases = {
         lol = "log --graph --decorate --oneline --abbrev-commit";
         lola = "log --graph --decorate --oneline --abbrev-commit --all";
@@ -143,6 +144,9 @@ set fish_color_error "#c33759"
         recent =
           "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
         work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
+      };
+      extraConfig = {
+        pull.ff = "only";
       };
       ignores = [ "TAGS" ];
       userEmail = mail.gmail.userName;
