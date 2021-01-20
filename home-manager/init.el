@@ -199,7 +199,7 @@
 (use-package projectile
  :ensure t
  :init
-     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/"))
+     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/" "~/code/tests/" "~/code/hasura/mono/"))
  :config
      (projectile-discover-projects-in-search-path)
      (projectile-mode +1)
@@ -349,7 +349,7 @@
 (use-package haskell-mode
   :ensure t
   :init
-    (setq haskell-stylish-on-save t))
+    (setq haskell-stylish-on-save nil))
 
 (use-package lsp-haskell
   :ensure t
