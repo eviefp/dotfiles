@@ -208,7 +208,7 @@
    :keymaps 'normal
    "SPC p s" 'projectile-switch-project
    "SPC p f" 'projectile--find-file
-   "SPC P r" 'projectile-ripgrep
+   "SPC p r" 'projectile-ripgrep
    "SPC p d" 'projectile-dired-other-frame
    "SPC p b" 'projectile-switch-to-buffer
    "SPC p w" 'projectile-switch-to-buffer-other-frame
@@ -305,7 +305,7 @@
     :commands lsp-ui-mode
     :init
       (setq lsp-ui-doc-alignment 'window)
-      (setq lsp-ui-doc-delay 1)
+      (setq lsp-ui-doc-delay 2)
       (setq lsp-ui-doc-max-height 20)
       (setq lsp-ui-doc-max-width 200)
     :general
@@ -359,7 +359,7 @@
   (setq lsp-haskell-diagnostics-on-change nil)
   (setq lsp-haskell-liquid-on nil)
   (setq lsp-haskell-completion-snippets-on t)
-  (setq lsp-haskell-format-on-import-on nil)
+  (setq lsp-haskell-format-on-import-on t)
   (setq lsp-haskell-formatting-provider "stylish-haskell")
   )
 
