@@ -43,7 +43,7 @@ in
       "font_size" = "14.0";
     };
 
-    services = common.services # // {
+    services = common.services; # // {
       # muchsync.remotes = {
       #   carbon = {
       #     local.checkForModifiedFiles = true;
