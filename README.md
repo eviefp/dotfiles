@@ -12,3 +12,7 @@ to run under `nix`.
 ## How do things work?
 
 TODO: fill this in as soon as I end up the `shell.nix` update-nix idea.
+
+carbon: aoide
+desktop: arche
+new: thelxinoe
