@@ -97,7 +97,7 @@
       Option "DPMS" "false"
     '';
     serverFlagsSection = ''
-      Option "BlankTime" "0"
+      Option "BlankTime" "20"
     '';
     windowManager.xmonad = {
       enable = true;
