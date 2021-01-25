@@ -31,6 +31,8 @@
 ;; Editing
 (setq fill-column 80)
 (global-display-line-numbers-mode 1)
+(global-whitespace-mode)
+(setq whitespace-style '(face trailing tabs big-indent))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Default config
@@ -48,7 +50,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
-(require 'use-package) 
+(require 'use-package)
 
 ;; This is broken, no idea why. Try again later.
 ; ; email
