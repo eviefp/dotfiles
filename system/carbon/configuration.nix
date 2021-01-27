@@ -35,7 +35,7 @@ in
       xserver.videoDrivers = [ "intel" ];
     };
   
-    sound = common.services;
+    sound = common.sound;
 
     hardware = common.hardware // {
       pulseaudio = {
