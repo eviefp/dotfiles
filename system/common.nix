@@ -12,6 +12,14 @@
 
   networking.useDHCP = false;
   networking.firewall.allowedTCPPorts = [ 22 80 8080 ];
+  networking.hosts = {
+    "192.168.1.1" = "router";
+    "192.168.1.15" = "bridge";
+    "192.168.1.55" = "thelxinoe";
+    "192.168.10.1" = "router2";
+    "192.168.10.67" = "arche";
+    "192.168.10.25" = "aiode";
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
