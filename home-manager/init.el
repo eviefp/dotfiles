@@ -32,7 +32,7 @@
 (setq fill-column 80)
 (global-display-line-numbers-mode 1)
 (global-whitespace-mode)
-(setq whitespace-style '(face trailing tabs big-indent))
+(setq whitespace-style '(face trailing tabs))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Default config
