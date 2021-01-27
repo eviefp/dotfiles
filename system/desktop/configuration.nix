@@ -42,11 +42,9 @@
     haskellPackages.xmobar
     dmenu
     gmrun
-    # apcilight
     pass passff-host dbus pinentry_gnome transmission-gtk pavucontrol
     xorg.xmodmap xorg.xev firefox
     xdg_utils git
-    #
     paprefs
   ];
 
