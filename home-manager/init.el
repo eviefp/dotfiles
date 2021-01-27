@@ -186,7 +186,9 @@
      "SPC o C" 'org-capture 
      "SPC o w" 'org-refile
      "SPC o r" 'cvlad-open-org-refile-file
+     "SPC x e" 'eval-last-sexp
      ))
+
 ;; environment stuff
 (use-package direnv
     :ensure t
@@ -197,7 +199,7 @@
   :config
   (editorconfig-mode 1))
 
-;;;; projectile
+;; projectile
 (use-package projectile
  :ensure t
  :init
