@@ -22,7 +22,7 @@ in
       interfaces.wlp2s0.useDHCP = true;
     };
   
-    i18n = common.il8n;
+    i18n = common.i18n;
     console = common.console;
     time = common.time;
     nixpkgs = common.nixpkgs;
