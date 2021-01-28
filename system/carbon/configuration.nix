@@ -32,7 +32,6 @@ in
   
     services = common.services // {
       blueman.enable = true;
-      xserver.videoDrivers = [ "intel" ];
     };
   
     sound = common.sound;
