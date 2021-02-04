@@ -30,6 +30,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editing
 (setq fill-column 80)
+(setq display-fill-column-indicator 80)
 (global-display-line-numbers-mode 1)
 (global-whitespace-mode)
 (setq whitespace-style '(face trailing tabs))
@@ -203,7 +204,7 @@
 (use-package projectile
  :ensure t
  :init
-     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/" "~/code/tests/" "~/code/hasura/mono/"))
+     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/" "~/code/tests/" "~/code/hasura/mono/" "~/code/hasura/work/"))
  :config
      (projectile-discover-projects-in-search-path)
      (projectile-mode +1)
