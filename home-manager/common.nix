@@ -147,6 +147,7 @@ set fish_color_error "#c33759"
       };
       extraConfig = {
         pull.ff = "only";
+        merge.conflictstyle = "diff3";
       };
       ignores = [ "TAGS" ];
       userEmail = mail.gmail.userName;
