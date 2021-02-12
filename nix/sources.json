@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "4d6cee7ed88d7a99ee4265d5d6b9295c78c898f1",
-        "sha256": "1mia1gghr7d1m5kljfkzm9qih5546z0jk4p3psypxhphqd5dc9wn",
+        "rev": "fc2415c26724b79a2e90ae43e59309d89a9373b0",
+        "sha256": "175dqwf5l1wxy7khk6m4lj68cnmr2bpaypjklp6glf8bi30bsyqk",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/4d6cee7ed88d7a99ee4265d5d6b9295c78c898f1.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/fc2415c26724b79a2e90ae43e59309d89a9373b0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -17,10 +17,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e8358125d98fc0128a02b7664f532447750fb930",
-        "sha256": "0630l4c23d0v5fva3f4davs5qzmlid8b95x16gamxcysppvlh37w",
+        "rev": "6dfa9ef85cf4e23ec42f34c9e988baaf793617a1",
+        "sha256": "0czdx4dvm29jfpvc152ziyljgym7ry3pavlzmv8r2c67hc9ksslv",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/e8358125d98fc0128a02b7664f532447750fb930.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/6dfa9ef85cf4e23ec42f34c9e988baaf793617a1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -29,10 +29,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "94dadba1a3a6a2f0b8ca2963e49daeec5d4e3098",
-        "sha256": "1y2h9wl7w60maa2m4xw9231xdr325xynzpph8xr4j5vsznygv986",
+        "rev": "af958e8057f345ee1aca714c1247ef3ba1c15f5e",
+        "sha256": "1qjavxabbrsh73yck5dcq8jggvh3r2jkbr6b5nlz5d9yrqm9255n",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/94dadba1a3a6a2f0b8ca2963e49daeec5d4e3098.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/af958e8057f345ee1aca714c1247ef3ba1c15f5e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -41,22 +41,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d25225b014a04031260d91a03329ea0bd73c2441",
-        "sha256": "11k8akkad1y7fa3bwmhhgi7lcmnp68z9bgx3dcbi5ybygmqdf7y6",
+        "rev": "e5b478271ea0af7b75d53c92cfa98bdb126b44a7",
+        "sha256": "06hmxvnx2swk63i15zp1q70axf53x04f7ywwlnxlcfkk0prrmwbh",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/d25225b014a04031260d91a03329ea0bd73c2441.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "reddup": {
-        "branch": "master",
-        "description": "Helping you keep your workstation nice and tidy",
-        "homepage": "",
-        "owner": "joelmccracken",
-        "repo": "reddup",
-        "rev": "1bce9371d79c410b30b91c10bf040777260777ad",
-        "sha256": "06kay0h72k3zr98svg2c7gsbdywz8kybzbnj6640whdm7rglncf4",
-        "type": "tarball",
-        "url": "https://github.com/joelmccracken/reddup/archive/1bce9371d79c410b30b91c10bf040777260777ad.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/e5b478271ea0af7b75d53c92cfa98bdb126b44a7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "thing": {
