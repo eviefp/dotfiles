@@ -85,11 +85,14 @@
     package = pkgs.pulseaudioFull;
   };
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+  };
 
   services.xserver = {
     enable = true;
-    videoDrivers = [ "nvidia" "intel" ];
+    videoDrivers = [ "nvidia" ];
     monitorSection = ''
       Option "DPMS" "false"
     '';

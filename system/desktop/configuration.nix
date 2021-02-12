@@ -13,7 +13,7 @@ in
   
     networking = common.networking // {
       hostName = "arche";
-      interfaces.enp4s0.useDHCP = true;
+      interfaces.enp0s31f6.useDHCP = true;
     };
   
     i18n = common.i18n;
