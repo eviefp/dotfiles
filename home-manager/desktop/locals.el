@@ -1,1 +1,1 @@
-(setq cvlad-font-size 110)
+(setq cvlad-font-size 115)

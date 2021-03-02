@@ -114,6 +114,8 @@
 ;; rainbow-delimiters doesn't work with use-package
 ;; but also, I don't think I like smartparens
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook (lambda () (setq fill-column 80)))
+(add-hook 'prog-mode-hook (lambda () (column-number-mode)))
 
 (use-package evil-goggles
   :ensure t
@@ -564,6 +566,8 @@
 (global-display-fill-column-indicator-mode)
 
 (setq org-agenda-files (quote ("~/Documents/wiki/todo.org"
+			       "~/Documents/wiki/calendar.org"
+			       "~/Documents/wiki/backlog.org"
 			       "~/Documents/wiki/todo-history.org")))
 (setq org-default-notes-file "~/Documents/wiki/notes.org")
 
