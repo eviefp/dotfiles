@@ -50,6 +50,7 @@ let
       scrot
       gnome3.zenity
       muchsync
+      nerdfonts fira-code
     ];
 
     programming = [ gnumake neovim vscode racket ];
@@ -251,6 +252,8 @@ set fish_color_error "#c33759"
     };
   };
 
+  fonts.fontconfig.enable = true;
+
   ## Helpers
   mkKitty = extraSettings: {
     kitty = {
@@ -270,6 +273,7 @@ set fish_color_error "#c33759"
   accounts.email.accounts = { gmail = mail.gmail; hasura = mail.hasura; };
 in {
   nixpkgs = nixpkgs;
+  fonts = fonts;
   accounts = accounts;
   packages = packages;
   sessionVariables = sessionVariables;

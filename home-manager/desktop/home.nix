@@ -43,6 +43,8 @@ in
       "font_size" = "10.0";
     };
 
+    fonts = common.fonts;
+
     services = common.services; # // {
       # muchsync.remotes = {
       #   carbon = {
