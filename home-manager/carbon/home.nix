@@ -43,6 +43,8 @@ in
       "font_size" = "12.0";
     };
 
+    fonts = common.fonts;
+
     # This suddently stopped working. I don't care enough to investigate.
     services = common.services // {
       picom.enable = true;
