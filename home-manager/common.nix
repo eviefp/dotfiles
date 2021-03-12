@@ -230,7 +230,7 @@ set fish_color_error "#c33759"
   services = {
     mbsync.enable = asMailServer;
     stalonetray = {
-      enable = true;
+      enable = false;
       package = pkgs.stalonetray;
       config = {
         decorations = "all";
