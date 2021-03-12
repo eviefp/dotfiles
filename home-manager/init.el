@@ -354,9 +354,7 @@
 
 ;; haskell
 (use-package haskell-mode
-  :ensure t
-  :init
-    (setq haskell-stylish-on-save nil))
+  :ensure t)
 
 (use-package lsp-haskell
   :ensure t
