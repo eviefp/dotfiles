@@ -234,9 +234,9 @@ set fish_color_error "#c33759"
       package = pkgs.stalonetray;
       config = {
         decorations = "all";
-        transparent = true;
+        transparent = false;
         dockapp_mode = "none";
-        geometry = "9x1-0+0";
+        geometry = "6x1-0+0";
         background = "#000000";
         kludges = "force_icons_size";
         grow_gravity = "NW";
