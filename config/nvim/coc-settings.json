@@ -37,13 +37,13 @@
       "package.yaml"
     ],
     "filetypes": [
-      "hs",
-      "lhs",
-      "haskell"
+	"haskell",
+	"lhaskell"
     ],
     "initializationOptions": {
       "haskell": {
-        "formattingProvider": "stylish-haskell"
+          "formattingProvider": "stylish-haskell",
+	  "formatOnImportOn": false
       }
     }
   }
