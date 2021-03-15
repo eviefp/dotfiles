@@ -253,7 +253,7 @@ set splitbelow splitright
 " Theme and stuff
 set background=dark
 set termguicolors
-colorscheme tender
+colorscheme molokai
 hi Normal guibg=NONE ctermbg=NONE
 
 " Airline
