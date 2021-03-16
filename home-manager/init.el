@@ -295,6 +295,15 @@
       (setq lsp-modeline-code-actions-face '((t nil)))
       (setq lsp-modeline-code-actions-segments '(icon name))
       (setq lsp-modeline-diagnostics-enable nil)
+      (setq lsp-haskell-server-wrapper-function
+	    (lambda (argv)
+              (append
+               (append (list "nix-shell" "-I" "." "--command" )
+                       (list (mapconcat 'identity argv " "))
+                       )
+               (list (concat (lsp-haskell--get-root) "/../shell.nix"))
+               )
+              ))
     :hook ((haskell-mode . lsp)
            (lsp-mode . lsp-enable-which-key-integration))
     :general
@@ -306,6 +315,9 @@
      ", l" 'haskell-process-load-file))
      ;; 'lsp-organize-imports
      ;; 'lsp-format-buffer
+
+(use-package lsp-treemacs
+    :ensure t)
 
 (use-package lsp-ui
     :ensure t
