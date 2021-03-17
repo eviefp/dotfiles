@@ -53,7 +53,7 @@
 	    haskellPackages.xmobar dmenu gmrun
             # todo: for passff:
             # ln -s /nix/store/5k89g8p9jrqaks6895sj7xbjk4k975si-passff-host-1.2.1/lib/mozilla/native-messaging-hosts/passff.json ~/.mozilla/native-messaging-hosts/passff.json
-	    pass passff-host dbus pinentry_gnome transmission-gtk libsForQt5.vlc pavucontrol
+	    pass dbus pinentry_gnome transmission-gtk libsForQt5.vlc pavucontrol
 	    xorg.xmodmap xorg.xev
 	    git-radar mailutils
 	    python3

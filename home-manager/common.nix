@@ -223,6 +223,7 @@ set fish_color_error "#c33759"
     ".ghci".source = ../config/ghci;
     ".config/fish/functions/clip.fish".source = ../config/fish/functions/clip.fish;
     ".XCompose".source = ../config/XCompose;
+    ".mozilla/native-messaging-hosts/passff.json".source = "${pkgs.passff-host}/share/passff-host/passff.json";
   };
 
   #########################################################

@@ -312,12 +312,17 @@
      "K" 'lsp-describe-thing-at-point
      ", i" 'interactive-haskell-mode
      ", c" 'lsp-execute-code-action
+     ", f" 'haskell-mode-stylish-buffer
      ", l" 'haskell-process-load-file))
      ;; 'lsp-organize-imports
      ;; 'lsp-format-buffer
 
 (use-package lsp-treemacs
-    :ensure t)
+  :ensure t
+  :general
+  (general-define-key
+   :keymaps 'normal
+   ", e" 'lsp-treemacs-errors-list)
 
 (use-package lsp-ui
     :ensure t
@@ -378,7 +383,8 @@
   (setq lsp-haskell-completion-snippets-on t)
   (setq lsp-haskell-format-on-import-on t)
   (setq lsp-haskell-formatting-provider "stylish-haskell")
-  )
+  (setq lsp-haskell-stylish-haskell-on t)
+  (setq lsp-haskell-tactic-on t))
 
 ;; purescript
 (use-package purescript-mode
