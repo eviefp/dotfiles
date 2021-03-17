@@ -138,6 +138,11 @@
   (interactive)
   (find-file-other-window "~/code/dotfiles/home-manager/init.el"))
 
+(defun goto-def-other-window ()
+  (interactive)
+  (evil-window-vsplit)
+  (evil-goto-definition))
+
 (defun cvlad-open-org-refile-file ()
   "Edit the `user-init-file', in another window."
   (interactive)
@@ -162,6 +167,7 @@
     (general-define-key
      :keymaps 'visual
      "g c c"   'comment-or-uncomment-region
+     "g D"     'goto-def-other-window
      "SPC a r" 'align-regexp)
     (general-define-key
      :keymaps 'normal
@@ -322,7 +328,7 @@
   :general
   (general-define-key
    :keymaps 'normal
-   ", e" 'lsp-treemacs-errors-list)
+   ", e" 'lsp-treemacs-errors-list))
 
 (use-package lsp-ui
     :ensure t
@@ -371,7 +377,8 @@
 
 ;; haskell
 (use-package haskell-mode
-  :ensure t)
+  :ensure t
+  :hook (before-save . lsp-format-buffer))
 
 (use-package lsp-haskell
   :ensure t
