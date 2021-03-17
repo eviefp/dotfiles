@@ -141,7 +141,7 @@
 (defun goto-def-other-window ()
   (interactive)
   (evil-window-vsplit)
-  (evil-goto-definition))
+  (lsp-find-definition))
 
 (defun cvlad-open-org-refile-file ()
   "Edit the `user-init-file', in another window."
@@ -171,7 +171,9 @@
     (general-define-key
      :keymaps 'normal
      "q"         nil
+     "g d"       'lsp-find-definition
      "g D"       'goto-def-other-window
+     "g r"       'lsp-find-references
      "g c c"     'comment-line
      "SPC n n"   'notmuch
      "SPC b d"   'kill-this-buffer
