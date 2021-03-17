@@ -167,35 +167,35 @@
     (general-define-key
      :keymaps 'visual
      "g c c"   'comment-or-uncomment-region
-     "g D"     'goto-def-other-window
      "SPC a r" 'align-regexp)
     (general-define-key
      :keymaps 'normal
-     "q" nil
-     "g c c"   'comment-line
+     "q"         nil
+     "g D"       'goto-def-other-window
+     "g c c"     'comment-line
      "SPC n n"   'notmuch
-     "SPC b d" 'kill-this-buffer
-     "SPC b b" 'switch-to-buffer
-     "SPC q"   'save-buffers-kill-terminal
-     "SPC a d" 'dired
-     "SPC TAB" 'switch-to-previous-buffer
-     "SPC t f" 'display-fill-column-indicator-mode
-     "SPC t e" 'ielm
-     "SPC w s" 'evil-window-vsplit
-     "SPC w w" 'windmove-swap-states-left
-     "SPC t E" 'start-term
-     "C-+" 'text-scale-increase
-     "C--" 'text-scale-decrease
-     "C-=" '(lambda () (interactive) (text-scale-set 0))
+     "SPC b d"   'kill-this-buffer
+     "SPC b b"   'switch-to-buffer
+     "SPC q"     'save-buffers-kill-terminal
+     "SPC a d"   'dired
+     "SPC TAB"   'switch-to-previous-buffer
+     "SPC t f"   'display-fill-column-indicator-mode
+     "SPC t e"   'ielm
+     "SPC w s"   'evil-window-vsplit
+     "SPC w w"   'windmove-swap-states-left
+     "SPC t E"   'start-term
+     "C-+"       'text-scale-increase
+     "C--"       'text-scale-decrease
+     "C-="       '(lambda () (interactive) (text-scale-set 0))
      "SPC f e d" 'cvlad-open-user-init-file
-     "SPC o f" 'org-cycle-agenda-files
-     "SPC o o" 'org-todo
-     "SPC o a" 'org-agenda
-     "SPC o c" 'calendar
-     "SPC o C" 'org-capture 
-     "SPC o w" 'org-refile
-     "SPC o r" 'cvlad-open-org-refile-file
-     "SPC x e" 'eval-last-sexp
+     "SPC o f"   'org-cycle-agenda-files
+     "SPC o o"   'org-todo
+     "SPC o a"   'org-agenda
+     "SPC o c"   'calendar
+     "SPC o C"   'org-capture
+     "SPC o w"   'org-refile
+     "SPC o r"   'cvlad-open-org-refile-file
+     "SPC x e"   'eval-last-sexp
      ))
 
 ;; environment stuff
