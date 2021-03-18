@@ -22,6 +22,7 @@ let
       thing
       ripgrep
       slack
+      zulip
       unzip
       wget
       yq
