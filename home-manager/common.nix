@@ -148,6 +148,7 @@ set fish_color_error "#c33759"
         work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
       };
       extraConfig = {
+        init.defaultBranch = "main";
         pull.ff = "only";
         merge.conflictstyle = "diff3";
       };
