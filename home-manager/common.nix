@@ -21,11 +21,9 @@ let
       ranger
       thing
       ripgrep
-      slack
-      zulip
+      slack zulip discord signal-desktop
       unzip
       wget
-      yq
       zip
       sqlite
       graphviz
@@ -33,8 +31,6 @@ let
     ];
 
     nixos = [
-      discord
-      signal-desktop
       firefox
       fdk_aac
       feh
@@ -54,18 +50,15 @@ let
       nerdfonts fira-code
     ];
 
-    programming = [ gnumake neovim vscode racket ];
+    programming = [ gnumake neovim vscode ];
 
     haskell = [ haskellPackages.hp2html haskellPackages.hp2pretty ghcid stack ];
 
     provers = [ agda agdaPackages.standard-library idris2 ];
 
-    scala = [ jdk metals sbt ];
-
     latex = [ tectonic texlab ];
 
     streaming = [ ffmpeg-full chatterino2 ];
-
   };
 
   sessionVariables = { EDITOR = "emacs"; };
@@ -101,35 +94,8 @@ set fish_color_command "#77c337"
 set fish_color_quote "#37c393"
 set fish_color_redirection "#37b5c3"
 set fish_color_end "#3776c3"
-set fish_color_error "#c33759" 
-# fish_color_param, the color for regular command parameters
-# fish_color_comment, the color used for code comments
-# fish_color_match, the color used to highlight matching parenthesis
-# fish_color_selection, the color used when selecting text (in vi visual mode)
-# fish_color_search_match, used to highlight history search matches and the selected pager item (must be a background)
-# fish_color_operator, the color for parameter expansion operators like '*' and '~'
-# fish_color_escape, the color used to highlight character escapes like '\n' and '\x70'
-# fish_color_cwd, the color used for the current working directory in the default prompt
-# fish_color_autosuggestion, the color used for autosuggestions
-# fish_color_user, the color used to print the current username in some of fish default prompts
-# fish_color_host, the color used to print the current host system in some of fish default prompts
-# fish_color_host_remote, the color used to print the current host system in some of fish default prompts, if fish is running remotely (via ssh or similar)
-# fish_color_cancel, the color for the '^C' indicator on a canceled command
-# Additionally, the following variables are available to change the highlighting in the completion pager:
-# 
-# fish_pager_color_progress, the color of the progress bar at the bottom left corner
-# fish_pager_color_background, the background color of a line
-# fish_pager_color_prefix, the color of the prefix string, i.e. the string that is to be completed
-# fish_pager_color_completion, the color of the completion itself
-# fish_pager_color_description, the color of the completion description
-# fish_pager_color_secondary_background, fish_pager_color_background of every second unselected completion. Defaults to fish_pager_color_background
-# fish_pager_color_secondary_ prefix, fish_pager_color_prefix of every second unselected completion. Defaults to fish_pager_color_prefix
-# fish_pager_color_secondary_completion, fish_pager_color_completion of every second unselected completion. Defaults to fish_pager_color_completion
-# fish_pager_color_secondary_description, fish_pager_color_description of every second unselected completion. Defaults to fish_pager_color_description
-# fish_pager_color_selected_background, fish_pager_color_background of the selected completion. Defaults to fish_color_search_match
-# fish_pager_color_selected_prefix, fish_pager_color_prefix of the selected completion. Defaults to fish_pager_color_prefix
-# fish_pager_color_selected_completion, fish_pager_color_completion of the selected completion. Defaults to fish_pager_color_completion
-# fish_pager_color_selected_description, fish_pager_color_description of the selected completion. Defaults to fish_pager_color_description      '';
+set fish_color_error "#c33759"
+'';
     };
 
     fzf = { enable = true; };
@@ -200,8 +166,6 @@ set fish_color_error "#c33759"
     };
 
     zathura = { enable = true; };
-
-    astroid = { enable = true; };
 
     alot = { enable = true; };
 

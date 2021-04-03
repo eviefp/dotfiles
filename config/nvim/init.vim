@@ -116,7 +116,6 @@ Plug 'lervag/wiki-ft.vim'
 
 Plug 'justinmk/vim-sneak'
 
-Plug 'scalameta/coc-metals'
 " Plug 'liuchengxu/vista.vim'
 
 Plug 'thanethomson/vim-jenkinsfile'
@@ -353,8 +352,6 @@ nnoremap <Leader>fer :so ~/.config/nvim/init.vim<CR>
 map <Leader>fs :Rg<CR>
 
 """ tex stuff
-nnoremap <localleader>ls o\begin{lstlisting}[language=Scala]<CR>\end{lstlisting}<ESC>O
-nnoremap <localleader>it o\begin{itemize}[language=Scala]<CR>\end{itemize}<ESC>O
 nnoremap <localleader>p $a \pause<ESC>
 nnoremap <localleader>lp i~\pause~<ESC>
 nnoremap <localleader>eq o\setcounter{equation}{0}<CR>\begin{eqnarray}<CR>\end{eqnarray}<ESC>O
