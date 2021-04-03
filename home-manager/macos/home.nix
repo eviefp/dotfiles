@@ -41,9 +41,6 @@ in
     agdaPackages.standard-library
     # Idris
 
-    ## Scala
-    sbt
-
     ## Latex
     # tectonic
     # texlab

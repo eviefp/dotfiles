@@ -588,6 +588,17 @@
   :config
   (ranger-override-dired-mode t))
 
+(use-package anzu
+  :ensure t
+  :init
+    (global-anzu-mode +1)
+  :general
+  (general-define-key
+  :states  'normal
+  "SPC e r" 'anzu-isearch-query-replace-regexp
+  "SPC e c" 'anzu-query-replace-at-cursor
+  "SPC e i" 'anzu-isearch-query-replace))
+
 (global-display-fill-column-indicator-mode)
 
 (setq org-agenda-files (quote ("~/Documents/wiki/todo.org"
