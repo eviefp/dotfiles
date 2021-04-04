@@ -309,7 +309,7 @@
                (append (list "nix-shell" "-I" "." "--command" )
                        (list (mapconcat 'identity argv " "))
                        )
-               (list (concat (lsp-haskell--get-root) "/../shell.nix"))
+               (list (concat (lsp-haskell--get-root) "/shell.nix"))
                )
               ))
     :hook ((haskell-mode . lsp)
