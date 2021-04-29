@@ -44,7 +44,7 @@
 (ignore-errors (load "~/.emacs.d/locals.el"))
 
 (set-face-attribute 'default nil :family "Hasklug Nerd Font")
-(set-face-attribute 'default nil :height cvlad-font-size)
+(set-face-attribute 'default nil :height 160) 
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -479,6 +479,7 @@
   (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading calendar))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys)
+  (setq org-allow-promoting-top-level-subtree)
   :general
   (general-define-key
   :states  'normal
