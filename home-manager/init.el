@@ -529,6 +529,27 @@
    "SPC r g" 'org-roam-graph
    "SPC r I" 'org-roam-jump-to-index))
 
+(use-package org-tree-slide
+  :ensure t
+  :config
+  (general-define-key
+   :keymaps 'org-tree-slide-mode-map
+   :state '(normal visual)
+   "C-<right>" 'org-tree-slide-move-next-tree
+   "C-<left>"  'org-tree-slide-move-previous-tree)
+  (general-define-key
+   :state '(normal visual)
+   "SPC t p" 'org-tree-slide-mode)
+  (add-hook
+   'org-tree-slide-play-hook
+   (lambda ()
+     (text-scale-increase 5)
+     (org-tree-slide-presentation-profile)
+     (org-redisplay-inline-images)))
+  (add-hook
+   'org-tree-slide-stop-hook
+   (lambda () (text-scale-set 0))))
+
 ;; (add-hook 'after-init-hook 'org-roam-mode)
 
 ;; term
