@@ -35,7 +35,7 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    haskell.packages.ghc865.ghc
+    haskell.packages.ghc8104.ghc
     cachix
     neovim
     haskellPackages.xmobar
