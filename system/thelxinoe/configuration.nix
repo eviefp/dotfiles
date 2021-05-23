@@ -7,15 +7,15 @@ in
       [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
       ];
-  
+
     # Use the systemd-boot EFI boot loader.
     boot = common.boot;
-  
+
     networking = common.networking // {
       hostName = "thelxinoe";
       interfaces.enp4s0.useDHCP = true;
     };
-  
+
     i18n = common.i18n;
     console = common.console;
     time = common.time;
