@@ -100,16 +100,18 @@
       Option "BlankTime" "20"
     '';
     windowManager.xmonad = {
-      enable = true;
+      enable = false; # true;
       enableContribAndExtras = true;
     };
     desktopManager = {
       plasma5.enable = false;
       xterm.enable = false;
+      gnome3.enable = true;
     };
     displayManager = {
-      defaultSession = "none+xmonad";
-      lightdm.enable = true;
+      # defaultSession = "none+xmonad";
+      # lightdm.enable = true;
+      gdm.enable = true;
       sessionCommands = ''
 	    setxkbmap -option caps:none
 	    xmodmap -e "keycode 66 = Multi_key"
