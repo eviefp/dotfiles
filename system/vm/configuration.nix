@@ -115,7 +115,7 @@
 	  services.xserver.displayManager.sessionCommands = ''
 	    setxkbmap -option caps:none
 	    xmodmap -e "keycode 66 = Multi_key"
-	    export XCOMPOSEFILE = /home/vlad/.XCompose
+	    export XCOMPOSEFILE = /home/evie/.XCompose
 	  '';
 	  #services.xserver.videoDrivers = [ "vboxvideo" "vesa" ];
 	  # services.xserver.videoDriver = "vesa";

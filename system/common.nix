@@ -15,7 +15,7 @@
   networking.hosts = {
     "192.168.1.1" = [ "router" ];
     "192.168.1.15" = [ "bridge" ];
-    "192.168.1.55" = [ "thelxinoe" ];
+    "192.168.10.177" = [ "thelxinoe" ];
     "192.168.10.1" = [ "router2" ];
     "192.168.10.67" = [ "arche" ];
     "192.168.10.25" = [ "aiode" ];
@@ -113,7 +113,7 @@
       sessionCommands = ''
 	    setxkbmap -option caps:none
 	    xmodmap -e "keycode 66 = Multi_key"
-	    export XCOMPOSEFILE = /home/vlad/.XCompose
+	    export XCOMPOSEFILE = /home/evie/.XCompose
       '';
     };
     layout = "us";
@@ -125,6 +125,12 @@
   '';
 
   users.users.vlad = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "video" "docker" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.fish;
+  };
+
+  users.users.evie = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "docker" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
