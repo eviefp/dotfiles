@@ -34,7 +34,7 @@ let
         else null;
     realName = "Vladimir Ciobanu";
     userName = "admin@cvlad.info";
-    passwordCommand = "${pkgs.coreutils}/bin/cat /home/vlad/.secrets/cvlad.pwd";
+    passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/cvlad.pwd";
     neomutt = {
       enable = true;
       sendMailCommand = "msmtpq --read-envelope-from --read-recipients";
@@ -74,7 +74,7 @@ let
         else null;
     realName = "Vladimir Ciobanu";
     userName = "vladimir.c@hasura.io";
-    passwordCommand = "${pkgs.coreutils}/bin/cat /home/vlad/.secrets/hasura.pwd";
+    passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/hasura.pwd";
     neomutt = {
       enable = true;
       sendMailCommand = "msmtpq --read-envelope-from --read-recipients";
