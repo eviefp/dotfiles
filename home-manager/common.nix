@@ -39,6 +39,7 @@ let
       lua51Packages.luabitop
       lua
       steam
+      pipewire
       mailcap
       w3m
       networkmanagerapplet
