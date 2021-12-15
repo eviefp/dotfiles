@@ -7,5 +7,5 @@ let
 in
   nixpkgs.mkShell {
     nativeBuildInputs = [];
-    NIX_PATH = "nixpkgs=${nixpkgs.path}:home-manager=${home-manager.path}:nixos-config=/etc/nixos/configuration.nix";
+    NIX_PATH = "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:nixos-config=/etc/nixos/configuration.nix";
   }

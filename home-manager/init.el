@@ -37,14 +37,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Default config
-(setq cvlad-font-size 60)
+(setq evie-font-size 60)
 
 
 ;; Load config
 (ignore-errors (load "~/.emacs.d/locals.el"))
 
 (set-face-attribute 'default nil :family "Hasklug Nerd Font")
-(set-face-attribute 'default nil :height cvlad-font-size)
+(set-face-attribute 'default nil :height evie-font-size)
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -133,7 +133,7 @@
   (evil-window-vsplit)
   (eshell))
 
-(defun cvlad-open-user-init-file ()
+(defun evie-open-user-init-file ()
   "Edit the `user-init-file', in another window."
   (interactive)
   (find-file-other-window "~/code/dotfiles/home-manager/init.el"))
@@ -143,7 +143,7 @@
   (evil-window-vsplit)
   (lsp-find-definition))
 
-(defun cvlad-open-org-refile-file ()
+(defun evie-open-org-refile-file ()
   "Edit the `user-init-file', in another window."
   (interactive)
   (find-file-other-window "~/Documents/wiki/refile.org"))
@@ -180,23 +180,23 @@
      "SPC b b"   'switch-to-buffer
      "SPC q"     'save-buffers-kill-terminal
      "SPC a d"   'dired
-     "SPC TAB"   'switch-to-previous-buffer
      "SPC t f"   'display-fill-column-indicator-mode
      "SPC t e"   'ielm
      "SPC w s"   'evil-window-vsplit
-     "SPC w w"   'windmove-swap-states-left
+     "SPC w w"   'save-buffer
+     "SPC w q"   'evil-window-delete
      "SPC t E"   'start-term
      "C-+"       'text-scale-increase
      "C--"       'text-scale-decrease
      "C-="       '(lambda () (interactive) (text-scale-set 0))
-     "SPC f e d" 'cvlad-open-user-init-file
+     "SPC f e d" 'evie-open-user-init-file
      "SPC o f"   'org-cycle-agenda-files
      "SPC o o"   'org-todo
      "SPC o a"   'org-agenda
      "SPC o c"   'calendar
      "SPC o C"   'org-capture
      "SPC o w"   'org-refile
-     "SPC o r"   'cvlad-open-org-refile-file
+     "SPC o r"   'evie-open-org-refile-file
      "SPC x e"   'eval-last-sexp
      ))
 
@@ -320,7 +320,7 @@
      "K" 'lsp-describe-thing-at-point
      ", i" 'interactive-haskell-mode
      ", c" 'lsp-execute-code-action
-     ", f" 'haskell-mode-stylish-buffer
+     ;; ", f" 'haskell-mode-stylish-buffer
      ", l" 'haskell-process-load-file))
      ;; 'lsp-organize-imports
      ;; 'lsp-format-buffer
@@ -391,8 +391,9 @@
   (setq lsp-haskell-liquid-on nil)
   (setq lsp-haskell-completion-snippets-on t)
   (setq lsp-haskell-format-on-import-on t)
-  (setq lsp-haskell-formatting-provider "stylish-haskell")
-  (setq lsp-haskell-stylish-haskell-on t)
+  (setq lsp-haskell-formatting-provider "ormolu")
+  (setq lsp-haskell-ormolu-on t)
+  (setq lsp-haskell-stylish-haskell-on nil)
   (setq lsp-haskell-tactic-on t))
 
 ;; purescript
@@ -496,38 +497,40 @@
   :ensure t
   :hook (org-mode . org-bullets-mode))
 
-(use-package org-roam
-  :ensure t
-  :init
-    (setq org-roam-capture-templates
-	  '(("d" "default" plain
-	     (function org-roam--capture-get-point)
-	     "%?"
-	     :file-name "%<%Y%m%d%H%M%S>-${slug}"
-	     :head "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n#+roam_alias:\n#+roam_tags:\n#+roam_key:\n\n"
-	     :unnarrowed t)))
-    (setq org-roam-dailies-capture-templates
-	 '(("d" "default" entry
-           #'org-roam-capture--get-point
-           "* %?"
-           :file-name "daily/%<%Y-%m-%d>"
-           :head "#+title: %<%Y-%m-%d>\n\n")))
-    (setq org-roam-dailies-directory "daily/")
-    (setq org-roam-directory "~/Documents/wiki/roam")
-    (setq org-roam-index-file "~/Documents/wiki/roam/index.org")
-    (setq org-roam-update-method 'idle-timer)
-    (setq org-roam-db-update-idle-seconds 5)
-  :config (org-roam-db-build-cache)
-  :hook (after-init . org-roam-mode)
-  :general
-  (general-define-key
-   :keymaps 'normal
-   "SPC r f" 'org-roam-find-file
-   "SPC r d" 'org-roam-db-build-cache
-   "SPC r i" 'org-roam-insert
-   "SPC r r" 'org-roam
-   "SPC r g" 'org-roam-graph
-   "SPC r I" 'org-roam-jump-to-index))
+; (use-package org-roam
+;   :ensure t
+;   :init
+;     (setq org-roam-capture-templates
+; 	  '(("d" "default" plain
+; 	     (function org-roam--capture-get-point)
+; 	     "%?"
+; 	     :file-name "%<%Y%m%d%H%M%S>-${slug}"
+; 	     :head "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n#+roam_alias:\n#+roam_tags:\n#+roam_key:\n\n"
+; 	     :unnarrowed t)))
+;     (setq org-roam-dailies-capture-templates
+; 	 '(("d" "default" entry
+;            #'org-roam-capture--get-point
+;            "* %?"
+;            :file-name "daily/%<%Y-%m-%d>"
+;            :head "#+title: %<%Y-%m-%d>\n\n")))
+;     (setq org-roam-dailies-directory "daily/")
+;     (setq org-roam-directory "~/Documents/wiki/roam")
+;     (setq org-roam-index-file "~/Documents/wiki/roam/index.org")
+;     (setq org-roam-update-method 'idle-timer)
+;     (setq org-roam-db-update-idle-seconds 5)
+;   :config
+;     (org-roam-db-build-cache)
+;     (setq org-roam-v2-ack t)
+;   :hook (after-init . org-roam-mode)
+;   :general
+;   (general-define-key
+;    :keymaps 'normal
+;    "SPC r f" 'org-roam-find-file
+;    "SPC r d" 'org-roam-db-build-cache
+;    "SPC r i" 'org-roam-insert
+;    "SPC r r" 'org-roam
+;    "SPC r g" 'org-roam-graph
+;    "SPC r I" 'org-roam-jump-to-index))
 
 (use-package org-tree-slide
   :ensure t
