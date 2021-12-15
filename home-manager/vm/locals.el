@@ -1,1 +1,1 @@
-(setq cvlad-font-size 150)
+(setq evie-font-size 150)
