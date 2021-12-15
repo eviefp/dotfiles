@@ -120,8 +120,8 @@ set fish_color_error "#c33759"
         merge.conflictstyle = "diff3";
       };
       ignores = [ "TAGS" ];
-      userEmail = mail.gmail.userName;
-      userName = mail.gmail.realName;
+      userEmail = "me@eevie.ro";
+      userName = "Evie Ciobanu";
     };
 
     home-manager = { enable = true; };
@@ -143,7 +143,6 @@ set fish_color_error "#c33759"
           success_symbol = "[λ](bold green)";
           error_symbol = "[✗](bold red)";
           vicmd_symbol = "[λ](bold yellow)";
-          use_symbol_for_status = true;
         };
 
         cmd_duration = {
@@ -187,10 +186,12 @@ set fish_color_error "#c33759"
       '';
     ".config/nvim/init.vim".source = ../config/nvim/init.vim;
     ".config/nvim/coc-settings.json".source = ../config/nvim/coc-settings.json;
+    ".config/tridactyl/tridactylrc".source = ../config/tridactyl;
     ".ghci".source = ../config/ghci;
     ".config/fish/functions/clip.fish".source = ../config/fish/functions/clip.fish;
     ".XCompose".source = ../config/XCompose;
     ".mozilla/native-messaging-hosts/passff.json".source = "${pkgs.passff-host}/share/passff-host/passff.json";
+    ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
   };
 
   #########################################################

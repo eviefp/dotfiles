@@ -1,0 +1,22 @@
+" Tridactyl (https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Testing
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+
+set searchengine duckduckgo
+
+set hintfiltermode vimperator
+set hintchars 1234567890
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Bindings
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Disable list
+blacklistadd twitter.com
+blacklistadd gmail.com
+
+
+" " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" " vim: set filetype=tridactyl

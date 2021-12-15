@@ -68,9 +68,12 @@
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.hplip pkgs.gutenprint ];
 
+  serices.flatpak.enable = true;
+
   services.lorri.enable = true;
 
   services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="3297", GROUP="plugdev"
     ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.setxkbmap}/bin/setxkbmap -option caps:none"
     ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.xmodmap}/bin/xmodmap -e \"keycode 66 = Multi_key\""
   '';
@@ -124,6 +127,10 @@
     binary-caches-parallel-connections = 5
   '';
 
+  users.groups = {
+    plugdev = { };
+  };
+
   users.users.vlad = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "docker" ]; # Enable ‘sudo’ for the user.
@@ -132,7 +139,7 @@
 
   users.users.evie = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" "docker" "plugdev" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
 
