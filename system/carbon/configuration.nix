@@ -21,7 +21,7 @@ in
       interfaces.enp0s31f6.useDHCP = true;
       interfaces.wlp2s0.useDHCP = true;
     };
-  
+
     i18n = common.i18n;
     console = common.console;
     time = common.time;
@@ -29,11 +29,11 @@ in
     environment = common.environment;
     fonts = common.fonts;
     programs = common.programs;
-  
+
     services = common.services // {
       blueman.enable = true;
     };
-  
+
     sound = common.sound;
 
     hardware = common.hardware // {
@@ -51,7 +51,7 @@ in
     users = common.users;
 
     security = common.security;
-  
+
     system = common.system;
   }
 
