@@ -37,10 +37,14 @@ in
     sound = common.sound;
 
     hardware = common.hardware // {
+      pulseaudio = {
+        enable = true;
+        extraModules = [ pkgs.pulseaudio-modules-bt ];
+        package = pkgs.pulseaudioFull;
+      };
+      bluetooth.enable = true;
       video.hidpi.enable = true;
     };
-
-    hardware.opengl.enable = false;
 
     nix = common.nix;
     users = common.users;
