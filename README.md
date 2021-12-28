@@ -1,7 +1,8 @@
 # My dotfiles
 
 ```sh
-sudo --preserve-env --shell
+sudo --preserve-env nixos-rebuild switch
+nix-shell '<home-manager>' -A install
 ```
 
 ## Just show me your vim/emacs config
