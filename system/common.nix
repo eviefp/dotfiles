@@ -95,7 +95,7 @@
 
   services.xserver = {
     enable = true;
-    videoDrivers = [ "intel" ];
+    videoDrivers = [ "nvidia" ];
     monitorSection = ''
       Option "DPMS" "false"
     '';
