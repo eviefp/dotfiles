@@ -31,7 +31,9 @@ in
     programs = common.programs;
 
     services = common.services // {
-      videoDrivers = [ "intel" ];
+      xserver = common.services.xserver // {
+        videoDrivers = [ "intel" ];
+      };
       blueman.enable = true;
     };
 
