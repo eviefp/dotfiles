@@ -1,5 +1,9 @@
 # My dotfiles
 
+```sh
+sudo --preserve-env --shell
+```
+
 ## Just show me your vim/emacs config
 
 Vim: config/nvim/init.vim

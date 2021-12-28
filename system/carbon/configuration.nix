@@ -31,6 +31,7 @@ in
     programs = common.programs;
 
     services = common.services // {
+      videoDrivers = [ "intel" ];
       blueman.enable = true;
     };
 
