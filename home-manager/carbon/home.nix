@@ -9,8 +9,6 @@ in
 {
   nixpkgs.config.nixpkgs.config.allowUnfree = true;
 
-  accounts = common.accounts;
-
   home.packages =
     common.packages.generic
     ++ [ emacs.derivation ]
@@ -45,14 +43,5 @@ in
     fonts = common.fonts;
 
     services = common.services // {
-      emacs = {
-        enable = true;
-        package = emacs.derivation;
-        client = {
-          enable = true;
-          arguments = [ "-c" ];
-        };
-        socketActivation.enable = true;
-      };
     };
 }
