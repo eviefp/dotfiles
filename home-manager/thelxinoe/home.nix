@@ -1,5 +1,5 @@
 let
-  common = import ../common.nix { asMailServer = false; };
+  common = import ../common.nix;
   emacs = import ../emacs.nix {
     pkgs = common.nixpkgs;
     locals = ./locals.el;
@@ -8,8 +8,6 @@ let
 in
 {
   nixpkgs.config.nixpkgs.config.allowUnfree = true;
-
-  accounts = common.accounts;
 
   home.packages =
     common.packages.generic
@@ -44,25 +42,18 @@ in
 
     fonts = common.fonts;
 
-    services = common.services; # // {
-      # muchsync.remotes = {
-      #   carbon = {
-      #     local.checkForModifiedFiles = true;
-      #     remote = {
-      #       checkForModifiedFiles = true;
-      #       host = "192.168.10.25";
-      #     };
-      #   };
-      # };
+    services = common.services // {
+      emacs = {
+        enable = true;
+        package = emacs.derivation;
+        client = {
+          enable = true;
+          arguments = [ "-c" ];
+        };
+        socketActivation.enable = true;
+      };
+    };
+
     # This suddently stopped working. I don't care enough to investigate.
-      # emacs = {
-      #   enable = true;
-      #   package = emacs.derivation;
-      #   client = {
-      #     enable = true;
-      #     arguments = [ "-c" ];
-      #   };
-      #   socketActivation.enable = true;
-      # };
       # };
 }
