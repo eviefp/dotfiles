@@ -43,17 +43,14 @@ in
     fonts = common.fonts;
 
     services = common.services // {
-      emacs = {
-        enable = true;
-        package = emacs.derivation;
-        client = {
-          enable = true;
-          arguments = [ "-c" ];
-        };
-        socketActivation.enable = true;
-      };
-    };
-
-    # This suddently stopped working. I don't care enough to investigate.
+      # emacs = {
+      #   enable = true;
+      #   package = emacs.derivation;
+      #   client = {
+      #     enable = true;
+      #     arguments = [ "-c" ];
+      #   };
+      #   socketActivation.enable = true;
       # };
+    };
 }
