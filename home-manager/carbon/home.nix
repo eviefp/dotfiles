@@ -1,5 +1,5 @@
 let
-  common = import ../common.nix { asMailServer = true; };
+  common = import ../common.nix;
   emacs = import ../emacs.nix {
     pkgs = common.nixpkgs;
     locals = ./locals.el;
@@ -44,33 +44,15 @@ in
 
     fonts = common.fonts;
 
-    # This suddently stopped working. I don't care enough to investigate.
-    services = common.services; # // {
-      # picom.enable = true;
-      # muchsync.remotes = {
-      #   desktop = {
-      #     local.checkForModifiedFiles = true;
-      #     remote = {
-      #       checkForModifiedFiles = true;
-      #       host = "192.168.10.67";
-      #     };
-      #   };
-      #   thelxinoe = {
-      #     local.checkForModifiedFiles = true;
-      #     remote = {
-      #       checkForModifiedFiles = true;
-      #       host = "192.168.1.55";
-      #     };
-      #   };
-      # };
-      # emacs = {
-      #   enable = true;
-      #   package = emacs.derivation;
-      #   client = {
-      #     enable = true;
-      #     arguments = [ "-c" ];
-      #   };
-      #   socketActivation.enable = true;
-      # };
-    # };
+    services = common.services // {
+      emacs = {
+        enable = true;
+        package = emacs.derivation;
+        client = {
+          enable = true;
+          arguments = [ "-c" ];
+        };
+        socketActivation.enable = true;
+      };
+    };
 }

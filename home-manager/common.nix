@@ -1,8 +1,5 @@
-{ asMailServer ? false }:
 let
   sources = import ../nix/sources.nix;
-  mail = import ./email.nix { inherit pkgs; asServer = asMailServer; };
-  thing = import sources.thing;
   emacsOverlay = import sources.emacs-overlay;
   nixpkgs = import sources.nixpkgs {
     config.allowUnfree = true;
@@ -19,9 +16,8 @@ let
       jq
       nodejs
       ranger
-      thing
       ripgrep
-      slack zulip discord signal-desktop
+      slack discord
       unzip
       wget
       zip
@@ -46,7 +42,6 @@ let
       xclip
       scrot
       gnome3.zenity
-      muchsync
       nerdfonts fira-code
     ];
 
@@ -165,24 +160,11 @@ set fish_color_error "#c33759"
     };
 
     zathura = { enable = true; };
-
-    alot = { enable = true; };
-
-    mbsync.enable = asMailServer;
-    msmtp.enable = true;
-    notmuch = {
-      enable = true;
-      hooks.preNew = if asMailServer then "${pkgs.isync}/bin/mbsync --all" else "";
-    };
-
   };
 
   #########################################################
   ## File
   file = {
-    ".mailcap".text = ''
-        text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
-      '';
     ".config/nvim/init.vim".source = ../config/nvim/init.vim;
     ".config/nvim/coc-settings.json".source = ../config/nvim/coc-settings.json;
     ".config/tridactyl/tridactylrc".source = ../config/tridactyl;
@@ -196,7 +178,6 @@ set fish_color_error "#c33759"
   #########################################################
   ## Services
   services = {
-    mbsync.enable = asMailServer;
     stalonetray = {
       enable = false;
       package = pkgs.stalonetray;
@@ -238,11 +219,9 @@ set fish_color_error "#c33759"
       } // extraSettings;
     };
   };
-  accounts.email.accounts = { gmail = mail.gmail; hasura = mail.hasura; };
 in {
   nixpkgs = nixpkgs;
   fonts = fonts;
-  accounts = accounts;
   packages = packages;
   sessionVariables = sessionVariables;
   programs = programs // mkKitty { };
