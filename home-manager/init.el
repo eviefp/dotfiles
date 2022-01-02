@@ -497,40 +497,36 @@
   :ensure t
   :hook (org-mode . org-bullets-mode))
 
-; (use-package org-roam
-;   :ensure t
-;   :init
-;     (setq org-roam-capture-templates
-; 	  '(("d" "default" plain
-; 	     (function org-roam--capture-get-point)
-; 	     "%?"
-; 	     :file-name "%<%Y%m%d%H%M%S>-${slug}"
-; 	     :head "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n#+roam_alias:\n#+roam_tags:\n#+roam_key:\n\n"
-; 	     :unnarrowed t)))
-;     (setq org-roam-dailies-capture-templates
-; 	 '(("d" "default" entry
-;            #'org-roam-capture--get-point
-;            "* %?"
-;            :file-name "daily/%<%Y-%m-%d>"
-;            :head "#+title: %<%Y-%m-%d>\n\n")))
-;     (setq org-roam-dailies-directory "daily/")
-;     (setq org-roam-directory "~/Documents/wiki/roam")
-;     (setq org-roam-index-file "~/Documents/wiki/roam/index.org")
-;     (setq org-roam-update-method 'idle-timer)
-;     (setq org-roam-db-update-idle-seconds 5)
-;   :config
-;     (org-roam-db-build-cache)
-;     (setq org-roam-v2-ack t)
-;   :hook (after-init . org-roam-mode)
-;   :general
-;   (general-define-key
-;    :keymaps 'normal
-;    "SPC r f" 'org-roam-find-file
-;    "SPC r d" 'org-roam-db-build-cache
-;    "SPC r i" 'org-roam-insert
-;    "SPC r r" 'org-roam
-;    "SPC r g" 'org-roam-graph
-;    "SPC r I" 'org-roam-jump-to-index))
+(use-package org-roam
+  :ensure t
+  :init
+    ;; (setq org-roam-capture-templates
+    ;; 	  '(("d" "default" plain "%?"
+    ;; 	     :target (file+head "%<%Y%m%d%H%M%S>-${slug}"
+    ;; 	                        "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n#+roam_alias:\n#+roam_tags:\n#+roam_key:\n\n"
+    ;; 	     ))))
+    ;; (setq org-roam-dailies-capture-templates
+    ;; 	 '(("d" "default" entry
+    ;;        #'org-roam-capture--get-point
+    ;;        "* %?"
+    ;; 	   :target (file+head "daily/%<%Y-%m-%d>" "#+title: %<%Y-%m-%d>\n\n"))))
+    (setq org-roam-dailies-directory "daily/")
+    (setq org-roam-directory "~/Documents/wiki/roam")
+    (setq org-roam-index-file "~/Documents/wiki/roam/index.org")
+    (setq org-roam-update-method 'idle-timer)
+    (setq org-roam-db-update-idle-seconds 5)
+  :config
+    (org-roam-db-autosync-mode)
+  :hook (after-init . org-roam-mode)
+  :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC r f" 'org-roam-node-find
+   "SPC r d" 'org-roam-db-build-cache
+   "SPC r i" 'org-roam-node-insert
+   "SPC r r" 'org-roam
+   "SPC r g" 'org-roam-graph
+   "SPC r I" 'org-roam-jump-to-index))
 
 (use-package org-tree-slide
   :ensure t
