@@ -343,7 +343,7 @@
     :general
     (general-define-key
      :keymaps 'normal
-     "SPC a c" 'lsp-ui-sideline-apply-code-actions))
+     "SPC a c" 'lsp-execute-code-action))
 
 ;; error checking
 (use-package flycheck
@@ -622,7 +622,7 @@
     (global-anzu-mode +1)
   :general
   (general-define-key
-  :states  'normal
+  :keymaps  'normal
   "SPC e r" 'anzu-isearch-query-replace-regexp
   "SPC e c" 'anzu-query-replace-at-cursor
   "SPC e i" 'anzu-isearch-query-replace))
