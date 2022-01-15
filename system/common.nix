@@ -11,11 +11,12 @@
   };
 
   networking.useDHCP = false;
-  networking.firewall.allowedTCPPorts = [ 22 80 8080 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 8080 ];
   networking.hosts = {
     "192.168.1.1" = [ "router" ];
     "192.168.1.15" = [ "bridge" ];
     "192.168.10.177" = [ "thelxinoe" ];
+    "192.168.10.206" = [ "fractal" ];
     "192.168.10.1" = [ "router2" ];
     "192.168.10.67" = [ "arche" ];
     "192.168.10.25" = [ "aiode" ];
@@ -155,7 +156,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 
 }
 

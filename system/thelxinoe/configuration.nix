@@ -24,9 +24,16 @@ in
     environment = common.environment;
     fonts = common.fonts;
     programs = common.programs;
-    services = common.services;
+    services = common.services // {
+      blueman.enable = true;
+    };
     sound = common.sound;
-    hardware = common.hardware;
+    hardware = common.hardware // {
+      pulseaudio = common.hardware.pulseaudio // {
+        extraModules = [ pkgs.pulseaudio-modules-bt ];
+      };
+      bluetooth.enable = true;
+    };
     nix = common.nix;
     users = common.users;
     security = common.security;
