@@ -41,7 +41,7 @@ in
 
       nextcloud = {
         enable = true;
-        hostName = "fractal";
+        hostName = "fractal.eevie.ro";
         home = "/mnt/raid/nextcloud";
         maxUploadSize = "512G";
         config = {
@@ -51,7 +51,6 @@ in
           dbname = "nextcloud";
           adminpassFile = "/mnt/raid/nextcloud/pass";
           adminuser = "admin";
-          extraTrustedDomains = [ "fractal.eevie.ro" ];
         };
       };
 
@@ -99,12 +98,7 @@ in
 
     nix = common.nix;
     users = common.users;
-    security = common.security // {
-      acme = {
-        email = "acme@eevie.ro";
-        acceptTerms = true;
-      };
-    };
+    security = common.security;
 
     virtualisation = common.virtualisation;
     system = common.system;
