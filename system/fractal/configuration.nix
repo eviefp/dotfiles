@@ -38,13 +38,15 @@ in
     services.nextcloud = {
         enable = true;
         hostName = "fractal";
+        home = "/mnt/raid/nextcloud";
+        maxUploadSize = "512G";
         config = {
           dbtype = "pgsql";
           dbuser = "nextcloud";
           dbhost = "/run/postgresql"; # nextcloud will add /.s.PGSQL.5432 by itself
           dbname = "nextcloud";
-          adminpassFile = "/var/lib/nextcloud/root";
-          adminuser = "root";
+          adminpassFile = "/mnt/raid/nextcloud/pass";
+          adminuser = "admin";
         };
     };
     services.postgresql = {
