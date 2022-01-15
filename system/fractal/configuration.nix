@@ -29,15 +29,20 @@ in
 
     fonts = common.fonts;
 
-    services.lorri.enable = true;
-    services.openssh.enable = true;
-    services.printing = {
-      enable = true;
-      drivers = [ pkgs.hplip pkgs.gutenprint ];
-    };
-    services.nextcloud = {
+    services = {
+      lorri.enable = true;
+
+      openssh.enable = true;
+
+      printing = {
+        enable = true;
+        drivers = [ pkgs.hplip pkgs.gutenprint ];
+      };
+
+      nextcloud = {
         enable = true;
         hostName = "fractal";
+        extraTrustedDomains = [ "fractal.eevie.ro" ];
         home = "/mnt/raid/nextcloud";
         maxUploadSize = "512G";
         config = {
@@ -48,8 +53,9 @@ in
           adminpassFile = "/mnt/raid/nextcloud/pass";
           adminuser = "admin";
         };
-    };
-    services.postgresql = {
+      };
+
+      postgresql = {
         enable = true;
         ensureDatabases = [ "nextcloud" ];
         ensureUsers = [
@@ -57,6 +63,26 @@ in
           ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
         }
         ];
+      };
+
+      nginx = {
+        enable = true;
+        recommendedGzipSettings = true;
+        recommendedOptimisation = true;
+        recommendedProxySettings = true;
+        recommendedTlsSettings = true;
+
+        virtualHosts = {
+          "fractal" = {
+            forceSSL = false;
+          };
+          "fractal.eevie.ro" = {
+            forceSSL = true;
+            enableACME = true;
+          };
+        };
+      };
+
     };
 
     systemd.services."nextcloud-setup" = {
