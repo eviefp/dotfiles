@@ -24,9 +24,11 @@ let
       sqlite
       graphviz
       nixfmt
+      ispell
     ];
 
     nixos = [
+      nix-index
       firefox
       fdk_aac
       feh
@@ -43,6 +45,8 @@ let
       scrot
       gnome3.zenity
       nerdfonts fira-code
+      steam
+      pandoc
     ];
 
     programming = [ gnumake neovim vscode ];

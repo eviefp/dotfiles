@@ -239,8 +239,7 @@
     :keymaps 'normal
     "SPC g s" 'magit-status
     "SPC g b" 'magit-blame
-    "SPC g c" 'magit-blame-cycle-style
-    )
+    "SPC g c" 'magit-blame-cycle-style)
    :init
    (setq magit-completing-read-function 'ivy-completing-read))
 
@@ -467,6 +466,13 @@
   (pdf-tools-install))
   ;; TODO: evil keybindings
 
+(use-package lsp-latex
+  :ensure t
+  :config
+  (with-eval-after-load "tex-mode"
+   (add-hook 'tex-mode-hook 'lsp)
+   (add-hook 'latex-mode-hook 'lsp)))
+
 ;; org
 (setq org-edit-src-content-indentation nil)
 
@@ -576,6 +582,12 @@
       "c"   'neotree-copy-node
       "R"   'neotree-refresh
       "n"   'neotree-create-node))
+
+;; indent guide
+(use-package indent-guide
+  :ensure t
+  :config
+    (indent-guide-global-mode))
 
 ;; colors
 (use-package rainbow-mode
