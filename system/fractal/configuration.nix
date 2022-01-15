@@ -78,7 +78,6 @@ in
           };
           "fractal.eevie.ro" = {
             forceSSL = true;
-            enableACME = true;
           };
         };
       };
