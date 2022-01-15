@@ -4,10 +4,17 @@ let
     pkgs = common.nixpkgs;
     locals = ./locals.el;
   };
-
+  email = import ../email.nix { pkgs = common.nixpkgs; };
 in
 {
   nixpkgs.config.nixpkgs.config.allowUnfree = true;
+
+  accounts.email = {
+    maildirBasePath = "/home/evie/mail";
+    accounts = {
+      eevie = email.eevie;
+    };
+  };
 
   home.packages =
     common.packages.generic
@@ -38,11 +45,34 @@ in
 
     programs = common.programs // common.helpers.mkKitty {
       "font_size" = "10.0";
+    } // {
+      neomutt = {
+        enable = true;
+        vimKeys = true;
+        sort = "threads";
+        extraConfig = ''
+          set sort_aux = reverse-last-date-received
+        '';
+      };
+      mbsync = {
+        enable = true;
+      };
+      msmtp = {
+        enable = true;
+      };
+      notmuch = {
+        enable = true;
+        hooks = {
+          preNew = "mbsync --all";
+        };
+      };
     };
 
     fonts = common.fonts;
 
     services = common.services // {
+      mbsync.enable = true;
+
       # emacs = {
       #   enable = true;
       #   package = emacs.derivation;
