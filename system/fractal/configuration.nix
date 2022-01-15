@@ -77,7 +77,7 @@ in
             forceSSL = false;
           };
           "fractal.eevie.ro" = {
-            forceSSL = true;
+            forceSSL = false;
           };
         };
       };
