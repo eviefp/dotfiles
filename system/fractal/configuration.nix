@@ -77,8 +77,9 @@ in
             forceSSL = false;
           };
           "fractal.eevie.ro" = {
-            forceSSL = false;
-            addSSL = true;
+            forceSSL = true;
+            sslTrustedCertificate = "/mnt/raid/fractal.eevie.ro.crt";
+            sslCertificateKey = "/mnt/raid/fractal.eevie.ro.key";
           };
         };
       };
