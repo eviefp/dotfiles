@@ -14,6 +14,7 @@ in
     networking = common.networking // {
       hostName = "fractal";
       interfaces.eno1.useDHCP = true;
+      firewall.allowedTCPPorts = [ 22 80 443 1025 1143 8080 ];
     };
 
     i18n = common.i18n;

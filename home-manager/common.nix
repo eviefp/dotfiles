@@ -5,7 +5,9 @@ let
     config.allowUnfree = true;
     overlays = [ emacsOverlay ];
   };
+
   pkgs = nixpkgs.pkgs;
+
   #########################################################
   ## Packages
   packages = with pkgs; {
@@ -164,6 +166,7 @@ set fish_color_error "#c33759"
     };
 
     zathura = { enable = true; };
+
   };
 
   #########################################################
