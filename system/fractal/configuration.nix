@@ -42,7 +42,6 @@ in
       nextcloud = {
         enable = true;
         hostName = "fractal";
-        extraTrustedDomains = [ "fractal.eevie.ro" ];
         home = "/mnt/raid/nextcloud";
         maxUploadSize = "512G";
         config = {
@@ -52,6 +51,7 @@ in
           dbname = "nextcloud";
           adminpassFile = "/mnt/raid/nextcloud/pass";
           adminuser = "admin";
+          extraTrustedDomains = [ "fractal.eevie.ro" ];
         };
       };
 
