@@ -42,6 +42,7 @@ in
       nextcloud = {
         enable = true;
         hostName = "fractal.eevie.ro";
+        https = true;
         home = "/mnt/raid/nextcloud";
         maxUploadSize = "512G";
         config = {
