@@ -71,6 +71,6 @@ in
     nix = common.nix;
     users = common.users;
     security = common.security;
-    virtualisation.docker = common.virtualisation;
+    virtualisation = common.virtualisation;
     system = common.system;
 }
