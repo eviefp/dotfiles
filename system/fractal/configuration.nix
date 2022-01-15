@@ -99,7 +99,10 @@ in
     nix = common.nix;
     users = common.users;
     security = common.security // {
-      acme.email = "acme@eevie.ro";
+      acme = {
+        email = "acme@eevie.ro";
+        acceptTerms = true;
+      };
     };
 
     virtualisation = common.virtualisation;
