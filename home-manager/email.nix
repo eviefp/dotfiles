@@ -27,7 +27,15 @@ let
         SSLType = "None";
       };
     };
-    msmtp.enable = true;
+    msmtp = {
+      enable = true;
+      extraConfig = {
+        port = "1025";
+        tls = "off";
+        tls_trust_file = "";
+        tls_certcheck = "off";
+      };
+    };
     notmuch.enable = true;
     neomutt.enable = true;
   };
