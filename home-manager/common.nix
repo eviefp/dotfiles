@@ -13,9 +13,7 @@ let
   packages = with pkgs; {
     generic = [
       haskellPackages.niv
-      htop
       httpie
-      jq
       nodejs
       ranger
       ripgrep
@@ -76,6 +74,41 @@ let
       };
     };
 
+    bottom = {
+      enable = true;
+      settings = {
+        left_legend = true;
+        temperature_type = "c";
+        color = "gruvbox";
+      };
+    };
+
+    broot = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+      modal = true;
+    };
+
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
+
+    jq = {
+      enable = true;
+    };
+
+    lazygit = {
+      enable = true;
+    };
+
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
+
     browserpass = {
       enable = true;
       browsers = [ "firefox" ];
@@ -83,6 +116,7 @@ let
 
     direnv = {
       enable = true;
+      enableBashIntegration = true;
       enableFishIntegration = true;
     };
 
@@ -97,9 +131,24 @@ set fish_color_redirection "#37b5c3"
 set fish_color_end "#3776c3"
 set fish_color_error "#c33759"
 '';
+      shellAliases = {
+        # exa
+        ls = "${pkgs.exa}/bin/exa";
+        ll = "${pkgs.exa}/bin/exa -l";
+        la = "${pkgs.exa}/bin/exa -a";
+        lt = "${pkgs.exa}/bin/exa --tree";
+        lla = "${pkgs.exa}/bin/exa -la";
+
+        # git
+        gs = "${pkgs.git}/bin/git status";
+      };
     };
 
-    fzf = { enable = true; };
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+    };
 
     git = {
       enable = true;
@@ -160,9 +209,15 @@ set fish_color_error "#c33759"
     };
 
     z-lua = {
-      enable = true;
+      enable = false;
       enableFishIntegration = true;
       options = [ "enhanced" "once" "fzf" ];
+    };
+
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
     };
 
     zathura = { enable = true; };
