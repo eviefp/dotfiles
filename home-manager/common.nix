@@ -47,9 +47,14 @@ let
       nerdfonts fira-code
       steam
       pandoc
+      haskellPackages.xmobar
+      dmenu
+      pass passff-host
+      pinentry_gnome transmission-gtk pavucontrol
+      paprefs xdg_utils
     ];
 
-    programming = [ gnumake neovim vscode ];
+    programming = [ git gnumake neovim vscode ];
 
     haskell = [ haskellPackages.hp2html haskellPackages.hp2pretty ghcid stack ];
 

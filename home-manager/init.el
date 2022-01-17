@@ -31,6 +31,8 @@
 ;; Editing
 (setq fill-column 80)
 (setq display-fill-column-indicator 80)
+(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-current-absolute t)
 (global-display-line-numbers-mode 1)
 (global-whitespace-mode)
 (setq whitespace-style '(face trailing tabs))
