@@ -35,3 +35,19 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 - `nix` is the `niv` pins
 - `system` is the system-wide `configuration.nix` for my devices
   - `common.nix` is the starting point/base
+
+- [ ] Write "How I Nix" article
+  - [ ] clean up system/configuration using modules https://nixos.wiki/wiki/Module
+    - [ ] remove as many programs as possible in favor of home-manager
+    - [ ] can xmonad be made into a module?
+    - [ ] can home-manager be a module here? does it make sense?
+    - [ ] user passwords?
+  - [ ] clean up system/configuration using modules
+    - [ ] nvim https://github.com/gilligan/neovim-nix/blob/main/default.nix
+    - [ ] move as much suff as possible from packages to programs
+    - [ ] gpg/ssh keys
+    - [ ] other secrets
+    - [ ] gmail account
+    - [ ] git repos?
+  - [ ] see if my old check script is still useful, remove if not
+  - [ ] write blog post :D
