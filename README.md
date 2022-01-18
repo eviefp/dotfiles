@@ -38,8 +38,9 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 - [ ] Write "How I Nix" article
   - [ ] clean up system/configuration using modules https://nixos.wiki/wiki/Module
-    - [ ] remove as many programs as possible in favor of home-manager
-    - [ ] can xmonad be made into a module?
+    - [x] remove as many programs as possible in favor of home-manager
+	- [x] basic modules
+    - [x] can xmonad be made into a module?
     - [ ] can home-manager be a module here? does it make sense?
     - [ ] user passwords?
   - [ ] clean up system/configuration using modules
