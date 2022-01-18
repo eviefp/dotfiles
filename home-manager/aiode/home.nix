@@ -11,13 +11,15 @@
     haskell = true;
     provers = true;
     latex = true;
-    streaming = true;
 
-    gui.enable = true;
+    gui = {
+      enable = true;
+      kittyFontSize = "12.0";
+    };
 
     emacs = {
       enable = true;
-      locals = ../thelxinoe/locals.el;
+      locals = ./locals.el;
     };
   };
 
