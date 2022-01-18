@@ -1,6 +1,9 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
 { config, pkgs, ... }:
 let
-  # common = import ../system-gnome.nix { inherit config pkgs; };
   common = import ../common.nix { inherit config pkgs; };
 in
   {
@@ -16,8 +19,12 @@ in
       ];
 
     evie.network = {
-      hostName = "thelxinoe";
-      interface = "enp4s0";
+      hostName = "aiode";
+      interface = "enp0s31f6";
+      wifi = {
+        enable = true;
+        interface = "wlp2s0";
+      };
     };
 
     evie.packages = {
@@ -29,8 +36,8 @@ in
 
     evie.xserver = {
       enable = true;
-      useNVidia = true;
       useBluetooth = true;
+      useHiDPI = true;
     };
   }
 
