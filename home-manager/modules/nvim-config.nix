@@ -1,143 +1,13 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" This uses the `vim-plug` manager:
-" https://github.com/junegunn/vim-plug
-"
-" Note: the autoload directory for nvim seems to be
-" ~/.local/share/nvim/site/autoload
-call plug#begin('~/.local/share/nvim/plugged')
-
-""" General vim stuff
-" Support for '.editorconfig' files
-Plug 'editorconfig/editorconfig-vim'
-
-" dev icons
-Plug 'ryanoasis/vim-devicons'
-
-" Status bar & themes.
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" FuZzy Find, need to install fzf first
-Plug 'junegunn/fzf', {
-    \ 'dir': '~/.fzf',
-    \ 'do': './install --all'
-    \ }
-Plug 'junegunn/fzf.vim'
-
-" Multiple cursor edit. Select word, use <C-n> then c or something.
-Plug 'terryma/vim-multiple-cursors'
-" Which-key
-Plug 'liuchengxu/vim-which-key'
-
-" Buffer delete
-Plug 'moll/vim-bbye'
-
-" Highlight yanked text for a bit
-Plug 'machakann/vim-highlightedyank'
-
-""" Generic coding helpers
-" gc / gcc for commenting stuff
-Plug 'tpope/vim-commentary'
-
-" Select and Tabularize /= for aligning around equals sign
-Plug 'godlygeek/tabular'
-
-" Surround is awesome.
-Plug 'tpope/vim-surround'
-
-" Rainbow parentheses
-Plug 'luochen1990/rainbow'
-
-" Indentation guides
-" Plug 'nathanaelkane/vim-indent-guides'
-
-" %S stuff
-Plug 'tpope/vim-abolish'
-
-""" Git
-" Basic git plugin, g? for help in gstatus
-Plug 'tpope/vim-fugitive'
-
-" Additional plugin for github (pretty much for :Gbrowse I think)
-Plug 'tpope/vim-rhubarb'
-" Git gutter, must read more
-" Plug 'airblade/vim-gitgutter'
-" Try out: https://github.com/jreybert/vimagit
-
-""" Coding
-" Language Server
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Markdown
-Plug 'tpope/vim-markdown'
-
-""" Haskell
-" Indentation and syntax highlighting
-Plug 'eviefp/haskell-vim'
-"Plug 'enomsg/vim-haskellConcealPlus'
-
-" <C-y> to insert function above, [[ and ]] to navigate
-Plug 'edkolev/curry.vim'
-
-
-""" PureScript
-Plug 'purescript-contrib/purescript-vim'
-
-""" Rust
-"Plug 'rust-lang/rust.vim'
-"Plug 'sebastianmarkow/deoplete-rust'
-"Plug 'racer-rust/vim-racer'
-
-""" Nix
-Plug 'LnL7/vim-nix'
-
-""" Coq
-Plug 'the-lambda-church/coquille'
-Plug 'let-def/vimbufsync'
-
-""" Idris
-Plug 'idris-hackers/idris-vim'
-Plug 'vim-syntastic/syntastic'
-
-""" Agda
-Plug 'derekelkins/agda-vim'
-
-""" Dhall
-Plug 'vmchale/dhall-vim'
-
-""" Colorschemes
-Plug 'fatih/molokai'
-Plug 'lifepillar/vim-solarized8'
-Plug 'morhetz/gruvbox'
-Plug 'jnurmine/Zenburn'
-Plug 'jacoborus/tender.vim'
-Plug 'sjl/badwolf'
-
-""" Testing
-Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'mbbill/undotree'
-Plug 'kshenoy/vim-signature'
-Plug 'plasticboy/vim-markdown'
-Plug 'bronson/vim-trailing-whitespace'
-
-Plug 'justinmk/vim-sneak'
-
-" Plug 'liuchengxu/vista.vim'
-
-Plug 'reedes/vim-lexical'
-
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
-call plug#end()
-
+let
+  cocConfig = ../../config/nvim/coc-settings.json;
+  initVim = ''
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Generic vim setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:wiki_root = '~/Documents/wiki'
-
 set autoread
+
+" let g:stylish_haskell_command = "stylish-haskell"
+" let g:stylish_haskell_dont_override = "false"
 
 " Leader setup
 let mapleader = ' '
@@ -176,20 +46,22 @@ endif
 " let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
 " Relative line numbers
-set number relativenumber
-set nu rnu
-au TermOpen * setlocal nonumber norelativenumber
+" set number relativenumber
+" set nu rnu
+" au TermOpen * setlocal nonumber norelativenumber
 
 " Fill column indicator
 set colorcolumn=81
-
 " TODO: Figure out what each of these are.
 set tabstop=4
 set shiftwidth=0
 set expandtab
-
 "
 set autoindent
+
+"""
+" let g:purescript_disable_indent=1
+"""
 
 " These seem like they turn on indentation by plugins and syntax highlighting.
 filetype plugin indent on
@@ -233,10 +105,6 @@ autocmd FileType tex setlocal textwidth=80 spell
 " Show substitutions as you type them
 set inccommand=nosplit
 
-""" Agda
-au BufNewFile,BufRead *.agda setf agda
-" let g:agda_extraincpaths = [ "/nix/store/d31lf1zq5mwfi3hw276hpnb45hkd3yvc-agda-stdlib-1.1/share/agda", "/nix/store/qndjjs3nrn25pn9y1wa1sqpyr7bfs62w-Agda-2.6.0.1-data/share/ghc-8.6.5/x86_64-linux-ghc-8.6.5/Agda-2.6.0.1/lib/prim"]
-
 """ Plugin-specific
 " for vim-devicons
 set encoding=UTF-8
@@ -277,16 +145,12 @@ let g_haskell_indent_after_bare_where = 2
 let g_haskell_indent_do = 4
 let g_haskell_indent_in = 2
 
-" Idris
-" haskellConcealPlus settings
-" TODO: there's a bug with 'S'
-let hscoptions="STEMsrl↱w-tBQZNDC"
-
 " coc.nvim
 set hidden
 set nobackup
 set nowritebackup
 set shortmess+=c
+let g:coc_config_home = '${cocConfig}'
 " set signcolumn=yes
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -300,6 +164,10 @@ nnoremap \ "_
 " Light/dark theme
 map <Leader>cl :set background=light<cr>:colorscheme solarized8<cr>
 map <Leader>cd :set background=dark<cr>:colorscheme molokai<cr>
+
+map <Leader>ar  :Tabularize /
+
+map <Leader>v :Vista!!<CR>
 
 " fzf - find - f
 map <Leader><Space> :call fzf#run(fzf#wrap({'source': 'git ls-files --exclude-standard --others --cached'}))<CR>
@@ -339,11 +207,6 @@ map <Leader>du :diffupdate<CR>
 " Theme - t
 " map <Leader>tt :Tags<CR>
 map <Leader>tc :Colors<CR>
-
-" Other - r
-nnoremap <Leader>fed :e ~/.config/nvim/init.vim<CR>
-nnoremap <Leader>fer :so ~/.config/nvim/init.vim<CR>
-map <Leader>fs :Rg<CR>
 
 """ tex stuff
 nnoremap <localleader>p $a \pause<ESC>
@@ -397,3 +260,12 @@ nmap <leader>f <Plug>(coc-format-selected)
 nnoremap <leader>ut :UndotreeToggle<cr>
 
 nmap <silent> <leader>cf :call CocAction('format')<cr>
+
+'';
+in {
+  imports = [];
+  options = {};
+  config = {
+    evie.programs.nvim.rawConfig = initVim;
+  };
+}

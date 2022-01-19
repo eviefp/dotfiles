@@ -1,4 +1,40 @@
 {
+    "coc.nvim": {
+        "branch": "release",
+        "description": "Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.",
+        "homepage": "",
+        "owner": "neoclide",
+        "repo": "coc.nvim",
+        "rev": "07a57086a38cc67e29f829ab0b74ab02bb46a2b6",
+        "sha256": "025rf8qhlgmdn74hag4fvb7mv4vdl3ybgb8h9y0q1dqqazk3vwx3",
+        "type": "tarball",
+        "url": "https://github.com/neoclide/coc.nvim/archive/07a57086a38cc67e29f829ab0b74ab02bb46a2b6.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "curry.vim": {
+        "branch": "master",
+        "description": "Helpers for writing Haskell in Vim, without any dependencies. (experimental)",
+        "homepage": "",
+        "owner": "edkolev",
+        "repo": "curry.vim",
+        "rev": "b94bd8786f1e4397df0774d1a7417556dadf6721",
+        "sha256": "0sqcldc0mch8i920yjcbsnb6pvj0c9j015sh2gjga2w2m3n3cmbb",
+        "type": "tarball",
+        "url": "https://github.com/edkolev/curry.vim/archive/b94bd8786f1e4397df0774d1a7417556dadf6721.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "editorconfig-vim": {
+        "branch": "master",
+        "description": "EditorConfig plugin for Vim",
+        "homepage": "http://editorconfig.org",
+        "owner": "editorconfig",
+        "repo": "editorconfig-vim",
+        "rev": "3078cd10b28904e57d878c0d0dab42aa0a9fdc89",
+        "sha256": "0qrzbpkzglbvkqqi7whw2rx3sg8cz9p2bwkfhw4s5xvnwndynl8w",
+        "type": "tarball",
+        "url": "https://github.com/editorconfig/editorconfig-vim/archive/3078cd10b28904e57d878c0d0dab42aa0a9fdc89.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "emacs-overlay": {
         "branch": "master",
         "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
@@ -11,6 +47,18 @@
         "url": "https://github.com/nix-community/emacs-overlay/archive/cda8c68fe3dabd1cfd8b9621564d3088d0bcb071.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "haskell-vim": {
+        "branch": "master",
+        "description": "Custom Haskell Vimscripts",
+        "homepage": null,
+        "owner": "eviefp",
+        "repo": "haskell-vim",
+        "rev": "be00e1433674772a912df97373c574213a100b6b",
+        "sha256": "07d5p22fh1hfi06g7yqlr56861vxwsscpybixp7jw50mwqjdf21x",
+        "type": "tarball",
+        "url": "https://github.com/eviefp/haskell-vim/archive/be00e1433674772a912df97373c574213a100b6b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "branch": "release-21.11",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
@@ -21,6 +69,18 @@
         "sha256": "1c8gxm86zshr2zj9dvr02qs7y3m46gqavr6wyv01r09jfd99dxz9",
         "type": "tarball",
         "url": "https://github.com/nix-community/home-manager/archive/697cc8c68ed6a606296efbbe9614c32537078756.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "molokai": {
+        "branch": "master",
+        "description": "Molokai color scheme for Vim",
+        "homepage": "",
+        "owner": "fatih",
+        "repo": "molokai",
+        "rev": "c3c3cc749ce7a58fad9584d904da204cc21ac26c",
+        "sha256": "03dmjlz894c6zx4pz7ackxib5nnj526rns820pzsg23nijdlwvbw",
+        "type": "tarball",
+        "url": "https://github.com/fatih/molokai/archive/c3c3cc749ce7a58fad9584d904da204cc21ac26c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -47,6 +107,42 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/3ddd960a3b575bf3230d0e59f42614b71f9e0db9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "purescript-vim": {
+        "branch": "main",
+        "description": "Syntax highlighting and indentation for PureScript",
+        "homepage": "",
+        "owner": "purescript-contrib",
+        "repo": "purescript-vim",
+        "rev": "d493b57406d2742f6f6c6545de5a3492f2e5b888",
+        "sha256": "1qnf8lg4a6xxn335z57nqb4yp7ij62yr408nbc8m6xwnznck3wa7",
+        "type": "tarball",
+        "url": "https://github.com/purescript-contrib/purescript-vim/archive/d493b57406d2742f6f6c6545de5a3492f2e5b888.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "rainbow": {
+        "branch": "master",
+        "description": "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.",
+        "homepage": "",
+        "owner": "luochen1990",
+        "repo": "rainbow",
+        "rev": "c18071e5c7790928b763c2e88c487dfc93d84a15",
+        "sha256": "1m691f3w1zraam4cmq0sj9a86bmd7g1bhirrzqy5mg089x6n3rdc",
+        "type": "tarball",
+        "url": "https://github.com/luochen1990/rainbow/archive/c18071e5c7790928b763c2e88c487dfc93d84a15.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tabular": {
+        "branch": "master",
+        "description": "Vim script for text filtering and alignment",
+        "homepage": "",
+        "owner": "godlygeek",
+        "repo": "tabular",
+        "rev": "339091ac4dd1f17e225fe7d57b48aff55f99b23a",
+        "sha256": "0jq91770wsp2waw7pywxjqx59v0vg54gfzirgcd85pg61w22bfla",
+        "type": "tarball",
+        "url": "https://github.com/godlygeek/tabular/archive/339091ac4dd1f17e225fe7d57b48aff55f99b23a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "thing": {
         "branch": "main",
         "description": null,
@@ -57,6 +153,210 @@
         "sha256": "0hlc3dnzkkvggr9g4qa4sn99k8glzb0805v2zq2i6racxb7w3w9g",
         "type": "tarball",
         "url": "https://github.com/vladciobanu/thing/archive/447901789b70541c7376543829a6c750a13528e2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-abolish": {
+        "branch": "master",
+        "description": "abolish.vim: easily search for, substitute, and abbreviate multiple variants of a word",
+        "homepage": "http://www.vim.org/scripts/script.php?script_id=1545",
+        "owner": "tpope",
+        "repo": "vim-abolish",
+        "rev": "3f0c8faadf0c5b68bcf40785c1c42e3731bfa522",
+        "sha256": "1w9zim2v1av3f43z8q7zh0ia8dgjxjwnvmzd4j3y25vy25avn0lb",
+        "type": "tarball",
+        "url": "https://github.com/tpope/vim-abolish/archive/3f0c8faadf0c5b68bcf40785c1c42e3731bfa522.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-airline": {
+        "branch": "master",
+        "description": "lean & mean status/tabline for vim that's light as air",
+        "homepage": "",
+        "owner": "vim-airline",
+        "repo": "vim-airline",
+        "rev": "95935e66b9a3cd802900ac2d23ccaaf70145d857",
+        "sha256": "1frp3al8jzcmjhcz13drw1gh0nsany5vpqnhcihl8mqd04g638ax",
+        "type": "tarball",
+        "url": "https://github.com/vim-airline/vim-airline/archive/95935e66b9a3cd802900ac2d23ccaaf70145d857.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-airline-themes": {
+        "branch": "master",
+        "description": "A collection of themes for vim-airline",
+        "homepage": "",
+        "owner": "vim-airline",
+        "repo": "vim-airline-themes",
+        "rev": "97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256",
+        "sha256": "0cbxjb1q7xlxykzq4ab4n3ny768ysf97f7h7d9spfmw286j3c2wi",
+        "type": "tarball",
+        "url": "https://github.com/vim-airline/vim-airline-themes/archive/97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-bbye": {
+        "branch": "master",
+        "description": "Delete buffers and close files in Vim without closing your windows or messing up your layout. Like Bclose.vim, but rewritten and well maintained.",
+        "homepage": "http://www.vim.org/scripts/script.php?script_id=4664",
+        "owner": "moll",
+        "repo": "vim-bbye",
+        "rev": "25ef93ac5a87526111f43e5110675032dbcacf56",
+        "sha256": "0dlifpbd05fcgndpkgb31ww8p90pwdbizmgkkq00qkmvzm1ik4y4",
+        "type": "tarball",
+        "url": "https://github.com/moll/vim-bbye/archive/25ef93ac5a87526111f43e5110675032dbcacf56.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-commentary": {
+        "branch": "master",
+        "description": "commentary.vim: comment stuff out",
+        "homepage": "http://www.vim.org/scripts/script.php?script_id=3695",
+        "owner": "tpope",
+        "repo": "vim-commentary",
+        "rev": "627308e30639be3e2d5402808ce18690557e8292",
+        "sha256": "0d056h2vh3bzc3mcijq90y5c7rvg01zzxyfc826h4f79y1fz8jnp",
+        "type": "tarball",
+        "url": "https://github.com/tpope/vim-commentary/archive/627308e30639be3e2d5402808ce18690557e8292.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-devicons": {
+        "branch": "master",
+        "description": "Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more",
+        "homepage": "",
+        "owner": "ryanoasis",
+        "repo": "vim-devicons",
+        "rev": "a2258658661e42dd4cdba4958805dbad1fe29ef4",
+        "sha256": "044aim36332ss5zlv8vxww8gqv0pldmn3nw08msldkfxmi86ybbd",
+        "type": "tarball",
+        "url": "https://github.com/ryanoasis/vim-devicons/archive/a2258658661e42dd4cdba4958805dbad1fe29ef4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-fugitive": {
+        "branch": "master",
+        "description": "fugitive.vim: A Git wrapper so awesome, it should be illegal",
+        "homepage": "https://www.vim.org/scripts/script.php?script_id=2975",
+        "owner": "tpope",
+        "repo": "vim-fugitive",
+        "rev": "a93ceff61f070a095c3c712c389247a80897e3b0",
+        "sha256": "0shf5l5rax465hsppswf58lypz9x80jaz74g93jlrx4xfs9k1agl",
+        "type": "tarball",
+        "url": "https://github.com/tpope/vim-fugitive/archive/a93ceff61f070a095c3c712c389247a80897e3b0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-highlightedyank": {
+        "branch": "master",
+        "description": "Make the yanked region apparent!",
+        "homepage": null,
+        "owner": "machakann",
+        "repo": "vim-highlightedyank",
+        "rev": "9669226c6db7da5fe96f9ea069f9db254a299796",
+        "sha256": "079mhfiqkgn789wl18xd03307k28ixyz37rx6vd2nh0gsfscwf25",
+        "type": "tarball",
+        "url": "https://github.com/machakann/vim-highlightedyank/archive/9669226c6db7da5fe96f9ea069f9db254a299796.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-lexical": {
+        "branch": "master",
+        "description": "Build on Vim’s spell/thes/dict completion",
+        "homepage": "",
+        "owner": "reedes",
+        "repo": "vim-lexical",
+        "rev": "0898c0cfcd1236f98c339380b99a135eca5a0544",
+        "sha256": "0ashcjh0y0kjg0njsbgk51jmrlxmdmlagac7wf75k05j3hshw978",
+        "type": "tarball",
+        "url": "https://github.com/reedes/vim-lexical/archive/0898c0cfcd1236f98c339380b99a135eca5a0544.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-markdown": {
+        "branch": "master",
+        "description": "Vim Markdown runtime files",
+        "homepage": "",
+        "owner": "tpope",
+        "repo": "vim-markdown",
+        "rev": "59a551feb24325498a5cf3a7f7fe4565361c1193",
+        "sha256": "09d5nchic0hj91s9njy44px5cdxpnygyhlanl08zyriysprk3dia",
+        "type": "tarball",
+        "url": "https://github.com/tpope/vim-markdown/archive/59a551feb24325498a5cf3a7f7fe4565361c1193.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-multiple-cursors": {
+        "branch": "master",
+        "description": "True Sublime Text style multiple selections for Vim",
+        "homepage": null,
+        "owner": "terryma",
+        "repo": "vim-multiple-cursors",
+        "rev": "6456718e1d30b42c04b920c5413ca44f68f08759",
+        "sha256": "0dmap8hjk6a0127fkab1pp5cllmijhqx80ijasngg11kxl0wzl32",
+        "type": "tarball",
+        "url": "https://github.com/terryma/vim-multiple-cursors/archive/6456718e1d30b42c04b920c5413ca44f68f08759.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-nix": {
+        "branch": "master",
+        "description": "Vim configuration files for Nix http://nixos.org/nix",
+        "homepage": null,
+        "owner": "LnL7",
+        "repo": "vim-nix",
+        "rev": "63b47b39c8d481ebca3092822ca8972e08df769b",
+        "sha256": "08n9cgphv2m96kk5w996lwlqak011x5xm410hajmc91vy5fws361",
+        "type": "tarball",
+        "url": "https://github.com/LnL7/vim-nix/archive/63b47b39c8d481ebca3092822ca8972e08df769b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-signature": {
+        "branch": "master",
+        "description": "Plugin to toggle, display and navigate marks",
+        "homepage": null,
+        "owner": "kshenoy",
+        "repo": "vim-signature",
+        "rev": "6bc3dd1294a22e897f0dcf8dd72b85f350e306bc",
+        "sha256": "08m5dg77yavria7n7iajkj4kqaw848763680003j2gbrjlhpprpm",
+        "type": "tarball",
+        "url": "https://github.com/kshenoy/vim-signature/archive/6bc3dd1294a22e897f0dcf8dd72b85f350e306bc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-solarized8": {
+        "branch": "master",
+        "description": "Optimized Solarized colorschemes. Best served with true-color terminals!",
+        "homepage": null,
+        "owner": "lifepillar",
+        "repo": "vim-solarized8",
+        "rev": "28b81a4263054f9584a98f94cca3e42815d44725",
+        "sha256": "0vq0fxsdy0mk2zpbd1drrrxnbd44r39gqzp0s71vh9q4bnww7jds",
+        "type": "tarball",
+        "url": "https://github.com/lifepillar/vim-solarized8/archive/28b81a4263054f9584a98f94cca3e42815d44725.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-surround": {
+        "branch": "master",
+        "description": "surround.vim: Delete/change/add parentheses/quotes/XML-tags/much more with ease",
+        "homepage": "https://www.vim.org/scripts/script.php?script_id=1697",
+        "owner": "tpope",
+        "repo": "vim-surround",
+        "rev": "aeb933272e72617f7c4d35e1f003be16836b948d",
+        "sha256": "1b0bd5m5lv1p4d299mrwjfs2gk0zqwyaqdaid9hs9yqlxnr8s5nf",
+        "type": "tarball",
+        "url": "https://github.com/tpope/vim-surround/archive/aeb933272e72617f7c4d35e1f003be16836b948d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-trailing-whitespace": {
+        "branch": "master",
+        "description": "Highlights trailing whitespace in red and provides :FixWhitespace to fix it.",
+        "homepage": "",
+        "owner": "bronson",
+        "repo": "vim-trailing-whitespace",
+        "rev": "05f068ebd9dbdf71d2d334d02abd99deb0311c40",
+        "sha256": "1bh15yw2aysvpn2ndnc0s6jzc0y93x6q1blc5pph67rdix5bm7gy",
+        "type": "tarball",
+        "url": "https://github.com/bronson/vim-trailing-whitespace/archive/05f068ebd9dbdf71d2d334d02abd99deb0311c40.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-which-key": {
+        "branch": "master",
+        "description": ":tulip: Vim plugin that shows keybindings in popup",
+        "homepage": "http://liuchengxu.org/vim-which-key",
+        "owner": "liuchengxu",
+        "repo": "vim-which-key",
+        "rev": "165772f440bd26c4679eef8b8b493ab11fffc4ae",
+        "sha256": "1jhc8x22qgpbwrbmaf02hbq98hxfibg3jqa3wrnyi1qiik0wxzrc",
+        "type": "tarball",
+        "url": "https://github.com/liuchengxu/vim-which-key/archive/165772f440bd26c4679eef8b8b493ab11fffc4ae.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
