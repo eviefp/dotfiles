@@ -4,6 +4,7 @@
     ../modules/gui.nix
     ../modules/emacs.nix
     ../modules/email.nix
+    ../modules/nvim.nix
   ];
 
   evie.programs = {
@@ -15,9 +16,14 @@
 
     gui.enable = true;
 
+    nvim.enable = true;
+
     emacs = {
       enable = true;
-      locals = ../thelxinoe/locals.el;
+      locals =  {
+        enable = true;
+        file = ./locals.el;
+      };
     };
   };
 

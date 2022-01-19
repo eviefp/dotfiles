@@ -33,7 +33,6 @@ in {
         pkgs.graphviz
         pkgs.httpie
         pkgs.ispell
-        pkgs.neovim # TODO: make separate module
         pkgs.nodejs
         pkgs.pandoc
         pkgs.sqlite
@@ -69,15 +68,6 @@ in {
       ];
 
       fonts.fontconfig.enable = true;
-
-      home.file = {
-        ".config/nvim/init.vim".source = ../../config/nvim/init.vim;
-        ".config/nvim/coc-settings.json".source = ../../config/nvim/coc-settings.json;
-      };
-
-      home.sessionVariables = {
-        EDITOR = "nvim";
-      };
 
       programs = {
         bat = {

@@ -88,13 +88,18 @@ in {
         kitty = {
           enable = true;
           settings = {
+            "scrollback_lines" = "10000";
+            "repaint_delay" = "4";
             "font_family" = "Hasklug Nerd Font Complete Mono";
             "bold_font" = "Hasklug Bold Nerd Font Complete Mono";
             "italic_font" = "Hasklug Italic Nerd Font Complete Mono";
             "bold_italic_font" = "Hasklug Bold Italic Nerd Font Complete Mono";
             "disable_ligatures" = "never";
             "background_opacity" = "0.9";
+            "dynamic_background_opacity" = "yes";
+            "background_tint" = "0.6";
             "background" = "#2b2b2b";
+            "background_image" = "/home/evie/background.png";
             "font_size" = cfg.kittyFontSize;
           };
         };

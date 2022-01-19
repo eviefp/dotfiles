@@ -42,7 +42,6 @@ in
     home.file = lib.mkMerge [
       {
         ".emacs.d/init.el".source = ../init.el;
-        ".emacs.d/locals.el".source = cfg.locals;
       }
       (lib.mkIf cfg.locals.enable {
         ".emacs.d/locals.el".source = cfg.locals.file;
