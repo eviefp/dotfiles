@@ -1,3 +1,4 @@
 function fixUI -d "Fix the background image"
-  feh --bg-scale ~/Pictures/haskell.jpg
+  killall -9 feh
+  feh --bg-scale ~/desktop.jpg
 end

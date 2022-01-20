@@ -1,13 +1,7 @@
 cradle:
   cabal:
-    - path: "src"
-      component: "lib:xmonad-cvlad"
-
     - path: "./xmonad.hs"
-      component: "xmonad-cvlad:exe:xmonad-cvlad"
+      component: "xmonad-evie:exe:xmonad-evie"
 
-    - path: "./Paths_xmonad_cvlad.hs"
-      component: "xmonad-cvlad:exe:xmonad-cvlad"
-
-    - path: "test"
-      component: "xmonad-cvlad:test:xmonad-cvlad-test"
+    - path: "./Paths_xmonad_evie.hs"
+      component: "xmonad-evie:exe:xmonad-evie"

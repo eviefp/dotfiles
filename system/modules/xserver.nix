@@ -48,6 +48,10 @@ in {
           layout = "us";
           libinput.enable = true;
         };
+        picom = {
+          enable = true;
+          fade = true;
+        };
       };
 
       hardware = {
