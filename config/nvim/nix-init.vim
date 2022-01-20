@@ -1,6 +1,3 @@
-let
-  cocConfig = ../../config/nvim/coc-settings.json;
-  initVim = ''
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Generic vim setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,7 +48,10 @@ endif
 " au TermOpen * setlocal nonumber norelativenumber
 
 " Fill column indicator
-set colorcolumn=81
+" set colorcolumn=81
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%82v', 100)
+
 " TODO: Figure out what each of these are.
 set tabstop=4
 set shiftwidth=0
@@ -144,13 +144,13 @@ let g_haskell_indent_before_where = 2
 let g_haskell_indent_after_bare_where = 2
 let g_haskell_indent_do = 4
 let g_haskell_indent_in = 2
+let g_haskell_disable = 1
 
 " coc.nvim
 set hidden
 set nobackup
 set nowritebackup
 set shortmess+=c
-let g:coc_config_home = '${cocConfig}'
 " set signcolumn=yes
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -260,12 +260,3 @@ nmap <leader>f <Plug>(coc-format-selected)
 nnoremap <leader>ut :UndotreeToggle<cr>
 
 nmap <silent> <leader>cf :call CocAction('format')<cr>
-
-'';
-in {
-  imports = [];
-  options = {};
-  config = {
-    evie.programs.nvim.rawConfig = initVim;
-  };
-}

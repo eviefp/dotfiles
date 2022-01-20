@@ -42,7 +42,7 @@ in {
         pkgs.xournal
 
         # X-server related
-        pkgs.dmenu
+        pkgs.rofi
         pkgs.haskellPackages.xmobar
         pkgs.pass
         pkgs.passff-host
@@ -58,19 +58,17 @@ in {
         ".config/fish/functions/clip.fish".source = ../../config/fish/functions/clip.fish;
 
         ".config/fish/functions/m0.fish".source = ../../config/fish/functions/m0.fish;
-        ".config/fish/functions/m1.fish".source = ../../config/fish/functions/m1.fish;
-        ".config/fish/functions/m2.fish".source = ../../config/fish/functions/m2.fish;
         ".config/fish/functions/rt.fish".source = ../../config/fish/functions/rt.fish;
         ".config/fish/functions/ssh.fish".source = ../../config/fish/functions/ssh.fish;
         ".config/fish/functions/ec.fish".source = ../../config/fish/functions/ec.fish;
         ".config/fish/functions/ed.fish".source = ../../config/fish/functions/ed.fish;
+        ".config/fish/functions/tv.fish".source = ../../config/fish/functions/tv.fish;
 
         ".xmonad/xmonad.hs".source = ../../config/xmonad/xmonad.hs;
-        ".xmonad/get-mails.sh".source = ../../config/xmonad/get-mails.sh;
         ".xmonad/get-mic.sh".source = ../../config/xmonad/get-mic.sh;
         ".xmonad/get-volume.sh".source = ../../config/xmonad/get-volume.sh;
 
-        ".xmobarrc".source = ../../config/carbon/xmobarrc;
+        ".xmobarrc".source = ../../config/xmobarrc;
         ".XCompose".source = ../../config/XCompose;
       };
 
@@ -95,11 +93,9 @@ in {
             "italic_font" = "Hasklug Italic Nerd Font Complete Mono";
             "bold_italic_font" = "Hasklug Bold Italic Nerd Font Complete Mono";
             "disable_ligatures" = "never";
-            "background_opacity" = "0.9";
+            "background_opacity" = "0.7";
             "dynamic_background_opacity" = "yes";
-            "background_tint" = "0.6";
-            "background" = "#2b2b2b";
-            "background_image" = "/home/evie/background.png";
+            "background_tint" = "0.8";
             "font_size" = cfg.kittyFontSize;
           };
         };

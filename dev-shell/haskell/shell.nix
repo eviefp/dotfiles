@@ -1,4 +1,4 @@
-# Configure your own Haskell nix shell!
+{ extraPackages ? [] }:
 let
   # Do not touch this part.
   sources = import ./nix/sources.nix;
@@ -20,10 +20,11 @@ let
     [ pkgs.haskell.packages.ghc8107.haskell-language-server
       pkgs.haskell.packages.ghc8107.cabal2nix
       pkgs.haskell.packages.ghc8107.implicit-hie
+      pkgs.ghcid
     ];
 in
   pkgs.mkShell {
-    buildInputs = deps ++ commonTooling ++ personalTooling;
+    buildInputs = deps ++ commonTooling ++ personalTooling ++ extraPackages;
 
     LD_LIBRARY_PATH="${pkgs.zlib}/lib";
   }

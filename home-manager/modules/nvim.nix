@@ -135,22 +135,18 @@ let
   };
 in {
   imports = [
-    ./nvim-config.nix
   ];
 
   options.evie.programs.nvim = {
     enable  = lib.options.mkEnableOption "Enable neovim.";
-    rawConfig = lib.mkOption {
-      type = lib.types.str;
-      description = "Kitty terminal font size.";
-    };
-
   };
 
   config = (lib.mkIf cfg.enable {
     home.sessionVariables = {
       EDITOR = "nvim";
     };
+    home.file.".config/nvim/coc-settings.json".source =
+      ../../config/nvim/coc-settings.json;
 
     programs.neovim = {
       enable = true;
@@ -184,7 +180,7 @@ in {
         trailingWhitespace
         whichKey
       ];
-      extraConfig = config.evie.programs.nvim.rawConfig;
+      extraConfig = builtins.readFile ../../config/nvim/nix-init.vim;
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;

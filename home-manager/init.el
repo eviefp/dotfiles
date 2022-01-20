@@ -41,6 +41,8 @@
 ;; Default config
 (setq evie-font-size 60)
 
+(set-frame-parameter (selected-frame) 'alpha '(90 . 60))
+(add-to-list 'default-frame-alist '(alpha . (90 . 60)))
 
 ;; Load config
 (ignore-errors (load "~/.emacs.d/locals.el"))
