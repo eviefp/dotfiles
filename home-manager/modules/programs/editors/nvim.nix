@@ -5,9 +5,9 @@
   **************************************************************************/
 { lib, config, pkgs, ... }:
 let
-  cfg = config.evie.programs.nvim;
+  cfg = config.evie.programs.editors.nvim;
   vimUtils = pkgs.vimUtils;
-  sources = import ../../nix/sources.nix;
+  sources = import ../../../../nix/sources.nix;
 
   editorConfig = vimUtils.buildVimPlugin {
     name = "editorconfig-vim-master-3078cd1";
@@ -137,14 +137,13 @@ in
 {
   imports = [ ];
 
-  options.evie.programs.nvim = {
+  options.evie.programs.editors.nvim = {
     enable = lib.options.mkEnableOption "Enable neovim.";
   };
 
   config = (lib.mkIf cfg.enable {
-    home.sessionVariables = { EDITOR = "nvim"; };
     home.file.".config/nvim/coc-settings.json".source =
-      ../../config/nvim/coc-settings.json;
+      ../../../../config/nvim/coc-settings.json;
 
     programs.neovim = {
       enable = true;
@@ -178,7 +177,7 @@ in
         trailingWhitespace
         whichKey
       ];
-      extraConfig = builtins.readFile ../../config/nvim/nix-init.vim;
+      extraConfig = builtins.readFile ../../../../config/nvim/nix-init.vim;
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;

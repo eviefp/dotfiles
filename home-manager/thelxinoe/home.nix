@@ -6,42 +6,55 @@
   imports = [
     ../modules/programs.nix
     ../modules/gui.nix
-    ../modules/emacs.nix
+    ../modules/programs/editors/emacs.nix
     ../modules/email.nix
-    ../modules/nvim.nix
+    ../modules/programs/editors/nvim.nix
+    ../modules/fonts.nix
   ];
 
   evie.programs = {
     enable = true;
+
+    chat.enable = true;
+
     dev = {
+      haskell.enable = true;
       nix.enable = true;
+      provers.enable = false;
       tools.enable = true;
     };
-    text = {
-      enable = true;
-      latex = true;
+
+    editors = {
+      nvim.enable = true;
+
+      emacs = {
+        enable = true;
+        locals = {
+          enable = true;
+          file = ./locals.el;
+        };
+      };
     };
+
     shell = {
       enable = true;
       ranger.enable = true;
     };
 
-    haskell = true;
-    provers = true;
-    streaming = true;
+    streaming.enable = true;
+
+    text = {
+      enable = true;
+      latex = true;
+    };
 
     gui.enable = true;
 
-    nvim.enable = true;
-
-    emacs = {
-      enable = true;
-      locals = {
-        enable = true;
-        file = ./locals.el;
-      };
-    };
   };
 
   evie.email.enable = true;
+
+  evie.fonts.enable = true;
+
+  home.sessionVariables = { EDITOR = "emacsclient"; };
 }
