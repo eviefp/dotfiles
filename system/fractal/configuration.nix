@@ -1,6 +1,11 @@
+/****************************************************************************
+  * Fractal system configuration
+  *
+  **************************************************************************/
 { config, pkgs, ... }:
 let common = import ../common.nix { inherit config pkgs; };
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ../modules/boot.nix

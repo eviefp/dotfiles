@@ -1,22 +1,23 @@
-#*****************************************************************************
-# Network module
-#
-# Set the hostName and interfaces to DHCP. Can also setup additional firewall
-# exceptions and enable WiFi for my laptop.
-#
-# All my systems are normally on the same network and I'm too lazy to setup
-# proper DNS, so I use a hosts file to name them.
-#
-# TODO:
-# I tried to bundle all interfaces together in a list of strings, and using
-#
-# mkMerge (forEach interface (i: { networking.interfaces."${i}".useDHCP = true; } )
-#
-# ... but that errors out with something about infinite recursion.
-#****************************************************************************
+/****************************************************************************
+  * Network module
+  *
+  * Set the hostName and interfaces to DHCP. Can also setup additional firewall
+  * exceptions and enable WiFi for my laptop.
+  *
+  * All my systems are normally on the same network and I'm too lazy to setup
+  * proper DNS, so I use a hosts file to name them.
+  *
+  * TODO:
+  * I tried to bundle all interfaces together in a list of strings, and using
+  *
+  * mkMerge (forEach interface (i: { networking.interfaces."${i}".useDHCP = true; } )
+  *
+  * ... but that errors out with something about infinite recursion.
+  **************************************************************************/
 { lib, config, ... }:
 let cfg = config.evie.network;
-in {
+in
+{
   imports = [ ];
 
   options.evie.network = {

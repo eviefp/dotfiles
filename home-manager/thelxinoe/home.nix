@@ -1,3 +1,7 @@
+/****************************************************************************
+  * Thelxinoe home-manager
+  *
+  **************************************************************************/
 {
   imports = [
     ../modules/programs.nix
@@ -9,6 +13,9 @@
 
   evie.programs = {
     enable = true;
+    dev = {
+      nix.enable = true;
+    };
     haskell = true;
     provers = true;
     latex = true;

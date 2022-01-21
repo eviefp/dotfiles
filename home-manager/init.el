@@ -315,8 +315,16 @@
                (list (concat (lsp-haskell--get-root) "/shell.nix"))
                )
               ))
+    :config
+      (add-to-list 'lsp-language-id-configuration
+        '(nix-mode . "nix"))
+      (lsp-register-client
+        (make-lsp-client :new-connection (lsp-stdio-connection "rnix-lsp")
+                         :major-modes '(nix-mode)
+                         :server-id 'nix))
     :hook ((haskell-mode . lsp)
            (lsp-mode . lsp-enable-which-key-integration))
+          (nix-mode . lsp)
     :general
     (general-define-key
      :keymaps 'normal
@@ -327,6 +335,7 @@
      ", l" 'haskell-process-load-file))
      ;; 'lsp-organize-imports
      ;; 'lsp-format-buffer
+
 
 (use-package lsp-treemacs
   :ensure t

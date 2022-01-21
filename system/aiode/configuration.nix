@@ -1,10 +1,12 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+/****************************************************************************
+  * Aiode system configuration
+  *
+  **************************************************************************/
 
 { config, pkgs, ... }:
 let common = import ../common.nix { inherit config pkgs; };
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ../modules/boot.nix

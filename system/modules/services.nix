@@ -1,12 +1,13 @@
-#*****************************************************************************
-# Services module
-#
-# Enable openssh, printing, lorri, and optionally, the XCompose CapsLock key as
-# the Multi_Key, which I use for typing various math symbols.
-#****************************************************************************
+/****************************************************************************
+  * Services module
+  *
+  * Enable openssh, printing, lorri, and optionally, the XCompose CapsLock key as
+  * the Multi_Key, which I use for typing various math symbols.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.services;
-in {
+in
+{
   imports = [ ];
 
   options.evie.services = {

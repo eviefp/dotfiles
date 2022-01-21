@@ -1,8 +1,8 @@
-#*****************************************************************************
-# Neovim module
-#
-#
-#****************************************************************************
+/****************************************************************************
+  * Neovim module
+  *
+  * Neovim package, plugins, and init file.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.nvim;
@@ -133,7 +133,8 @@ let
     name = "vim-solarized8-master-28b81a4";
     src = sources.vim-solarized8;
   };
-in {
+in
+{
   imports = [ ];
 
   options.evie.programs.nvim = {

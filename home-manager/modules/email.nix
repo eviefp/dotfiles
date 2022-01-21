@@ -1,11 +1,12 @@
-#*****************************************************************************
-# Email module
-#
-# Set up email account, imap sync, notmuch mail management.
-#****************************************************************************
+/****************************************************************************
+  * Email module
+  *
+  * Set up email account, imap sync, notmuch mail management.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.email;
-in {
+in
+{
   imports = [ ];
 
   options.evie.email = {

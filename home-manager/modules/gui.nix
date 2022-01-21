@@ -1,11 +1,12 @@
-#*****************************************************************************
-# GUI module
-#
-# GUI programs such as browsers, multimedia, etc.
-#****************************************************************************
+/****************************************************************************
+  * GUI module
+  *
+  * GUI programs such as browsers, multimedia, etc.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.programs.gui;
-in {
+in
+{
   imports = [ ];
 
   options.evie.programs.gui = {

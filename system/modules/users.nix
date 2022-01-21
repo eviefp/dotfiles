@@ -1,14 +1,15 @@
-#*****************************************************************************
-# Users module
-#
-# Nothing much to say here. Just my default user, along with the groups I needed
-# for various things.
-#
-# TODO: document groups.
-#****************************************************************************
+/****************************************************************************
+  * Users module
+  *
+  * Nothing much to say here. Just my default user, along with the groups I needed
+  * for various things.
+  *
+  * TODO: document groups.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.users;
-in {
+in
+{
   imports = [ ];
 
   options.evie.users = { };
