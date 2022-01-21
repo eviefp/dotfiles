@@ -56,14 +56,22 @@ in
     };
 
     programs = {
-      mbsync = { enable = true; };
-      msmtp = { enable = true; };
+      mbsync = {
+        enable = true;
+      };
+      msmtp = {
+        enable = true;
+      };
       notmuch = {
         enable = true;
-        hooks = { preNew = "mbsync --all"; };
       };
     };
 
-    services = { mbsync.enable = true; };
+    services = {
+      mbsync = {
+        enable = true;
+        postExec = "${pkgs.notmuch}/bin/notmuch new";
+      };
+    };
   };
 }
