@@ -1,20 +1,19 @@
-/*******************************************************************************
- * Programs module
- *
- * (Console) programs I use. They are visually split by category here, which
- * indicates how I would split them by (sub)modules later, if needed.
- ******************************************************************************/
+#*****************************************************************************
+# Programs module
+#
+# (Console) programs I use. They are visually split by category here, which
+# indicates how I would split them by (sub)modules later, if needed.
+#****************************************************************************
 { lib, config, pkgs, ... }:
-let
-  cfg = config.evie.programs;
+let cfg = config.evie.programs;
 in {
-  imports = [];
+  imports = [ ];
 
   options.evie.programs = {
-    enable    = lib.options.mkEnableOption "Enable generic packages.";
-    haskell   = lib.options.mkEnableOption "Enable Haskell packages.";
-    provers   = lib.options.mkEnableOption "Enable provers packages.";
-    latex     = lib.options.mkEnableOption "Enable latex packages.";
+    enable = lib.options.mkEnableOption "Enable generic packages.";
+    haskell = lib.options.mkEnableOption "Enable Haskell packages.";
+    provers = lib.options.mkEnableOption "Enable provers packages.";
+    latex = lib.options.mkEnableOption "Enable latex packages.";
     streaming = lib.options.mkEnableOption "Enable streaming packages.";
   };
 
@@ -23,11 +22,6 @@ in {
       nixpkgs.config.allowUnfree = true;
 
       home.packages = [
-        # Nix related
-        pkgs.haskellPackages.niv
-        pkgs.nix-diff
-        pkgs.nixfmt
-
         # Programming related
         pkgs.gnumake
         pkgs.graphviz
@@ -92,6 +86,7 @@ in {
           enableFishIntegration = true;
           enableBashIntegration = true;
           modal = true;
+          skin = { default = "none none / gray(20) none"; };
         };
 
         exa = {
@@ -99,13 +94,9 @@ in {
           enableAliases = true;
         };
 
-        jq = {
-          enable = true;
-        };
+        jq = { enable = true; };
 
-        lazygit = {
-          enable = true;
-        };
+        lazygit = { enable = true; };
 
         nix-index = {
           enable = true;
@@ -113,9 +104,7 @@ in {
           enableBashIntegration = true;
         };
 
-        ncspot = {
-          enable = true;
-        };
+        ncspot = { enable = true; };
 
         direnv = {
           enable = true;
@@ -127,13 +116,13 @@ in {
           enable = true;
           package = pkgs.fish;
           interactiveShellInit = ''
-set fish_color_normal "#a4c337"
-set fish_color_command "#77c337"
-set fish_color_quote "#37c393"
-set fish_color_redirection "#37b5c3"
-set fish_color_end "#3776c3"
-set fish_color_error "#c33759"
-'';
+            set fish_color_normal "#a4c337"
+            set fish_color_command "#77c337"
+            set fish_color_quote "#37c393"
+            set fish_color_redirection "#37b5c3"
+            set fish_color_end "#3776c3"
+            set fish_color_error "#c33759"
+          '';
           shellAliases = {
             # exa
             ls = "${pkgs.exa}/bin/exa";
@@ -159,7 +148,8 @@ set fish_color_error "#c33759"
           aliases = {
             lol = "log --graph --decorate --oneline --abbrev-commit";
             lola = "log --graph --decorate --oneline --abbrev-commit --all";
-            hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
+            hist =
+              "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
             lg =
               "log --color --graph --pretty=format:'%Cred%h$Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
             recent =
@@ -176,9 +166,7 @@ set fish_color_error "#c33759"
           userName = "Evie Ciobanu";
         };
 
-        home-manager = {
-          enable = true;
-        };
+        home-manager = { enable = true; };
 
         starship = {
           enable = true;
@@ -212,9 +200,7 @@ set fish_color_error "#c33759"
           enableFishIntegration = true;
         };
 
-        zathura = {
-          enable = true;
-        };
+        zathura = { enable = true; };
       };
     })
     (lib.mkIf cfg.haskell {
@@ -223,28 +209,15 @@ set fish_color_error "#c33759"
         pkgs.haskellPackages.hp2pretty
         pkgs.stack
       ];
-      home.file = {
-        ".ghci".source = ../../config/ghci;
-      };
+      home.file = { ".ghci".source = ../../config/ghci; };
     })
     (lib.mkIf cfg.provers {
-      home.packages = [
-        pkgs.agda
-        pkgs.agdaPackages.standard-library
-        pkgs.idris2
-      ];
+      home.packages =
+        [ pkgs.agda pkgs.agdaPackages.standard-library pkgs.idris2 ];
     })
-    (lib.mkIf cfg.latex {
-      home.packages = [
-        pkgs.tectonic
-        pkgs.texlab
-      ];
-    })
+    (lib.mkIf cfg.latex { home.packages = [ pkgs.tectonic pkgs.texlab ]; })
     (lib.mkIf cfg.streaming {
-      home.packages = [
-        pkgs.ffmpeg-full
-        pkgs.chatterino2
-      ];
+      home.packages = [ pkgs.ffmpeg-full pkgs.chatterino2 ];
 
       programs = {
         obs-studio = {

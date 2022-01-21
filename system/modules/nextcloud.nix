@@ -1,14 +1,13 @@
-/*******************************************************************************
- * Nextcloud module
- *
- * Everything is hardcoded because I have a single server which hosts this. No
- * need to generalise!
- ******************************************************************************/
+#*****************************************************************************
+# Nextcloud module
+#
+# Everything is hardcoded because I have a single server which hosts this. No
+# need to generalise!
+#****************************************************************************
 { lib, config, ... }:
-let
-  cfg = config.evie.nextcloud;
+let cfg = config.evie.nextcloud;
 in {
-  imports = [];
+  imports = [ ];
 
   options.evie.nextcloud = {
     enable = lib.options.mkEnableOption "Enable NextCloud mode.";
@@ -32,7 +31,8 @@ in {
         config = {
           dbtype = "pgsql";
           dbuser = "nextcloud";
-          dbhost = "/run/postgresql"; # nextcloud will add /.s.PGSQL.5432 by itself
+          dbhost =
+            "/run/postgresql"; # nextcloud will add /.s.PGSQL.5432 by itself
           dbname = "nextcloud";
           adminpassFile = "/mnt/raid/nextcloud/pass";
           adminuser = "admin";
@@ -42,11 +42,10 @@ in {
       postgresql = {
         enable = true;
         ensureDatabases = [ "nextcloud" ];
-        ensureUsers = [
-        { name = "nextcloud";
+        ensureUsers = [{
+          name = "nextcloud";
           ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
-        }
-        ];
+        }];
       };
 
       nginx = {
@@ -57,9 +56,7 @@ in {
         recommendedTlsSettings = true;
 
         virtualHosts = {
-          "fractal" = {
-            forceSSL = false;
-          };
+          "fractal" = { forceSSL = false; };
           "fractal.eevie.ro" = {
             forceSSL = true;
             sslCertificate = "/mnt/raid/fractal.eevie.ro.crt";
@@ -71,8 +68,8 @@ in {
     };
 
     systemd.services."nextcloud-setup" = {
-        requires = ["postgresql.service"];
-        after = ["postgresql.service"];
+      requires = [ "postgresql.service" ];
+      after = [ "postgresql.service" ];
     };
   };
 }

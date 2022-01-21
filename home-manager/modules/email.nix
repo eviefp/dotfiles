@@ -1,17 +1,15 @@
-/*******************************************************************************
- * Email module
- *
- * Set up email account, imap sync, notmuch mail management.
- ******************************************************************************/
+#*****************************************************************************
+# Email module
+#
+# Set up email account, imap sync, notmuch mail management.
+#****************************************************************************
 { lib, config, pkgs, ... }:
-let
-  cfg = config.evie.email;
-in
-{
-  imports = [];
+let cfg = config.evie.email;
+in {
+  imports = [ ];
 
   options.evie.email = {
-    enable  = lib.options.mkEnableOption "Enable emails.";
+    enable = lib.options.mkEnableOption "Enable emails.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -25,17 +23,14 @@ in
           realName = "Evie Ciobanu";
           signature = {
             text = ''
-        -- Evie Ciobanu
-''      ;
+              -- Evie Ciobanu
+            '';
             showSignature = "append";
           };
-          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/hydro.pwd";
-          smtp = {
-            host = "fractal";
-          };
-          imap = {
-            host = "fractal";
-          };
+          passwordCommand =
+            "${pkgs.coreutils}/bin/cat /home/evie/.secrets/hydro.pwd";
+          smtp = { host = "fractal"; };
+          imap = { host = "fractal"; };
           mbsync = {
             enable = true;
             create = "both";
@@ -60,22 +55,14 @@ in
     };
 
     programs = {
-      mbsync = {
-        enable = true;
-      };
-      msmtp = {
-        enable = true;
-      };
+      mbsync = { enable = true; };
+      msmtp = { enable = true; };
       notmuch = {
         enable = true;
-        hooks = {
-          preNew = "mbsync --all";
-        };
+        hooks = { preNew = "mbsync --all"; };
       };
     };
 
-    services = {
-      mbsync.enable = true;
-    };
+    services = { mbsync.enable = true; };
   };
 }
