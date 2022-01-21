@@ -5,19 +5,20 @@
   **************************************************************************/
 { lib, config, pkgs, ... }:
 let
-  sources = import ../../nix/sources.nix;
+  sources = import ../../../../nix/sources.nix;
   emacsOverlay = import sources.emacs-overlay;
+  initFile = ../../../init.el;
   derivation = pkgs.emacsWithPackagesFromUsePackage {
-    config = ../init.el;
+    config = initFile;
     package = pkgs.emacsGit;
     extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
   };
-  cfg = config.evie.programs.emacs;
+  cfg = config.evie.programs.editors.emacs;
 in
 {
   imports = [ ];
 
-  options.evie.programs.emacs = {
+  options.evie.programs.editors.emacs = {
     enable = lib.options.mkEnableOption "Enable the Emacs package.";
 
     locals = {
@@ -37,7 +38,7 @@ in
     home.packages = [ derivation ];
 
     home.file = lib.mkMerge [
-      { ".emacs.d/init.el".source = ../init.el; }
+      { ".emacs.d/init.el".source = initFile; }
       (lib.mkIf cfg.locals.enable {
         ".emacs.d/locals.el".source = cfg.locals.file;
       })

@@ -47,7 +47,7 @@ file using the pinned `nixpkgs`/`home-manager` versions.
     - [x] basic modules
     - [x] nvim https://github.com/gilligan/neovim-nix/blob/main/default.nix
 	- [x] move static files around
-    - [ ] move as much suff as possible from packages to programs?
+    - [x] move as much suff as possible from packages to programs?
     - [ ] gpg/ssh keys
     - [ ] other secrets?
     - [ ] gmail account?

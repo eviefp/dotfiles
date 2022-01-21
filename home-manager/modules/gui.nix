@@ -7,10 +7,12 @@
 let cfg = config.evie.programs.gui;
 in
 {
-  imports = [ ];
+  imports = [
+    ./programs/browsers.nix
+  ];
 
   options.evie.programs.gui = {
-    enable = lib.options.mkEnableOption "Enable generic packages.";
+    enable = lib.options.mkEnableOption "Enable generic UI packages.";
 
     kittyFontSize = lib.mkOption {
       type = lib.types.str;
@@ -21,10 +23,6 @@ in
 
   config = (lib.mkIf cfg.enable {
     home.packages = [
-      # Browsers
-      pkgs.chromium
-      pkgs.firefox
-
       # Programming
       pkgs.vscode
 
@@ -50,11 +48,6 @@ in
     ];
 
     home.file = {
-      ".config/tridactyl/tridactylrc".source = ../../config/tridactyl;
-      ".mozilla/native-messaging-hosts/passff.json".source =
-        "${pkgs.passff-host}/share/passff-host/passff.json";
-      ".mozilla/native-messaging-hosts/tridactyl.json".source =
-        "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
 
       ".config/fish/functions/clip.fish".source =
         ../../config/fish/functions/clip.fish;
@@ -81,11 +74,6 @@ in
     };
 
     programs = {
-      browserpass = {
-        enable = true;
-        browsers = [ "firefox" ];
-      };
-
       kitty = {
         enable = true;
         settings = {
@@ -103,7 +91,9 @@ in
         };
       };
 
-      mpv = { enable = true; };
+      mpv = {
+        enable = true;
+      };
 
       rofi = {
         enable = true;

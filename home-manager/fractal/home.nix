@@ -1,19 +1,17 @@
 /****************************************************************************
-  * Aiode home-manager
+  * Fractal home-manager
   *
   **************************************************************************/
 {
   imports = [
     ../modules/programs.nix
-    ../modules/gui.nix
     ../modules/programs/editors/emacs.nix
-    ../modules/email.nix
     ../modules/programs/editors/nvim.nix
     ../modules/fonts.nix
   ];
 
   evie.programs = {
-    chat.enable = true;
+    enable = true;
 
     dev = {
       haskell.enable = true;
@@ -39,21 +37,11 @@
       ranger.enable = true;
     };
 
-    streaming.enable = true;
-
     text = {
       enable = true;
       latex = true;
     };
-
-    gui = {
-      enable = true;
-      kittyFontSize = "12.0";
-    };
-
   };
-
-  evie.email.enable = true;
 
   evie.fonts.enable = true;
 

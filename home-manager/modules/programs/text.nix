@@ -28,6 +28,12 @@ in
           pkgs.ispell
           pkgs.pandoc
         ];
+
+        programs = {
+          zathura = {
+            enable = true;
+          };
+        };
       })
       (lib.mkIf cfg.latex {
         home.packages = [ pkgs.tectonic pkgs.texlab ];
