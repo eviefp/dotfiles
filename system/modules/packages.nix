@@ -1,12 +1,13 @@
-#*****************************************************************************
-# Packages module
-#
-# Sets default packages I want installed "globally" (as opposed to through
-# home-manager). It's usually stuff I need to either boot or setup a new system.
-#****************************************************************************
+/****************************************************************************
+  * Packages module
+  *
+  * Sets default packages I want installed "globally" (as opposed to through
+  * home-manager). It's usually stuff I need to either boot or setup a new system.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.packages;
-in {
+in
+{
   imports = [ ];
 
   options.evie.packages = {

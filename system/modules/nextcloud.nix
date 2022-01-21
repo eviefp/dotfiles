@@ -1,12 +1,13 @@
-#*****************************************************************************
-# Nextcloud module
-#
-# Everything is hardcoded because I have a single server which hosts this. No
-# need to generalise!
-#****************************************************************************
+/****************************************************************************
+  * Nextcloud module
+  *
+  * Everything is hardcoded because I have a single server which hosts this. No
+  * need to generalise!
+  **************************************************************************/
 { lib, config, ... }:
 let cfg = config.evie.nextcloud;
-in {
+in
+{
   imports = [ ];
 
   options.evie.nextcloud = {

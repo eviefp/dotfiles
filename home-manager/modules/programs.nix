@@ -1,13 +1,16 @@
-#*****************************************************************************
-# Programs module
-#
-# (Console) programs I use. They are visually split by category here, which
-# indicates how I would split them by (sub)modules later, if needed.
-#****************************************************************************
+/****************************************************************************
+  * Programs module
+  *
+  * (Console) programs I use. They are visually split by category here, which
+  * indicates how I would split them by (sub)modules later, if needed.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.programs;
-in {
-  imports = [ ];
+in
+{
+  imports = [
+    ./dev/nix.nix
+  ];
 
   options.evie.programs = {
     enable = lib.options.mkEnableOption "Enable generic packages.";

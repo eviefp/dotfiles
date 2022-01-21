@@ -20,7 +20,8 @@ let
     pkgs.haskell.packages.ghc8107.implicit-hie
     pkgs.ghcid
   ];
-in pkgs.mkShell {
+in
+pkgs.mkShell {
   buildInputs = deps ++ commonTooling ++ personalTooling ++ extraPackages;
 
   LD_LIBRARY_PATH = "${pkgs.zlib}/lib";

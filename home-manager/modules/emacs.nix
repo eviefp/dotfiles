@@ -1,8 +1,8 @@
-#*****************************************************************************
-# Emacs module
-#
-# Emacs package using emacs-overlay.
-#****************************************************************************
+/****************************************************************************
+  * Emacs module
+  *
+  * Emacs package using emacs-overlay.
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let
   sources = import ../../nix/sources.nix;
@@ -13,7 +13,8 @@ let
     extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
   };
   cfg = config.evie.programs.emacs;
-in {
+in
+{
   imports = [ ];
 
   options.evie.programs.emacs = {

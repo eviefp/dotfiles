@@ -1,6 +1,6 @@
 let
   sources = import ../../dev-shell/haskell/nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
+  pkgs = import sources.nixpkgs { };
   ep = [
     pkgs.xorg.libX11
     pkgs.xorg.libXft
@@ -11,4 +11,4 @@ let
   ];
   shell = import ../../dev-shell/haskell/shell.nix { extraPackages = ep; };
 in
-  shell
+shell

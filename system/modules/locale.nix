@@ -1,9 +1,9 @@
-#*****************************************************************************
-# Locale module
-#
-# Sets up the internationalisation default locale, some console defaults, the
-# font, and the time zone (configurable).
-#****************************************************************************
+/****************************************************************************
+  * Locale module
+  *
+  * Sets up the internationalisation default locale, some console defaults, the
+  * font, and the time zone (configurable).
+  **************************************************************************/
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.locale;
@@ -12,7 +12,8 @@ let
     description = "null or string without spaces";
   };
 
-in {
+in
+{
   imports = [ ];
 
   options.evie.locale = {
