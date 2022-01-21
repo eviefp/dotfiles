@@ -23,5 +23,6 @@ in
     home.file = {
       ".ghci".source = ../../../../config/ghci;
     };
+
   };
 }
