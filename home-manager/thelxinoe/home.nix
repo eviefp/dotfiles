@@ -15,10 +15,19 @@
     enable = true;
     dev = {
       nix.enable = true;
+      tools.enable = true;
     };
+    text = {
+      enable = true;
+      latex = true;
+    };
+    shell = {
+      enable = true;
+      ranger.enable = true;
+    };
+
     haskell = true;
     provers = true;
-    latex = true;
     streaming = true;
 
     gui.enable = true;

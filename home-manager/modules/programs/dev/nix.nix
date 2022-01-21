@@ -1,5 +1,5 @@
 /****************************************************************************
-  * dev/nix module
+  * programs/dev/nix module
   *
   * Enable packages I use for nix-related development:
   *   - 'niv' for pinning github repositories

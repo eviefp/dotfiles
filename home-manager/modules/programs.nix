@@ -9,14 +9,17 @@ let cfg = config.evie.programs;
 in
 {
   imports = [
-    ./dev/nix.nix
+    ./programs/dev/nix.nix
+    ./programs/dev/tools.nix
+    ./programs/text.nix
+    ./programs/shell.nix
+    ./programs/shell/ranger.nix
   ];
 
   options.evie.programs = {
     enable = lib.options.mkEnableOption "Enable generic packages.";
     haskell = lib.options.mkEnableOption "Enable Haskell packages.";
     provers = lib.options.mkEnableOption "Enable provers packages.";
-    latex = lib.options.mkEnableOption "Enable latex packages.";
     streaming = lib.options.mkEnableOption "Enable streaming packages.";
   };
 
@@ -26,42 +29,27 @@ in
 
       home.packages = [
         # Programming related
-        pkgs.gnumake
+
         pkgs.graphviz
-        pkgs.httpie
-        pkgs.ispell
         pkgs.nodejs
-        pkgs.pandoc
-        pkgs.sqlite
-
-        # Shell related
-        pkgs.killall
-        pkgs.ranger
-        pkgs.ripgrep
-        pkgs.wget
-
-        # Zip/unzip
-        pkgs.unzip
-        pkgs.zip
 
         # Fonts
         pkgs.fira-code
         pkgs.nerdfonts
 
         # Mail
-        pkgs.mailcap
-        pkgs.w3m
 
         # Chat
         pkgs.discord
         pkgs.slack
+
+        pkgs.pipewire # used to create multi audio sinks
 
         # Might not need
         pkgs.gnome3.zenity
         pkgs.lua
         pkgs.lua51Packages.luabitop
         pkgs.networkmanagerapplet
-        pkgs.pipewire # used to create multi audio sinks
       ];
 
       fonts.fontconfig.enable = true;
@@ -218,7 +206,6 @@ in
       home.packages =
         [ pkgs.agda pkgs.agdaPackages.standard-library pkgs.idris2 ];
     })
-    (lib.mkIf cfg.latex { home.packages = [ pkgs.tectonic pkgs.texlab ]; })
     (lib.mkIf cfg.streaming {
       home.packages = [ pkgs.ffmpeg-full pkgs.chatterino2 ];
 
