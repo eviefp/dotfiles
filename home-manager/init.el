@@ -578,24 +578,6 @@
    :keymaps 'normal
    "SPC t t" 'vterm-other-window))
 
-;; neotree
-(use-package neotree
-    :ensure t
-    :general
-    (general-define-key
-      :keymaps 'normal
-      "SPC t n" 'neotree-toggle)
-    (general-define-key
-      :keymaps 'neotree-mode-map
-      "RET" 'neotree-quick-look
-      "k"   'neotree-previous-line
-      "j"   'neotree-next-line
-      "d"   'neotree-delete-node
-      "r"   'neotree-rename-node
-      "c"   'neotree-copy-node
-      "R"   'neotree-refresh
-      "n"   'neotree-create-node))
-
 ;; indent guide
 (use-package indent-guide
   :ensure t
