@@ -527,7 +527,7 @@
     (setq org-roam-db-update-idle-seconds 5)
   :config
     (org-roam-db-autosync-mode)
-  :hook (after-init . org-roam-mode)
+  :hook (after-init . org-roam-setup)
   :general
   (general-define-key
    :keymaps 'normal

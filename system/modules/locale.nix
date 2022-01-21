@@ -1,19 +1,19 @@
-/*******************************************************************************
- * Locale module
- *
- * Sets up the internationalisation default locale, some console defaults, the
- * font, and the time zone (configurable).
- ******************************************************************************/
+#*****************************************************************************
+# Locale module
+#
+# Sets up the internationalisation default locale, some console defaults, the
+# font, and the time zone (configurable).
+#****************************************************************************
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.locale;
-  nospace  = str: lib.filter (c: c == " ") (lib.stringToCharacters str) == [];
-  timezone =
-    lib.types.nullOr (lib.types.addCheck lib.types.str nospace)
-      // { description = "null or string without spaces"; };
+  nospace = str: lib.filter (c: c == " ") (lib.stringToCharacters str) == [ ];
+  timezone = lib.types.nullOr (lib.types.addCheck lib.types.str nospace) // {
+    description = "null or string without spaces";
+  };
 
 in {
-  imports = [];
+  imports = [ ];
 
   options.evie.locale = {
     timeZone = lib.mkOption {

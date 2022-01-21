@@ -1,23 +1,23 @@
-/*******************************************************************************
- * XServer module
- *
- * XServer, audio, and video settings.
- ******************************************************************************/
+#*****************************************************************************
+# XServer module
+#
+# XServer, audio, and video settings.
+#****************************************************************************
 { lib, config, pkgs, ... }:
-let
-  cfg = config.evie.xserver;
+let cfg = config.evie.xserver;
 in {
-  imports = [];
+  imports = [ ];
 
   options.evie.xserver = {
-    enable       = lib.options.mkEnableOption "Enable XServer.";
-    useNVidia    = lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
+    enable = lib.options.mkEnableOption "Enable XServer.";
+    useNVidia =
+      lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
     useBluetooth = lib.options.mkEnableOption "Enable bluetooth support.";
-    enableHiDPI  = lib.options.mkEnableOption "Enable HiDPI support.";
+    enableHiDPI = lib.options.mkEnableOption "Enable HiDPI support.";
   };
 
-  config = lib.mkIf cfg.enable
-    ( lib.mkMerge [ {
+  config = lib.mkIf cfg.enable (lib.mkMerge [
+    {
       services = {
         xserver = {
           enable = true;
@@ -43,7 +43,7 @@ in {
               setxkbmap -option caps:none
               xmodmap -e "keycode 66 = Multi_key"
               export XCOMPOSEFILE = /home/evie/.XCompose
-             '';
+            '';
           };
           layout = "us";
           libinput.enable = true;

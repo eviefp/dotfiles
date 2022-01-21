@@ -1,8 +1,8 @@
-/*******************************************************************************
- * Neovim module
- *
- *
- ******************************************************************************/
+#*****************************************************************************
+# Neovim module
+#
+#
+#****************************************************************************
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.nvim;
@@ -25,7 +25,7 @@ let
   };
 
   airlineThemes = vimUtils.buildVimPlugin {
-    name = "vim-airline-themes-master-97cf3e6" ;
+    name = "vim-airline-themes-master-97cf3e6";
     src = sources.vim-devicons;
   };
 
@@ -134,17 +134,14 @@ let
     src = sources.vim-solarized8;
   };
 in {
-  imports = [
-  ];
+  imports = [ ];
 
   options.evie.programs.nvim = {
-    enable  = lib.options.mkEnableOption "Enable neovim.";
+    enable = lib.options.mkEnableOption "Enable neovim.";
   };
 
   config = (lib.mkIf cfg.enable {
-    home.sessionVariables = {
-      EDITOR = "nvim";
-    };
+    home.sessionVariables = { EDITOR = "nvim"; };
     home.file.".config/nvim/coc-settings.json".source =
       ../../config/nvim/coc-settings.json;
 

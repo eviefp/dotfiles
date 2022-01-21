@@ -1,30 +1,26 @@
-/*******************************************************************************
- * Emacs module
- *
- * Emacs package using emacs-overlay.
- ******************************************************************************/
+#*****************************************************************************
+# Emacs module
+#
+# Emacs package using emacs-overlay.
+#****************************************************************************
 { lib, config, pkgs, ... }:
 let
   sources = import ../../nix/sources.nix;
   emacsOverlay = import sources.emacs-overlay;
-  derivation =
-    pkgs.emacsWithPackagesFromUsePackage {
-      config = ../init.el;
-      package = pkgs.emacsGit;
-      extraEmacsPackages = epkgs: [
-        epkgs.rainbow-delimiters
-      ];
-    };
+  derivation = pkgs.emacsWithPackagesFromUsePackage {
+    config = ../init.el;
+    package = pkgs.emacsGit;
+    extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
+  };
   cfg = config.evie.programs.emacs;
-in
-{
-  imports = [];
+in {
+  imports = [ ];
 
   options.evie.programs.emacs = {
-    enable  = lib.options.mkEnableOption "Enable the Emacs package.";
+    enable = lib.options.mkEnableOption "Enable the Emacs package.";
 
     locals = {
-      enable  = lib.options.mkEnableOption "Enable local config.";
+      enable = lib.options.mkEnableOption "Enable local config.";
 
       file = lib.mkOption {
         type = lib.types.path;
@@ -40,25 +36,23 @@ in
     home.packages = [ derivation ];
 
     home.file = lib.mkMerge [
-      {
-        ".emacs.d/init.el".source = ../init.el;
-      }
+      { ".emacs.d/init.el".source = ../init.el; }
       (lib.mkIf cfg.locals.enable {
         ".emacs.d/locals.el".source = cfg.locals.file;
       })
     ];
 
     # TODO: This doesn't quite work. Should investigate...?
-    # services = {
-    #   emacs = {
-    #     enable = true;
-    #     package = emacs.derivation;
-    #     client = {
-    #       enable = true;
-    #       arguments = [ "-c" ];
-    #     };
-    #     socketActivation.enable = true;
-    #   };
-    # };
+    services = {
+      emacs = {
+        enable = true;
+        package = derivation;
+        client = {
+          enable = true;
+          arguments = [ "-c" ];
+        };
+        # socketActivation.enable = true;
+      };
+    };
   };
 }

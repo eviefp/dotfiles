@@ -20,7 +20,7 @@
 
     emacs = {
       enable = true;
-      locals =  {
+      locals = {
         enable = true;
         file = ./locals.el;
       };
