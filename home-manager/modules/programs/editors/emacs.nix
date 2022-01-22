@@ -7,7 +7,7 @@
 let
   sources = import ../../../../nix/sources.nix;
   emacsOverlay = import sources.emacs-overlay;
-  initFile = ../../../init.el;
+  initFile = ../../../../config/init.el;
   derivation = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
     package = pkgs.emacsGit;

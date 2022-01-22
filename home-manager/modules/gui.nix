@@ -41,7 +41,6 @@ in
 
       pkgs.pipewire # used to create multi audio sinks
 
-
       # X-server related
       pkgs.haskellPackages.xmobar
       pkgs.pass
