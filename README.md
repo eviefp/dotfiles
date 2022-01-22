@@ -43,11 +43,10 @@ file using the pinned `nixpkgs`/`home-manager` versions.
     - [x] can xmonad be made into a module?
     - [x] ssh keys
     - [x] user passwords?
-  - [ ] clean up user/configuration using modules
+  - [x] clean up user/configuration using modules
     - [x] basic modules
     - [x] nvim https://github.com/gilligan/neovim-nix/blob/main/default.nix
 	- [x] move static files around
     - [x] move as much suff as possible from packages to programs?
-    - [ ] gmail account?
   - [ ] see if my old check script is still useful, remove if not
   - [ ] write blog post :D
