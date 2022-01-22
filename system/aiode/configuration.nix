@@ -37,7 +37,7 @@ in
   evie.xserver = {
     enable = true;
     useBluetooth = true;
-    useHiDPI = true;
+    enableHiDPI = true;
   };
 }
 

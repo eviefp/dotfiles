@@ -39,6 +39,9 @@ in
       pkgs.transmission-gtk
       pkgs.xournal
 
+      pkgs.pipewire # used to create multi audio sinks
+
+
       # X-server related
       pkgs.haskellPackages.xmobar
       pkgs.pass

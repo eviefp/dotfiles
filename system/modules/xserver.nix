@@ -19,10 +19,6 @@ in
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
-      home.packages = [
-        pkgs.pipewire # used to create multi audio sinks
-      ];
-
       services = {
         xserver = {
           enable = true;
