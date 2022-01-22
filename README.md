@@ -1,17 +1,46 @@
-# My dotfiles
+# My system configuration
+
+This is where all nix configuration lies. I try to keep it as neat as
+possible. Please let me know if you see anything dubious or that can
+be improved.
+
+## How it works
+
+I symlink `/etc/nixos/configuration.nix` to the appropriate config
+file under `system`, for example `./system/thelxinoe/configuration.nix`.
+
+After that, I open up a nix shell (or make sure lorri/direnv are setup
+properly for this directory), and run
 
 ```sh
 sudo --preserve-env nixos-rebuild switch
+```
+
+For `home-manager`, I symlink ~/.config/nixpkgs/home.nix to, for example,
+`home-manager/thelxinoe/home.nix` and run (from the same nix shell) as
+above:
+
+```sh
 nix-shell '<home-manager>' -A install
 ```
+
+As long as you just update the config file without the pins, you can
+just use `home-manager switch`. If you want to update everything, then
+you need to run
+
+```sh
+niv update
+```
+
+Followed by the same commands as above.
 
 ## Just show me your vim/emacs config
 
 Vim: config/nvim/init.vim
-Emacs: home-manager/emacs.nix
+Emacs: config/init.el
 
 
-NOTE that the emacs config will need some tweaking, since it's designed
+NOTE that the emacs config might need some tweaking, since it's designed
 to run under `nix`.
 
 ## Structure
@@ -24,29 +53,13 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 - `config` has mostly raw config files; some are no longer used
 - `dev-shell` is some idea I am trying out for having a single dev shell per language, or at least a starting point; extremely early/unfleshed
 - `home-manager` is the home-manager config
-  - `common.nix` is the starting point/base
-  - `emacs.nix` and `init.el` might be interesting if you want to setup your emacs
-  - `email.nix` is WIP, does not do smtp/sendmail yet
-  - `carbon` is my laptop
+  - `modules` is where all the gory details are
+  - `aiode` is my laptop
+  - `fractal` is my home server/nas
   - `thelxinoe` is my main desktop
-  - `desktop` is my old/defunct desktop, should clean up
-  - `vm` is the old streaming VM from 2020
-  - `macos` is my old work laptop
 - `nix` is the `niv` pins
-- `system` is the system-wide `configuration.nix` for my devices
-  - `common.nix` is the starting point/base
-
-- [ ] Write "How I Nix" article
-  - [x] clean up system/configuration using modules https://nixos.wiki/wiki/Module
-    - [x] remove as many programs as possible in favor of home-manager
-	- [x] basic modules
-    - [x] can xmonad be made into a module?
-    - [x] ssh keys
-    - [x] user passwords?
-  - [x] clean up user/configuration using modules
-    - [x] basic modules
-    - [x] nvim https://github.com/gilligan/neovim-nix/blob/main/default.nix
-	- [x] move static files around
-    - [x] move as much suff as possible from packages to programs?
-  - [ ] see if my old check script is still useful, remove if not
-  - [ ] write blog post :D
+- `system` is the system config
+  - `modules` is where all the gory details are
+  - `aiode` is my laptop
+  - `fractal` is my home server/nas
+  - `thelxinoe` is my main desktop
