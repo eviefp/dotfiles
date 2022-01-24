@@ -10,6 +10,7 @@
     ../modules/email.nix
     ../modules/programs/editors/nvim.nix
     ../modules/fonts.nix
+    ../modules/system.nix
   ];
 
   evie.programs = {
@@ -56,5 +57,13 @@
 
   evie.fonts.enable = true;
 
-  home.sessionVariables = { EDITOR = "emacsclient"; };
+  evie.system = {
+    enable = true;
+    host = "thelxinoe";
+    dotfiles = "/home/evie/code/dotfiles";
+  };
+
+  home.sessionVariables = {
+    EDITOR = "emacsclient";
+  };
 }

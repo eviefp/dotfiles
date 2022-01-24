@@ -57,5 +57,13 @@
 
   evie.fonts.enable = true;
 
-  home.sessionVariables = { EDITOR = "emacsclient"; };
+  evie.system = {
+    enable = true;
+    host = "aiode";
+    dotfiles = "/home/evie/code/dotfiles";
+  };
+
+  home.sessionVariables = {
+    EDITOR = "emacsclient";
+  };
 }

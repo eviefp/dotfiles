@@ -53,6 +53,25 @@
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(setq evie-file-init-el "~/code/dotfiles/config/init.el")
+(setq evie-file-todo "~/Documents/wiki/todo.org")
+(setq evie-file-refile "~/Documents/wiki/refile.org")
+
+(defun start-term ()
+  (interactive)
+  (evil-window-vsplit)
+  (eshell))
+
+(defun evie-open-file-other-window (path)
+  "Open file at path, in another window."
+  (interactive)
+  (find-file-other-window path))
+
+(defun goto-def-other-window ()
+  (interactive)
+  (evil-window-vsplit)
+  (lsp-find-definition))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
 (require 'use-package)
@@ -132,26 +151,6 @@
     :config
       (which-key-mode 1))
 
-(defun start-term ()
-  (interactive)
-  (evil-window-vsplit)
-  (eshell))
-
-(defun evie-open-user-init-file ()
-  "Edit the `user-init-file', in another window."
-  (interactive)
-  (find-file-other-window "~/code/dotfiles/home-manager/init.el"))
-
-(defun goto-def-other-window ()
-  (interactive)
-  (evil-window-vsplit)
-  (lsp-find-definition))
-
-(defun evie-open-org-refile-file ()
-  "Edit the `user-init-file', in another window."
-  (interactive)
-  (find-file-other-window "~/Documents/wiki/refile.org"))
-
 ;; general
 (use-package general :ensure t
     :config
@@ -190,17 +189,18 @@
      "SPC w w"   'save-buffer
      "SPC w q"   'evil-window-delete
      "SPC t E"   'start-term
+     "SPC t t"   '(lambda () (interactive) (evie-open-file-other-window evie-file-todo))
      "C-+"       'text-scale-increase
      "C--"       'text-scale-decrease
      "C-="       '(lambda () (interactive) (text-scale-set 0))
-     "SPC f e d" 'evie-open-user-init-file
+     "SPC f e d" '(lambda () (interactive) (evie-open-file-other-window evie-file-init-el))
      "SPC o f"   'org-cycle-agenda-files
      "SPC o o"   'org-todo
      "SPC o a"   'org-agenda
      "SPC o c"   'calendar
      "SPC o C"   'org-capture
      "SPC o w"   'org-refile
-     "SPC o r"   'evie-open-org-refile-file
+     "SPC o r"   '(lambda() (interactive) (evie-open-file-other-window evie-file-refile))
      "SPC x e"   'eval-last-sexp
      ))
 
@@ -466,7 +466,10 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
+  :init
+    ;; (setq markdown-command "multimarkdown")
+    (setq markdown-fontify-code-blocks-natively t)
+  :config
   :general
   (general-define-key
    :keymaps 'normal
