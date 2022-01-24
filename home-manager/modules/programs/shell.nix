@@ -84,6 +84,10 @@ in
 
               # bat
               cat = "${pkgs.bat}/bin/bat";
+
+              # nix-shell
+              nix-shell = "nix-shell --command ${pkgs.fish}/bin/fish";
+              nix-pshell = "nix-shell --command ${pkgs.fish}/bin/fish --pure";
             };
           };
 

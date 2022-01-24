@@ -3,9 +3,6 @@
   *
   **************************************************************************/
 { config, pkgs, ... }:
-let
-  common = import ../common.nix { inherit config pkgs; };
-in
 {
   imports = [
     ./hardware-configuration.nix

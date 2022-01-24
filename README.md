@@ -63,3 +63,11 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `aiode` is my laptop
   - `fractal` is my home server/nas
   - `thelxinoe` is my main desktop
+
+## TODO
+
+### system
+
+### home-manager
+
+### other
