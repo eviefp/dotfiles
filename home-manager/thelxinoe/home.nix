@@ -20,6 +20,7 @@
 
     dev = {
       haskell.enable = true;
+      lua.enable = true;
       nix.enable = true;
       provers.enable = false;
       tools.enable = true;
@@ -39,6 +40,7 @@
 
     shell = {
       enable = true;
+      experimental = true;
       ranger.enable = true;
     };
 

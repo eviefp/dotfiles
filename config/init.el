@@ -448,6 +448,13 @@
       ", u" 'nix-unpack ; this seems bugged; should investigate
       ", b" 'nix-build))
 
+;; lua
+(use-package lua-mode
+  :ensure t
+  :init
+  (setq lua-indent-level 4)
+  (setq lua-indent-string-contents t))
+
 ;; dhall
 (use-package dhall-mode
   :ensure t
