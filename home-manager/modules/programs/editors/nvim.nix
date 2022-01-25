@@ -34,11 +34,6 @@ let
     src = sources.vim-multiple-cursors;
   };
 
-  whichKey = vimUtils.buildVimPlugin {
-    name = "vim-which-key-master-165772f";
-    src = sources.vim-which-key;
-  };
-
   bbye = vimUtils.buildVimPlugin {
     name = "vim-bbye-master-25ef93a";
     src = sources.vim-bbye;
@@ -133,6 +128,11 @@ let
     name = "vim-solarized8-master-28b81a4";
     src = sources.vim-solarized8;
   };
+
+  betterLua = vimUtils.buildVimPlugin {
+    name = "BetterLua.vim-master-d2d6c11";
+    src = sources."BetterLua.vim";
+  };
 in
 {
   imports = [ ];
@@ -144,6 +144,12 @@ in
   config = (lib.mkIf cfg.enable {
     home.file.".config/nvim/coc-settings.json".source =
       ../../../../config/nvim/coc-settings.json;
+    home.file.".config/nvim/lua/config.lua".source =
+      ../../../../config/nvim/config.lua;
+    home.file.".config/nvim/lua/plugins.lua".source =
+      ../../../../config/nvim/plugins.lua;
+    home.file.".config/nvim/lua/bindings.lua".source =
+      ../../../../config/nvim/bindings.lua;
 
     programs.neovim = {
       enable = true;
@@ -153,6 +159,7 @@ in
         abolish
         airline
         airlineThemes
+        betterLua
         bbye
         coc
         commentary
@@ -175,9 +182,12 @@ in
         surround
         tabular
         trailingWhitespace
-        whichKey
       ];
-      extraConfig = builtins.readFile ../../../../config/nvim/nix-init.vim;
+      extraConfig = ''
+        lua require('config')
+        lua require('plugins')
+        lua require('bindings')
+      '';
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;

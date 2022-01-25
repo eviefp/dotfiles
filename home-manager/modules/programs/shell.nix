@@ -179,7 +179,7 @@ in
             enable = true;
             enableFishIntegration = true;
             enableBashIntegration = true;
-            modal = true;
+            modal = false;
             skin = { default = "none none / gray(20) none"; };
           };
 
