@@ -65,11 +65,6 @@ let
     src = sources.vim-fugitive;
   };
 
-  coc = vimUtils.buildVimPlugin {
-    name = "coc.nvim-release-07a5708";
-    src = sources."coc.nvim";
-  };
-
   markdown = vimUtils.buildVimPlugin {
     name = "vim-markdown-master-59a551f";
     src = sources.vim-markdown;
@@ -139,6 +134,40 @@ let
   treesitter = vimUtils.buildVimPlugin {
     name = "nvim-treesitter-master-620cc93";
     src = sources.nvim-treesitter;
+    configurePhase = ''
+      rm -rf Makefile
+      '';
+  };
+
+  lspConfig = vimUtils.buildVimPlugin {
+    name = "nvim-lspconfig-master-c510964";
+    src = sources.nvim-lspconfig;
+    configurePhase = ''
+      rm -rf Makefile
+      '';
+  };
+
+  cmp = vimUtils.buildVimPlugin {
+    name = "nvim-cmp-main-d931042";
+    src = sources.nvim-cmp;
+    configurePhase = ''
+      rm -rf Makefile
+      '';
+  };
+
+  cmpVsnip = vimUtils.buildVimPlugin {
+    name = "cmp-vsnip-main-0abfa18";
+    src = sources.cmp-vsnip;
+  };
+
+  vimVsnip = vimUtils.buildVimPlugin {
+    name = "vim-vsnip-main-7fde9c0";
+    src = sources.vim-vsnip;
+  };
+
+  cmpLsp = vimUtils.buildVimPlugin {
+    name = "cmp-nvim-lsp-main-ebdfc20";
+    src = sources.cmp-nvim-lsp;
   };
 in
 {
@@ -150,7 +179,6 @@ in
 
   config = (lib.mkIf cfg.enable {
     home.file = {
-      ".config/nvim/coc-settings.json".source = ../../../../config/nvim/coc-settings.json;
       ".config/nvim/lua/config.lua".source = ../../../../config/nvim/config.lua;
       ".config/nvim/lua/plugins.lua".source = ../../../../config/nvim/plugins.lua;
       ".config/nvim/lua/bindings.lua".source = ../../../../config/nvim/bindings.lua;
@@ -175,7 +203,6 @@ in
             bbye
             betterLua
             betterWhitespace
-            coc
             devIcons
             fugitive
             haskell
@@ -195,6 +222,11 @@ in
             treesitter
             unstable.vimPlugins.fzf-vim
             visualMulti
+            lspConfig
+            cmp
+            cmpVsnip
+            vimVsnip
+            cmpLsp
           ];
         };
       })

@@ -11,6 +11,30 @@
         "url": "https://github.com/euclidianAce/BetterLua.vim/archive/d2d6c115575d09258a794a6f20ac60233eee59d5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "cmp-nvim-lsp": {
+        "branch": "main",
+        "description": "nvim-cmp source for neovim builtin LSP client",
+        "homepage": "",
+        "owner": "hrsh7th",
+        "repo": "cmp-nvim-lsp",
+        "rev": "ebdfc204afb87f15ce3d3d3f5df0b8181443b5ba",
+        "sha256": "0kmaxxdxlp1s5w36khnw0sdrbv1lr3p5n9r90h6h7wv842n4mnca",
+        "type": "tarball",
+        "url": "https://github.com/hrsh7th/cmp-nvim-lsp/archive/ebdfc204afb87f15ce3d3d3f5df0b8181443b5ba.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "cmp-vsnip": {
+        "branch": "main",
+        "description": "nvim-cmp source for vim-vsnip",
+        "homepage": "",
+        "owner": "hrsh7th",
+        "repo": "cmp-vsnip",
+        "rev": "0abfa1860f5e095a07c477da940cfcb0d273b700",
+        "sha256": "1vhw2qx8284bskivc2jyijl93g1b1z9hzzbq2l9b4aw6r23frbgc",
+        "type": "tarball",
+        "url": "https://github.com/hrsh7th/cmp-vsnip/archive/0abfa1860f5e095a07c477da940cfcb0d273b700.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "coc.nvim": {
         "branch": "release",
         "description": "Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.",
@@ -105,6 +129,30 @@
         "sha256": "1sk60h584gfdf5ql3mv4hps6jly6yj6dc5fbkfkh082z1c8885vk",
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/3ddd960a3b575bf3230d0e59f42614b71f9e0db9.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nvim-cmp": {
+        "branch": "main",
+        "description": "A completion plugin for neovim coded in Lua.",
+        "homepage": "",
+        "owner": "hrsh7th",
+        "repo": "nvim-cmp",
+        "rev": "d93104244c3834fbd8f3dd01da9729920e0b5fe7",
+        "sha256": "1gn4m5ppqbhk3y5ad98kkgc72ms5xdgx6jdz3176dkd8ah6lnpf0",
+        "type": "tarball",
+        "url": "https://github.com/hrsh7th/nvim-cmp/archive/d93104244c3834fbd8f3dd01da9729920e0b5fe7.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nvim-lspconfig": {
+        "branch": "master",
+        "description": "Quickstart configurations for the Nvim LSP client",
+        "homepage": "",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "c51096481dc13193991571b7132740d762902355",
+        "sha256": "02gpqp2r6f6zz3mfbxhsg2hvs00yldkz5wn3snk8nyqllm13i3dm",
+        "type": "tarball",
+        "url": "https://github.com/neovim/nvim-lspconfig/archive/c51096481dc13193991571b7132740d762902355.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nvim-treesitter": {
@@ -369,6 +417,18 @@
         "sha256": "02y91annhsrq6m9lnnvrla08g3z4chmpdrfrlzf252s26062mwdv",
         "type": "tarball",
         "url": "https://github.com/mg979/vim-visual-multi/archive/e20908963d9b0114e5da1eacbc516e4b09cf5803.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-vsnip": {
+        "branch": "master",
+        "description": "Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.",
+        "homepage": "",
+        "owner": "hrsh7th",
+        "repo": "vim-vsnip",
+        "rev": "7fde9c0b6878a62bcc6d2d29f9a85a6616032f02",
+        "sha256": "1f0p9pk2a2fxcdf4p35vm0jyrxkkxkqgn1v8fyd622vmcrbrj860",
+        "type": "tarball",
+        "url": "https://github.com/hrsh7th/vim-vsnip/archive/7fde9c0b6878a62bcc6d2d29f9a85a6616032f02.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

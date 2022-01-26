@@ -46,7 +46,7 @@ vim.o.visualbell = false
 vim.o.errorbells = false
 
 -- shorten info messages; 'c' is important for coc-nvim
-vim.o.shortmess = 'aotIcF'
+-- vim.o.shortmess = 'aotIcF'
 
 -- copy indent previous line to next line
 vim.o.autoindent = true
@@ -102,7 +102,7 @@ vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
 
 -- highlight yank
 vim.cmd [[
-au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=false}
 ]]
 
 
