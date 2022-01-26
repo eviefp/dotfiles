@@ -70,6 +70,8 @@ in
               set fish_color_redirection "#37b5c3"
               set fish_color_end "#3776c3"
               set fish_color_error "#c33759"
+
+              fish_vi_key_bindings
             '';
             shellAliases = {
               # exa

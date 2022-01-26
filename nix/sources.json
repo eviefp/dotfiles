@@ -23,30 +23,6 @@
         "url": "https://github.com/neoclide/coc.nvim/archive/07a57086a38cc67e29f829ab0b74ab02bb46a2b6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "curry.vim": {
-        "branch": "master",
-        "description": "Helpers for writing Haskell in Vim, without any dependencies. (experimental)",
-        "homepage": "",
-        "owner": "edkolev",
-        "repo": "curry.vim",
-        "rev": "b94bd8786f1e4397df0774d1a7417556dadf6721",
-        "sha256": "0sqcldc0mch8i920yjcbsnb6pvj0c9j015sh2gjga2w2m3n3cmbb",
-        "type": "tarball",
-        "url": "https://github.com/edkolev/curry.vim/archive/b94bd8786f1e4397df0774d1a7417556dadf6721.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "editorconfig-vim": {
-        "branch": "master",
-        "description": "EditorConfig plugin for Vim",
-        "homepage": "http://editorconfig.org",
-        "owner": "editorconfig",
-        "repo": "editorconfig-vim",
-        "rev": "3078cd10b28904e57d878c0d0dab42aa0a9fdc89",
-        "sha256": "0qrzbpkzglbvkqqi7whw2rx3sg8cz9p2bwkfhw4s5xvnwndynl8w",
-        "type": "tarball",
-        "url": "https://github.com/editorconfig/editorconfig-vim/archive/3078cd10b28904e57d878c0d0dab42aa0a9fdc89.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "emacs-overlay": {
         "branch": "master",
         "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
@@ -81,6 +57,18 @@
         "sha256": "1c8gxm86zshr2zj9dvr02qs7y3m46gqavr6wyv01r09jfd99dxz9",
         "type": "tarball",
         "url": "https://github.com/nix-community/home-manager/archive/697cc8c68ed6a606296efbbe9614c32537078756.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "kommentary": {
+        "branch": "main",
+        "description": "Neovim commenting plugin, written in lua.",
+        "homepage": "",
+        "owner": "b3nj5m1n",
+        "repo": "kommentary",
+        "rev": "a190d052fca4ce74ffddb1c87c87ccf15f9111d5",
+        "sha256": "0p2hyqv73gn1lrzf8yi84cfj199jx8ix0llm4jykkxlyx3qprwq2",
+        "type": "tarball",
+        "url": "https://github.com/b3nj5m1n/kommentary/archive/a190d052fca4ce74ffddb1c87c87ccf15f9111d5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "molokai": {
@@ -119,6 +107,30 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/3ddd960a3b575bf3230d0e59f42614b71f9e0db9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nvim-treesitter": {
+        "branch": "master",
+        "description": "Nvim Treesitter configurations and abstraction layer",
+        "homepage": "",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "rev": "620cc936ad6b26c59bb2d888b3890bb8d06c50c7",
+        "sha256": "0f2lg3dwcfvgjal1b87sgf6kvqs16h3a90w4994hp0ps9imipsp8",
+        "type": "tarball",
+        "url": "https://github.com/nvim-treesitter/nvim-treesitter/archive/620cc936ad6b26c59bb2d888b3890bb8d06c50c7.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "plenary.nvim": {
+        "branch": "master",
+        "description": "plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write twice.",
+        "homepage": null,
+        "owner": "nvim-lua",
+        "repo": "plenary.nvim",
+        "rev": "563d9f6d083f0514548f2ac4ad1888326d0a1c66",
+        "sha256": "1i4sj56fral52xa2wqzx331a6xza4ksi0n6092g6q93kxx202xwq",
+        "type": "tarball",
+        "url": "https://github.com/nvim-lua/plenary.nvim/archive/563d9f6d083f0514548f2ac4ad1888326d0a1c66.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "purescript-vim": {
         "branch": "main",
         "description": "Syntax highlighting and indentation for PureScript",
@@ -155,6 +167,18 @@
         "url": "https://github.com/godlygeek/tabular/archive/339091ac4dd1f17e225fe7d57b48aff55f99b23a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "telescope.nvim": {
+        "branch": "master",
+        "description": "Find, Filter, Preview, Pick. All lua, all the time.",
+        "homepage": "",
+        "owner": "nvim-telescope",
+        "repo": "telescope.nvim",
+        "rev": "0011b1148d3975600f5a9f0be8058cdaac4e30d9",
+        "sha256": "129cha5pwr1blnkyvkl59ildap0zdvk2khajmvd79fkcncgffvfi",
+        "type": "tarball",
+        "url": "https://github.com/nvim-telescope/telescope.nvim/archive/0011b1148d3975600f5a9f0be8058cdaac4e30d9.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "thing": {
         "branch": "main",
         "description": null,
@@ -165,6 +189,18 @@
         "sha256": "0hlc3dnzkkvggr9g4qa4sn99k8glzb0805v2zq2i6racxb7w3w9g",
         "type": "tarball",
         "url": "https://github.com/vladciobanu/thing/archive/447901789b70541c7376543829a6c750a13528e2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "unstable": {
+        "branch": "nixpkgs-unstable",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8bd55a6a5ab05942af769c2aa2494044bff7f625",
+        "sha256": "0ijb0gawhvb1lm4ll1605d7p5w2fd2iqwn9l7jx9wkzz0gp85dqj",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/archive/8bd55a6a5ab05942af769c2aa2494044bff7f625.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-abolish": {
@@ -215,16 +251,16 @@
         "url": "https://github.com/moll/vim-bbye/archive/25ef93ac5a87526111f43e5110675032dbcacf56.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "vim-commentary": {
+    "vim-better-whitespace": {
         "branch": "master",
-        "description": "commentary.vim: comment stuff out",
-        "homepage": "http://www.vim.org/scripts/script.php?script_id=3695",
-        "owner": "tpope",
-        "repo": "vim-commentary",
-        "rev": "627308e30639be3e2d5402808ce18690557e8292",
-        "sha256": "0d056h2vh3bzc3mcijq90y5c7rvg01zzxyfc826h4f79y1fz8jnp",
+        "description": "Better whitespace highlighting for Vim",
+        "homepage": null,
+        "owner": "ntpeters",
+        "repo": "vim-better-whitespace",
+        "rev": "c5afbe91d29c5e3be81d5125ddcdc276fd1f1322",
+        "sha256": "10xzxavz010a8ildkfmikyi0ly6rqi5d6a2ndzr0frd9ingbk79r",
         "type": "tarball",
-        "url": "https://github.com/tpope/vim-commentary/archive/627308e30639be3e2d5402808ce18690557e8292.tar.gz",
+        "url": "https://github.com/ntpeters/vim-better-whitespace/archive/c5afbe91d29c5e3be81d5125ddcdc276fd1f1322.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-devicons": {
@@ -251,18 +287,6 @@
         "url": "https://github.com/tpope/vim-fugitive/archive/a93ceff61f070a095c3c712c389247a80897e3b0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "vim-highlightedyank": {
-        "branch": "master",
-        "description": "Make the yanked region apparent!",
-        "homepage": null,
-        "owner": "machakann",
-        "repo": "vim-highlightedyank",
-        "rev": "9669226c6db7da5fe96f9ea069f9db254a299796",
-        "sha256": "079mhfiqkgn789wl18xd03307k28ixyz37rx6vd2nh0gsfscwf25",
-        "type": "tarball",
-        "url": "https://github.com/machakann/vim-highlightedyank/archive/9669226c6db7da5fe96f9ea069f9db254a299796.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "vim-lexical": {
         "branch": "master",
         "description": "Build on Vim’s spell/thes/dict completion",
@@ -285,18 +309,6 @@
         "sha256": "09d5nchic0hj91s9njy44px5cdxpnygyhlanl08zyriysprk3dia",
         "type": "tarball",
         "url": "https://github.com/tpope/vim-markdown/archive/59a551feb24325498a5cf3a7f7fe4565361c1193.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "vim-multiple-cursors": {
-        "branch": "master",
-        "description": "True Sublime Text style multiple selections for Vim",
-        "homepage": null,
-        "owner": "terryma",
-        "repo": "vim-multiple-cursors",
-        "rev": "6456718e1d30b42c04b920c5413ca44f68f08759",
-        "sha256": "0dmap8hjk6a0127fkab1pp5cllmijhqx80ijasngg11kxl0wzl32",
-        "type": "tarball",
-        "url": "https://github.com/terryma/vim-multiple-cursors/archive/6456718e1d30b42c04b920c5413ca44f68f08759.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-nix": {
@@ -347,16 +359,16 @@
         "url": "https://github.com/tpope/vim-surround/archive/aeb933272e72617f7c4d35e1f003be16836b948d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "vim-trailing-whitespace": {
+    "vim-visual-multi": {
         "branch": "master",
-        "description": "Highlights trailing whitespace in red and provides :FixWhitespace to fix it.",
+        "description": "Multiple cursors plugin for vim/neovim",
         "homepage": "",
-        "owner": "bronson",
-        "repo": "vim-trailing-whitespace",
-        "rev": "05f068ebd9dbdf71d2d334d02abd99deb0311c40",
-        "sha256": "1bh15yw2aysvpn2ndnc0s6jzc0y93x6q1blc5pph67rdix5bm7gy",
+        "owner": "mg979",
+        "repo": "vim-visual-multi",
+        "rev": "e20908963d9b0114e5da1eacbc516e4b09cf5803",
+        "sha256": "02y91annhsrq6m9lnnvrla08g3z4chmpdrfrlzf252s26062mwdv",
         "type": "tarball",
-        "url": "https://github.com/bronson/vim-trailing-whitespace/archive/05f068ebd9dbdf71d2d334d02abd99deb0311c40.tar.gz",
+        "url": "https://github.com/mg979/vim-visual-multi/archive/e20908963d9b0114e5da1eacbc516e4b09cf5803.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

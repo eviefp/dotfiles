@@ -8,11 +8,7 @@ let
   cfg = config.evie.programs.editors.nvim;
   vimUtils = pkgs.vimUtils;
   sources = import ../../../../nix/sources.nix;
-
-  editorConfig = vimUtils.buildVimPlugin {
-    name = "editorconfig-vim-master-3078cd1";
-    src = sources.editorconfig-vim;
-  };
+  unstable = import sources.unstable { };
 
   devIcons = vimUtils.buildVimPlugin {
     name = "vim-devicons-master-a225865";
@@ -26,12 +22,12 @@ let
 
   airlineThemes = vimUtils.buildVimPlugin {
     name = "vim-airline-themes-master-97cf3e6";
-    src = sources.vim-devicons;
+    src = sources.vim-airline-themes;
   };
 
-  multipleCursors = vimUtils.buildVimPlugin {
-    name = "vim-multiple-cursors-master-6456718";
-    src = sources.vim-multiple-cursors;
+   visualMulti = vimUtils.buildVimPlugin {
+    name = "vim-visual-multi-master-e209089";
+    src = sources.vim-visual-multi;
   };
 
   bbye = vimUtils.buildVimPlugin {
@@ -39,14 +35,9 @@ let
     src = sources.vim-bbye;
   };
 
-  highlightedYank = vimUtils.buildVimPlugin {
-    name = "vim-highlightedyank-master-9669226";
-    src = sources.vim-highlightedyank;
-  };
-
-  commentary = vimUtils.buildVimPlugin {
-    name = "vim-commentary-master-627308e";
-    src = sources.vim-commentary;
+  kommentary = vimUtils.buildVimPlugin {
+    name = "kommentary-master-a190d05";
+    src = sources.kommentary;
   };
 
   tabular = vimUtils.buildVimPlugin {
@@ -89,11 +80,6 @@ let
     src = sources.haskell-vim;
   };
 
-  curry = vimUtils.buildVimPlugin {
-    name = "curry.vim-master-b94bd87";
-    src = sources."curry.vim";
-  };
-
   purescript = vimUtils.buildVimPlugin {
     name = "purescript-vim-master-d493b57";
     src = sources.purescript-vim;
@@ -109,9 +95,9 @@ let
     src = sources.vim-signature;
   };
 
-  trailingWhitespace = vimUtils.buildVimPlugin {
-    name = "vim-trailing-whitespace-master-05f068e";
-    src = sources.vim-trailing-whitespace;
+  betterWhitespace = vimUtils.buildVimPlugin {
+    name = "vim-better-whitespace-master-c5afbe9";
+    src = sources.vim-better-whitespace;
   };
 
   lexical = vimUtils.buildVimPlugin {
@@ -133,6 +119,27 @@ let
     name = "BetterLua.vim-master-d2d6c11";
     src = sources."BetterLua.vim";
   };
+
+  plenary = vimUtils.buildVimPlugin {
+    name = "plenary.nvim-master-563d9f6";
+    src = sources."plenary.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+      '';
+  };
+
+  telescope = vimUtils.buildVimPlugin {
+    name = "telescope-master-0011b11";
+    src = sources."telescope.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+      '';
+  };
+
+  treesitter = vimUtils.buildVimPlugin {
+    name = "nvim-treesitter-master-620cc93";
+    src = sources.nvim-treesitter;
+  };
 in
 {
   imports = [ ];
@@ -142,58 +149,56 @@ in
   };
 
   config = (lib.mkIf cfg.enable {
-    home.file.".config/nvim/coc-settings.json".source =
-      ../../../../config/nvim/coc-settings.json;
-    home.file.".config/nvim/lua/config.lua".source =
-      ../../../../config/nvim/config.lua;
-    home.file.".config/nvim/lua/plugins.lua".source =
-      ../../../../config/nvim/plugins.lua;
-    home.file.".config/nvim/lua/bindings.lua".source =
-      ../../../../config/nvim/bindings.lua;
-
-    programs.neovim = {
-      enable = true;
-      # This does not work!
-      # package = pkgs.neovim;
-      plugins = [
-        abolish
-        airline
-        airlineThemes
-        betterLua
-        bbye
-        coc
-        commentary
-        curry
-        devIcons
-        editorConfig
-        fugitive
-        pkgs.vimPlugins.fzf-vim
-        haskell
-        highlightedYank
-        lexical
-        markdown
-        molokai
-        multipleCursors
-        nix
-        purescript
-        rainbow
-        signature
-        solarized
-        surround
-        tabular
-        trailingWhitespace
-      ];
-      extraConfig = ''
-        lua require('config')
-        lua require('plugins')
-        lua require('bindings')
-      '';
-      withNodeJs = true;
-      withPython3 = true;
-      withRuby = false;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
+    home.file = {
+      ".config/nvim/coc-settings.json".source = ../../../../config/nvim/coc-settings.json;
+      ".config/nvim/lua/config.lua".source = ../../../../config/nvim/config.lua;
+      ".config/nvim/lua/plugins.lua".source = ../../../../config/nvim/plugins.lua;
+      ".config/nvim/lua/bindings.lua".source = ../../../../config/nvim/bindings.lua;
     };
+
+    home.packages = [
+      (unstable.neovim.override {
+        viAlias = true;
+        vimAlias = true;
+        withNodeJs = true;
+        withPython3 = true;
+        configure = {
+          customRC = ''
+            lua require('config')
+            lua require('plugins')
+            lua require('bindings')
+          '';
+          packages.myPlugins.start = [
+            abolish
+            airline
+            airlineThemes
+            bbye
+            betterLua
+            betterWhitespace
+            coc
+            devIcons
+            fugitive
+            haskell
+            kommentary
+            lexical
+            markdown
+            molokai
+            nix
+            plenary
+            purescript
+            rainbow
+            signature
+            solarized
+            surround
+            tabular
+            telescope
+            treesitter
+            unstable.vimPlugins.fzf-vim
+            visualMulti
+          ];
+        };
+      })
+    ];
+
   });
 }

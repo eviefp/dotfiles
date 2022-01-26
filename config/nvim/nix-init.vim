@@ -69,13 +69,6 @@ syntax on
 
 set nocompatible
 
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType tex call lexical#init()
-  autocmd FileType text call lexical#init()
-augroup END
 
 " Better search
 set incsearch

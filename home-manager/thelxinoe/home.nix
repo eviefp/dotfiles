@@ -66,6 +66,6 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "emacsclient";
+    EDITOR = "nvim";
   };
 }
