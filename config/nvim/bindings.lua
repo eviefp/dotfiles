@@ -4,6 +4,7 @@ local map = vim.api.nvim_set_keymap
 -- find stuff (f)
 map('n' , '<leader><leader>' , '<cmd>Telescope git_files<cr>'       , { noremap = true})
 map('n' , '<leader>ff'       , '<cmd>Telescope live_grep<cr>'       , { noremap = true})
+map('n' , '<leader>fs'       , '<cmd>Telescope grep_string<cr>'     , { noremap = true})
 map('n' , '<leader>fb'       , '<cmd>Telescope buffers<cr>'         , { noremap = true})
 map('n' , '<leader>fm'       , '<cmd>Telescope commands<cr>'        , { noremap = true})
 map('n' , '<leader>fk'       , '<cmd>Telescope marks<cr>'           , { noremap = true})
@@ -12,7 +13,7 @@ map('n' , '<leader>fl'       , '<cmd>Telescope loclist<cr>'         , { noremap 
 map('n' , '<leader>fc'       , '<cmd>Telescope git_commits<cr>'     , { noremap = true})
 map('n' , '<leader>fC'       , '<cmd>Telescope git_bcommits<cr>'    , { noremap = true})
 map('n' , '<leader>fs'       , '<cmd>Telescope git_status<cr>'      , { noremap = true})
-map('n' , '<leader>fa'       , '<cmd>Telescope builtin.builtin<cr>' , { noremap = true})
+map('n' , '<leader>fa'       , '<cmd>Telescope builtin<cr>'         , { noremap = true})
 
 
 
@@ -48,49 +49,28 @@ map('' , '<Leader>gdh' , ':diffget //2<cr>:diffupdate<cr>' , {})
 map('' , '<Leader>gdl' , ':diffget //3<cr>:diffupdate<cr>' , {})
 
 -------------------------------------------------------------------------------
+-- lsp
+
+map('n' , '<leader>xe' , '<cmd>lua vim.diagnostic.open_float()<cr>' , { noremap = true , silent = true })
+map('n' , '<leader>xj' , '<cmd>lua vim.diagnostic.goto_next()<cr>'  , { noremap = true , silent = true })
+map('n' , '<leader>xk' , '<cmd>lua vim.diagnostic.goto_prev()<cr>'  , { noremap = true , silent = true })
+map('n' , '<leader>rn' , '<cmd>lua vim.lsp.buf.rename()<cr>'        , { noremap = true , silent = true })
+map('n' , '<leader>ac' , '<cmd>lua vim.lsp.buf.code_action()<cr>'   , { noremap = true , silent = true })
+map('n' , '<leader>xf' , '<cmd>lua vim.lsp.buf.formatting()<cr>'    , { noremap = true , silent = true })
+
+map('n' , 'gD' , '<cmd>lua vim.lsp.buf.declaration()<cr>'    , { noremap = true , silent = true })
+map('n' , 'gd' , '<cmd>lua vim.lsp.buf.definition()<cr>'     , { noremap = true , silent = true })
+map('n' , 'K'  , '<cmd>lua vim.lsp.buf.hover()<cr>'          , { noremap = true , silent = true })
+map('n' , 'gi' , '<cmd>lua vim.lsp.buf.implementation()<cr>' , { noremap = true , silent = true })
+map('n' , 'gr' , '<cmd>lua vim.lsp.buf.references()<cr>'     , { noremap = true , silent = true })
+
+
+-------------------------------------------------------------------------------
 -- localleader stuff (,)
 -- TODO: should only work for tex
 map('n' , '<localleader>p'  , '$a \\pause<esc>'                                                        , {})
 map('n' , '<localleader>cp' , '$a ~\\pause~<esc>'                                                      , {})
 map('n' , '<localleader>eq' , 'o\\setcounter{equation}{0}<cr>\\begin{eqnarray}<cr>\\end{eqnarray}<esc>O' , {})
-
--------------------------------------------------------------------------------
--- coc-nvim
-
--- general stuff
-map('i' , '<c-space>'      , 'coc#refresh()'                               , { noremap = true   , expr = true    , silent = true })
-map('i' , '<cr>'           , 'pumvisible() ? "\\<c-y>" : "\\<c-g>u\\<cr>"' , { noremap = true   , expr = true })
-
--- lsp errors
-map('n' , '<localleader>h' , '<Plug>(coc-diagnostic-prev)'                 , { silent = true })
-map('n' , '<localleader>l' , '<Plug>(coc-diagnostic-next)'                 , { silent = true })
-
--- goto (g)
-map('n' , 'gd' , '<Plug>(coc-definition)'      , { silent = true })
-map('n' , 'gy' , '<Plug>(coc-type-definition)' , { silent = true })
-map('n' , 'gi' , '<Plug>(coc-implementation)'  , { silent = true })
-map('n' , 'gr' , '<Plug>(coc-references)'      , { silent = true })
-
--- random stuff, should consolidate
-map('n' , '<leader>rn' , '<Plug>(coc-rename)'      , {})
-map('n' , '<leader>ac' , '<Plug>(coc-codeaction)'  , {})
-map('n' , '<leader>qf' , '<Plug>(coc-fix-current)' , {})
-map('n' , '<leader>cl' , '<Plug>(coc-codelens-action)' , {})
-
--- experimenting
-map('n' , '<leader>cd' , ':<c-u>CocList diagnostics<cr>' , { nowait = true , silent = true })
-map('n' , '<leader>ce' , ':<c-u>CocList extensions<cr>'  , { nowait = true , silent = true })
-map('n' , '<leader>cc' , ':<c-u>CocList commands<cr>'    , { nowait = true , silent = true })
-map('n' , '<leader>co' , ':<c-u>CocList outline<cr>'     , { nowait = true , silent = true })
-map('n' , '<leader>cs' , ':<c-u>CocList -I symbols<cr>'  , { nowait = true , silent = true })
-map('n' , '<leader>cj' , ':<c-u>CocNext<cr>'             , { nowait = true , silent = true })
-map('n' , '<leader>ck' , ':<c-u>CocPrev<cr>'             , { nowait = true , silent = true })
-map('n' , '<leader>cp' , ':<c-u>CocListResume<cr>'       , { nowait = true , silent = true })
-
--- hover docs
-map('n' , 'K', ":call CocAction('doHover')<cr>", { noremap = true })
-
-map('n', '<leader>cf', ":call CocAction('format')", { silent = true })
 
 -------------------------------------------------------------------------------
 -- Tabularize
