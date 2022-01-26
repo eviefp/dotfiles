@@ -53,6 +53,11 @@ augroup lexical
 augroup END
 ]]
 
+
+-------------------------------------------------------------------------------
+-- gitSigns
+require('gitsigns').setup()
+
 -------------------------------------------------------------------------------
 -- treesitter
 require'nvim-treesitter.configs'.setup {
