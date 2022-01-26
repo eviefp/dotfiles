@@ -99,3 +99,11 @@ vim.cmd 'colorscheme molokai'
 
 -- transparent background
 vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
+
+-- highlight yank
+vim.cmd [[
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
+]]
+
+
+

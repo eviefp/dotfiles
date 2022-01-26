@@ -2,10 +2,19 @@ local map = vim.api.nvim_set_keymap
 
 -------------------------------------------------------------------------------
 -- find stuff (f)
-map('' , '<leader><space>' , ":call fzf#run(fzf#wrap({'source': 'git ls-files --exclude-standard --others --cached'}))<CR>" , {})
-map('' , '<leader>fb'      , ':Buffers<cr>'                                                                                 , {})
-map('' , '<leader>ff'      , ':Rg<cr>'                                                                                      , {})
-map('' , '<leader>fc'      , ':Commits<cr>'                                                                                 , {})
+map('n' , '<leader><leader>' , '<cmd>Telescope git_files<cr>'       , { noremap = true})
+map('n' , '<leader>ff'       , '<cmd>Telescope live_grep<cr>'       , { noremap = true})
+map('n' , '<leader>fb'       , '<cmd>Telescope buffers<cr>'         , { noremap = true})
+map('n' , '<leader>fm'       , '<cmd>Telescope commands<cr>'        , { noremap = true})
+map('n' , '<leader>fk'       , '<cmd>Telescope marks<cr>'           , { noremap = true})
+map('n' , '<leader>fq'       , '<cmd>Telescope quickfix<cr>'        , { noremap = true})
+map('n' , '<leader>fl'       , '<cmd>Telescope loclist<cr>'         , { noremap = true})
+map('n' , '<leader>fc'       , '<cmd>Telescope git_commits<cr>'     , { noremap = true})
+map('n' , '<leader>fC'       , '<cmd>Telescope git_bcommits<cr>'    , { noremap = true})
+map('n' , '<leader>fs'       , '<cmd>Telescope git_status<cr>'      , { noremap = true})
+map('n' , '<leader>fa'       , '<cmd>Telescope builtin.builtin<cr>' , { noremap = true})
+
+
 
 -------------------------------------------------------------------------------
 -- window (w)
@@ -17,7 +26,8 @@ map('' , '<leader>ww' , ':w<cr>'      , {})
 
 -------------------------------------------------------------------------------
 -- buffer (b)
-map('', '<leader>bd', ':bdelete<cr>', {})
+-- uses bbye
+map('', '<leader>bd', ':Bdelete<cr>', {})
 
 -------------------------------------------------------------------------------
 -- term (t)
@@ -28,6 +38,9 @@ map('t' , '<esc>'      , '<C-\\><C-n>'            , {})
 -------------------------------------------------------------------------------
 -- git (g)
 map('' , '<leader>gs'  , ':Git<cr>'                        , {})
+map('' , '<leader>gg'  , ':GBrowse<cr>'                    , {})
+map('' , '<leader>gb'  , ':Git blame<cr>'                  , {})
+map('' , '<leader>gl'  , ':Git log<cr>'                    , {})
 map('' , '<leader>gp'  , ':Git push<cr>'                   , {})
 map('' , '<leader>gu'  , ':Git pull<cr>'                   , {})
 map('' , '<leader>gsd' , ':Gdiffsplit!<cr>'                , {})
@@ -62,9 +75,20 @@ map('n' , 'gr' , '<Plug>(coc-references)'      , { silent = true })
 map('n' , '<leader>rn' , '<Plug>(coc-rename)'      , {})
 map('n' , '<leader>ac' , '<Plug>(coc-codeaction)'  , {})
 map('n' , '<leader>qf' , '<Plug>(coc-fix-current)' , {})
+map('n' , '<leader>cl' , '<Plug>(coc-codelens-action)' , {})
+
+-- experimenting
+map('n' , '<leader>cd' , ':<c-u>CocList diagnostics<cr>' , { nowait = true , silent = true })
+map('n' , '<leader>ce' , ':<c-u>CocList extensions<cr>'  , { nowait = true , silent = true })
+map('n' , '<leader>cc' , ':<c-u>CocList commands<cr>'    , { nowait = true , silent = true })
+map('n' , '<leader>co' , ':<c-u>CocList outline<cr>'     , { nowait = true , silent = true })
+map('n' , '<leader>cs' , ':<c-u>CocList -I symbols<cr>'  , { nowait = true , silent = true })
+map('n' , '<leader>cj' , ':<c-u>CocNext<cr>'             , { nowait = true , silent = true })
+map('n' , '<leader>ck' , ':<c-u>CocPrev<cr>'             , { nowait = true , silent = true })
+map('n' , '<leader>cp' , ':<c-u>CocListResume<cr>'       , { nowait = true , silent = true })
 
 -- hover docs
-map('n' , 'K', "call CocAction('doHover')<cr>", { noremap = true })
+map('n' , 'K', ":call CocAction('doHover')<cr>", { noremap = true })
 
 map('n', '<leader>cf', ":call CocAction('format')", { silent = true })
 
