@@ -10,6 +10,12 @@ vim.g.maplocalreader = ','
 -- enable syntax highlighting
 vim.cmd 'syntax on'
 
+-- do not highlight searches
+vim.o.hlsearch = false
+
+-- completion setup
+vim.o.completeopt = 'menuone,noselect'
+
 -- dark background
 vim.o.background = 'dark'
 
@@ -84,7 +90,7 @@ vim.o.splitright = true
 vim.o.clipboard = 'unnamedplus'
 
 -- don't wrap lines
-vim.wo.wrap = false
+vim.wo.wrap = true
 
 -- line width, spelling for text files
 vim.cmd [[

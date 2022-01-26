@@ -59,6 +59,18 @@
         "url": "https://github.com/nix-community/emacs-overlay/archive/cda8c68fe3dabd1cfd8b9621564d3088d0bcb071.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "gitsigns.nvim": {
+        "branch": "main",
+        "description": "Git integration for buffers",
+        "homepage": "",
+        "owner": "lewis6991",
+        "repo": "gitsigns.nvim",
+        "rev": "4861666b58f525456f6cf68319e4fc6703b5ee65",
+        "sha256": "0xfmgy75k1rxlnd0zbklq92qmzzci9rj1fdfal21fcz5gdjr2ykn",
+        "type": "tarball",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/4861666b58f525456f6cf68319e4fc6703b5ee65.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "haskell-vim": {
         "branch": "master",
         "description": "Custom Haskell Vimscripts",

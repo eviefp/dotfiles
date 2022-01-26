@@ -169,6 +169,15 @@ let
     name = "cmp-nvim-lsp-main-ebdfc20";
     src = sources.cmp-nvim-lsp;
   };
+
+  gitSigns = vimUtils.buildVimPlugin {
+    name = "gitsigns.nvim-main-4861666";
+    src = sources."gitsigns.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+      '';
+  };
+
 in
 {
   imports = [ ];
@@ -203,11 +212,16 @@ in
             bbye
             betterLua
             betterWhitespace
+            cmp
+            cmpLsp
+            cmpVsnip
             devIcons
             fugitive
+            gitSigns
             haskell
             kommentary
             lexical
+            lspConfig
             markdown
             molokai
             nix
@@ -220,13 +234,8 @@ in
             tabular
             telescope
             treesitter
-            unstable.vimPlugins.fzf-vim
-            visualMulti
-            lspConfig
-            cmp
-            cmpVsnip
             vimVsnip
-            cmpLsp
+            visualMulti
           ];
         };
       })
