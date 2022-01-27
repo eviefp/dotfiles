@@ -179,6 +179,18 @@
         "url": "https://github.com/nvim-treesitter/nvim-treesitter/archive/620cc936ad6b26c59bb2d888b3890bb8d06c50c7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nvim-web-devicons": {
+        "branch": "master",
+        "description": "lua `fork` of vim-web-devicons for neovim",
+        "homepage": null,
+        "owner": "kyazdani42",
+        "repo": "nvim-web-devicons",
+        "rev": "634e26818f2bea9161b7efa76735746838971824",
+        "sha256": "1pfhaa7xx3r4nq9bz3zj8hb1qbh5rjhmlxn1f8l7ihvbhb0s0f6z",
+        "type": "tarball",
+        "url": "https://github.com/kyazdani42/nvim-web-devicons/archive/634e26818f2bea9161b7efa76735746838971824.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "plenary.nvim": {
         "branch": "master",
         "description": "plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write twice.",
@@ -225,6 +237,18 @@
         "sha256": "0jq91770wsp2waw7pywxjqx59v0vg54gfzirgcd85pg61w22bfla",
         "type": "tarball",
         "url": "https://github.com/godlygeek/tabular/archive/339091ac4dd1f17e225fe7d57b48aff55f99b23a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "telescope-fzf-native.nvim": {
+        "branch": "main",
+        "description": "FZF sorter for telescope written in c",
+        "homepage": "",
+        "owner": "nvim-telescope",
+        "repo": "telescope-fzf-native.nvim",
+        "rev": "b8662b076175e75e6497c59f3e2799b879d7b954",
+        "sha256": "0wj7ip9c17m4ij9sw5rq1bqy5hb367b32iz9b14pgg110cvfgpw1",
+        "type": "tarball",
+        "url": "https://github.com/nvim-telescope/telescope-fzf-native.nvim/archive/b8662b076175e75e6497c59f3e2799b879d7b954.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "telescope.nvim": {
@@ -321,18 +345,6 @@
         "sha256": "10xzxavz010a8ildkfmikyi0ly6rqi5d6a2ndzr0frd9ingbk79r",
         "type": "tarball",
         "url": "https://github.com/ntpeters/vim-better-whitespace/archive/c5afbe91d29c5e3be81d5125ddcdc276fd1f1322.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "vim-devicons": {
-        "branch": "master",
-        "description": "Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more",
-        "homepage": "",
-        "owner": "ryanoasis",
-        "repo": "vim-devicons",
-        "rev": "a2258658661e42dd4cdba4958805dbad1fe29ef4",
-        "sha256": "044aim36332ss5zlv8vxww8gqv0pldmn3nw08msldkfxmi86ybbd",
-        "type": "tarball",
-        "url": "https://github.com/ryanoasis/vim-devicons/archive/a2258658661e42dd4cdba4958805dbad1fe29ef4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-fugitive": {

@@ -10,11 +10,6 @@ let
   sources = import ../../../../nix/sources.nix;
   unstable = import sources.unstable { };
 
-  devIcons = vimUtils.buildVimPlugin {
-    name = "vim-devicons-master-a225865";
-    src = sources.vim-devicons;
-  };
-
   airline = vimUtils.buildVimPlugin {
     name = "vim-airline-master-95935e6";
     src = sources.vim-airline;
@@ -178,6 +173,15 @@ let
       '';
   };
 
+  telescopefzf = vimUtils.buildVimPlugin {
+    name = "telescope-fzf-native.nvim-main-b8662b0";
+    src = sources."telescope-fzf-native.nvim";
+  };
+
+  devIcons = vimUtils.buildVimPlugin {
+    name = "nvim-dev-webicons-master-634e268";
+    src = sources.nvim-web-devicons;
+  };
 in
 {
   imports = [ ];
@@ -233,6 +237,7 @@ in
             surround
             tabular
             telescope
+            telescopefzf
             treesitter
             vimVsnip
             visualMulti
