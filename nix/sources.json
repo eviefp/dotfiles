@@ -347,6 +347,18 @@
         "url": "https://github.com/ntpeters/vim-better-whitespace/archive/c5afbe91d29c5e3be81d5125ddcdc276fd1f1322.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "vim-eunuch": {
+        "branch": "master",
+        "description": "eunuch.vim: Helpers for UNIX",
+        "homepage": "https://www.vim.org/scripts/script.php?script_id=4300",
+        "owner": "tpope",
+        "repo": "vim-eunuch",
+        "rev": "e2c9e01abd2734919e65dd6fe6c84ca2a9b65a7d",
+        "sha256": "02ilz95fmp2j9azpxia38hka2n81x5x3b1knaidiaf1pifl0c7zn",
+        "type": "tarball",
+        "url": "https://github.com/tpope/vim-eunuch/archive/e2c9e01abd2734919e65dd6fe6c84ca2a9b65a7d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "vim-fugitive": {
         "branch": "master",
         "description": "fugitive.vim: A Git wrapper so awesome, it should be illegal",
