@@ -466,5 +466,17 @@
         "type": "tarball",
         "url": "https://github.com/hrsh7th/vim-vsnip/archive/7fde9c0b6878a62bcc6d2d29f9a85a6616032f02.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "which-key.nvim": {
+        "branch": "main",
+        "description": "💥   Create key bindings that stick. WhichKey is a lua plugin for Neovim 0.5 that displays a popup with possible keybindings of the command you started typing.",
+        "homepage": "",
+        "owner": "folke",
+        "repo": "which-key.nvim",
+        "rev": "28d2bd129575b5e9ebddd88506601290bb2bb221",
+        "sha256": "13k1q7zkwr5bfc2lj97nk4npy0gk49r1qbac49aib7fyzirkagkg",
+        "type": "tarball",
+        "url": "https://github.com/folke/which-key.nvim/archive/28d2bd129575b5e9ebddd88506601290bb2bb221.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

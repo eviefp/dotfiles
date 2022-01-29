@@ -187,6 +187,11 @@ let
     name = "vim-eunuch-master-e2c9e01";
     src = sources.vim-eunuch;
   };
+
+  whichKey = vimUtils.buildVimPlugin {
+    name = "which-key.nvim-main-28d2bd1";
+    src = sources."which-key.nvim";
+  };
 in
 {
   imports = [ ];
@@ -203,6 +208,7 @@ in
     };
 
     home.packages = [
+      pkgs.fd
       (unstable.neovim.override {
         viAlias = true;
         vimAlias = true;
@@ -247,6 +253,7 @@ in
             treesitter
             vimVsnip
             visualMulti
+            whichKey
           ];
         };
       })
