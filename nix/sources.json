@@ -263,6 +263,18 @@
         "url": "https://github.com/nvim-telescope/telescope-fzf-native.nvim/archive/b8662b076175e75e6497c59f3e2799b879d7b954.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "telescope-symbols.nvim": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "nvim-telescope",
+        "repo": "telescope-symbols.nvim",
+        "rev": "d2d7d6b4298a1f733649526661d872c5e7a75521",
+        "sha256": "0jxnalhfgmnllwb38a9dgzrnrhdnxgcbi2p7m4jk5p87260a9gvk",
+        "type": "tarball",
+        "url": "https://github.com/nvim-telescope/telescope-symbols.nvim/archive/d2d7d6b4298a1f733649526661d872c5e7a75521.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "telescope.nvim": {
         "branch": "master",
         "description": "Find, Filter, Preview, Pick. All lua, all the time.",

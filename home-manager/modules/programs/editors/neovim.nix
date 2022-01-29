@@ -20,7 +20,7 @@ let
     src = sources.vim-airline-themes;
   };
 
-   visualMulti = vimUtils.buildVimPlugin {
+  visualMulti = vimUtils.buildVimPlugin {
     name = "vim-visual-multi-master-e209089";
     src = sources.vim-visual-multi;
   };
@@ -115,7 +115,7 @@ let
     src = sources."plenary.nvim";
     configurePhase = ''
       rm -rf Makefile
-      '';
+    '';
   };
 
   telescope = vimUtils.buildVimPlugin {
@@ -123,7 +123,7 @@ let
     src = sources."telescope.nvim";
     configurePhase = ''
       rm -rf Makefile
-      '';
+    '';
   };
 
   treesitter = vimUtils.buildVimPlugin {
@@ -131,7 +131,7 @@ let
     src = sources.nvim-treesitter;
     configurePhase = ''
       rm -rf Makefile
-      '';
+    '';
   };
 
   lspConfig = vimUtils.buildVimPlugin {
@@ -139,7 +139,7 @@ let
     src = sources.nvim-lspconfig;
     configurePhase = ''
       rm -rf Makefile
-      '';
+    '';
   };
 
   cmp = vimUtils.buildVimPlugin {
@@ -147,7 +147,7 @@ let
     src = sources.nvim-cmp;
     configurePhase = ''
       rm -rf Makefile
-      '';
+    '';
   };
 
   cmpVsnip = vimUtils.buildVimPlugin {
@@ -170,7 +170,7 @@ let
     src = sources."gitsigns.nvim";
     configurePhase = ''
       rm -rf Makefile
-      '';
+    '';
   };
 
   telescopefzf = vimUtils.buildVimPlugin {
@@ -198,7 +198,12 @@ let
     src = sources.melange;
     configurePhase = ''
       rm -rf makefile
-      '';
+    '';
+  };
+
+  symbols = vimUtils.buildVimPlugin {
+    name = "telescope-symbols-master-d2d7d6b";
+    src = sources."telescope-symbols.nvim";
   };
 in
 {
@@ -256,6 +261,7 @@ in
             signature
             solarized
             surround
+            symbols
             tabular
             telescope
             telescopefzf

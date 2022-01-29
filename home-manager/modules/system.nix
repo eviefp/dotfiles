@@ -2,7 +2,7 @@
   * system module
   *
   * This exists so I don't have to symlink each system's config to '/etc/nixos'.
-  **************************************************************************/
+  ************************************************************************ */
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.system;
