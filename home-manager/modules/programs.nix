@@ -18,6 +18,7 @@ in
     ./programs/shell/ranger.nix
     ./programs/streaming.nix
     ./programs/text.nix
+    ./programs/wezterm.nix
   ];
 
   options.evie.programs = {
