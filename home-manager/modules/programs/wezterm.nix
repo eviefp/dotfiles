@@ -27,9 +27,10 @@ return {
   font = wezterm.font('Hasklug Nerd Font Mono', { weight = "Regular", stretch = "Normal", italic = false }),
   check_for_updates = false,
   font_size = 10,
-  color_scheme = 'Molokai',
+  -- color_scheme = 'Molokai',
   enable_tab_bar = false,
-  window_background_opacity = 0.7,
+  window_background_opacity = 0.0,
+  text_background_opacity = 1.0,
 }
 '';
   };

@@ -107,6 +107,18 @@
         "url": "https://github.com/b3nj5m1n/kommentary/archive/a190d052fca4ce74ffddb1c87c87ccf15f9111d5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "melange": {
+        "branch": "master",
+        "description": "🗡️ Warm color scheme for Neovim and beyond",
+        "homepage": "",
+        "owner": "savq",
+        "repo": "melange",
+        "rev": "e3a3a2cd03c73b4fc0670e9ac09dacdb3c6609c1",
+        "sha256": "1y7acxkc6hwnalxq7wv1zdp310ii586cdhdh84v6vw0swcd1xapw",
+        "type": "tarball",
+        "url": "https://github.com/savq/melange/archive/e3a3a2cd03c73b4fc0670e9ac09dacdb3c6609c1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "molokai": {
         "branch": "master",
         "description": "Molokai color scheme for Vim",

@@ -99,13 +99,6 @@ autocmd FileType txt setlocal textwidth=80 spell
 autocmd FileType tex setlocal textwidth=80 spell
 ]]
 
--- set colorscheme
--- has to be before setting the bg to NONE
-vim.cmd 'colorscheme molokai'
-
--- transparent background
-vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
-
 -- highlight yank
 vim.cmd [[
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=false}

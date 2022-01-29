@@ -72,12 +72,12 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 - [ ] remove kitty?
 
-### nvim
+### neovim
 
-- [x] which-key
 - [ ] fugitive keybindings
   - [ ] tab for toggle file details
 - [ ] coc.nvim
+  - [ ] actually try the patched HLS first
   - [ ] type emoticons https://www.chrisatmachine.com/Neovim/21-coc-emoji/
 
 ### other
