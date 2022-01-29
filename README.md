@@ -74,10 +74,9 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 ### nvim
 
-- [ ] which-key
+- [x] which-key
 - [ ] fugitive keybindings
   - [ ] tab for toggle file details
-- [ ] org-mode?
 - [ ] coc.nvim
   - [ ] type emoticons https://www.chrisatmachine.com/Neovim/21-coc-emoji/
 
