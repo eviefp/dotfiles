@@ -70,4 +70,15 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 ### home-manager
 
+- [ ] remove kitty?
+
+### nvim
+
+- [ ] which-key
+- [ ] fugitive keybindings
+  - [ ] tab for toggle file details
+- [ ] org-mode?
+- [ ] coc.nvim
+  - [ ] type emoticons https://www.chrisatmachine.com/Neovim/21-coc-emoji/
+☕
 ### other

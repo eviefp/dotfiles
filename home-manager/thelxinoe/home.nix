@@ -53,6 +53,8 @@
 
     gui.enable = true;
 
+    wezterm.enable = true;
+
   };
 
   evie.email.enable = true;
