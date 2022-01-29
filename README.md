@@ -80,5 +80,5 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 - [ ] org-mode?
 - [ ] coc.nvim
   - [ ] type emoticons https://www.chrisatmachine.com/Neovim/21-coc-emoji/
-☕
+
 ### other

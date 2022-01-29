@@ -6,7 +6,7 @@
   imports = [
     ../modules/programs.nix
     ../modules/programs/editors/emacs.nix
-    ../modules/programs/editors/nvim.nix
+    ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
   ];
 
@@ -21,7 +21,7 @@
     };
 
     editors = {
-      nvim.enable = true;
+      neovim.enable = true;
 
       emacs = {
         enable = true;

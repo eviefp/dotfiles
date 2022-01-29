@@ -5,7 +5,7 @@
   **************************************************************************/
 { lib, config, pkgs, ... }:
 let
-  cfg = config.evie.programs.editors.nvim;
+  cfg = config.evie.programs.editors.neovim;
   vimUtils = pkgs.vimUtils;
   sources = import ../../../../nix/sources.nix;
   unstable = import sources.unstable { };
@@ -182,11 +182,16 @@ let
     name = "nvim-dev-webicons-master-634e268";
     src = sources.nvim-web-devicons;
   };
+
+  eunuch = vimUtils.buildVimPlugin {
+    name = "vim-eunuch-master-e2c9e01";
+    src = sources.vim-eunuch;
+  };
 in
 {
   imports = [ ];
 
-  options.evie.programs.editors.nvim = {
+  options.evie.programs.editors.neovim = {
     enable = lib.options.mkEnableOption "Enable neovim.";
   };
 
@@ -220,6 +225,7 @@ in
             cmpLsp
             cmpVsnip
             devIcons
+            eunuch
             fugitive
             gitSigns
             haskell
