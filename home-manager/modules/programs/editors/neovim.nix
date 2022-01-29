@@ -192,6 +192,14 @@ let
     name = "which-key.nvim-main-28d2bd1";
     src = sources."which-key.nvim";
   };
+
+  melange = vimUtils.buildVimPlugin {
+    name = "melange-master-e3a3a2c";
+    src = sources.melange;
+    configurePhase = ''
+      rm -rf makefile
+      '';
+  };
 in
 {
   imports = [ ];
@@ -239,6 +247,7 @@ in
             lexical
             lspConfig
             markdown
+            melange
             molokai
             nix
             plenary

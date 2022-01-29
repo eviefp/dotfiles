@@ -3,6 +3,13 @@
 -------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
+-- theme
+vim.cmd 'colorscheme melange'
+
+-- transparent background
+vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
+
+-------------------------------------------------------------------------------
 -- devicons
 local devicons = require 'nvim-web-devicons'
 
@@ -79,7 +86,7 @@ telescope.load_extension('fzf')
 -- airline
 vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g['airline#extensions#tabline#formatter'] = 'default'
-vim.g.airline_theme = 'badwolf'
+vim.g.airline_theme = 'nightfox'
 
 
 -------------------------------------------------------------------------------
