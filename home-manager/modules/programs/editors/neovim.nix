@@ -210,9 +210,9 @@ in
 
   config = (lib.mkIf cfg.enable {
     home.file = {
-      ".config/nvim/lua/config.lua".source = ../../../../config/nvim/config.lua;
-      ".config/nvim/lua/plugins.lua".source = ../../../../config/nvim/plugins.lua;
-      ".config/nvim/lua/bindings.lua".source = ../../../../config/nvim/bindings.lua;
+      ".config/nvim/lua/config.lua".source = ../../../../config/nvim/lua/config.lua;
+      ".config/nvim/lua/plugins.lua".source = ../../../../config/nvim/lua/plugins.lua;
+      ".config/nvim/lua/bindings.lua".source = ../../../../config/nvim/lua/bindings.lua;
     };
 
     home.packages = [
