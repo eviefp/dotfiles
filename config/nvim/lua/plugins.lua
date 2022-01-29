@@ -60,7 +60,7 @@ wk.setup({
 
 -- TODO: revisit after changing theme
 vim.cmd [[
-autocmd ColorScheme * highlight WhichKeyFloat ctermbg=NONE ctermfg=NONE
+highlight WhichKeyFloat ctermbg=NONE
 ]]
 
 -- wk.register({}, {})
@@ -86,7 +86,7 @@ telescope.load_extension('fzf')
 -- airline
 vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g['airline#extensions#tabline#formatter'] = 'default'
-vim.g.airline_theme = 'nightfox'
+vim.g.airline_theme = 'bubblegum'
 
 
 -------------------------------------------------------------------------------
@@ -155,13 +155,29 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
 
     -- list of language that will be disabled
-    disable = {},
+    disable = {
+      -- TOOD: remove when this gets fixed https://github.com/cstrahan/tree-sitter-nix/issues/23
+      'nix',
+      'haskell',
+    },
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = {},
+    additional_vim_regex_highlighting = false,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  indent = {
+    enable = true,
   },
 }
 

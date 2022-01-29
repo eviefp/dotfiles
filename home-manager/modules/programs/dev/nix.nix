@@ -6,7 +6,7 @@
   *   - 'nixfmt' for formatting sources with emacs/nvim (TODO)
   *   - 'rnix-lsp' as the nix lsp
   *   - 'nix-diff' for finding out how two derivations differ
-  **************************************************************************/
+  ************************************************************************ */
 { lib, config, pkgs, ... }:
 let cfg = config.evie.programs.dev.nix;
 in

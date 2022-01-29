@@ -6,22 +6,27 @@ be improved.
 
 ## How it works
 
-I symlink `/etc/nixos/configuration.nix` to the appropriate config
-file under `system`, for example `./system/thelxinoe/configuration.nix`.
+On new systems, start with `home-manager`.
 
-After that, I open up a nix shell (or make sure lorri/direnv are setup
-properly for this directory), and run
+Start with opening a nix shell here:
+
+```sh
+nix-shell
+```
+
+Make sure your `NIX_PATH` is set before continuing.
+
+For `home-manager`, I symlink ~/.config/nixpkgs/home.nix to, for example,
+`home-manager/thelxinoe/home.nix` and run:
+```sh
+nix-shell '<home-manager>' -A install
+```
+
+Restart the shell; your `NIX_PATH` should now be setup such that everything
+"just works"L
 
 ```sh
 sudo --preserve-env nixos-rebuild switch
-```
-
-For `home-manager`, I symlink ~/.config/nixpkgs/home.nix to, for example,
-`home-manager/thelxinoe/home.nix` and run (from the same nix shell) as
-above:
-
-```sh
-nix-shell '<home-manager>' -A install
 ```
 
 As long as you just update the config file without the pins, you can
