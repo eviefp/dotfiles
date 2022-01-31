@@ -71,6 +71,18 @@
         "url": "https://github.com/lewis6991/gitsigns.nvim/archive/4861666b58f525456f6cf68319e4fc6703b5ee65.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "haskell-language-server": {
+        "branch": "master",
+        "description": "Official haskell ide support via language server (LSP). Successor of ghcide & haskell-ide-engine.",
+        "homepage": "",
+        "owner": "haskell",
+        "repo": "haskell-language-server",
+        "rev": "49abc74a06c8ed296d308aa7fd3e9646dcf30cb3",
+        "sha256": "1fnaxzcclfq071a98ycbphfpcngjk7ikgr5kzgrw26v9a0phd23h",
+        "type": "tarball",
+        "url": "https://github.com/haskell/haskell-language-server/archive/49abc74a06c8ed296d308aa7fd3e9646dcf30cb3.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "haskell-vim": {
         "branch": "master",
         "description": "Custom Haskell Vimscripts",

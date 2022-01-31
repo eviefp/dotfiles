@@ -16,6 +16,8 @@
   evie.programs = {
     enable = true;
 
+    browsers.enable = true;
+
     chat.enable = true;
 
     dev = {

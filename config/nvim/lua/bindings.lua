@@ -77,7 +77,7 @@ map('n' , 'gi'         , '<cmd>Telescope lsp_implementations<cr>'               
 map('n' , 'gt'         , '<cmd>Telescope lsp_type_definitions<cr>'                          , { noremap = true   , silent = true })
 map('n' , 'K'          , '<cmd>lua vim.lsp.buf.hover()<cr>'                                 , { noremap = true   , silent = true })
 map('n' , '<c-k>'      , '<cmd>lua vim.lsp.buf.signature_help()<cr>'                        , { noremap = true   , silent = true })
-map('n' , 'gr'         , '<cmd>Telescope lsp_lsp_references<cr>'                            , { noremap = true   , silent = true })
+map('n' , 'gr'         , '<cmd>Telescope lsp_references<cr>'                            , { noremap = true   , silent = true })
 
 
 -------------------------------------------------------------------------------

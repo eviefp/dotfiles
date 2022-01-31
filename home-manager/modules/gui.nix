@@ -66,6 +66,8 @@ in
         ../../config/fish/functions/ed.fish;
       ".config/fish/functions/tv.fish".source =
         ../../config/fish/functions/tv.fish;
+      ".config/fish/functions/fixUI.fish".source =
+        ../../config/fish/functions/fixUI.fish;
 
       ".xmonad/xmonad.hs".source = ../../config/xmonad/xmonad.hs;
       ".xmonad/get-mic.sh".source = ../../config/xmonad/get-mic.sh;
