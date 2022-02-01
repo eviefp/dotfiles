@@ -1,14 +1,26 @@
 {
-    "BetterLua.vim": {
-        "branch": "master",
-        "description": "Better Lua syntax highlighting in Vim/NeoVim",
-        "homepage": null,
-        "owner": "euclidianAce",
-        "repo": "BetterLua.vim",
-        "rev": "d2d6c115575d09258a794a6f20ac60233eee59d5",
-        "sha256": "1rvlx21kw8865dg6q97hx9i2s1n8mn1nyhn0m7dkx625pghsx3js",
+    "cmp-emoji": {
+        "branch": "main",
+        "description": "nvim-cmp source for emoji",
+        "homepage": "",
+        "owner": "hrsh7th",
+        "repo": "cmp-emoji",
+        "rev": "19075c36d5820253d32e2478b6aaf3734aeaafa0",
+        "sha256": "00jrwg491q6nx3q36krarxfpchg3fgdsz7l02ag7cm0x9hv4dknd",
         "type": "tarball",
-        "url": "https://github.com/euclidianAce/BetterLua.vim/archive/d2d6c115575d09258a794a6f20ac60233eee59d5.tar.gz",
+        "url": "https://github.com/hrsh7th/cmp-emoji/archive/19075c36d5820253d32e2478b6aaf3734aeaafa0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "cmp-latex-symbols": {
+        "branch": "main",
+        "description": "Add latex symbol support for nvim-cmp.",
+        "homepage": "",
+        "owner": "kdheepak",
+        "repo": "cmp-latex-symbols",
+        "rev": "29dc9e53d17cd1f26605888f85500c8ba79cebff",
+        "sha256": "17qjw0yp0cmgyjy593qq6rfh7fgfwgb7mxg7a0kg1drjpncwv8gl",
+        "type": "tarball",
+        "url": "https://github.com/kdheepak/cmp-latex-symbols/archive/29dc9e53d17cd1f26605888f85500c8ba79cebff.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "cmp-nvim-lsp": {
@@ -21,6 +33,30 @@
         "sha256": "0kmaxxdxlp1s5w36khnw0sdrbv1lr3p5n9r90h6h7wv842n4mnca",
         "type": "tarball",
         "url": "https://github.com/hrsh7th/cmp-nvim-lsp/archive/ebdfc204afb87f15ce3d3d3f5df0b8181443b5ba.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "cmp-nvim-lua": {
+        "branch": "main",
+        "description": "nvim-cmp source for nvim lua",
+        "homepage": "",
+        "owner": "hrsh7th",
+        "repo": "cmp-nvim-lua",
+        "rev": "d276254e7198ab7d00f117e88e223b4bd8c02d21",
+        "sha256": "11mhpb2jdc7zq7yiwzkks844b7alrdd08h96r6y7p3cxjv1iy5gz",
+        "type": "tarball",
+        "url": "https://github.com/hrsh7th/cmp-nvim-lua/archive/d276254e7198ab7d00f117e88e223b4bd8c02d21.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "cmp-path": {
+        "branch": "main",
+        "description": "nvim-cmp source for path",
+        "homepage": "",
+        "owner": "hrsh7th",
+        "repo": "cmp-path",
+        "rev": "c5230cb439df9547294678d0f1c1465ad7989e5f",
+        "sha256": "0ya68crpc78fb5zn34s06rl77gsm956pjpsjfk1dv2cddwwxi8x8",
+        "type": "tarball",
+        "url": "https://github.com/hrsh7th/cmp-path/archive/c5230cb439df9547294678d0f1c1465ad7989e5f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "cmp-vsnip": {
@@ -83,18 +119,6 @@
         "url": "https://github.com/haskell/haskell-language-server/archive/49abc74a06c8ed296d308aa7fd3e9646dcf30cb3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "haskell-vim": {
-        "branch": "master",
-        "description": "Custom Haskell Vimscripts",
-        "homepage": null,
-        "owner": "eviefp",
-        "repo": "haskell-vim",
-        "rev": "be00e1433674772a912df97373c574213a100b6b",
-        "sha256": "07d5p22fh1hfi06g7yqlr56861vxwsscpybixp7jw50mwqjdf21x",
-        "type": "tarball",
-        "url": "https://github.com/eviefp/haskell-vim/archive/be00e1433674772a912df97373c574213a100b6b.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "home-manager": {
         "branch": "release-21.11",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
@@ -119,6 +143,18 @@
         "url": "https://github.com/b3nj5m1n/kommentary/archive/a190d052fca4ce74ffddb1c87c87ccf15f9111d5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "lspkind-nvim": {
+        "branch": "master",
+        "description": "vscode-like pictograms for neovim lsp completion items",
+        "homepage": "",
+        "owner": "onsails",
+        "repo": "lspkind-nvim",
+        "rev": "f0d1552890e384f15b47ea88bd1b8a077cddc24a",
+        "sha256": "0wnkwh132cxnp9ppxlxrx87lykizx9mc00hg0zdvgys2h51kh050",
+        "type": "tarball",
+        "url": "https://github.com/onsails/lspkind-nvim/archive/f0d1552890e384f15b47ea88bd1b8a077cddc24a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "melange": {
         "branch": "master",
         "description": "🗡️ Warm color scheme for Neovim and beyond",
@@ -129,18 +165,6 @@
         "sha256": "1y7acxkc6hwnalxq7wv1zdp310ii586cdhdh84v6vw0swcd1xapw",
         "type": "tarball",
         "url": "https://github.com/savq/melange/archive/e3a3a2cd03c73b4fc0670e9ac09dacdb3c6609c1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "molokai": {
-        "branch": "master",
-        "description": "Molokai color scheme for Vim",
-        "homepage": "",
-        "owner": "fatih",
-        "repo": "molokai",
-        "rev": "c3c3cc749ce7a58fad9584d904da204cc21ac26c",
-        "sha256": "03dmjlz894c6zx4pz7ackxib5nnj526rns820pzsg23nijdlwvbw",
-        "type": "tarball",
-        "url": "https://github.com/fatih/molokai/archive/c3c3cc749ce7a58fad9584d904da204cc21ac26c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -441,6 +465,18 @@
         "sha256": "08n9cgphv2m96kk5w996lwlqak011x5xm410hajmc91vy5fws361",
         "type": "tarball",
         "url": "https://github.com/LnL7/vim-nix/archive/63b47b39c8d481ebca3092822ca8972e08df769b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-rhubarb": {
+        "branch": "master",
+        "description": "rhubarb.vim: GitHub extension for fugitive.vim",
+        "homepage": "",
+        "owner": "tpope",
+        "repo": "vim-rhubarb",
+        "rev": "977b3ccbad1f7e5370354ae409fb2ea4a7ce2058",
+        "sha256": "1vvjj3ql2dm3dniscxjmr5h9kfx005bgdxc1ppz6yi2q9spmchqg",
+        "type": "tarball",
+        "url": "https://github.com/tpope/vim-rhubarb/archive/977b3ccbad1f7e5370354ae409fb2ea4a7ce2058.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-signature": {
