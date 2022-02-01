@@ -1,6 +1,4 @@
 # My system configuration
-
-This is where all nix configuration lies. I try to keep it as neat as
 possible. Please let me know if you see anything dubious or that can
 be improved.
 
@@ -82,8 +80,6 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 - [ ] fugitive keybindings
   - [ ] tab for toggle file details
-- [ ] coc.nvim
-  - [ ] actually try the patched HLS first
-  - [ ] type emoticons https://www.chrisatmachine.com/Neovim/21-coc-emoji/
 
 ### other
+- [ ] treesitter purescript

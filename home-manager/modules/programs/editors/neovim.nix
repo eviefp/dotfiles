@@ -60,14 +60,14 @@ let
     src = sources.vim-fugitive;
   };
 
+  rhubarb = vimUtils.buildVimPlugin {
+    name = "vim-rhubarb-master-977b3cc";
+    src = sources.vim-rhubarb;
+  };
+
   markdown = vimUtils.buildVimPlugin {
     name = "vim-markdown-master-59a551f";
     src = sources.vim-markdown;
-  };
-
-  haskell = vimUtils.buildVimPlugin {
-    name = "haskell-vim-master-be00e14";
-    src = sources.haskell-vim;
   };
 
   purescript = vimUtils.buildVimPlugin {
@@ -95,19 +95,9 @@ let
     src = sources.vim-lexical;
   };
 
-  molokai = vimUtils.buildVimPlugin {
-    name = "lexical-master-c3c3cc7";
-    src = sources.molokai;
-  };
-
   solarized = vimUtils.buildVimPlugin {
     name = "vim-solarized8-master-28b81a4";
     src = sources.vim-solarized8;
-  };
-
-  betterLua = vimUtils.buildVimPlugin {
-    name = "BetterLua.vim-master-d2d6c11";
-    src = sources."BetterLua.vim";
   };
 
   plenary = vimUtils.buildVimPlugin {
@@ -150,6 +140,11 @@ let
     '';
   };
 
+  cmpPath = vimUtils.buildVimPlugin {
+    name = "cmp-path-main-c5230cb";
+    src = sources.cmp-path;
+  };
+
   cmpVsnip = vimUtils.buildVimPlugin {
     name = "cmp-vsnip-main-0abfa18";
     src = sources.cmp-vsnip;
@@ -163,6 +158,26 @@ let
   cmpLsp = vimUtils.buildVimPlugin {
     name = "cmp-nvim-lsp-main-ebdfc20";
     src = sources.cmp-nvim-lsp;
+  };
+
+  lspKind = vimUtils.buildVimPlugin {
+    name = "lspkind-nvim-master-f0d1552";
+    src = sources.lspkind-nvim;
+  };
+
+  cmpEmoji = vimUtils.buildVimPlugin {
+    name = "cmp-emoji-main-19075c3";
+    src = sources.cmp-emoji;
+  };
+
+ cmpLatexSymbols = vimUtils.buildVimPlugin {
+    name = "cmp-latex-symbols-main-29dc9e5";
+    src = sources.cmp-latex-symbols;
+  };
+
+ cmpLua = vimUtils.buildVimPlugin {
+    name = "cmp-nvim-lua-main-d276254";
+    src = sources.cmp-nvim-lua;
   };
 
   gitSigns = vimUtils.buildVimPlugin {
@@ -215,9 +230,10 @@ in
 
   config = (lib.mkIf cfg.enable {
     home.file = {
-      ".config/nvim/lua/config.lua".source = ../../../../config/nvim/lua/config.lua;
-      ".config/nvim/lua/plugins.lua".source = ../../../../config/nvim/lua/plugins.lua;
-      ".config/nvim/lua/bindings.lua".source = ../../../../config/nvim/lua/bindings.lua;
+      ".config/nvim/lua" = {
+        source = ../../../../config/nvim/lua;
+        recursive = true;
+      };
     };
 
     home.packages = [
@@ -238,26 +254,29 @@ in
             airline
             airlineThemes
             bbye
-            betterLua
             betterWhitespace
             cmp
+            cmpEmoji
+            cmpLatexSymbols
             cmpLsp
+            cmpLua
+            cmpPath
             cmpVsnip
             devIcons
             eunuch
             fugitive
             gitSigns
-            haskell
             kommentary
             lexical
             lspConfig
+            lspKind
             markdown
             melange
-            molokai
             nix
             plenary
             purescript
             rainbow
+            rhubarb
             signature
             solarized
             surround

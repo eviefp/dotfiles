@@ -1,1 +1,1 @@
-(setq evie-font-size 100)
+(setq evie-font-size 120)

@@ -1,11 +1,10 @@
+-------------------------------------------------------------------------------
+-- config
+-------------------------------------------------------------------------------
+
 -- leader
 vim.g.mapleader = ' '
 vim.g.maplocalreader = ','
-
-
--------------------------------------------------------------------------------
--- settings
--------------------------------------------------------------------------------
 
 -- enable syntax highlighting
 vim.cmd 'syntax on'
@@ -13,8 +12,6 @@ vim.cmd 'syntax on'
 -- do not highlight searches
 vim.o.hlsearch = false
 
--- completion setup
-vim.o.completeopt = 'menuone,noselect'
 
 -- dark background
 vim.o.background = 'dark'
