@@ -155,6 +155,18 @@
         "url": "https://github.com/onsails/lspkind-nvim/archive/f0d1552890e384f15b47ea88bd1b8a077cddc24a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "lualine.nvim": {
+        "branch": "master",
+        "description": "A blazing fast and easy to configure neovim statusline plugin written in pure lua.",
+        "homepage": "",
+        "owner": "nvim-lualine",
+        "repo": "lualine.nvim",
+        "rev": "aed7f2546177b5ffc8300f1ecd1c9e0e06779695",
+        "sha256": "19qp67k2irs3nramxap284rq3c38qi2rxq4qvbivdazbwiq7df0z",
+        "type": "tarball",
+        "url": "https://github.com/nvim-lualine/lualine.nvim/archive/aed7f2546177b5ffc8300f1ecd1c9e0e06779695.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "melange": {
         "branch": "master",
         "description": "🗡️ Warm color scheme for Neovim and beyond",
@@ -369,30 +381,6 @@
         "sha256": "1w9zim2v1av3f43z8q7zh0ia8dgjxjwnvmzd4j3y25vy25avn0lb",
         "type": "tarball",
         "url": "https://github.com/tpope/vim-abolish/archive/3f0c8faadf0c5b68bcf40785c1c42e3731bfa522.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "vim-airline": {
-        "branch": "master",
-        "description": "lean & mean status/tabline for vim that's light as air",
-        "homepage": "",
-        "owner": "vim-airline",
-        "repo": "vim-airline",
-        "rev": "95935e66b9a3cd802900ac2d23ccaaf70145d857",
-        "sha256": "1frp3al8jzcmjhcz13drw1gh0nsany5vpqnhcihl8mqd04g638ax",
-        "type": "tarball",
-        "url": "https://github.com/vim-airline/vim-airline/archive/95935e66b9a3cd802900ac2d23ccaaf70145d857.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "vim-airline-themes": {
-        "branch": "master",
-        "description": "A collection of themes for vim-airline",
-        "homepage": "",
-        "owner": "vim-airline",
-        "repo": "vim-airline-themes",
-        "rev": "97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256",
-        "sha256": "0cbxjb1q7xlxykzq4ab4n3ny768ysf97f7h7d9spfmw286j3c2wi",
-        "type": "tarball",
-        "url": "https://github.com/vim-airline/vim-airline-themes/archive/97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-bbye": {

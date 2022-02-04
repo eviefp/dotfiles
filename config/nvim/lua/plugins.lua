@@ -5,8 +5,8 @@
 require 'plugins.telescope'
 
 -- Themes and display
-require 'plugins.airline'
 require 'plugins.devicons'
+require 'plugins.lualine'
 require 'plugins.rainbow'
 require 'plugins.theme'
 

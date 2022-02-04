@@ -10,16 +10,6 @@ let
   sources = import ../../../../nix/sources.nix;
   unstable = import sources.unstable { };
 
-  airline = vimUtils.buildVimPlugin {
-    name = "vim-airline-master-95935e6";
-    src = sources.vim-airline;
-  };
-
-  airlineThemes = vimUtils.buildVimPlugin {
-    name = "vim-airline-themes-master-97cf3e6";
-    src = sources.vim-airline-themes;
-  };
-
   visualMulti = vimUtils.buildVimPlugin {
     name = "vim-visual-multi-master-e209089";
     src = sources.vim-visual-multi;
@@ -225,6 +215,14 @@ let
     name = "nvim-biscuits-main-15a0cb";
     src = sources.nvim-biscuits;
   };
+
+  luaLine = vimUtils.buildVimPlugin {
+    name = "lualine.nvim-master-aed7f25";
+    src = sources."lualine.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+    '';
+  };
 in
 {
   imports = [ ];
@@ -256,8 +254,6 @@ in
           '';
           packages.myPlugins.start = [
             abolish
-            airline
-            airlineThemes
             bbye
             betterWhitespace
             cmp
@@ -294,6 +290,7 @@ in
             visualMulti
             whichKey
             biscuits
+            luaLine
           ];
         };
       })
