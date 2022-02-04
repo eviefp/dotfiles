@@ -220,6 +220,11 @@ let
     name = "telescope-symbols-master-d2d7d6b";
     src = sources."telescope-symbols.nvim";
   };
+
+  biscuits = vimUtils.buildVimPlugin {
+    name = "nvim-biscuits-main-15a0cb";
+    src = sources.nvim-biscuits;
+  };
 in
 {
   imports = [ ];
@@ -288,6 +293,7 @@ in
             vimVsnip
             visualMulti
             whichKey
+            biscuits
           ];
         };
       })
