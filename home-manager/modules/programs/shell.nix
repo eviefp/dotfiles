@@ -99,6 +99,16 @@ in
             enableFishIntegration = true;
           };
 
+          # https://github.com/shinzui/dotfiles.nix/issues/1
+          gh = {
+            enable = true;
+            enableGitCredentialHelper = true;
+            settings = {
+              git_protocol = "ssh";
+              prompt = "enabled";
+            };
+          };
+
           git = {
             enable = true;
             delta.enable = true;

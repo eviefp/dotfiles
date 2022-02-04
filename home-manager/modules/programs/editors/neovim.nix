@@ -221,6 +221,26 @@ let
     src = sources.catppuccin;
   };
 
+
+  octo = vimUtils.buildVimPlugin {
+    name = "octo.nvim-master-d21c5cc";
+    src = sources."octo.nvim";
+  };
+
+  trouble = vimUtils.buildVimPlugin {
+    name = "trouble.nvim-master-d035ef2";
+    src = sources."trouble.nvim";
+  };
+
+  harpoon = vimUtils.buildVimPlugin {
+    name = "harpoon-master-d035ef2";
+    src = sources.harpoon;
+  };
+
+  textobjects = vimUtils.buildVimPlugin {
+    name = "nvim-treesitter-textobjects-master-438d2cf";
+    src = sources.nvim-treesitter-textobjects;
+  };
 in
 {
   imports = [ ];
@@ -289,6 +309,9 @@ in
             biscuits
             luaLine
             catppuccin
+            octo
+            trouble
+            harpoon
           ];
         };
       })
