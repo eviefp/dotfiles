@@ -38,3 +38,6 @@ map('n' , '<localleader>eq' , 'o\\setcounter{equation}{0}<cr>\\begin{eqnarray}<c
 -- Tabularize
 map('v', '<leader>ar', ':Tabularize /', {})
 
+-------------------------------------------------------------------------------
+-- Quickfix
+-- map('n', 'dd', "<cmd>call setqflist(filter(getqflist(), {idx -> idx != line('.') - 1}), 'r') <Bar> cc<CR>", { silent = true, noremap = true })

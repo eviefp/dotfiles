@@ -28,4 +28,5 @@ require 'plugins.eunuch'
 require 'plugins.lexical'
 require 'plugins.which-key'
 
-
+-- trial
+require 'plugins.biscuits'

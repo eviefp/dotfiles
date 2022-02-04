@@ -21,7 +21,8 @@ telescope.setup {
         ['<C-j>'] = actions.move_selection_next,
         ['<C-h>'] = actions.preview_scrolling_up,
         ['<C-l>'] = actions.preview_scrolling_down,
-        ['<C-Space>'] = actions.select_vertical, -- TODO: why can't I use <C-CR>?
+        ['<C-Space>'] = actions.select_vertical,
+        ['<C-Tab>'] = actions.select_horizontal,
       },
     },
   },

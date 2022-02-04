@@ -191,6 +191,18 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/3ddd960a3b575bf3230d0e59f42614b71f9e0db9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nvim-biscuits": {
+        "branch": "main",
+        "description": "A neovim port of Assorted Biscuits. Ends up with more supported languages too.",
+        "homepage": null,
+        "owner": "code-biscuits",
+        "repo": "nvim-biscuits",
+        "rev": "15a0cb1273bd36d5a734210cdc3406fb4bcfb733",
+        "sha256": "15incx76ps8k4bra3s6ml66ckjhzjgbc7q2njs61yzfg46vdbhsd",
+        "type": "tarball",
+        "url": "https://github.com/code-biscuits/nvim-biscuits/archive/15a0cb1273bd36d5a734210cdc3406fb4bcfb733.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nvim-cmp": {
         "branch": "main",
         "description": "A completion plugin for neovim coded in Lua.",
