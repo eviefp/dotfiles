@@ -198,14 +198,6 @@ let
     src = sources."which-key.nvim";
   };
 
-  melange = vimUtils.buildVimPlugin {
-    name = "melange-master-e3a3a2c";
-    src = sources.melange;
-    configurePhase = ''
-      rm -rf makefile
-    '';
-  };
-
   symbols = vimUtils.buildVimPlugin {
     name = "telescope-symbols-master-d2d7d6b";
     src = sources."telescope-symbols.nvim";
@@ -223,6 +215,12 @@ let
       rm -rf Makefile
     '';
   };
+
+  catppuccin = vimUtils.buildVimPlugin {
+    name = "nvim-main-d48d392";
+    src = sources.catppuccin;
+  };
+
 in
 {
   imports = [ ];
@@ -272,7 +270,6 @@ in
             lspConfig
             lspKind
             markdown
-            melange
             nix
             plenary
             purescript
@@ -291,6 +288,7 @@ in
             whichKey
             biscuits
             luaLine
+            catppuccin
           ];
         };
       })

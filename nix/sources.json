@@ -1,4 +1,16 @@
 {
+    "catppuccin": {
+        "branch": "main",
+        "description": "🍨 Soothing pastel theme for NeoVim",
+        "homepage": "",
+        "owner": "catppuccin",
+        "repo": "nvim",
+        "rev": "d48d3926b10ac1f9ef77cbcac35a4c7160cff6bf",
+        "sha256": "1vvn4qh849rdswvz4cnqci3ahp0z6jppqzg6rlavh8aayppw89lk",
+        "type": "tarball",
+        "url": "https://github.com/catppuccin/nvim/archive/d48d3926b10ac1f9ef77cbcac35a4c7160cff6bf.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "cmp-emoji": {
         "branch": "main",
         "description": "nvim-cmp source for emoji",
@@ -165,18 +177,6 @@
         "sha256": "19qp67k2irs3nramxap284rq3c38qi2rxq4qvbivdazbwiq7df0z",
         "type": "tarball",
         "url": "https://github.com/nvim-lualine/lualine.nvim/archive/aed7f2546177b5ffc8300f1ecd1c9e0e06779695.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "melange": {
-        "branch": "master",
-        "description": "🗡️ Warm color scheme for Neovim and beyond",
-        "homepage": "",
-        "owner": "savq",
-        "repo": "melange",
-        "rev": "e3a3a2cd03c73b4fc0670e9ac09dacdb3c6609c1",
-        "sha256": "1y7acxkc6hwnalxq7wv1zdp310ii586cdhdh84v6vw0swcd1xapw",
-        "type": "tarball",
-        "url": "https://github.com/savq/melange/archive/e3a3a2cd03c73b4fc0670e9ac09dacdb3c6609c1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
