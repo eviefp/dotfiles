@@ -269,6 +269,22 @@ let
       rm -rf Makefile
     '';
   };
+
+  neorg = vimUtils.buildVimPlugin {
+    name = "neorg-main-944de8a";
+    src = sources.neorg;
+    configurePhase = ''
+      rm -rf Makefile
+    '';
+  };
+
+  truezen = vimUtils.buildVimPlugin {
+    name = "truezen.nvim-main-508b977";
+    src = sources."truezen.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+    '';
+  };
 in
 {
   imports = [ ];
@@ -346,6 +362,8 @@ in
             hop
             merge
             orgmode
+            neorg
+            truezen
           ];
         };
       })

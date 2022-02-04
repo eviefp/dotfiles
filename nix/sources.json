@@ -215,6 +215,18 @@
         "url": "https://github.com/nvim-lualine/lualine.nvim/archive/aed7f2546177b5ffc8300f1ecd1c9e0e06779695.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "neorg": {
+        "branch": "main",
+        "description": "Modernity meets insane extensibility. The future of organizing your life in Neovim.",
+        "homepage": "",
+        "owner": "nvim-neorg",
+        "repo": "neorg",
+        "rev": "944de8acdbc835554ee93d3bf0eaff9a102a6bfb",
+        "sha256": "0q776f29rfqc0b1vvypa46zky71d761njxjvgqbqn2d9qvs58xya",
+        "type": "tarball",
+        "url": "https://github.com/nvim-neorg/neorg/archive/944de8acdbc835554ee93d3bf0eaff9a102a6bfb.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
@@ -441,6 +453,18 @@
         "sha256": "00g1w1ry2gzklxvmvgy3dpig8njaziqz64yf7bqr9vqf0nxcvb5p",
         "type": "tarball",
         "url": "https://github.com/folke/trouble.nvim/archive/20469be985143d024c460d95326ebeff9971d714.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "truezen.nvim": {
+        "branch": "main",
+        "description": "🦝 Clean and elegant distraction-free writing for NeoVim",
+        "homepage": "",
+        "owner": "pocco81",
+        "repo": "truezen.nvim",
+        "rev": "508b977d71650da5c9243698614a9a1416f116d4",
+        "sha256": "0sr4y1mg83l28l5ias2pv0gxkcgwailfjn2skx35z63f2il3zkbx",
+        "type": "tarball",
+        "url": "https://github.com/pocco81/truezen.nvim/archive/508b977d71650da5c9243698614a9a1416f116d4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "unstable": {
