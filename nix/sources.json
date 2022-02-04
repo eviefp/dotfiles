@@ -167,6 +167,18 @@
         "url": "https://github.com/nix-community/home-manager/archive/697cc8c68ed6a606296efbbe9614c32537078756.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "hop.nvim": {
+        "branch": "master",
+        "description": "Neovim motions on speed!",
+        "homepage": null,
+        "owner": "phaazon",
+        "repo": "hop.nvim",
+        "rev": "f418a3750ed3a7f321287a39d2c9a56d8ad630aa",
+        "sha256": "0imscbnaw02cgxn1qh42zz8divnv43mgccaq4hrancnhixr44lw9",
+        "type": "tarball",
+        "url": "https://github.com/phaazon/hop.nvim/archive/f418a3750ed3a7f321287a39d2c9a56d8ad630aa.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "kommentary": {
         "branch": "main",
         "description": "Neovim commenting plugin, written in lua.",
@@ -177,18 +189,6 @@
         "sha256": "0p2hyqv73gn1lrzf8yi84cfj199jx8ix0llm4jykkxlyx3qprwq2",
         "type": "tarball",
         "url": "https://github.com/b3nj5m1n/kommentary/archive/a190d052fca4ce74ffddb1c87c87ccf15f9111d5.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "lightspeed.nvim": {
-        "branch": "main",
-        "description": "🌌 Next-generation motion plugin with incremental input processing, allowing for unparalleled speed with near-zero cognitive effort",
-        "homepage": "",
-        "owner": "ggandor",
-        "repo": "lightspeed.nvim",
-        "rev": "d648301eebffb49853e97ffd98a0b98cbacaf97d",
-        "sha256": "0q5y23i005v0qqjsdh65xz3m3d7ca3ahqk14w7pqsd8xd2nng73b",
-        "type": "tarball",
-        "url": "https://github.com/ggandor/lightspeed.nvim/archive/d648301eebffb49853e97ffd98a0b98cbacaf97d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lspkind-nvim": {

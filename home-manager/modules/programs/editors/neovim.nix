@@ -242,11 +242,6 @@ let
     src = sources.nvim-treesitter-textobjects;
   };
 
-  lightspeed = vimUtils.buildVimPlugin {
-    name = "lightspeed.nvim-main-d648301";
-    src = sources."lightspeed.nvim";
-  };
-
   tokyo = vimUtils.buildVimPlugin {
     name = "tokyonight.nvim-main-8223c97";
     src = sources."tokyonight.nvim";
@@ -255,6 +250,11 @@ let
   gitMessenger = vimUtils.buildVimPlugin {
     name = "git-messenger.vim-master-2e67899";
     src = sources."git-messenger.vim";
+  };
+
+  hop = vimUtils.buildVimPlugin {
+    name = "hop.nvim-master-f418a37";
+    src = sources."hop.nvim";
   };
 in
 {
@@ -327,9 +327,9 @@ in
             octo
             trouble
             harpoon
-            lightspeed
             tokyo
             gitMessenger
+            hop
           ];
         };
       })
