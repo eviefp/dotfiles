@@ -107,6 +107,18 @@
         "url": "https://github.com/nix-community/emacs-overlay/archive/cda8c68fe3dabd1cfd8b9621564d3088d0bcb071.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "git-messenger.vim": {
+        "branch": "master",
+        "description": "Vim and Neovim plugin to reveal the commit messages under the cursor",
+        "homepage": "",
+        "owner": "rhysd",
+        "repo": "git-messenger.vim",
+        "rev": "2e67899355f3f631aad6845925e4c2c13546444d",
+        "sha256": "0a6c04far9ji7h7k0b195zxn62sj6drn56cacmz86zmzksqgm8wp",
+        "type": "tarball",
+        "url": "https://github.com/rhysd/git-messenger.vim/archive/2e67899355f3f631aad6845925e4c2c13546444d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "gitsigns.nvim": {
         "branch": "main",
         "description": "Git integration for buffers",

@@ -251,6 +251,11 @@ let
     name = "tokyonight.nvim-main-8223c97";
     src = sources."tokyonight.nvim";
   };
+
+  gitMessenger = vimUtils.buildVimPlugin {
+    name = "git-messenger.vim-master-2e67899";
+    src = sources."git-messenger.vim";
+  };
 in
 {
   imports = [ ];
@@ -324,6 +329,7 @@ in
             harpoon
             lightspeed
             tokyo
+            gitMessenger
           ];
         };
       })

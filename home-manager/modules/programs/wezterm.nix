@@ -29,11 +29,11 @@ return {
   font_size = 10,
   -- color_scheme = 'Molokai',
   enable_tab_bar = false,
-  window_background_opacity = 0.6,
+  window_background_opacity = 0.5,
   text_background_opacity = 1.0,
   colors = {
     foreground = "#c0caf5",
-    background = "#1a1b26",
+    background = "#0a0a0f",
     cursor_bg = "#c0caf5",
     cursor_border = "#c0caf5",
     cursor_fg = "#1a1b26",
