@@ -3,6 +3,7 @@
 ------------------------------------------------------------------------------
 
 require 'plugins.orgmode'
+require 'plugins.neorg'
 
 require 'plugins.telescope'
 
@@ -38,3 +39,4 @@ require 'plugins.hop'
 require 'plugins.mergetool'
 require 'plugins.octo'
 require 'plugins.trouble'
+require 'plugins.truezen'
