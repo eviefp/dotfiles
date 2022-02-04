@@ -256,6 +256,19 @@ let
     name = "hop.nvim-master-f418a37";
     src = sources."hop.nvim";
   };
+
+  merge = vimUtils.buildVimPlugin {
+    name = "vim-mergetool-master-0275a85";
+    src = sources."vim-mergetool";
+  };
+
+  orgmode = vimUtils.buildVimPlugin {
+    name = "orgmode-master-f339a7f";
+    src = sources.orgmode;
+    configurePhase = ''
+      rm -rf Makefile
+    '';
+  };
 in
 {
   imports = [ ];
@@ -274,6 +287,7 @@ in
 
     home.packages = [
       pkgs.fd
+      pkgs.gcc
       (unstable.neovim.override {
         viAlias = true;
         vimAlias = true;
@@ -330,6 +344,8 @@ in
             tokyo
             gitMessenger
             hop
+            merge
+            orgmode
           ];
         };
       })

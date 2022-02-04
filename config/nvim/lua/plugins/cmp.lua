@@ -21,7 +21,8 @@ cmp.setup {
         vsnip         = '(Snippet)',
         emoji         = '(Emoji)',
         latex_symbols = '(Latex)',
-        nvim_lua = '(NvimLua)',
+        orgmode       = '(Org)',
+        nvim_lua      = '(NvimLua)',
       },
       madwidth = 100,
       -- This can be used for awesome customisation, see https://github.com/onsails/lspkind-nvim/pull/30
@@ -74,6 +75,7 @@ cmp.setup {
     { name = 'nvim_lua' },
     { name = 'emoji' },
     { name = 'latex_symbols' },
+    { name = 'orgmode' },
     { name = 'buffer' },
   },
 }
