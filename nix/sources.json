@@ -311,6 +311,18 @@
         "url": "https://github.com/pwntester/octo.nvim/archive/d21c5cc8e2a28c58a28eee353dbab81c74e76382.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "orgmode": {
+        "branch": "master",
+        "description": "Orgmode clone written in Lua for Neovim 0.5+.",
+        "homepage": "",
+        "owner": "nvim-orgmode",
+        "repo": "orgmode",
+        "rev": "f339a7f87e4736c0a3e0db563b8c3cb45fc00a61",
+        "sha256": "1raicj3h524csqivw9x3l6znx5y7dwfn3cmh2hzddfy0n7n1mph0",
+        "type": "tarball",
+        "url": "https://github.com/nvim-orgmode/orgmode/archive/f339a7f87e4736c0a3e0db563b8c3cb45fc00a61.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "plenary.nvim": {
         "branch": "master",
         "description": "plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write twice.",
@@ -525,6 +537,18 @@
         "sha256": "09d5nchic0hj91s9njy44px5cdxpnygyhlanl08zyriysprk3dia",
         "type": "tarball",
         "url": "https://github.com/tpope/vim-markdown/archive/59a551feb24325498a5cf3a7f7fe4565361c1193.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-mergetool": {
+        "branch": "master",
+        "description": ":cake: Efficient way of using Vim as a Git mergetool",
+        "homepage": "",
+        "owner": "samoshkin",
+        "repo": "vim-mergetool",
+        "rev": "0275a85256ad173e3cde586d54f66566c01b607f",
+        "sha256": "1i3zil06zyndm400i2pfn64ykbs29fw8l720229a8ypp9mxcibcp",
+        "type": "tarball",
+        "url": "https://github.com/samoshkin/vim-mergetool/archive/0275a85256ad173e3cde586d54f66566c01b607f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-nix": {

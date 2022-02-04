@@ -2,6 +2,8 @@
 -- plugins
 ------------------------------------------------------------------------------
 
+require 'plugins.orgmode'
+
 require 'plugins.telescope'
 
 -- Themes and display
@@ -33,5 +35,6 @@ require 'plugins.biscuits'
 require 'plugins.harpoon'
 require 'plugins.git-messenger'
 require 'plugins.hop'
+require 'plugins.mergetool'
 require 'plugins.octo'
 require 'plugins.trouble'
