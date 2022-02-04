@@ -119,6 +119,18 @@
         "url": "https://github.com/lewis6991/gitsigns.nvim/archive/4861666b58f525456f6cf68319e4fc6703b5ee65.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "harpoon": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "theprimeagen",
+        "repo": "harpoon",
+        "rev": "d035ef263a75029b0351f2be3708ec2829e2a3df",
+        "sha256": "0zj44bcpsxdmxy36sfdbcc9587pasqffwhl72sjz943rvpxngng7",
+        "type": "tarball",
+        "url": "https://github.com/theprimeagen/harpoon/archive/d035ef263a75029b0351f2be3708ec2829e2a3df.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "haskell-language-server": {
         "branch": "master",
         "description": "Official haskell ide support via language server (LSP). Successor of ghcide & haskell-ide-engine.",
@@ -263,6 +275,18 @@
         "url": "https://github.com/kyazdani42/nvim-web-devicons/archive/634e26818f2bea9161b7efa76735746838971824.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "octo.nvim": {
+        "branch": "master",
+        "description": "Edit and review GitHub issues and pull requests from the comfort of your favorite editor",
+        "homepage": "",
+        "owner": "pwntester",
+        "repo": "octo.nvim",
+        "rev": "d21c5cc8e2a28c58a28eee353dbab81c74e76382",
+        "sha256": "13lzq4py15szsr3ii3nq8xdy7vcqa0fkzsz18c84yvyy0k38q7d1",
+        "type": "tarball",
+        "url": "https://github.com/pwntester/octo.nvim/archive/d21c5cc8e2a28c58a28eee353dbab81c74e76382.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "plenary.nvim": {
         "branch": "master",
         "description": "plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write twice.",
@@ -357,6 +381,18 @@
         "sha256": "0hlc3dnzkkvggr9g4qa4sn99k8glzb0805v2zq2i6racxb7w3w9g",
         "type": "tarball",
         "url": "https://github.com/vladciobanu/thing/archive/447901789b70541c7376543829a6c750a13528e2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "trouble.nvim": {
+        "branch": "main",
+        "description": "🚦 A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.",
+        "homepage": "",
+        "owner": "folke",
+        "repo": "trouble.nvim",
+        "rev": "20469be985143d024c460d95326ebeff9971d714",
+        "sha256": "00g1w1ry2gzklxvmvgy3dpig8njaziqz64yf7bqr9vqf0nxcvb5p",
+        "type": "tarball",
+        "url": "https://github.com/folke/trouble.nvim/archive/20469be985143d024c460d95326ebeff9971d714.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "unstable": {
