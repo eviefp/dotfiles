@@ -31,5 +31,6 @@ require 'plugins.which-key'
 -- trial
 require 'plugins.biscuits'
 require 'plugins.harpoon'
+require 'plugins.lightspeed'
 require 'plugins.octo'
 require 'plugins.trouble'

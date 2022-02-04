@@ -167,6 +167,18 @@
         "url": "https://github.com/b3nj5m1n/kommentary/archive/a190d052fca4ce74ffddb1c87c87ccf15f9111d5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "lightspeed.nvim": {
+        "branch": "main",
+        "description": "🌌 Next-generation motion plugin with incremental input processing, allowing for unparalleled speed with near-zero cognitive effort",
+        "homepage": "",
+        "owner": "ggandor",
+        "repo": "lightspeed.nvim",
+        "rev": "d648301eebffb49853e97ffd98a0b98cbacaf97d",
+        "sha256": "0q5y23i005v0qqjsdh65xz3m3d7ca3ahqk14w7pqsd8xd2nng73b",
+        "type": "tarball",
+        "url": "https://github.com/ggandor/lightspeed.nvim/archive/d648301eebffb49853e97ffd98a0b98cbacaf97d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "lspkind-nvim": {
         "branch": "master",
         "description": "vscode-like pictograms for neovim lsp completion items",
@@ -381,6 +393,18 @@
         "sha256": "0hlc3dnzkkvggr9g4qa4sn99k8glzb0805v2zq2i6racxb7w3w9g",
         "type": "tarball",
         "url": "https://github.com/vladciobanu/thing/archive/447901789b70541c7376543829a6c750a13528e2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tokyonight.nvim": {
+        "branch": "main",
+        "description": "🏙  A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish.",
+        "homepage": "",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "8223c970677e4d88c9b6b6d81bda23daf11062bb",
+        "sha256": "1rzg0h0ab3jsfrimdawh8vlxa6y3j3rmk57zyapnmzpzllcswj0i",
+        "type": "tarball",
+        "url": "https://github.com/folke/tokyonight.nvim/archive/8223c970677e4d88c9b6b6d81bda23daf11062bb.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "trouble.nvim": {

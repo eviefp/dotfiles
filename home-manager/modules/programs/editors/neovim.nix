@@ -241,6 +241,16 @@ let
     name = "nvim-treesitter-textobjects-master-438d2cf";
     src = sources.nvim-treesitter-textobjects;
   };
+
+  lightspeed = vimUtils.buildVimPlugin {
+    name = "lightspeed.nvim-main-d648301";
+    src = sources."lightspeed.nvim";
+  };
+
+  tokyo = vimUtils.buildVimPlugin {
+    name = "tokyonight.nvim-main-8223c97";
+    src = sources."tokyonight.nvim";
+  };
 in
 {
   imports = [ ];
@@ -312,6 +322,8 @@ in
             octo
             trouble
             harpoon
+            lightspeed
+            tokyo
           ];
         };
       })
