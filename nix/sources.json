@@ -599,6 +599,18 @@
         "url": "https://github.com/tpope/vim-rhubarb/archive/977b3ccbad1f7e5370354ae409fb2ea4a7ce2058.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "vim-sandwich": {
+        "branch": "master",
+        "description": "Set of operators and textobjects to search/select/edit sandwiched texts.",
+        "homepage": "",
+        "owner": "machakann",
+        "repo": "vim-sandwich",
+        "rev": "48acdaded60c6b75fce06a0d61183ee99950c0ec",
+        "sha256": "0rijq9xwm3n84vpjzyvcpy6r58y6ma2pxj61h86122wda5ymwxwg",
+        "type": "tarball",
+        "url": "https://github.com/machakann/vim-sandwich/archive/48acdaded60c6b75fce06a0d61183ee99950c0ec.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "vim-signature": {
         "branch": "master",
         "description": "Plugin to toggle, display and navigate marks",

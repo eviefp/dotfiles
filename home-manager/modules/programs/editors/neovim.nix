@@ -30,11 +30,6 @@ let
     src = sources.tabular;
   };
 
-  surround = vimUtils.buildVimPlugin {
-    name = "vim-surround-master-aeb9332";
-    src = sources.vim-surround;
-  };
-
   rainbow = vimUtils.buildVimPlugin {
     name = "rainbow-master-c18071e";
     src = sources.rainbow;
@@ -285,6 +280,12 @@ let
       rm -rf Makefile
     '';
   };
+
+  sandwich = vimUtils.buildVimPlugin {
+    name = "vim-sandwitch-master-48acdad";
+    src = sources.vim-sandwich;
+  };
+
 in
 {
   imports = [ ];
@@ -342,7 +343,6 @@ in
             rhubarb
             signature
             solarized
-            surround
             symbols
             tabular
             telescope
@@ -364,6 +364,7 @@ in
             orgmode
             neorg
             truezen
+            sandwich
           ];
         };
       })
