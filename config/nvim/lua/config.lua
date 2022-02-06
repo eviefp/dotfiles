@@ -96,6 +96,8 @@ autocmd FileType txt setlocal textwidth=80 spell
 autocmd FileType tex setlocal textwidth=80 spell
 ]]
 
+vim.o.textwidth = 80
+
 -- highlight yank
 vim.cmd [[
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=false}
