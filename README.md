@@ -74,8 +74,6 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 ### home-manager
 
-- [ ] remove kitty?
-
 ### neovim
 
 - [ ] fugitive keybindings
