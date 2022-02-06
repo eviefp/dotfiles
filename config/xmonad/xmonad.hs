@@ -37,7 +37,7 @@ newBindings x =
   [ ((modMask x, xK_Right), nextWS),
     ((modMask x, xK_Left), prevWS),
     ((modMask x, xK_p), spawn "rofi -show run"),
-    ((modMask x, xK_s), spawn "rofi -show ssh -terminal kitty"),
+    ((modMask x, xK_s), spawn "rofi -show ssh -terminal wezterm"),
     ((modMask x, xK_o), spawn "rofi-pass"),
     ((modMask x, xK_a), spawn "xrandr --output HDMI-1 --mode 1920x1080 --right-of DP-2"),
     ((modMask x, xK_z), spawn "xrandr --output HDMI-1 --off"),
