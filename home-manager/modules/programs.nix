@@ -9,6 +9,7 @@ in
   imports = [
     ./programs/chat.nix
     ./programs/dev/haskell.nix
+    ./programs/dev/lua.nix
     ./programs/dev/nix.nix
     ./programs/dev/provers.nix
     ./programs/dev/tools.nix
@@ -17,6 +18,7 @@ in
     ./programs/shell/ranger.nix
     ./programs/streaming.nix
     ./programs/text.nix
+    ./programs/wezterm.nix
   ];
 
   options.evie.programs = {

@@ -8,7 +8,7 @@
     ../modules/gui.nix
     ../modules/programs/editors/emacs.nix
     ../modules/email.nix
-    ../modules/programs/editors/nvim.nix
+    ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
   ];
 
@@ -23,7 +23,7 @@
     };
 
     editors = {
-      nvim.enable = true;
+      neovim.enable = true;
 
       emacs = {
         enable = true;
@@ -57,5 +57,13 @@
 
   evie.fonts.enable = true;
 
-  home.sessionVariables = { EDITOR = "emacsclient"; };
+  evie.system = {
+    enable = true;
+    host = "aiode";
+    dotfiles = "/home/evie/code/dotfiles";
+  };
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }

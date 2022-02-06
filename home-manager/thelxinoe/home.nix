@@ -8,24 +8,28 @@
     ../modules/gui.nix
     ../modules/programs/editors/emacs.nix
     ../modules/email.nix
-    ../modules/programs/editors/nvim.nix
+    ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
+    ../modules/system.nix
   ];
 
   evie.programs = {
     enable = true;
 
+    browsers.enable = true;
+
     chat.enable = true;
 
     dev = {
       haskell.enable = true;
+      lua.enable = true;
       nix.enable = true;
       provers.enable = false;
       tools.enable = true;
     };
 
     editors = {
-      nvim.enable = true;
+      neovim.enable = true;
 
       emacs = {
         enable = true;
@@ -38,6 +42,7 @@
 
     shell = {
       enable = true;
+      experimental = true;
       ranger.enable = true;
     };
 
@@ -50,11 +55,21 @@
 
     gui.enable = true;
 
+    wezterm.enable = true;
+
   };
 
   evie.email.enable = true;
 
   evie.fonts.enable = true;
 
-  home.sessionVariables = { EDITOR = "emacsclient"; };
+  evie.system = {
+    enable = true;
+    host = "thelxinoe";
+    dotfiles = "/home/evie/code/dotfiles";
+  };
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }

@@ -19,7 +19,7 @@ in
     ];
 
     home.file = {
-      ".config/tridactyl/tridactylrc".source = ../../config/tridactyl;
+      ".config/tridactyl/tridactylrc".source = ../../../config/tridactyl;
       ".mozilla/native-messaging-hosts/passff.json".source =
         "${pkgs.passff-host}/share/passff-host/passff.json";
       ".mozilla/native-messaging-hosts/tridactyl.json".source =

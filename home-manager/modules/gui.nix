@@ -41,7 +41,6 @@ in
 
       pkgs.pipewire # used to create multi audio sinks
 
-
       # X-server related
       pkgs.haskellPackages.xmobar
       pkgs.pass
@@ -67,6 +66,8 @@ in
         ../../config/fish/functions/ed.fish;
       ".config/fish/functions/tv.fish".source =
         ../../config/fish/functions/tv.fish;
+      ".config/fish/functions/fixUI.fish".source =
+        ../../config/fish/functions/fixUI.fish;
 
       ".xmonad/xmonad.hs".source = ../../config/xmonad/xmonad.hs;
       ".xmonad/get-mic.sh".source = ../../config/xmonad/get-mic.sh;

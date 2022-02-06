@@ -70,6 +70,8 @@ in
               set fish_color_redirection "#37b5c3"
               set fish_color_end "#3776c3"
               set fish_color_error "#c33759"
+
+              fish_vi_key_bindings
             '';
             shellAliases = {
               # exa
@@ -84,6 +86,10 @@ in
 
               # bat
               cat = "${pkgs.bat}/bin/bat";
+
+              # nix-shell
+              nix-shell = "nix-shell --command ${pkgs.fish}/bin/fish";
+              nix-pshell = "nix-shell --command ${pkgs.fish}/bin/fish --pure";
             };
           };
 
@@ -91,6 +97,16 @@ in
             enable = true;
             enableBashIntegration = true;
             enableFishIntegration = true;
+          };
+
+          # https://github.com/shinzui/dotfiles.nix/issues/1
+          gh = {
+            enable = true;
+            enableGitCredentialHelper = true;
+            settings = {
+              git_protocol = "ssh";
+              prompt = "enabled";
+            };
           };
 
           git = {
@@ -175,7 +191,7 @@ in
             enable = true;
             enableFishIntegration = true;
             enableBashIntegration = true;
-            modal = true;
+            modal = false;
             skin = { default = "none none / gray(20) none"; };
           };
 
