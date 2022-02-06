@@ -29,6 +29,8 @@ in
       };
     };
 
+    nix.trustedUsers = [ "root" "evie" ];
+
     security.sudo.wheelNeedsPassword = false;
   };
 }

@@ -79,7 +79,7 @@ main = do
         startupHook = myStartupHook,
         modMask = mod4Mask,
         keys = myKeys,
-        terminal = "kitty",
+        terminal = "wezterm",
         workspaces = myWorkspaces,
         handleEventHook =
           mconcat
