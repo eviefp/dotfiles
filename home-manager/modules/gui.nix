@@ -13,12 +13,6 @@ in
 
   options.evie.programs.gui = {
     enable = lib.options.mkEnableOption "Enable generic UI packages.";
-
-    kittyFontSize = lib.mkOption {
-      type = lib.types.str;
-      default = "10.0";
-      description = "Kitty terminal font size.";
-    };
   };
 
   config = (lib.mkIf cfg.enable {
@@ -78,23 +72,6 @@ in
     };
 
     programs = {
-      kitty = {
-        enable = true;
-        settings = {
-          "scrollback_lines" = "10000";
-          "repaint_delay" = "4";
-          "font_family" = "Hasklug Nerd Font Complete Mono";
-          "bold_font" = "Hasklug Bold Nerd Font Complete Mono";
-          "italic_font" = "Hasklug Italic Nerd Font Complete Mono";
-          "bold_italic_font" = "Hasklug Bold Italic Nerd Font Complete Mono";
-          "disable_ligatures" = "never";
-          "background_opacity" = "0.7";
-          "dynamic_background_opacity" = "yes";
-          "background_tint" = "0.8";
-          "font_size" = cfg.kittyFontSize;
-        };
-      };
-
       mpv = {
         enable = true;
       };
