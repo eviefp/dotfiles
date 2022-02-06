@@ -107,6 +107,18 @@
         "url": "https://github.com/nix-community/emacs-overlay/archive/cda8c68fe3dabd1cfd8b9621564d3088d0bcb071.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "fairyfloss.vim": {
+        "branch": "master",
+        "description": "Pastel color scheme",
+        "homepage": "",
+        "owner": "tssm",
+        "repo": "fairyfloss.vim",
+        "rev": "61c8bbde542a3d6ee86fe13e5332fd3f78c46c0a",
+        "sha256": "1qfrb896f5hxj6mrsqwl9xfd3p52sa603s2g169pg5gjskcp4l1m",
+        "type": "tarball",
+        "url": "https://github.com/tssm/fairyfloss.vim/archive/61c8bbde542a3d6ee86fe13e5332fd3f78c46c0a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "git-messenger.vim": {
         "branch": "master",
         "description": "Vim and Neovim plugin to reveal the commit messages under the cursor",
@@ -215,6 +227,18 @@
         "url": "https://github.com/nvim-lualine/lualine.nvim/archive/aed7f2546177b5ffc8300f1ecd1c9e0e06779695.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "material.vim": {
+        "branch": "main",
+        "description": "🎨 A port of the Material color scheme for Vim/Neovim",
+        "homepage": "",
+        "owner": "kaicataldo",
+        "repo": "material.vim",
+        "rev": "445534b2db7f7ec3dc088eae21c86ff0e9bb19de",
+        "sha256": "1lwlr6haj1damzmk6i6a1la7vql4y1wmb62iqvm6xgy2svr0s36i",
+        "type": "tarball",
+        "url": "https://github.com/kaicataldo/material.vim/archive/445534b2db7f7ec3dc088eae21c86ff0e9bb19de.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "neorg": {
         "branch": "main",
         "description": "Modernity meets insane extensibility. The future of organizing your life in Neovim.",
@@ -285,6 +309,18 @@
         "sha256": "02gpqp2r6f6zz3mfbxhsg2hvs00yldkz5wn3snk8nyqllm13i3dm",
         "type": "tarball",
         "url": "https://github.com/neovim/nvim-lspconfig/archive/c51096481dc13193991571b7132740d762902355.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nvim-snitch": {
+        "branch": "main",
+        "description": "Highlight spoiled text",
+        "homepage": "",
+        "owner": "tssm",
+        "repo": "nvim-snitch",
+        "rev": "ed57352bb167470b57f7c7b0427393eeed03866a",
+        "sha256": "1yxshjwcr2bypg1gmka0ym9j7l2w2bmg04ghya8lxfy5rbby5sj2",
+        "type": "tarball",
+        "url": "https://github.com/tssm/nvim-snitch/archive/ed57352bb167470b57f7c7b0427393eeed03866a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nvim-treesitter": {

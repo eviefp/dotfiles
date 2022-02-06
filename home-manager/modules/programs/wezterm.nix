@@ -29,7 +29,7 @@ return {
   font_size = 10,
   -- color_scheme = 'Molokai',
   enable_tab_bar = false,
-  window_background_opacity = 0.5,
+  window_background_opacity = 0.6,
   text_background_opacity = 1.0,
   colors = {
     foreground = "#c0caf5",

@@ -286,6 +286,20 @@ let
     src = sources.vim-sandwich;
   };
 
+  snitch = vimUtils.buildVimPlugin {
+    name = "nvim-snitch-ed57352";
+    src = sources.nvim-snitch;
+  };
+
+  fairyfloss = vimUtils.buildVimPlugin {
+    name = "fairyfloss.vim-master-61c8bbd";
+    src = sources."fairyfloss.vim";
+  };
+
+  material = vimUtils.buildVimPlugin {
+    name = "material.vim-main-445534b";
+    src = sources."material.vim";
+  };
 in
 {
   imports = [ ];
@@ -365,6 +379,9 @@ in
             neorg
             truezen
             sandwich
+            snitch
+            fairyfloss
+            material
           ];
         };
       })
