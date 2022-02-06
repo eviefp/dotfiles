@@ -10,6 +10,7 @@
     ../modules/email.nix
     ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
+    ../modules/system.nix
   ];
 
   evie.programs = {
@@ -48,7 +49,6 @@
 
     gui = {
       enable = true;
-      kittyFontSize = "12.0";
     };
 
   };
