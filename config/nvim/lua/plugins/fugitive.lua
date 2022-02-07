@@ -12,7 +12,7 @@ map('' , '<leader>gl'  , '<cmd>Git log<cr>'                     , {})
 
 map('' , '<leader>gf'  , '<cmd>Git fetch<cr>'                   , {})
 map('' , '<leader>gp'  , '<cmd>Git push<cr>'                    , {})
-map('' , '<leader>gp'  , '<cmd>Git push --force-with-lease<cr>' , {})
+map('' , '<leader>gP'  , '<cmd>Git push --force-with-lease<cr>' , {})
 map('' , '<leader>gu'  , '<cmd>Git pull<cr>'                    , {})
 
 map('' , '<leader>gsd' , '<cmd>Gdiffsplit!<cr>'                 , {})

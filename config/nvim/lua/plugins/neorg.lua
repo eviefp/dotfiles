@@ -46,6 +46,10 @@ neorg.setup {
               { 'gtc'                  , 'core.norg.qol.todo_items.todo.task_cancelled' },
               { 'gtr'                  , 'core.norg.qol.todo_items.todo.task_recurring' },
               { 'gti'                  , 'core.norg.qol.todo_items.todo.task_important' },
+
+              { '<localleader>tc'      , 'core.gtd.base.capture' },
+              { '<localleader>tv'      , 'core.gtd.base.views' },
+              { '<localleader>te'      , 'core.gtd.base.edit' },
             },
             i = {
               { '<c-l>', 'core.integrations.telescope.insert_link' },
@@ -54,7 +58,23 @@ neorg.setup {
             silent = true,
             noremap = true,
           })
+          -- Map the below keys on gtd displays
+          keybinds.map_event_to_mode("gtd-displays", {
+            n = {
+              { "<CR>", "core.gtd.ui.goto_task" },
 
+              -- Keys for closing the current display
+              { "q", "core.gtd.ui.close" },
+              { "<Esc>", "core.gtd.ui.close" },
+
+              { "e", "core.gtd.ui.edit_task" },
+              { "<Tab>", "core.gtd.ui.details" },
+            },
+          }, {
+              silent = true,
+              noremap = true,
+              nowait = true,
+          })
           -- TOC related
           keybinds.map_event_to_mode('toc-split', {
               n = {
@@ -90,7 +110,7 @@ neorg.setup {
           -- Apply the below keys to all modes
           keybinds.map_to_mode('all', {
               n = {
-                  { '<localleader>t', ':Neorg toc split<cr>' },
+                  { '<localleader>ts', ':Neorg toc split<cr>' },
                   { '<leader>mn', ':Neorg mode norg<cr>' },
                   { '<leader>mh', ':Neorg mode traverse-heading<cr>' },
               },
@@ -127,6 +147,14 @@ neorg.setup {
     ['core.norg.completion'] = {
       config = {
         engine = 'nvim-cmp',
+      },
+    },
+    ['core.gtd.base'] = {
+      config = {
+        workspace = 'home',
+        default_lists = {
+          inbox = 'todo.norg',
+        },
       },
     },
   },
