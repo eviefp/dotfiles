@@ -130,3 +130,6 @@ octo.setup {
   }
 }
 
+local map = vim.api.nvim_set_keymap
+
+map('n' , '<leader>op' , '<cmd>Octo pr list<cr>' , {})

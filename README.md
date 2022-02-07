@@ -68,16 +68,3 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `fractal` is my home server/nas
   - `thelxinoe` is my main desktop
 
-## TODO
-
-### system
-
-### home-manager
-
-### neovim
-
-- [ ] fugitive keybindings
-  - [ ] tab for toggle file details
-
-### other
-- [ ] treesitter purescript
