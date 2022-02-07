@@ -4,7 +4,7 @@
 
 -- leader
 vim.g.mapleader = ' '
-vim.g.maplocalreader = ','
+vim.g.maplocalleader = ','
 
 -- enable syntax highlighting
 vim.cmd 'syntax on'

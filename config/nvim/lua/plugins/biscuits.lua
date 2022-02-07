@@ -16,5 +16,5 @@ biscuits.setup {
     },
   },
   toggle_keybind = '<leader>bb',
-  show_on_start = true,
+  show_on_start = false,
 };
