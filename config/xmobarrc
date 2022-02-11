@@ -1,17 +1,23 @@
-Config { font = "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
+Config { font = "xft:hasklug nerd font mono:weight=Bold:size=14:antialias=true"
+       , additionalFonts = [ "xft:FontAwesome:size=30:antialias=true" ]
        , bgColor = "#222222"
        , fgColor = "grey"
-       , position = TopW L 93
-       , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 15
-                    , Run Memory ["-t", "<usedbar>"] 100
-                    , Run Volume "default" "Master" [] 10
-                    , Run Wireless "wlp2s0" [] 100
-                    , Run BatteryP ["BAT0"] ["-t", "<acstatus> <left>%", "-h", "green", "-n", "yellow", "-l", "red"] 50
-                    , Run DateZone "%a %d %b %Y - %H:%M:%S" "en_UK.UTF-8" "EET" "date" 10
+       , position = Top
+       , commands = [ Run Cpu ["-t", "<total> <fc=#ed00a2>\xf2db</fc>", "-L","5","-H","60","--normal","green","--high","red", "-p", "4"] 10
+                    , Run Memory ["-t", "<usedratio> <fc=#9200ed>\xf538</fc>", "-L","5","-H","40","--normal","green","--high","red", "-p", "4"] 10
+                    , Run DiskIO [("/", "<read><write> <fc=#00d9ed>\xf0a0</fc>")] ["-L","10000","-H","40","--normal","green","--high","red", "-w", "5"] 10
+                    , Run DynNetwork ["-t", "<rx>KB<tx>KB <fc=#dded00>\xf6ff</fc>", "-H","1000","--normal","green","--high","red", "-w", "5"] 10
+                    , Run Volume "default" "Master" ["-t", "<volume> <fc=#00ed3b>\xf028</fc>", "-L", "40", "-H", "90", "-p", "4"] 10
+                    , Run Weather "LRBS" [ "-t", "<tempC>C <fc=#00edb9>\xf2c9</fc>", "-L","5","-H","30","--normal","green","--high","red", "--low", "blue", "-w", "4" ] 36000
+                    , Run Mail [("", "~/mail/eevie/Inbox")] "mail"
+                    , Run Com "echo" ["<fc=#001fed>\xf01c</fc>"] "mail_icon" 36000
+                    , Run Com "hcs" ["next", "--xmobar"] "hcs" 1000
+                    , Run Com "echo" [" <fc=#ed4300>\xf274</fc>"] "hcs_icon" 36000
+                    , Run DateZone "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xf073</fc> " "en_UK.UTF-8" "EET" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %wlp2s0wi% | %default:Master% | %battery% | %date% "
+       , template = "%StdinReader% }{ %cpu% %memory% %diskio% %dynnetwork% %default:Master% %LRBS%    %mail% %mail_icon%    %hcs% %hcs_icon% %date%"
        , lowerOnStart = False
        }

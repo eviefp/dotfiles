@@ -16,6 +16,7 @@ in
     home.packages = [
       pkgs.fira-code
       pkgs.nerdfonts
+      pkgs.font-awesome
     ];
 
     fonts.fontconfig.enable = true;
