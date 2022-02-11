@@ -3,7 +3,8 @@
   *
   **************************************************************************/
 { lib, config, pkgs, ... }:
-let cfg = config.evie.programs;
+let
+  cfg = config.evie.programs;
 in
 {
   imports = [
@@ -14,6 +15,7 @@ in
     ./programs/dev/provers.nix
     ./programs/dev/tools.nix
     ./programs/editors/vscode.nix
+    ./programs/hcs.nix
     ./programs/shell.nix
     ./programs/shell/ranger.nix
     ./programs/streaming.nix

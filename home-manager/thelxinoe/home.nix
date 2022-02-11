@@ -40,6 +40,10 @@
       };
     };
 
+    hcs = {
+      enable = true;
+    };
+
     shell = {
       enable = true;
       experimental = true;
