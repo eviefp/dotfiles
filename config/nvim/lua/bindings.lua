@@ -26,14 +26,6 @@ map('n' , 'gD'         , '<cmd>vsplit<cr><cmd>lua vim.lsp.buf.definition()<cr>' 
 map('n' , 'K'          , '<cmd>lua vim.lsp.buf.hover()<cr>'                                 , { noremap = true   , silent = true })
 map('n' , '<c-k>'      , '<cmd>lua vim.lsp.buf.signature_help()<cr>'                        , { noremap = true   , silent = true })
 
-
--------------------------------------------------------------------------------
--- localleader stuff (,)
--- TODO: should only work for tex
-map('n' , '<localleader>p'  , '$a \\pause<esc>'                                                        , {})
-map('n' , '<localleader>cp' , '$a ~\\pause~<esc>'                                                      , {})
-map('n' , '<localleader>eq' , 'o\\setcounter{equation}{0}<cr>\\begin{eqnarray}<cr>\\end{eqnarray}<esc>O' , {})
-
 -------------------------------------------------------------------------------
 -- Tabularize
 map('v', '<leader>ar', ':Tabularize /', {})

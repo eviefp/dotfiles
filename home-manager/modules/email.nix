@@ -55,7 +55,14 @@ in
       };
     };
 
+    home.file.".mailcap".text = ''
+text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
+      '';
+
     programs = {
+      alot = {
+        enable = true;
+      };
       mbsync = {
         enable = true;
       };
