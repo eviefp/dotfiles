@@ -50,6 +50,8 @@ neorg.setup {
               { '<localleader>tc'      , 'core.gtd.base.capture' },
               { '<localleader>tv'      , 'core.gtd.base.views' },
               { '<localleader>te'      , 'core.gtd.base.edit' },
+              { '<localleader>fl'      , 'core.integrations.telescope.find_linkable' },
+              { '<leader>fl'           , 'core.integrations.telescope.find_linkable' },
             },
             i = {
               { '<c-l>', 'core.integrations.telescope.insert_link' },
@@ -150,6 +152,14 @@ neorg.setup {
       },
     },
     ['core.gtd.base'] = {
+      config = {
+        workspace = 'home',
+        default_lists = {
+          inbox = 'todo.norg',
+        },
+      },
+    },
+    ['core.integrations.telescope'] = {
       config = {
         workspace = 'home',
         default_lists = {

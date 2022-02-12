@@ -19,3 +19,6 @@ map('' , '<leader>gsd' , '<cmd>Gdiffsplit!<cr>'                 , {})
 map('' , '<Leader>gdh' , '<cmd>diffget //2<cr>:diffupdate<cr>'  , {})
 map('' , '<Leader>gdl' , '<cmd>diffget //3<cr>:diffupdate<cr>'  , {})
 
+vim.cmd [[
+let g:nremap = { '=': '<Tab>' }
+]]

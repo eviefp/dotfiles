@@ -155,12 +155,12 @@ let
     src = sources.cmp-emoji;
   };
 
- cmpLatexSymbols = vimUtils.buildVimPlugin {
+  cmpLatexSymbols = vimUtils.buildVimPlugin {
     name = "cmp-latex-symbols-main-29dc9e5";
     src = sources.cmp-latex-symbols;
   };
 
- cmpLua = vimUtils.buildVimPlugin {
+  cmpLua = vimUtils.buildVimPlugin {
     name = "cmp-nvim-lua-main-d276254";
     src = sources.cmp-nvim-lua;
   };
@@ -300,6 +300,16 @@ let
     name = "material.vim-main-445534b";
     src = sources."material.vim";
   };
+
+  neorg-telescope = vimUtils.buildVimPlugin {
+    name = "neorg-telescope-main-75c2ad0";
+    src = sources.neorg-telescope;
+  };
+
+  tresitter-refactor = vimUtils.buildVimPlugin {
+    name = "nvim-treesitter-refactor-master-0dc8069";
+    src = sources.nvim-treesitter-refactor;
+  };
 in
 {
   imports = [ ];
@@ -382,6 +392,8 @@ in
             snitch
             fairyfloss
             material
+            neorg-telescope
+            tresitter-refactor
           ];
         };
       })

@@ -22,6 +22,7 @@ require'nvim-treesitter.configs'.setup {
       -- also see if removing vim-nix after this is fixed makes sense
       'nix',
       'org',
+      'tex',
     },
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -41,6 +42,21 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true,
+  },
+  refactor = {
+    highlight_definitions = {
+      enable = true,
+      clear_on_cursor_move = true,
+    },
+    highlight_current_scope = {
+      enable = false,
+    },
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "grr",
+      },
+    },
   },
 }
 
