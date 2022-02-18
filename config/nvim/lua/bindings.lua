@@ -1,6 +1,17 @@
 local map = vim.api.nvim_set_keymap
 
 -------------------------------------------------------------------------------
+-- cleanup
+map('', '<up>', '', { noremap = true })
+map('', '<down>', '', { noremap = true })
+map('', '<left>', '', { noremap = true })
+map('', '<right>', '', { noremap = true })
+map('i', '<up>', '', { noremap = true })
+map('i', '<down>', '', { noremap = true })
+map('i', '<left>', '', { noremap = true })
+map('i', '<right>', '', { noremap = true })
+
+-------------------------------------------------------------------------------
 -- window (w)
 map('' , '<leader>we' , ':vsplit<cr>' , {})
 map('' , '<leader>ws' , ':split<cr>'  , {})
@@ -32,4 +43,4 @@ map('v', '<leader>ar', ':Tabularize /', {})
 
 -------------------------------------------------------------------------------
 -- Quickfix
--- map('n', 'dd', "<cmd>call setqflist(filter(getqflist(), {idx -> idx != line('.') - 1}), 'r') <Bar> cc<CR>", { silent = true, noremap = true })
+-- map('n', 'dd', "<cmd>c all setqflist(filter(getqflist(), {idx -> idx != line('.') - 1}), 'r') <Bar> cc<CR>", { silent = true, noremap = true })

@@ -161,10 +161,10 @@
         "homepage": null,
         "owner": "eviefp",
         "repo": "hcs",
-        "rev": "c3c175a3a276c78fcf8e5f99363e62b6d5a90127",
-        "sha256": "0fwkmy0igcgwy6y5c7ji3s1m9kavjvf7f42q2hgk6hqyz7glgbwf",
+        "rev": "99e014f1d0ae90c867352d54ae7b86b77f0e84c3",
+        "sha256": "051120hcwybl46ads0kyq1jss2hg5a5c61wb6xdz7dxda029irfx",
         "type": "tarball",
-        "url": "https://github.com/eviefp/hcs/archive/c3c175a3a276c78fcf8e5f99363e62b6d5a90127.tar.gz",
+        "url": "https://github.com/eviefp/hcs/archive/99e014f1d0ae90c867352d54ae7b86b77f0e84c3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -431,6 +431,18 @@
         "url": "https://github.com/luochen1990/rainbow/archive/c18071e5c7790928b763c2e88c487dfc93d84a15.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "sqlite.lua": {
+        "branch": "master",
+        "description": "SQLite/LuaJIT binding for lua and neovim",
+        "homepage": "",
+        "owner": "tami5",
+        "repo": "sqlite.lua",
+        "rev": "3855b4ae6f20b73f8694f48b82ccc73a99d45b39",
+        "sha256": "1ymzmlkh0hhhvsgbzim91yr9ga8j1dgmfi2mmwpnhvvmf2ycr5xz",
+        "type": "tarball",
+        "url": "https://github.com/tami5/sqlite.lua/archive/3855b4ae6f20b73f8694f48b82ccc73a99d45b39.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "tabular": {
         "branch": "master",
         "description": "Vim script for text filtering and alignment",
@@ -441,6 +453,30 @@
         "sha256": "0jq91770wsp2waw7pywxjqx59v0vg54gfzirgcd85pg61w22bfla",
         "type": "tarball",
         "url": "https://github.com/godlygeek/tabular/archive/339091ac4dd1f17e225fe7d57b48aff55f99b23a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "telescope-cheat.nvim": {
+        "branch": "master",
+        "description": "WIP integration",
+        "homepage": null,
+        "owner": "nvim-telescope",
+        "repo": "telescope-cheat.nvim",
+        "rev": "8a169767c19db2f2ef2fb3fffe6adbac5a630282",
+        "sha256": "0x68zb1x1v7dkrbgz88wh9ffij0ngjr23k5axxhhi07ppynmhvag",
+        "type": "tarball",
+        "url": "https://github.com/nvim-telescope/telescope-cheat.nvim/archive/8a169767c19db2f2ef2fb3fffe6adbac5a630282.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "telescope-file-browser.nvim": {
+        "branch": "master",
+        "description": "File Browser extension for telescope.nvim",
+        "homepage": "",
+        "owner": "nvim-telescope",
+        "repo": "telescope-file-browser.nvim",
+        "rev": "d06fe1d4ade68ba17739025e55e941f9e977d37c",
+        "sha256": "1rvcbbr3bw1i3xykk519m67kw4qkr5x6j7nml5b7camlcdva6lih",
+        "type": "tarball",
+        "url": "https://github.com/nvim-telescope/telescope-file-browser.nvim/archive/d06fe1d4ade68ba17739025e55e941f9e977d37c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "telescope-fzf-native.nvim": {
