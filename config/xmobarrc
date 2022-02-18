@@ -35,7 +35,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=14:antialias=true"
                         10
                     , Run
                         DynNetwork
-                        , "-t"       , "<rx>KB<tx>KB <fc=#dded00>\xf6ff</fc>"
+                        [ "-t"       , "<rx>KB<tx>KB <fc=#dded00>\xf6ff</fc>"
                         , "-H"       , "1000"
                         , "--normal" , "green"
                         , "--high"   , "red"
@@ -46,7 +46,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=14:antialias=true"
                         Volume
                         "default"
                         "Master"
-                        , "-t" , "<volume> <fc=#00ed3b>\xf028</fc>"
+                        [ "-t" , "<volume> <fc=#00ed3b>\xf028</fc>"
                         , "-L" , "40"
                         , "-H" , "90"
                         , "-p" , "4"
@@ -55,7 +55,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=14:antialias=true"
                     , Run
                         Weather
                         "LRBS"
-                        , "-t"       , "<tempC>C <fc=#00edb9>\xf2c9</fc>"
+                        [ "-t"       , "<tempC>C <fc=#00edb9>\xf2c9</fc>"
                         , "-L"       , "5"
                         , "-H"       , "30"
                         , "--normal" , "green"

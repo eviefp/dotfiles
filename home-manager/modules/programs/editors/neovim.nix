@@ -310,6 +310,14 @@ let
     name = "nvim-treesitter-refactor-master-0dc8069";
     src = sources.nvim-treesitter-refactor;
   };
+
+  telescope-file-browser = vimUtils.buildVimPlugin {
+    name = "telescope-file-browser.nvim-master-d06fe1d";
+    src = sources."telescope-file-browser.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+    '';
+  };
 in
 {
   imports = [ ];
@@ -394,6 +402,7 @@ in
             material
             neorg-telescope
             tresitter-refactor
+            telescope-file-browser
           ];
         };
       })
