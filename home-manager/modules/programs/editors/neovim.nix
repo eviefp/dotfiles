@@ -257,14 +257,6 @@ let
     src = sources."vim-mergetool";
   };
 
-  orgmode = vimUtils.buildVimPlugin {
-    name = "orgmode-master-f339a7f";
-    src = sources.orgmode;
-    configurePhase = ''
-      rm -rf Makefile
-    '';
-  };
-
   neorg = vimUtils.buildVimPlugin {
     name = "neorg-main-944de8a";
     src = sources.neorg;
@@ -393,7 +385,6 @@ in
             gitMessenger
             hop
             merge
-            orgmode
             neorg
             truezen
             sandwich

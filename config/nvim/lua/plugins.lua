@@ -2,7 +2,6 @@
 -- plugins
 ------------------------------------------------------------------------------
 
-require 'plugins.orgmode'
 require 'plugins.neorg'
 
 require 'plugins.telescope'
