@@ -16,8 +16,11 @@
   evie.programs = {
     chat.enable = true;
 
+    browsers.enable = true;
+
     dev = {
       haskell.enable = true;
+      lua.enable = true;
       nix.enable = true;
       provers.enable = false;
       tools.enable = true;
@@ -35,8 +38,13 @@
       };
     };
 
+    hcs = {
+      enable = true;
+    };
+
     shell = {
       enable = true;
+      experimental = true;
       ranger.enable = true;
     };
 
@@ -51,6 +59,7 @@
       enable = true;
     };
 
+    wezterm.enable = true;
   };
 
   evie.email.enable = true;
