@@ -22,8 +22,8 @@ in
     hostName = "janus";
     interface = "enp0s20f0u3";
     wifi = {
-      enable = false;
-      # interface = "wlp2s0";
+      enable = true;
+      interface = "wlo1";
     };
   };
 
