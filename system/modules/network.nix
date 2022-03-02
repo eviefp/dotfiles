@@ -76,7 +76,10 @@ in
     (lib.mkIf cfg.wifi.enable (lib.mkMerge [
       {
         networking = {
-          networkmanager.enable = true;
+          networkmanager = {
+            enable = true;
+            wifi.powersave = false;
+          };
           wireless.networks = import ./network-secrets.nix;
         };
       }
