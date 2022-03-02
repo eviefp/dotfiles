@@ -1,6 +1,5 @@
 # My system configuration
-possible. Please let me know if you see anything dubious or that can
-be improved.
+Please let me know if you see anything dubious or that can be improved.
 
 ## How it works
 
