@@ -22,7 +22,6 @@ in
       services = {
         xserver = {
           enable = true;
-          videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
           monitorSection = ''
             Option "DPMS" "false"
           '';
@@ -69,6 +68,9 @@ in
 
       sound.enable = true;
     }
+    (lib.mkIf cfg.useNvidia {
+      services.xserver.videoDrivers = [ "nvidia" ];
+    })
     (lib.mkIf cfg.useBluetooth {
       services.blueman.enable = true;
       hardware.pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
