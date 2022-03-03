@@ -4,6 +4,16 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
        , fgColor = "grey"
        , position = Top
        , commands = [ Run
+                        BatteryP
+                        [ "BAT", "BAT0", "BAT1", "BAT2" ]
+                        [ "-t"       , "<watts> <fc=#dded00>\xf0e7</fc>   <left>% <fc=#00ed3b>\xf240</fc>   <timeleft> <fc=#deaded>\xf017</fc>"
+                        , "-L"       , "25"
+                        , "-H"       , "75"
+                        , "--normal" , "red"
+                        , "--high"   , "green"
+                        ]
+                        1000
+                    , Run
                         Cpu
                         [ "-t"       , "<total> <fc=#ed00a2>\xf2db</fc>"
                         , "-L"       , "5"
@@ -22,7 +32,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         , "--high"   , "red"
                         , "-p"       , "4"
                         ]
-                        10
+                        100
                     , Run
                         DiskIO
                         [("/", "<read><write> <fc=#00d9ed>\xf0a0</fc>")]
@@ -51,7 +61,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         , "-H" , "90"
                         , "-p" , "4"
                         ]
-                        10
+                        100
                     , Run
                         Weather
                         "LRBS"
@@ -63,16 +73,6 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         , "--low"    , "blue"
                         , "-w"       , "4"
                         ]
-                        36000
-                    , Run
-                        Mail
-                        [("", "~/mail/eevie/Inbox")]
-                        "mail"
-                    , Run
-                        Com
-                        "echo"
-                        ["<fc=#001fed>\xf01c</fc>"]
-                        "mail_icon"
                         36000
                     , Run
                         Com
@@ -98,6 +98,6 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% %memory% %diskio% %dynnetwork% %default:Master% %LRBS%    %mail% %mail_icon%    %hcs% %hcs_icon% %date%"
+       , template = "%StdinReader% }{ %battery% %cpu% %memory% %diskio% %dynnetwork% %default:Master% %LRBS% %hcs% %hcs_icon% %date%"
        , lowerOnStart = False
        }
