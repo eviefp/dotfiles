@@ -38,7 +38,7 @@ in
           };
           displayManager = {
             defaultSession = "none+xmonad";
-            lightdm.enable = true;
+            gdm.enable = true;
             sessionCommands = ''
               setxkbmap -option caps:none
               xmodmap -e "keycode 66 = Multi_key"
@@ -68,7 +68,7 @@ in
 
       sound.enable = true;
     }
-    (lib.mkIf cfg.useNvidia {
+    (lib.mkIf cfg.useNVidia {
       services.xserver.videoDrivers = [ "nvidia" ];
     })
     (lib.mkIf cfg.useBluetooth {

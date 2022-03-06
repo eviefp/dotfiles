@@ -16,6 +16,7 @@ in
     ./programs/dev/tools.nix
     ./programs/editors/vscode.nix
     ./programs/hcs.nix
+    ./programs/hydroxide.nix
     ./programs/shell.nix
     ./programs/shell/ranger.nix
     ./programs/streaming.nix

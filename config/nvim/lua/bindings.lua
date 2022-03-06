@@ -11,6 +11,8 @@ map('i', '<down>', '', { noremap = true })
 map('i', '<left>', '', { noremap = true })
 map('i', '<right>', '', { noremap = true })
 
+map('n', 'gf', 'gF', { noremap = true })
+
 -------------------------------------------------------------------------------
 -- window (w)
 map('' , '<leader>we' , ':vsplit<cr>' , {})
