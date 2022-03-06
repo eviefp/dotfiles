@@ -161,10 +161,10 @@
         "homepage": null,
         "owner": "eviefp",
         "repo": "hcs",
-        "rev": "15addf382fbb02a60afbe2a056f6682e89810f1a",
-        "sha256": "02hcx5h1fx8ianp5axxknv45rza552c7hn9yggzhrgqlw516zp58",
+        "rev": "57d083252f983ebc74b163d94999c0ce1a9afb44",
+        "sha256": "0kz469cg8wv24nyb9aa8wgl7czk7pmyl2x9dvy4y1gmnhkd2wlq2",
         "type": "tarball",
-        "url": "https://github.com/eviefp/hcs/archive/15addf382fbb02a60afbe2a056f6682e89810f1a.tar.gz",
+        "url": "https://github.com/eviefp/hcs/archive/57d083252f983ebc74b163d94999c0ce1a9afb44.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {

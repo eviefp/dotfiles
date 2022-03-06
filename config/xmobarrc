@@ -6,13 +6,13 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
        , commands = [ Run
                         BatteryP
                         [ "BAT", "BAT0", "BAT1", "BAT2" ]
-                        [ "-t"       , "<watts> <fc=#dded00>\xf0e7</fc>   <left>% <fc=#00ed3b>\xf240</fc>   <timeleft> <fc=#deaded>\xf017</fc>"
+                        [ "-t"       , "<acstatus> <fc=#dded00>\xf0e7</fc>   <left>% <fc=#00ed3b>\xf240</fc>   <timeleft> <fc=#deaded>\xf017</fc>"
                         , "-L"       , "25"
                         , "-H"       , "75"
                         , "--normal" , "red"
                         , "--high"   , "green"
                         ]
-                        1000
+                        10
                     , Run
                         Cpu
                         [ "-t"       , "<total> <fc=#ed00a2>\xf2db</fc>"
@@ -71,7 +71,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         , "--normal" , "green"
                         , "--high"   , "red"
                         , "--low"    , "blue"
-                        , "-w"       , "4"
+                        , "-w"       , "3"
                         ]
                         36000
                     , Run

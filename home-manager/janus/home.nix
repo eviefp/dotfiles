@@ -42,6 +42,10 @@
       enable = true;
     };
 
+    hydroxide = {
+      enable = true;
+    };
+
     shell = {
       enable = true;
       experimental = true;

@@ -24,14 +24,15 @@ in
           realName = "Evie Ciobanu";
           signature = {
             text = ''
+
               -- Evie Ciobanu
             '';
             showSignature = "append";
           };
           passwordCommand =
             "${pkgs.coreutils}/bin/cat /home/evie/.secrets/hydro.pwd";
-          smtp = { host = "fractal"; };
-          imap = { host = "fractal"; };
+          smtp = { host = "127.0.0.1"; };
+          imap = { host = "127.0.0.1"; };
           mbsync = {
             enable = true;
             create = "both";
@@ -51,13 +52,51 @@ in
             };
           };
           notmuch.enable = true;
+          flavor = "plain";
+        };
+        alexaeviest = {
+          primary = false;
+          address = "alexa.eviest@gmail.com";
+          userName = "alexa.eviest@gmail.com";
+          realName = "Evie Ciobanu";
+          signature = {
+            text = ''
+
+              -- Evie Ciobanu
+            '';
+            showSignature = "append";
+          };
+          passwordCommand =
+            "${pkgs.coreutils}/bin/cat /home/evie/.secrets/alexaeviest.pwd";
+          notmuch.enable = true;
+          flavor = "gmail.com";
+          msmtp.enable = true;
+          mbsync = {
+            enable = true;
+            create = "both";
+            expunge = "both";
+            remove = "none";
+            patterns = [
+              "INBOX"
+              "\\[Gmail\\]/All Mail"
+              "\\[Gmail\\]/Drafts"
+              "\\[Gmail\\]/Spam"
+              "\\[Gmail\\]/Sent Mail"
+            ];
+          };
+          smtp = {
+            host = "smtp.gmail.com";
+            tls.useStartTls = true;
+            port = 587;
+          };
+          imap.host = "imap.gmail.com";
         };
       };
     };
 
     home.file.".mailcap".text = ''
-text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
-      '';
+      text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
+    '';
 
     programs = {
       alot = {
@@ -71,13 +110,13 @@ text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html;
       };
       notmuch = {
         enable = true;
+        new.tags = [ "new" ];
       };
     };
 
     services = {
       mbsync = {
         enable = true;
-        postExec = "${pkgs.notmuch}/bin/notmuch new";
       };
     };
   };
