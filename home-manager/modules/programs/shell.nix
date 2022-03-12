@@ -111,7 +111,12 @@ in
 
           git = {
             enable = true;
-            delta.enable = true;
+            delta = {
+              enable = true;
+              options = {
+                navigate = true;
+              };
+            };
             aliases = {
               lol = "log --graph --decorate --oneline --abbrev-commit";
               lola = "log --graph --decorate --oneline --abbrev-commit --all";
