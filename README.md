@@ -1,6 +1,5 @@
 # My system configuration
 Please let me know if you see anything dubious or that can be improved.
-
 ## How it works
 
 On new systems, start with `home-manager`.

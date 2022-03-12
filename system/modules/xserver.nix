@@ -22,7 +22,6 @@ in
       services = {
         xserver = {
           enable = true;
-          videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
           monitorSection = ''
             Option "DPMS" "false"
           '';
@@ -39,7 +38,7 @@ in
           };
           displayManager = {
             defaultSession = "none+xmonad";
-            lightdm.enable = true;
+            gdm.enable = true;
             sessionCommands = ''
               setxkbmap -option caps:none
               xmodmap -e "keycode 66 = Multi_key"
@@ -69,6 +68,9 @@ in
 
       sound.enable = true;
     }
+    (lib.mkIf cfg.useNVidia {
+      services.xserver.videoDrivers = [ "nvidia" ];
+    })
     (lib.mkIf cfg.useBluetooth {
       services.blueman.enable = true;
       hardware.pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
