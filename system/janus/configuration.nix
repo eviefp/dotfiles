@@ -12,6 +12,7 @@ in
     ../modules/boot.nix
     ../modules/network.nix
     ../modules/locale.nix
+    ../modules/logind.nix
     ../modules/packages.nix
     ../modules/services.nix
     ../modules/xserver.nix
@@ -39,5 +40,7 @@ in
     useBluetooth = true;
     enableHiDPI = false;
   };
+
+  evie.logind.enable = true;
 }
 
