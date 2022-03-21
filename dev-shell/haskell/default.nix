@@ -23,6 +23,7 @@ let
     dynamicHls
     pkgs.haskell.packages.ghc8107.cabal2nix
     pkgs.haskell.packages.ghc8107.implicit-hie
+    pkgs.haskell.packages.ghc8107.hoogle
     pkgs.ghcid
   ];
 in
