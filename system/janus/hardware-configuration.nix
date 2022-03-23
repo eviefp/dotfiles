@@ -2,7 +2,18 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
+let
+  lp = stdenv.mkDerivation rec {
+    pname = "linux-kernel-patched-iwlwifi-5_16";
+    version = "5.16.0";
+    src = pkgs.linuxPackages_5_16;
+    configurePhase = ''
+      rm -rf lib/firmware/iwlwifi-ty-a0-gf-a0-66*
+      rm -rf lib/firmware/iwlwifi-ty-a0-gf-a0-67*
+      rm -rf lib/firmware/iwlwifi-ty-a0-gf-a0-68*
+    '';
+  };
+in
 {
   imports =
     [
