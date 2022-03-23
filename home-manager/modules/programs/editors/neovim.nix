@@ -250,6 +250,9 @@ let
   hop = vimUtils.buildVimPlugin {
     name = "hop.nvim-master-f418a37";
     src = sources."hop.nvim";
+    configurePhase = ''
+      rm -rf doc
+      '';
   };
 
   merge = vimUtils.buildVimPlugin {
