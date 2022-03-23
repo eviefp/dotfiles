@@ -72,7 +72,9 @@ in
         };
       };
     }
-    { networking.interfaces."${cfg.interface}".useDHCP = true; }
+    (lib.mkIf (cfg.interface != "")
+      { networking.interfaces."${cfg.interface}".useDHCP = true; }
+    )
     (lib.mkIf cfg.wifi.enable (lib.mkMerge [
       {
         networking = {
@@ -84,7 +86,7 @@ in
         };
       }
       (lib.mkIf (cfg.wifi.interface != "") {
-        networking.interfaces."${cfg.wifi.interface}".useDHCP = true;
+        networking.interfaces."${cfg.wifi.interface}".useDHCP = false;
       })
     ]))
   ];

@@ -21,7 +21,7 @@ in
 
   evie.network = {
     hostName = "janus";
-    interface = "enp0s20f0u3";
+    interface = "";
     wifi = {
       enable = true;
       interface = "wlo1";
