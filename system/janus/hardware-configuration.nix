@@ -3,16 +3,16 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 let
-  lp = stdenv.mkDerivation rec {
-    pname = "linux-kernel-patched-iwlwifi-5_16";
-    version = "5.16.0";
-    src = pkgs.linuxPackages_5_16;
-    configurePhase = ''
-      rm -rf lib/firmware/iwlwifi-ty-a0-gf-a0-66*
-      rm -rf lib/firmware/iwlwifi-ty-a0-gf-a0-67*
-      rm -rf lib/firmware/iwlwifi-ty-a0-gf-a0-68*
-    '';
-  };
+  lp = lib.overrideDerivation pkgs.firmwareLinuxNonfree (oldAttrs: {
+    version = "20220310";
+    postInstall = ''
+      rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0-67*
+       # rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0.pnvm
+    #    # rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0-67*
+    #    # rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0-68*
+      '';
+    outputHash = "sha256:17z67ilksvpvrwyn1craf29cbgsaa60r4zrfiks73mswhgf0wsi0";# pkgs.lib.fakeSha256;
+  });
 in
 {
   imports =
@@ -21,10 +21,11 @@ in
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_5_16;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" "iwlwifi" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  hardware.firmware = [ ];
 
   fileSystems."/" =
     {
