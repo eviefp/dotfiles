@@ -24,7 +24,8 @@ let
     pkgs.haskell.packages.ghc8107.cabal2nix
     pkgs.haskell.packages.ghc8107.implicit-hie
     pkgs.haskell.packages.ghc8107.hoogle
-    pkgs.ghcid
+    pkgs.haskell.packages.ghc8107.json-to-haskell
+    # pkgs.haskell.packages.ghc8107.hls
   ];
 in
 {

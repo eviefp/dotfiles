@@ -87,7 +87,7 @@ vim.o.splitright = true
 vim.o.clipboard = 'unnamedplus'
 
 -- don't wrap lines
-vim.wo.wrap = true
+vim.wo.wrap = false
 
 -- line width, spelling for text files
 vim.cmd [[

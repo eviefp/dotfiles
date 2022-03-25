@@ -149,10 +149,10 @@
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "a832491ae7de2a74aade9a59e36c2ee5c853c92f",
-        "sha256": "1crvrbvhcy1h3qhkymh2shljnlh27j7msb1xqyzm3nf93iqa5jra",
+        "rev": "49abc74a06c8ed296d308aa7fd3e9646dcf30cb3",
+        "sha256": "1fnaxzcclfq071a98ycbphfpcngjk7ikgr5kzgrw26v9a0phd23h",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-language-server/archive/a832491ae7de2a74aade9a59e36c2ee5c853c92f.tar.gz",
+        "url": "https://github.com/haskell/haskell-language-server/archive/49abc74a06c8ed296d308aa7fd3e9646dcf30cb3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hcs": {
@@ -281,10 +281,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2c66a7a6e036971c4847cca424125f55b9eb0b0b",
-        "sha256": "00pdg5mkgqp81n4pfgigd840hvh3fwwkbipcba1p4ds3ffy3xir5",
+        "rev": "3ddd960a3b575bf3230d0e59f42614b71f9e0db9",
+        "sha256": "1sk60h584gfdf5ql3mv4hps6jly6yj6dc5fbkfkh082z1c8885vk",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/2c66a7a6e036971c4847cca424125f55b9eb0b0b.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/3ddd960a3b575bf3230d0e59f42614b71f9e0db9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nvim-biscuits": {
