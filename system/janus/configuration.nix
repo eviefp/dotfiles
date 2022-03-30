@@ -24,7 +24,7 @@ in
     interface = "";
     wifi = {
       enable = true;
-      interface = "wlo1";
+      interface = "";
     };
   };
 

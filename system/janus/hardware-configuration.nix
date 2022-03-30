@@ -25,7 +25,8 @@ in
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  hardware.firmware = [ ];
+  # hardware.firmware = [ lp ]; # TODO: this was empty!!
+  hardware.enableRedistributableFirmware = true;
 
   fileSystems."/" =
     {
