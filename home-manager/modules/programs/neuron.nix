@@ -1,23 +1,23 @@
 /****************************************************************************
-  * hcs module
+  * neuron module
   *
   **************************************************************************/
 { lib, config, pkgs, ... }:
 let
   sources = import ../../../nix/sources.nix;
-  hcs = import sources.hcs { pkgs = pkgs; };
-  cfg = config.evie.programs.hcs;
+  neuron = import sources.neuron;
+  cfg = config.evie.programs.neuron;
 in
 {
   imports = [ ];
 
-  options.evie.programs.hcs = {
-    enable = lib.options.mkEnableOption "Enable hcs";
+  options.evie.programs.neuron = {
+    enable = lib.options.mkEnableOption "Enable neuron";
   };
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      hcs
+      neuron.default
     ];
   };
 }

@@ -17,6 +17,7 @@ in
     ./programs/editors/vscode.nix
     ./programs/hcs.nix
     ./programs/hydroxide.nix
+    ./programs/neuron.nix
     ./programs/shell.nix
     ./programs/shell/ranger.nix
     ./programs/streaming.nix
@@ -31,15 +32,6 @@ in
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
       nixpkgs.config.allowUnfree = true;
-      # home.packages = [
-      #   pkgs.graphviz
-      #   pkgs.nodejs
-
-      #   pkgs.gnome3.zenity
-      #   pkgs.lua
-      #   pkgs.lua51Packages.luabitop
-      #   pkgs.networkmanagerapplet
-      # ];
     })
   ];
 }
