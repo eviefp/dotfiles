@@ -313,6 +313,16 @@ let
       rm -rf Makefile
     '';
   };
+
+  neuron = vimUtils.buildVimPlugin {
+    name = "neuron-master-c44032e";
+    src = sources."neuron.nvim";
+  };
+
+  nerveux = vimUtils.buildVimPlugin {
+    name = "nerveux.nvim-master";
+    src = sources."nerveux.nvim";
+  };
 in
 {
   imports = [ ];
@@ -397,6 +407,8 @@ in
             neorg-telescope
             tresitter-refactor
             telescope-file-browser
+            neuron
+            nerveux
           ];
         };
       })

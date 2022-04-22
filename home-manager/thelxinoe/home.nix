@@ -32,7 +32,7 @@
       neovim.enable = true;
 
       emacs = {
-        enable = true;
+        enable = false;
         locals = {
           enable = true;
           file = ./locals.el;
@@ -41,6 +41,10 @@
     };
 
     hcs = {
+      enable = true;
+    };
+
+    neuron = {
       enable = true;
     };
 
