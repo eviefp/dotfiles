@@ -50,10 +50,11 @@ let
     src = sources.vim-rhubarb;
   };
 
-  markdown = vimUtils.buildVimPlugin {
-    name = "vim-markdown-master-59a551f";
+  vim-markdown = vimUtils.buildVimPlugin {
+    name = "vim-markdown-master";
     src = sources.vim-markdown;
   };
+
 
   purescript = vimUtils.buildVimPlugin {
     name = "purescript-vim-master-d493b57";
@@ -372,7 +373,7 @@ in
             lexical
             lspConfig
             lspKind
-            markdown
+            vim-markdown
             nix
             plenary
             purescript

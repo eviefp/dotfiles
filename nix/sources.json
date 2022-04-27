@@ -661,14 +661,14 @@
     },
     "vim-markdown": {
         "branch": "master",
-        "description": "Vim Markdown runtime files",
+        "description": "Markdown Vim Mode",
         "homepage": "",
-        "owner": "tpope",
+        "owner": "preservim",
         "repo": "vim-markdown",
-        "rev": "b78bbce3371a2eb56c89f618cd4ab2baadc9ee61",
-        "sha256": "1m64wx3ig4g0dmdw0538y6frn65fwn8dj3llamv2c3rzvx5nw7s6",
+        "rev": "9068655bb74bb615b3876b4d4d6a1d1141e212f3",
+        "sha256": "0s4ph2c8a1ha0cd95b2lf2i5irf4bwx34929i2c5p3ihk2701fsf",
         "type": "tarball",
-        "url": "https://github.com/tpope/vim-markdown/archive/b78bbce3371a2eb56c89f618cd4ab2baadc9ee61.tar.gz",
+        "url": "https://github.com/preservim/vim-markdown/archive/9068655bb74bb615b3876b4d4d6a1d1141e212f3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-mergetool": {
