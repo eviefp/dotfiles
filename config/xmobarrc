@@ -75,6 +75,12 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         ]
                         36000
                     , Run
+                        NotmuchMail
+                        "mail"
+                        [ MailItem "" "" "tag:unread"
+                        ]
+                        600
+                    , Run
                         Com
                         "hcs"
                         ["next", "--xmobar"]
@@ -98,6 +104,6 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %battery% %cpu% %memory% %diskio% %dynnetwork% %default:Master% %LRBS% %hcs% %hcs_icon% %date%"
+       , template = "%StdinReader% }{ %battery% %cpu% %memory% %diskio% %dynnetwork% %default:Master% %LRBS% %mail% %hcs% %hcs_icon% %date%"
        , lowerOnStart = False
        }
