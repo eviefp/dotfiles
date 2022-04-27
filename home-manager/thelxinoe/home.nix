@@ -44,6 +44,11 @@
       enable = true;
     };
 
+    hydroxide = {
+      enable = true;
+      service = true;
+    };
+
     neuron = {
       enable = true;
     };

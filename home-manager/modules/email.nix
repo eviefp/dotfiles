@@ -110,13 +110,14 @@ in
       };
       notmuch = {
         enable = true;
-        new.tags = [ "new" ];
+        new.tags = [ "unread" "inbox" ];
       };
     };
 
     services = {
       mbsync = {
         enable = true;
+        postExec = "${pkgs.notmuch}/bin/notmuch new";
       };
     };
   };
