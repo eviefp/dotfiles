@@ -29,4 +29,11 @@ in
 
   evie.nextcloud.enable = true;
 
+  services.iperf3 = {
+    enable = true;
+    bind = "";
+    port = 31234;
+    openFirewall = true;
+  };
+
 }

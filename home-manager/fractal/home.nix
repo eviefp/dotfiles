@@ -8,6 +8,7 @@
     ../modules/programs/editors/emacs.nix
     ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
+    ../modules/system.nix
   ];
 
   evie.programs = {
@@ -48,7 +49,7 @@
   evie.system = {
     enable = true;
     host = "fractal";
-    dotfiles = " /home/evie/code/dotfiles ";
+    dotfiles = "/home/evie/code/dotfiles";
   };
 
   home.sessionVariables = {
