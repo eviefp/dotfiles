@@ -6,6 +6,8 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.PhysicalScreens
 import XMonad.Config.Gnome
+import XMonad.Config.Desktop
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
@@ -67,7 +69,7 @@ main = do
   xmproc <- spawnPipe "xmobar"
 
   xmonad $
-    gnomeConfig
+    ewmh desktopConfig
       { manageHook = insertPosition Below Newer <+> myManageHook,
         layoutHook = avoidStruts . smartBorders $ layoutHook def,
         logHook =

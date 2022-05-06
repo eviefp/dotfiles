@@ -42,6 +42,7 @@
 
     hcs = {
       enable = true;
+      service = true;
     };
 
     hydroxide = {
