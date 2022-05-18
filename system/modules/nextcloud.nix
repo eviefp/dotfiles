@@ -55,9 +55,18 @@ in
         recommendedOptimisation = true;
         recommendedProxySettings = true;
         recommendedTlsSettings = true;
+        logError = "stderr debug";
 
         virtualHosts = {
-          "fractal" = { forceSSL = false; };
+          "fractal" = {
+            forceSSL = false;
+            locations = {
+              "/wiki" = {
+                root = "/mnt/raid";
+              };
+            };
+          };
+
           "fractal.eevie.ro" = {
             forceSSL = true;
             sslCertificate = "/mnt/raid/fractal.eevie.ro.crt";
