@@ -111,6 +111,13 @@ in
       notmuch = {
         enable = true;
         new.tags = [ "unread" "inbox" ];
+        hooks = {
+          postNew = ''
+            notmuch tag +evie -- tag:new and to:*@eevie.ro
+            notmuch tag +gmail -- tag:new and to:*@gmail.com
+            notmuch tag +hf -- tag:new and from:*@haskell.foundation
+            '';
+        };
       };
     };
 
