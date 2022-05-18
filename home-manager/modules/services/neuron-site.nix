@@ -7,7 +7,7 @@ let
   sources = import ../../../nix/sources.nix;
   neuron = import sources.neuron;
   cfg = config.evie.services.neuron-site;
-  updateScript = pkgs.writeScript "neuronSiteUpdater.sh"
+  updateScript = pkgs.writeScript "neuronSiteUpd.sh"
     ''
 #!${pkgs.bash}/bin/bash
 
@@ -15,7 +15,7 @@ cd /home/evie/code/wiki
 ${pkgs.git}/bin/git pull
 ${neuron.default}/bin/neuron gen
 cd .neuron/output
-cp -rL * /mnt/raid/wiki
+${pkgs.coreutils}/bin/cp -rL * /mnt/raid/wiki
     '';
 in
 {
