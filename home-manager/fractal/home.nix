@@ -33,6 +33,10 @@
       };
     };
 
+    neuron = {
+      enable = true;
+    };
+
     shell = {
       enable = true;
       ranger.enable = true;
