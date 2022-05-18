@@ -9,11 +9,13 @@ let
   cfg = config.evie.services.neuron-site;
   updateScript = pkgs.writeScript "neuronSiteUpdater.sh"
     ''
-#!/usr/bin/env bash
+#!${pkgs.bash}/bin/bash
 
 cd /home/evie/code/wiki
 ${pkgs.git}/bin/git pull
 ${neuron.default}/bin/neuron gen
+cd .neuron/output
+cp -rL * /mnt/raid/wiki
     '';
 in
 {
