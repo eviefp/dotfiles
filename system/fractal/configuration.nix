@@ -25,13 +25,15 @@ in
     extraPorts = [ 1025 1143 ];
   };
 
+  networking.firewall.allowedUDPPorts = [ 31234 ];
+
   evie.packages = { extra = [ pkgs.git pkgs.wget ]; };
 
   evie.nextcloud.enable = true;
 
   services.iperf3 = {
     enable = true;
-    bind = "";
+    bind = "192.168.10.206";
     port = 31234;
     openFirewall = true;
   };
