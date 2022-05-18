@@ -9,6 +9,7 @@
     ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
     ../modules/system.nix
+    ../modules/services/neuron-site.nix
   ];
 
   evie.programs = {
@@ -46,6 +47,10 @@
       enable = true;
       latex = true;
     };
+  };
+
+  evie.services = {
+    neuron-site.enable = true;
   };
 
   evie.fonts.enable = true;
