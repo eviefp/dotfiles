@@ -63,6 +63,7 @@ in
             locations = {
               "/wiki" = {
                 root = "/mnt/raid";
+                index = "impulse.html";
               };
             };
           };
