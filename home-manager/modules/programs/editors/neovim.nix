@@ -231,6 +231,9 @@ let
   harpoon = vimUtils.buildVimPlugin {
     name = "harpoon-master-d035ef2";
     src = sources.harpoon;
+    configurePhase = ''
+      rm -rf Makefile
+    '';
   };
 
   textobjects = vimUtils.buildVimPlugin {
