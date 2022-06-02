@@ -23,7 +23,7 @@ in
 
     systemd.user.services.hcsHasura = lib.mkIf cfg.service {
       Unit = {
-        Description = "HCS";
+        Description = "HCS-hasura";
       };
 
       Service = {
@@ -33,7 +33,7 @@ in
 
     systemd.user.timers.hcsHasura = lib.mkIf cfg.service {
       Unit = {
-        Description = "HCS";
+        Description = "HCS-hasura-timer";
       };
 
       Timer = {
@@ -46,7 +46,7 @@ in
 
     systemd.user.services.hcsEvie = lib.mkIf cfg.service {
       Unit = {
-        Description = "HCS";
+        Description = "HCS-evie";
       };
 
       Service = {
@@ -56,7 +56,7 @@ in
 
     systemd.user.timers.hcsEvie = lib.mkIf cfg.service {
       Unit = {
-        Description = "HCS";
+        Description = "HCS-evie-timer";
       };
 
       Timer = {

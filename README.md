@@ -35,6 +35,12 @@ niv update
 
 Followed by the same commands as above.
 
+## Updating System Version
+
+1. change the `nixpkgs` pin
+2. update ./system/modules/boot.nix `system.stateVersion` accordingly
+3. switch to the new config
+
 ## Just show me your vim/emacs config
 
 Vim: config/nvim/lua/*.lua (*)

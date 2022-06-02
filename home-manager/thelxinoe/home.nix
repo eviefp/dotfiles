@@ -9,6 +9,7 @@
     ../modules/programs/editors/emacs.nix
     ../modules/email.nix
     ../modules/programs/editors/neovim.nix
+    ../modules/services/protonmail.nix
     ../modules/fonts.nix
     ../modules/system.nix
   ];
@@ -17,6 +18,8 @@
     enable = true;
 
     browsers.enable = true;
+
+    bower.enable = true;
 
     chat.enable = true;
 
@@ -41,11 +44,6 @@
     };
 
     hcs = {
-      enable = true;
-      service = true;
-    };
-
-    hydroxide = {
       enable = true;
       service = true;
     };
@@ -76,6 +74,10 @@
   evie.email.enable = true;
 
   evie.fonts.enable = true;
+
+  evie.services = {
+    protonmail.enable = false;
+  };
 
   evie.system = {
     enable = true;
