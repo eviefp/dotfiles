@@ -8,6 +8,7 @@ let
 in
 {
   imports = [
+    ./programs/bower.nix
     ./programs/chat.nix
     ./programs/dev/haskell.nix
     ./programs/dev/lua.nix

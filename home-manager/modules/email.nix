@@ -20,7 +20,7 @@ in
         eevie = {
           primary = true;
           address = "me@eevie.ro";
-          userName = "evieciobanu";
+          userName = "me@eevie.ro";
           realName = "Evie Ciobanu";
           signature = {
             text = ''
@@ -29,9 +29,14 @@ in
             '';
             showSignature = "append";
           };
-          passwordCommand =
-            "${pkgs.coreutils}/bin/cat /home/evie/.secrets/hydro.pwd";
-          smtp = { host = "127.0.0.1"; };
+          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/hydro.pwd";
+          smtp = {
+            host = "127.0.0.1";
+            tls = {
+              enable = true;
+              useStartTls = true;
+            };
+          };
           imap = { host = "127.0.0.1"; };
           mbsync = {
             enable = true;
@@ -39,14 +44,18 @@ in
             expunge = "both";
             extraConfig.account = {
               Port = 1143;
-              SSLType = "None";
+              SSLType = "STARTTLS";
+              SystemCertificates = "no";
+              CertificateFile = "/home/evie/.config/protonmail/bridge/cert.pem";
             };
           };
           msmtp = {
             enable = true;
             extraConfig = {
+              auth = "login";
               port = "1025";
-              tls = "off";
+              tls = "on";
+              tls_starttls = "on";
               tls_trust_file = "";
               tls_certcheck = "off";
             };
@@ -116,7 +125,7 @@ in
             notmuch tag +evie -- tag:new and to:*@eevie.ro
             notmuch tag +gmail -- tag:new and to:*@gmail.com
             notmuch tag +hf -- tag:new and from:*@haskell.foundation
-            '';
+          '';
         };
       };
     };
@@ -125,6 +134,7 @@ in
       mbsync = {
         enable = true;
         postExec = "${pkgs.notmuch}/bin/notmuch new";
+        verbose = true;
       };
     };
   };

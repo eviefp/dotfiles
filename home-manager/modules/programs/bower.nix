@@ -1,22 +1,24 @@
 /****************************************************************************
-  * programs/chat module
+  * programs/bower module
   *
   **************************************************************************/
 { lib, config, pkgs, ... }:
-let cfg = config.evie.programs.chat;
+let cfg = config.evie.programs.bower;
 in
 {
   imports = [ ];
 
-  options.evie.programs.chat = {
-    enable = lib.options.mkEnableOption "Enable chat programs";
+  options.evie.programs.bower = {
+    enable = lib.options.mkEnableOption "Enable bower";
   };
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.discord
-      pkgs.slack
-      pkgs.signal-desktop
+      pkgs.notmuch-bower
+      pkgs.ncurses
+      pkgs.lynx
+      pkgs.gpgme
+      pkgs.file
     ];
   };
 }

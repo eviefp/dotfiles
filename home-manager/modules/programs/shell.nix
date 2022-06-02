@@ -51,7 +51,6 @@ in
           direnv = {
             enable = true;
             enableBashIntegration = true;
-            enableFishIntegration = true;
           };
 
           exa = {
