@@ -144,15 +144,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "haskell-language-server": {
-        "branch": "master",
+        "branch": "1.6.1.0",
         "description": "Official haskell ide support via language server (LSP). Successor of ghcide & haskell-ide-engine.",
         "homepage": "",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "9b3f3bf20e3016d20adf1f7259dc9622f8046569",
-        "sha256": "0bf8shf4s49zi2wp4nwsjwsadj8hnzhh3m3lbgkgxz1jjm9br71s",
+        "rev": "f4022c5bb8530cd306c53b941878244bf27a5d41",
+        "sha256": "1b66mkql7bbljjspfd3gzbkbkd9448rk8xxdsnbbj0d5vj6vrl43",
         "type": "tarball",
-        "url": "https://github.com/haskell/haskell-language-server/archive/9b3f3bf20e3016d20adf1f7259dc9622f8046569.tar.gz",
+        "url": "https://github.com/haskell/haskell-language-server/archive/f4022c5bb8530cd306c53b941878244bf27a5d41.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hcs": {
