@@ -17,6 +17,7 @@
     chat.enable = true;
 
     browsers.enable = true;
+    bower.enable = true;
 
     dev = {
       haskell.enable = true;
@@ -40,9 +41,9 @@
 
     hcs = {
       enable = true;
+      service = true;
     };
-
-    hydroxide = {
+    neuron = {
       enable = true;
     };
 
