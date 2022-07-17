@@ -20,15 +20,16 @@ let
 
   # Personal tooling: change/update as needed, e.g. `inputs.ghcide`.
   personalTooling = [
-    dynamicHls
+    # dynamicHls
     pkgs.haskell.packages.ghc8107.cabal2nix
     pkgs.haskell.packages.ghc8107.implicit-hie
     pkgs.haskell.packages.ghc8107.hoogle
     pkgs.haskell.packages.ghc8107.json-to-haskell
-    # pkgs.haskell.packages.ghc8107.hls
+    pkgs.haskell.packages.ghc8107.haskell-language-server
   ];
 in
 {
   buildInputs = deps ++ commonTooling ++ personalTooling;
-  LD_LIBRARY_PATH = "${pkgs.zlib}/lib";
+  pkgs = pkgs;
+  #LD_LIBRARY_PATH = "${pkgs.zlib}/lib";
 }
