@@ -4,5 +4,5 @@ let
   def = import ./.;
 in pkgs.mkShell {
   buildInputs = def.buildInputs;
-  LD_LIBRARY_PATH = def.LD_LIBRARY_PATH;
+  #LD_LIBRARY_PATH = def.LD_LIBRARY_PATH;
 }
