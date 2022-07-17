@@ -5,6 +5,8 @@
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs;
+  sources = import ../../nix/sources.nix;
+  unstable = import sources.unstable { };
 in
 {
   imports = [
@@ -34,5 +36,10 @@ in
     (lib.mkIf cfg.enable {
       nixpkgs.config.allowUnfree = true;
     })
+    (
+      {
+        home.packages = [ unstable.zoom-us ];
+      }
+    )
   ];
 }

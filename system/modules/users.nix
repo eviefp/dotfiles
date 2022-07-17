@@ -29,7 +29,13 @@ in
       };
     };
 
-    nix.trustedUsers = [ "root" "evie" ];
+    nix = {
+      trustedUsers = [ "root" "evie" ];
+      package = pkgs.nixFlakes;
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
+    };
 
     security.sudo.wheelNeedsPassword = false;
   };
