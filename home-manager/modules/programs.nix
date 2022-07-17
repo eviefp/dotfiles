@@ -26,6 +26,7 @@ in
     ./programs/streaming.nix
     ./programs/text.nix
     ./programs/wezterm.nix
+    ./programs/kitty.nix
   ];
 
   options.evie.programs = {
