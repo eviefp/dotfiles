@@ -111,10 +111,16 @@ in
           git = {
             enable = true;
             delta = {
-              enable = true;
+              enable = false;
               options = {
                 navigate = true;
               };
+            };
+            difftastic = {
+              enable = true;
+              color = "auto";
+              background = "dark";
+              # display = "side-by-side";
             };
             aliases = {
               lol = "log --graph --decorate --oneline --abbrev-commit";
