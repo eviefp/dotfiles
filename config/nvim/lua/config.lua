@@ -27,7 +27,8 @@ vim.cmd 'filetype plugin indent on'
 vim.cmd 'syntax sync minlines=256'
 
 -- file name in terminal title
-vim.o.title = true
+-- this breaks vim in terrible ways :(
+-- vim.o.title = true
 
 -- auto reload files that have been changed
 vim.o.autoread = true
