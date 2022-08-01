@@ -79,9 +79,9 @@ in
             "${pkgs.coreutils}/bin/cat /home/evie/.secrets/alexaeviest.pwd";
           notmuch.enable = true;
           flavor = "gmail.com";
-          msmtp.enable = true;
+          msmtp.enable = false;
           mbsync = {
-            enable = true;
+            enable = false;
             create = "both";
             expunge = "both";
             remove = "none";
