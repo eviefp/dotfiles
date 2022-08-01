@@ -353,6 +353,7 @@ in
         withPython3 = true;
         configure = {
           customRC = ''
+            let &runtimepath.=','.stdpath("config")
             lua require('config')
             lua require('plugins')
             lua require('bindings')
