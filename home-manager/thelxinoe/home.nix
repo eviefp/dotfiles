@@ -69,6 +69,7 @@
 
     wezterm.enable = true;
 
+    purebred.enable = true;
   };
 
   evie.email.enable = true;
