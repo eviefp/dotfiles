@@ -20,13 +20,14 @@ in
     ./programs/editors/vscode.nix
     ./programs/hcs.nix
     ./programs/hydroxide.nix
+    ./programs/kitty.nix
     ./programs/neuron.nix
+    ./programs/purebred.nix
     ./programs/shell.nix
     ./programs/shell/ranger.nix
     ./programs/streaming.nix
     ./programs/text.nix
     ./programs/wezterm.nix
-    ./programs/kitty.nix
   ];
 
   options.evie.programs = {
