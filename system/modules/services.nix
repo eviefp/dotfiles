@@ -23,7 +23,7 @@ in
         drivers = [ pkgs.hplip pkgs.gutenprint ];
       };
 
-      lorri.enable = true;
+      # lorri.enable = true;
 
       udev = lib.mkIf cfg.xcompose {
         extraRules = ''
