@@ -1,14 +1,14 @@
 {-# LANGUAGE TypeApplications #-}
+{-# OPTIONS_GHC -fno-warn-deprecations #-}
 
+import XMonad.Hooks.DynamicLog
 import qualified Data.Map as M
 import System.IO
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.PhysicalScreens
 import XMonad.Config.Gnome
-import XMonad.Config.Desktop
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
@@ -25,6 +25,7 @@ myManageHook =
       resource =? "stalonetray" --> doIgnore,
       manageDocks
     ]
+
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -61,15 +62,11 @@ newBindings x =
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys x = M.union (M.fromList (newBindings x)) (keys def x)
 
-myWorkspaces :: [String]
-myWorkspaces = fmap (show @Int) [1 .. 9]
-
 main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar"
 
-  xmonad $
-    ewmh desktopConfig
+  xmonad $ ewmhFullscreen $ ewmh $ def
       { manageHook = insertPosition Below Newer <+> myManageHook,
         layoutHook = avoidStruts . smartBorders $ layoutHook def,
         logHook =
@@ -82,7 +79,6 @@ main = do
         modMask = mod4Mask,
         keys = myKeys,
         terminal = "wezterm",
-        workspaces = myWorkspaces,
         handleEventHook =
           mconcat
             [ docksEventHook,

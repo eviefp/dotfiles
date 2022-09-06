@@ -1,5 +1,5 @@
 let
-  sources = import ../../dev-shell/haskell/nix/sources.nix;
+  sources = import ../../nix/sources.nix;
   pkgs = import sources.nixpkgs { };
   ep = [
     pkgs.xorg.libX11
