@@ -327,6 +327,11 @@ let
     name = "nerveux.nvim-master";
     src = sources."nerveux.nvim";
   };
+
+  firenvim = vimUtils.buildVimPlugin {
+    name = "firenvim-master";
+    src = sources."firenvim";
+  };
 in
 {
   imports = [ ];
@@ -413,6 +418,7 @@ in
             telescope-file-browser
             neuron
             nerveux
+            firenvim
           ];
         };
       })

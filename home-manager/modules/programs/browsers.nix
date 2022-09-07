@@ -24,6 +24,7 @@ in
         "${pkgs.passff-host}/share/passff-host/passff.json";
       ".mozilla/native-messaging-hosts/tridactyl.json".source =
         "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
+      ".mozilla/native-messaging-hosts/firenvim.json".source = ../../../config/firenvim.json;
     };
     programs = {
       browserpass = {
