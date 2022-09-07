@@ -1,6 +1,9 @@
 {-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE PartialTypeSignatures #-}
+{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE StandaloneKindSignatures #-}
+{-# LANGUAGE TypeApplications #-}
 {-# OPTIONS_GHC -fno-warn-deprecations #-}
 {-# OPTIONS_GHC -fno-warn-partial-type-signatures #-}
 
@@ -16,10 +19,14 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.StatusBar qualified as SB
+import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.StackSet qualified as W
 import XMonad.Util.Loggers
 import Prelude
+import Data.List (isPrefixOf)
+import XMonad.Prelude (isSuffixOf)
+-- import XMonad.Util.NamedWindows
 
 myManageHook :: ManageHook
 myManageHook =
@@ -66,7 +73,7 @@ myKeys x = M.union (M.fromList (newBindings x)) (keys def x)
 
 main :: IO ()
 main = do
-  xmonad . ewmhFullscreen . ewmh . withXmobar $
+  xmonad . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
     def
       { manageHook = insertPosition Below Newer <+> myManageHook,
         layoutHook = avoidStruts . smartBorders $ layoutHook def,
@@ -97,9 +104,8 @@ withXmobar =
           ppHidden = white . wrap " " "",
           ppHiddenNoWindows = id,
           ppRename = \s _ -> s,
-          ppUrgent = red . wrap (yellow "!") (yellow "!"),
           ppOrder = \case
-            [ws, l, _activeWin, allWindows] -> [ws, l, allWindows]
+            [ws, _l, _activeWin, allWindows] -> [ws, allWindows]
             xs -> xs,
           ppExtras = [logTitles formatFocused formatUnfocused],
           ppWsSep = " ",
@@ -114,20 +120,23 @@ withXmobar =
     formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . ppWindow
 
     ppWindow :: String -> String
-    ppWindow = xmobarRaw . cleanWindowTitle . shorten 30
+    ppWindow = xmobarRaw . cleanWindowTitle -- . shorten 30
 
     cleanWindowTitle :: String -> String
-    cleanWindowTitle =
-      \case
-        'A' : 'l' : 'l' : ' ' : 'g' : 'o' : 'o' : 'd' : ',' : ' ' : _xs -> "ghcid"
-        'v' : 'i' : ' ' : rest -> "vi " <> takeBaseName rest
-        [] -> "untitled"
-        xs -> xs
+    cleanWindowTitle s
+      | isPrefixOf "All good, " s = "ghcid"
+      | isPrefixOf "Slack " s = "slack"
+      | isPrefixOf "Discord " s = "discord"
+      | s == "Signal" = "signal"
+      | s == "Steam" = "steam"
+      | s == "Volume Control" = "volume"
+      | isPrefixOf "vi " s = "vi " <> takeBaseName (drop 3 s)
+      | isSuffixOf " — Mozilla Firefox" s = reverse . drop (length @([]) " — Mozilla Firefox") . reverse $ s
+      | s == [] = "untitled"
+      | otherwise = s
 
-    blue, lowWhite, magenta, red, white, yellow :: String -> String
+    blue, lowWhite, magenta, white :: String -> String
     magenta = xmobarColor "#ff79c6" ""
     blue = xmobarColor "#bd93f9" ""
     white = xmobarColor "#f8f8f2" ""
-    yellow = xmobarColor "#f1fa8c" ""
-    red = xmobarColor "#ff5555" ""
     lowWhite = xmobarColor "#bbbbbb" ""
