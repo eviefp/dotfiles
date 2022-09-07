@@ -81,18 +81,6 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         ]
                         600
                     , Run
-                        Com
-                        "hcs"
-                        ["next", "--xmobar"]
-                        "hcs"
-                        1000
-                    , Run
-                        Com
-                        "echo"
-                        [" <fc=#ed4300>\xf274</fc>"]
-                        "hcs_icon"
-                        36000
-                    , Run
                         DateZone
                         "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xf073</fc> "
                         "en_UK.UTF-8"
@@ -101,9 +89,11 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         10
                     , Run
                         StdinReader
+                    , Run
+                        XMonadLog
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %battery% %cpu% %memory% %diskio% %dynnetwork% %default:Master% %LRBS% %mail% %hcs% %hcs_icon% %date%"
+       , template = "%XMonadLog% }{ %battery% %cpu% %memory% %diskio% %dynnetwork% %default:Master% %LRBS% %mail% %date%"
        , lowerOnStart = False
        }
