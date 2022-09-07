@@ -1,23 +1,24 @@
-{-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE PartialTypeSignatures #-}
 {-# OPTIONS_GHC -fno-warn-deprecations #-}
 {-# OPTIONS_GHC -fno-warn-partial-type-signatures #-}
 
-import XMonad.Hooks.DynamicLog
-import qualified Data.Map as M
+import Data.Map qualified as M
+import System.FilePath
 import System.IO
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.PhysicalScreens
 import XMonad.Config.Gnome
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
-import XMonad.Util.Loggers
+import XMonad.Hooks.StatusBar qualified as SB
 import XMonad.Layout.NoBorders
-import qualified XMonad.StackSet as W
-import qualified XMonad.Hooks.StatusBar as SB
+import XMonad.StackSet qualified as W
+import XMonad.Util.Loggers
 import Prelude
 
 myManageHook :: ManageHook
@@ -27,7 +28,6 @@ myManageHook =
       resource =? "stalonetray" --> doIgnore,
       manageDocks
     ]
-
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -66,7 +66,8 @@ myKeys x = M.union (M.fromList (newBindings x)) (keys def x)
 
 main :: IO ()
 main = do
-  xmonad . ewmhFullscreen . ewmh . withXmobar $ def
+  xmonad . ewmhFullscreen . ewmh . withXmobar $
+    def
       { manageHook = insertPosition Below Newer <+> myManageHook,
         layoutHook = avoidStruts . smartBorders $ layoutHook def,
         startupHook = myStartupHook,
@@ -75,40 +76,58 @@ main = do
         terminal = "wezterm",
         handleEventHook =
           mconcat
-            [ docksEventHook,
+            [ -- this is deprecated; should figure out how to remove it
+              docksEventHook,
               handleEventHook def
             ]
       }
 
 withXmobar :: XConfig _ -> XConfig _
-withXmobar = SB.withEasySB (SB.statusBarProp "xmobar" (pure pp)) SB.defToggleStrutsKey
-
-pp :: PP
-pp = def
-    { ppSep             = magenta " • "
-    , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
-    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
-    , ppOrder           = \case
-                               [ws, l, _, wins] -> [ws, l, wins]
-                               _ -> error "wtf"
-    , ppExtras          = [logTitles formatFocused formatUnfocused]
-    }
+withXmobar =
+  SB.withEasySB
+    (SB.statusBarProp "xmobar" (pure pp))
+    SB.defToggleStrutsKey
   where
-    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue    . ppWindow
+    pp :: PP
+    pp =
+      def
+        { ppSep = magenta " • ",
+          ppVisible = blue . wrap "(" ")",
+          ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Top" "#8be9fd" 2,
+          ppHidden = white . wrap " " "",
+          ppHiddenNoWindows = id,
+          ppRename = \s _ -> s,
+          ppUrgent = red . wrap (yellow "!") (yellow "!"),
+          ppOrder = \case
+            [ws, l, _activeWin, allWindows] -> [ws, l, allWindows]
+            xs -> xs,
+          ppExtras = [logTitles formatFocused formatUnfocused],
+          ppWsSep = " ",
+          ppTitle = shorten 80,
+          ppTitleSanitize = xmobarStrip
+        }
 
-    -- | Windows should have *some* title, which should not not exceed a
-    -- sane length.
+    formatFocused :: String -> String
+    formatFocused = wrap (white "[") (white "]") . magenta . ppWindow
+
+    formatUnfocused :: String -> String
+    formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . ppWindow
+
     ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+    ppWindow = xmobarRaw . cleanWindowTitle . shorten 30
+
+    cleanWindowTitle :: String -> String
+    cleanWindowTitle =
+      \case
+        'A' : 'l' : 'l' : ' ' : 'g' : 'o' : 'o' : 'd' : ',' : ' ' : _xs -> "ghcid"
+        'v' : 'i' : ' ' : rest -> "vi " <> takeBaseName rest
+        [] -> "untitled"
+        xs -> xs
 
     blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor "#ff79c6" ""
-    blue     = xmobarColor "#bd93f9" ""
-    white    = xmobarColor "#f8f8f2" ""
-    yellow   = xmobarColor "#f1fa8c" ""
-    red      = xmobarColor "#ff5555" ""
+    magenta = xmobarColor "#ff79c6" ""
+    blue = xmobarColor "#bd93f9" ""
+    white = xmobarColor "#f8f8f2" ""
+    yellow = xmobarColor "#f1fa8c" ""
+    red = xmobarColor "#ff5555" ""
     lowWhite = xmobarColor "#bbbbbb" ""

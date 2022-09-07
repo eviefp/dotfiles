@@ -19,4 +19,5 @@ executable xmonad-evie
     , containers
     , xmonad
     , xmonad-contrib
+    , filepath
   default-language: Haskell2010
