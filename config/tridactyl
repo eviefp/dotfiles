@@ -4,10 +4,11 @@
 "" Testing
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 
+set allowautofocus false
 set searchengine duckduckgo
 
-set hintfiltermode vimperator
-set hintchars 1234567890
+set hintfiltermode vimperator-reflow
+set hintchars fdsqjklmrezauiopwxcvghtybn
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Bindings
