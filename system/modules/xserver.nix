@@ -15,6 +15,11 @@ in
       lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
     useBluetooth = lib.options.mkEnableOption "Enable bluetooth support.";
     enableHiDPI = lib.options.mkEnableOption "Enable HiDPI support.";
+    monitorSectionDisplaySize = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "The DisplaySize monitor section, e.g. 'DisplaySize 100 100'";
+    };
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -24,6 +29,7 @@ in
           enable = true;
           monitorSection = ''
             Option "DPMS" "false"
+            ${cfg.monitorSectionDisplaySize}
           '';
           serverFlagsSection = ''
             Option "BlankTime" "20"
