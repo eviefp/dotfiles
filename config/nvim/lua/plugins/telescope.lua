@@ -7,6 +7,7 @@ local actions = require('telescope.actions')
 
 telescope.load_extension('fzf')
 telescope.load_extension('file_browser')
+telescope.load_extension('ui-select')
 
 local fb_actions = telescope.extensions.file_browser.actions
 
@@ -19,6 +20,10 @@ telescope.setup {
       case_mode = 'smart_case',
     },
     file_browser = {
+    },
+    ['ui-select'] = {
+      require('telescope.themes').get_dropdown {
+      }
     },
   },
   defaults = {
@@ -45,7 +50,6 @@ map(''  , '<leader>gc'       , '<cmd>Telescope git_bcommits<cr>'          , {})
 map(''  , '<leader>gC'       , '<cmd>Telescope git_commits<cr>'           , {})
 
 map('n' , '<leader>xd'       , '<cmd>Telescope diagnostics<cr>'           , { noremap = true})
-map('n' , '<leader>ac'       , '<cmd>Telescope lsp_code_actions<cr>'      , { noremap = true   , silent = true })
 map('n' , 'gd'               , '<cmd>Telescope lsp_definitions<cr>'       , { noremap = true   , silent = true })
 map('n' , 'gi'               , '<cmd>Telescope lsp_implementations<cr>'   , { noremap = true   , silent = true })
 map('n' , 'gt'               , '<cmd>Telescope lsp_type_definitions<cr>'  , { noremap = true   , silent = true })

@@ -332,6 +332,11 @@ let
     name = "firenvim-master";
     src = sources."firenvim";
   };
+
+  telescope-ui-select = vimUtils.buildVimPlugin {
+    name = "telescope-ui-select";
+    src = sources."telescope-ui-select.nvim";
+  };
 in
 {
   imports = [ ];
@@ -419,6 +424,7 @@ in
             neuron
             nerveux
             firenvim
+            telescope-ui-select
           ];
         };
       })

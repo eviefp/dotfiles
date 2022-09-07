@@ -38,6 +38,7 @@ map('n' , '<leader>xf' , '<cmd>lua vim.lsp.buf.formatting()<cr>'                
 map('n' , 'gD'         , '<cmd>vsplit<cr><cmd>lua vim.lsp.buf.definition()<cr>'             , { noremap = true   , silent = true })
 map('n' , 'K'          , '<cmd>lua vim.lsp.buf.hover()<cr>'                                 , { noremap = true   , silent = true })
 map('n' , '<c-k>'      , '<cmd>lua vim.lsp.buf.signature_help()<cr>'                        , { noremap = true   , silent = true })
+map('n' , '<leader>ac' , '<cmd>lua vim.lsp.buf.code_action()<cr>'                           , { noremap = true   , silent = true })
 
 -------------------------------------------------------------------------------
 -- Tabularize
