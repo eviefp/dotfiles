@@ -13,6 +13,7 @@ in
 
   options.evie.programs.gui = {
     enable = lib.options.mkEnableOption "Enable generic UI packages.";
+    useLaptopXmobar = lib.options.mkEnableOption "Enable battery display.";
   };
 
   config = (lib.mkIf cfg.enable {
@@ -67,7 +68,10 @@ in
       ".xmonad/get-mic.sh".source = ../../config/xmonad/get-mic.sh;
       ".xmonad/get-volume.sh".source = ../../config/xmonad/get-volume.sh;
 
-      ".xmobarrc".source = ../../config/xmobarrc;
+      ".xmobarrc".source =
+        if cfg.useLaptopXmobar
+        then ../../config/xmobarrc-laptop
+        else ../../config/xmobarrc;
       ".XCompose".source = ../../config/XCompose;
     };
 

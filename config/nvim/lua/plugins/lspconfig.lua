@@ -15,6 +15,9 @@ lspconfig.hls.setup {
     debounce_text_changes = 150,
   },
   capabilities = capabilities,
+  settings = {
+    formattingProvider = "fourmolu",
+  },
 }
 
 -------------------------------------------------------------------------------
