@@ -39,6 +39,11 @@ in
     # as well as my default user to that group.
     virtualisation.docker = { enable = true; };
 
+    virtualisation.virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+
     # I don't recall what this is. Going to randomly leave it here.
     nix.extraOptions = ''
       binary-caches-parallel-connections = 5

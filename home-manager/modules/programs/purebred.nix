@@ -18,6 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       purebred
+      pkgs.elinks
     ];
   };
 }

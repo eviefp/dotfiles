@@ -62,6 +62,7 @@
 
     gui = {
       enable = true;
+      useLaptopXmobar = true;
     };
 
     wezterm.enable = true;
