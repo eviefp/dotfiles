@@ -68,6 +68,11 @@ in
         opengl = {
           enable = true;
           driSupport32Bit = true;
+          driSupport = true;
+          extraPackages =
+            if cfg.useNVidia
+            then [ pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl ]
+            else [ pkgs.mesa.drivers pkgs.amdvlk ];
         };
         video.hidpi.enable = cfg.enableHiDPI;
       };
