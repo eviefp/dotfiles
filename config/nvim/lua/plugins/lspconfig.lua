@@ -16,7 +16,9 @@ lspconfig.hls.setup {
   },
   capabilities = capabilities,
   settings = {
-    formattingProvider = "fourmolu",
+    haskell = {
+      formattingProvider = 'fourmolu',
+    },
   },
 }
 
