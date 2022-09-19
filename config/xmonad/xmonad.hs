@@ -54,7 +54,7 @@ myManageHook =
 myStartupHook :: X ()
 myStartupHook = do
     installSignalHandlers
-    spawn "stalonetray"
+    -- spawn "stalonetray"
 
 screenshotCommand :: String
 screenshotCommand = "/usr/bin/env fish --command clip"
