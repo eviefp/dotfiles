@@ -2,7 +2,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
        , additionalFonts = [ "xft:FontAwesome:size=30:antialias=true" ]
        , bgColor = "#222222"
        , fgColor = "grey"
-       , position = Top
+       , position = Bottom
        , commands = [ Run
                         BatteryP
                         [ "BAT", "BAT0", "BAT1", "BAT2" ]
