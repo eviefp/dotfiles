@@ -40,7 +40,7 @@ in
     })
     (
       {
-        home.packages = [ unstable.zoom-us ];
+        home.packages = [ unstable.zoom-us pkgs.light ];
       }
     )
   ];

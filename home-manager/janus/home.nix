@@ -39,10 +39,6 @@
       };
     };
 
-    hcs = {
-      enable = true;
-      service = true;
-    };
     neuron = {
       enable = true;
     };

@@ -42,6 +42,7 @@ import Data.Kind (Type)
 import qualified XMonad.Layout.LayoutModifier as LM
 import GHC.TypeLits (Symbol)
 import qualified XMonad.Layout.Dwindle as DW
+import Data.Maybe (catMaybes)
 
 myManageHook :: ManageHook
 myManageHook =
@@ -62,99 +63,222 @@ screenshotCommand = "/usr/bin/env fish --command clip"
 workspaceList :: [Int]
 workspaceList = [1..20]
 
-keybindings :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-keybindings conf =
-    EZ.mkKeymap conf
-      $ mconcat
+type KeyAction :: Type
+data KeyAction
+  = WSNext
+  | WSPrev
+  | ToScreen Int
+  | FocusUp
+  | FocusDown
+  | FocusMaster
+  | SwapUp
+  | SwapDown
+  | SwapMaster
+  | WExpand
+  | WShrink
+  | Sink
+  | Kill
+  | Restart
+  | LayoutNext
+  | LayoutReset
+  | LaunchTerminal
+  | ShowHelp
+  | GotoWorkspace Int
+  | MoveToWorkspace Int
+  | RofiRun
+  | RofiSsh
+  | RofiPass
+  | Xrandr String
+  | BrightnessUp
+  | BrightnessDown
+  | SoundToggle
+  | VolumeUp
+  | VolumeDown
+  | MicrophoneToggle
+  | Screenshot
+
+evaluateKeyAction :: XConfig Layout -> KeyAction -> X ()
+evaluateKeyAction conf =
+  \case
+    WSNext -> nextWS
+    WSPrev -> prevWS
+    ToScreen idx -> viewScreen horizontalScreenOrderer $ P idx
+    FocusUp -> windows W.focusUp
+    FocusDown -> windows W.focusDown
+    FocusMaster -> windows W.focusMaster
+    SwapUp -> windows W.swapUp
+    SwapDown -> windows W.swapDown
+    SwapMaster -> windows W.swapMaster
+    WExpand -> sendMessage Expand
+    WShrink -> sendMessage Shrink
+    Sink -> withFocused $ windows . W.sink
+    Kill -> kill
+    Restart -> spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"
+    LayoutNext -> sendMessage NextLayout
+    LayoutReset -> setLayout $ layoutHook conf
+    LaunchTerminal -> spawn $ terminal conf
+    ShowHelp -> xmessage mkHelp
+    GotoWorkspace idx -> DWO.withNthWorkspace W.greedyView idx
+    MoveToWorkspace idx -> DWO.withNthWorkspace W.shift idx
+    RofiRun -> spawn "rofi -show run"
+    RofiSsh -> spawn "rofi -show ssh -terminal wezterm"
+    RofiPass -> spawn "rofi-pass"
+    Xrandr command -> spawn command
+    BrightnessUp -> spawn "sudo light -A 10"
+    BrightnessDown -> spawn "sudo light -U 10"
+    SoundToggle -> spawn "amixer set Master 1+ toggle"
+    VolumeUp -> spawn "amixer set Master 10%+"
+    VolumeDown -> spawn "amixer set Master 10%-"
+    MicrophoneToggle -> spawn "amixer set Capture toggle"
+    Screenshot -> spawn screenshotCommand
+  where
+    mkHelp = unlines . catMaybes . fmap (uncurry evaluateHelp) $ allKeys
+
+evaluateHelp :: String -> KeyAction -> Maybe String
+evaluateHelp key action =
+  go key
+    $ case action of
+      WSNext -> Just "next workspace"
+      WSPrev -> Just "prev workspace"
+      ToScreen idx -> Just $ "to screen " <> show idx
+      FocusUp -> Just "focus up"
+      FocusDown -> Just "focus down"
+      FocusMaster -> Just "focus master"
+      SwapUp -> Just "swap up"
+      SwapDown -> Just "swap down"
+      SwapMaster -> Just "swap master"
+      WExpand -> Just "expand"
+      WShrink -> Just "shrink"
+      Sink -> Just "sink"
+      Kill -> Just "kill"
+      Restart -> Just "restart"
+      LayoutNext -> Just "next layout"
+      LayoutReset -> Just "reset layout"
+      LaunchTerminal -> Just "terminal"
+      ShowHelp -> Just "show this message"
+      GotoWorkspace idx
+        | idx == 0 -> Just $ "goto workspace 1"
+        | otherwise -> Nothing
+      MoveToWorkspace idx
+        | idx == 0 -> Just $ "move to workspace 1"
+        | otherwise -> Nothing
+      RofiRun -> Just "rofi run"
+      RofiSsh -> Just "rofi ssh"
+      RofiPass -> Just "rofi pass"
+      Xrandr command -> Just $ "xrandr " <> command
+      BrightnessUp -> Just "brightness up"
+      BrightnessDown -> Just "brightness down"
+      SoundToggle -> Just "sound toggle"
+      VolumeUp -> Just "volume up"
+      VolumeDown -> Just "volume down"
+      MicrophoneToggle -> Just "microphone toggle"
+      Screenshot -> Just "screenshot"
+  where
+    go :: String -> Maybe String -> Maybe String
+    go k = fmap (padRight 20 k <>)
+
+    padRight :: Int -> String -> String
+    padRight desired_length s = s ++ replicate (desired_length - length s) ' '
+
+allKeys :: [(String, KeyAction)]
+allKeys =
+  mconcat
         [ xmonadKeys
-        , withWorkspaces "" W.greedyView
-        , withWorkspaces "C-" W.shift
+        , withWorkspaces "" GotoWorkspace
+        , withWorkspaces "C-" MoveToWorkspace
         , rofi
         , xrandr
         , brightness
         , audio
         , extra
         ]
-
   where
-    xmonadKeys :: [(String, X ())]
+    xmonadKeys :: [(String, KeyAction)]
     xmonadKeys =
-      [ ("M-<Right>", nextWS)
-      , ("M-<Left>", prevWS)
-      , ("M-S-l", nextWS)
-      , ("M-S-h", prevWS)
+      [ ("M-<Right>", WSNext)
+      , ("M-<Left>", WSPrev)
+      , ("M-S-l", WSNext)
+      , ("M-S-h", WSPrev)
 
-      , ("M-w", viewScreen horizontalScreenOrderer (P 0))
-      , ("M-e", viewScreen horizontalScreenOrderer (P 1))
-      , ("M-r", viewScreen horizontalScreenOrderer (P 2))
+      , ("M-w", ToScreen 0)
+      , ("M-e", ToScreen 1)
+      , ("M-r", ToScreen 2)
 
-      , ("M-j", windows W.focusUp)
-      , ("M-k", windows W.focusDown)
-      , ("M-m", windows W.focusMaster)
+      , ("M-j", FocusUp)
+      , ("M-k", FocusDown)
+      , ("M-m", FocusMaster)
 
-      , ("M-S-j", windows W.swapUp)
-      , ("M-S-k", windows W.swapDown)
-      , ("M-<Return>", windows W.swapMaster)
+      , ("M-S-j", SwapUp)
+      , ("M-S-k", SwapDown)
+      , ("M-<Return>", SwapMaster)
 
-      , ("M-l", sendMessage Expand)
-      , ("M-h", sendMessage Shrink)
+      , ("M-l", WExpand)
+      , ("M-h", WShrink)
 
-      , ("M-t", withFocused $ windows . W.sink)
+      , ("M-t", Sink)
 
-      , ("M-S-c", kill)
-      , ("M-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
+      , ("M-S-c", Kill)
+      , ("M-q", Restart)
 
-      , ("M-<Space>", sendMessage NextLayout)
-      , ("M-S-<Space>", setLayout $ layoutHook conf)
-      , ("M-S-<Return>", spawn $ terminal conf)
+      , ("M-<Space>", LayoutNext)
+      , ("M-S-<Space>", LayoutReset)
+      , ("M-S-<Return>", LaunchTerminal)
+
+      , ("M-/", ShowHelp)
       ]
 
-    withWorkspaces :: String -> (String -> WindowSet -> WindowSet) -> [(String, X ())]
+    withWorkspaces :: String -> (Int -> KeyAction) -> [(String, KeyAction)]
     withWorkspaces extraPrefix go =
       mconcat
-        [ [ ("M-" <> extraPrefix <> show n, DWO.withNthWorkspace go (n - 1))
+        [ [ ("M-" <> extraPrefix <> show n, go (n - 1))
           | n <- [1 .. 9]
           ]
-        , [ ("M-" <> extraPrefix <> "0", DWO.withNthWorkspace go 9) ]
-        , [ ("M-S-" <> extraPrefix <> show n, DWO.withNthWorkspace go (n + 9))
+        , [ ("M-" <> extraPrefix <> "0", go 9) ]
+        , [ ("M-S-" <> extraPrefix <> show n, go (n + 9))
           | n <- [1 .. 9]
           ]
-        , [ ("M-S-" <> extraPrefix <> "0", DWO.withNthWorkspace go 19) ]
+        , [ ("M-S-" <> extraPrefix <> "0", go 19) ]
         ]
 
-    rofi :: [(String, X ())]
+    rofi :: [(String, KeyAction)]
     rofi =
-      [ ("M-p", spawn "rofi -show run")
-      , ("M-s", spawn "rofi -show ssh -terminal wezterm")
-      , ("M-o", spawn "rofi-pass")
+      [ ("M-p", RofiRun)
+      , ("M-s", RofiSsh)
+      , ("M-o", RofiPass)
       ]
 
-    xrandr :: [(String, X ())]
+    xrandr :: [(String, KeyAction)]
     xrandr =
-      [ ("M-a", spawn "xrandr --output HDMI-1 --mode 1920x1080 --right-of DP-2")
-      , ("M-z", spawn "xrandr --output HDMI-1 --off")
-      , ("M-x", spawn "xrandr --output DP-0 --mode 1920x1080 --rate 239.76 --left-of DP-2 --primary"
-                  *> spawn "xrandr --output DP-2 --mode 1920x1080 --rate 239.76")
+      [ ("M-a", Xrandr "xrandr --output HDMI-1 --mode 1920x1080 --right-of DP-2")
+      , ("M-z", Xrandr "xrandr --output HDMI-1 --off")
+      , ("M-x", Xrandr "xrandr --output DP-0 --mode 1920x1080 --rate 239.76 --left-of DP-2 --primary; xrandr --output DP-2 --mode 1920x1080 --rate 239.76")
       ]
 
-    brightness :: [(String, X ())]
+    brightness :: [(String, KeyAction)]
     brightness =
-      [ ("M-g", spawn "xbacklight +10")
-      , ("M-S-g", spawn "xbacklight -10")
+      [ ("M-g", BrightnessUp)
+      , ("M-S-g", BrightnessDown)
       ]
 
-    audio :: [(String, X ())]
+    audio :: [(String, KeyAction)]
     audio =
-      [ ("M-y", spawn "amixer set Master 1+ toggle")
-      , ("M-u", spawn "amixer set Master 10%-")
-      , ("M-S-u", spawn "amixer set Master 10%+")
-      , ("M-S-y", spawn "amixer set Capture toggle")
+      [ ("M-y", SoundToggle)
+      , ("M-u", VolumeDown)
+      , ("M-S-u", VolumeUp)
+      , ("M-S-y", MicrophoneToggle)
       ]
 
-    extra :: [(String, X ())]
+    extra :: [(String, KeyAction)]
     extra =
-      [ ("<Print>", spawn screenshotCommand)
+      [ ("<Print>", Screenshot)
       ]
+
+keybindings :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+keybindings conf =
+    EZ.mkKeymap conf
+      . (fmap . fmap) (evaluateKeyAction conf) $ allKeys
+
+  where
 
 main :: IO ()
 main = do
@@ -164,10 +288,10 @@ main = do
             , workspaces = show <$> workspaceList
             , layoutHook =
                 avoidStruts . smartBorders $
-                      (LM.ModifiedLayout (Wrapper @"Drawer Circle") $ Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle )
-                      ||| Circle
-                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Tall") $ Drawer.drawer 0.01 0.6 (Prop.ClassName "firefox") tall `Drawer.onTop` tall)
-                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Full") $ Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` noBorders Full)
+                      (LM.ModifiedLayout (Wrapper @"Drawer Circle") $ Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onLeft` Circle )
+                      ||| tall
+                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Tall") $ Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onLeft` tall)
+                      ||| noBorders Full
                       ||| Roledex
             , startupHook = myStartupHook
             , modMask = mod4Mask

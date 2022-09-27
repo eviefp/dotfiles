@@ -84,7 +84,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         DateZone
                         "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xf073</fc> "
                         "en_UK.UTF-8"
-                        "EET"
+                        "CET"
                         "date"
                         10
                     , Run
