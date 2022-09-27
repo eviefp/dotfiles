@@ -19,6 +19,8 @@ in
     ../modules/users.nix
   ];
 
+  evie.locale.timeZone = "Europe/Vienna";
+
   evie.network = {
     hostName = "janus";
     interface = "";
