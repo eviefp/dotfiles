@@ -2,8 +2,6 @@
 -- plugins
 ------------------------------------------------------------------------------
 
-require 'plugins.neorg'
-
 require 'plugins.telescope'
 
 -- Themes and display

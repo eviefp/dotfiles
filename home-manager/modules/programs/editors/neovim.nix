@@ -264,14 +264,6 @@ let
     src = sources."vim-mergetool";
   };
 
-  neorg = vimUtils.buildVimPlugin {
-    name = "neorg-main-944de8a";
-    src = sources.neorg;
-    configurePhase = ''
-      rm -rf Makefile
-    '';
-  };
-
   truezen = vimUtils.buildVimPlugin {
     name = "truezen.nvim-main-508b977";
     src = sources."truezen.nvim";
@@ -298,11 +290,6 @@ let
   material = vimUtils.buildVimPlugin {
     name = "material.vim-main-445534b";
     src = sources."material.vim";
-  };
-
-  neorg-telescope = vimUtils.buildVimPlugin {
-    name = "neorg-telescope-main-75c2ad0";
-    src = sources.neorg-telescope;
   };
 
   tresitter-refactor = vimUtils.buildVimPlugin {
@@ -412,13 +399,11 @@ in
             gitMessenger
             hop
             merge
-            neorg
             truezen
             sandwich
             snitch
             fairyfloss
             material
-            neorg-telescope
             tresitter-refactor
             telescope-file-browser
             neuron
