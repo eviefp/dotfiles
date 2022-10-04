@@ -43,6 +43,7 @@ import qualified XMonad.Layout.LayoutModifier as LM
 import GHC.TypeLits (Symbol)
 import qualified XMonad.Layout.Dwindle as DW
 import Data.Maybe (catMaybes)
+import qualified Data.IORef as Ref
 
 myManageHook :: ManageHook
 myManageHook =
@@ -85,6 +86,7 @@ data KeyAction
   | ShowHelp
   | GotoWorkspace Int
   | MoveToWorkspace Int
+  | ToggleWorkProfile
   | RofiRun
   | RofiSsh
   | RofiPass
@@ -97,8 +99,8 @@ data KeyAction
   | MicrophoneToggle
   | Screenshot
 
-evaluateKeyAction :: XConfig Layout -> KeyAction -> X ()
-evaluateKeyAction conf =
+evaluateKeyAction :: Ref.IORef Bool -> XConfig Layout -> KeyAction -> X ()
+evaluateKeyAction workProfile conf =
   \case
     WSNext -> nextWS
     WSPrev -> prevWS
@@ -117,9 +119,10 @@ evaluateKeyAction conf =
     LayoutNext -> sendMessage NextLayout
     LayoutReset -> setLayout $ layoutHook conf
     LaunchTerminal -> spawn $ terminal conf
+    ToggleWorkProfile -> liftIO $ Ref.modifyIORef workProfile not
     ShowHelp -> xmessage mkHelp
-    GotoWorkspace idx -> DWO.withNthWorkspace W.greedyView idx
-    MoveToWorkspace idx -> DWO.withNthWorkspace W.shift idx
+    GotoWorkspace idx -> (liftIO $ Ref.readIORef workProfile) >>= DWO.withNthWorkspace W.greedyView . updateIndex idx
+    MoveToWorkspace idx -> (liftIO $ Ref.readIORef workProfile) >>= DWO.withNthWorkspace W.shift . updateIndex idx
     RofiRun -> spawn "rofi -show run"
     RofiSsh -> spawn "rofi -show ssh -terminal wezterm"
     RofiPass -> spawn "rofi-pass"
@@ -133,6 +136,12 @@ evaluateKeyAction conf =
     Screenshot -> spawn screenshotCommand
   where
     mkHelp = unlines . catMaybes . fmap (uncurry evaluateHelp) $ allKeys
+
+updateIndex :: Int -> Bool -> Int
+updateIndex originalIndex False = originalIndex
+updateIndex originalIndex True
+  | originalIndex < 10 = originalIndex + 10
+  | otherwise = originalIndex - 10
 
 evaluateHelp :: String -> KeyAction -> Maybe String
 evaluateHelp key action =
@@ -162,6 +171,7 @@ evaluateHelp key action =
       MoveToWorkspace idx
         | idx == 0 -> Just $ "move to workspace 1"
         | otherwise -> Nothing
+      ToggleWorkProfile -> Just "toggle between personal and work"
       RofiRun -> Just "rofi run"
       RofiSsh -> Just "rofi ssh"
       RofiPass -> Just "rofi pass"
@@ -225,6 +235,7 @@ allKeys =
       , ("M-S-<Return>", LaunchTerminal)
 
       , ("M-/", ShowHelp)
+      , ("M-=", ToggleWorkProfile)
       ]
 
     withWorkspaces :: String -> (Int -> KeyAction) -> [(String, KeyAction)]
@@ -273,29 +284,30 @@ allKeys =
       [ ("<Print>", Screenshot)
       ]
 
-keybindings :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-keybindings conf =
+keybindings :: Ref.IORef Bool -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+keybindings workProfile conf =
     EZ.mkKeymap conf
-      . (fmap . fmap) (evaluateKeyAction conf) $ allKeys
+      . (fmap . fmap) (evaluateKeyAction workProfile conf) $ allKeys
 
   where
 
 main :: IO ()
 main = do
+    workProfile <- Ref.newIORef False
     xmonad . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
         def
             { manageHook = insertPosition Below Newer <+> myManageHook
             , workspaces = show <$> workspaceList
             , layoutHook =
                 avoidStruts . smartBorders $
-                      (LM.ModifiedLayout (Wrapper @"Drawer Circle") $ Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onLeft` Circle )
-                      ||| tall
-                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Tall") $ Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onLeft` tall)
+                      tall
+                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Circle") $ Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle )
+                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Tall") $ Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
                       ||| noBorders Full
                       ||| Roledex
             , startupHook = myStartupHook
             , modMask = mod4Mask
-            , keys = keybindings
+            , keys = keybindings workProfile
             , terminal = "wezterm"
             , handleEventHook =
                 mconcat

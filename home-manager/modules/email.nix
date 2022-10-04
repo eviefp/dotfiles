@@ -81,7 +81,7 @@ in
           flavor = "gmail.com";
           msmtp.enable = false;
           mbsync = {
-            enable = false;
+            enable = true;
             create = "both";
             expunge = "both";
             remove = "none";
