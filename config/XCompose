@@ -82,7 +82,6 @@
 <Multi_key> <backslash> <S> : "⊕" U2295
 <Multi_key> <backslash> <P> : "⊗" U2297
 
-
-
-
+<Multi_key> <equal> <a> : "ä" U00E4
+<Multi_key> <equal> <A> : "Ä" U00C4
 
