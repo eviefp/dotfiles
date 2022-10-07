@@ -27,6 +27,8 @@ telescope.setup {
     },
   },
   defaults = {
+      layout_strategy = 'vertical',
+      layout_config = { height = 0.8, width = 0.8 },
     mappings = {
       i = {
         ['<C-k>'] = actions.move_selection_previous,
@@ -42,7 +44,6 @@ telescope.setup {
 
 
 local map = vim.api.nvim_set_keymap
-local lsp_doc_symbols = "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>"
 local current_buf_fzf = "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>"
 
 map(''  , '<leader>gr'       , '<cmd>Telescope git_branches<cr>'          , {})
