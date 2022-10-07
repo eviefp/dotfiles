@@ -282,11 +282,6 @@ let
     src = sources.nvim-snitch;
   };
 
-  fairyfloss = vimUtils.buildVimPlugin {
-    name = "fairyfloss.vim-master-61c8bbd";
-    src = sources."fairyfloss.vim";
-  };
-
   material = vimUtils.buildVimPlugin {
     name = "material.vim-main-445534b";
     src = sources."material.vim";
@@ -303,11 +298,6 @@ let
     configurePhase = ''
       rm -rf Makefile
     '';
-  };
-
-  neuron = vimUtils.buildVimPlugin {
-    name = "neuron-master-c44032e";
-    src = sources."neuron.nvim";
   };
 
   nerveux = vimUtils.buildVimPlugin {
@@ -402,11 +392,9 @@ in
             truezen
             sandwich
             snitch
-            fairyfloss
             material
             tresitter-refactor
             telescope-file-browser
-            neuron
             nerveux
             firenvim
             telescope-ui-select

@@ -44,8 +44,8 @@
     };
 
     hcs = {
-      enable = true;
-      service = true;
+      enable = false;
+      service = false;
     };
 
     neuron = {

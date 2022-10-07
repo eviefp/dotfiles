@@ -64,7 +64,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         100
                     , Run
                         Weather
-                        "LRBS"
+                        "EDTF"
                         [ "-t"       , "<tempC>C <fc=#00edb9>\xf2c9</fc>"
                         , "-L"       , "5"
                         , "-H"       , "30"
