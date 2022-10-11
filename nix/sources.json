@@ -1,16 +1,4 @@
 {
-    "catppuccin": {
-        "branch": "main",
-        "description": "🍨 Soothing pastel theme for NeoVim",
-        "homepage": "",
-        "owner": "catppuccin",
-        "repo": "nvim",
-        "rev": "0447ffc0050c43a0d7a23ce3640d22a5ef781605",
-        "sha256": "0pmvsf5rwd51wb9xnyadimvr4mvlr4dxzj6sasvbv9lczjvr59j7",
-        "type": "tarball",
-        "url": "https://github.com/catppuccin/nvim/archive/0447ffc0050c43a0d7a23ce3640d22a5ef781605.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "cmp-emoji": {
         "branch": "main",
         "description": "nvim-cmp source for emoji",
@@ -95,6 +83,18 @@
         "url": "https://github.com/nix-community/emacs-overlay/archive/db1c01c5faeea34547fff2017324f8a2d2253402.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "fairyfloss.vim": {
+        "branch": "master",
+        "description": "Pastel color scheme",
+        "homepage": "",
+        "owner": "tssm",
+        "repo": "fairyfloss.vim",
+        "rev": "234875a9dafac9a86f0448ddcdb9eb8c604a8144",
+        "sha256": "1jdnyh12y0w0z13bg8565jnpzq8nr9pppahl7hmx445963q3rqr2",
+        "type": "tarball",
+        "url": "https://github.com/tssm/fairyfloss.vim/archive/234875a9dafac9a86f0448ddcdb9eb8c604a8144.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "firenvim": {
         "branch": "master",
         "description": "Embed Neovim in Chrome, Firefox, Thunderbird & others.",
@@ -125,10 +125,10 @@
         "homepage": "",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "c997a4ba2156127b14cd9b10398294c925c93be0",
-        "sha256": "1jdcl96zc1nflzhva30vy9ls1i73viv96w5r17hpva3g67lai0vf",
+        "rev": "5df4ac570e796f3ccf1d9c0445c131f6225bde8c",
+        "sha256": "1nkhs8j8bv52pccrcxdm42g1b2b2nvqjv6m9agv1378mqb5cnbd8",
         "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/c997a4ba2156127b14cd9b10398294c925c93be0.tar.gz",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/5df4ac570e796f3ccf1d9c0445c131f6225bde8c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "harpoon": {
@@ -341,10 +341,10 @@
         "homepage": "",
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
-        "rev": "a33858d399d0da226b0cf7b45fe9dc8f0a06547b",
-        "sha256": "01g3q1ss8a6llynacxl6pqb85y37v1i5qhq39casdifqgh1rsln3",
+        "rev": "c536886f2be1683ff36f0d56adf195895d3ba02c",
+        "sha256": "0nizw6x4526r3xcg4hl0pxrx0blw63aycc2kiahznwiq8k2va1hg",
         "type": "tarball",
-        "url": "https://github.com/nvim-treesitter/nvim-treesitter/archive/a33858d399d0da226b0cf7b45fe9dc8f0a06547b.tar.gz",
+        "url": "https://github.com/nvim-treesitter/nvim-treesitter/archive/c536886f2be1683ff36f0d56adf195895d3ba02c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nvim-treesitter-refactor": {

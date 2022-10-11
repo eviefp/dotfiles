@@ -34,6 +34,15 @@ lspconfig.rnix.setup {
 -------------------------------------------------------------------------------
 -- rust
 lspconfig.rust_analyzer.setup {
+  --[[ server = {
+    settings = {
+      ["rust-analyzer"] = {
+        checkOnSave = {
+          command = "clippy"
+        },
+      },
+    },
+  }, ]]
 }
 
 -------------------------------------------------------------------------------
