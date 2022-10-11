@@ -64,7 +64,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         100
                     , Run
                         Weather
-                        "EDTF"
+                        "LRBS"
                         [ "-t"       , "<tempC>C <fc=#00edb9>\xf2c9</fc>"
                         , "-L"       , "5"
                         , "-H"       , "30"
@@ -94,6 +94,6 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %battery% %cpu% %memory% %dynnetwork% %default:Master% %LRBS% %mail% %date%"
+       , template = "%XMonadLog% }{ %battery% %cpu% %memory% %dynnetwork% %default:Master% %LRBS% %date%"
        , lowerOnStart = False
        }

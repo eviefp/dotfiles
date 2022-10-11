@@ -2,7 +2,6 @@
 -- theme
 -------------------------------------------------------------------------------
 
-require 'plugins.themes.catppuccin'
 require 'plugins.themes.tokyonight'
 require 'plugins.themes.material'
 

@@ -212,12 +212,6 @@ let
     '';
   };
 
-  catppuccin = vimUtils.buildVimPlugin {
-    name = "nvim-main-d48d392";
-    src = sources.catppuccin;
-  };
-
-
   octo = vimUtils.buildVimPlugin {
     name = "octo.nvim-master-d21c5cc";
     src = sources."octo.nvim";
@@ -280,6 +274,11 @@ let
   snitch = vimUtils.buildVimPlugin {
     name = "nvim-snitch-ed57352";
     src = sources.nvim-snitch;
+  };
+
+  fairyfloss = vimUtils.buildVimPlugin {
+    name = "fairyfloss.vim-master-61c8bbd";
+    src = sources."fairyfloss.vim";
   };
 
   material = vimUtils.buildVimPlugin {
@@ -381,7 +380,6 @@ in
             whichKey
             biscuits
             luaLine
-            catppuccin
             octo
             trouble
             harpoon
@@ -392,6 +390,7 @@ in
             truezen
             sandwich
             snitch
+            fairyfloss
             material
             tresitter-refactor
             telescope-file-browser
