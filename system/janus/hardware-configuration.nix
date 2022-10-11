@@ -22,7 +22,7 @@ in
 
   # boot.kernelPackages = pkgs.linuxPackages_5_16;
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "i915" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   # hardware.firmware = [ lp ]; # TODO: this was empty!!
