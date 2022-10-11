@@ -19,6 +19,12 @@ in
     ../modules/users.nix
   ];
 
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    };
+  };
+
   evie.locale.timeZone = "Europe/Vienna";
 
   evie.network = {
@@ -33,6 +39,7 @@ in
   evie.packages = {
     enableGPG = true;
     enableDconf = true;
+    extra = [ pkgs.libva pkgs.libva-utils ];
   };
 
   evie.services.xcompose = true;
@@ -44,5 +51,9 @@ in
   };
 
   evie.logind.enable = true;
+
+  environment.variables = {
+    VPAU_DRIVER = "va_gl";
+  };
 }
 

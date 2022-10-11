@@ -27,6 +27,7 @@ in
       services = {
         xserver = {
           enable = true;
+          videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
           monitorSection = ''
             Option "DPMS" "false"
             ${cfg.monitorSectionDisplaySize}
@@ -61,6 +62,7 @@ in
       };
 
       hardware = {
+        cpu.intel.updateMicrocode = true;
         pulseaudio = {
           enable = true;
           package = pkgs.pulseaudioFull;
@@ -72,16 +74,17 @@ in
           extraPackages =
             if cfg.useNVidia
             then [ pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl ]
-            else [ pkgs.mesa.drivers pkgs.amdvlk ];
+            else with pkgs; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
+          extraPackages32 =
+            if cfg.useNVidia
+            then [ ]
+            else with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
         };
         video.hidpi.enable = cfg.enableHiDPI;
       };
 
       sound.enable = true;
     }
-    (lib.mkIf cfg.useNVidia {
-      services.xserver.videoDrivers = [ "nvidia" ];
-    })
     (lib.mkIf cfg.useBluetooth {
       services.blueman.enable = true;
       hardware.bluetooth.enable = true;
