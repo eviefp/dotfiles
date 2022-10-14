@@ -5,8 +5,6 @@
   * need to generalise!
   **************************************************************************/
 { lib, config, ... }:
-let cfg = config.evie.nextcloud;
-in
 {
   imports = [ ];
 

@@ -2,7 +2,7 @@
   * neuron module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 let
   sources = import ../../../nix/sources.nix;
   neuron = import sources.neuron;

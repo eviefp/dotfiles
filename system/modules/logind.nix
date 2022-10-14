@@ -2,7 +2,7 @@
   * Logind module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 let
   cfg = config.evie.logind;
 

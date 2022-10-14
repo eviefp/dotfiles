@@ -230,11 +230,6 @@ let
     '';
   };
 
-  textobjects = vimUtils.buildVimPlugin {
-    name = "nvim-treesitter-textobjects-master-438d2cf";
-    src = sources.nvim-treesitter-textobjects;
-  };
-
   tokyo = vimUtils.buildVimPlugin {
     name = "tokyonight.nvim-main-8223c97";
     src = sources."tokyonight.nvim";
