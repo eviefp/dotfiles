@@ -2,7 +2,7 @@
   * programs/editors/vscode module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 let cfg = config.evie.programs.editors.vscode;
 in
 {

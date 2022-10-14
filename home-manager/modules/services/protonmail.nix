@@ -3,7 +3,7 @@
   *
   * Needs config/setup first.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 let
   cfg = config.evie.services.protonmail;
   sources = import ../../../nix/sources.nix;

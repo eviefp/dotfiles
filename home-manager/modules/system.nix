@@ -3,7 +3,7 @@
   *
   * This exists so I don't have to symlink each system's config to '/etc/nixos'.
   ************************************************************************ */
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 let
   cfg = config.evie.system;
   sources = import ../../nix/sources.nix;

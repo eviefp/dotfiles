@@ -6,9 +6,7 @@
   *
   * TODO: document groups.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let cfg = config.evie.users;
-in
+{ config, pkgs, ... }:
 {
   imports = [ ];
 

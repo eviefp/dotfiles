@@ -2,7 +2,6 @@ let
   # Do not touch this part.
   sources = import ../../nix/sources.nix;
   pkgs = import sources.nixpkgs { };
-  hls = import sources.haskell-language-server;
 
   deps = [ pkgs.zlib ];
 
@@ -12,11 +11,6 @@ let
     pkgs.haskell.compiler.ghc924 # GHC version as defined above at 'self'
     pkgs.haskell.packages.ghc924.cabal-install
   ];
-
-  hlsPackage = hls.outputs.packages.x86_64-linux.haskell-language-server;
-  dynamicHls = hlsPackage.overrideAttrs(attrs: {
-    # configureFlags = ["--enable-executable-dynamic"];
-  });
 
   # Personal tooling: change/update as needed, e.g. `inputs.ghcide`.
   personalTooling = [

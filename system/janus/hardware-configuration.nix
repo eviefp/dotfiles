@@ -2,18 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-let
-  lp = lib.overrideDerivation pkgs.firmwareLinuxNonfree (oldAttrs: {
-    version = "20220310";
-    postInstall = ''
-      rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0-67*
-       # rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0.pnvm
-    #    # rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0-67*
-    #    # rm -rf $out/lib/firmware/iwlwifi-ty-a0-gf-a0-68*
-      '';
-    outputHash = "sha256:17z67ilksvpvrwyn1craf29cbgsaa60r4zrfiks73mswhgf0wsi0";# pkgs.lib.fakeSha256;
-  });
-in
 {
   imports =
     [

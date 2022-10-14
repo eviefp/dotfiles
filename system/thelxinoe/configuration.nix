@@ -2,7 +2,7 @@
   * Thelxinoe system configuration
   *
   **************************************************************************/
-{ config, pkgs, ... }:
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
