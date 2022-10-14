@@ -34,15 +34,13 @@ lspconfig.rnix.setup {
 -------------------------------------------------------------------------------
 -- rust
 lspconfig.rust_analyzer.setup {
-  --[[ server = {
-    settings = {
-      ["rust-analyzer"] = {
-        checkOnSave = {
-          command = "clippy"
-        },
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy"
       },
     },
-  }, ]]
+  },
 }
 
 -------------------------------------------------------------------------------
@@ -53,4 +51,23 @@ lspconfig.texlab.setup {
   },
   capabilities = capabilities,
 }
+
+-------------------------------------------------------------------------------
+-- purescript
+lspconfig.purescriptls.setup {
+  settings = {
+    purescript = {
+      addSpagoSources = true
+    },
+  },
+}
+
+-------------------------------------------------------------------------------
+-- typescript
+lspconfig.tsserver.setup {}
+
+-------------------------------------------------------------------------------
+-- prisma
+lspconfig.prismals.setup {}
+
 
