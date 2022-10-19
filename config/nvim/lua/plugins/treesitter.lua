@@ -2,9 +2,48 @@
 -- treesitter
 -------------------------------------------------------------------------------
 
+local parser_install_dir = "/home/evie/.local/share/treesitters"
+vim.fn.mkdir(parser_install_dir, "p")
+
 require'nvim-treesitter.configs'.setup {
+  parser_install_dir = parser_install_dir,
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "all",
+  ensure_installed = {
+    "agda",
+    "bash",
+    "c",
+    "c_sharp",
+    "cmake",
+    "cpp",
+    "css",
+    "dockerfile",
+    "fish",
+    "gitattributes",
+    "gitignore",
+    "graphql",
+    "html",
+    "javascript",
+    "json",
+    "latex",
+    "llvm",
+    "lua",
+    "make",
+    "markdown",
+    "markdown_inline",
+    "nix",
+    "prisma",
+    "python",
+    "rust ",
+    "scss",
+    "sql",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml",
+    -- unmaintained
+    "haskell",
+
+  },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -20,7 +59,6 @@ require'nvim-treesitter.configs'.setup {
     disable = {
       -- TOOD: remove when this gets fixed https://github.com/cstrahan/tree-sitter-nix/issues/23
       -- also see if removing vim-nix after this is fixed makes sense
-      'nix',
       'org',
       'tex',
     },
