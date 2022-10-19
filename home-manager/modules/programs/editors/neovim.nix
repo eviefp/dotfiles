@@ -105,9 +105,6 @@ let
   treesitter = vimUtils.buildVimPlugin {
     name = "nvim-treesitter-master-620cc93";
     src = sources.nvim-treesitter;
-    configurePhase = ''
-      rm -rf Makefile
-    '';
   };
 
   lspConfig = vimUtils.buildVimPlugin {
