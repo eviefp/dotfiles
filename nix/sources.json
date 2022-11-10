@@ -203,6 +203,18 @@
         "url": "https://github.com/b3nj5m1n/kommentary/archive/533d768a140b248443da8346b88e88db704212ab.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "libp.nvim": {
+        "branch": "main",
+        "description": "A library for writting neovim plugins.",
+        "homepage": null,
+        "owner": "ipod825",
+        "repo": "libp.nvim",
+        "rev": "a28f05671c7c6d8f748df4fa743339556db7510e",
+        "sha256": "0sqrpnmljwz8qiwpbxgxjbddcv160xq6qvj2yv7vdi5jrkdcjlfa",
+        "type": "tarball",
+        "url": "https://github.com/ipod825/libp.nvim/archive/a28f05671c7c6d8f748df4fa743339556db7510e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "lspkind-nvim": {
         "branch": "master",
         "description": "vscode-like pictograms for neovim lsp completion items",
@@ -431,6 +443,18 @@
         "url": "https://github.com/luochen1990/rainbow/archive/61f719aebe0dc5c3048330c50db72cfee1afdd34.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "ranger.nvim": {
+        "branch": "main",
+        "description": null,
+        "homepage": null,
+        "owner": "ipod825",
+        "repo": "ranger.nvim",
+        "rev": "e93a85657b46b828e032d3aa99135c266e7d0c8a",
+        "sha256": "13zsrqgz1l0ap0kxaagp28fn03ik156jgglrwaqxpkrbixdyjx08",
+        "type": "tarball",
+        "url": "https://github.com/ipod825/ranger.nvim/archive/e93a85657b46b828e032d3aa99135c266e7d0c8a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "sqlite.lua": {
         "branch": "master",
         "description": "SQLite/LuaJIT binding for lua and neovim",
@@ -621,6 +645,18 @@
         "sha256": "0fy40dh98z5rmhja6czaxwv48lfpph71vbqsfz55119686zgmc5p",
         "type": "tarball",
         "url": "https://github.com/tpope/vim-eunuch/archive/291ef1f8c8996ca7715df1032a35a27b12d7b5cf.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-fish-syntax": {
+        "branch": "master",
+        "description": "Syntax and ftplugin files for fish shell scripts",
+        "homepage": "",
+        "owner": "khaveesh",
+        "repo": "vim-fish-syntax",
+        "rev": "f3744201a10addee5f1bf43146b611c39a1a5e4e",
+        "sha256": "0bf0523pgqpp91pbp7k541c8m7dc2hv0iirv339g7d4v90i78wbd",
+        "type": "tarball",
+        "url": "https://github.com/khaveesh/vim-fish-syntax/archive/f3744201a10addee5f1bf43146b611c39a1a5e4e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-fugitive": {

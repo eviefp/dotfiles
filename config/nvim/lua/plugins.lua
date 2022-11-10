@@ -40,3 +40,5 @@ require 'plugins.truezen'
 require 'plugins.nerveux'
 
 require 'plugins.firenvim'
+
+require 'plugins.ranger'

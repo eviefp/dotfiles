@@ -36,9 +36,15 @@ lspconfig.rnix.setup {
 lspconfig.rust_analyzer.setup {
   settings = {
     ["rust-analyzer"] = {
-      checkOnSave = {
-        command = "clippy"
+      cargo = {
+        loadOutDirsFromCheck = true,
       },
+      procMacro = {
+        enable = true,
+      },
+--      checkOnSave = {
+--        command = "clippy"
+--      },
     },
   },
 }
