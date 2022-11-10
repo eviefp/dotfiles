@@ -305,6 +305,29 @@ let
     name = "telescope-ui-select";
     src = sources."telescope-ui-select.nvim";
   };
+
+  vim-fish-syntax = vimUtils.buildVimPlugin {
+    name = "vim-fish-syntax";
+    src = sources.vim-fish-syntax;
+  };
+
+  ranger-nvim = vimUtils.buildVimPlugin {
+    name = "ranger-nvim";
+    src = sources."ranger.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+    '';
+  };
+
+  # required by ranger-nvim
+  libp = vimUtils.buildVimPlugin {
+    name = "libp.nvim";
+    src = sources."libp.nvim";
+    configurePhase = ''
+      rm -rf Makefile
+    '';
+  };
+
 in
 {
   imports = [ ];
@@ -389,6 +412,9 @@ in
             nerveux
             firenvim
             telescope-ui-select
+            vim-fish-syntax
+            libp
+            ranger-nvim
           ];
         };
       })

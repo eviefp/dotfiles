@@ -33,7 +33,7 @@ map('t' , '<esc>'      , '<C-\\><C-n>'            , {})
 map('n' , '<leader>xj' , '<cmd>lua vim.diagnostic.goto_next()<cr>'                          , { noremap = true   , silent = true })
 map('n' , '<leader>xk' , '<cmd>lua vim.diagnostic.goto_prev()<cr>'                          , { noremap = true   , silent = true })
 map('n' , '<leader>rn' , '<cmd>lua vim.lsp.buf.rename()<cr>'                                , { noremap = true   , silent = true })
-map('n' , '<leader>xf' , '<cmd>lua vim.lsp.buf.formatting()<cr>'                            , { noremap = true   , silent = true })
+map('n' , '<leader>xf' , '<cmd>lua vim.lsp.buf.format()<cr>'                            , { noremap = true   , silent = true })
 
 map('n' , 'gD'         , '<cmd>vsplit<cr><cmd>lua vim.lsp.buf.definition()<cr>'             , { noremap = true   , silent = true })
 map('n' , 'K'          , '<cmd>lua vim.lsp.buf.hover()<cr>'                                 , { noremap = true   , silent = true })
