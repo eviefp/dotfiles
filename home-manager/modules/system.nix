@@ -27,7 +27,7 @@ in
   config = lib.mkIf cfg.enable {
     home.sessionVariables = {
       NIX_PATH =
-        "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
+        "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:unstable=${sources.unstable}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
     };
   };
 }
