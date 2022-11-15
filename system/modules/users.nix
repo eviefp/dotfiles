@@ -30,6 +30,7 @@
     nix = {
       trustedUsers = [ "root" "evie" ];
       package = pkgs.nixFlakes;
+      nrBuildUsers = 50;
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
