@@ -4,6 +4,7 @@
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')
+local trouble = require("trouble.providers.telescope")
 
 telescope.load_extension('fzf')
 telescope.load_extension('file_browser')
@@ -37,6 +38,10 @@ telescope.setup {
         ['<C-l>'] = actions.preview_scrolling_down,
         ['<C-Space>'] = actions.select_vertical,
         ['<C-Tab>'] = actions.select_horizontal,
+        ['<C-t>'] = trouble.open_with_trouble,
+      },
+      n = {
+        ['<C-t>'] = trouble.open_with_trouble,
       },
     },
   },
