@@ -196,11 +196,6 @@ let
     src = sources."telescope-symbols.nvim";
   };
 
-  biscuits = vimUtils.buildVimPlugin {
-    name = "nvim-biscuits-main-15a0cb";
-    src = sources.nvim-biscuits;
-  };
-
   luaLine = vimUtils.buildVimPlugin {
     name = "lualine.nvim-master-aed7f25";
     src = sources."lualine.nvim";
@@ -389,11 +384,10 @@ in
             tabular
             telescope
             telescopefzf
-            treesitter
+            # treesitter
             vimVsnip
             visualMulti
             whichKey
-            biscuits
             luaLine
             octo
             trouble
@@ -407,7 +401,7 @@ in
             snitch
             fairyfloss
             material
-            tresitter-refactor
+            # tresitter-refactor
             telescope-file-browser
             nerveux
             firenvim

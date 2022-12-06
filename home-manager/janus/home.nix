@@ -62,6 +62,8 @@
     };
 
     wezterm.enable = true;
+    # TODO: figure out how to use flakes
+    nps.enable = false;
   };
 
   evie.email.enable = true;

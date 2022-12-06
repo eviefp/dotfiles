@@ -29,7 +29,6 @@ require 'plugins.lexical'
 require 'plugins.which-key'
 
 -- trial
-require 'plugins.biscuits'
 require 'plugins.harpoon'
 require 'plugins.git-messenger'
 require 'plugins.hop'
