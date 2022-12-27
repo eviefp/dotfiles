@@ -237,7 +237,7 @@ let
     src = sources."hop.nvim";
     configurePhase = ''
       rm -rf doc
-      '';
+    '';
   };
 
   merge = vimUtils.buildVimPlugin {
@@ -323,6 +323,11 @@ let
     '';
   };
 
+
+  pest = vimUtils.buildVimPlugin {
+    name = "pest.vim";
+    src = sources."pest.vim";
+  };
 in
 {
   imports = [ ];
@@ -409,6 +414,7 @@ in
             vim-fish-syntax
             libp
             ranger-nvim
+            pest
           ];
         };
       })
