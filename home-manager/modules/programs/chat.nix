@@ -17,6 +17,7 @@ in
       pkgs.discord
       pkgs.slack
       pkgs.signal-desktop
+      pkgs.chatterino2
     ];
   };
 }
