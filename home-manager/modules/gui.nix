@@ -25,6 +25,8 @@ in
       pkgs.scrot
       pkgs.xclip
 
+      pkgs.shutter
+
       # Multimedia
       pkgs.fdk_aac
       pkgs.feh

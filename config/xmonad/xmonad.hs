@@ -59,7 +59,7 @@ myStartupHook = do
     -- spawn "stalonetray"
 
 screenshotCommand :: String
-screenshotCommand = "/usr/bin/env fish --command clip"
+screenshotCommand = "shutter -s -e"
 
 workspaceList :: [Int]
 workspaceList = [1..20]
