@@ -37,6 +37,8 @@
           file = ./locals.el;
         };
       };
+
+      helix.enable = true;
     };
 
     neuron = {

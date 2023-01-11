@@ -18,6 +18,7 @@ in
     ./programs/dev/provers.nix
     ./programs/dev/tools.nix
     ./programs/editors/vscode.nix
+    ./programs/editors/helix.nix
     ./programs/hcs.nix
     ./programs/hydroxide.nix
     ./programs/kitty.nix
