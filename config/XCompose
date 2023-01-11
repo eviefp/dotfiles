@@ -49,6 +49,19 @@
 <Multi_key> <y>     : "ψ"   U03C8 # greek lowercase letter psi
 <Multi_key> <w>     : "ω"   U03C9 # greek lowercase letter omega
 
+# Romanian letters
+<Multi_key> <minus> <A> : "Ă"   U0258
+<Multi_key> <minus> <a> : "ă"   U0259
+<Multi_key> <backslash> <A> : "Â"   U0194
+<Multi_key> <backslash> <a> : "â"   U0226
+<Multi_key> <minus> <I> : "Î"   U0206
+<Multi_key> <minus> <i> : "î"   U0238
+<Multi_key> <minus> <S> : "Ş"   U0350
+<Multi_key> <minus> <s> : "ş"   U0351
+<Multi_key> <minus> <T> : "Ț"   U0538
+<Multi_key> <minus> <t> : "ț"   U0539
+<Multi_key> <minus> <w> : "→" U2192
+
 ###############################################################################
 # Logic
 ###############################################################################

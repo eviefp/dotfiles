@@ -59,7 +59,7 @@ myStartupHook = do
     -- spawn "stalonetray"
 
 screenshotCommand :: String
-screenshotCommand = "shutter -s -e"
+screenshotCommand = "shutter -s -min_at_startup"
 
 workspaceList :: [Int]
 workspaceList = [1..20]
