@@ -19,7 +19,7 @@ require 'plugins.cmp'
 require 'plugins.lspconfig'
 require 'plugins.markdown'
 require 'plugins.purescript'
---require 'plugins.treesitter'
+require 'plugins.treesitter'
 
 -- misc
 require 'plugins.bbye'
