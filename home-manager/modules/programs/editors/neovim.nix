@@ -389,7 +389,9 @@ in
             tabular
             telescope
             telescopefzf
-            # treesitter
+            unstable.vimPlugins.nvim-treesitter-context
+            unstable.vimPlugins.nvim-treesitter.withAllGrammars
+            unstable.vimPlugins.nvim-treesitter-refactor
             vimVsnip
             visualMulti
             whichKey
@@ -406,7 +408,6 @@ in
             snitch
             fairyfloss
             material
-            # tresitter-refactor
             telescope-file-browser
             nerveux
             firenvim

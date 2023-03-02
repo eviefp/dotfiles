@@ -14,6 +14,10 @@ map('i', '<right>', '', { noremap = true })
 map('n', 'gf', 'gF', { noremap = true })
 
 -------------------------------------------------------------------------------
+-- Copy file name
+map('n', '<leader>fn', ':let @+ = expand("%")<cr>', {})
+
+-------------------------------------------------------------------------------
 -- window (w)
 map('' , '<leader>we' , ':vsplit<cr>' , {})
 map('' , '<leader>ws' , ':split<cr>'  , {})
@@ -30,20 +34,23 @@ map('t' , '<esc>'      , '<C-\\><C-n>'            , {})
 
 -------------------------------------------------------------------------------
 -- lsp
-map('n' , '<leader>xj' , '<cmd>lua vim.diagnostic.goto_next()<cr>'                          , { noremap = true   , silent = true })
-map('n' , '<leader>xk' , '<cmd>lua vim.diagnostic.goto_prev()<cr>'                          , { noremap = true   , silent = true })
-map('n' , '<leader>rn' , '<cmd>lua vim.lsp.buf.rename()<cr>'                                , { noremap = true   , silent = true })
-map('n' , '<leader>xf' , '<cmd>lua vim.lsp.buf.format()<cr>'                            , { noremap = true   , silent = true })
+map('n' , '<leader>xj' , '<cmd>lua vim.diagnostic.goto_next()<cr>'              , { noremap = true   , silent = true })
+map('n' , '<leader>xk' , '<cmd>lua vim.diagnostic.goto_prev()<cr>'              , { noremap = true   , silent = true })
+map('n' , '<leader>rn' , '<cmd>lua vim.lsp.buf.rename()<cr>'                    , { noremap = true   , silent = true })
+map('n' , '<leader>xf' , '<cmd>lua vim.lsp.buf.format()<cr>'                    , { noremap = true   , silent = true })
 
-map('n' , 'gD'         , '<cmd>vsplit<cr><cmd>lua vim.lsp.buf.definition()<cr>'             , { noremap = true   , silent = true })
-map('n' , 'K'          , '<cmd>lua vim.lsp.buf.hover()<cr>'                                 , { noremap = true   , silent = true })
-map('n' , '<c-k>'      , '<cmd>lua vim.lsp.buf.signature_help()<cr>'                        , { noremap = true   , silent = true })
-map('n' , '<leader>ac' , '<cmd>lua vim.lsp.buf.code_action()<cr>'                           , { noremap = true   , silent = true })
+map('n' , 'gD'         , '<cmd>vsplit<cr><cmd>lua vim.lsp.buf.definition()<cr>' , { noremap = true   , silent = true })
+map('n' , 'K'          , '<cmd>lua vim.lsp.buf.hover()<cr>'                     , { noremap = true   , silent = true })
+map('n' , '<c-k>'      , '<cmd>lua vim.lsp.buf.signature_help()<cr>'            , { noremap = true   , silent = true })
+map('n' , '<leader>ac' , '<cmd>lua vim.lsp.buf.code_action()<cr>'               , { noremap = true   , silent = true })
 
 -------------------------------------------------------------------------------
 -- Tabularize
 map('v', '<leader>ar', ':Tabularize /', {})
 
+
+
 -------------------------------------------------------------------------------
 -- Quickfix
+--
 -- map('n', 'dd', "<cmd>c all setqflist(filter(getqflist(), {idx -> idx != line('.') - 1}), 'r') <Bar> cc<CR>", { silent = true, noremap = true })

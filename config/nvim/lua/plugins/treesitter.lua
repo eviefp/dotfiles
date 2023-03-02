@@ -2,48 +2,9 @@
 -- treesitter
 -------------------------------------------------------------------------------
 
-local parser_install_dir = "/home/evie/.local/share/treesitters"
-vim.fn.mkdir(parser_install_dir, "p")
-
 require'nvim-treesitter.configs'.setup {
-  parser_install_dir = parser_install_dir,
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = {
-    "agda",
-    "bash",
-    "c",
-    "c_sharp",
-    "cmake",
-    "cpp",
-    "css",
-    "dockerfile",
-    "fish",
-    "gitattributes",
-    "gitignore",
-    "graphql",
-    "html",
-    "javascript",
-    "json",
-    "latex",
-    "llvm",
-    "lua",
-    "make",
-    "markdown",
-    "markdown_inline",
-    "nix",
-    "prisma",
-    "python",
-    "rust ",
-    "scss",
-    "sql",
-    "toml",
-    "typescript",
-    "vim",
-    "yaml",
-    -- unmaintained
-    "haskell",
-
-  },
+  -- handled by derivation
+  ensure_installed = {},
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -59,15 +20,15 @@ require'nvim-treesitter.configs'.setup {
     disable = {
       -- TOOD: remove when this gets fixed https://github.com/cstrahan/tree-sitter-nix/issues/23
       -- also see if removing vim-nix after this is fixed makes sense
-      'org',
-      'tex',
+      -- 'org',
+      -- 'tex',
     },
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = { 'org' },
+    additional_vim_regex_highlighting = false,
   },
   incremental_selection = {
     enable = true,
