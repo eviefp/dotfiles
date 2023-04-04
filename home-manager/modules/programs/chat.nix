@@ -3,7 +3,10 @@
   *
   **************************************************************************/
 { lib, config, pkgs, ... }:
-let cfg = config.evie.programs.chat;
+let
+  cfg = config.evie.programs.chat;
+  sources = import ../../../nix/sources.nix;
+  unstable = import sources.unstable { };
 in
 {
   imports = [ ];
@@ -17,7 +20,7 @@ in
       pkgs.discord
       pkgs.slack
       pkgs.signal-desktop
-      pkgs.chatterino2
+      unstable.chatterino2
     ];
   };
 }

@@ -64,6 +64,16 @@ screenshotCommand = "shutter -s -min_at_startup"
 workspaceList :: [Int]
 workspaceList = [1..20]
 
+type WorkspaceMode :: Type
+data WorkspaceMode = Regular | Work | Stream
+
+cycleMode :: WorkspaceMode -> WorkspaceMode
+cycleMode = \case
+   Regular -> Work
+   Work -> Stream
+   Stream -> Regular
+
+
 type KeyAction :: Type
 data KeyAction
   = WSNext
@@ -99,7 +109,7 @@ data KeyAction
   | MicrophoneToggle
   | Screenshot
 
-evaluateKeyAction :: Ref.IORef Bool -> XConfig Layout -> KeyAction -> X ()
+evaluateKeyAction :: Ref.IORef WorkspaceMode -> XConfig Layout -> KeyAction -> X ()
 evaluateKeyAction workProfile conf =
   \case
     WSNext -> nextWS
@@ -119,10 +129,10 @@ evaluateKeyAction workProfile conf =
     LayoutNext -> sendMessage NextLayout
     LayoutReset -> setLayout $ layoutHook conf
     LaunchTerminal -> spawn $ terminal conf
-    ToggleWorkProfile -> liftIO $ Ref.modifyIORef workProfile not
+    ToggleWorkProfile -> liftIO $ Ref.modifyIORef workProfile cycleMode
     ShowHelp -> xmessage mkHelp
-    GotoWorkspace idx -> (liftIO $ Ref.readIORef workProfile) >>= DWO.withNthWorkspace W.greedyView . updateIndex idx
-    MoveToWorkspace idx -> (liftIO $ Ref.readIORef workProfile) >>= DWO.withNthWorkspace W.shift . updateIndex idx
+    GotoWorkspace idx -> (readWorkspaceSettings workProfile) >>= DWO.withNthWorkspace W.greedyView . uncurry (updateIndex idx)
+    MoveToWorkspace idx -> (readWorkspaceSettings workProfile) >>= DWO.withNthWorkspace W.shift . uncurry (updateIndex idx)
     RofiRun -> spawn "rofi -show run"
     RofiSsh -> spawn "rofi -show ssh -terminal wezterm"
     RofiPass -> spawn "rofi-pass"
@@ -137,11 +147,22 @@ evaluateKeyAction workProfile conf =
   where
     mkHelp = unlines . catMaybes . fmap (uncurry evaluateHelp) $ allKeys
 
-updateIndex :: Int -> Bool -> Int
-updateIndex originalIndex False = originalIndex
-updateIndex originalIndex True
+readWorkspaceSettings :: Ref.IORef WorkspaceMode -> X (WorkspaceMode, ScreenId)
+readWorkspaceSettings workProfile =
+    (,)
+        <$> (liftIO $ Ref.readIORef workProfile)
+        <*> (W.screen . W.current . windowset <$> get)
+
+updateIndex :: Int -> WorkspaceMode -> ScreenId -> Int
+updateIndex originalIndex Regular _ = originalIndex
+updateIndex originalIndex Work _
   | originalIndex < 10 = originalIndex + 10
   | otherwise = originalIndex - 10
+updateIndex originalIndex Stream (S screenId)
+  | screenId == 0 && originalIndex == 8 = 6
+  | screenId == 0 = originalIndex
+  | screenId == 1 = 8
+  | otherwise = originalIndex
 
 evaluateHelp :: String -> KeyAction -> Maybe String
 evaluateHelp key action =
@@ -284,7 +305,7 @@ allKeys =
       [ ("<Print>", Screenshot)
       ]
 
-keybindings :: Ref.IORef Bool -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+keybindings :: Ref.IORef WorkspaceMode -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keybindings workProfile conf =
     EZ.mkKeymap conf
       . (fmap . fmap) (evaluateKeyAction workProfile conf) $ allKeys
@@ -293,7 +314,7 @@ keybindings workProfile conf =
 
 main :: IO ()
 main = do
-    workProfile <- Ref.newIORef False
+    workProfile <- Ref.newIORef Regular
     xmonad . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
         def
             { manageHook = insertPosition Below Newer <+> myManageHook
@@ -371,6 +392,7 @@ withXmobar =
 
     ppWindow :: String -> String
     ppWindow = xmobarRaw . cleanWindowTitle -- . shorten 30
+
     cleanWindowTitle :: String -> String
     cleanWindowTitle s
         | isPrefixOf "All good, " s = "ghcid"

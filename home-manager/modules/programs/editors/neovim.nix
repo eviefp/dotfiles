@@ -178,6 +178,9 @@ let
 
   devIcons = vimUtils.buildVimPlugin {
     name = "nvim-dev-webicons-master-634e268";
+    configurePhase = ''
+      rm -rf Makefile
+    '';
     src = sources.nvim-web-devicons;
   };
 
