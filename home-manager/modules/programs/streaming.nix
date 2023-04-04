@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.ffmpeg-full pkgs.chatterino2 pkgs.kdenlive ];
+    home.packages = [ pkgs.ffmpeg-full pkgs.kdenlive ];
 
     programs = {
       obs-studio = {
