@@ -72,3 +72,5 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `fractal` is my home server/nas
   - `thelxinoe` is my main desktop
 
+## TODO
+- xmonad

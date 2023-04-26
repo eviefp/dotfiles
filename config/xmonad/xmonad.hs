@@ -1,16 +1,15 @@
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE ImportQualifiedPost #-}
+{-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE PartialTypeSignatures #-}
+{-# LANGUAGE StandaloneKindSignatures #-}
 {-# LANGUAGE TypeApplications #-}
 {-# OPTIONS_GHC -fno-warn-deprecations #-}
 {-# OPTIONS_GHC -fno-warn-partial-type-signatures #-}
-{-# LANGUAGE DerivingStrategies #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE StandaloneKindSignatures #-}
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE InstanceSigs #-}
 
 import Data.List (isPrefixOf)
 import Data.Map qualified as M
@@ -32,47 +31,47 @@ import XMonad.StackSet qualified as W
 import XMonad.Util.Loggers
 import Prelude
 
+import Data.IORef qualified as Ref
+import Data.Kind (Type)
+import Data.Maybe (mapMaybe)
+import GHC.TypeLits (Symbol)
+import XMonad.Actions.DynamicWorkspaceOrder qualified as DWO
 import XMonad.Layout.Circle
+import XMonad.Layout.Drawer qualified as Drawer
+import XMonad.Layout.Dwindle qualified as DW
+import XMonad.Layout.LayoutModifier qualified as LM
 import XMonad.Layout.Roledex
 import XMonad.Util.EZConfig qualified as EZ
-import qualified XMonad.Actions.DynamicWorkspaceOrder as DWO
-import qualified XMonad.Layout.Drawer as Drawer
-import qualified XMonad.Util.WindowProperties as Prop
-import Data.Kind (Type)
-import qualified XMonad.Layout.LayoutModifier as LM
-import GHC.TypeLits (Symbol)
-import qualified XMonad.Layout.Dwindle as DW
-import Data.Maybe (catMaybes)
-import qualified Data.IORef as Ref
+import XMonad.Util.WindowProperties qualified as Prop
 
 myManageHook :: ManageHook
 myManageHook =
-    composeAll
-        [ manageHook gnomeConfig
-        , resource =? "stalonetray" --> doIgnore
-        , manageDocks
-        ]
+  composeAll
+    [ manageHook gnomeConfig
+    , resource =? "stalonetray" --> doIgnore
+    , manageDocks
+    ]
 
 myStartupHook :: X ()
 myStartupHook = do
-    installSignalHandlers
-    -- spawn "stalonetray"
+  installSignalHandlers
+
+-- spawn "stalonetray"
 
 screenshotCommand :: String
 screenshotCommand = "shutter -s -min_at_startup"
 
 workspaceList :: [Int]
-workspaceList = [1..20]
+workspaceList = [1 .. 20]
 
 type WorkspaceMode :: Type
 data WorkspaceMode = Regular | Work | Stream
 
 cycleMode :: WorkspaceMode -> WorkspaceMode
 cycleMode = \case
-   Regular -> Work
-   Work -> Stream
-   Stream -> Regular
-
+  Regular -> Work
+  Work -> Stream
+  Stream -> Regular
 
 type KeyAction :: Type
 data KeyAction
@@ -108,6 +107,8 @@ data KeyAction
   | VolumeDown
   | MicrophoneToggle
   | Screenshot
+  | IncMainWindows
+  | DecMainWindows
 
 evaluateKeyAction :: Ref.IORef WorkspaceMode -> XConfig Layout -> KeyAction -> X ()
 evaluateKeyAction workProfile conf =
@@ -131,8 +132,8 @@ evaluateKeyAction workProfile conf =
     LaunchTerminal -> spawn $ terminal conf
     ToggleWorkProfile -> liftIO $ Ref.modifyIORef workProfile cycleMode
     ShowHelp -> xmessage mkHelp
-    GotoWorkspace idx -> (readWorkspaceSettings workProfile) >>= DWO.withNthWorkspace W.greedyView . uncurry (updateIndex idx)
-    MoveToWorkspace idx -> (readWorkspaceSettings workProfile) >>= DWO.withNthWorkspace W.shift . uncurry (updateIndex idx)
+    GotoWorkspace idx -> readWorkspaceSettings workProfile >>= DWO.withNthWorkspace W.greedyView . uncurry (updateIndex idx)
+    MoveToWorkspace idx -> readWorkspaceSettings workProfile >>= DWO.withNthWorkspace W.shift . uncurry (updateIndex idx)
     RofiRun -> spawn "rofi -show run"
     RofiSsh -> spawn "rofi -show ssh -terminal wezterm"
     RofiPass -> spawn "rofi-pass"
@@ -144,14 +145,16 @@ evaluateKeyAction workProfile conf =
     VolumeDown -> spawn "amixer set Master 10%-"
     MicrophoneToggle -> spawn "amixer set Capture toggle"
     Screenshot -> spawn screenshotCommand
-  where
-    mkHelp = unlines . catMaybes . fmap (uncurry evaluateHelp) $ allKeys
+    IncMainWindows -> sendMessage (IncMasterN 1)
+    DecMainWindows -> sendMessage (IncMasterN (-1))
+ where
+  mkHelp = unlines . mapMaybe (uncurry evaluateHelp) $ allKeys
 
 readWorkspaceSettings :: Ref.IORef WorkspaceMode -> X (WorkspaceMode, ScreenId)
 readWorkspaceSettings workProfile =
-    (,)
-        <$> (liftIO $ Ref.readIORef workProfile)
-        <*> (W.screen . W.current . windowset <$> get)
+  (,)
+    <$> liftIO (Ref.readIORef workProfile)
+    <*> (W.screen . W.current . windowset <$> get)
 
 updateIndex :: Int -> WorkspaceMode -> ScreenId -> Int
 updateIndex originalIndex Regular _ = originalIndex
@@ -166,8 +169,8 @@ updateIndex originalIndex Stream (S screenId)
 
 evaluateHelp :: String -> KeyAction -> Maybe String
 evaluateHelp key action =
-  go key
-    $ case action of
+  go key $
+    case action of
       WSNext -> Just "next workspace"
       WSPrev -> Just "prev workspace"
       ToScreen idx -> Just $ "to screen " <> show idx
@@ -187,10 +190,10 @@ evaluateHelp key action =
       LaunchTerminal -> Just "terminal"
       ShowHelp -> Just "show this message"
       GotoWorkspace idx
-        | idx == 0 -> Just $ "goto workspace 1"
+        | idx == 0 -> Just "goto workspace 1"
         | otherwise -> Nothing
       MoveToWorkspace idx
-        | idx == 0 -> Just $ "move to workspace 1"
+        | idx == 0 -> Just "move to workspace 1"
         | otherwise -> Nothing
       ToggleWorkProfile -> Just "toggle between personal and work"
       RofiRun -> Just "rofi run"
@@ -204,145 +207,140 @@ evaluateHelp key action =
       VolumeDown -> Just "volume down"
       MicrophoneToggle -> Just "microphone toggle"
       Screenshot -> Just "screenshot"
-  where
-    go :: String -> Maybe String -> Maybe String
-    go k = fmap (padRight 20 k <>)
+      IncMainWindows -> Just "more main windows"
+      DecMainWindows -> Just "less main windows"
+ where
+  go :: String -> Maybe String -> Maybe String
+  go k = fmap (padRight 20 k <>)
 
-    padRight :: Int -> String -> String
-    padRight desired_length s = s ++ replicate (desired_length - length s) ' '
+  padRight :: Int -> String -> String
+  padRight desired_length s = s <> replicate (desired_length - length s) ' '
 
 allKeys :: [(String, KeyAction)]
 allKeys =
   mconcat
-        [ xmonadKeys
-        , withWorkspaces "" GotoWorkspace
-        , withWorkspaces "C-" MoveToWorkspace
-        , rofi
-        , xrandr
-        , brightness
-        , audio
-        , extra
+    [ xmonadKeys
+    , withWorkspaces "" GotoWorkspace
+    , withWorkspaces "C-" MoveToWorkspace
+    , rofi
+    , xrandr
+    , brightness
+    , audio
+    , extra
+    ]
+ where
+  xmonadKeys :: [(String, KeyAction)]
+  xmonadKeys =
+    [ ("M-<Right>", WSNext)
+    , ("M-<Left>", WSPrev)
+    , ("M-S-l", WSNext)
+    , ("M-S-h", WSPrev)
+    , ("M-w", ToScreen 0)
+    , ("M-e", ToScreen 1)
+    , ("M-r", ToScreen 2)
+    , ("M-j", FocusUp)
+    , ("M-k", FocusDown)
+    , ("M-m", FocusMaster)
+    , ("M-S-j", SwapUp)
+    , ("M-S-k", SwapDown)
+    , ("M-<Return>", SwapMaster)
+    , ("M-l", WExpand)
+    , ("M-h", WShrink)
+    , ("M-t", Sink)
+    , ("M-S-c", Kill)
+    , ("M-q", Restart)
+    , ("M-<Space>", LayoutNext)
+    , ("M-S-<Space>", LayoutReset)
+    , ("M-S-<Return>", LaunchTerminal)
+    , ("M-/", ShowHelp)
+    , ("M-=", ToggleWorkProfile)
+    , ("M--", IncMainWindows)
+    , ("M-'", DecMainWindows)
+    ]
+
+  withWorkspaces :: String -> (Int -> KeyAction) -> [(String, KeyAction)]
+  withWorkspaces extraPrefix go =
+    mconcat
+      [ [ ("M-" <> extraPrefix <> show n, go (n - 1))
+        | n <- [1 .. 9]
         ]
-  where
-    xmonadKeys :: [(String, KeyAction)]
-    xmonadKeys =
-      [ ("M-<Right>", WSNext)
-      , ("M-<Left>", WSPrev)
-      , ("M-S-l", WSNext)
-      , ("M-S-h", WSPrev)
-
-      , ("M-w", ToScreen 0)
-      , ("M-e", ToScreen 1)
-      , ("M-r", ToScreen 2)
-
-      , ("M-j", FocusUp)
-      , ("M-k", FocusDown)
-      , ("M-m", FocusMaster)
-
-      , ("M-S-j", SwapUp)
-      , ("M-S-k", SwapDown)
-      , ("M-<Return>", SwapMaster)
-
-      , ("M-l", WExpand)
-      , ("M-h", WShrink)
-
-      , ("M-t", Sink)
-
-      , ("M-S-c", Kill)
-      , ("M-q", Restart)
-
-      , ("M-<Space>", LayoutNext)
-      , ("M-S-<Space>", LayoutReset)
-      , ("M-S-<Return>", LaunchTerminal)
-
-      , ("M-/", ShowHelp)
-      , ("M-=", ToggleWorkProfile)
-      ]
-
-    withWorkspaces :: String -> (Int -> KeyAction) -> [(String, KeyAction)]
-    withWorkspaces extraPrefix go =
-      mconcat
-        [ [ ("M-" <> extraPrefix <> show n, go (n - 1))
-          | n <- [1 .. 9]
-          ]
-        , [ ("M-" <> extraPrefix <> "0", go 9) ]
-        , [ ("M-S-" <> extraPrefix <> show n, go (n + 9))
-          | n <- [1 .. 9]
-          ]
-        , [ ("M-S-" <> extraPrefix <> "0", go 19) ]
+      , [("M-" <> extraPrefix <> "0", go 9)]
+      , [ ("M-S-" <> extraPrefix <> show n, go (n + 9))
+        | n <- [1 .. 9]
         ]
-
-    rofi :: [(String, KeyAction)]
-    rofi =
-      [ ("M-p", RofiRun)
-      , ("M-s", RofiSsh)
-      , ("M-o", RofiPass)
+      , [("M-S-" <> extraPrefix <> "0", go 19)]
       ]
 
-    xrandr :: [(String, KeyAction)]
-    xrandr =
-      [ ("M-a", Xrandr "xrandr --output HDMI-1 --mode 1920x1080 --right-of DP-2")
-      , ("M-z", Xrandr "xrandr --output HDMI-1 --off")
-      , ("M-x", Xrandr "xrandr --output DP-0 --mode 1920x1080 --rate 239.76 --left-of DP-2 --primary; xrandr --output DP-2 --mode 1920x1080 --rate 239.76")
-      ]
+  rofi :: [(String, KeyAction)]
+  rofi =
+    [ ("M-p", RofiRun)
+    , ("M-s", RofiSsh)
+    , ("M-o", RofiPass)
+    ]
 
-    brightness :: [(String, KeyAction)]
-    brightness =
-      [ ("M-g", BrightnessUp)
-      , ("M-S-g", BrightnessDown)
-      ]
+  xrandr :: [(String, KeyAction)]
+  xrandr =
+    [ ("M-a", Xrandr "xrandr --output HDMI-1 --mode 1920x1080 --right-of DP-2")
+    , ("M-z", Xrandr "xrandr --output HDMI-1 --off")
+    , ("M-x", Xrandr "xrandr --output DP-0 --mode 1920x1080 --rate 239.76 --left-of DP-2 --primary; xrandr --output DP-2 --mode 1920x1080 --rate 239.76")
+    ]
 
-    audio :: [(String, KeyAction)]
-    audio =
-      [ ("M-y", SoundToggle)
-      , ("M-u", VolumeDown)
-      , ("M-S-u", VolumeUp)
-      , ("M-S-y", MicrophoneToggle)
-      ]
+  brightness :: [(String, KeyAction)]
+  brightness =
+    [ ("M-g", BrightnessUp)
+    , ("M-S-g", BrightnessDown)
+    ]
 
-    extra :: [(String, KeyAction)]
-    extra =
-      [ ("<Print>", Screenshot)
-      ]
+  audio :: [(String, KeyAction)]
+  audio =
+    [ ("M-y", SoundToggle)
+    , ("M-u", VolumeDown)
+    , ("M-S-u", VolumeUp)
+    , ("M-S-y", MicrophoneToggle)
+    ]
+
+  extra :: [(String, KeyAction)]
+  extra =
+    [ ("<Print>", Screenshot)
+    ]
 
 keybindings :: Ref.IORef WorkspaceMode -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keybindings workProfile conf =
-    EZ.mkKeymap conf
-      . (fmap . fmap) (evaluateKeyAction workProfile conf) $ allKeys
-
-  where
+  EZ.mkKeymap conf
+    . (fmap . fmap) (evaluateKeyAction workProfile conf)
+    $ allKeys
 
 main :: IO ()
 main = do
-    workProfile <- Ref.newIORef Regular
-    xmonad . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
-        def
-            { manageHook = insertPosition Below Newer <+> myManageHook
-            , workspaces = show <$> workspaceList
-            , layoutHook =
-                avoidStruts . smartBorders $
-                      tall
-                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Circle") $ Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle )
-                      ||| (LM.ModifiedLayout (Wrapper @"Drawer Tall") $ Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
-                      ||| noBorders Full
-                      ||| Roledex
-            , startupHook = myStartupHook
-            , modMask = mod4Mask
-            , keys = keybindings workProfile
-            , terminal = "wezterm"
-            , handleEventHook =
-                mconcat
-                    [ -- this is deprecated; should figure out how to remove it
-                      docksEventHook
-                    , handleEventHook def
-                    ]
-            }
-  where
-    tall :: Tall a
-    tall = Tall 1 (3 / 100) (3 / 4)
+  workProfile <- Ref.newIORef Regular
+  xmonad . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
+    def
+      { manageHook = insertPosition Below Newer <+> myManageHook
+      , workspaces = show <$> workspaceList
+      , layoutHook =
+          avoidStruts . smartBorders $
+            tall
+              ||| LM.ModifiedLayout (Wrapper @"Drawer Circle") (Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle)
+              ||| LM.ModifiedLayout (Wrapper @"Drawer Tall") (Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
+              ||| noBorders Full
+              ||| Roledex
+      , startupHook = myStartupHook
+      , modMask = mod4Mask
+      , keys = keybindings workProfile
+      , terminal = "wezterm"
+      , handleEventHook =
+          mconcat
+            [ -- this is deprecated; should figure out how to remove it
+              docksEventHook
+            , handleEventHook def
+            ]
+      }
+ where
+  tall :: Tall a
+  tall = Tall 1 (3 / 100) (3 / 4)
 
-    dwindle :: DW.Dwindle a
-    dwindle = DW.Dwindle DW.D DW.CCW (23 / 7) (3 / 100)
+  dwindle :: DW.Dwindle a
+  dwindle = DW.Dwindle DW.D DW.CCW (23 / 7) (3 / 100)
 
 type Wrapper :: Symbol -> Type -> Type
 data Wrapper s a = Wrapper
@@ -362,52 +360,51 @@ instance LM.LayoutModifier (Wrapper "Drawer Full") a where
 
 withXmobar :: XConfig _ -> XConfig _
 withXmobar =
-    SB.withEasySB
-        (SB.statusBarProp "xmobar" (pure pp))
-        SB.defToggleStrutsKey
-  where
-    pp :: PP
-    pp =
-        def
-            { ppSep = magenta " • "
-            , ppVisible = blue . wrap "(" ")"
-            , ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Bottom" "#8be9fd" 2
-            , ppHidden = white . wrap "" ""
-            , ppHiddenNoWindows = id
-            , ppRename = \s _ -> s
-            , ppOrder = \case
-                [ws, l, _activeWin, allWindows] -> [ws, l, allWindows]
-                xs -> xs
-            , ppExtras = [logTitles formatFocused formatUnfocused]
-            , ppWsSep = " "
-            , ppTitle = shorten 80
-            , ppTitleSanitize = xmobarStrip
-            }
+  SB.withEasySB
+    (SB.statusBarProp "xmobar" (pure pp))
+    SB.defToggleStrutsKey
+ where
+  pp :: PP
+  pp =
+    def
+      { ppSep = magenta " • "
+      , ppVisible = blue . wrap "(" ")"
+      , ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Bottom" "#8be9fd" 2
+      , ppHidden = white . wrap "" ""
+      , ppHiddenNoWindows = id
+      , ppRename = const
+      , ppOrder = \case
+          [ws, l, _activeWin, allWindows] -> [ws, l, allWindows]
+          xs -> xs
+      , ppExtras = [logTitles formatFocused formatUnfocused]
+      , ppWsSep = " "
+      , ppTitle = shorten 50
+      , ppTitleSanitize = xmobarStrip
+      }
 
-    formatFocused :: String -> String
-    formatFocused = wrap (white "[") (white "]") . magenta . ppWindow
+  formatFocused :: String -> String
+  formatFocused = wrap (white "[") (white "]") . magenta . ppWindow
 
-    formatUnfocused :: String -> String
-    formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . ppWindow
+  formatUnfocused :: String -> String
+  formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . ppWindow
 
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . cleanWindowTitle -- . shorten 30
+  ppWindow :: String -> String
+  ppWindow = xmobarRaw . cleanWindowTitle -- . shorten 30
+  cleanWindowTitle :: String -> String
+  cleanWindowTitle s
+    | "All good, " `isPrefixOf` s = "ghcid"
+    | "Slack " `isPrefixOf` s = "slack"
+    | "Discord " `isPrefixOf` s = "discord"
+    | s == "Signal" = "signal"
+    | s == "Steam" = "steam"
+    | s == "Volume Control" = "volume"
+    | "vi " `isPrefixOf` s = "vi " <> takeBaseName (drop 3 s)
+    | " — Mozilla Firefox" `isSuffixOf` s = reverse . drop (length @[] " — Mozilla Firefox") . reverse $ s
+    | null s = "untitled"
+    | otherwise = s
 
-    cleanWindowTitle :: String -> String
-    cleanWindowTitle s
-        | isPrefixOf "All good, " s = "ghcid"
-        | isPrefixOf "Slack " s = "slack"
-        | isPrefixOf "Discord " s = "discord"
-        | s == "Signal" = "signal"
-        | s == "Steam" = "steam"
-        | s == "Volume Control" = "volume"
-        | isPrefixOf "vi " s = "vi " <> takeBaseName (drop 3 s)
-        | isSuffixOf " — Mozilla Firefox" s = reverse . drop (length @([]) " — Mozilla Firefox") . reverse $ s
-        | s == [] = "untitled"
-        | otherwise = s
-
-    blue, lowWhite, magenta, white :: String -> String
-    magenta = xmobarColor "#ff79c6" ""
-    blue = xmobarColor "#bd93f9" ""
-    white = xmobarColor "#f8f8f2" ""
-    lowWhite = xmobarColor "#bbbbbb" ""
+  blue, lowWhite, magenta, white :: String -> String
+  magenta = xmobarColor "#ff79c6" ""
+  blue = xmobarColor "#bd93f9" ""
+  white = xmobarColor "#f8f8f2" ""
+  lowWhite = xmobarColor "#bbbbbb" ""

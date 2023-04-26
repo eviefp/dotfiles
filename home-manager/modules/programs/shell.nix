@@ -204,8 +204,10 @@ in
             enable = true;
             enableFishIntegration = true;
             enableBashIntegration = true;
-            modal = false;
-            skin = { default = "none none / gray(20) none"; };
+            settings = {
+              modal = false;
+              skin = { default = "none none / gray(20) none"; };
+            };
           };
 
           lazygit = {
