@@ -25,6 +25,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.stateVersion = "22.11";
+    home.username = "evie";
+    home.homeDirectory = "/home/evie";
     home.sessionVariables = {
       NIX_PATH =
         "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:unstable=${sources.unstable}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
