@@ -33,6 +33,7 @@ import Prelude
 
 import Data.IORef qualified as Ref
 import Data.Kind (Type)
+import Data.List (tails)
 import Data.Maybe (mapMaybe)
 import GHC.TypeLits (Symbol)
 import XMonad.Actions.DynamicWorkspaceOrder qualified as DWO
@@ -224,11 +225,12 @@ allKeys =
     , withWorkspaces "C-" MoveToWorkspace
     , rofi
     , xrandr
-    , brightness
     , audio
     , extra
     ]
  where
+  -- , brightness
+
   xmonadKeys :: [(String, KeyAction)]
   xmonadKeys =
     [ ("M-<Right>", WSNext)
@@ -274,7 +276,6 @@ allKeys =
   rofi :: [(String, KeyAction)]
   rofi =
     [ ("M-p", RofiRun)
-    , ("M-s", RofiSsh)
     , ("M-o", RofiPass)
     ]
 
@@ -383,18 +384,19 @@ withXmobar =
       }
 
   formatFocused :: String -> String
-  formatFocused = wrap (white "[") (white "]") . magenta . ppWindow
+  formatFocused = wrap (white "[") (white "]") . magenta . xmobarRaw . shorten 80 . ppWindow
 
   formatUnfocused :: String -> String
-  formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . ppWindow
+  formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . xmobarRaw . shorten 30 . ppWindow
 
   ppWindow :: String -> String
-  ppWindow = xmobarRaw . cleanWindowTitle -- . shorten 30
+  ppWindow = cleanWindowTitle
+
   cleanWindowTitle :: String -> String
   cleanWindowTitle s
     | "All good, " `isPrefixOf` s = "ghcid"
     | "Slack " `isPrefixOf` s = "slack"
-    | "Discord " `isPrefixOf` s = "discord"
+    | "Discord" `isContainedIn` s = "discord"
     | s == "Signal" = "signal"
     | s == "Steam" = "steam"
     | s == "Volume Control" = "volume"
@@ -402,6 +404,9 @@ withXmobar =
     | " — Mozilla Firefox" `isSuffixOf` s = reverse . drop (length @[] " — Mozilla Firefox") . reverse $ s
     | null s = "untitled"
     | otherwise = s
+
+  isContainedIn :: String -> String -> Bool
+  xs `isContainedIn` ys = any (xs `isPrefixOf`) (tails ys)
 
   blue, lowWhite, magenta, white :: String -> String
   magenta = xmobarColor "#ff79c6" ""
