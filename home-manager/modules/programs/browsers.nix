@@ -17,7 +17,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.chromium
+      # pkgs.chromium
     ];
 
     home.file = {
