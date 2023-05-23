@@ -15,7 +15,7 @@ require 'plugins.fugitive'
 require 'plugins.gitsigns'
 
 -- languages and lsp
-require 'plugins.cmp'
+-- require 'plugins.cmp'
 require 'plugins.lspconfig'
 require 'plugins.markdown'
 require 'plugins.purescript'
