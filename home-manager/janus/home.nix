@@ -31,7 +31,7 @@
       neovim.enable = true;
 
       emacs = {
-        enable = false;
+        enable = true;
         locals = {
           enable = true;
           file = ./locals.el;
