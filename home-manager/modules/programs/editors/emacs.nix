@@ -10,7 +10,7 @@ let
   initFile = ../../../../config/init.el;
   derivation = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
-    package = pkgs.emacsGit;
+    # package = pkgs.emacsGit;
     extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
   };
   cfg = config.evie.programs.editors.emacs;
