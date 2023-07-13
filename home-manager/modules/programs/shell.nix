@@ -74,6 +74,8 @@ in
               set fish_color_error "#c33759"
 
               fish_vi_key_bindings
+
+              bind -M insert \cr 'commandline -f history-pager'
             '';
             shellAliases = {
               # exa
