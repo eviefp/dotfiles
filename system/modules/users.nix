@@ -20,7 +20,7 @@
         evie = {
           isNormalUser = true;
           extraGroups = [ "wheel" "networkmanager" "video" "docker" "plugdev" "vboxusers" ];
-          shell = pkgs.fish;
+          shell = pkgs.bash;
           hashedPassword =
             "$6$2bJFtErxPXqeCEJO$w4K0Fm1WmRL3tpUUJxkesiBFsM03Q2/IrtX9QvJjIBH3bxlOr1VtMIgWhCtIR1B./3QtmBCKo4H8ajTk51JW2/";
         };

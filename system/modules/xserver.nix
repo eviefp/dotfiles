@@ -14,7 +14,6 @@ in
     useNVidia =
       lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
     useBluetooth = lib.options.mkEnableOption "Enable bluetooth support.";
-    enableHiDPI = lib.options.mkEnableOption "Enable HiDPI support.";
     monitorSectionDisplaySize = lib.mkOption {
       type = lib.types.str;
       default = "";
@@ -80,7 +79,6 @@ in
             then [ ]
             else with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
         };
-        video.hidpi.enable = cfg.enableHiDPI;
       };
 
       sound.enable = true;
