@@ -45,7 +45,6 @@
   evie.xserver = {
     enable = true;
     useBluetooth = true;
-    enableHiDPI = false;
   };
 
   evie.logind.enable = true;
