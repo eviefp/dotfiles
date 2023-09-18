@@ -53,7 +53,8 @@ in
           enable = true;
           arguments = [ "-c" ];
         };
-        # socketActivation.enable = true;
+        socketActivation.enable = true;
+        startWithUserSession = true;
       };
     };
   };

@@ -39,6 +39,52 @@ in
           };
         };
       };
+      qutebrowser = {
+        enable = true;
+        package = unstable.qutebrowser.override {
+          enableWideVine = true;
+        };
+        settings = {
+          auto_save.session = true;
+          colors = {
+            webpage = {
+              darkmode = {
+                enabled = false;
+              };
+              preferred_color_scheme = "dark";
+            };
+          };
+          content = {
+            autoplay = false;
+            pdfjs = true;
+          };
+          downloads = {
+            location = {
+              directory = "/home/evie/Downloads";
+              prompt = false;
+            };
+          };
+          tabs = {
+            position = "left";
+            show = "multiple";
+            last_close = "close";
+            select_on_remove = "last-used";
+            # padding = ''{"bottom": 3, "left": 5, "right": 5, "top": 0}'';
+          };
+          session = {
+            default_name = "evie";
+            lazy_restore = true;
+          };
+          # spellcheck.languages = [ "en-US" "en-GB" "ro-RO" ];
+          statusbar = {
+            position = "top";
+          };
+          window = {
+            transparent = false;
+            hide_decoration = false;
+          };
+        };
+      };
     };
   };
 }
