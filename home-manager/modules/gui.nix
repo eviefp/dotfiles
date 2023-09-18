@@ -86,7 +86,6 @@ in
         enable = true;
         cycle = true;
         pass = { enable = true; };
-        # theme = "docu";
         theme = "Monokai";
       };
     };

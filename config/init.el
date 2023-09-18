@@ -29,8 +29,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editing
-(setq fill-column 80)
-(setq display-fill-column-indicator 80)
+(setq fill-column 120)
+(setq display-fill-column-indicator 120)
 (setq display-line-numbers-type 'relative)
 (setq display-line-numbers-current-absolute t)
 (global-display-line-numbers-mode 1)
@@ -137,7 +137,7 @@
 ;; rainbow-delimiters doesn't work with use-package
 ;; but also, I don't think I like smartparens
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'prog-mode-hook (lambda () (setq fill-column 80)))
+(add-hook 'prog-mode-hook (lambda () (setq fill-column 120)))
 (add-hook 'prog-mode-hook (lambda () (column-number-mode)))
 
 (use-package evil-goggles
@@ -498,13 +498,15 @@
 
 ;; org
 (setq org-edit-src-content-indentation nil)
+(setq org-startup-with-inline-images t)
+(setq org-image-actual-width 300)
 
 (use-package evil-org
   :ensure t
   :after (evil org)
   :hook ((org-mode . evil-org-mode)
          (org-agenda . evil-org-mode)
-         (org-mode . auto-fill-mode))
+         (org-mode . auto-fill-mode)https://www.youtube.com/watch?v=LekhueQ4zVU)
   :config
   (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading calendar))
   (require 'evil-org-agenda)

@@ -50,7 +50,7 @@
   };
 
   evie.services = {
-    neuron-site.enable = true;
+    neuron-site.enable = false;
   };
 
   evie.fonts.enable = true;

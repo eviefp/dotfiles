@@ -28,7 +28,7 @@ in
           enable = true;
           videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
           monitorSection = ''
-            Option "DPMS" "false"
+            Option "DPMS" "true"
             ${cfg.monitorSectionDisplaySize}
           '';
           serverFlagsSection = ''
