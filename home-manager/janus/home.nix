@@ -17,6 +17,7 @@
     chat.enable = true;
 
     browsers.enable = true;
+
     bower.enable = true;
 
     dev = {
@@ -42,7 +43,7 @@
     };
 
     neuron = {
-      enable = true;
+      enable = false;
     };
 
     shell = {
@@ -78,5 +79,6 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    BROWSER = "qutebrowser";
   };
 }

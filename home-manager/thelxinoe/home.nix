@@ -9,7 +9,6 @@
     ../modules/programs/editors/emacs.nix
     ../modules/email.nix
     ../modules/programs/editors/neovim.nix
-    ../modules/services/protonmail.nix
     ../modules/fonts.nix
     ../modules/system.nix
   ];
@@ -49,7 +48,7 @@
     };
 
     neuron = {
-      enable = true;
+      enable = false;
     };
 
     shell = {
