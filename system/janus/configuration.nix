@@ -23,7 +23,7 @@
     };
   };
 
-  evie.locale.timeZone = "Europe/Vienna";
+  # evie.locale.timeZone = "Europe/Vienna";
 
   evie.network = {
     hostName = "janus";
@@ -47,7 +47,7 @@
     useBluetooth = true;
   };
 
-  evie.logind.enable = true;
+  # evie.logind.enable = true;
 
   environment.variables = {
     VPAU_DRIVER = "va_gl";
