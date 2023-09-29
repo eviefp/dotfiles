@@ -28,7 +28,7 @@ in
     };
     programs = {
       browserpass = {
-        enable = true;
+        enable = false;
         browsers = [ "firefox" ];
       };
       firefox = {
