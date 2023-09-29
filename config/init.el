@@ -27,12 +27,13 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editing
 (setq fill-column 120)
 (setq display-fill-column-indicator 120)
-(setq display-line-numbers-type 'relative)
-(setq display-line-numbers-current-absolute t)
+;; removed because weird behavior and it's kinda weird anyway
+;; (setq display-line-numbers-type 'relative)
+;; (setq display-line-numbers-current-absolute t)
 (global-display-line-numbers-mode 1)
 (global-whitespace-mode)
 (setq whitespace-style '(face trailing tabs))
@@ -41,8 +42,8 @@
 ;; Default config
 (setq evie-font-size 60)
 
-(set-frame-parameter (selected-frame) 'alpha '(90 . 60))
-(add-to-list 'default-frame-alist '(alpha . (90 . 60)))
+;; (set-frame-parameter (selected-frame) 'alpha '(95 . 75))
+;; (add-to-list 'default-frame-alist '(alpha . (95 . 75)))
 
 ;; Load config
 (ignore-errors (load "~/.emacs.d/locals.el"))
@@ -180,7 +181,7 @@
      "g c c"     'comment-line
      "SPC n n"   'notmuch
      "SPC b d"   'kill-this-buffer
-     "SPC b b"   'switch-to-buffer
+     "SPC f b"   'switch-to-buffer
      "SPC q"     'save-buffers-kill-terminal
      "SPC a d"   'dired
      "SPC t f"   'display-fill-column-indicator-mode

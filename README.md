@@ -12,7 +12,7 @@ nix-shell
 
 Make sure your `NIX_PATH` is set before continuing.
 
-For `home-manager`, I symlink ~/.config/nixpkgs/home.nix to, for example,
+For `home-manager`, I symlink ~/.config/home-manager/home.nix to, for example,
 `home-manager/thelxinoe/home.nix` and run:
 ```sh
 nix-shell '<home-manager>' -A install
@@ -73,4 +73,5 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `thelxinoe` is my main desktop
 
 ## TODO
-- xmonad
+- [ ] flakify home-manager and remove niv? :/
+- [ ] review/update emacs things

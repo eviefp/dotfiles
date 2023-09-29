@@ -75,10 +75,6 @@
 
   evie.fonts.enable = true;
 
-  evie.services = {
-    protonmail.enable = false;
-  };
-
   evie.system = {
     enable = true;
     host = "thelxinoe";
