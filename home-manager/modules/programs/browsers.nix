@@ -2,11 +2,9 @@
   * programs/browsers module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, unstable, ... }:
 let
   cfg = config.evie.programs.browsers;
-  sources = import ../../../nix/sources.nix;
-  unstable = import sources.unstable { };
 in
 {
   imports = [ ];

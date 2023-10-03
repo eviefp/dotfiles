@@ -2,11 +2,9 @@
   * programs/editors/helix module
   *
   **************************************************************************/
-{ lib, config, ... }:
+{ lib, config, unstable, ... }:
 let
   cfg = config.evie.programs.editors.helix;
-  sources = import ../../../../nix/sources.nix;
-  unstable = import sources.unstable { };
 in
 {
   imports = [ ];

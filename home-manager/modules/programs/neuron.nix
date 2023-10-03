@@ -2,10 +2,8 @@
   * neuron module
   *
   **************************************************************************/
-{ lib, config, ... }:
+{ lib, config, neuron, ... }:
 let
-  sources = import ../../../nix/sources.nix;
-  neuron = import sources.neuron;
   cfg = config.evie.programs.neuron;
 in
 {
