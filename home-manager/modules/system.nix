@@ -3,11 +3,9 @@
   *
   * This exists so I don't have to symlink each system's config to '/etc/nixos'.
   ************************************************************************ */
-{ lib, config, ... }:
+{ lib, config, pkgs, unstable, ... }:
 let
   cfg = config.evie.system;
-  sources = import ../../nix/sources.nix;
-  home-manager = import sources.home-manager { };
 in
 {
   imports = [ ];
@@ -30,7 +28,7 @@ in
     home.homeDirectory = "/home/evie";
     home.sessionVariables = {
       NIX_PATH =
-        "nixpkgs=${sources.nixpkgs}:home-manager=${sources.home-manager}:unstable=${sources.unstable}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
+        "nixpkgs=${pkgs}:unstable=${unstable}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
     };
   };
 }

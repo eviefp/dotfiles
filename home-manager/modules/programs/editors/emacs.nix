@@ -3,10 +3,8 @@
   *
   * Emacs package using emacs-overlay.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, emacs-overlay, ... }:
 let
-  sources = import ../../../../nix/sources.nix;
-  emacsOverlay = import sources.emacs-overlay;
   initFile = ../../../../config/init.el;
   derivation = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
@@ -33,7 +31,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [ emacsOverlay ];
+    nixpkgs.overlays = [ emacs-overlay ];
 
     home.packages = [ derivation ];
 

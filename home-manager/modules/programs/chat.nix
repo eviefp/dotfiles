@@ -2,11 +2,9 @@
   * programs/chat module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, unstable, ... }:
 let
   cfg = config.evie.programs.chat;
-  sources = import ../../../nix/sources.nix;
-  unstable = import sources.unstable { };
 in
 {
   imports = [ ];
