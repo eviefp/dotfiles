@@ -28,7 +28,7 @@
     };
 
     nix = {
-      trustedUsers = [ "root" "evie" ];
+      settings.trusted-users = [ "root" "evie" ];
       package = pkgs.nixFlakes;
       nrBuildUsers = 50;
       extraOptions = ''

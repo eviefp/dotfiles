@@ -5,7 +5,7 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix> ];
+  imports = [ ];
 
   boot.loader.grub.useOSProber = true;
   boot.initrd.availableKernelModules =
@@ -27,7 +27,7 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/5fbea3ce-b59a-40de-9330-9d4e0264c8f0"; }];
 
-  nix.maxJobs = lib.mkDefault 24;
+  nix.settings.max-jobs = lib.mkDefault 24;
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   # High-DPI console
   console.font =

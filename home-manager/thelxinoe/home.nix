@@ -48,7 +48,7 @@
     };
 
     neuron = {
-      enable = false;
+      enable = true;
     };
 
     shell = {
