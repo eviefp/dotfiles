@@ -74,4 +74,15 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 ## TODO
 - [ ] flakify home-manager and remove niv? :/
+    - [ ] neovim
+    - [ ] warnings
+    - [ ] test it
+    - [ ] do I stick to unstable or?
+    - [ ] (opt) separate bigger packages into separate flakes (e.g. neovim/emacs at least)
+    - [ ] maybe setup vscode too?
+    - [ ] do I still need a direnv/shell nix?
+- [ ] 3rd monitor + monitor setup at boot
+- [ ] xmonad
+    - [ ] sound buttons (change source)
+    - [ ] listen (web)server for commands
 - [ ] review/update emacs things

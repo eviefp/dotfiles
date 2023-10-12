@@ -42,7 +42,7 @@ in
       pkgs.haskellPackages.xmobar
       pkgs.pass
       pkgs.passff-host
-      pkgs.pinentry_gnome
+      pkgs.pinentry-gnome
       pkgs.xdg_utils
     ];
 

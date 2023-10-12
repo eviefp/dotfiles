@@ -2,21 +2,17 @@
   * Thelxinoe home-manager
   *
   **************************************************************************/
-{ unstable, neuron, emacs-overlay }:
+{ ... }:
 {
   imports = [
     ../modules/programs.nix
     ../modules/gui.nix
     ../modules/programs/editors/emacs.nix
     ../modules/email.nix
-    # ../modules/programs/editors/neovim.nix
+    ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
     ../modules/system.nix
   ];
-
-  _module.args.unstable = import unstable { };
-  _module.args.neuron = neuron;
-  _module.args.emacs-overlay = emacs-overlay;
 
   evie.programs = {
     enable = true;
@@ -36,7 +32,7 @@
     };
 
     editors = {
-      # neovim.enable = true;
+      neovim.enable = true;
 
       emacs = {
         enable = true;
@@ -45,10 +41,6 @@
           file = ./locals.el;
         };
       };
-    };
-
-    neuron = {
-      enable = true;
     };
 
     shell = {

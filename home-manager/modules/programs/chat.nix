@@ -2,7 +2,7 @@
   * programs/chat module
   *
   **************************************************************************/
-{ lib, config, pkgs, unstable, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.chat;
 in
@@ -18,7 +18,7 @@ in
       pkgs.discord
       pkgs.slack
       pkgs.signal-desktop
-      unstable.chatterino2
+      pkgs.chatterino2
     ];
   };
 }

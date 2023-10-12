@@ -3,7 +3,7 @@
   *
   * Emacs package using emacs-overlay.
   **************************************************************************/
-{ lib, config, pkgs, emacs-overlay, ... }:
+{ lib, config, pkgs, nixpkgs, emacs-overlay, ... }:
 let
   initFile = ../../../../config/init.el;
   derivation = pkgs.emacsWithPackagesFromUsePackage {
@@ -31,8 +31,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [ emacs-overlay ];
-
     home.packages = [ derivation ];
 
     home.file = lib.mkMerge [

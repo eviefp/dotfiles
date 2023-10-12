@@ -2,7 +2,7 @@
   * Programs module
   *
   **************************************************************************/
-{ lib, config, pkgs, unstable, ... }:
+{ lib, config, pkgs, ... }:
 {
   imports = [
     ./programs/bower.nix
@@ -16,7 +16,7 @@
     ./programs/editors/helix.nix
     # ./programs/hydroxide.nix
     ./programs/kitty.nix
-    ./programs/neuron.nix
+    # ./programs/neuron.nix
     # ./programs/purebred.nix
     ./programs/shell.nix
     ./programs/shell/ranger.nix
@@ -32,7 +32,7 @@
   config = lib.mkMerge [
     (
       {
-        home.packages = [ unstable.zoom-us pkgs.light ];
+        home.packages = [ pkgs.zoom-us pkgs.light ];
       }
     )
   ];
