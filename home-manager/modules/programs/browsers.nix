@@ -63,7 +63,7 @@ in
             };
           };
           tabs = {
-            position = "left";
+            position = "right";
             show = "multiple";
             last_close = "close";
             select_on_remove = "last-used";

@@ -440,7 +440,7 @@ in
             symbols
             tabular
             telescope
-            telescopefzf
+            pkgs.vimPlugins.telescope-fzf-native-nvim
             pkgs.vimPlugins.nvim-treesitter-context
             pkgs.vimPlugins.nvim-treesitter.withAllGrammars
             pkgs.vimPlugins.nvim-treesitter-refactor
