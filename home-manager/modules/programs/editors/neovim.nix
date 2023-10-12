@@ -3,92 +3,147 @@
   *
   * Neovim package, plugins, and init file.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib
+, config
+, pkgs
+, nvim-visuals-multi
+, nvim-bbye
+, nvim-kommentary
+, nvim-tabular
+, nvim-rainbow
+, nvim-abolish
+, nvim-fugitive
+, nvim-rhubarb
+, nvim-markdown
+, nvim-purescript
+, nvim-nix
+, nvim-signature
+, nvim-better-whitespace
+, nvim-lexical
+, nvim-solarized
+, nvim-plenary
+, nvim-telescope
+, nvim-treesitter
+, nvim-lspconfig
+, nvim-cmp
+, nvim-cmp-path
+, nvim-cmp-vsnip
+, nvim-vim-vsnip
+, nvim-cmp-lsp
+, nvim-lspkind
+, nvim-cmp-emoji
+, nvim-cmp-latex-symbols
+, nvim-cmp-lua
+, nvim-gitsigns
+, nvim-telescope-fzf
+, nvim-dev-webicons
+, nvim-eunuch
+, nvim-which-key
+, nvim-telescope-symbols
+, nvim-lualine
+, nvim-octo
+, nvim-trouble
+, nvim-harpoon
+, nvim-tokyo
+, nvim-git-messenger
+, nvim-hop
+, nvim-merge-tool
+, nvim-truezen
+, nvim-sandwich
+, nvim-snitch
+, nvim-fairy-floss
+, nvim-material
+, nvim-treesitter-refactor
+, nvim-telescope-file-browser
+, nvim-telescope-ui-select
+, nvim-fish-syntax
+, nvim-ranger
+, nvim-libp
+, nvim-pest
+, ...
+}:
 let
   cfg = config.evie.programs.editors.neovim;
   vimUtils = pkgs.vimUtils;
-  sources = import ../../../../nix/sources.nix;
-  unstable = import sources.unstable { };
 
   visualMulti = vimUtils.buildVimPlugin {
     name = "vim-visual-multi-master-e209089";
-    src = sources.vim-visual-multi;
+    src = nvim-visuals-multi;
   };
 
   bbye = vimUtils.buildVimPlugin {
     name = "vim-bbye-master-25ef93a";
-    src = sources.vim-bbye;
+    src = nvim-bbye;
   };
 
   kommentary = vimUtils.buildVimPlugin {
     name = "kommentary-master-a190d05";
-    src = sources.kommentary;
+    src = nvim-kommentary;
   };
 
   tabular = vimUtils.buildVimPlugin {
     name = "tabular-master-339091a";
-    src = sources.tabular;
+    src = nvim-tabular;
   };
 
   rainbow = vimUtils.buildVimPlugin {
     name = "rainbow-master-c18071e";
-    src = sources.rainbow;
+    src = nvim-tabular;
   };
 
   abolish = vimUtils.buildVimPlugin {
     name = "vim-abolish-master-3f0c8fa";
-    src = sources.vim-abolish;
+    src = nvim-abolish;
   };
 
   fugitive = vimUtils.buildVimPlugin {
     name = "vim-fugitive-master-a93ceff";
-    src = sources.vim-fugitive;
+    src = nvim-fugitive;
   };
 
   rhubarb = vimUtils.buildVimPlugin {
     name = "vim-rhubarb-master-977b3cc";
-    src = sources.vim-rhubarb;
+    src = nvim-rhubarb;
   };
 
   vim-markdown = vimUtils.buildVimPlugin {
     name = "vim-markdown-master";
-    src = sources.vim-markdown;
+    src = nvim-markdown;
   };
-
 
   purescript = vimUtils.buildVimPlugin {
     name = "purescript-vim-master-d493b57";
-    src = sources.purescript-vim;
+    src = nvim-purescript;
   };
 
   nix = vimUtils.buildVimPlugin {
     name = "vim-nix-master-63b47b3";
-    src = sources.vim-nix;
+    src = nvim-nix;
   };
 
   signature = vimUtils.buildVimPlugin {
     name = "vim-signature-master-6bc3dd1";
-    src = sources.vim-signature;
+    src = nvim-signature;
   };
 
   betterWhitespace = vimUtils.buildVimPlugin {
     name = "vim-better-whitespace-master-c5afbe9";
-    src = sources.vim-better-whitespace;
+    src = nvim-better-whitespace;
   };
 
   lexical = vimUtils.buildVimPlugin {
     name = "vim-lexical-master-0898c0c";
-    src = sources.vim-lexical;
+    src = nvim-lexical;
   };
 
   solarized = vimUtils.buildVimPlugin {
     name = "vim-solarized8-master-28b81a4";
-    src = sources.vim-solarized8;
+    src = nvim-solarized;
   };
 
   plenary = vimUtils.buildVimPlugin {
     name = "plenary.nvim-master-563d9f6";
-    src = sources."plenary.nvim";
+    src = nvim-plenary;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -96,7 +151,7 @@ let
 
   telescope = vimUtils.buildVimPlugin {
     name = "telescope-master-0011b11";
-    src = sources."telescope.nvim";
+    src = nvim-telescope;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -104,12 +159,12 @@ let
 
   treesitter = vimUtils.buildVimPlugin {
     name = "nvim-treesitter-master-620cc93";
-    src = sources.nvim-treesitter;
+    src = nvim-treesitter;
   };
 
   lspConfig = vimUtils.buildVimPlugin {
     name = "nvim-lspconfig-master-c510964";
-    src = sources.nvim-lspconfig;
+    src = nvim-lspconfig;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -117,7 +172,7 @@ let
 
   cmp = vimUtils.buildVimPlugin {
     name = "nvim-cmp-main-d931042";
-    src = sources.nvim-cmp;
+    src = nvim-cmp;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -125,47 +180,47 @@ let
 
   cmpPath = vimUtils.buildVimPlugin {
     name = "cmp-path-main-c5230cb";
-    src = sources.cmp-path;
+    src = nvim-cmp-path;
   };
 
   cmpVsnip = vimUtils.buildVimPlugin {
     name = "cmp-vsnip-main-0abfa18";
-    src = sources.cmp-vsnip;
+    src = nvim-cmp-vsnip;
   };
 
   vimVsnip = vimUtils.buildVimPlugin {
     name = "vim-vsnip-main-7fde9c0";
-    src = sources.vim-vsnip;
+    src = nvim-vim-vsnip;
   };
 
   cmpLsp = vimUtils.buildVimPlugin {
     name = "cmp-nvim-lsp-main-ebdfc20";
-    src = sources.cmp-nvim-lsp;
+    src = nvim-cmp-lsp;
   };
 
   lspKind = vimUtils.buildVimPlugin {
     name = "lspkind-nvim-master-f0d1552";
-    src = sources.lspkind-nvim;
+    src = nvim-lspkind;
   };
 
   cmpEmoji = vimUtils.buildVimPlugin {
     name = "cmp-emoji-main-19075c3";
-    src = sources.cmp-emoji;
+    src = nvim-cmp-emoji;
   };
 
   cmpLatexSymbols = vimUtils.buildVimPlugin {
     name = "cmp-latex-symbols-main-29dc9e5";
-    src = sources.cmp-latex-symbols;
+    src = nvim-cmp-latex-symbols;
   };
 
   cmpLua = vimUtils.buildVimPlugin {
     name = "cmp-nvim-lua-main-d276254";
-    src = sources.cmp-nvim-lua;
+    src = nvim-cmp-lua;
   };
 
   gitSigns = vimUtils.buildVimPlugin {
     name = "gitsigns.nvim-main-4861666";
-    src = sources."gitsigns.nvim";
+    src = nvim-gitsigns;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -173,7 +228,7 @@ let
 
   telescopefzf = vimUtils.buildVimPlugin {
     name = "telescope-fzf-native.nvim-main-b8662b0";
-    src = sources."telescope-fzf-native.nvim";
+    src = nvim-telescope-fzf;
   };
 
   devIcons = vimUtils.buildVimPlugin {
@@ -181,27 +236,27 @@ let
     configurePhase = ''
       rm -rf Makefile
     '';
-    src = sources.nvim-web-devicons;
+    src = nvim-dev-webicons;
   };
 
   eunuch = vimUtils.buildVimPlugin {
     name = "vim-eunuch-master-e2c9e01";
-    src = sources.vim-eunuch;
+    src = nvim-eunuch;
   };
 
   whichKey = vimUtils.buildVimPlugin {
     name = "which-key.nvim-main-28d2bd1";
-    src = sources."which-key.nvim";
+    src = nvim-which-key;
   };
 
   symbols = vimUtils.buildVimPlugin {
     name = "telescope-symbols-master-d2d7d6b";
-    src = sources."telescope-symbols.nvim";
+    src = nvim-telescope-symbols;
   };
 
   luaLine = vimUtils.buildVimPlugin {
     name = "lualine.nvim-master-aed7f25";
-    src = sources."lualine.nvim";
+    src = nvim-lualine;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -209,17 +264,17 @@ let
 
   octo = vimUtils.buildVimPlugin {
     name = "octo.nvim-master-d21c5cc";
-    src = sources."octo.nvim";
+    src = nvim-octo;
   };
 
   trouble = vimUtils.buildVimPlugin {
     name = "trouble.nvim-master-d035ef2";
-    src = sources."trouble.nvim";
+    src = nvim-trouble;
   };
 
   harpoon = vimUtils.buildVimPlugin {
     name = "harpoon-master-d035ef2";
-    src = sources.harpoon;
+    src = nvim-harpoon;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -227,17 +282,17 @@ let
 
   tokyo = vimUtils.buildVimPlugin {
     name = "tokyonight.nvim-main-8223c97";
-    src = sources."tokyonight.nvim";
+    src = nvim-tokyo;
   };
 
   gitMessenger = vimUtils.buildVimPlugin {
     name = "git-messenger.vim-master-2e67899";
-    src = sources."git-messenger.vim";
+    src = nvim-git-messenger;
   };
 
   hop = vimUtils.buildVimPlugin {
     name = "hop.nvim-master-f418a37";
-    src = sources."hop.nvim";
+    src = nvim-hop;
     configurePhase = ''
       rm -rf doc
     '';
@@ -245,12 +300,12 @@ let
 
   merge = vimUtils.buildVimPlugin {
     name = "vim-mergetool-master-0275a85";
-    src = sources."vim-mergetool";
+    src = nvim-merge-tool;
   };
 
   truezen = vimUtils.buildVimPlugin {
     name = "truezen.nvim-main-508b977";
-    src = sources."truezen.nvim";
+    src = nvim-truezen;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -258,60 +313,55 @@ let
 
   sandwich = vimUtils.buildVimPlugin {
     name = "vim-sandwitch-master-48acdad";
-    src = sources.vim-sandwich;
+    src = nvim-sandwich;
   };
 
   snitch = vimUtils.buildVimPlugin {
     name = "nvim-snitch-ed57352";
-    src = sources.nvim-snitch;
+    src = nvim-snitch;
   };
 
   fairyfloss = vimUtils.buildVimPlugin {
     name = "fairyfloss.vim-master-61c8bbd";
-    src = sources."fairyfloss.vim";
+    src = nvim-fairy-floss;
   };
 
   material = vimUtils.buildVimPlugin {
     name = "material.vim-main-445534b";
-    src = sources."material.vim";
+    src = nvim-material;
   };
 
   tresitter-refactor = vimUtils.buildVimPlugin {
     name = "nvim-treesitter-refactor-master-0dc8069";
-    src = sources.nvim-treesitter-refactor;
+    src = nvim-treesitter-refactor;
   };
 
   telescope-file-browser = vimUtils.buildVimPlugin {
     name = "telescope-file-browser.nvim-master-d06fe1d";
-    src = sources."telescope-file-browser.nvim";
+    src = nvim-telescope-file-browser;
     configurePhase = ''
       rm -rf Makefile
     '';
   };
 
-  nerveux = vimUtils.buildVimPlugin {
-    name = "nerveux.nvim-master";
-    src = sources."nerveux.nvim";
-  };
-
-  firenvim = vimUtils.buildVimPlugin {
-    name = "firenvim-master";
-    src = sources."firenvim";
-  };
+  # nerveux = vimUtils.buildVimPlugin {
+  #   name = "nerveux.nvim-master";
+  #   src = sources."nerveux.nvim";
+  # };
 
   telescope-ui-select = vimUtils.buildVimPlugin {
     name = "telescope-ui-select";
-    src = sources."telescope-ui-select.nvim";
+    src = nvim-telescope-ui-select;
   };
 
   vim-fish-syntax = vimUtils.buildVimPlugin {
     name = "vim-fish-syntax";
-    src = sources.vim-fish-syntax;
+    src = nvim-fish-syntax;
   };
 
   ranger-nvim = vimUtils.buildVimPlugin {
     name = "ranger-nvim";
-    src = sources."ranger.nvim";
+    src = nvim-ranger;
     configurePhase = ''
       rm -rf Makefile
     '';
@@ -320,16 +370,15 @@ let
   # required by ranger-nvim
   libp = vimUtils.buildVimPlugin {
     name = "libp.nvim";
-    src = sources."libp.nvim";
+    src = nvim-libp;
     configurePhase = ''
       rm -rf Makefile
     '';
   };
 
-
   pest = vimUtils.buildVimPlugin {
     name = "pest.vim";
-    src = sources."pest.vim";
+    src = nvim-pest;
   };
 in
 {
@@ -350,7 +399,7 @@ in
     home.packages = [
       pkgs.fd
       pkgs.gcc
-      (unstable.neovim.override {
+      (pkgs.neovim.override {
         viAlias = true;
         vimAlias = true;
         withNodeJs = true;
@@ -392,9 +441,9 @@ in
             tabular
             telescope
             telescopefzf
-            unstable.vimPlugins.nvim-treesitter-context
-            unstable.vimPlugins.nvim-treesitter.withAllGrammars
-            unstable.vimPlugins.nvim-treesitter-refactor
+            pkgs.vimPlugins.nvim-treesitter-context
+            pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+            pkgs.vimPlugins.nvim-treesitter-refactor
             vimVsnip
             visualMulti
             whichKey
@@ -412,8 +461,7 @@ in
             fairyfloss
             material
             telescope-file-browser
-            nerveux
-            firenvim
+            # nerveux
             telescope-ui-select
             vim-fish-syntax
             libp

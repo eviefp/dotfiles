@@ -3,7 +3,7 @@
   *
   * This exists so I don't have to symlink each system's config to '/etc/nixos'.
   ************************************************************************ */
-{ lib, config, pkgs, unstable, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.evie.system;
 in
@@ -27,8 +27,8 @@ in
     home.username = "evie";
     home.homeDirectory = "/home/evie";
     home.sessionVariables = {
-      NIX_PATH =
-        "nixpkgs=${pkgs}:unstable=${unstable}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
+      # NIX_PATH =
+      #   "nixpkgs=${pkgs}:unstable=${unstable}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
     };
   };
 }

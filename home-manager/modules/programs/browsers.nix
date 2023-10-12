@@ -2,7 +2,7 @@
   * programs/browsers module
   *
   **************************************************************************/
-{ lib, config, pkgs, unstable, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.browsers;
 in
@@ -30,8 +30,8 @@ in
         browsers = [ "firefox" ];
       };
       firefox = {
-        enable = true;
-        package = unstable.firefox.override {
+        enable = false;
+        package = pkgs.firefox.override {
           cfg = {
             enableTridactylNative = true;
           };
@@ -39,7 +39,7 @@ in
       };
       qutebrowser = {
         enable = true;
-        package = unstable.qutebrowser.override {
+        package = pkgs.qutebrowser.override {
           enableWideVine = true;
         };
         settings = {

@@ -36,7 +36,7 @@ require 'plugins.mergetool'
 require 'plugins.octo'
 require 'plugins.trouble'
 require 'plugins.truezen'
-require 'plugins.nerveux'
+-- require 'plugins.nerveux'
 
 require 'plugins.firenvim'
 

@@ -2,7 +2,7 @@
   * programs/editors/helix module
   *
   **************************************************************************/
-{ lib, config, unstable, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.editors.helix;
 in
@@ -15,7 +15,7 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.helix = {
-      package = unstable.helix;
+      package = pkgs.helix;
       enable = true;
       languages = [ ];
       settings = {
