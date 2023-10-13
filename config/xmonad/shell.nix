@@ -1,6 +1,5 @@
 let
-  sources = import ../../nix/sources.nix;
-  pkgs = import sources.nixpkgs { };
+  pkgs = import <nixpkgs> { };
   ep = [
     pkgs.xorg.libX11
     pkgs.xorg.libXft

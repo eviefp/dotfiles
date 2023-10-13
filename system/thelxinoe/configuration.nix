@@ -18,6 +18,7 @@
   evie.network = {
     hostName = "thelxinoe";
     interface = "enp4s0";
+    extraPorts = [ 31337 ];
   };
 
   evie.packages = {

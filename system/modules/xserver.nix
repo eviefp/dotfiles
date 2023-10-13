@@ -27,9 +27,34 @@ in
         xserver = {
           enable = true;
           videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
+          xrandrHeads = [
+            {
+              output = "DP-0";
+              primary = false;
+              monitorConfig = ''
+                Option "PreferredMode" "1920x1080_239.76"
+                Option "Position" "0 0"
+              '';
+            }
+            {
+              output = "DP-2";
+              primary = true;
+              monitorConfig = ''
+                Option "PreferredMode" "1920x1080_239.76"
+                Option "Position" "1920 0"
+              '';
+            }
+            {
+              output = "DP-4";
+              primary = false;
+              monitorConfig = ''
+                Option "PreferredMode" "1920x1080_239.76"
+                Option "Position" "3840 0"
+              '';
+            }
+          ];
           monitorSection = ''
             Option "DPMS" "true"
-            ${cfg.monitorSectionDisplaySize}
           '';
           serverFlagsSection = ''
             Option "BlankTime" "20"
@@ -37,6 +62,20 @@ in
           windowManager.xmonad = {
             enable = true;
             enableContribAndExtras = true;
+            config = ../../config/xmonad/xmonad.hs;
+            haskellPackages = pkgs.haskell.packages.ghc946;
+            extraPackages = haskellPackages: [
+              haskellPackages.async
+              haskellPackages.scotty
+            ];
+            ghcArgs = [
+              "-threaded"
+            ];
+            xmonadCliArgs = [
+              "+RTS"
+              "-N4"
+              "-RTS"
+            ];
           };
           desktopManager = {
             plasma5.enable = false;

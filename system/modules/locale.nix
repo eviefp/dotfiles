@@ -40,7 +40,7 @@ in
       keyMap = "us";
     };
 
-    fonts.fonts = [ pkgs.nerdfonts ];
+    fonts.packages = [ pkgs.nerdfonts ];
 
     time.timeZone = cfg.timeZone;
   };
