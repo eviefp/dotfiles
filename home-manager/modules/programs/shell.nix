@@ -56,7 +56,7 @@ in
             };
           };
 
-          exa = {
+          eza = {
             enable = true;
             enableAliases = true;
           };
@@ -99,7 +99,7 @@ in
           # https://github.com/shinzui/dotfiles.nix/issues/1
           gh = {
             enable = true;
-            enableGitCredentialHelper = true;
+            gitCredentialHelper.enable = true;
             settings = {
               git_protocol = "ssh";
               prompt = "enabled";

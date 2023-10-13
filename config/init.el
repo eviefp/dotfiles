@@ -294,7 +294,7 @@
     :general
     (general-define-key
         :keymaps 'normal
-        "SPC s" 'swiper))
+        "SPC f s" 'swiper))
 
 ;; lsp
 (use-package lsp-mode
@@ -303,19 +303,19 @@
       (setq lsp-enable-folding nil)
       (setq lsp-enable-file-watchers nil)
       (setq lsp-enable-symbol-highlighting nil)
-      (setq lsp-log-io nil)
-      (setq lsp-modeline-code-actions-face '((t nil)))
-      (setq lsp-modeline-code-actions-segments '(icon name))
-      (setq lsp-modeline-diagnostics-enable nil)
-      (setq lsp-haskell-server-wrapper-function
-	    (lambda (argv)
-              (append
-               (append (list "nix-shell" "-I" "." "--command" )
-                       (list (mapconcat 'identity argv " "))
-                       )
-               (list (concat (lsp-haskell--get-root) "/shell.nix"))
-               )
-              ))
+      ;; (setq lsp-log-io nil)
+      ;; (setq lsp-modeline-code-actions-face '((t nil)))
+      ;; (setq lsp-modeline-code-actions-segments '(icon name))
+      ;; (setq lsp-modeline-diagnostics-enable nil)
+      ;; (setq lsp-haskell-server-wrapper-function
+      ;; 	    (lambda (argv)
+      ;;         (append
+      ;;          (append (list "nix-shell" "-I" "." "--command" )
+      ;;                  (list (mapconcat 'identity argv " "))
+      ;;                  )
+      ;;          (list (concat (lsp-haskell--get-root) "/shell.nix"))
+      ;;          )
+      ;;         ))
     :config
       (add-to-list 'lsp-language-id-configuration
         '(nix-mode . "nix"))
@@ -403,10 +403,10 @@
   (setq lsp-haskell-diagnostics-on-change nil)
   (setq lsp-haskell-liquid-on nil)
   (setq lsp-haskell-completion-snippets-on t)
-  (setq lsp-haskell-format-on-import-on t)
-  (setq lsp-haskell-formatting-provider "ormolu")
-  (setq lsp-haskell-ormolu-on t)
-  (setq lsp-haskell-stylish-haskell-on nil)
+  ;; (setq lsp-haskell-format-on-import-on t)
+  ;; (setq lsp-haskell-formatting-provider "ormolu")
+  ;; (setq lsp-haskell-ormolu-on t)
+  ;; (setq lsp-haskell-stylish-haskell-on nil)
   (setq lsp-haskell-tactic-on t))
 
 ;; purescript

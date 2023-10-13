@@ -327,6 +327,7 @@
                 };
                 home-manager = home-manager;
                 emacs-overlay = import emacs-overlay { };
+
               };
               home-manager.users.evie = import ./home-manager/thelxinoe/home.nix;
             }

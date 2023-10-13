@@ -2,7 +2,7 @@
   * Thelxinoe home-manager
   *
   **************************************************************************/
-{ ... }:
+{ nixpkgs, ... }:
 {
   imports = [
     ../modules/programs.nix
@@ -74,5 +74,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "qutebrowser";
+    NIX_PATH = "nixpkgs=${nixpkgs}";
   };
 }

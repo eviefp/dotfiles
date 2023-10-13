@@ -20,6 +20,7 @@ in
       };
 
       # Randomly decided the NixOS version should be here.
-    (lib.mkIf cfg.enableHeadless { boot.kernelParams = [ "nomodeset" ]; })
+      (lib.mkIf cfg.enableHeadless { boot.kernelParams = [ "nomodeset" ];
+    })
   ];
 }
