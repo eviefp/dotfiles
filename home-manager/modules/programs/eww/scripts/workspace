@@ -1,0 +1,34 @@
+#!/bin/bash 
+
+workspaces(){
+  local Workspaces=$(expr "$(wmctrl -d | wc -l)" - 1)
+  local focused=$(wmctrl -d | grep '*' | awk '{print $1}')
+
+
+  for ((workspace=0; workspace <= $Workspaces; workspace++))
+  do 
+    if [ $workspace == $focused ]; then 
+      local  ws=$workspace
+      local  icon="  "
+      local  class="workspace-focused" 
+
+    elif [ -n "$(wmctrl -l | awk '{print $2}' | grep $workspace)" ]; then 
+      local ws=$workspace
+      local icon=" 󰻃 "
+      local class="workspace-occupied"
+
+    else 
+      local ws=$workspace
+      local icon="  "
+      local class="workspace-empty"   
+    fi
+    local buf+="(eventbox :cursor \"pointer\" (button :class \"$class\" :onclick \"wmctrl -s $ws \" \"$icon\"))"
+  done
+  echo "(box :orientation \"h\" :class \"works\" :halign \"center\" :valign \"center\" :vexpand \"true\" :hexpand \"true\" $buf)" 
+}
+workspaces
+xprop -spy -root _NET_CURRENT_DESKTOP | while read -r; do 
+workspaces 
+done
+
+

@@ -1,0 +1,102 @@
+
+
+*{
+	all:unset;
+	font-family: "Iosevka Nerd Font"
+} 
+
+
+.bar{
+	background-color: #0f0f14;
+	color: #A9B1D6;
+	//border-radius: 10px;
+}
+
+.right-btn{
+	font-size: 20px; 
+	margin-left: 10px;
+	color: #bb9af7;
+}
+
+.works {
+  //padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+  //background-color: $black;
+  border-radius: 5px;
+}
+
+.workspace-focused, .workspace-occupied, .workspace-empty{
+  font-size: 20px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.workspace-occupied {
+  color: #6e8db4;
+}
+
+.workspace-empty {
+  color: #565a6e; 
+}
+
+
+.time{
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+
+.ram, .cpu{
+	font-size: 15px;
+	font-weight: bolder;
+}
+
+.ram-icon{
+	font-size: 20px; 
+	color: #ff9e64;
+}
+
+.cpu-icon{
+	font-size: 20px;
+	color: #9ece6a;
+}
+
+.power-bx{
+	margin-right: 10px; 
+	font-size: 20px; 
+}
+
+.hib-btn, .sus-btn, .reb-btn, .exi-btn{
+	font-size: 20px;
+	margin-right: 5px;
+	color: #565a6e;
+}
+
+.pow-btn{
+	color: #f7768e;
+}
+
+.sus-btn:hover{
+	margin-bottom: 5px; 
+	color: #e0af68;
+}
+
+.reb-btn:hover{
+	margin-bottom: 5px; 	
+	color: #9ece6a;
+}
+
+.hib-btn:hover{
+	margin-bottom: 5px; 
+	color: #7aa2f7; 
+}
+
+.exi-btn:hover{
+	margin-bottom: 5px; 
+	color: #73daca; 
+}
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+
+(defwidget bar []
+	(centerbox 
+		(right)
+		(workspaces)
+		(left)
+	)
+)
+
+
+(defwidget workspaces []
+	(literal
+		:content workspace
+	)
+)
