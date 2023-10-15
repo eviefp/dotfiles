@@ -41,6 +41,10 @@
           file = ./locals.el;
         };
       };
+
+      vscode.enable = true;
+
+      helix.enable = true;
     };
 
     shell = {
@@ -75,5 +79,6 @@
     EDITOR = "nvim";
     BROWSER = "qutebrowser";
     NIX_PATH = "nixpkgs=${nixpkgs}";
+    OOO_FORCE_DESKTOP = "gnome";
   };
 }

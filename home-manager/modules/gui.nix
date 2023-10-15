@@ -18,9 +18,6 @@ in
 
   config = (lib.mkIf cfg.enable {
     home.packages = [
-      # Programming
-      pkgs.vscode
-
       # Screenshot
       pkgs.scrot
       pkgs.xclip

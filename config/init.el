@@ -186,7 +186,8 @@
      "SPC a d"   'dired
      "SPC t f"   'display-fill-column-indicator-mode
      "SPC t e"   'ielm
-     "SPC w s"   'evil-window-vsplit
+     "SPC w e"   'evil-window-vsplit
+     "SPC w s"   'evil-window-split
      "SPC w w"   'save-buffer
      "SPC w q"   'evil-window-delete
      "SPC t E"   'start-term
@@ -408,6 +409,10 @@
   ;; (setq lsp-haskell-ormolu-on t)
   ;; (setq lsp-haskell-stylish-haskell-on nil)
   (setq lsp-haskell-tactic-on t))
+
+(use-package yuck-mode
+  :ensure t
+ )
 
 ;; purescript
 (use-package purescript-mode
