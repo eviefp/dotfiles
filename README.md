@@ -73,8 +73,6 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `thelxinoe` is my main desktop
 
 ## TODO
-- [ ] Config eww
-- [ ] configurfe khal
 - [ ] configure helix
 - [ ] codium
     - [ ] haskell not working yet

@@ -31,6 +31,8 @@ in
         ];
 
         programs = {
+          kitty.enable = true;
+
           bat = {
             enable = true;
             config = {
@@ -200,11 +202,6 @@ in
           };
 
           ## Experimental
-          eww = {
-            enable = true;
-            configDir = ./eww/.;
-          };
-
           hyfetch = {
             enable = true;
             settings = {
@@ -221,8 +218,10 @@ in
             enable = true;
           };
 
-          khal = {
-            enable = true;
+          # this is pretty janky on xmonad, also don't really need more UI
+          eww = {
+            enable = false;
+            configDir = ./eww/.;
           };
 
         };

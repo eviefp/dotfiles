@@ -28,7 +28,6 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicWorkspaceOrder qualified as DWO
 import XMonad.Actions.PhysicalScreens
-import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition
@@ -53,9 +52,8 @@ import Prelude
 myManageHook :: ManageHook
 myManageHook =
   composeAll
-    [ manageHook gnomeConfig,
-      resource =? "stalonetray" --> doIgnore,
-      manageDocks
+    [ manageDocks,
+      insertPosition Below Newer
     ]
 
 myStartupHook :: X ()
@@ -408,11 +406,12 @@ runXmonad = do
   getDirectories
     >>= ( launch . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
             def
-              { manageHook = insertPosition Below Newer <+> myManageHook,
+              { manageHook = myManageHook,
                 workspaces = show <$> workspaceList,
                 layoutHook =
-                  avoidStruts . smartBorders $
-                    tall
+                  avoidStrutsOn [U]
+                    . smartBorders
+                    $ tall
                       ||| LM.ModifiedLayout (Wrapper @"Drawer Circle") (Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle)
                       ||| LM.ModifiedLayout (Wrapper @"Drawer Tall") (Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
                       ||| noBorders Full
