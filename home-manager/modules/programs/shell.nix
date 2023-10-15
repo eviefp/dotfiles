@@ -59,6 +59,14 @@ in
           eza = {
             enable = true;
             enableAliases = true;
+            git = true;
+            icons = true;
+            extraOptions = [
+              "--group-directories-first"
+              "--across"
+              "--icons"
+              "--classify"
+            ];
           };
 
 
@@ -189,6 +197,32 @@ in
             enable = true;
             enableBashIntegration = true;
             enableFishIntegration = true;
+          };
+
+          ## Experimental
+          eww = {
+            enable = true;
+            configDir = ./eww-config;
+          };
+
+          hyfetch = {
+            enable = true;
+            settings = {
+              backend = "neofetch";
+              preset = "transgender";
+              mode = "rgb";
+              light_dark = "dark";
+              lightness = 0.65;
+              color_align.mode = "horizontal";
+            };
+          };
+
+          joshuto = {
+            enable = true;
+          };
+
+          khal = {
+            enable = true;
           };
 
         };

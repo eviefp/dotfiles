@@ -17,7 +17,6 @@ in
     programs.helix = {
       package = pkgs.helix;
       enable = true;
-      languages = [ ];
       settings = {
         theme = "nordmod";
         editor = {

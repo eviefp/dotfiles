@@ -73,17 +73,9 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `thelxinoe` is my main desktop
 
 ## TODO
-- [x] flakify home-manager and remove niv? :/
-    - [x] neovim
-    - [x] warnings
-    - [x] test it
-    - [x] do I stick to unstable or?
-    - [ ] (opt) separate bigger packages into separate flakes (e.g. neovim/emacs at least)
-    - [ ] maybe setup vscode too?
-    - [x] do I still need a direnv/shell nix?
-- [x] 3rd monitor + monitor setup at boot
-    - [x] feh/bg?
-- [ ] xmonad
-    - [x] sound buttons (change source)
-    - [x] listen (web)server for commands
-- [ ] review/update emacs things
+- [ ] Config eww
+- [ ] configurfe khal
+- [ ] configure helix
+- [ ] codium
+    - [ ] haskell not working yet
+- [ ] separate bigger packages into separate flakes (e.g. neovim/emacs at least)
