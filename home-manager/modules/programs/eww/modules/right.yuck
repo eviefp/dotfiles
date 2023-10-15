@@ -1,0 +1,18 @@
+
+(defwidget right []
+	(box
+		:class "right-btn"
+		:orientation "h" 
+		:space-evenly false 
+		:halign "start" 
+		(eventbox
+			:cursor "pointer"
+			(button
+
+				:onclick "" 
+				"  "
+			)
+		)
+	)
+)
+;; maybe player ?

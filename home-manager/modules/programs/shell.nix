@@ -202,7 +202,7 @@ in
           ## Experimental
           eww = {
             enable = true;
-            configDir = ./eww-config;
+            configDir = ./eww/.;
           };
 
           hyfetch = {

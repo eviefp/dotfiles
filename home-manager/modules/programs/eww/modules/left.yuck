@@ -1,0 +1,68 @@
+(defwidget left []
+ (box 
+  :space-evenly false 
+  :spacing 10
+  :class "left-outer"
+  :orientation "h"
+  :halign "end"
+  (box
+   :class "ram" 
+   :space-evenly false 
+   :spacing 3
+   (label 
+    :class "ram-icon"
+    :text "  "
+   )
+   (label
+    :text "${round(EWW_RAM.used_mem_perc, 0)}%"
+   )
+  )
+  (box
+   :class "cpu"
+   :space-evenly false 
+   :spacing 3
+   (label
+    :class "cpu-icon"
+    :text "  "
+   )
+   (label
+    :text "${round(EWW_CPU.avg, 0)}%"
+   )
+  )
+  (box
+   :class "time"
+   (label
+    :text time
+   )
+  )
+  (box 
+   :class "power-bx"
+   :space-evenly false 
+   (eventbox 
+:cursor "default"
+    :onhover "${eww} update pow_reveal=true"
+    :onhoverlost "${eww} update pow_reveal=false" 
+    (box
+     :space-evenly false 
+     (revealer
+      :duration "400ms"
+      :transition "slideright"
+      :reveal pow_reveal 
+      (box
+       :class "reval-btn-bx"
+       :hexpand false
+       (button :class "exi-btn" :onclick "killall bspwm" "󰗼")
+       (button :class "hib-btn" :onclick "systemctl hibernate" "󰨣")
+       (button :class "sus-btn" :onclick "suspend" "󰤄")
+       (button :class "reb-btn" :onclick "systemctl reboot" "󰑓 "))
+     )
+
+     (box :class "pow-btn" 
+      (button :onclick "systemctl poweroff" " ")
+     )
+    )
+   )
+   )
+   )
+   )
+
