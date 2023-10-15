@@ -43,6 +43,7 @@ in
           enableWideVine = true;
         };
         settings = {
+          editor.command = [ "kitty" "-e" "nvim" "{}" ];
           auto_save.session = true;
           colors = {
             webpage = {
@@ -61,6 +62,8 @@ in
               directory = "/home/evie/Downloads";
               prompt = false;
             };
+            position = "bottom";
+            remove_finished = 5000;
           };
           tabs = {
             position = "right";

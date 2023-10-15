@@ -1,9 +1,0 @@
-
-;;vars
-(deflisten workspace "scripts/workspace")
-(defpoll time :interval "1s" "date '+%H:%M'")
-
-(defvar eww "/usr/bin/eww -c $HOME/.config/eww/night/bar ")
-(defvar pow_reveal false)
-
-

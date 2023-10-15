@@ -1,5 +1,0 @@
-(include "modules/window.yuck")
-(include "modules/vars.yuck")
-(include "modules/bar.yuck")
-(include "modules/right.yuck")
-(include "modules/left.yuck")
