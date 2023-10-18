@@ -43,14 +43,14 @@ in
     # TODO: This doesn't quite work. Should investigate...?
     services = {
       emacs = {
-        enable = true;
+        enable = false;
         package = derivation;
         client = {
           enable = true;
           arguments = [ "-c" ];
         };
-        socketActivation.enable = true;
-        startWithUserSession = true;
+        socketActivation.enable = false;
+        startWithUserSession = false;
       };
     };
   };

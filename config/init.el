@@ -308,15 +308,16 @@
       ;; (setq lsp-modeline-code-actions-face '((t nil)))
       ;; (setq lsp-modeline-code-actions-segments '(icon name))
       ;; (setq lsp-modeline-diagnostics-enable nil)
-      ;; (setq lsp-haskell-server-wrapper-function
-      ;; 	    (lambda (argv)
-      ;;         (append
-      ;;          (append (list "nix-shell" "-I" "." "--command" )
-      ;;                  (list (mapconcat 'identity argv " "))
-      ;;                  )
-      ;;          (list (concat (lsp-haskell--get-root) "/shell.nix"))
-      ;;          )
-      ;;         ))
+      (setq lsp-haskell-server-wrapper-function
+	    (lambda (argv)
+              (append
+               (append (list "nix-shell" "-I" "." "--command" )
+                       (list (mapconcat 'identity argv " "))
+                       )
+               (list (concat (file-name-directory (haskell-cabal-find-file)) "shell.nix"))
+               )
+              ))
+	    ;; (defun counsel-up-directory ()
     :config
       (add-to-list 'lsp-language-id-configuration
         '(nix-mode . "nix"))
