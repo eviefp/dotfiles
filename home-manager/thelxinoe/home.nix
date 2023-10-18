@@ -65,7 +65,7 @@
     wezterm.enable = true;
   };
 
-  evie.email.enable = true;
+  evie.email.enable = false;
 
   evie.fonts.enable = true;
 

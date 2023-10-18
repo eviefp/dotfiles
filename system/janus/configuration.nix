@@ -17,13 +17,12 @@
     ../modules/users.nix
   ];
 
+  # this might not work?
   nixpkgs.config = {
     packageOverrides = pkgs: {
       vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
     };
   };
-
-  # evie.locale.timeZone = "Europe/Vienna";
 
   evie.network = {
     hostName = "janus";

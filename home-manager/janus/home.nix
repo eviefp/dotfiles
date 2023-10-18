@@ -67,7 +67,7 @@
     wezterm.enable = true;
   };
 
-  evie.email.enable = true;
+  evie.email.enable = false;
 
   evie.fonts.enable = true;
 
@@ -80,5 +80,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "qutebrowser";
+    NIX_PATH = "nixpkgs=${nixpkgs}";
+    OOO_FORCE_DESKTOP = "gnome";
   };
 }
