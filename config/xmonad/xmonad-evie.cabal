@@ -7,6 +7,7 @@ license:        Unlicense
 build-type:     Simple
 extra-source-files:
     README.md
+    html/index.html
 
 executable xmonad-evie
   main-is: xmonad.hs
@@ -22,4 +23,5 @@ executable xmonad-evie
     , filepath
     , text
     , scotty
+    , file-embed
   default-language: Haskell2010
