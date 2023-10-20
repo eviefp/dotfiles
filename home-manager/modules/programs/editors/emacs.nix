@@ -10,6 +10,10 @@ let
     config = initFile;
     # package = pkgs.emacsGit;
     extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
+    package = pkgs.emacsGit.override {
+      withX = true;
+      withGTK3 = true;
+    };
   };
   cfg = config.evie.programs.editors.emacs;
 in
