@@ -8,23 +8,22 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE PartialTypeSignatures #-}
+{-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE StandaloneKindSignatures #-}
-{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeApplications #-}
 {-# OPTIONS_GHC -fno-warn-deprecations #-}
 {-# OPTIONS_GHC -fno-warn-partial-type-signatures #-}
 
 import Control.Concurrent.Async qualified as A
-import Data.FileEmbed qualified as EF
 import Data.IORef qualified as Ref
 import Data.Kind (Type)
 import Data.List (isPrefixOf, tails)
 import Data.Map qualified as M
 import Data.Maybe (mapMaybe)
-import Data.Text.Lazy qualified as T
 import GHC.TypeLits (Symbol)
 import System.FilePath
 import System.IO
+import Text.RawString.QQ (r)
 import Web.Scotty qualified as S
 import XMonad
 import XMonad.Actions.CycleWS
@@ -34,7 +33,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ServerMode (serverModeEventHook, serverModeEventHookCmd')
+import XMonad.Hooks.ServerMode (serverModeEventHookCmd')
 import XMonad.Hooks.StatusBar qualified as SB
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Circle
@@ -171,11 +170,11 @@ evaluateKeyAction workProfile conf =
 
     evaluateMediaAction :: MediaAction -> X ()
     evaluateMediaAction action =
-      viewScreen horizontalScreenOrderer (P 3) -- make sure the right screen is selected
-        >> case action of
-          PlayOrPause -> P.sendKey noModMask xK_space
-          Backwards -> P.sendKey noModMask xK_Left
-          Forward -> P.sendKey noModMask xK_Right
+      -- viewScreen horizontalScreenOrderer (P 3) -- make sure the right screen is selected >>
+      case action of
+        PlayOrPause -> P.sendKey noModMask xK_space
+        Backwards -> P.sendKey noModMask xK_Left
+        Forward -> P.sendKey noModMask xK_Right
 
 readWorkspaceSettings :: Ref.IORef WorkspaceMode -> X (WorkspaceMode, ScreenId)
 readWorkspaceSettings workProfile =
@@ -238,6 +237,7 @@ evaluateHelp key action =
       DecMainWindows -> Just "less main windows"
       AudioUseHyperX -> Just "use HyperX Audio"
       AudioUseHdmi -> Just "use HDMI Audio"
+      PerformMediaAction _ -> Nothing
   where
     go :: String -> Maybe String -> Maybe String
     go k = fmap (padRight 20 k <>)
@@ -410,9 +410,42 @@ runScotty :: IO ()
 runScotty =
   S.scotty 31337 do
     S.get "/" do
-      S.html $(EF.embedStringFile "html/index.html")
-    S.get "/show-help" do
-      S.text $ T.pack "hello world"
+      S.html
+        [r|
+          <html>
+            <head>
+              <style>
+                div {
+                  font-size: 10em;
+                  border: 2px solid black;
+                  margin: 20px;
+                }
+              </style>
+            </head>
+            <body>
+              <div onClick="exec('play')">play</div>
+              <div onClick="exec('backward')">back</div>
+              <div onClick="exec('forward')">forward</div>
+              <div onClick="exec('volume-up')">+ vol</div>
+              <div onClick="exec('volume-down')">- vol</div>
+              <div onClick="exec('tv')">tv</div>
+
+            <script>
+              function exec(command) {
+                const request = new Request("/run/" + command, {
+                  method: "GET"
+                });
+                fetch(request).then((response) => {
+                  if (response.status === 200) {
+                  } else {
+                    alert("bad request");
+                  }
+                });
+              }
+            </script>
+            </body>
+          </html>
+        |]
     S.get "/run/:command" do
       cmd <- S.param "command"
       spawn $ "xmonadctl " <> cmd
@@ -462,10 +495,10 @@ commands = do
       ("volume-down", eval VolumeDown),
       ("play", eval $ PerformMediaAction PlayOrPause),
       ("backward", eval $ PerformMediaAction Backwards),
-      ("forward", eval $ PerformMediaAction Forward)
+      ("forward", eval $ PerformMediaAction Forward),
+      ("tv", eval $ ToScreen 3)
     ]
 
 main :: IO ()
 main = do
-  -- A.withAsync runScotty (const (pure ()))
   A.concurrently_ runScotty runXmonad

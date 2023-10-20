@@ -21,7 +21,6 @@ executable xmonad-evie
     , xmonad
     , xmonad-contrib
     , filepath
-    , text
     , scotty
-    , file-embed
+    , raw-strings-qq
   default-language: Haskell2010
