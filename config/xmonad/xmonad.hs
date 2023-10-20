@@ -53,8 +53,8 @@ import Prelude
 myManageHook :: ManageHook
 myManageHook =
   composeAll
-    [ manageDocks,
-      insertPosition Below Newer
+    [ manageDocks
+    , insertPosition Below Newer
     ]
 
 myStartupHook :: X ()
@@ -124,6 +124,7 @@ data KeyAction
   | AudioUseHyperX
   | AudioUseHdmi
   | PerformMediaAction MediaAction
+  | LoopKP
 
 evaluateKeyAction :: Ref.IORef WorkspaceMode -> XConfig Layout -> KeyAction -> X ()
 evaluateKeyAction workProfile conf =
@@ -165,16 +166,19 @@ evaluateKeyAction workProfile conf =
     AudioUseHyperX -> spawn useHyperX
     AudioUseHdmi -> spawn useHdmi
     PerformMediaAction a -> evaluateMediaAction a
-  where
-    mkHelp = unlines . mapMaybe (uncurry evaluateHelp) $ allKeys
+    LoopKP -> go
+ where
+  go :: X ()
+  go = P.sendKey shiftMask xK_j
+  mkHelp = unlines . mapMaybe (uncurry evaluateHelp) $ allKeys
 
-    evaluateMediaAction :: MediaAction -> X ()
-    evaluateMediaAction action =
-      -- viewScreen horizontalScreenOrderer (P 3) -- make sure the right screen is selected >>
-      case action of
-        PlayOrPause -> P.sendKey noModMask xK_space
-        Backwards -> P.sendKey noModMask xK_Left
-        Forward -> P.sendKey noModMask xK_Right
+  evaluateMediaAction :: MediaAction -> X ()
+  evaluateMediaAction action =
+    -- viewScreen horizontalScreenOrderer (P 3) -- make sure the right screen is selected >>
+    case action of
+      PlayOrPause -> P.sendKey noModMask xK_space
+      Backwards -> P.sendKey noModMask xK_Left
+      Forward -> P.sendKey noModMask xK_Right
 
 readWorkspaceSettings :: Ref.IORef WorkspaceMode -> X (WorkspaceMode, ScreenId)
 readWorkspaceSettings workProfile =
@@ -237,97 +241,98 @@ evaluateHelp key action =
       DecMainWindows -> Just "less main windows"
       AudioUseHyperX -> Just "use HyperX Audio"
       AudioUseHdmi -> Just "use HDMI Audio"
-      PerformMediaAction _ -> Nothing
-  where
-    go :: String -> Maybe String -> Maybe String
-    go k = fmap (padRight 20 k <>)
+      _ -> Nothing
+ where
+  go :: String -> Maybe String -> Maybe String
+  go k = fmap (padRight 20 k <>)
 
-    padRight :: Int -> String -> String
-    padRight desired_length s = s <> replicate (desired_length - length s) ' '
+  padRight :: Int -> String -> String
+  padRight desired_length s = s <> replicate (desired_length - length s) ' '
 
 allKeys :: [(String, KeyAction)]
 allKeys =
   mconcat
-    [ xmonadKeys,
-      withWorkspaces "" GotoWorkspace,
-      withWorkspaces "C-" MoveToWorkspace,
-      rofi,
-      xrandr,
-      audio,
-      extra
+    [ xmonadKeys
+    , withWorkspaces "" GotoWorkspace
+    , withWorkspaces "C-" MoveToWorkspace
+    , rofi
+    , xrandr
+    , audio
+    , extra
     ]
-  where
-    -- , brightness
+ where
+  -- , brightness
 
-    xmonadKeys :: [(String, KeyAction)]
-    xmonadKeys =
-      [ ("M-<Right>", WSNext),
-        ("M-<Left>", WSPrev),
-        ("M-S-l", WSNext),
-        ("M-S-h", WSPrev),
-        ("M-w", ToScreen 0),
-        ("M-e", ToScreen 1),
-        ("M-r", ToScreen 2),
-        ("M-t", ToScreen 3),
-        ("M-j", FocusUp),
-        ("M-k", FocusDown),
-        ("M-S-j", SwapUp),
-        ("M-S-k", SwapDown),
-        ("M-<Return>", SwapMaster),
-        ("M-l", WExpand),
-        ("M-h", WShrink),
-        ("M-f", Sink),
-        ("M-S-c", Kill),
-        ("M-q", Restart),
-        ("M-<Space>", LayoutNext),
-        ("M-S-<Space>", LayoutReset),
-        ("M-S-<Return>", LaunchTerminal),
-        ("M-/", ShowHelp),
-        ("M-=", ToggleWorkProfile),
-        ("M--", IncMainWindows),
-        ("M-'", DecMainWindows),
-        ("M-m", AudioUseHyperX),
-        ("M-S-m", AudioUseHdmi)
-      ]
+  xmonadKeys :: [(String, KeyAction)]
+  xmonadKeys =
+    [ ("M-<Right>", WSNext)
+    , ("M-<Left>", WSPrev)
+    , ("M-S-l", WSNext)
+    , ("M-S-h", WSPrev)
+    , ("M-w", ToScreen 0)
+    , ("M-e", ToScreen 1)
+    , ("M-r", ToScreen 2)
+    , ("M-t", ToScreen 3)
+    , ("M-j", FocusUp)
+    , ("M-k", FocusDown)
+    , ("M-S-j", SwapUp)
+    , ("M-S-k", SwapDown)
+    , ("M-<Return>", SwapMaster)
+    , ("M-l", WExpand)
+    , ("M-h", WShrink)
+    , ("M-f", Sink)
+    , ("M-S-c", Kill)
+    , ("M-q", Restart)
+    , ("M-<Space>", LayoutNext)
+    , ("M-S-<Space>", LayoutReset)
+    , ("M-S-<Return>", LaunchTerminal)
+    , ("M-/", ShowHelp)
+    , ("M-=", ToggleWorkProfile)
+    , ("M--", IncMainWindows)
+    , ("M-'", DecMainWindows)
+    , ("M-m", AudioUseHyperX)
+    , ("M-S-m", AudioUseHdmi)
+    , ("M-v", LoopKP)
+    ]
 
-    withWorkspaces :: String -> (Int -> KeyAction) -> [(String, KeyAction)]
-    withWorkspaces extraPrefix go =
-      mconcat
-        [ [ ("M-" <> extraPrefix <> show n, go (n - 1))
-            | n <- [1 .. 9]
-          ],
-          [("M-" <> extraPrefix <> "0", go 9)],
-          [ ("M-S-" <> extraPrefix <> show n, go (n + 9))
-            | n <- [1 .. 9]
-          ],
-          [("M-S-" <> extraPrefix <> "0", go 19)]
+  withWorkspaces :: String -> (Int -> KeyAction) -> [(String, KeyAction)]
+  withWorkspaces extraPrefix go =
+    mconcat
+      [ [ ("M-" <> extraPrefix <> show n, go (n - 1))
+        | n <- [1 .. 9]
         ]
-
-    rofi :: [(String, KeyAction)]
-    rofi =
-      [ ("M-p", RofiRun),
-        ("M-o", RofiPass)
+      , [("M-" <> extraPrefix <> "0", go 9)]
+      , [ ("M-S-" <> extraPrefix <> show n, go (n + 9))
+        | n <- [1 .. 9]
+        ]
+      , [("M-S-" <> extraPrefix <> "0", go 19)]
       ]
 
-    xrandr :: [(String, KeyAction)]
-    xrandr =
-      [ ("M-a", Xrandr "xrandr --output HDMI-1 --mode 1920x1080 --right-of DP-4"),
-        ("M-z", Xrandr "xrandr --output HDMI-1 --off"),
-        ("M-x", Xrandr "xrandr --output DP-0 --mode 1920x1080 --rate 239.76 --left-of DP-2 --primary; xrandr --output DP-2 --mode 1920x1080 --rate 239.76")
-      ]
+  rofi :: [(String, KeyAction)]
+  rofi =
+    [ ("M-p", RofiRun)
+    , ("M-o", RofiPass)
+    ]
 
-    audio :: [(String, KeyAction)]
-    audio =
-      [ ("M-y", SoundToggle),
-        ("M-u", VolumeDown),
-        ("M-S-u", VolumeUp),
-        ("M-S-y", MicrophoneToggle)
-      ]
+  xrandr :: [(String, KeyAction)]
+  xrandr =
+    [ ("M-a", Xrandr "xrandr --output HDMI-1 --mode 1920x1080 --right-of DP-4")
+    , ("M-z", Xrandr "xrandr --output HDMI-1 --off")
+    , ("M-x", Xrandr "xrandr --output DP-0 --mode 1920x1080 --rate 239.76 --left-of DP-2 --primary; xrandr --output DP-2 --mode 1920x1080 --rate 239.76")
+    ]
 
-    extra :: [(String, KeyAction)]
-    extra =
-      [ ("<Print>", Screenshot)
-      ]
+  audio :: [(String, KeyAction)]
+  audio =
+    [ ("M-y", SoundToggle)
+    , ("M-u", VolumeDown)
+    , ("M-S-u", VolumeUp)
+    , ("M-S-y", MicrophoneToggle)
+    ]
+
+  extra :: [(String, KeyAction)]
+  extra =
+    [ ("<Print>", Screenshot)
+    ]
 
 keybindings :: Ref.IORef WorkspaceMode -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keybindings workProfile conf =
@@ -356,55 +361,55 @@ withXmobar =
   SB.withEasySB
     (SB.statusBarProp "xmobar" (pure pp))
     SB.defToggleStrutsKey
-  where
-    pp :: PP
-    pp =
-      def
-        { ppSep = magenta " • ",
-          ppVisible = blue . wrap "(" ")",
-          ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Bottom" "#8be9fd" 2,
-          ppHidden = white . wrap "" "",
-          ppHiddenNoWindows = id,
-          ppRename = const,
-          ppOrder = \case
-            [ws, l, _activeWin, allWindows] -> [ws, l, allWindows]
-            xs -> xs,
-          ppExtras = [logTitles formatFocused formatUnfocused],
-          ppWsSep = " ",
-          ppTitle = shorten 50,
-          ppTitleSanitize = xmobarStrip
-        }
+ where
+  pp :: PP
+  pp =
+    def
+      { ppSep = magenta " • "
+      , ppVisible = blue . wrap "(" ")"
+      , ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Bottom" "#8be9fd" 2
+      , ppHidden = white . wrap "" ""
+      , ppHiddenNoWindows = id
+      , ppRename = const
+      , ppOrder = \case
+          [ws, l, _activeWin, allWindows] -> [ws, l, allWindows]
+          xs -> xs
+      , ppExtras = [logTitles formatFocused formatUnfocused]
+      , ppWsSep = " "
+      , ppTitle = shorten 50
+      , ppTitleSanitize = xmobarStrip
+      }
 
-    formatFocused :: String -> String
-    formatFocused = wrap (white "[") (white "]") . magenta . xmobarRaw . shorten 80 . ppWindow
+  formatFocused :: String -> String
+  formatFocused = wrap (white "[") (white "]") . magenta . xmobarRaw . shorten 80 . ppWindow
 
-    formatUnfocused :: String -> String
-    formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . xmobarRaw . shorten 30 . ppWindow
+  formatUnfocused :: String -> String
+  formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . xmobarRaw . shorten 30 . ppWindow
 
-    ppWindow :: String -> String
-    ppWindow = cleanWindowTitle
+  ppWindow :: String -> String
+  ppWindow = cleanWindowTitle
 
-    cleanWindowTitle :: String -> String
-    cleanWindowTitle s
-      | "All good, " `isPrefixOf` s = "ghcid"
-      | "Slack " `isPrefixOf` s = "slack"
-      | "Discord" `isContainedIn` s = "discord"
-      | s == "Signal" = "signal"
-      | s == "Steam" = "steam"
-      | s == "Volume Control" = "volume"
-      | "vi " `isPrefixOf` s = "vi " <> takeBaseName (drop 3 s)
-      | " — Mozilla Firefox" `isSuffixOf` s = reverse . drop (length @[] " — Mozilla Firefox") . reverse $ s
-      | null s = "untitled"
-      | otherwise = s
+  cleanWindowTitle :: String -> String
+  cleanWindowTitle s
+    | "All good, " `isPrefixOf` s = "ghcid"
+    | "Slack " `isPrefixOf` s = "slack"
+    | "Discord" `isContainedIn` s = "discord"
+    | s == "Signal" = "signal"
+    | s == "Steam" = "steam"
+    | s == "Volume Control" = "volume"
+    | "vi " `isPrefixOf` s = "vi " <> takeBaseName (drop 3 s)
+    | " — Mozilla Firefox" `isSuffixOf` s = reverse . drop (length @[] " — Mozilla Firefox") . reverse $ s
+    | null s = "untitled"
+    | otherwise = s
 
-    isContainedIn :: String -> String -> Bool
-    xs `isContainedIn` ys = any (xs `isPrefixOf`) (tails ys)
+  isContainedIn :: String -> String -> Bool
+  xs `isContainedIn` ys = any (xs `isPrefixOf`) (tails ys)
 
-    blue, lowWhite, magenta, white :: String -> String
-    magenta = xmobarColor "#ff79c6" ""
-    blue = xmobarColor "#bd93f9" ""
-    white = xmobarColor "#f8f8f2" ""
-    lowWhite = xmobarColor "#bbbbbb" ""
+  blue, lowWhite, magenta, white :: String -> String
+  magenta = xmobarColor "#ff79c6" ""
+  blue = xmobarColor "#bd93f9" ""
+  white = xmobarColor "#f8f8f2" ""
+  lowWhite = xmobarColor "#bbbbbb" ""
 
 runScotty :: IO ()
 runScotty =
@@ -456,47 +461,48 @@ runXmonad = do
   getDirectories
     >>= ( launch . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
             def
-              { manageHook = myManageHook,
-                workspaces = show <$> workspaceList,
-                layoutHook =
+              { manageHook = myManageHook
+              , workspaces = show <$> workspaceList
+              , layoutHook =
                   avoidStrutsOn [U]
                     . smartBorders
                     $ tall
                       ||| LM.ModifiedLayout (Wrapper @"Drawer Circle") (Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle)
                       ||| LM.ModifiedLayout (Wrapper @"Drawer Tall") (Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
                       ||| noBorders Full
-                      ||| Roledex,
-                startupHook = myStartupHook,
-                modMask = mod4Mask,
-                keys = keybindings workProfile,
-                terminal = "wezterm",
-                handleEventHook =
+                      ||| Roledex
+              , startupHook = myStartupHook
+              , modMask = mod4Mask
+              , keys = keybindings workProfile
+              , terminal = "wezterm"
+              , handleEventHook =
                   mconcat
                     [ -- this is deprecated; should figure out how to remove it
-                      docksEventHook,
-                      handleEventHook def,
-                      serverModeEventHookCmd' commands
+                      docksEventHook
+                    , handleEventHook def
+                    , serverModeEventHookCmd' commands
                     ]
               }
         )
-  where
-    tall :: Tall a
-    tall = Tall 1 (3 / 100) (3 / 4)
+ where
+  tall :: Tall a
+  tall = Tall 1 (3 / 100) (3 / 4)
 
-    dwindle :: DW.Dwindle a
-    dwindle = DW.Dwindle DW.D DW.CCW (23 / 7) (3 / 100)
+  dwindle :: DW.Dwindle a
+  dwindle = DW.Dwindle DW.D DW.CCW (23 / 7) (3 / 100)
 
 commands :: X [(String, X ())]
 commands = do
   layout <- asks config
   let eval = evaluateKeyAction undefined layout
   pure
-    [ ("volume-up", eval VolumeUp),
-      ("volume-down", eval VolumeDown),
-      ("play", eval $ PerformMediaAction PlayOrPause),
-      ("backward", eval $ PerformMediaAction Backwards),
-      ("forward", eval $ PerformMediaAction Forward),
-      ("tv", eval $ ToScreen 3)
+    [ ("volume-up", eval VolumeUp)
+    , ("volume-down", eval VolumeDown)
+    , ("play", eval $ PerformMediaAction PlayOrPause)
+    , ("backward", eval $ PerformMediaAction Backwards)
+    , ("forward", eval $ PerformMediaAction Forward)
+    , ("tv", eval $ ToScreen 3)
+    , ("lp", eval LoopKP)
     ]
 
 main :: IO ()

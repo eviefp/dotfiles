@@ -42,6 +42,9 @@
 ;; Default config
 (setq evie-font-size 60)
 
+(set-frame-parameter nil 'alpha-background 80) ; For current frame
+(add-to-list 'default-frame-alist '(alpha-background . 80)) ; For all new frames henceforth
+
 ;; (set-frame-parameter (selected-frame) 'alpha '(95 . 75))
 ;; (add-to-list 'default-frame-alist '(alpha . (95 . 75)))
 
@@ -621,7 +624,7 @@
 ;; theme
 (use-package doom-themes
   :ensure t
-  :config (load-theme 'doom-one t))
+  :config (load-theme 'doom-challenger-deep t))
 
 (use-package all-the-icons
   :ensure t)
