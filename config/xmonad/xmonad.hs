@@ -9,11 +9,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE PartialTypeSignatures #-}
 {-# LANGUAGE StandaloneKindSignatures #-}
+{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeApplications #-}
 {-# OPTIONS_GHC -fno-warn-deprecations #-}
 {-# OPTIONS_GHC -fno-warn-partial-type-signatures #-}
 
 import Control.Concurrent.Async qualified as A
+import Data.FileEmbed qualified as EF
 import Data.IORef qualified as Ref
 import Data.Kind (Type)
 import Data.List (isPrefixOf, tails)
@@ -67,7 +69,7 @@ useHyperX :: String
 useHyperX = "pactl set-default-sink alsa_output.usb-HP__Inc_HyperX_Cloud_MIX_Buds_0000000000000000-00.analog-stereo"
 
 useHdmi :: String
-useHdmi = "pactl set-default-sink alsa_output.pci-0000_08_00.1.hdmi-stereo"
+useHdmi = "pactl set-default-sink alsa_output.pci-0000_08_00.1.hdmi-stereo-extra1"
 
 workspaceList :: [Int]
 workspaceList = [1 .. 20]
@@ -80,6 +82,9 @@ cycleMode = \case
   Regular -> Work
   Work -> Stream
   Stream -> Regular
+
+type MediaAction :: Type
+data MediaAction = PlayOrPause | Backwards | Forward
 
 type KeyAction :: Type
 data KeyAction
@@ -119,6 +124,7 @@ data KeyAction
   | DecMainWindows
   | AudioUseHyperX
   | AudioUseHdmi
+  | PerformMediaAction MediaAction
 
 evaluateKeyAction :: Ref.IORef WorkspaceMode -> XConfig Layout -> KeyAction -> X ()
 evaluateKeyAction workProfile conf =
@@ -159,8 +165,17 @@ evaluateKeyAction workProfile conf =
     DecMainWindows -> sendMessage (IncMasterN (-1))
     AudioUseHyperX -> spawn useHyperX
     AudioUseHdmi -> spawn useHdmi
+    PerformMediaAction a -> evaluateMediaAction a
   where
     mkHelp = unlines . mapMaybe (uncurry evaluateHelp) $ allKeys
+
+    evaluateMediaAction :: MediaAction -> X ()
+    evaluateMediaAction action =
+      viewScreen horizontalScreenOrderer (P 3) -- make sure the right screen is selected
+        >> case action of
+          PlayOrPause -> P.sendKey noModMask xK_space
+          Backwards -> P.sendKey noModMask xK_Left
+          Forward -> P.sendKey noModMask xK_Right
 
 readWorkspaceSettings :: Ref.IORef WorkspaceMode -> X (WorkspaceMode, ScreenId)
 readWorkspaceSettings workProfile =
@@ -394,6 +409,8 @@ withXmobar =
 runScotty :: IO ()
 runScotty =
   S.scotty 31337 do
+    S.get "/" do
+      S.html $(EF.embedStringFile "html/index.html")
     S.get "/show-help" do
       S.text $ T.pack "hello world"
     S.get "/run/:command" do
@@ -443,7 +460,9 @@ commands = do
   pure
     [ ("volume-up", eval VolumeUp),
       ("volume-down", eval VolumeDown),
-      ("play", P.sendKey noModMask xK_space)
+      ("play", eval $ PerformMediaAction PlayOrPause),
+      ("backward", eval $ PerformMediaAction Backwards),
+      ("forward", eval $ PerformMediaAction Forward)
     ]
 
 main :: IO ()

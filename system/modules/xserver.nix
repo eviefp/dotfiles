@@ -67,6 +67,7 @@ in
             extraPackages = haskellPackages: [
               haskellPackages.async
               haskellPackages.scotty
+              haskellPackages.file-embed
             ];
             ghcArgs = [
               "-threaded"
