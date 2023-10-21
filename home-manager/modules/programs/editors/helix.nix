@@ -17,8 +17,26 @@ in
     programs.helix = {
       package = pkgs.helix;
       enable = true;
+      languages.language = [
+        {
+          name = "haskell";
+          scope = "source.haskell";
+          file-types = [ "hs" ];
+          roots = [ "*.cabal" ];
+          comment-token = "--";
+          language-server = {
+            command = "haskell-language-server";
+            args = [
+              "--lsp"
+            ];
+          };
+          config = {
+            formattingProvider = "fourmolu";
+          };
+        }
+      ];
       settings = {
-        theme = "nordmod";
+        theme = "base16_transparent"; #"nordmod";
         editor = {
           line-number = "relative";
           mouse = false;
