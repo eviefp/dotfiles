@@ -73,6 +73,20 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `thelxinoe` is my main desktop
 
 ## TODO
+
+- [ ] emacs
+  - [ ] organisation
+	- [ ] org-todo
+	- [ ] org-agenda
+	- [ ] calendar
+	- [ ] capture
+	- [ ] refile
+
+- [ ] email?
+  - [ ] local protonmail
+  - [ ] notmuch
+  - [ ] emacs
+
 - [ ] configure helix
 - [ ] codium
     - [ ] haskell not working yet

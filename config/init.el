@@ -1,4 +1,4 @@
-;; IMPORTANT: Remember to add `:ensure t` to use-package in order to add them to
+; IMPORTANT: Remember to add `:ensure t` to use-package in order to add them to
 ;; the available packages.
 
 ;;  TODO: this has to be manually run on first install.
@@ -42,13 +42,11 @@
 ;; Default config
 (setq evie-font-size 60)
 
+;; This requires an emacs built with `withGTK3` and `withX`.
 (set-frame-parameter nil 'alpha-background 80) ; For current frame
 (add-to-list 'default-frame-alist '(alpha-background . 80)) ; For all new frames henceforth
 
-;; (set-frame-parameter (selected-frame) 'alpha '(95 . 75))
-;; (add-to-list 'default-frame-alist '(alpha . (95 . 75)))
-
-;; Load config
+;; Load local config (useful for machine-local setups).
 (ignore-errors (load "~/.emacs.d/locals.el"))
 
 (set-face-attribute 'default nil :family "Hasklug Nerd Font")
@@ -82,29 +80,29 @@
 
 ;; This is broken, no idea why. Try again later.
 ; ; email
-(use-package notmuch
-  :ensure t
-  :init
-  (setq send-mail-function 'sendmail-send-it)
-  (setq notmuch-saved-searches
-    '((:name "unread"
-       :query "tag:unread"
-       :sort-order newest-first)
-      (:name "keep"
-       :query "tag:keep"
-       :sort-order newest-first)
-      (:name "Hasura"
-       :query "tag:hasura OR path:hasura/**"
-       :sort-order newest-first)
-      (:name "Statically Typed"
-       :query "tag:st"
-       :sort-order newest-first)
-      (:name "sent"
-       :query "tag:sent"
-       :sort-order newest-first)
-      (:name "inbox"
-       :query "tag:inbox"
-       :sort-order newest-first))))
+;; (use-package notmuch
+;;   :ensure t
+;;   :init
+;;   (setq send-mail-function 'sendmail-send-it)
+;;   (setq notmuch-saved-searches
+;;     '((:name "unread"
+;;        :query "tag:unread"
+;;        :sort-order newest-first)
+;;       (:name "keep"
+;;        :query "tag:keep"
+;;        :sort-order newest-first)
+;;       (:name "Hasura"
+;;        :query "tag:hasura OR path:hasura/**"
+;;        :sort-order newest-first)
+;;       (:name "Statically Typed"
+;;        :query "tag:st"
+;;        :sort-order newest-first)
+;;       (:name "sent"
+;;        :query "tag:sent"
+;;        :sort-order newest-first)
+;;       (:name "inbox"
+;;        :query "tag:inbox"
+;;        :sort-order newest-first))))
 
   ;; :general
   ;; (general-define-key
@@ -118,6 +116,7 @@
     :init
     (progn
         (setq evil-want-C-u-scroll t)
+	(setq evil-want-C-d-scroll t)
         (setq evil-vsplit-window-right t)
         (setq evil-want-integration t)
         (setq evil-want-keybinding nil)
@@ -130,6 +129,9 @@
   :config
   (evil-collection-init))
 
+;; add: ys<textobject)
+;; change: cs
+;; delete: ds
 (use-package evil-surround
   :ensure t
   :init
@@ -182,7 +184,7 @@
      "g D"       'goto-def-other-window
      "g r"       'lsp-find-references
      "g c c"     'comment-line
-     "SPC n n"   'notmuch
+     ;; "SPC n n"   'notmuch
      "SPC b d"   'kill-this-buffer
      "SPC f b"   'switch-to-buffer
      "SPC q"     'save-buffers-kill-terminal
@@ -223,7 +225,7 @@
 (use-package projectile
  :ensure t
  :init
-     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/" "~/code/tests/" "~/code/hasura/mono/" "~/code/hasura/work/"))
+     (setq projectile-project-search-path '("~/code/" "~/Documents/" "~/code/hasura/" "~/code/tests/" "~/code/hasura/mono/" "~/code/hasura/work/" "~/code/dotfiles/config/xmonad/"))
  :config
      (projectile-discover-projects-in-search-path)
      (projectile-mode +1)
@@ -232,13 +234,10 @@
    :keymaps 'normal
    "SPC p s" 'projectile-switch-project
    "SPC p f" 'projectile--find-file
-   "SPC p r" 'projectile-ripgrep
-   "SPC p d" 'projectile-dired-other-frame
    "SPC p b" 'projectile-switch-to-buffer
    "SPC p w" 'projectile-switch-to-buffer-other-frame
    "SPC p q" 'projectile-kill-buffers
    "SPC p i" 'projectile-project-info))
-
 
 ;; magit
 (use-package magit
@@ -373,8 +372,8 @@
     :general
     (general-define-key
      :keymaps 'normal
-     "[ g" 'flycheck-next-error
-     "] g" 'flycheck-previous-error
+     "SPC x j" 'flycheck-next-error
+     "SPC X k" 'flycheck-previous-error
      "SPC e e" 'flycheck-explain-error-at-point
      "SPC e l" 'flycheck-list-errors))
 
@@ -624,6 +623,11 @@
 ;; theme
 (use-package doom-themes
   :ensure t
+  :init
+    (setq doom-challenger-deep-brighter-comments t)
+    (setq doom-challenger-deep-brighter-modeline t)
+    (setq doom-challenger-deep-padded-modeline t)
+    (setq doom-challenger-deep-comment-bg nil)
   :config (load-theme 'doom-challenger-deep t))
 
 (use-package all-the-icons
@@ -643,7 +647,9 @@
   (setq ranger-modify-header t)
   (setq ranger-preview-file t)
   :config
-  (ranger-override-dired-mode t))
+  (ranger-override-dired-mode t)
+  :keymaps 'normal
+  "SPC r a" 'ranger)
 
 (use-package anzu
   :ensure t
