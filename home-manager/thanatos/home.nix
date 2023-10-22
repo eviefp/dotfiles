@@ -1,4 +1,4 @@
-{ nixpkgs, ... }:
+{ pkgs, nixpkgs, ... }:
 {
   imports = [
     ../modules/fonts.nix
