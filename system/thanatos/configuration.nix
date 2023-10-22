@@ -6,9 +6,4 @@
     experimental-features = nix-command flakes
   '';
 
-  home-manager = {
-    config = ../../home-manager/thanatos/home.nix;
-    useGlobalPkgs = true;
-  };
-
 }
