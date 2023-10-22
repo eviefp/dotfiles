@@ -23,12 +23,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     home.username = "evie";
     home.homeDirectory = "/home/evie";
-    home.sessionVariables = {
-      # NIX_PATH =
-      #   "nixpkgs=${pkgs}:unstable=${unstable}:nixos-config=${cfg.dotfiles}/system/${cfg.host}/configuration.nix";
-    };
   };
 }
