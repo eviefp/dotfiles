@@ -39,7 +39,9 @@
 
   home.stateVersion = "23.11";
 
-  programs.ssh.enable = true;
+  home.packages = [
+    pkgs.openssh
+  ];
 
   home.sessionVariables = {
     EDITOR = "emacs";
