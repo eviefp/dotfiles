@@ -34,6 +34,8 @@
 
   home.stateVersion = "23.11";
 
+  home.programs.ssh.enable = true;
+
   home.sessionVariables = {
     EDITOR = "emacs";
     NIX_PATH = "nixpkgs=${nixpkgs}";
