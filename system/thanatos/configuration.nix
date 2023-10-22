@@ -89,7 +89,7 @@
       self = self;
       nixpkgs = nixpkgs;
       pkgs = import nixpkgs {
-        inherit system;
+        system = "aarch64-linux";
         config.allowUnfree = true;
         overlays = [ (import emacs-overlay) ];
       };
