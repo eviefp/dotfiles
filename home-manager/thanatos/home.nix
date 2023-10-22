@@ -1,6 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ nixpkgs, ... }:
 {
-  modules = [
+  imports = [
     ../modules/programs/dev/nix.nix
     ../modules/programs/dev/tools.nix
     ../modules/programs/editors/emacs.nix
