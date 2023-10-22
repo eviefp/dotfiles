@@ -4,7 +4,7 @@
     ../modules/fonts.nix
     ../modules/programs/dev/nix.nix
     ../modules/programs/dev/tools.nix
-    # ../modules/programs/editors/emacs.nix
+    ../modules/programs/editors/emacs.nix
     ../modules/programs/editors/helix.nix
     ../modules/programs/editors/neovim.nix
     ../modules/programs/shell.nix
