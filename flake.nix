@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -390,8 +391,6 @@
           ./system/thanatos/configuration.nix
         ];
 
-        extraSpecialArgs = { };
-
         pkgs = import nixpkgs {
           system = "aarch64-linux";
 
@@ -400,7 +399,6 @@
             emacs-overlay
           ];
         };
-        home-manager.path = home-manager.outPath;
 
       };
     };
