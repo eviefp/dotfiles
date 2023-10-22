@@ -56,8 +56,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq evie-file-init-el "~/code/dotfiles/config/init.el")
-(setq evie-file-todo "~/Documents/wiki/todo.org")
-(setq evie-file-refile "~/Documents/wiki/refile.org")
+(setq evie-file-todo "~/code/personal-org/todo.org")
+(setq evie-file-refile "~/code/personal-org/refile.org")
 
 (defun start-term ()
   (interactive)
@@ -73,6 +73,13 @@
   (interactive)
   (evil-window-vsplit)
   (lsp-find-definition))
+
+(defun visit-org-roam-index ()
+  (interactive)
+  (org-roam-node-visit
+   (org-roam-node-from-id
+    (caar (or (org-roam-db-query [:select id :from nodes :where (= title "Index") :limit 1])
+              (user-error "No node with title Index"))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
@@ -124,9 +131,10 @@
         (evil-declare-change-repeat 'company-complete)))
 
 (use-package evil-collection
-  :after (evil notmuch)
+  :after evil
   :ensure t
   :config
+  (setq evil-collection-want-unimpaired-p nil)
   (evil-collection-init))
 
 ;; add: ys<textobject)
@@ -196,7 +204,7 @@
      "SPC w w"   'save-buffer
      "SPC w q"   'evil-window-delete
      "SPC t E"   'start-term
-     "SPC t t"   '(lambda () (interactive) (evie-open-file-other-window evie-file-todo))
+     "SPC t d"   '(lambda () (interactive) (evie-open-file-other-window evie-file-todo))
      "C-+"       'text-scale-increase
      "C--"       'text-scale-decrease
      "C-="       '(lambda () (interactive) (text-scale-set 0))
@@ -512,11 +520,12 @@
 
 (use-package evil-org
   :ensure t
-  :after (evil org)
+  :after org
   :hook ((org-mode . evil-org-mode)
          (org-agenda . evil-org-mode)
-         (org-mode . auto-fill-mode)https://www.youtube.com/watch?v=LekhueQ4zVU)
+         (org-mode . auto-fill-mode))
   :config
+  ;; this has a bug: it runs after the buffer is created, so on first run, it will not have the correct keybindings
   (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading calendar))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys)
@@ -550,9 +559,9 @@
     ;;        #'org-roam-capture--get-point
     ;;        "* %?"
     ;; 	   :target (file+head "daily/%<%Y-%m-%d>" "#+title: %<%Y-%m-%d>\n\n"))))
-    (setq org-roam-dailies-directory "daily/")
-    (setq org-roam-directory "~/Documents/wiki/roam")
-    (setq org-roam-index-file "~/Documents/wiki/roam/index.org")
+    (setq org-roam-directory "~/code/personal-org/roam")
+    (setq org-roam-dailies-directory "daily/") ;; relative to roam-directory
+    (setq org-roam-index-file "~/code/personal-org/roam/index.org")
     (setq org-roam-update-method 'idle-timer)
     (setq org-roam-db-update-idle-seconds 5)
   :config
@@ -562,11 +571,10 @@
   (general-define-key
    :keymaps 'normal
    "SPC r f" 'org-roam-node-find
-   "SPC r d" 'org-roam-db-build-cache
    "SPC r i" 'org-roam-node-insert
-   "SPC r r" 'org-roam
+   "SPC r b" 'org-roam-backlinks-get
    "SPC r g" 'org-roam-graph
-   "SPC r I" 'org-roam-jump-to-index))
+   "SPC r I" (lambda () (interactive) (visit-org-roam-index))))
 
 (use-package org-tree-slide
   :ensure t
@@ -648,8 +656,10 @@
   (setq ranger-preview-file t)
   :config
   (ranger-override-dired-mode t)
-  :keymaps 'normal
-  "SPC r a" 'ranger)
+  :general
+    (general-define-key
+     :keymaps 'normal
+  "SPC r a" 'ranger))
 
 (use-package anzu
   :ensure t
@@ -664,11 +674,14 @@
 
 (global-display-fill-column-indicator-mode)
 
-(setq org-agenda-files (quote ("~/Documents/wiki/todo.org"
-			       "~/Documents/wiki/calendar.org"
-			       "~/Documents/wiki/backlog.org"
-			       "~/Documents/wiki/todo-history.org")))
-(setq org-default-notes-file "~/Documents/wiki/notes.org")
+(setq org-agenda-files (quote ("~/code/personal-org/agenda/todo.org"
+                               "~/code/personal-org/agenda/backlog.org"
+                               "~/code/personal-org/cal-sync/evie.org"
+                               "~/code/personal-org/cal-sync/gia-evie.org"
+                               "~/code/personal-org/cal-sync/proton.org"
+			       "~/code/personal-org/agenda/todo-history.org")))
+(setq org-directory "~/code/personal-org")
+(setq org-default-notes-file "~/code/personal-org/refile.org")
 
 (custom-set-variables
  '(org-agenda-ndays 7)
@@ -678,10 +691,6 @@
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-start-on-weekday nil)
  '(org-reverse-note-order t))
-
-(setq org-directory "~/Documents/wiki")
-(setq org-default-notes-file "~/Documents/wiki/refile.org")
-
 
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                  (org-agenda-files :maxlevel . 9))))

@@ -10,7 +10,7 @@ let
     config = initFile;
     # package = pkgs.emacsGit;
     extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
-    package = pkgs.emacsGit.override {
+    package = pkgs.emacs-git.override {
       withX = true;
       withGTK3 = true;
     };
@@ -35,7 +35,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ derivation ];
+    home.packages = [
+      derivation
+      pkgs.graphviz # dot, needed for org-roam
+    ];
 
     home.file = lib.mkMerge [
       { ".emacs.d/init.el".source = initFile; }

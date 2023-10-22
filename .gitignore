@@ -5,3 +5,5 @@ home/xmonad/xmonad.hi
 home/xmonad/xmonad.o
 /result
 **/.direnv/
+/switch.sh
+/home-manager/modules/services/calendar-sync-secrets.nix
