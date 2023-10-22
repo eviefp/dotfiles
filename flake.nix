@@ -409,7 +409,10 @@
               pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ (import emacs-overlay) ];
+                overlays = [
+                  nix-on-droid.overlays.default
+                  (import emacs-overlay)
+                ];
               };
               home-manager = home-manager;
 
