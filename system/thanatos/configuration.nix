@@ -4,6 +4,7 @@
 , nixpkgs
 , self
 , home-manager
+, emacs-overlay
 , nvim-visuals-multi
 , nvim-bbye
 , nvim-kommentary
