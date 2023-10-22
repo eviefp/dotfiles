@@ -27,10 +27,10 @@
       };
       editors = {
         helix.enable = true;
-        # emacs = {
-        #   enable = true;
-        #   no-x = true;
-        # };
+        emacs = {
+          enable = true;
+          no-x = true;
+        };
         neovim.enable = true;
       };
 
