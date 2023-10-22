@@ -1,6 +1,7 @@
 { nixpkgs, ... }:
 {
   imports = [
+    ../modules/fonts.nix
     ../modules/programs/dev/nix.nix
     ../modules/programs/dev/tools.nix
     # ../modules/programs/editors/emacs.nix
@@ -11,6 +12,8 @@
   ];
 
   evie = {
+    fonts.enable = true;
+
     programs = {
       shell = {
         enable = true;
