@@ -1,11 +1,21 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    emacs-overlay.url = "github:nix-community/emacs-overlay/master";
-    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/master";
+      inputs.nixpkgs.folows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     # neovim
     nvim-visuals-multi = {
@@ -231,6 +241,7 @@
     inputs@{ self
     , nixpkgs
     , home-manager
+    , nix-on-droid
     , emacs-overlay
     , nvim-visuals-multi
     , nvim-bbye
@@ -289,10 +300,9 @@
     }:
     let
       system = "x86_64-linux";
-      overlays = [ (import emacs-overlay) ];
+      emacs-overlay = import emacs-overlay;
     in
     {
-
       nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem {
         system = system;
         modules =
@@ -322,8 +332,8 @@
                 nixpkgs = nixpkgs;
                 pkgs = import nixpkgs {
                   inherit system;
-                  inherit overlays;
                   config.allowUnfree = true;
+                  overlays = [ emacs-overlay ];
                 };
                 home-manager = home-manager;
                 emacs-overlay = import emacs-overlay { };
@@ -363,8 +373,8 @@
                 nixpkgs = nixpkgs;
                 pkgs = import nixpkgs {
                   inherit system;
-                  inherit overlays;
                   config.allowUnfree = true;
+                  overlays = [ emacs-overlay ];
                 };
                 home-manager = home-manager;
                 emacs-overlay = import emacs-overlay { };
@@ -375,5 +385,23 @@
           ];
       };
 
+      nixOnDroidConfigurations.thanatos = nix-on-droid.lib.nixOnDroidConfiguration {
+        modules = [
+          ./system/thanatos/configuration.nix
+        ];
+
+        extraSpecialArgs = { };
+
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+
+          overlays = [
+            nix-on-droid.overlays.default
+            emacs-overlay
+          ];
+        };
+        home-manager.path = home-manager.outPath;
+
+      };
     };
 }

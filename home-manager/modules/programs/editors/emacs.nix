@@ -10,10 +10,12 @@ let
     config = initFile;
     # package = pkgs.emacsGit;
     extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
-    package = pkgs.emacs-git.override {
+
+    package-desktop = pkgs.emacs-git.override {
       withX = true;
       withGTK3 = true;
     };
+    package-term-only = pkgs.emacs-git-nox;
   };
   cfg = config.evie.programs.editors.emacs;
 in
@@ -22,6 +24,8 @@ in
 
   options.evie.programs.editors.emacs = {
     enable = lib.options.mkEnableOption "Enable the Emacs package.";
+
+    no-x = lib.options.mkEnableOption "Use terminal only Emacs.";
 
     locals = {
       enable = lib.options.mkEnableOption "Enable local config.";
@@ -51,9 +55,9 @@ in
     services = {
       emacs = {
         enable = false;
-        package = derivation;
+        package = if cfg.no-x then package-desktop else package-term-only;
         client = {
-          enable = true;
+          enable = false;
           arguments = [ "-c" ];
         };
         socketActivation.enable = false;
