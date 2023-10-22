@@ -301,7 +301,6 @@
     }:
     let
       system = "x86_64-linux";
-      emacs-overlay = import emacs-overlay;
     in
     {
       nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem {
@@ -334,10 +333,10 @@
                 pkgs = import nixpkgs {
                   inherit system;
                   config.allowUnfree = true;
-                  overlays = [ emacs-overlay ];
+                  overlays = [ (import emacs-overlay) ];
                 };
                 home-manager = home-manager;
-                emacs-overlay = import emacs-overlay { };
+                # emacs-overlay = emacs-overlay;
 
               };
               home-manager.users.evie = import ./home-manager/thelxinoe/home.nix;
@@ -375,10 +374,10 @@
                 pkgs = import nixpkgs {
                   inherit system;
                   config.allowUnfree = true;
-                  overlays = [ emacs-overlay ];
+                  overlays = [ (import emacs-overlay) ];
                 };
                 home-manager = home-manager;
-                emacs-overlay = import emacs-overlay { };
+                emacs-overlay = emacs-overlay;
 
               };
               home-manager.users.evie = import ./home-manager/janus/home.nix;
@@ -396,7 +395,7 @@
 
           overlays = [
             nix-on-droid.overlays.default
-            emacs-overlay
+            (import emacs-overlay)
           ];
         };
 

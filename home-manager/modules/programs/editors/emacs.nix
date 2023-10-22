@@ -6,16 +6,18 @@
 { lib, config, pkgs, nixpkgs, emacs-overlay, ... }:
 let
   initFile = ../../../../config/init.el;
-  derivation = pkgs.emacsWithPackagesFromUsePackage {
+  package-desktop = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
-    # package = pkgs.emacsGit;
     extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
-
-    package-desktop = pkgs.emacs-git.override {
+    package = pkgs.emacs-git.override {
       withX = true;
       withGTK3 = true;
     };
-    package-term-only = pkgs.emacs-git-nox;
+  };
+  package-term-only = pkgs.emacsWithPackagesFromUsePackage {
+    config = initFile;
+    extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
+    package = pkgs.emacs-git-nox.override { };
   };
   cfg = config.evie.programs.editors.emacs;
 in
@@ -40,7 +42,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      derivation
+      (if cfg.no-x then package-desktop else package-term-only)
       pkgs.graphviz # dot, needed for org-roam
     ];
 
