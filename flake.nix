@@ -386,40 +386,29 @@
       nixOnDroidConfigurations.thanatos = nix-on-droid.lib.nixOnDroidConfiguration {
         modules = [
           ./system/thanatos/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = {
-              inherit nvim-visuals-multi nvim-bbye nvim-kommentary
-                nvim-tabular nvim-rainbow nvim-abolish nvim-fugitive
-                nvim-rhubarb nvim-markdown nvim-purescript nvim-nix
-                nvim-signature nvim-better-whitespace nvim-lexical
-                nvim-solarized nvim-plenary nvim-telescope nvim-treesitter
-                nvim-lspconfig nvim-cmp nvim-cmp-path nvim-cmp-vsnip
-                nvim-vim-vsnip nvim-cmp-lsp nvim-lspkind nvim-cmp-emoji
-                nvim-cmp-latex-symbols nvim-cmp-lua nvim-gitsigns
-                nvim-telescope-fzf nvim-dev-webicons nvim-eunuch nvim-which-key
-                nvim-telescope-symbols nvim-lualine nvim-octo nvim-trouble
-                nvim-harpoon nvim-tokyo nvim-git-messenger nvim-hop
-                nvim-merge-tool nvim-truezen nvim-sandwich nvim-snitch
-                nvim-fairy-floss nvim-material nvim-treesitter-refactor
-                nvim-telescope-file-browser nvim-telescope-ui-select
-                nvim-fish-syntax nvim-ranger nvim-libp nvim-pest;
-              self = self;
-              nixpkgs = nixpkgs;
-              pkgs = import nixpkgs {
-                inherit system;
-                config.allowUnfree = true;
-                overlays = [
-                  nix-on-droid.overlays.default
-                  (import emacs-overlay)
-                ];
-              };
-              home-manager = home-manager;
-
-            };
-            home-manager.users.evie = import ./home-manager/thanatos/home.nix;
-          }
         ];
+
+        extraSpecialArgs = {
+          inherit nvim-tabular nvim-rainbow nvim-abolish nvim-fugitive
+            nvim-rhubarb nvim-markdown nvim-purescript nvim-nix
+            nvim-signature nvim-better-whitespace nvim-lexical
+            nvim-solarized nvim-plenary nvim-telescope nvim-treesitter
+            nvim-lspconfig nvim-cmp nvim-cmp-path nvim-cmp-vsnip
+            nvim-vim-vsnip nvim-cmp-lsp nvim-lspkind nvim-cmp-emoji
+            nvim-cmp-latex-symbols nvim-cmp-lua nvim-gitsigns
+            nvim-telescope-fzf nvim-dev-webicons nvim-eunuch nvim-which-key
+            nvim-telescope-symbols nvim-lualine nvim-octo nvim-trouble
+            nvim-harpoon nvim-tokyo nvim-git-messenger nvim-hop
+            nvim-merge-tool nvim-truezen nvim-sandwich nvim-snitch
+            nvim-fairy-floss nvim-material nvim-treesitter-refactor
+            nvim-telescope-file-browser nvim-telescope-ui-select
+            nvim-fish-syntax nvim-ranger nvim-libp nvim-pest;
+          self = self;
+          nixpkgs = nixpkgs;
+          nix-on-droid = nix-on-droid;
+          emacs-overlay = emacs-overlay;
+          home-manager = home-manager;
+        };
 
         pkgs = import nixpkgs {
           system = "aarch64-linux";
