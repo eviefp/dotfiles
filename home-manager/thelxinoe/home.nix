@@ -12,6 +12,7 @@
     ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
     ../modules/system.nix
+    ../modules/services/calendar-sync.nix
   ];
 
   evie.programs = {
@@ -73,6 +74,10 @@
     enable = true;
     host = "thelxinoe";
     dotfiles = "/home/evie/code/dotfiles";
+  };
+
+  evie.services = {
+    calendar-sync.enable = true;
   };
 
   home.sessionVariables = {

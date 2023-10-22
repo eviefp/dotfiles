@@ -76,9 +76,10 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 - [ ] emacs
   - [ ] organisation
-	- [ ] org-todo
-	- [ ] org-agenda
-	- [ ] calendar
+    - [x] roam
+	- [x] org-todo
+	- [x] org-agenda
+	- [x] calendar
 	- [ ] capture
 	- [ ] refile
 
@@ -90,4 +91,5 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 - [ ] configure helix
 - [ ] codium
     - [ ] haskell not working yet
+
 - [ ] separate bigger packages into separate flakes (e.g. neovim/emacs at least)
