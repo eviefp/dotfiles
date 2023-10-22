@@ -15,11 +15,14 @@
       shell = {
         enable = true;
         experimental = true;
+        ranger.enable = true;
       };
 
       dev = {
         nix.enable = true;
         tools.enable = true;
+      };
+      editors = {
         helix.enable = true;
         emacs = {
           enable = true;
@@ -28,7 +31,6 @@
         neovim.enable = true;
       };
 
-      ranger.enable = true;
     };
   };
 
