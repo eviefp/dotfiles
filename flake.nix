@@ -388,7 +388,6 @@
           ./system/thanatos/configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
             home-manager.extraSpecialArgs = {
               inherit nvim-visuals-multi nvim-bbye nvim-kommentary
                 nvim-tabular nvim-rainbow nvim-abolish nvim-fugitive
