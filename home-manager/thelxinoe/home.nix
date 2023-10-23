@@ -2,7 +2,7 @@
   * Thelxinoe home-manager
   *
   **************************************************************************/
-{ nixpkgs, ... }:
+{ nix-path, ... }:
 {
   imports = [
     ../modules/programs.nix
@@ -37,6 +37,7 @@
 
       emacs = {
         enable = true;
+        no-x = false;
         locals = {
           enable = true;
           file = ./locals.el;
@@ -83,7 +84,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "qutebrowser";
-    NIX_PATH = "nixpkgs=${nixpkgs}";
+    NIX_PATH = nix-path;
     OOO_FORCE_DESKTOP = "gnome";
   };
 }

@@ -3,7 +3,7 @@
   *
   * Emacs package using emacs-overlay.
   **************************************************************************/
-{ lib, config, pkgs, nixpkgs, emacs-overlay, ... }:
+{ lib, config, pkgs, emacs-overlay, ... }:
 let
   initFile = ../../../../config/init.el;
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
@@ -42,7 +42,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      (if cfg.no-x then package-desktop else package-term-only)
+      (if cfg.no-x then package-term-only else package-desktop)
       pkgs.graphviz # dot, needed for org-roam
     ];
 
@@ -57,7 +57,7 @@ in
     services = {
       emacs = {
         enable = false;
-        package = if cfg.no-x then package-desktop else package-term-only;
+        package = if cfg.no-x then package-term-only else package-desktop;
         client = {
           enable = false;
           arguments = [ "-c" ];

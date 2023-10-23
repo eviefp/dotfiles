@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs, ... }:
+{ pkgs, nix-path, ... }:
 {
   imports = [
     ../modules/fonts.nix
@@ -45,6 +45,6 @@
 
   home.sessionVariables = {
     EDITOR = "emacs";
-    NIX_PATH = "nixpkgs=${nixpkgs}";
+    NIX_PATH = nix-path;
   };
 }
