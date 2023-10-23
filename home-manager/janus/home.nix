@@ -2,6 +2,7 @@
   * Aiode home-manager
   *
   **************************************************************************/
+{ nix-path, ... }:
 {
   imports = [
     ../modules/programs.nix
@@ -80,7 +81,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "qutebrowser";
-    NIX_PATH = "nixpkgs=${nixpkgs}";
+    NIX_PATH = nix-path;
     OOO_FORCE_DESKTOP = "gnome";
   };
 }
