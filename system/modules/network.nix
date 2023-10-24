@@ -61,11 +61,13 @@ in
         hostName = cfg.hostName;
         useDHCP = false;
         firewall.allowedTCPPorts = lib.lists.unique
-          (builtins.concatLists [ [ 22 80 443 8080 ] cfg.extraPorts ]);
+          (builtins.concatLists [ [ 22 80 443 1143 8080 ] cfg.extraPorts ]);
         hosts = {
           "192.168.1.1" = [ "router" ];
           "192.168.1.15" = [ "bridge" ];
-          "192.168.10.177" = [ "thelxinoe" ];
+          # peroxide self-signs the certificate with the C/N 'nixos'
+          # should probably PR a change there
+          "192.168.10.177" = [ "thelxinoe" "nixos" ];
           "192.168.10.166" = [ "janus" ];
           "192.168.10.206" = [ "fractal" ];
           "192.168.10.1" = [ "router2" ];

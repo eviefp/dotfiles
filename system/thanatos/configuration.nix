@@ -1,7 +1,8 @@
 { config
 , lib
 , pkgs
-, nixpkg, ...
+, nixpkg
+, ...
 }:
 {
   system.stateVersion = "23.11";
