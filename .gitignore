@@ -7,3 +7,4 @@ home/xmonad/xmonad.o
 **/.direnv/
 /switch.sh
 /home-manager/modules/services/calendar-sync-secrets.nix
+*.pem

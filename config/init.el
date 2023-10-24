@@ -85,37 +85,49 @@
 ;; Package config
 (require 'use-package)
 
-;; This is broken, no idea why. Try again later.
-; ; email
-;; (use-package notmuch
-;;   :ensure t
-;;   :init
-;;   (setq send-mail-function 'sendmail-send-it)
-;;   (setq notmuch-saved-searches
-;;     '((:name "unread"
-;;        :query "tag:unread"
-;;        :sort-order newest-first)
-;;       (:name "keep"
-;;        :query "tag:keep"
-;;        :sort-order newest-first)
-;;       (:name "Hasura"
-;;        :query "tag:hasura OR path:hasura/**"
-;;        :sort-order newest-first)
-;;       (:name "Statically Typed"
-;;        :query "tag:st"
-;;        :sort-order newest-first)
-;;       (:name "sent"
-;;        :query "tag:sent"
-;;        :sort-order newest-first)
-;;       (:name "inbox"
-;;        :query "tag:inbox"
-;;        :sort-order newest-first))))
+(use-package notmuch
+  :ensure t
+  :init
+  ;; (setq send-mail-function 'sendmail-send-it)
+  (setq notmuch-saved-searches
+    '((:name "unread"
+       :query "tag:unread"
+       :sort-order newest-first)
+      (:name "keep"
+       :query "tag:keep"
+       :sort-order newest-first)
+      (:name "sent"
+       :query "tag:sent"
+       :sort-order newest-first)
+      (:name "inbox"
+       :query "tag:inbox"
+       :sort-order newest-first)
+      (:name "proton"
+       :query "tag:evie"
+       :sort-order newest-first)
+      (:name "gmail"
+       :query "tag:gmail"
+       :sort-order newest-first)
+      (:name "del"
+       :query "tag:del"
+       :sort-order newest-first)
+      (:name "hf"
+       :query "tag:hf"
+       :sort-order newest-first)
+      )))
+
 
   ;; :general
   ;; (general-define-key
   ;;  :states '(normal visual)
   ;;  :keymaps 'notmuch-search-mode-map
   ;;  "RET" 'notmuch-search-show-thread))
+
+(setq send-mail-function 'sendmail-send-it
+      sendmail-program "msmtp"
+      mail-specify-envelope-from t
+      message-sendmail-envelope-from 'header
+      mail-envelope-from 'header)
 
 ;; evil
 (use-package evil
@@ -171,15 +183,15 @@
     (general-evil-setup)
     (setq general-default-keymaps 'evil-normal-state-map)
     ; unbind space from dired map to allow for git status
-    ;; (general-define-key
-    ;;  :states '(normal visual)
-    ;;  :keymaps 'notmuch-search-mode-map
-    ;;  "RET" 'notmuch-search-show-thread
-    ;;  "d" 'evil-collection-notmuch-search-toggle-delete
-    ;;  "u" 'evil-collection-notmuch-search-toggle-unread
-    ;;  "t" 'notmuch-search-add-tag
-    ;;  "T" 'notmuch-search-remove-tag
-    ;;  "f" 'notmuch-search-filter-by-tag)
+    (general-define-key
+     :states '(normal visual)
+     :keymaps 'notmuch-search-mode-map
+     ;; "RET" 'notmuch-search-show-thread
+     "d" 'evil-collection-notmuch-search-toggle-delete
+     "u" 'evil-collection-notmuch-search-toggle-unread
+     "t" 'notmuch-search-add-tag
+     "T" 'notmuch-search-remove-tag
+     "f" 'notmuch-search-filter-by-tag)
     (general-define-key :keymaps 'dired-mode-map "SPC" nil)
     (general-define-key
      :keymaps 'visual
@@ -192,7 +204,7 @@
      "g D"       'goto-def-other-window
      "g r"       'lsp-find-references
      "g c c"     'comment-line
-     ;; "SPC n n"   'notmuch
+     "SPC n n"   'notmuch
      "SPC b d"   'kill-this-buffer
      "SPC f b"   'switch-to-buffer
      "SPC q"     'save-buffers-kill-terminal

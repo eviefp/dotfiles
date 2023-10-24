@@ -15,90 +15,154 @@ in
 
   config = lib.mkIf cfg.enable {
     accounts.email = {
+
       maildirBasePath = "/home/evie/mail";
+
       accounts = {
         eevie = {
           primary = true;
           address = "me@eevie.ro";
-          userName = "me@eevie.ro";
+          userName = "evieciobanu..thelxinoe";
           realName = "Evie Ciobanu";
+
           signature = {
             text = ''
 
-              -- Evie Ciobanu
+              -- Evie
             '';
             showSignature = "append";
           };
-          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/hydro.pwd";
-          smtp = {
-            host = "127.0.0.1";
+
+          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/px-key";
+
+          imap = {
+            host = "nixos";
+            port = 1143;
             tls = {
               enable = true;
               useStartTls = true;
+              certificatesFile = ./peroxide.pem;
             };
           };
-          imap = { host = "127.0.0.1"; };
+
+          smtp = {
+            host = "nixos";
+            port = 1025;
+            tls = {
+              enable = true;
+              useStartTls = true;
+              certificatesFile = ./peroxide.pem;
+            };
+          };
+
           mbsync = {
             enable = true;
             create = "both";
-            expunge = "both";
-            extraConfig.account = {
-              Port = 1143;
-              SSLType = "STARTTLS";
-              SystemCertificates = "no";
-              CertificateFile = "/home/evie/.config/protonmail/bridge/cert.pem";
-            };
+            remove = "both";
           };
+
           msmtp = {
             enable = true;
-            extraConfig = {
-              auth = "login";
-              port = "1025";
-              tls = "on";
-              tls_starttls = "on";
-              tls_trust_file = "";
-              tls_certcheck = "off";
-            };
+            tls.fingerprint = "20:25:0E:A6:C0:3E:E1:3B:AE:9A:B1:12:B5:A2:C3:04:89:02:A4:F5:38:74:37:EC:D5:23:F0:82:6F:77:3F:C7";
           };
+
           notmuch.enable = true;
-          flavor = "plain";
         };
-        alexaeviest = {
+
+        gmail-primary = {
           primary = false;
           address = "alexa.eviest@gmail.com";
           userName = "alexa.eviest@gmail.com";
           realName = "Evie Ciobanu";
+
           signature = {
             text = ''
 
-              -- Evie Ciobanu
+              -- Evie
             '';
             showSignature = "append";
           };
-          passwordCommand =
-            "${pkgs.coreutils}/bin/cat /home/evie/.secrets/alexaeviest.pwd";
-          notmuch.enable = true;
-          flavor = "gmail.com";
-          msmtp.enable = false;
+
+          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/ae";
+
+          imap = {
+            host = "imap.gmail.com";
+            port = 993;
+            tls = {
+              enable = true;
+              # useStartTls = true;
+            };
+          };
+
+          smtp = {
+            host = "smtp.gmail.com";
+            port = 587;
+            tls = {
+              enable = true;
+              useStartTls = true;
+              certificatesFile = ./peroxide.pem;
+            };
+          };
+
           mbsync = {
             enable = true;
             create = "both";
-            expunge = "both";
-            remove = "none";
-            patterns = [
-              "INBOX"
-              "\\[Gmail\\]/All Mail"
-              "\\[Gmail\\]/Drafts"
-              "\\[Gmail\\]/Spam"
-              "\\[Gmail\\]/Sent Mail"
-            ];
+            remove = "both";
           };
+
+          msmtp = {
+            enable = true;
+          };
+
+          notmuch.enable = true;
+        };
+
+        gmail-old = {
+          primary = false;
+          address = "admin@cvlad.info";
+          userName = "admin@cvlad.info";
+          realName = "Evie Ciobanu";
+
+          signature = {
+            text = ''
+
+              -- Evie
+            '';
+            showSignature = "append";
+          };
+
+          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/cv";
+
+          imap = {
+            host = "imap.gmail.com";
+            port = 993;
+            tls = {
+              enable = true;
+              # useStartTls = true;
+            };
+          };
+
           smtp = {
             host = "smtp.gmail.com";
-            tls.useStartTls = true;
             port = 587;
+            tls = {
+              enable = true;
+              useStartTls = true;
+              certificatesFile = ./peroxide.pem;
+            };
           };
-          imap.host = "imap.gmail.com";
+
+          mbsync = {
+            enable = true;
+            create = "both";
+            remove = "both";
+          };
+
+          msmtp = {
+            enable = true;
+          };
+
+          notmuch.enable = true;
         };
       };
     };
@@ -122,9 +186,10 @@ in
         new.tags = [ "unread" "inbox" ];
         hooks = {
           postNew = ''
-            notmuch tag +evie -- tag:new and to:*@eevie.ro
-            notmuch tag +gmail -- tag:new and to:*@gmail.com
-            notmuch tag +hf -- tag:new and from:*@haskell.foundation
+            notmuch tag +evie -- to:*@eevie.ro
+            notmuch tag +gmail -- to:*evie*@gmail.com
+            notmuch tag +del -- to:*@cvlad.info
+            notmuch tag +hf -- from:*@haskell.foundation
           '';
         };
       };

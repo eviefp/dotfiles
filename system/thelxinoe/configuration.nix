@@ -34,5 +34,12 @@
     useBluetooth = true;
     monitorSectionDisplaySize = "DisplaySize 975 274";
   };
+
+  services.peroxide = {
+    enable = true;
+    settings = {
+      ServerAddress = "nixos";
+    };
+  };
 }
 
