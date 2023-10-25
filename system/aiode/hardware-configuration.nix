@@ -26,7 +26,7 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/63cdfc74-8715-42c8-973b-f0e92a0f26e1"; }];
 
-  nix.maxJobs = lib.mkDefault 8;
+  nix.settings.max-jobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # High-DPI console
   console.font =

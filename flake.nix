@@ -66,6 +66,21 @@
           ];
       };
 
+      nixosConfigurations."aiode" = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules =
+          [
+            ./system/aiode/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit pkgs nix-path nix-neovim; };
+              home-manager.users.evie = import ./home-manager/aiode/home.nix;
+            }
+          ];
+      };
+
       nixosConfigurations."fractal" = nixpkgs.lib.nixosSystem {
         system = system;
         modules =
