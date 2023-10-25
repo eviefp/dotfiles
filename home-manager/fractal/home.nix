@@ -27,9 +27,9 @@
 
       emacs = {
         enable = true;
+        no-x = true;
         locals = {
           enable = true;
-          no-x = true;
           file = ./locals.el;
         };
       };
