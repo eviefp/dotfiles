@@ -27,24 +27,11 @@
         https = true;
         home = "/mnt/raid/nextcloud";
         maxUploadSize = "512G";
+        database.createLocally = true;
         config = {
           dbtype = "pgsql";
-          dbuser = "nextcloud";
-          dbhost =
-            "/run/postgresql"; # nextcloud will add /.s.PGSQL.5432 by itself
-          dbname = "nextcloud_aio";
           adminpassFile = "/mnt/raid/nextcloud/pass";
-          adminuser = "admin";
         };
-      };
-
-      postgresql = {
-        enable = true;
-        ensureDatabases = [ "nextcloud_aio" ];
-        ensureUsers = [{
-          name = "nextcloud";
-          ensurePermissions."DATABASE nextcloud_aio" = "ALL PRIVILEGES";
-        }];
       };
 
       nginx = {
