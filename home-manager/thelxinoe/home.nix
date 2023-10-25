@@ -19,9 +19,7 @@
     enable = true;
 
     browsers.enable = true;
-
     bower.enable = true;
-
     chat.enable = true;
 
     dev = {

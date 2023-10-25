@@ -1,5 +1,5 @@
 /****************************************************************************
-  * Aiode home-manager
+  * Janus home-manager
   *
   **************************************************************************/
 { nix-path, ... }:
@@ -15,11 +15,12 @@
   ];
 
   evie.programs = {
-    chat.enable = true;
+    enable = true;
+
 
     browsers.enable = true;
-
     bower.enable = true;
+    chat.enable = true;
 
     dev = {
       haskell.enable = true;
