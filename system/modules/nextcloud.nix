@@ -32,7 +32,7 @@
           dbuser = "nextcloud";
           dbhost =
             "/run/postgresql"; # nextcloud will add /.s.PGSQL.5432 by itself
-          dbname = "nextcloud";
+          dbname = "nextcloud-aio";
           adminpassFile = "/mnt/raid/nextcloud/pass";
           adminuser = "admin";
         };
@@ -40,10 +40,10 @@
 
       postgresql = {
         enable = true;
-        ensureDatabases = [ "nextcloud" ];
+        ensureDatabases = [ "nextcloud-aio" ];
         ensureUsers = [{
           name = "nextcloud";
-          ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
+          ensurePermissions."DATABASE nextcloud-aio" = "ALL PRIVILEGES";
         }];
       };
 
