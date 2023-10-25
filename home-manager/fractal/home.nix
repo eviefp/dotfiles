@@ -9,7 +9,6 @@
     ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
     ../modules/system.nix
-    ../modules/services/neuron-site.nix
   ];
 
   evie.programs = {
@@ -26,20 +25,20 @@
       neovim.enable = true;
 
       emacs = {
-        enable = false;
+        enable = true;
         locals = {
           enable = true;
+          no-x = true;
           file = ./locals.el;
         };
       };
-    };
 
-    neuron = {
-      enable = true;
+      helix.enable = true;
     };
 
     shell = {
       enable = true;
+      experimental = true;
       ranger.enable = true;
     };
 
@@ -47,10 +46,6 @@
       enable = true;
       latex = true;
     };
-  };
-
-  evie.services = {
-    neuron-site.enable = false;
   };
 
   evie.fonts.enable = true;
@@ -63,6 +58,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    NIX_PATH = nix-path;
   };
 }
 

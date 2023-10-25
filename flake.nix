@@ -66,6 +66,21 @@
           ];
       };
 
+      nixosConfigurations."fractal" = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules =
+          [
+            ./system/fractal/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit pkgs nix-path nix-neovim; };
+              home-manager.users.evie = import ./home-manager/fractal/home.nix;
+            }
+          ];
+      };
+
       nixOnDroidConfigurations.thanatos = nix-on-droid.lib.nixOnDroidConfiguration {
         modules = [
           ./system/thanatos/configuration.nix
