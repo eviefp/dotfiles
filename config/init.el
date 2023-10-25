@@ -23,7 +23,6 @@
 ;; Generic config stuff
 (setq debug-on-errror t)
 (setq inhibit-startup-screen t)
-(scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 
