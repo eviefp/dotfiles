@@ -13,11 +13,18 @@
     ../modules/system.nix
   ];
 
+
   evie.programs = {
+    enable = true;
+
+
+    browsers.enable = true;
+    bower.enable = true;
     chat.enable = true;
 
     dev = {
       haskell.enable = true;
+      lua.enable = true;
       nix.enable = true;
       provers.enable = false;
       tools.enable = true;
@@ -27,16 +34,23 @@
       neovim.enable = true;
 
       emacs = {
-        enable = false;
+        enable = true;
         locals = {
           enable = true;
           file = ./locals.el;
         };
       };
+
+      helix.enable = true;
     };
+
+    # neuron = {
+    #   enable = false;
+    # };
 
     shell = {
       enable = true;
+      experimental = true;
       ranger.enable = true;
     };
 
@@ -49,21 +63,26 @@
 
     gui = {
       enable = true;
+      useLaptopXmobar = true;
     };
 
+    wezterm.enable = true;
   };
 
-  evie.email.enable = true;
+  evie.email.enable = false;
 
   evie.fonts.enable = true;
 
   evie.system = {
     enable = true;
-    host = "aiode";
+    host = "janus";
     dotfiles = "/home/evie/code/dotfiles";
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    BROWSER = "qutebrowser";
+    NIX_PATH = nix-path;
+    OOO_FORCE_DESKTOP = "gnome";
   };
 }
