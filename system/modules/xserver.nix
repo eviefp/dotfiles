@@ -54,10 +54,7 @@ in
             }
           ];
           monitorSection = ''
-            Option "DPMS" "true"
-          '';
-          serverFlagsSection = ''
-            Option "BlankTime" "20"
+            Option "DPMS" "false"
           '';
           windowManager.xmonad = {
             enable = true;
