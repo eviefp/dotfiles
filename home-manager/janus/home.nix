@@ -44,9 +44,9 @@
       helix.enable = true;
     };
 
-    neuron = {
-      enable = false;
-    };
+    # neuron = {
+    #   enable = false;
+    # };
 
     shell = {
       enable = true;
