@@ -32,9 +32,6 @@
           dbtype = "pgsql";
           adminpassFile = "/mnt/raid/nextcloud/pass";
         };
-        extraOptions = {
-          config_is_read_only = true;
-        };
       };
 
       nginx = {
