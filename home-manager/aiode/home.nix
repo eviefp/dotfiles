@@ -2,6 +2,7 @@
   * Aiode home-manager
   *
   **************************************************************************/
+{ nix-path, ... }:
 {
   imports = [
     ../modules/programs.nix
