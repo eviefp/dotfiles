@@ -88,6 +88,8 @@
   :ensure t
   :init
   ;; (setq send-mail-function 'sendmail-send-it)
+  (setq notmuch-fcc-dirs nil) ;; testing
+  (setq notmuch-always-prompt-for-sender t)
   (setq notmuch-saved-searches
     '((:name "unread"
        :query "tag:unread"
