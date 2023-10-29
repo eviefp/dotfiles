@@ -33,6 +33,14 @@
         config.allowUnfree = true;
         overlays = [ (import emacs-overlay) ];
       };
+      aarch-pkgs = import nixpkgs {
+        system = "aarch64-linux";
+
+        overlays = [
+          nix-on-droid.overlays.default
+          (import emacs-overlay)
+        ];
+      };
       nix-path = "nixpkgs=${nixpkgs}";
     in
     {
@@ -103,21 +111,17 @@
             home-manager = {
               config = ./home-manager/thanatos/home.nix;
               useGlobalPkgs = true;
-              extraSpecialArgs = { inherit pkgs nix-path nix-neovim; };
+              extraSpecialArgs = {
+                inherit nix-path nix-neovim;
+                pkgs = aarch-pkgs;
+              };
             };
           }
 
         ];
 
         ## Different pkgs, need to use the nix-on-droid overlay
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-
-          overlays = [
-            nix-on-droid.overlays.default
-            (import emacs-overlay)
-          ];
-        };
+        pkgs = aarch-pkgs;
 
       };
     };
