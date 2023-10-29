@@ -28,6 +28,7 @@
       emacs = {
         enable = true;
         no-x = true;
+        service = true;
         locals = {
           enable = true;
           file = ./locals.el;

@@ -589,6 +589,14 @@
    "SPC r g" 'org-roam-graph
    "SPC r I" (lambda () (interactive) (visit-org-roam-index))))
 
+(use-package org-roam-ui
+  :config
+  (setq org-roam-ui-sync-theme t
+	org-roam-ui-follow t
+	org-roam-ui-update-on-save t
+	org-roam-ui-port 31010
+	org-roam-ui-open-on-start t))
+
 (use-package org-tree-slide
   :ensure t
   :config
