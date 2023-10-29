@@ -80,6 +80,11 @@
     (caar (or (org-roam-db-query [:select id :from nodes :where (= title "Index") :limit 1])
               (user-error "No node with title Index"))))))
 
+(defun evie-notmuch-search-toggle-important ()
+  "Toggle important tag for message."
+  (interactive)
+  (evil-collection-notmuch-toggle-tag "important" "search" 'notmuch-search-next-thread))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
 (require 'use-package)
@@ -91,29 +96,29 @@
   (setq notmuch-fcc-dirs nil) ;; testing
   (setq notmuch-always-prompt-for-sender t)
   (setq notmuch-saved-searches
-    '((:name "unread"
+    '((:name "important"
+       :query "tag:important"
+       :sort-order oldest-first)
+      (:name "proton unread"
+       :query "tag:unread and tag:proton"
+       :sort-order newest-first)
+      (:name "unread"
        :query "tag:unread"
-       :sort-order newest-first)
-      (:name "keep"
-       :query "tag:keep"
-       :sort-order newest-first)
-      (:name "sent"
-       :query "tag:sent"
-       :sort-order newest-first)
-      (:name "inbox"
-       :query "tag:inbox"
        :sort-order newest-first)
       (:name "proton"
        :query "tag:evie"
        :sort-order newest-first)
+      (:name "hf"
+       :query "tag:hf"
+       :sort-order newest-first)
+      (:name "inbox"
+       :query "tag:inbox"
+       :sort-order newest-first)
       (:name "gmail"
        :query "tag:gmail"
        :sort-order newest-first)
-      (:name "del"
+      (:name "gmail-old (del)"
        :query "tag:del"
-       :sort-order newest-first)
-      (:name "hf"
-       :query "tag:hf"
        :sort-order newest-first)
       )))
 
@@ -188,6 +193,7 @@
      :states '(normal visual)
      :keymaps 'notmuch-search-mode-map
      ;; "RET" 'notmuch-search-show-thread
+     "@" 'evie-notmuch-search-toggle-important
      "d" 'evil-collection-notmuch-search-toggle-delete
      "u" 'evil-collection-notmuch-search-toggle-unread
      "t" 'notmuch-search-add-tag
@@ -733,3 +739,7 @@
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
               ("h" "Habit" entry (file "~/Documents/wiki/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+
+(use-package htmlize
+  :ensure t)
+

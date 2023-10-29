@@ -66,8 +66,9 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         36000
                     , Run
                         NotmuchMail
-                        "mail"
-                        [ MailItem "" "" "tag:unread and tag:evie"
+                        "email"
+                        [ MailItem "\xf0f3  " "" "tag:important or tag:important" -- hack because it forces tag:unread
+			, MailItem "\xf0e0  " "" "tag:evie"
                         ]
                         600
                     , Run
@@ -84,6 +85,6 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %cpu% %memory% %dynnetwork% %default:Master% %LRBS% %mail% %date%"
+       , template = "%XMonadLog% }{ %cpu% %memory% %dynnetwork% %default:Master% %LRBS% %email% %date%"
        , lowerOnStart = False
        }
