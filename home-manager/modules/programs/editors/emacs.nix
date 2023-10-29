@@ -8,7 +8,10 @@ let
   initFile = ../../../../config/init.el;
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
-    extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
+    extraEmacsPackages = epkgs: [
+      epkgs.rainbow-delimiters
+      epkgs.org-roam-ui
+    ];
     package = pkgs.emacs-git.override {
       withX = true;
       withGTK3 = true;
@@ -28,6 +31,8 @@ in
     enable = lib.options.mkEnableOption "Enable the Emacs package.";
 
     no-x = lib.options.mkEnableOption "Use terminal only Emacs.";
+
+    service = lib.options.mkEnableIOption "Use emacs service.";
 
     locals = {
       enable = lib.options.mkEnableOption "Enable local config.";
@@ -56,14 +61,23 @@ in
     # TODO: This doesn't quite work. Should investigate...?
     services = {
       emacs = {
-        enable = false;
+        enable = cfg.locals.service;
         package = if cfg.no-x then package-term-only else package-desktop;
         client = {
           enable = false;
           arguments = [ "-c" ];
         };
-        socketActivation.enable = false;
-        startWithUserSession = false;
+        socketActivation.enable = true;
+        startWithUserSession = true;
+      };
+
+      nginx = lib.mkIf cfg.locals.service {
+        virtualHosts = {
+          "fractal.eevie.ro".locations."/org" = {
+            proxyWebsockets = true;
+            proxyPass = "http://localhost:30010";
+          };
+        };
       };
     };
   };
