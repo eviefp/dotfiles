@@ -45,12 +45,6 @@
         virtualHosts = {
           "fractal" = {
             forceSSL = false;
-            locations = {
-              "/wiki" = {
-                root = "/mnt/raid";
-                index = "impulse.html";
-              };
-            };
           };
 
           "fractal.eevie.ro" = {
@@ -60,7 +54,6 @@
           };
         };
       };
-
     };
 
     systemd.services."nextcloud-setup" = {

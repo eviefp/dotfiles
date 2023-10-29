@@ -100,7 +100,6 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = ./peroxide.pem;
             };
           };
 
@@ -148,7 +147,6 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = ./peroxide.pem;
             };
           };
 
