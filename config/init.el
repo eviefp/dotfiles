@@ -88,6 +88,8 @@
   :ensure t
   :init
   ;; (setq send-mail-function 'sendmail-send-it)
+  (setq notmuch-fcc-dirs nil) ;; testing
+  (setq notmuch-always-prompt-for-sender t)
   (setq notmuch-saved-searches
     '((:name "unread"
        :query "tag:unread"
@@ -586,6 +588,13 @@
    "SPC r b" 'org-roam-backlinks-get
    "SPC r g" 'org-roam-graph
    "SPC r I" (lambda () (interactive) (visit-org-roam-index))))
+
+(use-package org-roam-ui
+  :config
+  (setq org-roam-ui-sync-theme t
+	org-roam-ui-follow t
+	org-roam-ui-update-on-save t
+	org-roam-ui-open-on-start t))
 
 (use-package org-tree-slide
   :ensure t
