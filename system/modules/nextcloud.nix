@@ -45,12 +45,6 @@
         virtualHosts = {
           "fractal" = {
             forceSSL = false;
-            locations = {
-              "/wiki" = {
-                root = "/mnt/raid";
-                index = "impulse.html";
-              };
-            };
           };
 
           "fractal.eevie.ro" = {
@@ -58,9 +52,21 @@
             sslCertificate = "/mnt/raid/fractal.eevie.ro.crt";
             sslCertificateKey = "/mnt/raid/fractal.eevie.ro.key";
           };
+
+          "org.eevie.ro" = {
+            forceSSL = true;
+            # TODO: redo all certs
+            sslCertificate = "/mnt/raid/fractal.eevie.ro.crt";
+            sslCertificateKey = "/mnt/raid/fractal.eevie.ro.key";
+            locations = {
+              "/" = {
+                proxyWebsockets = true;
+                proxyPass = "http://127.0.0.1:31010/";
+              };
+            };
+          };
         };
       };
-
     };
 
     systemd.services."nextcloud-setup" = {

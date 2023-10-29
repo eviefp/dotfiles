@@ -19,7 +19,10 @@ let
   };
   package-term-only = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
-    extraEmacsPackages = epkgs: [ epkgs.rainbow-delimiters ];
+    extraEmacsPackages = epkgs: [
+      epkgs.rainbow-delimiters
+      epkgs.org-roam-ui
+    ];
     package = pkgs.emacs-git-nox.override { };
   };
   cfg = config.evie.programs.editors.emacs;
@@ -32,7 +35,7 @@ in
 
     no-x = lib.options.mkEnableOption "Use terminal only Emacs.";
 
-    service = lib.options.mkEnableIOption "Use emacs service.";
+    service = lib.options.mkEnableOption "Use emacs service.";
 
     locals = {
       enable = lib.options.mkEnableOption "Enable local config.";
@@ -61,7 +64,7 @@ in
     # TODO: This doesn't quite work. Should investigate...?
     services = {
       emacs = {
-        enable = cfg.locals.service;
+        enable = cfg.service;
         package = if cfg.no-x then package-term-only else package-desktop;
         client = {
           enable = false;
@@ -69,15 +72,6 @@ in
         };
         socketActivation.enable = true;
         startWithUserSession = true;
-      };
-
-      nginx = lib.mkIf cfg.locals.service {
-        virtualHosts = {
-          "fractal.eevie.ro".locations."/org" = {
-            proxyWebsockets = true;
-            proxyPass = "http://localhost:30010";
-          };
-        };
       };
     };
   };
