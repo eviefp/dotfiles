@@ -26,7 +26,6 @@ in
 
       # Multimedia
       pkgs.fdk_aac
-      pkgs.feh
       pkgs.paprefs # multi audio sink setup
       pkgs.pavucontrol
       pkgs.steam

@@ -48,7 +48,7 @@
 ;; Load local config (useful for machine-local setups).
 (ignore-errors (load "~/.emacs.d/locals.el"))
 
-(set-face-attribute 'default nil :family "Hasklug Nerd Font")
+(set-face-attribute 'default nil :family "Hasklug Nerd Font Mono")
 (set-face-attribute 'default nil :height evie-font-size)
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
@@ -305,7 +305,9 @@
     (general-define-key
      :keymaps 'ivy-minibuffer-map
      "C-j" 'ivy-next-line
-     "C-k" 'ivy-previous-line)
+     "C-k" 'ivy-previous-line
+     "C-i" 'ivy-occur
+     "C-o" 'ivy-occur)
     (general-define-key
      :keymaps 'ivy-switch-buffer-map
      "C-k" 'ivy-previous-line))
@@ -317,7 +319,12 @@
      "SPC f f" 'counsel-find-file
      "SPC SPC" 'counsel-git
      "SPC c r" 'counsel-rg
-     "SPC m" 'counsel-M-x))
+     "SPC c e" 'counsel-git-grep
+     "SPC m" 'counsel-M-x
+     :keymaps 'ivy-occur-grep-mode
+     "SPC w m" 'ivy-wgrep-change-to-wgrep-mode
+     ))
+
 
 (use-package swiper
     :ensure t
@@ -535,7 +542,12 @@
 ;; org
 (setq org-edit-src-content-indentation nil)
 (setq org-startup-with-inline-images t)
-(setq org-image-actual-width 300)
+(setq org-image-actual-width nil)
+(setq org-file-apps
+      '((auto-mode . emacs)
+	("\\.jpg\\'" . "feh %s")
+	("\\.jpeg\\'" . "feh %s")
+	("\\.png\\'" . "feh %s")))
 
 (use-package evil-org
   :ensure t
@@ -556,6 +568,7 @@
    "C-SPC"   'org-toggle-checkbox
    "SPC o s" 'org-schedule
    "SPC o d" 'org-deadline
+   "SPC o l" 'org-insert-link
    "SPC o t" 'org-set-tags-command))
    ;; :keymaps 'visual
    ;; ">"       'org-demote-subtree
@@ -585,6 +598,7 @@
     (setq org-roam-db-update-idle-seconds 5)
   :config
     (org-roam-db-autosync-mode)
+    (require 'org-roam-export)
   :hook (after-init . org-roam-setup)
   :general
   (general-define-key
@@ -686,6 +700,9 @@
     (general-define-key
      :keymaps 'normal
   "SPC r a" 'ranger))
+
+(use-package wgrep
+  :ensure t)
 
 (use-package anzu
   :ensure t

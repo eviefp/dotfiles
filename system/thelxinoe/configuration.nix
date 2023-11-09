@@ -32,7 +32,6 @@
     enable = true;
     useNVidia = true;
     useBluetooth = true;
-    monitorSectionDisplaySize = "DisplaySize 975 274";
   };
 
   services.peroxide = {
