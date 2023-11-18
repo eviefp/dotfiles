@@ -1,6 +1,3 @@
-# for Emacs: -*- coding: utf-8 -*-
-include "%L"
-
 # Greek letters
 <Multi_key> <minus> <A>     : "Α"   U0391 # greek capital letter alpha
 <Multi_key> <minus> <B>     : "Β"   U0392 # greek capital letter beta
