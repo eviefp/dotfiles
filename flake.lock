@@ -61,6 +61,22 @@
         "type": "github"
       }
     },
+    "lean4-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689286482,
+        "narHash": "sha256-tD5Ysa24fMIS6ipFc50OjabZEUge4riSb7p4BR05ReQ=",
+        "owner": "leanprover",
+        "repo": "lean4-mode",
+        "rev": "d1c936409ade7d93e67107243cbc0aa55cda7fd5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "leanprover",
+        "repo": "lean4-mode",
+        "type": "github"
+      }
+    },
     "nix-formatter-pack": {
       "inputs": {
         "nixpkgs": [
@@ -1201,6 +1217,7 @@
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
+        "lean4-mode": "lean4-mode",
         "nix-neovim": "nix-neovim",
         "nix-on-droid": "nix-on-droid",
         "nixpkgs": "nixpkgs"

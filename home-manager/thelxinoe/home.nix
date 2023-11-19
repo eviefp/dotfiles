@@ -26,7 +26,7 @@
       haskell.enable = true;
       lua.enable = true;
       nix.enable = true;
-      provers.enable = false;
+      provers.enable = true;
       tools.enable = true;
     };
 

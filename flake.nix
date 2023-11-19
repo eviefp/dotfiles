@@ -1,31 +1,36 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     emacs-overlay = {
-      url = "github:nix-community/emacs-overlay/master";
+      url = github:nix-community/emacs-overlay/master;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lean4-mode = {
+      url = github:leanprover/lean4-mode;
+      flake = false;
+    };
+
     nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/master";
+      url = github:nix-community/nix-on-droid/master;
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
 
     nix-neovim = {
-      url = "github:eviefp/nix-neovim/main";
+      url = github:eviefp/nix-neovim/main;
     };
 
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -42,6 +47,9 @@
         ];
       };
       nix-path = "nixpkgs=${nixpkgs}";
+      home-manager-special-args = {
+        inherit pkgs nix-path nix-neovim lean4-mode;
+      };
     in
     {
       nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem {
@@ -53,7 +61,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit pkgs nix-path nix-neovim; };
+              home-manager.extraSpecialArgs = home-manager-special-args;
               home-manager.users.evie = import ./home-manager/thelxinoe/home.nix;
             }
           ];
@@ -68,7 +76,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit pkgs nix-path nix-neovim; };
+              home-manager.extraSpecialArgs = home-manager-special-args;
               home-manager.users.evie = import ./home-manager/janus/home.nix;
             }
           ];
@@ -83,7 +91,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit pkgs nix-path nix-neovim; };
+              home-manager.extraSpecialArgs = home-manager-special-args;
               home-manager.users.evie = import ./home-manager/aiode/home.nix;
             }
           ];
@@ -98,7 +106,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit pkgs nix-path nix-neovim; };
+              home-manager.extraSpecialArgs = home-manager-special-args;
               home-manager.users.evie = import ./home-manager/fractal/home.nix;
             }
           ];

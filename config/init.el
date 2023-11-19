@@ -760,3 +760,4 @@
 (use-package htmlize
   :ensure t)
 
+(require 'lean4-mode)
