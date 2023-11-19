@@ -18,6 +18,7 @@ in
       pkgs.agdaPackages.standard-library
       pkgs.coq
       pkgs.idris2
+      pkgs.lean4
     ];
   };
 }

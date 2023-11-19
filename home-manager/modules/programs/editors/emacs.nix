@@ -3,18 +3,42 @@
   *
   * Emacs package using emacs-overlay.
   **************************************************************************/
-{ lib, config, pkgs, emacs-overlay, ... }:
+{ lib, config, pkgs, emacs-overlay, lean4-mode, ... }:
 let
   initFile = ../../../../config/init.el;
+  lean4mode = epkgs: epkgs.trivialBuild {
+    pname = "lean4-mode";
+    src = lean4-mode;
+    version = "1";
+    buildPhase = ''
+      runHook preBuild
+      emacs -L . --eval '(setq max-lisp-eval-depth 4000 max-specpdl-size 4000)' --batch -f batch-byte-compile *.el
+      runHook postBuild
+    '';
+    buildInputs = [
+      epkgs.dash
+      epkgs.f
+      epkgs.flycheck
+      epkgs.magit-section
+      epkgs.lsp-mode
+      epkgs.s
+    ];
+  };
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
       epkgs.org-roam-ui
+      epkgs.lean4-mode
     ];
+
     package = pkgs.emacs-git.override {
       withX = true;
       withGTK3 = true;
+    };
+
+    override = final: prev: {
+      lean4-mode = (lean4mode prev);
     };
   };
   package-term-only = pkgs.emacsWithPackagesFromUsePackage {
@@ -22,8 +46,14 @@ let
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
       epkgs.org-roam-ui
+      epkgs.lean4-mode
     ];
+
     package = pkgs.emacs-git-nox.override { };
+
+    override = final: prev: {
+      lean4-mode = (lean4mode prev);
+    };
   };
   cfg = config.evie.programs.editors.emacs;
 in
