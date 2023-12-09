@@ -39,9 +39,11 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Circle
 import XMonad.Layout.Drawer qualified as Drawer
 import XMonad.Layout.Dwindle qualified as DW
+import XMonad.Layout.Gaps
 import XMonad.Layout.LayoutModifier qualified as LM
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Roledex
+import XMonad.Layout.Spacing
 import XMonad.Prelude (isSuffixOf)
 import XMonad.StackSet qualified as W
 import XMonad.Util.EZConfig qualified as EZ
@@ -374,7 +376,7 @@ withXmobar =
       def
         { ppSep = magenta " • ",
           ppVisible = blue . wrap "(" ")",
-          ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Top" "#8be9fd" 2,
+          ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Bottom" "#8be9fd" 2,
           ppHidden = white . wrap "" "",
           ppHiddenNoWindows = id,
           ppRename = const,
@@ -462,6 +464,45 @@ runScotty =
       cmd <- S.param "command"
       spawn $ "xmonadctl " <> cmd
 
+defaultGapSize :: Int
+defaultGapSize = 6
+
+defaultSpacesSize :: Integer
+defaultSpacesSize = 8
+
+-- Gaps
+defaultGaps :: l a -> LM.ModifiedLayout Gaps l a
+defaultGaps =
+  gaps
+    [ (U, defaultGapSize),
+      (R, defaultGapSize),
+      (D, defaultGapSize),
+      (L, defaultGapSize)
+    ]
+
+-- Spaces
+defaultSpaces :: l a -> LM.ModifiedLayout Spacing l a
+defaultSpaces =
+  spacingRaw
+    True
+    ( Border
+        defaultSpacesSize
+        defaultSpacesSize
+        defaultSpacesSize
+        defaultSpacesSize
+    )
+    True
+    ( Border
+        defaultSpacesSize
+        defaultSpacesSize
+        defaultSpacesSize
+        defaultSpacesSize
+    )
+    True
+
+spacesAndGaps :: l a -> LM.ModifiedLayout Spacing (LM.ModifiedLayout Gaps l) a
+spacesAndGaps = defaultSpaces . defaultGaps
+
 runXmonad :: IO ()
 runXmonad = do
   workProfile <- Ref.newIORef Regular
@@ -473,8 +514,8 @@ runXmonad = do
                 manageHook = myManageHook,
                 workspaces = show <$> workspaceList,
                 layoutHook =
-                  avoidStrutsOn [U]
-                    . smartBorders
+                  avoidStruts
+                    . spacesAndGaps
                     $ tall
                       ||| LM.ModifiedLayout (Wrapper @"Drawer Circle") (Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle)
                       ||| LM.ModifiedLayout (Wrapper @"Drawer Tall") (Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
