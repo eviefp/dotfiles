@@ -2,10 +2,10 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
        , additionalFonts = [ "xft:hasklug nerd font mono:weight=Bold:size=12:antialias=true" ]
        , bgColor = "#46224c"
        , fgColor = "white"
-       , position = Bottom
+       , position = BottomH 25
        , alpha = 210
-       , border = NoBorder -- this doesn't work :( BottomBM 20
-       , borderWidth = 3
+       , border = TopB
+       , borderWidth = 4
        , borderColor = "#c754d8"
        , commands = [ Run
                         Cpu
