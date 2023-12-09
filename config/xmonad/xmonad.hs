@@ -465,10 +465,10 @@ runScotty =
       spawn $ "xmonadctl " <> cmd
 
 defaultGapSize :: Int
-defaultGapSize = 6
+defaultGapSize = 4
 
 defaultSpacesSize :: Integer
-defaultSpacesSize = 8
+defaultSpacesSize = 4
 
 -- Gaps
 defaultGaps :: l a -> LM.ModifiedLayout Gaps l a
@@ -514,13 +514,13 @@ runXmonad = do
                 manageHook = myManageHook,
                 workspaces = show <$> workspaceList,
                 layoutHook =
-                  avoidStruts
-                    . spacesAndGaps
-                    $ tall
-                      ||| LM.ModifiedLayout (Wrapper @"Drawer Circle") (Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle)
-                      ||| LM.ModifiedLayout (Wrapper @"Drawer Tall") (Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
-                      ||| noBorders Full
-                      ||| Roledex,
+                  ( avoidStruts . spacesAndGaps $
+                      tall
+                        ||| LM.ModifiedLayout (Wrapper @"Drawer Tall") (Drawer.drawer 0.01 0.6 (Prop.ClassName "org.wezfurlong.wezterm") tall `Drawer.onTop` tall)
+                        ||| Full
+                        ||| LM.ModifiedLayout (Wrapper @"Drawer Circle") (Drawer.drawer 0.01 0.8 (Prop.ClassName "org.wezfurlong.wezterm") dwindle `Drawer.onTop` Circle)
+                  )
+                    ||| (avoidStruts . noBorders $ Full),
                 startupHook = myStartupHook,
                 modMask = mod4Mask,
                 keys = keybindings workProfile,
