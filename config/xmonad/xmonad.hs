@@ -374,7 +374,7 @@ withXmobar =
       def
         { ppSep = magenta " • ",
           ppVisible = blue . wrap "(" ")",
-          ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Bottom" "#8be9fd" 2,
+          ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Top" "#8be9fd" 2,
           ppHidden = white . wrap "" "",
           ppHiddenNoWindows = id,
           ppRename = const,
@@ -383,7 +383,7 @@ withXmobar =
             xs -> xs,
           ppExtras = [logTitles formatFocused formatUnfocused],
           ppWsSep = " ",
-          ppTitle = shorten 50,
+          ppTitle = shorten 20,
           ppTitleSanitize = xmobarStrip
         }
 
@@ -468,7 +468,9 @@ runXmonad = do
   getDirectories
     >>= ( launch . ewmhFullscreen . ewmh . withUrgencyHook NoUrgencyHook . withXmobar $
             def
-              { manageHook = myManageHook,
+              { normalBorderColor = "#e29df9",
+                focusedBorderColor = "#d82794",
+                manageHook = myManageHook,
                 workspaces = show <$> workspaceList,
                 layoutHook =
                   avoidStrutsOn [U]

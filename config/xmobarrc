@@ -1,11 +1,15 @@
 Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
-       , additionalFonts = [ "xft:FontAwesome:size=30:antialias=true" ]
-       , bgColor = "#222222"
-       , fgColor = "grey"
+       , additionalFonts = [ "xft:hasklug nerd font mono:weight=Bold:size=12:antialias=true" ]
+       , bgColor = "#46224c"
+       , fgColor = "white"
        , position = Bottom
+       , alpha = 210
+       , border = NoBorder -- this doesn't work :( BottomBM 20
+       , borderWidth = 3
+       , borderColor = "#c754d8"
        , commands = [ Run
                         Cpu
-                        [ "-t"       , "<total> <fc=#ed00a2>\xf2db</fc>"
+                        [ "-t"       , "<total> <fc=#ed00a2>\xf4bc</fc>"
                         , "-L"       , "5"
                         , "-H"       , "60"
                         , "--normal" , "green"
@@ -15,7 +19,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         10
                     , Run
                         Memory
-                        [ "-t"       , "<usedratio> <fc=#9200ed>\xf538</fc>"
+                        [ "-t"       , "<usedratio> <fc=#9200ed>\xf0cf2</fc>"
                         , "-L"       , "5"
                         , "-H"       , "40"
                         , "--normal" , "green"
@@ -24,18 +28,8 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         ]
                         100
                     , Run
-                        DiskIO
-                        [("/", "<read><write> <fc=#00d9ed>\xf0a0</fc>")]
-                        [ "-L"       , "10000"
-                        , "-H"       , "40"
-                        , "--normal" , "green"
-                        , "--high"   , "red"
-                        , "-w"       , "5"
-                        ]
-                        10
-                    , Run
                         DynNetwork
-                        [ "-t"       , "<rx>KB<tx>KB <fc=#dded00>\xf6ff</fc>"
+                        [ "-t"       , "<rx>KB<tx>KB <fc=#dded00>\xf0002</fc>"
                         , "-H"       , "1000"
                         , "--normal" , "green"
                         , "--high"   , "red"
@@ -46,7 +40,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         Volume
                         "default"
                         "Master"
-                        [ "-t" , "<volume> <fc=#00ed3b>\xf028</fc>"
+                        [ "-t" , "<volume> <fc=#00ed3b>\xe638</fc>"
                         , "-L" , "40"
                         , "-H" , "90"
                         , "-p" , "4"
@@ -67,13 +61,14 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                     , Run
                         NotmuchMail
                         "email"
-                        [ MailItem "\xf0f3  " "" "tag:important or tag:important" -- hack because it forces tag:unread
-			, MailItem "\xf0e0  " "" "tag:evie"
+                        [ MailItem "\xf4a0  " "" "tag:important or tag:important" -- hack because first tag is unread and...
+			, MailItem "\xeb1c  " "" "tag:evie"
+			, MailItem "\xf0ebb  " "" "tag:gmail"
                         ]
                         600
                     , Run
                         DateZone
-                        "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xf073</fc> "
+                        "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xeab0</fc> "
                         "en_UK.UTF-8"
                         "EET"
                         "date"

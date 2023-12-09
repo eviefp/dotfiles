@@ -37,6 +37,8 @@
 (global-whitespace-mode)
 (setq whitespace-style '(face trailing tabs))
 
+;; (global-display-fill-column-indicator-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Default config
 (setq evie-font-size 60)
@@ -299,6 +301,7 @@
     (setq ivy-height 15)
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-use-selectable-prompt t)
+    (setq ivy-initial-inputs-alist nil)
     :config
     (ivy-mode 1)
     :general
@@ -320,6 +323,9 @@
      "SPC SPC" 'counsel-git
      "SPC c r" 'counsel-rg
      "SPC c e" 'counsel-git-grep
+     "SPC c u" 'counsel-unicode-char
+     "SPC c f" 'counsel-flycheck
+     "SPC c m" 'counsel-evil-marks
      "SPC m" 'counsel-M-x
      :keymaps 'ivy-occur-grep-mode
      "SPC w m" 'ivy-wgrep-change-to-wgrep-mode
@@ -650,8 +656,8 @@
 ;; indent guide
 (use-package indent-guide
   :ensure t
-  :config
-    (indent-guide-global-mode))
+     (setq indent-guide-char ".")
+     (indent-guide-global-mode))
 
 ;; colors
 (use-package rainbow-mode
@@ -659,7 +665,7 @@
   :general
   (general-define-key
    :keymaps 'normal
-   "SPC c m" 'rainbow-mode))
+   "SPC r m" 'rainbow-mode))
 
 (use-package zenity-color-picker
   :ensure t
@@ -669,14 +675,22 @@
    "SPC c c" 'zenity-cp-color-at-point-dwim))
 
 ;; theme
-(use-package doom-themes
+;; (use-package doom-themes
+;;   :ensure t
+;;   :init
+;;     (setq doom-challenger-deep-brighter-comments t)
+;;     (setq doom-challenger-deep-brighter-modeline t)
+;;     (setq doom-challenger-deep-padded-modeline t)
+;;     (setq doom-challenger-deep-comment-bg nil)
+;;   :config (load-theme 'doom-dracula t))
+
+(use-package modus-themes
   :ensure t
   :init
-    (setq doom-challenger-deep-brighter-comments t)
-    (setq doom-challenger-deep-brighter-modeline t)
-    (setq doom-challenger-deep-padded-modeline t)
-    (setq doom-challenger-deep-comment-bg nil)
-  :config (load-theme 'doom-challenger-deep t))
+  (setq modus-themes-italic-constructs t)
+  (setq modus-theme-bold-constructs nil)
+  :config
+  (load-theme 'modus-vivendi-tritanopia :no-confirm))
 
 (use-package all-the-icons
   :ensure t)
@@ -715,7 +729,6 @@
   "SPC e c" 'anzu-query-replace-at-cursor
   "SPC e i" 'anzu-isearch-query-replace))
 
-(global-display-fill-column-indicator-mode)
 
 (setq org-agenda-files (quote ("~/code/personal-org/agenda/todo.org"
                                "~/code/personal-org/agenda/backlog.org"
@@ -761,3 +774,8 @@
   :ensure t)
 
 (require 'lean4-mode)
+
+(use-package ligature
+  :config
+  (ligature-set-ligatures 't '("<*" "<*>" "<+>" "<$>" "***" "<|" "|>" "<|>" "!!" "||" "===" "==>" "<<<" ">>>" "<>" "+++" "<-" "->" "=>" ">>" "<<" ">>=" "=<<" ".." "..." "::" "-<" ">-" "-<<" ">>-" "++" "/=" "=="))
+  (global-ligature-mode t))
