@@ -14,9 +14,11 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
+      pkgs.comic-mono
       pkgs.fira-code
-      pkgs.nerdfonts
       pkgs.font-awesome
+      pkgs.monaspace
+      pkgs.nerdfonts
     ];
 
     fonts.fontconfig.enable = true;

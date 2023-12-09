@@ -29,6 +29,7 @@ let
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
       epkgs.org-roam-ui
+      epkgs.ligature
       epkgs.lean4-mode
     ];
 
@@ -46,6 +47,7 @@ let
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
       epkgs.org-roam-ui
+      epkgs.ligature
       epkgs.lean4-mode
     ];
 
@@ -79,10 +81,15 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      (if cfg.no-x then package-term-only else package-desktop)
-      pkgs.graphviz # dot, needed for org-roam
-    ];
+    home.packages =
+      if cfg.no-x
+      then [ package-term-only ]
+      else
+        [
+          package-desktop
+          pkgs.graphviz # dot, needed for org-roam
+          pkgs.gnome.zenity # needed for the color picker
+        ];
 
     home.file = lib.mkMerge [
       { ".emacs.d/init.el".source = initFile; }

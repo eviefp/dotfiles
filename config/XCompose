@@ -69,6 +69,10 @@
 <Multi_key> <minus> <greater> : "→" U2192 # implies
 <Multi_key> <equal> <greater> : "⇒" U21D2 # fat arrow implies
 
+# Other
+<Multi_key> <apostrophe> : "°" U00B0 # degrees
+<Multi_key> <period> : "∘" U2218 # composition
+
 # Equivalence
 <Multi_key> <less> <equal> <greater> : "⇔" U21D4 # material equivalence
 <Multi_key> <equal> <equal> : "≡" U2261 # iff
@@ -83,6 +87,7 @@
 <Multi_key> <backslash> <A> : "∀" U2200
 <Multi_key> <backslash> <E> : "∃" U2203
 <Multi_key> <backslash> <plus> : "⊕" U2295 # exclusive disjunction
+<Multi_key> <backslash> <x> : "×" U00D7 # exclusive disjunction
 <Multi_key> <backslash> <bar> <minus> : "⊢" U22A2
 <Multi_key> <backslash> <bar> <equal> : "⊨" U22A8
 <Multi_key> <backslash> <D> : "◇" U25C7
@@ -93,6 +98,9 @@
 <Multi_key> <backslash> <C> : "∘" U2218
 <Multi_key> <backslash> <S> : "⊕" U2295
 <Multi_key> <backslash> <P> : "⊗" U2297
+
+<Multi_key> <greater> : "❭" U276D
+<Multi_key> <less> : "❬" U276C
 
 <Multi_key> <equal> <a> : "ä" U00E4
 <Multi_key> <equal> <A> : "Ä" U00C4

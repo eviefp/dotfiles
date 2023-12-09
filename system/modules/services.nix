@@ -40,8 +40,12 @@ in
     virtualisation.docker = { enable = true; };
 
     virtualisation.virtualbox.host = {
-      # enable = true;
-      # enableExtensionPack = true;
+      enable = true;
+      enableExtensionPack = true;
+    };
+    virtualisation.virtualbox.guest = {
+      enable = true;
+      x11 = true;
     };
 
     # I don't recall what this is. Going to randomly leave it here.
