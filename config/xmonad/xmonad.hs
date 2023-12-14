@@ -42,7 +42,6 @@ import XMonad.Layout.Dwindle qualified as DW
 import XMonad.Layout.Gaps
 import XMonad.Layout.LayoutModifier qualified as LM
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Roledex
 import XMonad.Layout.Spacing
 import XMonad.Prelude (isSuffixOf)
 import XMonad.StackSet qualified as W
@@ -376,7 +375,7 @@ withXmobar =
       def
         { ppSep = magenta " • ",
           ppVisible = blue . wrap "(" ")",
-          ppCurrent = magenta . wrap "[" "]" . xmobarBorder "Bottom" "#8be9fd" 2,
+          ppCurrent = magenta . wrap "[" "]",
           ppHidden = white . wrap "" "",
           ppHiddenNoWindows = id,
           ppRename = const,
@@ -390,10 +389,10 @@ withXmobar =
         }
 
     formatFocused :: String -> String
-    formatFocused = wrap (white "[") (white "]") . magenta . xmobarRaw . shorten 80 . ppWindow
+    formatFocused = wrap (white "[") (white "]") . magenta . xmobarRaw . shorten 40 . ppWindow
 
     formatUnfocused :: String -> String
-    formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . xmobarRaw . shorten 30 . ppWindow
+    formatUnfocused = wrap (lowWhite "(") (lowWhite ")") . blue . xmobarRaw . shorten 20 . ppWindow
 
     ppWindow :: String -> String
     ppWindow = cleanWindowTitle
@@ -465,10 +464,10 @@ runScotty =
       spawn $ "xmonadctl " <> cmd
 
 defaultGapSize :: Int
-defaultGapSize = 4
+defaultGapSize = 2
 
 defaultSpacesSize :: Integer
-defaultSpacesSize = 4
+defaultSpacesSize = 20
 
 -- Gaps
 defaultGaps :: l a -> LM.ModifiedLayout Gaps l a
