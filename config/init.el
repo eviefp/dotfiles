@@ -656,6 +656,7 @@
 ;; indent guide
 (use-package indent-guide
   :ensure t
+  :config
      (setq indent-guide-char ".")
      (indent-guide-global-mode))
 
@@ -740,7 +741,7 @@
 (setq org-default-notes-file "~/code/personal-org/refile.org")
 
 (custom-set-variables
- '(org-agenda-ndays 7)
+ '(org-agenda-ndays 30)
  '(org-deadline-warning-days 14)
  '(org-agenda-show-all-dates t)
  '(org-agenda-skip-deadline-if-done t)

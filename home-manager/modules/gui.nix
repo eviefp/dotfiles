@@ -88,24 +88,39 @@ in
 
     services = {
       stalonetray = {
-        enable = false;
+        enable = true;
         package = pkgs.stalonetray;
         config = {
           decorations = "all";
-          transparent = false;
+          transparent = true;
           dockapp_mode = "none";
-          geometry = "6x1-0+0";
-          background = "#000000";
+          geometry = "4x1-1922+1058";
+          background = "#46224c";
           kludges = "force_icons_size";
-          grow_gravity = "NW";
-          icon_gravity = "NE";
+          grow_gravity = "SW";
+          icon_gravity = "SE";
           icon_size = 20;
           sticky = true;
-          window_strut = "auto";
+          window_strut = "bottom";
           window_type = "dock";
           window_layer = "bottom";
           no_shrink = false;
           skip_taskbar = true;
+          tint_level = 210;
+          tint_color = "#46224c";
+          parent_bg = true;
+        };
+      };
+
+      xscreensaver = {
+        enable = true;
+        settings = {
+          fadeTicks = 20;
+          lock = false;
+          mode = "blank";
+          dpmsEnabled = true;
+          splash = false;
+          fade = true;
         };
       };
     };

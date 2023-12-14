@@ -1,8 +1,9 @@
 Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
        , additionalFonts = [ "xft:hasklug nerd font mono:weight=Bold:size=12:antialias=true" ]
+       , textOffset = 1
        , bgColor = "#46224c"
        , fgColor = "white"
-       , position = BottomH 25
+       , position = BottomH 23
        , alpha = 210
        , border = TopB
        , borderWidth = 4
@@ -68,7 +69,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         600
                     , Run
                         DateZone
-                        "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xeab0</fc> "
+                        "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xeab0</fc> <hspace=85/>"
                         "en_UK.UTF-8"
                         "EET"
                         "date"

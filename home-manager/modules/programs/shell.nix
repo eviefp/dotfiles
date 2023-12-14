@@ -168,7 +168,7 @@ in
           };
 
           home-manager = {
-            enable = true;
+            enable = false;
           };
 
           jq = {
