@@ -44,8 +44,7 @@ in
       enableExtensionPack = true;
     };
     virtualisation.virtualbox.guest = {
-      enable = true;
-      x11 = true;
+      enable = false;
     };
 
     # I don't recall what this is. Going to randomly leave it here.

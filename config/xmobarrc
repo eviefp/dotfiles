@@ -3,14 +3,14 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
        , textOffset = 1
        , bgColor = "#46224c"
        , fgColor = "white"
-       , position = BottomH 23
+       , position = BottomH 24
        , alpha = 210
        , border = TopB
        , borderWidth = 4
        , borderColor = "#c754d8"
        , commands = [ Run
                         Cpu
-                        [ "-t"       , "<total> <fc=#ed00a2>\xf4bc</fc>"
+                        [ "-t"       , "<total> <fc=#c754d8>\xf4bc</fc>"
                         , "-L"       , "5"
                         , "-H"       , "60"
                         , "--normal" , "green"
@@ -20,7 +20,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         10
                     , Run
                         Memory
-                        [ "-t"       , "<usedratio> <fc=#9200ed>\xf0cf2</fc>"
+                        [ "-t"       , "<usedratio> <fc=#c754d8>\xf0cf2</fc>"
                         , "-L"       , "5"
                         , "-H"       , "40"
                         , "--normal" , "green"
@@ -30,7 +30,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         100
                     , Run
                         DynNetwork
-                        [ "-t"       , "<rx>KB<tx>KB <fc=#dded00>\xf0002</fc>"
+                        [ "-t"       , "<rx>KB<tx>KB <fc=#c754d8>\xf0002</fc>"
                         , "-H"       , "1000"
                         , "--normal" , "green"
                         , "--high"   , "red"
@@ -41,7 +41,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                         Volume
                         "default"
                         "Master"
-                        [ "-t" , "<volume> <fc=#00ed3b>\xe638</fc>"
+                        [ "-t" , "<volume> <fc=#c754d8>\xe638</fc>"
                         , "-L" , "40"
                         , "-H" , "90"
                         , "-p" , "4"
@@ -50,7 +50,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                     , Run
                         Weather
                         "LRBS"
-                        [ "-t"       , "<tempC>C <fc=#00edb9>\xf2c9</fc>"
+                        [ "-t"       , "<tempC>C <fc=#c754d8>\xf2c9</fc> <fc=#c754d8>∘</fc>"
                         , "-L"       , "5"
                         , "-H"       , "30"
                         , "--normal" , "green"
@@ -62,14 +62,14 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
                     , Run
                         NotmuchMail
                         "email"
-                        [ MailItem "\xf4a0  " "" "tag:important or tag:important" -- hack because first tag is unread and...
-			, MailItem "\xeb1c  " "" "tag:evie"
-			, MailItem "\xf0ebb  " "" "tag:gmail"
+                        [ MailItem "<fc=#c754d8>\xf4a0</fc>  " "" "tag:important or tag:important" -- hack because first tag is unread and...
+			, MailItem "<fc=#c754d8>\xeb1c</fc>  " "" "tag:evie"
+			, MailItem "<fc=#c754d8>\xf0ebb</fc>  " "" "tag:gmail"
                         ]
                         600
                     , Run
                         DateZone
-                        "%a, %_d %b <fc=#ed006a>%H:%M:%S</fc> <fc=#ee9a00>\xeab0</fc> <hspace=85/>"
+                        " <fc=#c754d8>⟨</fc> <hspace=122/> <fc=#c754d8>⟩</fc><fc=#c754d8> %a, %_d %b %H:%M:%S</fc> <fc=#c754d8>\xeab0</fc> <hspace=2/>"
                         "en_UK.UTF-8"
                         "EET"
                         "date"
