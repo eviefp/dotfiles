@@ -94,7 +94,7 @@ in
           decorations = "all";
           transparent = true;
           dockapp_mode = "none";
-          geometry = "4x1-1922+1058";
+          geometry = "6x1-2116+1059"; # 2150
           background = "#46224c";
           kludges = "force_icons_size";
           grow_gravity = "SW";
