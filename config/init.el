@@ -636,8 +636,7 @@
   (add-hook
    'org-tree-slide-play-hook
    (lambda ()
-     (text-scale-increase 5)
-     (org-tree-slide-presentation-profile)
+     (text-scale-increase 4)
      (org-redisplay-inline-images)))
   (add-hook
    'org-tree-slide-stop-hook
