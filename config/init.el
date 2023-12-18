@@ -624,6 +624,8 @@
 
 (use-package org-tree-slide
   :ensure t
+  :init
+    (setq org-tree-slide-header nil)
   :config
   (general-define-key
    :keymaps 'org-tree-slide-mode-map

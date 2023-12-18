@@ -97,7 +97,7 @@ in
           geometry =
             if cfg.useLaptopXmobar
             then "6x1-210+1059"
-            else "6x1-2116+1059";
+            else "6x1-2120+1059";
           background = "#46224c";
           kludges = "force_icons_size";
           grow_gravity = "SW";
