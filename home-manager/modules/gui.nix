@@ -94,7 +94,10 @@ in
           decorations = "all";
           transparent = true;
           dockapp_mode = "none";
-          geometry = "6x1-2116+1059"; # 2150
+          geometry =
+            if cfg.useLaptopXmobar
+            then "6x1-210+1059"
+            else "6x1-2116+1059";
           background = "#46224c";
           kludges = "force_icons_size";
           grow_gravity = "SW";
