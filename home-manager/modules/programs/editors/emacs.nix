@@ -28,8 +28,6 @@ let
     config = initFile;
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
-      epkgs.org-roam-ui
-      epkgs.ligature
       epkgs.lean4-mode
     ];
 

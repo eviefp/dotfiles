@@ -42,6 +42,14 @@ in
         package = pkgs.qutebrowser.override {
           enableWideVine = true;
         };
+        keyBindings = {
+          normal = {
+            "<Ctrl-d>" = "tab-close";
+          };
+        };
+        extraConfig = ''
+          config.unbind('d')
+        '';
         settings = {
           editor.command = [ "kitty" "-e" "nvim" "{}" ];
           auto_save.session = true;
@@ -63,7 +71,7 @@ in
               prompt = false;
             };
             position = "bottom";
-            remove_finished = 5000;
+            remove_finished = 10000;
           };
           tabs = {
             position = "right";
