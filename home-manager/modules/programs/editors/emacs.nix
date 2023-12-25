@@ -85,6 +85,7 @@ in
       else
         [
           package-desktop
+          pkgs.python3 # needed by emacs-elisp-autofmt
           pkgs.graphviz # dot, needed for org-roam
           pkgs.gnome.zenity # needed for the color picker
         ];
