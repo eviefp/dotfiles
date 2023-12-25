@@ -118,12 +118,11 @@ in
       xscreensaver = {
         enable = true;
         settings = {
-          fadeTicks = 20;
           lock = false;
           mode = "blank";
           dpmsEnabled = true;
           splash = false;
-          fade = true;
+          fade = false;
         };
       };
     };

@@ -66,7 +66,7 @@ Config { font = "xft:hasklug nerd font mono:weight=Bold:size=10:antialias=true"
 			, MailItem "<fc=#c754d8>\xeb1c</fc>  " "" "tag:evie"
 			, MailItem "<fc=#c754d8>\xf0ebb</fc>  " "" "tag:gmail"
                         ]
-                        600
+                        100
                     , Run
                         DateZone
                         " <fc=#c754d8>⟨</fc> <hspace=122/> <fc=#c754d8>⟩</fc><fc=#c754d8> %a, %_d %b %H:%M:%S</fc> <fc=#c754d8>\xeab0</fc> <hspace=2/>"

@@ -60,6 +60,12 @@
 (setq evie-file-todo "~/code/personal-org/todo.org")
 (setq evie-file-refile "~/code/personal-org/refile.org")
 
+(setq send-mail-function 'sendmail-send-it
+      sendmail-program "msmtp"
+      mail-specify-envelope-from t
+      message-sendmail-envelope-from 'header
+      mail-envelope-from 'header)
+
 (defun start-term ()
   (interactive)
   (evil-window-vsplit)
@@ -124,31 +130,17 @@
        :sort-order newest-first)
       )))
 
-
-  ;; :general
-  ;; (general-define-key
-  ;;  :states '(normal visual)
-  ;;  :keymaps 'notmuch-search-mode-map
-  ;;  "RET" 'notmuch-search-show-thread))
-
-(setq send-mail-function 'sendmail-send-it
-      sendmail-program "msmtp"
-      mail-specify-envelope-from t
-      message-sendmail-envelope-from 'header
-      mail-envelope-from 'header)
-
 ;; evil
 (use-package evil
     :ensure t
     :init
-    (progn
         (setq evil-want-C-u-scroll t)
 	(setq evil-want-C-d-scroll t)
         (setq evil-vsplit-window-right t)
         (setq evil-want-integration t)
         (setq evil-want-keybinding nil)
         (evil-mode 1)
-        (evil-declare-change-repeat 'company-complete)))
+        (evil-declare-change-repeat 'company-complete))
 
 (use-package evil-collection
   :after evil
@@ -163,10 +155,9 @@
 (use-package evil-surround
   :ensure t
   :init
-  (progn
-    (global-evil-surround-mode 1)
-    (evil-define-key 'visual evil-surround-mode-map "s" 'evil-surround-region)
-    (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)))
+      (global-evil-surround-mode 1)
+      (evil-define-key 'visual evil-surround-mode-map "s" 'evil-surround-region)
+      (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region))
 
 ;; rainbow-delimiters doesn't work with use-package
 ;; but also, I don't think I like smartparens
@@ -174,6 +165,7 @@
 (add-hook 'prog-mode-hook (lambda () (setq fill-column 120)))
 (add-hook 'prog-mode-hook (lambda () (column-number-mode)))
 
+;; Display visual hints for some evil commands.
 (use-package evil-goggles
   :ensure t
   :config
@@ -186,7 +178,8 @@
       (which-key-mode 1))
 
 ;; general
-(use-package general :ensure t
+(use-package general
+    :ensure t
     :config
     (general-evil-setup)
     (setq general-default-keymaps 'evil-normal-state-map)
@@ -215,7 +208,7 @@
      "g c c"     'comment-line
      "SPC n n"   'notmuch
      "SPC b d"   'kill-this-buffer
-     "SPC f b"   'switch-to-buffer
+     "SPC f b"   'ibuffer
      "SPC q"     'save-buffers-kill-terminal
      "SPC a d"   'dired
      "SPC t f"   'display-fill-column-indicator-mode
@@ -271,14 +264,14 @@
 ;; magit
 (use-package magit
    :ensure t
+   :init
+   (setq magit-completing-read-function 'ivy-completing-read)
    :general
    (general-define-key
     :keymaps 'normal
     "SPC g s" 'magit-status
     "SPC g b" 'magit-blame
-    "SPC g c" 'magit-blame-cycle-style)
-   :init
-   (setq magit-completing-read-function 'ivy-completing-read))
+    "SPC g c" 'magit-blame-cycle-style))
 
 (use-package git-gutter
     :ensure t
@@ -303,17 +296,27 @@
     (setq ivy-use-selectable-prompt t)
     (setq ivy-initial-inputs-alist nil)
     :config
-    (ivy-mode 1)
+      (ivy-mode 1)
     :general
     (general-define-key
      :keymaps 'ivy-minibuffer-map
      "C-j" 'ivy-next-line
      "C-k" 'ivy-previous-line
      "C-i" 'ivy-occur
-     "C-o" 'ivy-occur)
-    (general-define-key
+     "C-o" 'ivy-occur
      :keymaps 'ivy-switch-buffer-map
      "C-k" 'ivy-previous-line))
+
+;; completion
+(use-package avy
+    :ensure t
+    :config
+    :general
+    (general-define-key
+     :keymaps 'normal
+     "f" 'avy-goto-char
+     "F" 'avy-goto-char-timer
+     "t" 'avy-goto-line))
 
 (use-package counsel :ensure t
     :general
@@ -331,13 +334,32 @@
      "SPC w m" 'ivy-wgrep-change-to-wgrep-mode
      ))
 
-
 (use-package swiper
     :ensure t
     :general
     (general-define-key
         :keymaps 'normal
         "SPC f s" 'swiper))
+
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode)
+  :general
+  (general-define-key
+    :keymaps 'normal
+    "SPC u t" 'undo-tree-visualize
+  ))
+
+(use-package ace-window
+  :ensure t
+  :init
+    (setq aw-dispatch-always t)
+    (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :general
+  (general-define-key
+   :keymaps 'normal
+   "SPC w w" 'ace-window))
 
 ;; lsp
 (use-package lsp-mode
@@ -346,10 +368,6 @@
       (setq lsp-enable-folding nil)
       (setq lsp-enable-file-watchers nil)
       (setq lsp-enable-symbol-highlighting nil)
-      ;; (setq lsp-log-io nil)
-      ;; (setq lsp-modeline-code-actions-face '((t nil)))
-      ;; (setq lsp-modeline-code-actions-segments '(icon name))
-      ;; (setq lsp-modeline-diagnostics-enable nil)
       (setq lsp-haskell-server-wrapper-function
 	    (lambda (argv)
               (append
@@ -359,7 +377,6 @@
                (list (concat (file-name-directory (haskell-cabal-find-file)) "shell.nix"))
                )
               ))
-	    ;; (defun counsel-up-directory ()
     :config
       (add-to-list 'lsp-language-id-configuration
         '(nix-mode . "nix"))
@@ -427,8 +444,7 @@
     :general
     (general-define-key
      :keymaps 'insert
-     "C-SPC" 'company-complete)
-    (general-define-key
+     "C-SPC" 'company-complete
      :keymaps 'company-active-map
      "<tab>" 'company-complete-selection
      "C-j" 'company-select-next
@@ -447,10 +463,6 @@
   (setq lsp-haskell-diagnostics-on-change nil)
   (setq lsp-haskell-liquid-on nil)
   (setq lsp-haskell-completion-snippets-on t)
-  ;; (setq lsp-haskell-format-on-import-on t)
-  ;; (setq lsp-haskell-formatting-provider "ormolu")
-  ;; (setq lsp-haskell-ormolu-on t)
-  ;; (setq lsp-haskell-stylish-haskell-on nil)
   (setq lsp-haskell-tactic-on t))
 
 (use-package yuck-mode
@@ -468,7 +480,6 @@
   (psc-ide-mode)
   (company-mode)
   (flycheck-mode))
-  ;; (setq-local flycheck-check-syntax-automatically '(mode-enabled save)))
 
 (use-package psc-ide
   :ensure t
@@ -523,9 +534,7 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init
-    ;; (setq markdown-command "multimarkdown")
     (setq markdown-fontify-code-blocks-natively t)
-  :config
   :general
   (general-define-key
    :keymaps 'normal
@@ -536,7 +545,6 @@
   :ensure t
   :init
   (pdf-tools-install))
-  ;; TODO: evil keybindings
 
 (use-package lsp-latex
   :ensure t
@@ -587,16 +595,6 @@
 (use-package org-roam
   :ensure t
   :init
-    ;; (setq org-roam-capture-templates
-    ;; 	  '(("d" "default" plain "%?"
-    ;; 	     :target (file+head "%<%Y%m%d%H%M%S>-${slug}"
-    ;; 	                        "#+title: ${title}\n#+created: %U\n#+last_modified: %U\n#+roam_alias:\n#+roam_tags:\n#+roam_key:\n\n"
-    ;; 	     ))))
-    ;; (setq org-roam-dailies-capture-templates
-    ;; 	 '(("d" "default" entry
-    ;;        #'org-roam-capture--get-point
-    ;;        "* %?"
-    ;; 	   :target (file+head "daily/%<%Y-%m-%d>" "#+title: %<%Y-%m-%d>\n\n"))))
     (setq org-roam-directory "~/code/personal-org/roam")
     (setq org-roam-dailies-directory "daily/") ;; relative to roam-directory
     (setq org-roam-index-file "~/code/personal-org/roam/index.org")
@@ -616,6 +614,7 @@
    "SPC r I" (lambda () (interactive) (visit-org-roam-index))))
 
 (use-package org-roam-ui
+  :ensure t
   :config
   (setq org-roam-ui-sync-theme t
 	org-roam-ui-follow t
@@ -627,14 +626,6 @@
   :init
     (setq org-tree-slide-header nil)
   :config
-  (general-define-key
-   :keymaps 'org-tree-slide-mode-map
-   :state '(normal visual)
-   "C-<right>" 'org-tree-slide-move-next-tree
-   "C-<left>"  'org-tree-slide-move-previous-tree)
-  (general-define-key
-   :state '(normal visual)
-   "SPC t p" 'org-tree-slide-mode)
   (add-hook
    'org-tree-slide-play-hook
    (lambda ()
@@ -642,9 +633,15 @@
      (org-redisplay-inline-images)))
   (add-hook
    'org-tree-slide-stop-hook
-   (lambda () (text-scale-set 0))))
-
-;; (add-hook 'after-init-hook 'org-roam-mode)
+   (lambda () (text-scale-set 0)))
+  :general
+  (general-define-key
+   :keymaps 'org-tree-slide-mode-map
+   :state '(normal visual)
+   "C-<right>" 'org-tree-slide-move-next-tree
+   "C-<left>"  'org-tree-slide-move-previous-tree
+   :state '(normal visual)
+   "SPC t p" 'org-tree-slide-mode))
 
 ;; term
 (use-package vterm
@@ -657,8 +654,9 @@
 ;; indent guide
 (use-package indent-guide
   :ensure t
-  :config
+  :init
      (setq indent-guide-char ".")
+  :config
      (indent-guide-global-mode))
 
 ;; colors
@@ -676,7 +674,7 @@
    :keymaps 'normal
    "SPC c c" 'zenity-cp-color-at-point-dwim))
 
-;; theme
+;; theme -- has a bug and fails
 ;; (use-package doom-themes
 ;;   :ensure t
 ;;   :init
@@ -778,6 +776,7 @@
 (require 'lean4-mode)
 
 (use-package ligature
+  :ensure t
   :config
   (ligature-set-ligatures 't '("<*" "<*>" "<+>" "<$>" "***" "<|" "|>" "<|>" "!!" "||" "===" "==>" "<<<" ">>>" "<>" "+++" "<-" "->" "=>" ">>" "<<" ">>=" "=<<" ".." "..." "::" "-<" ">-" "-<<" ">>-" "++" "/=" "=="))
   (global-ligature-mode t))
