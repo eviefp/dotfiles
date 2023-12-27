@@ -23,6 +23,7 @@ in
 
       return {
         default_prog = {"${pkgs.fish}/bin/fish"},
+        enable_wayland = true,
         -- launch_menu = {},
         font = wezterm.font('Hasklug Nerd Font Mono', { weight = "Regular", stretch = "Normal", italic = false }),
         check_for_updates = false,

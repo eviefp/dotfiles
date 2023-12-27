@@ -13,6 +13,7 @@
     ../modules/fonts.nix
     ../modules/system.nix
     ../modules/services/calendar-sync.nix
+    ../modules/hyprland.nix
   ];
 
   evie.programs = {
@@ -21,6 +22,7 @@
     browsers.enable = true;
     bower.enable = true;
     chat.enable = true;
+    kitty.enable = true;
 
     dev = {
       haskell.enable = true;

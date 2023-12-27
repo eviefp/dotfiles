@@ -8,8 +8,14 @@ let
   initFile = ../../../../config/init.el;
   lean4mode = epkgs: epkgs.trivialBuild {
     pname = "lean4-mode";
-    src = lean4-mode;
+    src = lib.cleanSource lean4-mode;
     version = "1";
+
+    # this collides with
+    configurePhase = ''
+      rm -rf LICENSE
+    '';
+
     buildPhase = ''
       runHook preBuild
       emacs -L . --eval '(setq max-lisp-eval-depth 4000 max-specpdl-size 4000)' --batch -f batch-byte-compile *.el

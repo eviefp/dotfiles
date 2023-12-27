@@ -27,10 +27,24 @@
       url = github:eviefp/nix-neovim/main;
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
+    grab-workspace = {
+      url = "github:CMurtagh-LGTM/grab-workspace"; # https://github.com/CMurtagh-LGTM/grab-workspace
+      flake = false;
+    };
+
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hyprpaper }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -48,24 +62,26 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim lean4-mode;
+        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper;
       };
     in
     {
-      nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem {
-        system = system;
-        modules =
-          [
-            ./system/thelxinoe/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = home-manager-special-args;
-              home-manager.users.evie = import ./home-manager/thelxinoe/home.nix;
-            }
-          ];
-      };
+      nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem
+        {
+          system = system;
+          specialArgs = { hyprland = hyprland; };
+          modules =
+            [
+              ./system/thelxinoe/configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = home-manager-special-args;
+                home-manager.users.evie = import ./home-manager/thelxinoe/home.nix;
+              }
+            ];
+        };
 
       nixosConfigurations."janus" = nixpkgs.lib.nixosSystem {
         system = system;

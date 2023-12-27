@@ -3,7 +3,7 @@
   *
   * XServer, audio, and video settings.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, hyprland, ... }:
 let cfg = config.evie.xserver;
 in
 {
@@ -23,6 +23,15 @@ in
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
+      programs.hyprland = {
+        enable = true;
+        package = hyprland.packages.${pkgs.system}.hyprland;
+        xwayland.enable = true;
+      };
+      services.pipewire = {
+        enable = true;
+        wireplumber.enable = true;
+      };
       services = {
         xserver = {
           enable = true;
@@ -57,7 +66,7 @@ in
             Option "DPMS" "false"
           '';
           windowManager.xmonad = {
-            enable = true;
+            enable = false;
             enableContribAndExtras = true;
             config = ../../config/xmonad/xmonad.hs;
             haskellPackages = pkgs.haskell.packages.ghc946;
@@ -79,22 +88,26 @@ in
             plasma5.enable = false;
             xterm.enable = false;
           };
-          displayManager = {
-            defaultSession = "none+xmonad";
-            gdm.enable = true;
-            sessionCommands = ''
-              setxkbmap -option caps:none
-              xmodmap -e "keycode 66 = Multi_key"
-              export XCOMPOSEFILE = /home/evie/.XCompose
-            '';
+          displayManager.sddm = {
+            enable = true;
+            wayland.enable = true;
           };
+          # displayManager = {
+          #   defaultSession = "hyprland";
+          # gdm.enable = true;
+          # sessionCommands = ''
+          #   setxkbmap -option caps:none
+          #   xmodmap -e "keycode 66 = Multi_key"
+          #   export XCOMPOSEFILE = /home/evie/.XCompose
+          # '';
+          # };
           layout = "us";
-          libinput.enable = true;
+          # libinput.enable = true;
         };
-        picom = {
-          enable = true;
-          fade = true;
-        };
+        # picom = {
+        #   enable = true;
+        #   fade = true;
+        # };
       };
 
       hardware = {
@@ -102,6 +115,9 @@ in
         pulseaudio = {
           enable = true;
           package = pkgs.pulseaudioFull;
+        };
+        nvidia = {
+          modesetting.enable = true;
         };
         opengl = {
           enable = true;

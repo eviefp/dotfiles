@@ -1,0 +1,113 @@
+(deflisten workspaces :initial "[]" "~/.config/eww/scripts/get-workspaces.sh")
+(deflisten current_workspace :initial "1" "~/.config/eww/scripts/get-active-workspace.sh")
+(deflisten active_window :initial "1" "~/.config/eww/scripts/get-active-window.sh")
+(defpoll mail-important :interval "10s" `notmuch count tag:important`)
+(defpoll mail-unread :interval "10s" `notmuch count tag:unread`)
+(defpoll sound :initial `{"volume": 100, "icon": "./assets/volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
+(defwidget workspaces []
+  (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly true
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id}" :class "workspace-label" :width 3)
+            )
+          )
+        )
+      )
+    )
+  )
+
+(defwidget active-window []
+	   (box
+	    :halign "start"
+	    :class "active-window"
+	    (label
+	     :limit-width 35
+             :width 400
+	     :halign "start"
+	     :show-truncated "true"
+	     :text "${active_window}")))
+
+(defwidget monitor [monitor-text monitor-icon]
+	   (box
+	    :class "monitor"
+	    :halign "start"
+	    :hexpand false
+	    :space-evenly false
+	    (image
+	     :path monitor-icon
+	     :class "monitor-image"
+	     :image-width 20
+	     :image-height 20)
+	    (label
+	     :text monitor-text)))
+
+(defwidget audio []
+	   (box
+	    :class "audio-box"
+	    :halign "start"
+	    :orientation "horizontal"
+	    :space-evenly false
+	    (button
+	     :class "audio-button"
+	     :onclick "amixer set Master toggle"
+	     (image
+	      :path "${sound.icon}"
+	      :image-width 20
+	      :image-height 20))
+	    (scale
+	     :class "audio-scale"
+	     :hexpand true
+	     :width 125
+	     :value "${sound.volume}"
+	     :min 0
+	     :max 101
+	     :onchange "amixer -Mq set Master,0 {}% unmute")))
+
+(defwidget system-time []
+	   (box
+	    :hexpand true
+	    :halign "end"
+	    :class "system-time"
+	     (label :text "${formattime(EWW_TIME, '%a, %d %b %T')}")))
+
+(defwindow statusbar
+	   :monitor 1
+	   :geometry (geometry :x "0%"
+		               :y "5px"
+		               :width "98%"
+		               :height "40px"
+		               :anchor "bottom center")
+	   :stacking "fg"
+	   :exclusive "true"
+	   :focusable "false"
+	   (box :space-evenly false
+		:class "statusbar-box"
+		(workspaces)
+		(active-window)
+		(box
+		     :class "widgets-box"
+		     :space-evenly true
+		     :halign "start"
+		     (monitor
+		      :monitor-text "${round(EWW_CPU.avg, 2)}%"
+		      :monitor-icon "./assets/cpu.png")
+		     (monitor
+		      :monitor-text "${round(EWW_RAM.used_mem_perc, 2)}%"
+		      :monitor-icon "./assets/ram.png")
+		     (monitor
+		      :monitor-text "${round(EWW_NET.enp4s0.NET_DOWN/1024, 0)}"
+		      :monitor-icon "./assets/download.png")
+		     (monitor
+		      :monitor-text "${round(EWW_NET.enp4s0.NET_UP/1024, 0)}"
+		      :monitor-icon "./assets/upload.png")
+		     (monitor
+		      :monitor-text "${mail-important}"
+		      :monitor-icon "./assets/mail.png")
+		     (monitor
+		      :monitor-text "${mail-unread}"
+		      :monitor-icon "./assets/envelope.png"))
+		(audio)
+		(system-time)))
