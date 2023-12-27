@@ -71,3 +71,38 @@ file using the pinned `nixpkgs`/`home-manager` versions.
   - `aiode` is my laptop
   - `fractal` is my home server/nas
   - `thelxinoe` is my main desktop
+
+
+## TODO
+- [ ] rofi config
+  - [ ] use same colors as eww
+  - [ ] transparent background
+- [ ] eww
+  - [ ] statusbar
+    - [ ] tray?
+	- [ ] not sure I love the icons
+	- [ ] turn on tv?
+	- [ ] clicking on cpu/memory/etc maybe opens more info?
+  - [ ] another window that's some sort of overview?
+- [ ] swaync config
+  - [ ] I did nothing to configure it so far
+- [ ] hyprland
+  - [ ] styling/appearance
+  - [ ] workspace rules
+  - [ ] dwindle layout
+  - [ ] animations
+  - [ ] master layout
+  - [ ] xmonad-like binds
+    - [ ] main window button
+    - [ ] maybe default do a 70/30 split or something?
+    - [ ] which other bindings am I missing?
+  - [ ] screen sharing
+- [ ] qutebrowser eating mouse
+- [ ] keyboard stuff, kmonad maybe?
+- [ ] screen locking and/or dpms
+- [ ] screenshot
+- [ ] clipboard https://wiki.hyprland.org/Useful-Utilities/Clipboard-Managers/
+
+
+- awesome wayland https://github.com/natpen/awesome-wayland
+- other https://wiki.hyprland.org/Useful-Utilities/Other/

@@ -9,39 +9,43 @@ in
   imports = [ ];
 
   options.evie.programs.kitty = {
-    enable = lib.options.mkEnableOption "Enable wezterm";
+    enable = lib.options.mkEnableOption "Enable kitty";
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.kitty
-    ];
-#     home.file.".config/wezterm/wezterm.lua".text = ''
-# local wezterm = require 'wezterm'
+  config = lib.mkIf cfg.enable
+    {
+      programs.kitty = {
+        enable = true;
+        settings = {
+          scrollback_lines = 10000;
+          repaint_delay = 4;
 
-# return {
-#   default_prog = {"${pkgs.fish}/bin/fish"},
-#   -- launch_menu = {},
-#   font = wezterm.font('Hasklug Nerd Font Mono', { weight = "Regular", stretch = "Normal", italic = false }),
-#   check_for_updates = false,
-#   font_size = 10,
-#   -- color_scheme = 'Molokai',
-#   enable_tab_bar = false,
-#   window_background_opacity = 0.8,
-#   text_background_opacity = 1.0,
-#   colors = {
-#     foreground = "#c0caf5",
-#     background = "#0a0a0f",
-#     cursor_bg = "#c0caf5",
-#     cursor_border = "#c0caf5",
-#     cursor_fg = "#1a1b26",
-#     selection_bg = "#33467C",
-#     selection_fg = "#c0caf5",
+          font_family = "Hasklug Nerd Font Mono";
+          # bold_font = "Hasklug Bold Nerd Font Complete Mono";
+          # italic_font = "Hasklug Italic Nerd Font Complete Mono";
+          # bold_italic_font = "Hasklug Bold Italic Nerd Font Complete Mono";
+          disable_ligatures = "never";
+          font_size = "10.0";
 
-#     ansi = { "#15161E", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#a9b1d6" },
-#     brights = { "#414868", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#c0caf5" },
-#   },
-# }
-# '';
-  };
+          background_opacity = "0.7";
+          dynamic_background_opacity = "yes";
+          background_tint = "0.8";
+
+          cursor = "#d62dc9";
+          cursor_shape = "block";
+          cursor_blink_interval = 0;
+
+          background = "#46224c";
+          foreground = "#f7b7f3";
+          window_padding_width = 5;
+
+          linux_display_server = "wayland";
+        };
+        shellIntegration = {
+          enableFishIntegration = true;
+          enableBashIntegration = true;
+          mode = "no-cursor";
+        };
+      };
+    };
 }

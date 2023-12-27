@@ -31,8 +31,6 @@ in
         ];
 
         programs = {
-          kitty.enable = true;
-
           bat = {
             enable = true;
             config = {
@@ -233,13 +231,6 @@ in
           joshuto = {
             enable = true;
           };
-
-          # this is pretty janky on xmonad, also don't really need more UI
-          eww = {
-            enable = false;
-            configDir = ./eww/.;
-          };
-
         };
       })
       (lib.mkIf cfg.experimental {

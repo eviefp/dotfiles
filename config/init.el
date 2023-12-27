@@ -25,6 +25,7 @@
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(blink-cursor-mode 0)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Editing
@@ -511,6 +512,11 @@
 
 ;; lua
 (use-package lua-mode :ensure t :init (setq lua-indent-level 4) (setq lua-indent-string-contents t))
+
+(use-package yuck-mode
+  :ensure t
+  :mode ("\\.yuck" . yuck-mode)
+  )
 
 ;; dhall
 (use-package dhall-mode :ensure t :mode "\\.dhall\\'")

@@ -32,8 +32,6 @@ in
       pkgs.transmission-gtk
       pkgs.xournal
 
-      pkgs.pipewire # used to create multi audio sinks
-
       # X-server related
       pkgs.haskellPackages.xmobar
       pkgs.pass
@@ -77,18 +75,11 @@ in
       mpv = {
         enable = true;
       };
-
-      rofi = {
-        enable = true;
-        cycle = true;
-        pass = { enable = true; };
-        theme = "Monokai";
-      };
     };
 
     services = {
       stalonetray = {
-        enable = true;
+        enable = false;
         package = pkgs.stalonetray;
         config = {
           decorations = "all";
@@ -116,7 +107,7 @@ in
       };
 
       xscreensaver = {
-        enable = true;
+        enable = false;
         settings = {
           lock = false;
           mode = "blank";

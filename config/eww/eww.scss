@@ -1,0 +1,78 @@
+$bg-color: #46224c;
+$fg-color: #f7b7f3;
+$bright: #c934f3;
+
+// * { all: unset; }
+
+.statusbar {
+    border-radius: 10px;
+    font-family: Hasklug Nerd Font Mono;
+    font-size: 16px;
+    background-color: rgba($bg-color, 0.6);
+    border: 1px solid $fg-color;
+    color: $bright;
+}
+
+.statusbar-box {
+    padding: 0 1em;
+}
+
+.workspace-entry {
+    color: $fg-color;
+}
+
+.current {
+    color: $bright;
+}
+
+.workspace-label {
+}
+
+
+.active-window {
+    border-image: linear-gradient($fg-color, $bright);
+    border-image-width: 0 0 0 2px;
+    border-image-slice: 0 50%;
+    padding-left: 1em;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: $bright;
+}
+
+.widgets-box {
+    border-image: linear-gradient($fg-color, $bright);
+    border-image-width: 0 0 0 2px;
+    border-image-slice: 0 50%;
+    padding-left: 3em;
+    margin-left: 3em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: $bright;
+}
+
+.monitor {
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+}
+
+.monitor-image {
+    margin-right: 5px;
+}
+
+button {
+    all: unset;
+}
+
+scale slider {
+    background-image: linear-gradient($fg-color, $bright);
+    background-size: 25px 25px;
+    min-width: 25px;
+    min-height: 25px;
+}
+
+
+.system-time {
+    // border: 1px solid $bright;
+    // padding-right: 1em;
+}
