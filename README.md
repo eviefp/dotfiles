@@ -74,18 +74,20 @@ file using the pinned `nixpkgs`/`home-manager` versions.
 
 
 ## TODO
-- [ ] rofi config
-  - [ ] use same colors as eww
-  - [ ] transparent background
+- [x] rofi config
+  - [x] use same colors as eww
+  - [x] transparent background
+  - [x] rofi-pass
+- [x] swaync config
+  - [x] basic config
+  - [x] eww integration
 - [ ] eww
   - [ ] statusbar
-    - [ ] tray?
-	- [ ] not sure I love the icons
-	- [ ] turn on tv?
+    - [x] tray? WIP in eww, although not much progress lately?
+	- [x] not sure I love the icons but I tried black both outline and fill and it's worse
 	- [ ] clicking on cpu/memory/etc maybe opens more info?
+	- [ ] turn on tv?
   - [ ] another window that's some sort of overview?
-- [ ] swaync config
-  - [ ] I did nothing to configure it so far
 - [ ] hyprland
   - [ ] styling/appearance
   - [ ] workspace rules
@@ -97,11 +99,12 @@ file using the pinned `nixpkgs`/`home-manager` versions.
     - [ ] maybe default do a 70/30 split or something?
     - [ ] which other bindings am I missing?
   - [ ] screen sharing
-- [ ] qutebrowser eating mouse
+  - [ ] special workspace
+- [ ] qutebrowser eating mouse (should be fixed in an update soon)
 - [ ] keyboard stuff, kmonad maybe?
 - [ ] screen locking and/or dpms
-- [ ] screenshot
-- [ ] clipboard https://wiki.hyprland.org/Useful-Utilities/Clipboard-Managers/
+- [x] screenshot Super + M: grim + slurp + wl-copy
+- [x] clipboard https://wiki.hyprland.org/Useful-Utilities/Clipboard-Managers/
 
 
 - awesome wayland https://github.com/natpen/awesome-wayland

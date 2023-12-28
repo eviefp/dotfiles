@@ -29,14 +29,14 @@ in
 
           background_opacity = "0.7";
           dynamic_background_opacity = "yes";
-          background_tint = "0.8";
+          background_tint = "0.5";
 
           cursor = "#d62dc9";
           cursor_shape = "block";
           cursor_blink_interval = 0;
 
-          background = "#46224c";
-          foreground = "#f7b7f3";
+          background = "#111111";
+          foreground = "#c934f3";
           window_padding_width = 5;
 
           linux_display_server = "wayland";

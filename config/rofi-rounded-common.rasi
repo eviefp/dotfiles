@@ -5,13 +5,14 @@
  *******************************************************************************/
 
 * {
-    bg0:    #212121F2;
-    bg1:    #2A2A2A;
-    bg2:    #3D3D3D80;
+    bg-color: #46224c99;
+
+    bg-bright:    #c934f3FF;
+
+    bright:    #c934f3;
     bg3:    #EC407AF2;
+
     fg0:    #E6E6E6;
-    fg1:    #FFFFFF;
-    fg2:    #969696;
     fg3:    #3D3D3D;
 
     font:   "Roboto 12";
@@ -29,10 +30,10 @@ window {
     width:          800;
     height:         600;
     border-radius:  24px;
-    border-color:       @bg3;
+    border-color:   @bg-bright;
     border:         2px;
 
-    background-color:   @bg0;
+    background-color: @bg-color;
 }
 
 mainbox {
@@ -40,8 +41,8 @@ mainbox {
 }
 
 inputbar {
-    background-color:   @bg1;
-    border-color:       @bg3;
+    background-color:   @bg-color;
+    border-color:       @bg-bright;
 
     border:         2px;
     border-radius:  16px;
@@ -52,7 +53,7 @@ inputbar {
 }
 
 prompt {
-    text-color: @fg2;
+    text-color: @bright;
 }
 
 entry {
@@ -63,8 +64,8 @@ entry {
 message {
     margin:             12px 0 0;
     border-radius:      16px;
-    border-color:       @bg2;
-    background-color:   @bg2;
+    border-color:       @bg-bright;
+    background-color:   @bg-bright;
 }
 
 textbox {
@@ -92,7 +93,7 @@ element normal active {
 }
 
 element selected normal, element selected active {
-    background-color:   @bg3;
+    background-color:   @bright;
 }
 
 element-icon {
@@ -111,6 +112,6 @@ button {
 }
 
 button.selected {
-    background-color: @bg3;
+    background-color: @bright;
     border-radius:  12px;
 }
