@@ -50,20 +50,38 @@ in
       # .. more monitors
     '';
 
-    home.file.".config/wallpaper/1.jpg".source = ../../config/wallpapers/1.jpg;
-    home.file.".config/wallpaper/2.jpg".source = ../../config/wallpapers/2.jpg;
-    home.file.".config/wallpaper/3.jpg".source = ../../config/wallpapers/3.jpg;
+    # home.file.".config/wallpaper/1.jpg".source = ../../config/wallpapers/1.jpg;
+    # home.file.".config/wallpaper/2.jpg".source = ../../config/wallpapers/2.jpg;
+    # home.file.".config/wallpaper/3.jpg".source = ../../config/wallpapers/3.jpg;
+    home.file.".config/wallpaper" = {
+      source = ../../config/wallpapers;
+      recursive = true;
+    };
+
+    home.file.".config/swaync" = {
+      source = ../../config/swaync;
+      recursive = true;
+    };
 
     home.packages = [
       pkgs.libsForQt5.qtwayland
       pkgs.libsForQt5.qt5ct
       pkgs.qt6.qtwayland
+      pkgs.qt6Packages.qt6ct
       pkgs.libva
       pkgs.swaynotificationcenter
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
       hyprpaper.packages.${pkgs.system}.hyprpaper
       pkgs.socat # needed by eww
+
+      # screenshot; pkgs.grimblast also works with 'grimblast copy area'
+      pkgs.grim
+      pkgs.slurp
+      pkgs.wl-clipboard
+
+      # clipboard history
+      pkgs.cliphist
     ];
 
     programs = {
@@ -74,6 +92,9 @@ in
         pass = {
           enable = true;
         };
+        plugins = [
+          pkgs.rofi-pass-wayland
+        ];
         # theme = "purple";
         theme = ./../../config/rofi-rounded-common.rasi;
         extraConfig = {
@@ -88,7 +109,7 @@ in
           kb-remove-to-eol = "";
           kb-accept-entry = "Return";
           kb-mode-complete = "";
-          kb-remove-char-back = "";
+          kb-remove-char-back = "BackSpace";
         };
       };
 
@@ -109,31 +130,26 @@ in
       ];
       extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        # monitor=,preferred,auto,auto
         monitor=DP-1,1920x1080@239.76,0x0,1
         monitor=DP-2,1920x1080@239.76,1920x0,1
         monitor=DP-3,1920x1080@239.76,3840x0,1
         monitor=HDMI-A-2,disable
 
+        # notifications, wallpaper, status bar
+        exec-once = swaync
+        exec-once = hyprpaper
+        exec-once eww d & eww open statusbar
 
-
-        # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-
-        # Execute your favorite apps at launch
-        # exec-once = waybar & hyprpaper & firefox
-        exec-once = swaync & hyprpaper & eww d & eww open statusbar
+        # clipboard history
+        exec-once = wl-paste --type text --watch cliphist store #Stores only text data
+        exec-once = wl-paste --type image --watch cliphist store #Stores only image data
 
         # Source a file (multi-file configs)
         # source = ~/.config/hypr/myColors.conf
 
-        # Set programs that you use
-        $terminal = kitty
-        $fileManager = dolphin
-        $menu = rofi -show run
-
         # Some default env vars.
         env = XCURSOR_SIZE,24
-        env = QT_QPA_PLATFORMTHEME,qt5ct # change to qt6ct if you have that
+        env = QT_QPA_PLATFORMTHEME,qt6ct # change to qt6ct if you have that
 
         # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
         input {
@@ -207,7 +223,7 @@ in
 
         master {
             # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-            new_is_master = true
+            new_is_master = false
         }
 
         gestures {
@@ -233,6 +249,13 @@ in
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
         windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
 
+        # Set programs that you use
+        $terminal = kitty
+        $menu = rofi -show run
+        $pass = rofi-pass
+        $screenshot = grim -g "$(slurp)" - | wl-copy
+        $cliphist = cliphist list | rofi -dmenu | cliphist decode | wl-copy
+        $notifications = swaync-client -t -sw
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
         $mainMod = SUPER
@@ -241,9 +264,12 @@ in
         bind = $mainMod, Return, exec, $terminal
         bind = $mainMod, C, killactive,
         bind = $mainMod, Q, exit,
-        # bind = $mainMod, E, exec, $fileManager
+        bind = $mainMod, M, exec, $screenshot
+        bind = $mainMod, V, exec, $cliphist
         bind = $mainMod, F, togglefloating,
         bind = $mainMod, P, exec, $menu
+        bind = $mainMod, O, exec, $pass
+        bind = $mainMod, N, exec, $notifications
         bind = $mainMod, X, pseudo, # dwindle
         bind = $mainMod, Space, togglesplit, # dwindle
         bind = $mainMod, G, fullscreen, 0

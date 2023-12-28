@@ -1,8 +1,9 @@
 (deflisten workspaces :initial "[]" "~/.config/eww/scripts/get-workspaces.sh")
 (deflisten current_workspace :initial "1" "~/.config/eww/scripts/get-active-workspace.sh")
 (deflisten active_window :initial "1" "~/.config/eww/scripts/get-active-window.sh")
-(defpoll mail-important :interval "10s" `notmuch count tag:important`)
-(defpoll mail-unread :interval "10s" `notmuch count tag:unread`)
+(defpoll mail-important :initial "0" :interval "10s" "notmuch count tag:important")
+(defpoll mail-unread :initial "0" :interval "10s" "notmuch count tag:unread")
+(deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll sound :initial `{"volume": 100, "icon": "./assets/volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
@@ -30,19 +31,21 @@
 	     :show-truncated "true"
 	     :text "${active_window}")))
 
-(defwidget monitor [monitor-text monitor-icon]
-	   (box
-	    :class "monitor"
-	    :halign "start"
-	    :hexpand false
-	    :space-evenly false
-	    (image
-	     :path monitor-icon
-	     :class "monitor-image"
-	     :image-width 20
-	     :image-height 20)
-	    (label
-	     :text monitor-text)))
+(defwidget monitor [monitor-text monitor-icon ?monitor-click]
+	   (button
+	    :onclick monitor-click
+	    (box
+	     :class "monitor"
+	     :halign "start"
+	     :hexpand false
+	     :space-evenly false
+	     (image
+	      :path monitor-icon
+	      :class "monitor-image"
+	      :image-width 20
+	      :image-height 20)
+	     (label
+	      :text monitor-text))))
 
 (defwidget audio []
 	   (box
@@ -108,6 +111,11 @@
 		      :monitor-icon "./assets/mail.png")
 		     (monitor
 		      :monitor-text "${mail-unread}"
-		      :monitor-icon "./assets/envelope.png"))
+		      :monitor-icon "./assets/envelope.png")
+		     (monitor
+		      :monitor-text "${notifications.text}"
+		      :monitor-icon "./assets/notification-${notifications.alt}.png"
+		      :monitor-click "swaync-client -t -sw")
+		     )
 		(audio)
 		(system-time)))
