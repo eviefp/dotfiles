@@ -13,7 +13,10 @@
     ../modules/services.nix
     ../modules/xserver.nix
     ../modules/users.nix
+    ../modules/kmonad.nix
   ];
+
+  evie.kmonad.enable = true;
 
   evie.network = {
     hostName = "thelxinoe";
@@ -26,7 +29,7 @@
     enableDconf = true;
   };
 
-  evie.services.xcompose = true;
+  evie.services.xcompose = false;
 
   evie.xserver = {
     enable = true;
@@ -34,10 +37,12 @@
     useBluetooth = true;
   };
 
-  services.peroxide = {
-    enable = true;
-    settings = {
-      ServerAddress = "nixos";
+  services = {
+    peroxide = {
+      enable = true;
+      settings = {
+        ServerAddress = "nixos";
+      };
     };
   };
 

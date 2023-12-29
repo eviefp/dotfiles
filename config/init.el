@@ -468,6 +468,8 @@
 
 (use-package yuck-mode :ensure t)
 
+(require 'kbd-mode)
+
 ;; purescript
 (use-package purescript-mode :ensure t :diminish 'purescript-indentation-mode)
 

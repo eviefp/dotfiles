@@ -36,32 +36,6 @@ in
         xserver = {
           enable = true;
           videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
-          xrandrHeads = [
-            {
-              output = "DP-0";
-              primary = false;
-              monitorConfig = ''
-                Option "PreferredMode" "1920x1080_239.76"
-                Option "Position" "0 0"
-              '';
-            }
-            {
-              output = "DP-2";
-              primary = true;
-              monitorConfig = ''
-                Option "PreferredMode" "1920x1080_239.76"
-                Option "Position" "1920 0"
-              '';
-            }
-            {
-              output = "DP-4";
-              primary = false;
-              monitorConfig = ''
-                Option "PreferredMode" "1920x1080_239.76"
-                Option "Position" "3840 0"
-              '';
-            }
-          ];
           monitorSection = ''
             Option "DPMS" "false"
           '';
@@ -90,24 +64,11 @@ in
           };
           displayManager.sddm = {
             enable = true;
+            theme = "/run/current-system/sw/share/sddm/themes/elarun";
             wayland.enable = true;
           };
-          # displayManager = {
-          #   defaultSession = "hyprland";
-          # gdm.enable = true;
-          # sessionCommands = ''
-          #   setxkbmap -option caps:none
-          #   xmodmap -e "keycode 66 = Multi_key"
-          #   export XCOMPOSEFILE = /home/evie/.XCompose
-          # '';
-          # };
           layout = "us";
-          # libinput.enable = true;
         };
-        # picom = {
-        #   enable = true;
-        #   fade = true;
-        # };
       };
 
       hardware = {

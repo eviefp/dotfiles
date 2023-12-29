@@ -1,4 +1,4 @@
-{ lib, config, pkgs, hyprland, grab-workspace, hyprpaper, ... }:
+{ lib, config, pkgs, hyprland, grab-workspace, hycov, hyprpaper, ... }:
 let
   cfg = config.evie.hyprland;
   hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
@@ -82,6 +82,12 @@ in
 
       # clipboard history
       pkgs.cliphist
+
+      # authentication thing
+      # pkgs.libsForQt5.polkit-kde-agent
+
+      #
+      pkgs.tessen
     ];
 
     programs = {
@@ -127,6 +133,7 @@ in
       package = hyprland-package;
       plugins = [
         grab-workspace-package
+        hycov.packages.${pkgs.system}.hycov
       ];
       extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -138,7 +145,7 @@ in
         # notifications, wallpaper, status bar
         exec-once = swaync
         exec-once = hyprpaper
-        exec-once eww d & eww open statusbar
+        exec-once = eww d & eww open statusbar
 
         # clipboard history
         exec-once = wl-paste --type text --watch cliphist store #Stores only text data
@@ -150,13 +157,14 @@ in
         # Some default env vars.
         env = XCURSOR_SIZE,24
         env = QT_QPA_PLATFORMTHEME,qt6ct # change to qt6ct if you have that
+        env = NIXOS_OZONE_WL,hyprland
 
         # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
         input {
             kb_layout = us
             kb_variant =
             kb_model =
-            kb_options =
+            kb_options = ctrl:nocaps
             kb_rules =
 
             follow_mouse = 1
@@ -177,7 +185,10 @@ in
             col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
             col.inactive_border = rgba(595959aa)
 
-            layout = dwindle
+            layout = master
+
+            resize_on_border = true
+            hover_icon_on_border = true
 
             # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
             allow_tearing = false
@@ -187,6 +198,10 @@ in
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
             rounding = 10
+            active_opacity = 0.9
+            inactive_opacity = 0.75
+            fullscreen_opacity = 1
+
 
             blur {
                 enabled = true
@@ -195,8 +210,8 @@ in
             }
 
             drop_shadow = yes
-            shadow_range = 4
-            shadow_render_power = 3
+            shadow_range = 8
+            shadow_render_power = 2
             col.shadow = rgba(1a1a1aee)
         }
 
@@ -234,12 +249,22 @@ in
         misc {
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
             force_default_wallpaper = -1 # Set to 0 to disable the anime mascot wallpapers
+            key_press_enables_dpms = true
         }
 
         # Example per-device config
         # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
         device:epic-mouse-v1 {
             sensitivity = -0.5
+        }
+
+        plugin {
+            hycov {
+                overview_gappo = 60 #gaps width from screen
+                overview_gappi = 24 #gaps width from clients
+                hotarea_size = 10 #hotarea size in bottom left,10x10
+                enable_hotarea = 1 # enable mouse cursor hotarea
+            }
         }
 
         # Example windowrule v1
@@ -249,34 +274,46 @@ in
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
         windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
 
+        windowrulev2 = forcergbx,class:(qutebrowser)
+        windowrulev2 = opacity 1.0 override 0.7,class:(Emacs)
+        windowrulev2 = opacity 1.0 override 0.7,class:(kitty)
+        windowrulev2 = workspace 1,class:(discord)
+        windowrulev2 = workspace 1,class:(Signal)
+
         # Set programs that you use
         $terminal = kitty
         $menu = rofi -show run
-        $pass = rofi-pass
+        $pass = tessen -p pass -d rofi -a autotype
         $screenshot = grim -g "$(slurp)" - | wl-copy
         $cliphist = cliphist list | rofi -dmenu | cliphist decode | wl-copy
         $notifications = swaync-client -t -sw
+        $sleep = sleep 1s; hyprctl dispatch dpms off
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
         $mainMod = SUPER
+        $shiftMod = SUPER_SHIFT
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        bind = $mainMod, Return, exec, $terminal
+        bind = $shiftMod, Return, exec, $terminal
         bind = $mainMod, C, killactive,
-        bind = $mainMod, Q, exit,
+        bind = $shiftMod, Q, exit,
         bind = $mainMod, M, exec, $screenshot
         bind = $mainMod, V, exec, $cliphist
         bind = $mainMod, F, togglefloating,
         bind = $mainMod, P, exec, $menu
         bind = $mainMod, O, exec, $pass
+        bind = $shiftMod, O, toggleOpaque,
         bind = $mainMod, N, exec, $notifications
-        bind = $mainMod, X, pseudo, # dwindle
-        bind = $mainMod, Space, togglesplit, # dwindle
+        # bind = $mainMod, X, pseudo, # dwindle
+        bind = $mainMod, Return, layoutmsg, swapwithmaster
         bind = $mainMod, G, fullscreen, 0
+        bind = $shiftMod, P, exec, $sleep
 
         # Move focus with mainMod + arrow keys
-        bind = $mainMod, J, movefocus, l
-        bind = $mainMod, K, movefocus, r
+        bind = $mainMod, J, layoutmsg, cycleprev
+        bind = $mainMod, K, layoutmsg, cyclenext
+        bind = $mainMod, backslash, layoutmsg, addmaster
+        bind = $mainMod, apostrophe, layoutmsg, removemaster
 
         bind = $mainMod, W, focusmonitor, DP-1
         bind = $mainMod, E, focusmonitor, DP-2
@@ -312,15 +349,24 @@ in
 
         # Example special workspace (scratchpad)
         bind = $mainMod, S, togglespecialworkspace, magic
-        bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+        bind = $shiftMod, S, movetoworkspace, special:magic
 
         # Scroll through existing workspaces with mainMod + scroll
-        bind = $mainMod, mouse_down, workspace, e+1
-        bind = $mainMod, mouse_up, workspace, e-1
+        bind = $mainMod, mouse_down, grab-workspace, e+1
+        bind = $mainMod, mouse_up, grab-workspace, e-1
 
         # Move/resize windows with mainMod + LMB/RMB and dragging
         bindm = $mainMod, mouse:272, movewindow
         bindm = $mainMod, mouse:273, resizewindow
+
+        bind = $shiftMod, x, hycov:enteroverview
+        bind = $shiftMod, c, hycov:leaveoverview
+        bind = $shiftMod, z, hycov:toggleoverview
+
+        bind = $shiftMod, h, hycov:movefocus,l
+        bind = $shiftMod, l, hycov:movefocus,r
+        bind = $shiftMod, j, hycov:movefocus,d
+        bind = $shiftMod, k, hycov:movefocus,u
       '';
     };
   };

@@ -17,6 +17,11 @@
       flake = false;
     };
 
+    kbd-mode = {
+      url = github:kmonad/kbd-mode;
+      flake = false;
+    };
+
     nix-on-droid = {
       url = github:nix-community/nix-on-droid/master;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,12 +33,17 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = github:hyprwm/Hyprland;
     };
 
     grab-workspace = {
-      url = "github:CMurtagh-LGTM/grab-workspace"; # https://github.com/CMurtagh-LGTM/grab-workspace
+      url = github:CMurtagh-LGTM/grab-workspace;
       flake = false;
+    };
+
+    hycov = {
+      url = github:DreamMaoMao/hycov;
+      inputs.hyprland.follows = "hyprland";
     };
 
     hyprpaper = {
@@ -41,10 +51,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    kmonad = {
+      url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
+    };
+
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hyprpaper }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, kmonad, kbd-mode }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -62,17 +76,18 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper;
+        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper hycov kbd-mode;
       };
     in
     {
       nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem
         {
           system = system;
-          specialArgs = { hyprland = hyprland; };
+          specialArgs = { inherit hyprland; };
           modules =
             [
               ./system/thelxinoe/configuration.nix
+              kmonad.nixosModules.default
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
