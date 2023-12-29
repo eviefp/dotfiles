@@ -77,6 +77,26 @@
         "type": "github"
       }
     },
+    "hycov": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1703733059,
+        "narHash": "sha256-9nJzsok/cPLnHkc4ZiTI5ffkZiK42xNTLeAjg0qC/CM=",
+        "owner": "DreamMaoMao",
+        "repo": "hycov",
+        "rev": "ebc72d14fc8af4820d56ecbefa86d8e39c61e5b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DreamMaoMao",
+        "repo": "hycov",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
@@ -142,6 +162,44 @@
         "owner": "hyprwm",
         "repo": "hyprpaper",
         "type": "github"
+      }
+    },
+    "kbd-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1695535151,
+        "narHash": "sha256-YhVUOlUNhWmHQZLI4vCegKPD0/CDD9Dxh3aLrJUyneU=",
+        "owner": "kmonad",
+        "repo": "kbd-mode",
+        "rev": "b9048e928ac403c8a1cf09b4fec75776dc4ecf4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kmonad",
+        "repo": "kbd-mode",
+        "type": "github"
+      }
+    },
+    "kmonad": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1703250206,
+        "narHash": "sha256-oO0bbsYZuL0xGsjk6FSpSVBHZlSVXI9QZdIJcIIB004=",
+        "ref": "refs/heads/master",
+        "rev": "1c4641f063130165516789e842629e437082c5b8",
+        "revCount": 772,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kmonad/kmonad?dir=nix"
+      },
+      "original": {
+        "dir": "nix",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kmonad/kmonad?dir=nix"
       }
     },
     "lean4-mode": {
@@ -331,6 +389,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1653326962,
+        "narHash": "sha256-W8feCYqKTsMre4nAEpv5Kx1PVFC+hao/LwqtB2Wci/8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "41cc1d5d9584103be4108c1815c350e07c807036",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1701693815,
         "narHash": "sha256-7BkrXykVWfkn6+c1EhFA3ko4MLi3gVG0p9G96PNnKTM=",
@@ -1317,12 +1391,15 @@
         "emacs-overlay": "emacs-overlay",
         "grab-workspace": "grab-workspace",
         "home-manager": "home-manager",
+        "hycov": "hycov",
         "hyprland": "hyprland",
         "hyprpaper": "hyprpaper",
+        "kbd-mode": "kbd-mode",
+        "kmonad": "kmonad",
         "lean4-mode": "lean4-mode",
         "nix-neovim": "nix-neovim",
         "nix-on-droid": "nix-on-droid",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       }
     },
     "systems": {
