@@ -67,7 +67,9 @@ Emacs: =config/init.el=
       - [X] not sure I love the icons but I tried black both outline and fill and it's worse
       - [X] next thing on calendar with ability to show next instead
       - [ ] make emacs batch faster because loading the whole config
-        is painfully slow
+          is painfully slow
+	- [ ] problem is the org agenda files are REALLY large due to
+          recursive calendar entries
       - [ ] clicking on cpu/memory/etc maybe opens more info?
       - [X] turn on tv? -- annoyiance that monitor IDs get mixed when
         adding tv with wlr-randr

@@ -31,14 +31,16 @@
 	    :halign "center"
 	    :hexpand false
 	    :class "active-window box"
-	    (label
-	     :width 150
-	     :limit-width 15
-	     :halign "start"
-	     :show-truncated "false"
-	     :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`)))
+	    (button
+	       :onclick "hyprctl dispatch hycov:toggleoverview"
+	      (label
+	       :width 150
+	       :limit-width 15
+	       :halign "start"
+	       :show-truncated false
+	       :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`))))
 
-(defwidget monitor [monitor-text monitor-icon ?monitor-class ?monitor-click ?monitor-rclick]
+(defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick]
 	   (button
 	    :onclick monitor-click
 	    :onrightclick monitor-click
@@ -53,10 +55,11 @@
 	      :image-width 20
 	      :image-height 20)
 	     (label
+	      :xalign 0
 	      :text monitor-text
-	      :limit-width: 6
-	      :show-truncated: false
-	      :width "${monitor-text == "" ? 0 : 60}"
+	      :limit-width monitor-width
+	      :show-truncated false
+	      :width "${monitor-text == "" ? 0 : monitor-width * 10}"
 	      ))))
 
 (defwidget audio []
@@ -107,15 +110,19 @@
 		     :space-evenly false
 		     :halign "start"
 		     (monitor
+		      :monitor-width 6
 		      :monitor-text "${round(EWW_CPU.avg, 2)}%"
 		      :monitor-icon "./assets/cpu.png")
 		     (monitor
+		      :monitor-width 6
 		      :monitor-text "${round(EWW_RAM.used_mem_perc, 2)}%"
 		      :monitor-icon "./assets/ram.png")
 		     (monitor
+		      :monitor-width 6
 		      :monitor-text "${round(EWW_NET.enp4s0.NET_DOWN/1024, 0)}"
 		      :monitor-icon "./assets/download.png")
 		     (monitor
+		      :monitor-width 6
 		      :monitor-text "${round(EWW_NET.enp4s0.NET_UP/1024, 0)}"
 		      :monitor-icon "./assets/upload.png"))
 		(box
@@ -123,23 +130,28 @@
 		     :space-evenly false
 		     :halign "start"
 		     (monitor
+		      :monitor-width 2
 		      :monitor-text "${mail-important}"
 		      :monitor-icon "./assets/mail.png")
 		     (monitor
+		      :monitor-width 2
 		      :monitor-text "${mail-unread}"
 		      :monitor-icon "./assets/envelope.png")
 		     (monitor
+		      :monitor-width 2
 		      :monitor-text "${notifications.text}"
 		      :monitor-icon "./assets/notification-${notifications.alt}.png"
 		      :monitor-click "swaync-client -t -sw")
 		     (monitor
-		      :monitor-text `${cal.b} ${replace(cal.g, "-.*", "") ?: ""}`
+		      :monitor-width 16
+		      :monitor-text `${substring(cal.b, 0, 10)} ${replace(cal.g, "-.*", "") ?: ""}`
 		      :monitor-icon `${cal.f == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
 		      :monitor-click `eww update calEntry="${calEntry + 1}"`
 		      :monitor-rclick `eww update calEntry="${calEntry - 1 < 0 ? 0 : calEntry - 1}"`)
 		     )
 		(audio)
 		(monitor
+		 :monitor-width 0
 		 :monitor-class "box"
 		 :monitor-text ""
 		 :monitor-icon "./assets/tv-${tvStatus}.png"
