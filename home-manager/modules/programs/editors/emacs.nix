@@ -6,6 +6,7 @@
 { lib, config, pkgs, emacs-overlay, lean4-mode, kbd-mode, ... }:
 let
   initFile = ../../../../config/init.el;
+  agendaFile = ../../../../config/agenda.el;
   lean4mode = epkgs: epkgs.trivialBuild {
     pname = "lean4-mode";
     src = lib.cleanSource lean4-mode;
@@ -102,6 +103,7 @@ in
 
     home.file = lib.mkMerge [
       { ".emacs.d/init.el".source = initFile; }
+      { ".emacs.d/agenda.el".source = agendaFile; } # needed for faster batch mode
       (lib.mkIf cfg.locals.enable {
         ".emacs.d/locals.el".source = cfg.locals.file;
       })

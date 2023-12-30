@@ -91,6 +91,9 @@ in
 
       # for eww
       pkgs.csvkit
+
+      # for tv toggle
+      pkgs.wlr-randr
     ];
 
     programs = {
@@ -143,7 +146,7 @@ in
         monitor=DP-1,1920x1080@239.76,0x0,1
         monitor=DP-2,1920x1080@239.76,1920x0,1
         monitor=DP-3,1920x1080@239.76,3840x0,1
-        monitor=HDMI-A-2,disable
+        monitor HDMI-A-2,1920x1080@60,5760x0,1
 
         # notifications, wallpaper, status bar
         exec-once = swaync

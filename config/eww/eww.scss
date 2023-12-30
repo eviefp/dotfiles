@@ -1,28 +1,38 @@
 $bg-color: #46224c;
 $fg-color: #f7b7f3;
 $bright: #c934f3;
+$focused: #ecec49;
 
 // * { all: unset; }
 
 .statusbar {
-    border-radius: 10px;
+    background-color: rgba(#000000, 0.0);
+}
+
+.box {
+    border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
     background-color: rgba($bg-color, 0.9);
     border: 1px solid $bright;
     color: $bright;
+    padding: 0 1em;
+    margin-right: 10px;
 }
 
 .statusbar-box {
-    padding: 0 1em;
+    padding: 0 0.5em;
 }
 
 .workspace-entry {
     color: $fg-color;
+    border-radius: 15px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .current {
-    color: $bright;
+    background-color: $bright;
 }
 
 .workspace-label {
@@ -30,29 +40,14 @@ $bright: #c934f3;
 
 
 .active-window {
-    border-image: linear-gradient($fg-color, $bright);
-    border-image-width: 0 0 0 2px;
-    border-image-slice: 0 50%;
-    padding-left: 1em;
-    margin-left: 1em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
     color: $bright;
 }
 
 .widgets-box {
-    border-image: linear-gradient($fg-color, $bright);
-    border-image-width: 0 0 0 2px;
-    border-image-slice: 0 50%;
-    padding-left: 3em;
-    margin-left: 3em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
     color: $bright;
 }
 
 .monitor {
-    padding-right: 0.5em;
     margin-right: 0.5em;
 }
 
