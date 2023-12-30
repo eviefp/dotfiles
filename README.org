@@ -52,11 +52,10 @@ Emacs: =config/init.el=
   - [X] use same colors as eww
   - [X] transparent background
   - [X] rofi-pass
-- [-] swaync config
+- [X] swaync config
   - [X] basic config
   - [X] eww integration
-  - [ ] background image
-  - [ ] m
+  - [X] background image
 - [ ] sddm styling
   - [ ] icon
 - [ ] keyboard stuff, kmonad maybe?
