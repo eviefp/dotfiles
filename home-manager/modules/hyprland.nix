@@ -86,8 +86,11 @@ in
       # authentication thing
       # pkgs.libsForQt5.polkit-kde-agent
 
-      #
+      # for pass
       pkgs.tessen
+
+      # for eww
+      pkgs.csvkit
     ];
 
     programs = {
@@ -262,8 +265,8 @@ in
             hycov {
                 overview_gappo = 60 #gaps width from screen
                 overview_gappi = 24 #gaps width from clients
-                hotarea_size = 10 #hotarea size in bottom left,10x10
-                enable_hotarea = 1 # enable mouse cursor hotarea
+                hotarea_size = 0 #hotarea size in bottom left,10x10
+                enable_hotarea = 0 # enable mouse cursor hotarea
             }
         }
 
@@ -295,19 +298,20 @@ in
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = $shiftMod, Return, exec, $terminal
-        bind = $mainMod, C, killactive,
         bind = $shiftMod, Q, exit,
+        bind = $shiftMod, O, toggleOpaque,
+        bind = $shiftMod, P, exec, $sleep
+        bind = $shiftMod, T, exec, /home/evie/.config/eww/scripts/toggle-tv.sh
+
+        bind = $mainMod, C, killactive,
         bind = $mainMod, M, exec, $screenshot
         bind = $mainMod, V, exec, $cliphist
         bind = $mainMod, F, togglefloating,
         bind = $mainMod, P, exec, $menu
         bind = $mainMod, O, exec, $pass
-        bind = $shiftMod, O, toggleOpaque,
         bind = $mainMod, N, exec, $notifications
-        # bind = $mainMod, X, pseudo, # dwindle
         bind = $mainMod, Return, layoutmsg, swapwithmaster
         bind = $mainMod, G, fullscreen, 0
-        bind = $shiftMod, P, exec, $sleep
 
         # Move focus with mainMod + arrow keys
         bind = $mainMod, J, layoutmsg, cycleprev

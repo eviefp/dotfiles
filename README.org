@@ -52,10 +52,13 @@ Emacs: =config/init.el=
   - [X] use same colors as eww
   - [X] transparent background
   - [X] rofi-pass
-- [X] swaync config
+- [-] swaync config
   - [X] basic config
   - [X] eww integration
+  - [ ] background image
+  - [ ] m
 - [ ] sddm styling
+  - [ ] icon
 - [ ] keyboard stuff, kmonad maybe?
   - [ ] this is terrible
   - [ ] maybe start here https://xkbcommon.org/doc/current/md_doc_2user-configuration.html
@@ -63,20 +66,28 @@ Emacs: =config/init.el=
   - [-] statusbar
     - [-] tray? WIP in eww, although not much progress lately?
       - [X] not sure I love the icons but I tried black both outline and fill and it's worse
+      - [X] next thing on calendar with ability to show next instead
+      - [ ] make emacs batch faster because loading the whole config
+        is painfully slow
       - [ ] clicking on cpu/memory/etc maybe opens more info?
-      - [ ] turn on tv?
+      - [ ] turn on tv? -- annoyiance that monitor IDs get mixed when
+        adding tv with wlr-randr
+    - [ ] binds
+      - [ ] microphone
+      - [ ] switch audio? or just switch to tv?
   - [ ] another window that's some sort of overview?
-- [ ] discord: update start script to use ozone argument
+- [X] discord: update start script to use ozone argument
+  - [X] figured out I just need an env to exist
 - [-] hyprland
   - [X] styling/appearance
   - [X] workspace rules
   - [X] dwindle layout
   - [X] animations
   - [X] master layout
-  - [ ] binds
-    - [ ] microphone
-    - [ ] switch audio? or just switch to tv?
-  - [ ] screen sharing
+  - [-] screen sharing
+    - [X] chromium and firefox work
+    - [ ] qutebrowser doesn't work
+    - [ ] did not test discord, zoom, etc.
 - [ ] qutebrowser eating mouse (should be fixed in an update soon)
 - [X] screenshot Super + M: grim + slurp + wl-copy
 - [X] clipboard https://wiki.hyprland.org/Useful-Utilities/Clipboard-Managers/

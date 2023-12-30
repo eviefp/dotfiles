@@ -5,6 +5,10 @@
 (defpoll mail-unread :initial "0" :interval "10s" "notmuch count tag:unread")
 (deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll sound :initial `{"volume": 100, "icon": "./assets/volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
+
+(defvar calEntry 0)
+(defpoll cal :initial `{ "a": "", "b": "Loading...", "f": "", "g": "" }` :interval "15s" "~/.config/eww/scripts/get-next-calendar-entry.sh")
+
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
     (box :space-evenly true
@@ -23,17 +27,19 @@
 (defwidget active-window []
 	   (box
 	    :halign "start"
+	    :hexpand false
 	    :class "active-window"
 	    (label
-	     :limit-width 35
-             :width 400
+	     :width 150
+	     :limit-width 15
 	     :halign "start"
-	     :show-truncated "true"
-	     :text "${active_window}")))
+	     :show-truncated "false"
+	     :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`)))
 
-(defwidget monitor [monitor-text monitor-icon ?monitor-click]
+(defwidget monitor [monitor-text monitor-icon ?monitor-click ?monitor-rclick]
 	   (button
 	    :onclick monitor-click
+	    :onrightclick monitor-click
 	    (box
 	     :class "monitor"
 	     :halign "start"
@@ -63,7 +69,7 @@
 	    (scale
 	     :class "audio-scale"
 	     :hexpand true
-	     :width 125
+	     :width 100
 	     :value "${sound.volume}"
 	     :min 0
 	     :max 101
@@ -92,7 +98,7 @@
 		(active-window)
 		(box
 		     :class "widgets-box"
-		     :space-evenly true
+		     :space-evenly false
 		     :halign "start"
 		     (monitor
 		      :monitor-text "${round(EWW_CPU.avg, 2)}%"
@@ -116,6 +122,11 @@
 		      :monitor-text "${notifications.text}"
 		      :monitor-icon "./assets/notification-${notifications.alt}.png"
 		      :monitor-click "swaync-client -t -sw")
+		     (monitor
+		      :monitor-text `[${cal.a}] ${cal.b} ${replace(cal.g, "-.*", "") ?: ""}`
+		      :monitor-icon `${cal.f == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
+		      :monitor-click `eww update calEntry="${calEntry + 1}"`
+		      :monitor-rclick `eww update calEntry="${calEntry - 1 < 0 ? 0 : calEntry - 1}"`)
 		     )
 		(audio)
 		(system-time)))
