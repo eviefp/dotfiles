@@ -186,7 +186,8 @@
 }
 
 .control-center {
-  background: @cc-bg;
+  background: linear-gradient(rgba(120, 120, 120, 0.3), rgba(120, 120, 120, 0.3)), url("/home/evie/.config/swaync/background.jpg");
+  opacity: 0.85;
   border: 2px solid @noti-border-color;
   border-radius: 10px;
   font-family: Hasklug Nerd Font Mono;
