@@ -6,20 +6,22 @@
 (deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll sound :initial `{"volume": 100, "icon": "./assets/volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
 
+(defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
+
 (defvar calEntry 0)
-(defpoll cal :initial `{ "a": "", "b": "Loading...", "f": "", "g": "" }` :interval "15s" "~/.config/eww/scripts/get-next-calendar-entry.sh")
+(defpoll cal :initial `{ "a": "", "b": "Loading...", "f": "", "g": "" }` :interval "5s" "~/.config/eww/scripts/get-next-calendar-entry.sh")
 
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
     (box :space-evenly true
+	 :class "box"
       (label :text "${workspaces}${current_workspace}" :visible false)
+
       (for workspace in workspaces
         (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
           (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
             (label :text "${workspace.id}" :class "workspace-label" :width 3)
-            )
-          )
-        )
+            )))
       )
     )
   )
@@ -28,7 +30,7 @@
 	   (box
 	    :halign "center"
 	    :hexpand false
-	    :class "active-window"
+	    :class "active-window box"
 	    (label
 	     :width 150
 	     :limit-width 15
@@ -36,12 +38,12 @@
 	     :show-truncated "false"
 	     :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`)))
 
-(defwidget monitor [monitor-text monitor-icon ?monitor-click ?monitor-rclick]
+(defwidget monitor [monitor-text monitor-icon ?monitor-class ?monitor-click ?monitor-rclick]
 	   (button
 	    :onclick monitor-click
 	    :onrightclick monitor-click
 	    (box
-	     :class "monitor"
+	     :class "monitor ${monitor-class}"
 	     :halign "start"
 	     :hexpand false
 	     :space-evenly false
@@ -51,11 +53,15 @@
 	      :image-width 20
 	      :image-height 20)
 	     (label
-	      :text monitor-text))))
+	      :text monitor-text
+	      :limit-width: 6
+	      :show-truncated: false
+	      :width "${monitor-text == "" ? 0 : 60}"
+	      ))))
 
 (defwidget audio []
 	   (box
-	    :class "audio-box"
+	    :class "audio-box box"
 	    :halign "start"
 	    :orientation "horizontal"
 	    :space-evenly false
@@ -69,7 +75,7 @@
 	    (scale
 	     :class "audio-scale"
 	     :hexpand true
-	     :width 100
+	     :width 80
 	     :value "${sound.volume}"
 	     :min 0
 	     :max 101
@@ -79,7 +85,7 @@
 	   (box
 	    :hexpand true
 	    :halign "end"
-	    :class "system-time"
+	    :class "system-time box"
 	     (label :text "${formattime(EWW_TIME, '%a, %d %b %T')}")))
 
 (defwindow statusbar
@@ -97,7 +103,7 @@
 		(workspaces)
 		(active-window)
 		(box
-		     :class "widgets-box"
+		     :class "widgets-box box"
 		     :space-evenly false
 		     :halign "start"
 		     (monitor
@@ -111,7 +117,11 @@
 		      :monitor-icon "./assets/download.png")
 		     (monitor
 		      :monitor-text "${round(EWW_NET.enp4s0.NET_UP/1024, 0)}"
-		      :monitor-icon "./assets/upload.png")
+		      :monitor-icon "./assets/upload.png"))
+		(box
+		     :class "notifications-box box"
+		     :space-evenly false
+		     :halign "start"
 		     (monitor
 		      :monitor-text "${mail-important}"
 		      :monitor-icon "./assets/mail.png")
@@ -123,10 +133,15 @@
 		      :monitor-icon "./assets/notification-${notifications.alt}.png"
 		      :monitor-click "swaync-client -t -sw")
 		     (monitor
-		      :monitor-text `[${cal.a}] ${cal.b} ${replace(cal.g, "-.*", "") ?: ""}`
+		      :monitor-text `${cal.b} ${replace(cal.g, "-.*", "") ?: ""}`
 		      :monitor-icon `${cal.f == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
 		      :monitor-click `eww update calEntry="${calEntry + 1}"`
 		      :monitor-rclick `eww update calEntry="${calEntry - 1 < 0 ? 0 : calEntry - 1}"`)
 		     )
 		(audio)
+		(monitor
+		 :monitor-class "box"
+		 :monitor-text ""
+		 :monitor-icon "./assets/tv-${tvStatus}.png"
+		 :monitor-click "~/.config/eww/scripts/toggle-tv.sh")
 		(system-time)))

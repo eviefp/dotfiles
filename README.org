@@ -69,7 +69,7 @@ Emacs: =config/init.el=
       - [ ] make emacs batch faster because loading the whole config
         is painfully slow
       - [ ] clicking on cpu/memory/etc maybe opens more info?
-      - [ ] turn on tv? -- annoyiance that monitor IDs get mixed when
+      - [X] turn on tv? -- annoyiance that monitor IDs get mixed when
         adding tv with wlr-randr
     - [ ] binds
       - [ ] microphone
