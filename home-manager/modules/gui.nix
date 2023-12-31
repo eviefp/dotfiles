@@ -18,12 +18,6 @@ in
 
   config = (lib.mkIf cfg.enable {
     home.packages = [
-      # Screenshot
-      pkgs.scrot
-      pkgs.xclip
-
-      pkgs.shutter
-
       # Multimedia
       pkgs.fdk_aac
       pkgs.paprefs # multi audio sink setup
@@ -31,6 +25,8 @@ in
       pkgs.steam
       pkgs.transmission-gtk
       pkgs.xournal
+
+      pkgs.gimp
 
       # X-server related
       pkgs.haskellPackages.xmobar

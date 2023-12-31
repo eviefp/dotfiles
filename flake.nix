@@ -52,7 +52,7 @@
     };
 
     hyprpicker = {
-      url = "github:eviefp/hyprpicker";
+      url = "github:hyprwm/hyprpicker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

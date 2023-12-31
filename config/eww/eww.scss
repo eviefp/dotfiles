@@ -3,6 +3,9 @@ $fg-color: #f7b7f3;
 $bright: #c934f3;
 $focused: #AE6B33;
 
+$blue: #3fc6de;
+$green: #3fdaa4;
+
 // * { all: unset; }
 
 .statusbar {
@@ -70,4 +73,53 @@ scale slider {
 .system-time {
     // border: 1px solid $bright;
     // padding-right: 1em;
+}
+
+
+.cal {
+    border-radius: 15px;
+    font-family: Hasklug Nerd Font Mono;
+    font-size: 16px;
+  background: linear-gradient(rgba(120, 120, 120, 0.3), rgba(120, 120, 120, 0.3)), url("/home/evie/.config/eww/assets/liberation300.jpg");
+  opacity: 0.85;
+    border: 1px solid $bright;
+    color: $bright;
+    padding: 0 1em;
+    margin-right: 10px;
+    padding: 1rem;
+
+    .calendar-box {
+	border: none;
+	background: transparent;
+    }
+
+    calendar {
+	color: $fg-color;
+    }
+
+    calendar.button:hover {
+	background-color: rgba($bg-color, 0.7);
+    }
+
+    calendar:selected {
+        color: $bright;
+    }
+
+    calendar.header {
+        color: $blue;
+        font-weight: bold;
+    }
+
+    calendar.button {
+        color: $blue;
+    }
+
+    calendar.highlight {
+        color: $green;
+        font-weight: bold;
+    }
+
+    calendar:indeterminate {
+        color: rgb(205, 219, 249);
+    }
 }
