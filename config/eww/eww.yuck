@@ -18,7 +18,7 @@
       (label :text "${workspaces}${current_workspace}" :visible false)
 
       (for workspace in workspaces
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+        (eventbox :onclick "sleep 0.1; hyprctl dispatch workspace ${workspace.id}"
           (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
             (label :text "${workspace.id}" :class "workspace-label" :width 3)
             )))
@@ -32,7 +32,7 @@
 	    :hexpand false
 	    :class "active-window box"
 	    (button
-	       :onclick "hyprctl dispatch hycov:toggleoverview"
+	       :onclick "sleep 0.1; hyprctl dispatch hycov:toggleoverview"
 	      (label
 	       :width 150
 	       :limit-width 15
@@ -70,7 +70,7 @@
 	    :space-evenly false
 	    (button
 	     :class "audio-button"
-	     :onclick "amixer set Master toggle"
+	     :onclick "sleep 0.1; amixer set Master toggle"
 	     (image
 	      :path "${sound.sicon}"
 	      :image-width 20
@@ -87,7 +87,7 @@
 
 	    (button
 	     :class "audio-button"
-	     :onclick "amixer set Capture toggle"
+	     :onclick "sleep 0.1; amixer set Capture toggle"
 	     (image
 	      :path "${sound.micon}"
 	      :image-width 20
@@ -108,7 +108,7 @@
 	    :halign "end"
 	    :class "system-time box"
 	     (button
-	      :onclick "eww open cal --toggle &"
+	      :onclick "sleep 0.1; eww open cal --toggle &"
 	      (label :text "${formattime(EWW_TIME, '%a, %d %b %T')}")
 	      )))
 
@@ -125,7 +125,7 @@
 	   (calendar
 	    :width 200
 	    :class "calendar-box"
-	    :onclick "wl-copy {0}/{1}/{2}")
+	    :onclick "sleep 0.1; wl-copy {0}/{1}/{2}")
 	   )
 
 (defwindow statusbar
@@ -178,13 +178,13 @@
 		      :monitor-width 2
 		      :monitor-text "${notifications.text}"
 		      :monitor-icon "./assets/notification-${notifications.alt}.png"
-		      :monitor-click "swaync-client -t -sw")
+		      :monitor-click "sleep 0.1; swaync-client -t -sw")
 		     (monitor
 		      :monitor-width 16
 		      :monitor-text `${substring(cal.b, 0, 10)} ${replace(cal.g, "-.*", "") ?: ""}`
 		      :monitor-icon `${cal.f == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
-		      :monitor-click `eww update calEntry="${calEntry + 1}"`
-		      :monitor-rclick `eww update calEntry="${calEntry - 1 < 0 ? 0 : calEntry - 1}"`)
+		      :monitor-click `sleep 0.1; eww update calEntry="${calEntry + 1}"`
+		      :monitor-rclick `sleep 0.1; eww update calEntry="${calEntry - 1 < 0 ? 0 : calEntry - 1}"`)
 		     )
 		(audio)
 		(monitor
@@ -192,5 +192,5 @@
 		 :monitor-class "box"
 		 :monitor-text ""
 		 :monitor-icon "./assets/tv-${tvStatus}.png"
-		 :monitor-click "~/.config/eww/scripts/toggle-tv.sh")
+		 :monitor-click "sleep 0.1; ~/.config/eww/scripts/toggle-tv.sh")
 		(system-time)))
