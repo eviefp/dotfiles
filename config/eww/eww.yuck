@@ -107,7 +107,26 @@
 	    :hexpand true
 	    :halign "end"
 	    :class "system-time box"
-	     (label :text "${formattime(EWW_TIME, '%a, %d %b %T')}")))
+	     (button
+	      :onclick "eww open cal --toggle &"
+	      (label :text "${formattime(EWW_TIME, '%a, %d %b %T')}")
+	      )))
+
+(defwindow cal
+	   :monitor 1
+	   :geometry (geometry :x "60px"
+		               :y "10px"
+		               :width "300px"
+		               :height "200px"
+		               :anchor "bottom right")
+	   :stacking "fg"
+	   :exclusive "false"
+	   :focusable "false"
+	   (calendar
+	    :width 200
+	    :class "calendar-box"
+	    :onclick "wl-copy {0}/{1}/{2}")
+	   )
 
 (defwindow statusbar
 	   :monitor 1

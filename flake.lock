@@ -171,15 +171,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1703981990,
+        "lastModified": 1703987863,
         "narHash": "sha256-MHhAk74uk0qHVwSkLCcXLXMe4478M2oZEFPXwjSoo2E=",
-        "owner": "eviefp",
+        "owner": "hyprwm",
         "repo": "hyprpicker",
-        "rev": "846a8fe85eefc7e9caf3d6a4ec2f868b3936d4ad",
+        "rev": "2ef703474fb96e97e03e66e8820f213359f29382",
         "type": "github"
       },
       "original": {
-        "owner": "eviefp",
+        "owner": "hyprwm",
         "repo": "hyprpicker",
         "type": "github"
       }
