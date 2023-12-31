@@ -1,4 +1,4 @@
-{ lib, config, pkgs, hyprland, grab-workspace, hycov, hyprpaper, ... }:
+{ lib, config, pkgs, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, ... }:
 let
   cfg = config.evie.hyprland;
   hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
@@ -73,6 +73,7 @@ in
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
       hyprpaper.packages.${pkgs.system}.hyprpaper
+      hyprpicker.packages.${pkgs.system}.hyprpicker
       pkgs.socat # needed by eww
 
       # screenshot; pkgs.grimblast also works with 'grimblast copy area'
@@ -303,6 +304,7 @@ in
         bind = $shiftMod, Return, exec, $terminal
         bind = $shiftMod, Q, exit,
         bind = $shiftMod, O, toggleOpaque,
+        bind = $shiftMod, I, exec, hyprpicker --format=hex --no-fancy --autocopy
         bind = $shiftMod, P, exec, $sleep
         bind = $shiftMod, T, exec, /home/evie/.config/eww/scripts/toggle-tv.sh
 

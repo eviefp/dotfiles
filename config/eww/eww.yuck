@@ -72,17 +72,35 @@
 	     :class "audio-button"
 	     :onclick "amixer set Master toggle"
 	     (image
-	      :path "${sound.icon}"
+	      :path "${sound.sicon}"
 	      :image-width 20
 	      :image-height 20))
 	    (scale
 	     :class "audio-scale"
 	     :hexpand true
 	     :width 80
-	     :value "${sound.volume}"
+	     :value "${sound.svolume}"
+	     :tooltip "${sound.svolume}"
 	     :min 0
 	     :max 101
-	     :onchange "amixer -Mq set Master,0 {}% unmute")))
+	     :onchange "amixer -Mq set Master,0 {}% unmute")
+
+	    (button
+	     :class "audio-button"
+	     :onclick "amixer set Capture toggle"
+	     (image
+	      :path "${sound.micon}"
+	      :image-width 20
+	      :image-height 20))
+	    (scale
+	     :class "audio-scale"
+	     :hexpand true
+	     :width 80
+	     :value "${sound.mvolume}"
+	     :tooltip "${sound.mvolume}"
+	     :min 0
+	     :max 101
+	     :onchange "amixer -Mq set Capture,0 {}% unmute")))
 
 (defwidget system-time []
 	   (box

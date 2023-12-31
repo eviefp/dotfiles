@@ -164,6 +164,26 @@
         "type": "github"
       }
     },
+    "hyprpicker": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1703981990,
+        "narHash": "sha256-MHhAk74uk0qHVwSkLCcXLXMe4478M2oZEFPXwjSoo2E=",
+        "owner": "eviefp",
+        "repo": "hyprpicker",
+        "rev": "846a8fe85eefc7e9caf3d6a4ec2f868b3936d4ad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eviefp",
+        "repo": "hyprpicker",
+        "type": "github"
+      }
+    },
     "kbd-mode": {
       "flake": false,
       "locked": {
@@ -1394,6 +1414,7 @@
         "hycov": "hycov",
         "hyprland": "hyprland",
         "hyprpaper": "hyprpaper",
+        "hyprpicker": "hyprpicker",
         "kbd-mode": "kbd-mode",
         "kmonad": "kmonad",
         "lean4-mode": "lean4-mode",
