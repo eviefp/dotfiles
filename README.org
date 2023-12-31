@@ -61,6 +61,8 @@ Emacs: =config/init.el=
 - [ ] keyboard stuff, kmonad maybe?
   - [ ] this is terrible
   - [ ] maybe start here https://xkbcommon.org/doc/current/md_doc_2user-configuration.html
+- [ ] update hyprpicker flake to original after
+  https://github.com/hyprwm/hyprpicker/pull/53 is merged
 - [-] eww
   - [-] statusbar
     - [-] tray? WIP in eww, although not much progress lately?
@@ -73,9 +75,9 @@ Emacs: =config/init.el=
       - [ ] clicking on cpu/memory/etc maybe opens more info?
       - [X] turn on tv? -- annoyiance that monitor IDs get mixed when
         adding tv with wlr-randr
-    - [ ] binds
-      - [ ] microphone
-      - [ ] switch audio? or just switch to tv?
+    - [X] binds
+      - [X] microphone
+      - [X] switch audio? or just switch to tv?
   - [ ] another window that's some sort of overview?
 - [X] discord: update start script to use ozone argument
   - [X] figured out I just need an env to exist
