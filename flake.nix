@@ -17,11 +17,6 @@
       flake = false;
     };
 
-    kbd-mode = {
-      url = github:kmonad/kbd-mode;
-      flake = false;
-    };
-
     nix-on-droid = {
       url = github:nix-community/nix-on-droid/master;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,14 +51,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kmonad = {
-      url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
-    };
-
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, kmonad, kbd-mode }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, kmonad }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -81,7 +72,7 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper hycov kbd-mode hyprpicker;
+        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper hycov hyprpicker;
       };
     in
     {

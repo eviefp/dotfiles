@@ -468,9 +468,7 @@
 
 (use-package yuck-mode :ensure t)
 
-(require 'kbd-mode)
-
-;; purescript
+; purescript
 (use-package purescript-mode :ensure t :diminish 'purescript-indentation-mode)
 
 (defun kc/purescript-hook ()
