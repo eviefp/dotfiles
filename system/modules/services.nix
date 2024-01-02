@@ -25,14 +25,14 @@ in
 
       # lorri.enable = true;
 
-      # udev = lib.mkIf cfg.xcompose {
-      #   extraRules = ''
-      #     SUBSYSTEM=="usb", ATTR{idVendor}=="3297", GROUP="plugdev"
-      #     ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.setxkbmap}/bin/setxkbmap -option caps:none"
-      #     ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.xmodmap}/bin/xmodmap -e \"keycode 66 = Multi_key\""
-      #   '';
-      #   path = [ pkgs.xorg.xmodmap pkgs.xorg.setxkbmap ];
-      # };
+      udev = lib.mkIf cfg.xcompose {
+        extraRules = ''
+          SUBSYSTEM=="usb", ATTR{idVendor}=="3297", GROUP="plugdev"
+          ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.setxkbmap}/bin/setxkbmap -option compose:pause"
+        '';
+        # ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.xmodmap}/bin/xmodmap -e \"keycode 66 = Multi_key\""
+        #   path = [ pkgs.xorg.xmodmap pkgs.xorg.setxkbmap ];
+      };
     };
 
     # TODO: This should be in a docker module which also adds the docker group,

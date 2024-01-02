@@ -13,10 +13,9 @@
     ../modules/services.nix
     ../modules/xserver.nix
     ../modules/users.nix
-    ../modules/kmonad.nix
   ];
 
-  evie.kmonad.enable = true;
+
 
   evie.network = {
     hostName = "thelxinoe";

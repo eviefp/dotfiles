@@ -64,7 +64,7 @@ in
         if cfg.useLaptopXmobar
         then ../../config/xmobarrc-laptop
         else ../../config/xmobarrc;
-      # ".XCompose".source = ../../config/XCompose;
+      ".XCompose".source = ../../config/XCompose;
     };
 
     programs = {
