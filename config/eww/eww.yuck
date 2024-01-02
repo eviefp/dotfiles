@@ -9,7 +9,7 @@
 (defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
 
 (defvar calEntry 0)
-(defpoll cal :initial `{ "a": "", "b": "Loading...", "f": "", "g": "" }` :interval "5s" "~/.config/eww/scripts/get-next-calendar-entry.sh")
+(deflisten cal :initial `{ "a": "", "b": "Loading...", "f": "", "g": "" }` "~/.config/eww/scripts/get-next-calendar-entry.sh")
 
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"

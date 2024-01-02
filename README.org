@@ -57,12 +57,10 @@ Emacs: =config/init.el=
 - [ ] eww
   - [ ] statusbar
     - [ ] tray? WIP in eww, although not much progress lately?
-      - [ ] make emacs batch faster because loading the whole config
-          is painfully slow
-	- [ ] problem is the org agenda files are REALLY large due to
-          recursive calendar entries
-      - [ ] clicking on cpu/memory/etc maybe opens more info?
-        adding tv with wlr-randr
+      - [ ] problem is the org agenda files are REALLY large due to
+        recursive calendar entries
+    - [ ] clicking on cpu/memory/etc maybe opens more info?
+      adding tv with wlr-randr
     - [ ] calendar
       - [ ] would like to be able to have a hover background color
   - [ ] another window that's some sort of overview?

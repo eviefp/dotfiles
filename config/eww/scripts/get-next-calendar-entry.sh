@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
 
+while :; do
+
 entry=`eww get calEntry`
 
-emacs \
-      -batch \
-      -l ~/.emacs.d/agenda.el \
-      -eval '(org-batch-agenda-csv "a")' \
-      2>/dev/null \
-	  | csvjson --no-header-row \
-	  | jq 'nth('$entry'; .[] | select(.a != null) | select(.f > (now | strftime("%Y-%m-%d")) or (.g[0:5] > (now | strftime("%H:%M")))))'
+result=`emacs \
+        -batch \
+        -l ~/.emacs.d/agenda.el \
+        -eval '(org-batch-agenda-csv "a")' \
+        2>/dev/null \
+  	  | csvjson --no-header-row \
+  	  | jq 'nth('$entry'; .[] | select(.a != null) | select(.f > (now | strflocaltime("%Y-%m-%d")) or (.g[0:5] > (now | strflocaltime("%H:%M")))))'`
 #                        array ^    ^^ nonempty            either tomorrow+ ^^^^                        ^^^^ or later than now
+  echo "${result//[$'\t\r\n ']}"
+  sleep 10s
+
+done
+
+# arg=`cal="'${cal//[$'\t\r\n ']}'"`
+# eww update $arg
 
 # Sample output of batch & csvjson:
 #[
