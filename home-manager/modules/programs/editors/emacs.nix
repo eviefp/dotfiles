@@ -3,7 +3,7 @@
   *
   * Emacs package using emacs-overlay.
   **************************************************************************/
-{ lib, config, pkgs, emacs-overlay, lean4-mode, kbd-mode, ... }:
+{ lib, config, pkgs, emacs-overlay, lean4-mode, ... }:
 let
   initFile = ../../../../config/init.el;
   agendaFile = ../../../../config/agenda.el;
@@ -27,18 +27,11 @@ let
     ];
   };
 
-  kbdmode = epkgs: epkgs.trivialBuild {
-    pname = "kbd-mode";
-    src = lib.cleanSource kbd-mode;
-    version = "1";
-  };
-
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
       epkgs.lean4-mode
-      epkgs.kbd-mode
     ];
 
     package = pkgs.emacs-git.override {
@@ -49,7 +42,6 @@ let
 
     override = final: prev: {
       lean4-mode = (lean4mode prev);
-      kbd-mode = (kbdmode prev);
     };
   };
   package-term-only = pkgs.emacsWithPackagesFromUsePackage {
