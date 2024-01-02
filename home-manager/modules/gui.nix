@@ -34,6 +34,8 @@ in
       pkgs.passff-host
       pkgs.pinentry-gnome
       pkgs.xdg_utils
+
+      pkgs.audacity
     ];
 
     home.file = {

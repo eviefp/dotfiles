@@ -54,7 +54,7 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, kmonad }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -83,7 +83,6 @@
           modules =
             [
               ./system/thelxinoe/configuration.nix
-              kmonad.nixosModules.default
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
