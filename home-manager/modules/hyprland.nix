@@ -42,8 +42,8 @@ in
       # .. more preloads
 
       #set the default wallpaper(s) seen on inital workspace(s) --depending on the number of monitors used
-      wallpaper = DP-1,~/.config/wallpaper/1.jpg
-      wallpaper = DP-2,~/.config/wallpaper/2.jpg
+      wallpaper = DP-1,~/.config/wallpaper/2.jpg
+      wallpaper = DP-2,~/.config/wallpaper/1.jpg
       wallpaper = DP-3,~/.config/wallpaper/3.jpg
       #if more than one monitor in use, can load a 2nd image
       # wallpaper = monitor2,/path/to/next_image.png
