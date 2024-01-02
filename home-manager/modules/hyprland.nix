@@ -95,6 +95,10 @@ in
 
       # for tv toggle
       pkgs.wlr-randr
+
+      # random stuff
+      pkgs.wev
+      pkgs.wtype
     ];
 
     programs = {
@@ -171,7 +175,7 @@ in
             kb_layout = us
             kb_variant =
             kb_model =
-            kb_options = ctrl:nocaps
+            kb_options = compose:pause
             kb_rules =
 
             follow_mouse = 1
@@ -329,8 +333,8 @@ in
         bind = $mainMod, R, focusmonitor, DP-3
         bind = $mainMod, T, focusmonitor, HDMI-A-2
 
-        bind = $mainMod, H, resizeactive, -20 0
-        bind = $mainMod, L, resizeactive, 20 0
+        binde = $mainMod, H, resizeactive, -10 0
+        binde = $mainMod, L, resizeactive, 10 0
 
         # Switch workspaces with mainMod + [0-9]
         bind = $mainMod, 1, grab-workspace, 1

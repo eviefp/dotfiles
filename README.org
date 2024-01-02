@@ -50,10 +50,9 @@ Emacs: =config/init.el=
 
 - [ ] sddm styling
   - [ ] icon
-- [ ] keyboard stuff, kmonad maybe?
-  - [ ] this is terrible
-  - [ ] maybe start here https://xkbcommon.org/doc/current/md_doc_2user-configuration.html
-  https://github.com/hyprwm/hyprpicker/pull/53 is merged
+- [ ] keyboard stuff, xcompose actually works
+  - [ ] all work except discord
+  - [ ] try out webcord after updating flake world
 - [ ] eww
   - [ ] statusbar
     - [ ] tray? WIP in eww, although not much progress lately?

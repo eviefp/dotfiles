@@ -42,7 +42,8 @@ let
     ];
 
     package = pkgs.emacs-git.override {
-      withX = true;
+      withX = false;
+      withPgtk = true;
       withGTK3 = true;
     };
 

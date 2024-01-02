@@ -1,107 +1,107 @@
 # Greek letters
-<Multi_key> <minus> <A>     : "Α"   U0391 # greek capital letter alpha
-<Multi_key> <minus> <B>     : "Β"   U0392 # greek capital letter beta
-<Multi_key> <minus> <G>     : "Γ"   U0393 # greek capital letter gamma
-<Multi_key> <minus> <D>     : "Δ"   U0394 # greek capital letter delta
-<Multi_key> <minus> <E>     : "Ε"   U0395 # greek capital letter epsilon
-<Multi_key> <minus> <Z>     : "Ζ"   U0396 # greek capital letter zeta
-<Multi_key> <minus> <H>     : "Η"   U0397 # greek capital letter eta
-<Multi_key> <minus> <Q>     : "Θ"   U0398 # greek capital letter theta
-<Multi_key> <minus> <I>     : "Ι"   U0399 # greek capital letter iota
-<Multi_key> <minus> <K>     : "Κ"   U039A # greek capital letter kappa
-<Multi_key> <minus> <L>     : "Λ"   U039B # greek capital letter lambda
-<Multi_key> <minus> <M>     : "Μ"   U039C # greek capital letter mu
-<Multi_key> <minus> <N>     : "Ν"   U039D # greek capital letter nu
-<Multi_key> <minus> <X>     : "Ξ"   U039E # greek capital letter xi
-<Multi_key> <minus> <O>     : "Ο"   U039F # greek capital letter omicron
-<Multi_key> <minus> <P>     : "Π"   U03A0 # greek capital letter pi
-<Multi_key> <minus> <R>     : "Ρ"   U03A1 # greek capital letter rho
-<Multi_key> <minus> <S>     : "Σ"   U03A3 # greek capital letter sigma
-<Multi_key> <minus> <T>     : "Τ"   U03A4 # greek capital letter tau
-<Multi_key> <minus> <U>     : "Υ"   U03A5 # greek capital letter upsilon
-<Multi_key> <minus> <F>     : "Φ"   U03A6 # greek capital letter phi
-<Multi_key> <minus> <C>     : "Χ"   U03A7 # greek capital letter chi
-<Multi_key> <minus> <Y>     : "Ψ"   U03A8 # greek capital letter psi
-<Multi_key> <minus> <W>     : "Ω"   U03A9 # greek capital letter omega
+<Pause> <minus> <A>     : "Α"   U0391 # greek capital letter alpha
+<Pause> <minus> <B>     : "Β"   U0392 # greek capital letter beta
+<Pause> <minus> <G>     : "Γ"   U0393 # greek capital letter gamma
+<Pause> <minus> <D>     : "Δ"   U0394 # greek capital letter delta
+<Pause> <minus> <E>     : "Ε"   U0395 # greek capital letter epsilon
+<Pause> <minus> <Z>     : "Ζ"   U0396 # greek capital letter zeta
+<Pause> <minus> <H>     : "Η"   U0397 # greek capital letter eta
+<Pause> <minus> <Q>     : "Θ"   U0398 # greek capital letter theta
+<Pause> <minus> <I>     : "Ι"   U0399 # greek capital letter iota
+<Pause> <minus> <K>     : "Κ"   U039A # greek capital letter kappa
+<Pause> <minus> <L>     : "Λ"   U039B # greek capital letter lambda
+<Pause> <minus> <M>     : "Μ"   U039C # greek capital letter mu
+<Pause> <minus> <N>     : "Ν"   U039D # greek capital letter nu
+<Pause> <minus> <X>     : "Ξ"   U039E # greek capital letter xi
+<Pause> <minus> <O>     : "Ο"   U039F # greek capital letter omicron
+<Pause> <minus> <P>     : "Π"   U03A0 # greek capital letter pi
+<Pause> <minus> <R>     : "Ρ"   U03A1 # greek capital letter rho
+<Pause> <minus> <S>     : "Σ"   U03A3 # greek capital letter sigma
+<Pause> <minus> <T>     : "Τ"   U03A4 # greek capital letter tau
+<Pause> <minus> <U>     : "Υ"   U03A5 # greek capital letter upsilon
+<Pause> <minus> <F>     : "Φ"   U03A6 # greek capital letter phi
+<Pause> <minus> <C>     : "Χ"   U03A7 # greek capital letter chi
+<Pause> <minus> <Y>     : "Ψ"   U03A8 # greek capital letter psi
+<Pause> <minus> <W>     : "Ω"   U03A9 # greek capital letter omega
 
-<Multi_key> <minus> <a>     : "α"   U03B1 # greek lowercase letter alpha
-<Multi_key> <minus> <b>     : "β"   U03B2 # greek lowercase letter beta
-<Multi_key> <minus> <g>     : "γ"   U03B3 # greek lowercase letter gamma
-<Multi_key> <minus> <d>     : "δ"   U03B4 # greek lowercase letter delta
-<Multi_key> <minus> <e>     : "ε"   U03B5 # greek lowercase letter epsilon
-<Multi_key> <minus> <z>     : "ζ"   U03B6 # greek lowercase letter zeta
-<Multi_key> <minus> <h>     : "η"   U03B7 # greek lowercase letter eta
-<Multi_key> <minus> <q>     : "θ"   U03B8 # greek lowercase letter theta
-<Multi_key> <minus> <i>     : "ι"   U03B9 # greek lowercase letter iota
-<Multi_key> <minus> <k>     : "κ"   U03BA # greek lowercase letter kappa
-<Multi_key> <minus> <l>     : "λ"   U03BB # greek lowercase letter lambda
-<Multi_key> <minus> <m>     : "μ"   U03BC # greek lowercase letter mu
-<Multi_key> <minus> <n>     : "ν"   U03BD # greek lowercase letter nu
-<Multi_key> <minus> <x>     : "ξ"   U03BE # greek lowercase letter xi
-<Multi_key> <minus> <o>     : "ο"   U03BF # greek lowercase letter omicron
-<Multi_key> <minus> <p>     : "π"   U03C0 # greek lowercase letter pi
-<Multi_key> <minus> <r>     : "ρ"   U03C1 # greek lowercase letter rho
-<Multi_key> <minus> <s>     : "σ"   U03C3 # greek lowercase letter sigma
-<Multi_key> <minus> <t>     : "τ"   U03C4 # greek lowercase letter tau
-<Multi_key> <minus> <u>     : "υ"   U03C5 # greek lowercase letter upsilon
-<Multi_key> <minus> <f>     : "φ"   U03C6 # greek lowercase letter phi
-<Multi_key> <minus> <c>     : "χ"   U03C7 # greek lowercase letter chi
-<Multi_key> <minus> <y>     : "ψ"   U03C8 # greek lowercase letter psi
-<Multi_key> <minus> <w>     : "ω"   U03C9 # greek lowercase letter omega
+<Pause> <minus> <a>     : "α"   U03B1 # greek lowercase letter alpha
+<Pause> <minus> <b>     : "β"   U03B2 # greek lowercase letter beta
+<Pause> <minus> <g>     : "γ"   U03B3 # greek lowercase letter gamma
+<Pause> <minus> <d>     : "δ"   U03B4 # greek lowercase letter delta
+<Pause> <minus> <e>     : "ε"   U03B5 # greek lowercase letter epsilon
+<Pause> <minus> <z>     : "ζ"   U03B6 # greek lowercase letter zeta
+<Pause> <minus> <h>     : "η"   U03B7 # greek lowercase letter eta
+<Pause> <minus> <q>     : "θ"   U03B8 # greek lowercase letter theta
+<Pause> <minus> <i>     : "ι"   U03B9 # greek lowercase letter iota
+<Pause> <minus> <k>     : "κ"   U03BA # greek lowercase letter kappa
+<Pause> <minus> <l>     : "λ"   U03BB # greek lowercase letter lambda
+<Pause> <minus> <m>     : "μ"   U03BC # greek lowercase letter mu
+<Pause> <minus> <n>     : "ν"   U03BD # greek lowercase letter nu
+<Pause> <minus> <x>     : "ξ"   U03BE # greek lowercase letter xi
+<Pause> <minus> <o>     : "ο"   U03BF # greek lowercase letter omicron
+<Pause> <minus> <p>     : "π"   U03C0 # greek lowercase letter pi
+<Pause> <minus> <r>     : "ρ"   U03C1 # greek lowercase letter rho
+<Pause> <minus> <s>     : "σ"   U03C3 # greek lowercase letter sigma
+<Pause> <minus> <t>     : "τ"   U03C4 # greek lowercase letter tau
+<Pause> <minus> <u>     : "υ"   U03C5 # greek lowercase letter upsilon
+<Pause> <minus> <f>     : "φ"   U03C6 # greek lowercase letter phi
+<Pause> <minus> <c>     : "χ"   U03C7 # greek lowercase letter chi
+<Pause> <minus> <y>     : "ψ"   U03C8 # greek lowercase letter psi
+<Pause> <minus> <w>     : "ω"   U03C9 # greek lowercase letter omega
 
 # Romanian letters
-<Multi_key> <A> : "Ă"   U0102
-<Multi_key> <a> : "ă"   U0103
-<Multi_key> <Q> : "Â"   U0194
-<Multi_key> <q> : "â"   U0226
-<Multi_key> <I> : "Î"   U0206
-<Multi_key> <i> : "î"   U0238
-<Multi_key> <S> : "Ș"   U0218
-<Multi_key> <s> : "ș"   U0219
-<Multi_key> <T> : "Ț"   U021A
-<Multi_key> <t> : "ț"   U021B
+<Pause> <A> : "Ă"   U0102
+<Pause> <a> : "ă"   U0103
+<Pause> <Q> : "Â"   U0194
+<Pause> <q> : "â"   U0226
+<Pause> <I> : "Î"   U0206
+<Pause> <i> : "î"   U0238
+<Pause> <S> : "Ș"   U0218
+<Pause> <s> : "ș"   U0219
+<Pause> <T> : "Ț"   U021A
+<Pause> <t> : "ț"   U021B
 
 ###############################################################################
 # Logic
 ###############################################################################
 
 # Implication
-<Multi_key> <minus> <greater> : "→" U2192 # implies
-<Multi_key> <equal> <greater> : "⇒" U21D2 # fat arrow implies
+<Pause> <minus> <greater> : "→" U2192 # implies
+<Pause> <equal> <greater> : "⇒" U21D2 # fat arrow implies
 
 # Other
-<Multi_key> <apostrophe> : "°" U00B0 # degrees
-<Multi_key> <period> : "∘" U2218 # composition
+<Pause> <apostrophe> : "°" U00B0 # degrees
+<Pause> <period> : "∘" U2218 # composition
 
 # Equivalence
-<Multi_key> <less> <equal> <greater> : "⇔" U21D4 # material equivalence
-<Multi_key> <equal> <equal> : "≡" U2261 # iff
-<Multi_key> <less> <minus> <greater> : "↔" U2194 # equivalence
+<Pause> <less> <equal> <greater> : "⇔" U21D4 # material equivalence
+<Pause> <equal> <equal> : "≡" U2261 # iff
+<Pause> <less> <minus> <greater> : "↔" U2194 # equivalence
 
 # Operators
-<Multi_key> <backslash> <equal> : "¬" U00AC # not
-<Multi_key> <slash> <backslash> : "∧" U2227 # and
-<Multi_key> <backslash> <slash> : "∨" U2228 # or
-<Multi_Key> <backslash> <T> : "⊤" U22A4
-<Multi_key> <backslash> <F> : "⊥" U22A5
-<Multi_key> <backslash> <A> : "∀" U2200
-<Multi_key> <backslash> <E> : "∃" U2203
-<Multi_key> <backslash> <plus> : "⊕" U2295 # exclusive disjunction
-<Multi_key> <backslash> <x> : "×" U00D7 # exclusive disjunction
-<Multi_key> <backslash> <bar> <minus> : "⊢" U22A2
-<Multi_key> <backslash> <bar> <equal> : "⊨" U22A8
-<Multi_key> <backslash> <D> : "◇" U25C7
-<Multi_key> <backslash> <B> : "◻" U25A1
-<Multi_key> <backslash> <0> : "∅" U2205
-<Multi_key> <backslash> <I> : "∈" U2208
-<Multi_key> <backslash> <N> : "∉" U2209
-<Multi_key> <backslash> <C> : "∘" U2218
-<Multi_key> <backslash> <S> : "⊕" U2295
-<Multi_key> <backslash> <P> : "⊗" U2297
+<Pause> <backslash> <equal> : "¬" U00AC # not
+<Pause> <slash> <backslash> : "∧" U2227 # and
+<Pause> <backslash> <slash> : "∨" U2228 # or
+<Pause> <backslash> <T> : "⊤" U22A4
+<Pause> <backslash> <F> : "⊥" U22A5
+<Pause> <backslash> <A> : "∀" U2200
+<Pause> <backslash> <E> : "∃" U2203
+<Pause> <backslash> <plus> : "⊕" U2295 # exclusive disjunction
+<Pause> <backslash> <x> : "×" U00D7 # exclusive disjunction
+<Pause> <backslash> <bar> <minus> : "⊢" U22A2
+<Pause> <backslash> <bar> <equal> : "⊨" U22A8
+<Pause> <backslash> <D> : "◇" U25C7
+<Pause> <backslash> <B> : "◻" U25A1
+<Pause> <backslash> <0> : "∅" U2205
+<Pause> <backslash> <I> : "∈" U2208
+<Pause> <backslash> <N> : "∉" U2209
+<Pause> <backslash> <C> : "∘" U2218
+<Pause> <backslash> <S> : "⊕" U2295
+<Pause> <backslash> <P> : "⊗" U2297
 
-<Multi_key> <greater> : "❭" U276D
-<Multi_key> <less> : "❬" U276C
+<Pause> <greater> : "❭" U276D
+<Pause> <less> : "❬" U276C
 
-<Multi_key> <equal> <a> : "ä" U00E4
-<Multi_key> <equal> <A> : "Ä" U00C4
+<Pause> <equal> <a> : "ä" U00E4
+<Pause> <equal> <A> : "Ä" U00C4
 
