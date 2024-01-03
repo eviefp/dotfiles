@@ -13,7 +13,7 @@
     ../modules/fonts.nix
     ../modules/system.nix
     ../modules/services/calendar-sync.nix
-    ../modules/hyprland.nix
+    ../modules/wayland.nix
   ];
 
   evie.programs = {
