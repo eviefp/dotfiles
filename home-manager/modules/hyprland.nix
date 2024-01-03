@@ -203,6 +203,8 @@ in
 
             # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
             allow_tearing = false
+
+            cursor_inactive_timeout = 0
         }
 
         decoration {

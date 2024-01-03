@@ -29,7 +29,6 @@ in
       pkgs.gimp
 
       # X-server related
-      pkgs.haskellPackages.xmobar
       pkgs.pass
       pkgs.passff-host
       pkgs.pinentry-gnome

@@ -50,18 +50,10 @@ Emacs: =config/init.el=
 
 - [ ] sddm styling
   - [ ] icon
-- [ ] keyboard stuff, xcompose actually works
-  - [ ] all work except discord
-  - [ ] try out webcord after updating flake world
 - [ ] eww
   - [ ] statusbar
-    - [ ] tray? WIP in eww, although not much progress lately?
-      - [ ] problem is the org agenda files are REALLY large due to
-        recursive calendar entries
+    - [ ] tray? WIP in eww, https://github.com/elkowar/eww/pull/743/files
     - [ ] clicking on cpu/memory/etc maybe opens more info?
-      adding tv with wlr-randr
-    - [ ] calendar
-      - [ ] would like to be able to have a hover background color
   - [ ] another window that's some sort of overview?
 - [-] hyprland
   - [-] screen sharing
@@ -69,7 +61,7 @@ Emacs: =config/init.el=
     - [ ] qutebrowser doesn't work
     - [ ] did not test discord, zoom, etc.
 - [ ] qutebrowser eating mouse (should be fixed in an update soon)
+- [ ] swayimg: https://github.com/artemsen/swayimg/blob/master/extra/swayimgrc
 
 
 awesome wayland https://github.com/natpen/awesome-wayland
-other https://wiki.hyprland.org/Useful-Utilities/Other/
