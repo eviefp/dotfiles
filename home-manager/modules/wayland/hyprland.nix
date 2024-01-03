@@ -33,35 +33,6 @@ in
   ];
 
   config = {
-    home.file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.config/wallpaper/1.jpg
-      preload = ~/.config/wallpaper/2.jpg
-      preload = ~/.config/wallpaper/3.jpg
-      #if more than one preload is desired then continue to preload other backgrounds
-      # preload = /path/to/next_image.png
-      # .. more preloads
-
-      #set the default wallpaper(s) seen on inital workspace(s) --depending on the number of monitors used
-      wallpaper = DP-1,~/.config/wallpaper/2.jpg
-      wallpaper = DP-2,~/.config/wallpaper/1.jpg
-      wallpaper = DP-3,~/.config/wallpaper/3.jpg
-      #if more than one monitor in use, can load a 2nd image
-      # wallpaper = monitor2,/path/to/next_image.png
-      # .. more monitors
-    '';
-
-    # home.file.".config/wallpaper/1.jpg".source = ../../config/wallpapers/1.jpg;
-    # home.file.".config/wallpaper/2.jpg".source = ../../config/wallpapers/2.jpg;
-    # home.file.".config/wallpaper/3.jpg".source = ../../config/wallpapers/3.jpg;
-    home.file.".config/wallpaper" = {
-      source = ../../config/wallpapers;
-      recursive = true;
-    };
-
-    home.file.".config/swaync" = {
-      source = ../../config/swaync;
-      recursive = true;
-    };
 
     home.packages = [
       pkgs.libsForQt5.qtwayland
@@ -69,75 +40,17 @@ in
       pkgs.qt6.qtwayland
       pkgs.qt6Packages.qt6ct
       pkgs.libva
-      pkgs.swaynotificationcenter
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
-      hyprpaper.packages.${pkgs.system}.hyprpaper
       hyprpicker.packages.${pkgs.system}.hyprpicker
-      pkgs.socat # needed by eww
-
-      # screenshot; pkgs.grimblast also works with 'grimblast copy area'
-      pkgs.grim
-      pkgs.slurp
-      pkgs.wl-clipboard
 
       # clipboard history
       pkgs.cliphist
-
-      # authentication thing
-      # pkgs.libsForQt5.polkit-kde-agent
-
-      # for pass
-      pkgs.tessen
-
-      # for eww
-      pkgs.csvkit
-
-      # for tv toggle
-      pkgs.wlr-randr
 
       # random stuff
       pkgs.wev
       pkgs.wtype
     ];
-
-    programs = {
-      rofi = {
-        enable = true;
-        cycle = true;
-        package = pkgs.rofi-wayland;
-        pass = {
-          enable = true;
-        };
-        plugins = [
-          pkgs.rofi-pass-wayland
-        ];
-        # theme = "purple";
-        theme = ./../../config/rofi-rounded-common.rasi;
-        extraConfig = {
-          show-icons = true;
-          terminal = "kitty";
-          sidebar-mode = true;
-
-          kb-mode-next = "Control+l";
-          kb-mode-previous = "Control+h";
-          kb-row-up = "Control+k";
-          kb-row-down = "Control+j";
-          kb-remove-to-eol = "";
-          kb-accept-entry = "Return";
-          kb-mode-complete = "";
-          kb-remove-char-back = "BackSpace";
-        };
-      };
-
-      # this is pretty janky on xmonad, also don't really need more UI
-      eww = {
-        enable = true;
-        package = pkgs.eww-wayland;
-        configDir = ./../../config/eww;
-      };
-
-    };
 
     wayland.windowManager.hyprland = {
       enable = true;
