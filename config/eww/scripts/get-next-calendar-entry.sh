@@ -3,6 +3,7 @@
 while :; do
 
 entry=`eww get calEntry`
+lastResult=""
 
 result=`emacs \
         -batch \
@@ -12,7 +13,11 @@ result=`emacs \
   	  | csvjson --no-header-row \
   	  | jq 'nth('$entry'; .[] | select(.a != null) | select(.f > (now | strflocaltime("%Y-%m-%d")) or (.g[0:5] > (now | strflocaltime("%H:%M")))))'`
 #                        array ^    ^^ nonempty            either tomorrow+ ^^^^                        ^^^^ or later than now
+  if [[ "$result" != "$lastresult" ]]; then
+    eww update calEntry=0
+  fi
   echo "${result//[$'\t\r\n ']}"
+  lastresult=result
   sleep 10s
 
 done
