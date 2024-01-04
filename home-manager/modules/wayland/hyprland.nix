@@ -210,7 +210,7 @@ in
         $terminal = kitty
         $menu = rofi -show run
         $pass = tessen -p pass -d rofi -a autotype
-        $screenshot = grim -g "$(slurp)" - | wl-copy
+        $screenshot = grimblast copy area
         $cliphist = cliphist list | rofi -dmenu | cliphist decode | wl-copy
         $notifications = swaync-client -t -sw
         $sleep = sleep 1s; hyprctl dispatch dpms off
