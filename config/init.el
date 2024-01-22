@@ -38,6 +38,10 @@
 (global-whitespace-mode)
 (setq whitespace-style '(face trailing tabs))
 
+(setq indent-tabs-mode nil)
+(setq tab-width 2)
+(setq css-indent-offset 2)
+
 ;; (global-display-fill-column-indicator-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -244,6 +248,7 @@
          "~/code/tests/"
          "~/code/hasura/mono/"
          "~/code/hasura/work/"
+         "~/code/lean/"
          "~/code/dotfiles/config/xmonad/"))
  :config (projectile-discover-projects-in-search-path) (projectile-mode +1)
  :general

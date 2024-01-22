@@ -188,6 +188,7 @@ in
             notmuch tag +gmail -- to:*evie*@gmail.com
             notmuch tag +del -- to:*@cvlad.info
             notmuch tag +hf -- from:*@haskell.foundation
+            notmuch tag --remove-all +junk -- to:glamira@eevie.ro
           '';
         };
       };

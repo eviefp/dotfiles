@@ -123,3 +123,34 @@ scale slider {
         color: rgb(205, 219, 249);
     }
 }
+
+.cpu {
+    border-radius: 15px;
+    font-family: Hasklug Nerd Font Mono;
+    font-size: 16px;
+    background-color: rgba($bg-color, 0.3);
+    border: 1px solid $bright;
+    color: $bright;
+    padding: 1em;
+
+    .cpu-box {
+	padding: 1em;
+
+        .cpu-line {
+          color: $green;
+        }
+	.header {
+          color: $green;
+	  border-bottom: 1px dashed $bright;
+	}
+        .active {
+          background-color: rgba($bg-color, 0.8);
+          color: $green;
+        }
+
+    }
+
+    .cpu-box-label {
+	color: $green;
+    }
+}
