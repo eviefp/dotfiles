@@ -55,12 +55,10 @@ Emacs: =config/init.el=
     - [ ] tray? WIP in eww, https://github.com/elkowar/eww/pull/743/files
     - [ ] clicking on cpu/memory/etc maybe opens more info?
   - [ ] another window that's some sort of overview?
-- [-] hyprland
-  - [-] screen sharing
-    - [X] chromium and firefox work
+- [ ] hyprland
+  - [ ] screen sharing
     - [ ] qutebrowser doesn't work
     - [ ] did not test discord, zoom, etc.
-- [ ] qutebrowser eating mouse (should be fixed in an update soon)
 - [ ] swayimg: https://github.com/artemsen/swayimg/blob/master/extra/swayimgrc
 
 

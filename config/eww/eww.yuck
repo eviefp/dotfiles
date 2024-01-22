@@ -4,12 +4,15 @@
 (defpoll mail-important :initial "0" :interval "10s" "notmuch count tag:important")
 (defpoll mail-unread :initial "0" :interval "10s" "notmuch count tag:unread")
 (deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
-(defpoll sound :initial `{"volume": 100, "icon": "./assets/volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
+(defpoll sound :initial `{"svolume": 100, "sicon": "./assets/volume.png", "mvolume": 100, "micon": "./assets/mic-volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
 
 (defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
 
 (defvar calEntry 0)
 (deflisten cal :initial `{ "a": "", "b": "Loading...", "f": "", "g": "" }` "~/.config/eww/scripts/get-next-calendar-entry.sh")
+
+(defvar procEntry 0)
+(defpoll proc :initial "[]" :interval "1s" "~/.config/eww/scripts/get-processes.sh")
 
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
@@ -128,6 +131,94 @@
 	    :onclick "sleep 0.1; wl-copy {0}/{1}/{2}")
 	   )
 
+(defwindow cpu
+	   :monitor 1
+	   :geometry (geometry :x "350px"
+		               :y "10px"
+		               :width "600px"
+		               :height "450px"
+		               :anchor "bottom left")
+	   :stacking "fg"
+	   :exclusive "false"
+	   :focusable "false"
+	   (box
+	    :orientation "v"
+	     (box
+	     :class "cpu-box"
+	     :orientation "v"
+	       (box
+	       :orientation "h"
+		     :space-evenly false
+	       :class "cpu-line header"
+	         (label :text "% cpu"
+	                :xalign 0
+			:width 100)
+	         (label :text "% mem"
+	                :xalign 0
+			:width 100)
+	         (label :text "user"
+	                :xalign 0
+			:width 100)
+	         (label :text "name"
+	                :xalign 1
+			:width 250)
+	       )
+	       (for process in proc
+		    (box
+		     :orientation "h"
+		     :space-evenly false
+		     :class "cpu-line ${process.key == procEntry ? 'active' : ''}"
+		       (label :text "${process.value['%CPU']}"
+			      :limit-width 10
+	                      :xalign 0
+			      :width 100)
+		       (label :text "${process.value['%MEM']}"
+			      :limit-width 10
+	                      :xalign 0
+			      :width 100)
+		       (label :text "${process.value.USER}"
+			      :limit-width 10
+	                      :xalign 0
+			      :width 100)
+		       (label :text "${process.value.COMMAND}"
+			      :width 250
+	                      :xalign 1
+			      :limit-width 25)
+		     )
+	     ))
+	     (box
+	      :class "cpu-box cores"
+	      :orientation "v"
+	      ;; (for core in {jq("${arraylength(EWW_CPU.cores)}", `[range(0; .; 2)]`)} ;; weird error about end of input at 'r' in range
+	      (for core in {[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22]}
+	      (box
+	       :orientation "h"
+	       :class "cpu-box-pair"
+	       (overlay
+	         (graph
+	         :class "cpu-box-graph"
+	         :thickness 2.0
+	         :value "${EWW_CPU.cores[core].usage}"
+	         :time-range "60s"
+	         :line-style "round")
+	         (label
+	          :class "cpu-box-label"
+	          :text "${core + 1}"))
+	       (overlay
+	         (graph
+	         :class "cpu-box-graph"
+	         :thickness 2.0
+	         :value "${EWW_CPU.cores[core+1].usage}"
+	         :time-range "120s"
+	         :line-style "round")
+	         (label
+	          :class "cpu-box-label"
+	          :text "${core + 2}"))
+	         )
+	      )
+	      )))
+
+
 (defwindow statusbar
 	   :monitor 1
 	   :geometry (geometry :x "0%"
@@ -149,7 +240,8 @@
 		     (monitor
 		      :monitor-width 6
 		      :monitor-text "${round(EWW_CPU.avg, 2)}%"
-		      :monitor-icon "./assets/cpu.png")
+		      :monitor-icon "./assets/cpu.png"
+		      :monitor-click "sleep 0.1; hyprctl dispatch submap eww; eww open cpu --toggle &")
 		     (monitor
 		      :monitor-width 6
 		      :monitor-text "${round(EWW_RAM.used_mem_perc, 2)}%"

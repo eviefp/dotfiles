@@ -62,8 +62,8 @@ in
       extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor=DP-1,1920x1080@239.76,0x0,1
-        monitor=DP-2,1920x1080@239.76,1920x0,1
-        monitor=DP-3,1920x1080@239.76,3840x0,1
+        monitor=DP-3,1920x1080@239.76,1920x0,1
+        monitor=DP-2,1920x1080@239.76,3840x0,1
         monitor HDMI-A-2,1920x1080@60,5760x0,1
 
         # notifications, wallpaper, status bar
@@ -156,6 +156,12 @@ in
             animation = workspaces, 1, 6, default
         }
 
+        group {
+          groupbar {
+            # enabled = false;
+          }
+        }
+
         dwindle {
             # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
             pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
@@ -227,7 +233,7 @@ in
         bind = $shiftMod, P, exec, $sleep
         bind = $shiftMod, T, exec, /home/evie/.config/eww/scripts/toggle-tv.sh
 
-        bind = $mainMod, C, killactive,
+        bind = $shiftMod, C, killactive,
         bind = $mainMod, M, exec, $screenshot
         bind = $mainMod, V, exec, $cliphist
         bind = $mainMod, F, togglefloating,
@@ -244,8 +250,8 @@ in
         bind = $mainMod, apostrophe, layoutmsg, removemaster
 
         bind = $mainMod, W, focusmonitor, DP-1
-        bind = $mainMod, E, focusmonitor, DP-2
-        bind = $mainMod, R, focusmonitor, DP-3
+        bind = $mainMod, E, focusmonitor, DP-3
+        bind = $mainMod, R, focusmonitor, DP-2
         bind = $mainMod, T, focusmonitor, HDMI-A-2
 
         binde = $mainMod, H, resizeactive, -10 0
@@ -276,8 +282,8 @@ in
         bind = $mainMod SHIFT, 0, movetoworkspace, 10
 
         # Example special workspace (scratchpad)
-        bind = $mainMod, S, togglespecialworkspace, magic
-        bind = $shiftMod, S, movetoworkspace, special:magic
+        bind = $mainMod, I, togglespecialworkspace, magic
+        bind = $shiftMod, I, movetoworkspace, special:magic
 
         # Scroll through existing workspaces with mainMod + scroll
         bind = $mainMod, mouse_down, grab-workspace, e+1
@@ -287,14 +293,26 @@ in
         bindm = $mainMod, mouse:272, movewindow
         bindm = $mainMod, mouse:273, resizewindow
 
-        bind = $shiftMod, x, hycov:enteroverview
-        bind = $shiftMod, c, hycov:leaveoverview
         bind = $shiftMod, z, hycov:toggleoverview
 
-        bind = $shiftMod, h, hycov:movefocus,l
-        bind = $shiftMod, l, hycov:movefocus,r
-        bind = $shiftMod, j, hycov:movefocus,d
-        bind = $shiftMod, k, hycov:movefocus,u
+        bind = $shiftMod, a, togglegroup,
+        bind = $shiftMod, h, moveintogroup, l
+        bind = $shiftMod, l, moveintogroup, r
+        bind = $shiftMod, j, moveintogroup, d
+        bind = $shiftMod, k, moveintogroup, u
+        bind = $shiftMod, m, moveoutofgroup,
+        bind = $mainMod, a, changegroupactive, b
+        bind = $mainMod, s, changegroupactive, f
+
+        bind = $shiftMod, w, submap, eww
+        submap = eww
+        binde = ctrl,j,exec,~/.config/eww/scripts/down.sh
+        binde = ctrl,k,exec,~/.config/eww/scripts/up.sh
+        bind  = ctrl,Return,exec,~/.config/eww/scripts/select.sh
+        bind  = ctrl,Return,submap,reset
+        bind  = ,escape,exec,eww close cpu
+        bind  = ,escape,submap,reset
+        submap = reset
       '';
     };
   };
