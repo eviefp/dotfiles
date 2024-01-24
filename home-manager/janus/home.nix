@@ -80,6 +80,24 @@
     dotfiles = "/home/evie/code/dotfiles";
   };
 
+  evie.wayland = {
+    enable = true;
+    monitors = [
+      {
+        name = "eDP1";
+        resolution = "1920x1080@60.05";
+        position = "0x0";
+        keybind = "W";
+      }
+      {
+        name = "DP3";
+        resolution = "1920x515@60.07";
+        position = "0x1080";
+        keybind = "E";
+      }
+    ];
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "qutebrowser";

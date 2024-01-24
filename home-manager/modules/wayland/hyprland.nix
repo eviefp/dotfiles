@@ -1,6 +1,10 @@
 { lib, config, pkgs, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, ... }:
 let
-  cfg = config.evie.hyprland;
+  cfg = config.evie.wayland;
+  mkMonitor = mon: "monitor=${mon.name},${mon.resolution},${mon.position},1";
+  monitors = lib.lists.foldr (monitor: conf: "${conf}\n${mkMonitor monitor}") "" cfg.monitors;
+  mkMonitorBind = mon: "bind = $mainMod, ${mon.keybind}, focusmonitor, ${mon.name}";
+  monitor-binds = lib.lists.foldr (monitor: conf: "${conf}\n${mkMonitorBind monitor}") "" cfg.monitors;
   hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
   grab-workspace-package = pkgs.gcc13Stdenv.mkDerivation {
     pname = "grab-workspace";
@@ -32,7 +36,7 @@ in
   imports = [
   ];
 
-  config = {
+  config = lib.mkIf cfg.enable {
 
     home.packages = [
       pkgs.libsForQt5.qtwayland
@@ -61,10 +65,7 @@ in
       ];
       extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor=DP-1,1920x1080@239.76,0x0,1
-        monitor=DP-3,1920x1080@239.76,1920x0,1
-        monitor=DP-2,1920x1080@239.76,3840x0,1
-        monitor HDMI-A-2,1920x1080@60,5760x0,1
+        ${monitors}
 
         # notifications, wallpaper, status bar
         exec-once = swaync
@@ -250,10 +251,7 @@ in
         bind = $mainMod, backslash, layoutmsg, addmaster
         bind = $mainMod, apostrophe, layoutmsg, removemaster
 
-        bind = $mainMod, W, focusmonitor, DP-1
-        bind = $mainMod, E, focusmonitor, DP-3
-        bind = $mainMod, R, focusmonitor, DP-2
-        bind = $mainMod, T, focusmonitor, HDMI-A-2
+        ${monitor-binds}
 
         binde = $mainMod, H, resizeactive, -10 0
         binde = $mainMod, L, resizeactive, 10 0
