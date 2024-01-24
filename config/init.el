@@ -197,7 +197,7 @@
   "g c c" 'comment-line
   "SPC n n" 'notmuch
   "SPC b d" 'kill-this-buffer
-  "SPC f b" 'ibuffer
+  "SPC f b" 'switch-to-buffer
   "SPC q" 'save-buffers-kill-terminal
   "SPC a d" 'dired
   "SPC t f" 'display-fill-column-indicator-mode
@@ -395,7 +395,7 @@
  :config (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
  (lsp-register-client
   (make-lsp-client :new-connection (lsp-stdio-connection "rnix-lsp") :major-modes '(nix-mode) :server-id 'nix))
- :hook ((haskell-mode . lsp) (lsp-mode . lsp-enable-which-key-integration)) (nix-mode . lsp)
+ :hook ((haskell-mode . lsp) (lsp-mode . lsp-enable-which-key-integration)) (nix-mode . lsp) (rust-mode . lsp)
  :general
  ;; format: off
  (general-define-key
@@ -459,6 +459,9 @@
 
 ;; haskell
 (use-package haskell-mode :ensure t :hook (before-save . lsp-format-buffer))
+
+;; rust
+(use-package rust-mode :ensure t)
 
 (use-package
  lsp-haskell

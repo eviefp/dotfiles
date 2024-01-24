@@ -39,17 +39,16 @@
     extra = [ pkgs.libva pkgs.libva-utils ];
   };
 
-  evie.services.xcompose = true;
+  evie.services.xcompose = false;
 
   evie.xserver = {
     enable = true;
     useBluetooth = true;
   };
 
-  # evie.logind.enable = true;
-
   environment.variables = {
     VPAU_DRIVER = "va_gl";
+    XDG_SESSION_TYPE = "wayland";
   };
 }
 

@@ -93,20 +93,22 @@
             ];
         };
 
-      nixosConfigurations."janus" = nixpkgs.lib.nixosSystem {
-        system = system;
-        modules =
-          [
-            ./system/janus/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = home-manager-special-args;
-              home-manager.users.evie = import ./home-manager/janus/home.nix;
-            }
-          ];
-      };
+      nixosConfigurations."janus" = nixpkgs.lib.nixosSystem
+        {
+          system = system;
+          specialArgs = { inherit hyprland; };
+          modules =
+            [
+              ./system/janus/configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = home-manager-special-args;
+                home-manager.users.evie = import ./home-manager/janus/home.nix;
+              }
+            ];
+        };
 
       nixosConfigurations."aiode" = nixpkgs.lib.nixosSystem {
         system = system;
