@@ -279,16 +279,7 @@
 	      )))
 
 
-(defwindow statusbar
-	   :monitor { system == "thenxinoe" ? 2 : 1 }
-	   :geometry (geometry :x "0%"
-		               :y "5px"
-		               :width "98%"
-		               :height "40px"
-		               :anchor "bottom center")
-	   :stacking "fg"
-	   :exclusive "true"
-	   :focusable "false"
+(defwidget statusbar-widget []
 	   (box :space-evenly false
 		:class "statusbar-box"
 		(workspaces)
@@ -346,3 +337,27 @@
 		 :monitor-icon "./assets/tv-${tvStatus}.png"
 		 :monitor-click "sleep 0.1; ~/.config/eww/scripts/toggle-tv.sh")
 		(system-time)))
+
+(defwindow statusbar
+   :monitor 2
+   :geometry (geometry :x "0%"
+	               :y "5px"
+	               :width "98%"
+	               :height "40px"
+	               :anchor "bottom center")
+   :stacking "fg"
+   :exclusive "true"
+   :focusable "false"
+   (statusbar-widget))
+
+(defwindow statusbar-janus
+   :monitor 1
+   :geometry (geometry :x "0%"
+	               :y "5px"
+	               :width "98%"
+	               :height "40px"
+	               :anchor "bottom center")
+   :stacking "fg"
+   :exclusive "true"
+   :focusable "false"
+   (statusbar-widget))
