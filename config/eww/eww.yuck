@@ -296,15 +296,7 @@
 		     (monitor
 		      :monitor-width 6
 		      :monitor-text "${round(EWW_RAM.used_mem_perc, 2)}%"
-		      :monitor-icon "./assets/ram.png")
-		     (monitor
-		      :monitor-width 6
-		      :monitor-text "${round(EWW_NET.enp4s0.NET_DOWN/1024, 0)}"
-		      :monitor-icon "./assets/download.png")
-		     (monitor
-		      :monitor-width 6
-		      :monitor-text "${round(EWW_NET.enp4s0.NET_UP/1024, 0)}"
-		      :monitor-icon "./assets/upload.png"))
+		      :monitor-icon "./assets/ram.png"))
 		(box
 		     :class "notifications-box box"
 		     :space-evenly false
