@@ -6,6 +6,8 @@
 (deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll sound :initial `{"svolume": 100, "sicon": "./assets/volume.png", "mvolume": 100, "micon": "./assets/mic-volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
 
+(defpoll brightness :initial "100" :interval "1s" "light")
+
 (defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
 
 (defvar calEntry 0)
@@ -13,6 +15,12 @@
 
 (defvar procEntry 0)
 (defpoll proc :initial "[]" :interval "1s" "~/.config/eww/scripts/get-processes.sh")
+
+(defvar showAudio false)
+(defvar showMic false)
+(defvar showBrightness false)
+
+(defpoll system :initial "thelxinoe" :interval "60s" "hostname")
 
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
@@ -65,45 +73,97 @@
 	      :width "${monitor-text == "" ? 0 : monitor-width * 10}"
 	      ))))
 
-(defwidget audio []
+(defwidget media []
 	   (box
 	    :class "audio-box box"
 	    :halign "start"
 	    :orientation "horizontal"
 	    :space-evenly false
-	    (button
-	     :class "audio-button"
-	     :onclick "sleep 0.1; amixer set Master toggle"
-	     (image
-	      :path "${sound.sicon}"
-	      :image-width 20
-	      :image-height 20))
-	    (scale
-	     :class "audio-scale"
-	     :hexpand true
-	     :width 80
-	     :value "${sound.svolume}"
-	     :tooltip "${sound.svolume}"
-	     :min 0
-	     :max 101
-	     :onchange "amixer -Mq set Master,0 {}% unmute")
 
-	    (button
-	     :class "audio-button"
-	     :onclick "sleep 0.1; amixer set Capture toggle"
-	     (image
-	      :path "${sound.micon}"
-	      :image-width 20
-	      :image-height 20))
-	    (scale
-	     :class "audio-scale"
-	     :hexpand true
-	     :width 80
-	     :value "${sound.mvolume}"
-	     :tooltip "${sound.mvolume}"
-	     :min 0
-	     :max 101
-	     :onchange "amixer -Mq set Capture,0 {}% unmute")))
+	    (eventbox
+	     :onhover "eww update showAudio=true"
+	     :onhoverlost "eww update showAudio=false"
+	       (box
+	         :halign "start"
+	         :orientation "horizontal"
+	         :space-evenly false
+	           (button
+	            :class "audio-button"
+	            :onclick "sleep 0.1; amixer set Master toggle"
+	            (image
+	             :path "${sound.sicon}"
+	             :image-width 20
+	             :image-height 20))
+	           (revealer
+	            :transition "slideright"
+	            :reveal showAudio
+	               (scale
+	                :class "audio-scale"
+	                :hexpand true
+	                :width 80
+	                :value "${sound.svolume}"
+	                :tooltip "${sound.svolume}"
+	                :min 0
+	                :max 101
+	                :onchange "amixer -Mq set Master,0 {}% unmute")
+	           )))
+
+	    (eventbox
+	     :onhover "eww update showMic=true"
+	     :onhoverlost "eww update showMic=false"
+	       (box
+	         :halign "start"
+	         :orientation "horizontal"
+	         :space-evenly false
+	         :class "left-spacing"
+	           (button
+	            :class "audio-button"
+	            :onclick "sleep 0.1; amixer set Capture toggle"
+	            (image
+	             :path "${sound.micon}"
+	             :image-width 20
+	             :image-height 20))
+	       (revealer
+	        :transition "slideright"
+	        :reveal showMic
+	           (scale
+	            :class "audio-scale"
+	            :hexpand true
+	            :width 80
+	            :value "${sound.mvolume}"
+	            :tooltip "${sound.mvolume}"
+	            :min 0
+	            :max 101
+	            :onchange "amixer -Mq set Capture,0 {}% unmute"))
+	       ))
+
+	    (eventbox
+	     :onhover "eww update showBrightness=true"
+	     :onhoverlost "eww update showBrightness=false"
+	     :visible { system == "janus" }
+	       (box
+	         :halign "start"
+	         :orientation "horizontal"
+	         :space-evenly false
+	           (image
+	            :path "${sound.sicon}"
+	            :image-width 20
+	            :image-height 20)
+	           (revealer
+	            :transition "slideright"
+	            :reveal showBrightness
+	               (scale
+	                :class "audio-scale"
+	                :hexpand true
+	                :width 80
+	                :value "${brightness}"
+	                :tooltip "${brightness}"
+	                :min 0
+	                :max 101
+	                :onchange "sudo light -S {}")
+	           )))
+
+	    ))
 
 (defwidget system-time []
 	   (box
@@ -220,7 +280,7 @@
 
 
 (defwindow statusbar
-	   :monitor 1
+	   :monitor 2
 	   :geometry (geometry :x "0%"
 		               :y "5px"
 		               :width "98%"
@@ -278,7 +338,7 @@
 		      :monitor-click `sleep 0.1; eww update calEntry="${calEntry + 1}"`
 		      :monitor-rclick `sleep 0.1; eww update calEntry="${calEntry - 1 < 0 ? 0 : calEntry - 1}"`)
 		     )
-		(audio)
+		(media)
 		(monitor
 		 :monitor-width 0
 		 :monitor-class "box"
