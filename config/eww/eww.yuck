@@ -280,7 +280,7 @@
 
 
 (defwindow statusbar
-	   :monitor 2
+	   :monitor { system == "thenxinoe" ? 2 : 1 }
 	   :geometry (geometry :x "0%"
 		               :y "5px"
 		               :width "98%"
