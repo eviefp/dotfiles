@@ -22,12 +22,13 @@
     browsers.enable = true;
     bower.enable = true;
     chat.enable = true;
+    kitty.enable = true;
 
     dev = {
       haskell.enable = true;
       lua.enable = true;
       nix.enable = true;
-      provers.enable = false;
+      provers.enable = true;
       tools.enable = true;
     };
 
@@ -36,18 +37,17 @@
 
       emacs = {
         enable = true;
+        no-x = false;
         locals = {
           enable = true;
           file = ./locals.el;
         };
       };
 
+      vscode.enable = true;
+
       helix.enable = true;
     };
-
-    # neuron = {
-    #   enable = false;
-    # };
 
     shell = {
       enable = true;
@@ -64,7 +64,6 @@
 
     gui = {
       enable = true;
-      useLaptopXmobar = true;
     };
 
     wezterm.enable = true;
@@ -84,13 +83,13 @@
     enable = true;
     monitors = [
       {
-        name = "eDP1";
+        name = "eDP-1";
         resolution = "1920x1080@60.05";
         position = "0x0";
         keybind = "W";
       }
       {
-        name = "DP3";
+        name = "DP-3";
         resolution = "1920x515@60.07";
         position = "0x1080";
         keybind = "E";
