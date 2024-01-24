@@ -145,8 +145,9 @@
 	         :halign "start"
 	         :orientation "horizontal"
 	         :space-evenly false
+	         :class "left-spacing"
 	           (image
-	            :path "${sound.sicon}"
+	            :path "./assets/brightness.png"
 	            :image-width 20
 	            :image-height 20)
 	           (revealer
@@ -158,7 +159,7 @@
 	                :width 80
 	                :value "${brightness}"
 	                :tooltip "${brightness}"
-	                :min 0
+	                :min 1
 	                :max 101
 	                :onchange "sudo light -S {}")
 	           )))
