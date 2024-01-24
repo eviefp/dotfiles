@@ -12,6 +12,7 @@
     ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
     ../modules/system.nix
+    ../modules/wayland.nix
   ];
 
   evie.programs = {

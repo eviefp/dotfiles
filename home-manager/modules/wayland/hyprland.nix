@@ -91,7 +91,7 @@ in
             kb_options = compose:pause
             kb_rules =
 
-            follow_mouse = 1
+            follow_mouse = 2
 
             touchpad {
                 natural_scroll = no
@@ -110,6 +110,7 @@ in
             col.inactive_border = rgba(595959aa)
 
             layout = master
+            no_cursor_warps = true
 
             resize_on_border = true
             hover_icon_on_border = true
@@ -296,6 +297,7 @@ in
         bind = $shiftMod, z, hycov:toggleoverview
 
         bind = $shiftMod, a, togglegroup,
+        bind = $shiftMod, s, lockactivegroup, toggle
         bind = $shiftMod, h, moveintogroup, l
         bind = $shiftMod, l, moveintogroup, r
         bind = $shiftMod, j, moveintogroup, d
