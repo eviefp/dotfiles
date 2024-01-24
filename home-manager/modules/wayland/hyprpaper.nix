@@ -1,9 +1,14 @@
 { lib, config, pkgs, hyprpaper, ... }:
 let
-  cfg = config.evie.wayland.hyprpaper;
+  cfg = config.evie.wayland;
+  files = [ "elsa.png" "evey.png" "hq.png" "mulan.png" ];
+  preload = lib.lists.foldr (w: acc: "${acc}\n preload = ~/.config/wallpaper/${w}") "" files;
+
+  mkWallpaper = p: "wallpaper = ${p.fst.name}, ~/.config/wallpaper/${p.snd}";
+  wallpaper = lib.lists.foldr (p: conf: "${conf}\n${mkWallpaper p}") "" (lib.lists.zipLists cfg.monitors files);
 in
 {
-  config = {
+  config = lib.mkIf cfg.enable {
     home = {
       file.".config/wallpaper" = {
         source = ../../../config/wallpapers;
@@ -11,15 +16,8 @@ in
       };
 
       file.".config/hypr/hyprpaper.conf".text = ''
-        preload = ~/.config/wallpaper/elsa.png
-        preload = ~/.config/wallpaper/evey.png
-        preload = ~/.config/wallpaper/hq.png
-        preload = ~/.config/wallpaper/mulan.png
-
-        wallpaper = DP-1,~/.config/wallpaper/elsa.png
-        wallpaper = DP-2,~/.config/wallpaper/evey.png
-        wallpaper = DP-3,~/.config/wallpaper/hq.png
-        wallpaper = HDMI-A-2,~/.config/wallpaper/mulan.png
+        ${preload}
+        ${wallpaper}
       '';
 
       packages = [
@@ -28,3 +26,4 @@ in
     };
   };
 }
+
