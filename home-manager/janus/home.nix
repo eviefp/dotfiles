@@ -81,6 +81,7 @@
 
   evie.wayland = {
     enable = true;
+    eww-monitor = "1";
     monitors = [
       {
         name = "eDP-1";

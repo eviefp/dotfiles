@@ -176,32 +176,14 @@
 	      (label :text "${formattime(EWW_TIME, '%a, %d %b %T')}")
 	      )))
 
-(defwindow cal
-	   :monitor 1
-	   :geometry (geometry :x "60px"
-		               :y "10px"
-		               :width "300px"
-		               :height "200px"
-		               :anchor "bottom right")
-	   :stacking "fg"
-	   :exclusive "false"
-	   :focusable "false"
+(defwidget cal-widget []
 	   (calendar
 	    :width 200
 	    :class "calendar-box"
 	    :onclick "sleep 0.1; wl-copy {0}/{1}/{2}")
 	   )
 
-(defwindow cpu
-	   :monitor 1
-	   :geometry (geometry :x "350px"
-		               :y "10px"
-		               :width "600px"
-		               :height "450px"
-		               :anchor "bottom left")
-	   :stacking "fg"
-	   :exclusive "false"
-	   :focusable "false"
+(defwidget cpu-widget []
 	   (box
 	    :orientation "v"
 	     (box
@@ -331,26 +313,4 @@
 		 :monitor-click "sleep 0.1; ~/.config/eww/scripts/toggle-tv.sh")
 		(system-time)))
 
-(defwindow statusbar
-   :monitor 2
-   :geometry (geometry :x "0%"
-	               :y "5px"
-	               :width "98%"
-	               :height "40px"
-	               :anchor "bottom center")
-   :stacking "fg"
-   :exclusive "true"
-   :focusable "false"
-   (statusbar-widget))
-
-(defwindow statusbar-janus
-   :monitor 1
-   :geometry (geometry :x "0%"
-	               :y "5px"
-	               :width "98%"
-	               :height "40px"
-	               :anchor "bottom center")
-   :stacking "fg"
-   :exclusive "true"
-   :focusable "false"
-   (statusbar-widget))
+(include "/home/evie/.config/eww-extras/windows.yuck")
