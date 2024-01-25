@@ -14,6 +14,10 @@ in
 
   options.evie.wayland = {
     enable = lib.options.mkEnableOption "Enable wayland.";
+    eww-monitor = lib.mkOption {
+      type = lib.types.str;
+      default = "1";
+    };
     monitors = lib.mkOption
       {
         type = lib.types.listOf (lib.types.submodule {
