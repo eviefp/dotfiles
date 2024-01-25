@@ -10,6 +10,7 @@
     ../modules/boot.nix
     ../modules/network.nix
     ../modules/locale.nix
+    ../modules/logind.nix
     ../modules/packages.nix
     ../modules/services.nix
     ../modules/xserver.nix
@@ -35,6 +36,11 @@
   evie.xserver = {
     enable = true;
     useBluetooth = true;
+  };
+
+  environment.variables = {
+    VPAU_DRIVER = "va_gl";
+    XDG_SESSION_TYPE = "wayland";
   };
 }
 
