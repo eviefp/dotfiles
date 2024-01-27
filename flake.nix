@@ -112,6 +112,7 @@
 
       nixosConfigurations."aiode" = nixpkgs.lib.nixosSystem {
         system = system;
+        specialArgs = { inherit hyprland; };
         modules =
           [
             ./system/aiode/configuration.nix
