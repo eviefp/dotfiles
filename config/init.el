@@ -101,6 +101,11 @@
   (interactive)
   (evil-collection-notmuch-toggle-tag "important" "search" 'notmuch-search-next-thread))
 
+(defun evie-notmuch-search-toggle-recruit ()
+  "Toggle recruit tag for message."
+  (interactive)
+  (evil-collection-notmuch-toggle-tag "recruitment" "search" 'notmuch-search-next-thread))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
 (require 'use-package)
@@ -114,11 +119,11 @@
  (setq notmuch-always-prompt-for-sender t)
  (setq notmuch-saved-searches
        '((:name "important" :query "tag:important" :sort-order oldest-first)
-         (:name "proton unread" :query "tag:unread and tag:proton" :sort-order newest-first)
+         (:name "recruitment" :query "tag:recruitment" :sort-order newest-first)
          (:name "unread" :query "tag:unread" :sort-order newest-first)
          (:name "proton" :query "tag:evie" :sort-order newest-first)
          (:name "hf" :query "tag:hf" :sort-order newest-first)
-         (:name "inbox" :query "tag:inbox" :sort-order newest-first)
+         (:name "inbox" :query "tag:gmail or tag:evie or tag:proton" :sort-order newest-first)
          (:name "gmail" :query "tag:gmail" :sort-order newest-first)
          (:name "gmail-old (del)" :query "tag:del" :sort-order newest-first))))
 
@@ -176,6 +181,7 @@
   :states '(normal visual)
   :keymaps 'notmuch-search-mode-map
   "@" 'evie-notmuch-search-toggle-important
+  "#" 'evie-notmuch-search-toggle-recruit
   "d" 'evil-collection-notmuch-search-toggle-delete
   "u" 'evil-collection-notmuch-search-toggle-unread
   "t" 'notmuch-search-add-tag
@@ -387,11 +393,11 @@
  lsp-mode
  :ensure t
  :init (setq lsp-enable-folding nil) (setq lsp-enable-file-watchers nil) (setq lsp-enable-symbol-highlighting nil)
- (setq lsp-haskell-server-wrapper-function
-       (lambda (argv)
-         (append
-          (append (list "nix-shell" "-I" "." "--command") (list (mapconcat 'identity argv " ")))
-          (list (concat (file-name-directory (haskell-cabal-find-file)) "shell.nix")))))
+ ;; (setq lsp-haskell-server-wrapper-function
+ ;;       (lambda (argv)
+ ;;         (append
+ ;;          (append (list "nix" "develop" "--command") (list (mapconcat 'identity argv " ")))
+ ;;          (list (concat (file-name-directory (haskell-cabal-find-file)) "flake.nix")))))
  :config (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
  (lsp-register-client
   (make-lsp-client :new-connection (lsp-stdio-connection "rnix-lsp") :major-modes '(nix-mode) :server-id 'nix))
@@ -472,6 +478,7 @@
  (setq lsp-haskell-diagnostics-on-change nil)
  (setq lsp-haskell-liquid-on nil)
  (setq lsp-haskell-completion-snippets-on t)
+ (setq lsp-haskell-formatting-provider "fourmolu")
  (setq lsp-haskell-tactic-on t))
 
 (use-package yuck-mode :ensure t)
@@ -736,30 +743,30 @@
 (setq
  org-capture-templates
  (quote
-  (("t" "todo" entry (file "~/Documents/wiki/refile.org") "* TODO %?\n")
+  (("t" "todo" entry (file "~/code/personal-org/refile.org") "* TODO %?\n")
    ("r"
     "respond"
     entry
-    (file "~/Documents/wiki/refile.org")
+    (file "~/code/personal-org/refile.org")
     "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n"
     :clock-in t
     :clock-resume t
     :immediate-finish t)
-   ("n" "note" entry (file "~/Documents/wiki/refile.org") "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-   ("j" "Journal" entry (file+datetree "~/Documents/wiki/diary.org") "* %?\n%U\n" :clock-in t :clock-resume t)
-   ("w" "org-protocol" entry (file "~/Documents/wiki/refile.org") "* TODO Review %c\n%U\n" :immediate-finish t)
+   ("n" "note" entry (file "~/code/personal-org/refile.org") "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+   ("j" "Journal" entry (file+datetree "~/code/personal-org/diary.org") "* %?\n%U\n" :clock-in t :clock-resume t)
+   ("w" "org-protocol" entry (file "~/code/personal-org/refile.org") "* TODO Review %c\n%U\n" :immediate-finish t)
    ("m"
     "Meeting"
     entry
-    (file "~/Documents/wiki/refile.org")
+    (file "~/code/personal-org/refile.org")
     "* MEETING with %? :MEETING:\n%U"
     :clock-in t
     :clock-resume t)
-   ("p" "Phone call" entry (file "~/Documents/wiki/refile.org") "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+   ("p" "Phone call" entry (file "~/code/personal-org/refile.org") "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
    ("h"
     "Habit"
     entry
-    (file "~/Documents/wiki/refile.org")
+    (file "~/code/personal-org/refile.org")
     "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 (use-package htmlize :ensure t)

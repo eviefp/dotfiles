@@ -38,6 +38,7 @@
 
       emacs = {
         enable = true;
+        service = true;
         no-x = false;
         locals = {
           enable = true;

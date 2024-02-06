@@ -216,7 +216,7 @@ in
 
         # Set programs that you use
         $terminal = kitty
-        $menu = rofi -show run
+        $menu = rofi -show drun
         $pass = tessen -p pass -d rofi -a autotype
         $screenshot = grimblast copy area
         $cliphist = cliphist list | rofi -dmenu | cliphist decode | wl-copy
@@ -257,6 +257,7 @@ in
         binde = $mainMod, L, resizeactive, 10 0
 
         # Switch workspaces with mainMod + [0-9]
+        # bind = $mainMod, 1, focusworkspaceoncurrentmonitor, 1
         bind = $mainMod, 1, grab-workspace, 1
         bind = $mainMod, 2, grab-workspace, 2
         bind = $mainMod, 3, grab-workspace, 3
@@ -269,16 +270,16 @@ in
         bind = $mainMod, 0, grab-workspace, 10
 
         # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        bind = $mainMod SHIFT, 1, movetoworkspace, 1
-        bind = $mainMod SHIFT, 2, movetoworkspace, 2
-        bind = $mainMod SHIFT, 3, movetoworkspace, 3
-        bind = $mainMod SHIFT, 4, movetoworkspace, 4
-        bind = $mainMod SHIFT, 5, movetoworkspace, 5
-        bind = $mainMod SHIFT, 6, movetoworkspace, 6
-        bind = $mainMod SHIFT, 7, movetoworkspace, 7
-        bind = $mainMod SHIFT, 8, movetoworkspace, 8
-        bind = $mainMod SHIFT, 9, movetoworkspace, 9
-        bind = $mainMod SHIFT, 0, movetoworkspace, 10
+        bind = $mainMod SHIFT, 1, movetoworkspacesilent, 1
+        bind = $mainMod SHIFT, 2, movetoworkspacesilent, 2
+        bind = $mainMod SHIFT, 3, movetoworkspacesilent, 3
+        bind = $mainMod SHIFT, 4, movetoworkspacesilent, 4
+        bind = $mainMod SHIFT, 5, movetoworkspacesilent, 5
+        bind = $mainMod SHIFT, 6, movetoworkspacesilent, 6
+        bind = $mainMod SHIFT, 7, movetoworkspacesilent, 7
+        bind = $mainMod SHIFT, 8, movetoworkspacesilent, 8
+        bind = $mainMod SHIFT, 9, movetoworkspacesilent, 9
+        bind = $mainMod SHIFT, 0, movetoworkspacesilent, 10
 
         # Example special workspace (scratchpad)
         bind = $mainMod, I, togglespecialworkspace, magic

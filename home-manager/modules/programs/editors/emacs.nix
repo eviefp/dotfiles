@@ -108,7 +108,7 @@ in
         enable = cfg.service;
         package = if cfg.no-x then package-term-only else package-desktop;
         client = {
-          enable = false;
+          enable = true;
           arguments = [ "-c" ];
         };
         socketActivation.enable = true;

@@ -51,7 +51,7 @@ in
           config.unbind('d')
         '';
         settings = {
-          editor.command = [ "kitty" "-e" "nvim" "{}" ];
+          editor.command = [ "emacsclient" "-q" "-u" "-c" "{}" ];
           auto_save.session = true;
           colors = {
             webpage = {
