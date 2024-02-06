@@ -6,7 +6,7 @@
 (deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll sound :initial `{"svolume": 100, "sicon": "./assets/volume.png", "mvolume": 100, "micon": "./assets/mic-volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
 
-(defpoll brightness :initial "100" :interval "1s" "light")
+(defpoll brightness :initial "100" :interval "1s" "~/.config/eww/scripts/get-brightness.sh")
 
 (defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
 
@@ -140,7 +140,7 @@
 	    (eventbox
 	     :onhover "eww update showBrightness=true"
 	     :onhoverlost "eww update showBrightness=false"
-	     :visible { system == "janus" }
+	     :visible { system != "thelxinoe" }
 	       (box
 	         :halign "start"
 	         :orientation "horizontal"
