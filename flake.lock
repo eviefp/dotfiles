@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "ect": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708315385,
+        "narHash": "sha256-vvZDbwTrzWjz7fvGMHUiyK6MWDT3qGmIjThXflm6Ous=",
+        "owner": "eviefp",
+        "repo": "ect",
+        "rev": "ad6ea5aa9aa3bbdab44b8eba37e1615f9ff6df67",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eviefp",
+        "repo": "ect",
+        "type": "github"
+      }
+    },
     "emacs-overlay": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -1411,6 +1431,7 @@
     },
     "root": {
       "inputs": {
+        "ect": "ect",
         "emacs-overlay": "emacs-overlay",
         "grab-workspace": "grab-workspace",
         "home-manager": "home-manager",

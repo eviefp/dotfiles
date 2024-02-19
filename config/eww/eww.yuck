@@ -10,8 +10,7 @@
 
 (defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
 
-(defvar calEntry 0)
-(deflisten cal :initial `{ "a": "", "b": "Loading...", "f": "", "g": "" }` "~/.config/eww/scripts/get-next-calendar-entry.sh")
+(deflisten cal :initial `{ "title": "Loading...", "time": "00:00", "date": "2050-01-01" }` "~/.config/eww/scripts/get-next-calendar-entry.sh")
 
 (defvar procEntry 0)
 (defpoll proc :initial "[]" :interval "1s" "~/.config/eww/scripts/get-processes.sh")
@@ -51,10 +50,10 @@
 	       :show-truncated false
 	       :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`))))
 
-(defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick]
+(defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick ?monitor-tooltip]
 	   (button
 	    :onclick monitor-click
-	    :onrightclick monitor-click
+	    :onrightclick monitor-rclick
 	    (box
 	     :class "monitor ${monitor-class}"
 	     :halign "start"
@@ -68,6 +67,7 @@
 	     (label
 	      :xalign 0
 	      :text monitor-text
+	      :tooltip "${monitor-tooltip}"
 	      :limit-width monitor-width
 	      :show-truncated false
 	      :width "${monitor-text == "" ? 0 : monitor-width * 10}"
@@ -298,11 +298,12 @@
 		      :monitor-icon "./assets/notification-${notifications.alt}.png"
 		      :monitor-click "sleep 0.1; swaync-client -t -sw")
 		     (monitor
-		      :monitor-width 16
-		      :monitor-text `${substring(cal.b, 0, 10)} ${replace(cal.g, "-.*", "") ?: ""}`
-		      :monitor-icon `${cal.f == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
-		      :monitor-click `sleep 0.1; eww update calEntry="${calEntry + 1}"`
-		      :monitor-rclick `sleep 0.1; eww update calEntry="${calEntry - 1 < 0 ? 0 : calEntry - 1}"`)
+		      :monitor-width 24
+		      :monitor-text `${cal.time} ${cal.title}`
+		      :monitor-tooltip "${cal.title}"
+		      :monitor-icon `${cal.date == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
+		      :monitor-click "ect --up"
+		      :monitor-rclick "ect --down")
 		     )
 		(media)
 		(monitor

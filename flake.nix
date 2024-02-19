@@ -42,19 +42,24 @@
     };
 
     hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
+      url = github:hyprwm/hyprpaper;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
+      url = github:hyprwm/hyprpicker;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ect = {
+      url = github:eviefp/ect;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, ect }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -72,7 +77,7 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper hycov hyprpicker;
+        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper hycov hyprpicker ect;
       };
     in
     {
