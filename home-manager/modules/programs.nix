@@ -23,6 +23,7 @@
     ./programs/streaming.nix
     ./programs/text.nix
     ./programs/wezterm.nix
+    ./programs/ect.nix
   ];
 
   options.evie.programs = {
