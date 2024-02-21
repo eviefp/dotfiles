@@ -186,12 +186,6 @@ in
             key_press_enables_dpms = true
         }
 
-        # Example per-device config
-        # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-        device:epic-mouse-v1 {
-            sensitivity = -0.5
-        }
-
         plugin {
             hycov {
                 overview_gappo = 60 #gaps width from screen
@@ -206,8 +200,6 @@ in
         # Example windowrule v2
         # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-        windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
-
         windowrulev2 = forcergbx,class:(qutebrowser)
         windowrulev2 = opacity 1.0 override 0.7,class:(Emacs)
         windowrulev2 = opacity 1.0 override 0.7,class:(kitty)
