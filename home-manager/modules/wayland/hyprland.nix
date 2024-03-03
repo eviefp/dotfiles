@@ -1,4 +1,4 @@
-{ lib, config, pkgs, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, ... }:
+{ lib, config, pkgs, hyprland, hyprpaper, hyprpicker, ... }:
 let
   cfg = config.evie.wayland;
   mkMonitor = mon: "monitor=${mon.name},${mon.resolution},${mon.position},1";
@@ -6,31 +6,6 @@ let
   mkMonitorBind = mon: "bind = $mainMod, ${mon.keybind}, focusmonitor, ${mon.name}";
   monitor-binds = lib.lists.foldr (monitor: conf: "${conf}\n${mkMonitorBind monitor}") "" cfg.monitors;
   hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
-  grab-workspace-package = pkgs.gcc13Stdenv.mkDerivation {
-    pname = "grab-workspace";
-    version = "0.1";
-    src = grab-workspace;
-
-    nativeBuildInputs = with pkgs; [ clang pkg-config ];
-
-    buildPhase = ''
-      make
-    '';
-
-    installPhase = ''
-      mkdir -p $out/lib
-      cp grab-workspace.so $out/lib/libgrab-workspace.so
-    '';
-
-    buildInputs = [ hyprland-package hyprland-package.buildInputs ];
-
-    meta = with pkgs.lib; {
-      homepage = "https://github.com/CMurtagh-LGTM/grab-workspace";
-      description = "A plugin to grab a workspace and display it on the current monitor.";
-      license = licenses.mit;
-      platforms = platforms.linux;
-    };
-  };
 in
 {
   imports = [
@@ -60,8 +35,6 @@ in
       enable = true;
       package = hyprland-package;
       plugins = [
-        grab-workspace-package
-        hycov.packages.${pkgs.system}.hycov
       ];
       extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -70,7 +43,9 @@ in
         # notifications, wallpaper, status bar
         exec-once = swaync
         exec-once = hyprpaper
+        exec-once = hypridle
         exec-once = eww d & eww open statusbar
+        exec-once = ect --server
 
         # clipboard history
         exec-once = wl-paste --type text --watch cliphist store #Stores only text data
@@ -187,12 +162,6 @@ in
         }
 
         plugin {
-            hycov {
-                overview_gappo = 60 #gaps width from screen
-                overview_gappi = 24 #gaps width from clients
-                hotarea_size = 0 #hotarea size in bottom left,10x10
-                enable_hotarea = 0 # enable mouse cursor hotarea
-            }
         }
 
         # Example windowrule v1
@@ -250,16 +219,16 @@ in
 
         # Switch workspaces with mainMod + [0-9]
         # bind = $mainMod, 1, focusworkspaceoncurrentmonitor, 1
-        bind = $mainMod, 1, grab-workspace, 1
-        bind = $mainMod, 2, grab-workspace, 2
-        bind = $mainMod, 3, grab-workspace, 3
-        bind = $mainMod, 4, grab-workspace, 4
-        bind = $mainMod, 5, grab-workspace, 5
-        bind = $mainMod, 6, grab-workspace, 6
-        bind = $mainMod, 7, grab-workspace, 7
-        bind = $mainMod, 8, grab-workspace, 8
-        bind = $mainMod, 9, grab-workspace, 9
-        bind = $mainMod, 0, grab-workspace, 10
+        bind = $mainMod, 1, focusworkspaceoncurrentmonitor, 1
+        bind = $mainMod, 2, focusworkspaceoncurrentmonitor, 2
+        bind = $mainMod, 3, focusworkspaceoncurrentmonitor, 3
+        bind = $mainMod, 4, focusworkspaceoncurrentmonitor, 4
+        bind = $mainMod, 5, focusworkspaceoncurrentmonitor, 5
+        bind = $mainMod, 6, focusworkspaceoncurrentmonitor, 6
+        bind = $mainMod, 7, focusworkspaceoncurrentmonitor, 7
+        bind = $mainMod, 8, focusworkspaceoncurrentmonitor, 8
+        bind = $mainMod, 9, focusworkspaceoncurrentmonitor, 9
+        bind = $mainMod, 0, focusworkspaceoncurrentmonitor, 10
 
         # Move active window to a workspace with mainMod + SHIFT + [0-9]
         bind = $mainMod SHIFT, 1, movetoworkspacesilent, 1
@@ -277,15 +246,9 @@ in
         bind = $mainMod, I, togglespecialworkspace, magic
         bind = $shiftMod, I, movetoworkspace, special:magic
 
-        # Scroll through existing workspaces with mainMod + scroll
-        bind = $mainMod, mouse_down, grab-workspace, e+1
-        bind = $mainMod, mouse_up, grab-workspace, e-1
-
         # Move/resize windows with mainMod + LMB/RMB and dragging
         bindm = $mainMod, mouse:272, movewindow
         bindm = $mainMod, mouse:273, resizewindow
-
-        bind = $shiftMod, z, hycov:toggleoverview
 
         bind = $shiftMod, a, togglegroup,
         bind = $shiftMod, s, lockactivegroup, toggle

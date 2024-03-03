@@ -6,6 +6,8 @@ in
   imports = [
     ./wayland/hyprland.nix
     ./wayland/hyprpaper.nix
+    ./wayland/hypridle.nix
+    ./wayland/hyprlock.nix
     ./wayland/swaync.nix
     ./wayland/eww.nix
     ./wayland/screenshot.nix
@@ -14,10 +16,12 @@ in
 
   options.evie.wayland = {
     enable = lib.options.mkEnableOption "Enable wayland.";
+
     eww-monitor = lib.mkOption {
       type = lib.types.str;
       default = "1";
     };
+
     monitors = lib.mkOption
       {
         type = lib.types.listOf (lib.types.submodule {

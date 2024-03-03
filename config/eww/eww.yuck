@@ -15,11 +15,14 @@
 (defvar procEntry 0)
 (defpoll proc :initial "[]" :interval "1s" "~/.config/eww/scripts/get-processes.sh")
 
+
 (defvar showAudio false)
 (defvar showMic false)
 (defvar showBrightness false)
 
 (defpoll system :initial "thelxinoe" :interval "60s" "hostname")
+
+(defpoll events :initial "[]" :interval "30s" "ect --upcoming 10")
 
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
@@ -50,10 +53,11 @@
 	       :show-truncated false
 	       :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`))))
 
-(defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick ?monitor-tooltip]
+(defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick ?monitor-tooltip ?monitor-middleclick]
 	   (button
 	    :onclick monitor-click
 	    :onrightclick monitor-rclick
+	    :onmiddleclick monitor-middleclick
 	    (box
 	     :class "monitor ${monitor-class}"
 	     :halign "start"
@@ -183,6 +187,29 @@
 	    :onclick "sleep 0.1; wl-copy {0}/{1}/{2}")
 	   )
 
+(defwidget events-widget []
+	   (box
+	    :orientation "v"
+	    :space-evenly true
+	    (for event in events
+		 (box
+		  :orientation "h"
+		  :space-evenly false
+		  (label
+		   :xalign 0
+		   :limit-width 15
+		   :width 150
+		   :text "${event.date}")
+		  (label
+		   :xalign 0
+		   :limit-width 15
+		   :width 150
+		   :text "${event.time}")
+		  (label
+		   :xalign 0
+		   :width 100
+		   :text "${event.title}")))))
+
 (defwidget cpu-widget []
 	   (box
 	    :orientation "v"
@@ -302,8 +329,9 @@
 		      :monitor-text `${cal.time} ${cal.title}`
 		      :monitor-tooltip "${cal.title}"
 		      :monitor-icon `${cal.date == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
-		      :monitor-click "ect --up"
-		      :monitor-rclick "ect --down")
+		      :monitor-click "eww open events --toggle &"
+		      :monitor-middleclick "ect --up"
+		      :monitor-rclick "ect --up")
 		     )
 		(media)
 		(monitor
@@ -315,3 +343,6 @@
 		(system-time)))
 
 (include "/home/evie/.config/eww-extras/windows.yuck")
+
+
+
