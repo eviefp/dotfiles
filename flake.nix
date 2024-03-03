@@ -31,16 +31,6 @@
       url = github:hyprwm/Hyprland;
     };
 
-    grab-workspace = {
-      url = github:CMurtagh-LGTM/grab-workspace;
-      flake = false;
-    };
-
-    hycov = {
-      url = github:DreamMaoMao/hycov;
-      inputs.hyprland.follows = "hyprland";
-    };
-
     hyprpaper = {
       url = github:hyprwm/hyprpaper;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +38,16 @@
 
     hyprpicker = {
       url = github:hyprwm/hyprpicker;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hypridle = {
+      url = github:hyprwm/hypridle;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprlock = {
+      url = github:hyprwm/hyprlock;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -59,7 +59,7 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, grab-workspace, hycov, hyprpaper, hyprpicker, ect }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, ect }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -77,7 +77,7 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim lean4-mode hyprland grab-workspace hyprpaper hycov hyprpicker ect;
+        inherit pkgs nix-path nix-neovim lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock ect;
       };
     in
     {

@@ -45,10 +45,12 @@ in
         keyBindings = {
           normal = {
             "<Ctrl-d>" = "tab-close";
+            "<Ctrl-r>" = "reload";
           };
         };
         extraConfig = ''
           config.unbind('d')
+          config.unbind('r')
         '';
         settings = {
           editor.command = [ "emacsclient" "-q" "-u" "-c" "{}" ];

@@ -48,6 +48,8 @@ Emacs: =config/init.el=
 
 ** TODO
 
+- [X] hyprlock
+- [X] hypridle
 - [ ] sddm styling
   - [ ] icon
 - [ ] eww
