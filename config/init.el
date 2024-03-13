@@ -124,8 +124,7 @@
          (:name "proton" :query "tag:evie" :sort-order newest-first)
          (:name "hf" :query "tag:hf" :sort-order newest-first)
          (:name "inbox" :query "tag:gmail or tag:evie or tag:proton" :sort-order newest-first)
-         (:name "gmail" :query "tag:gmail" :sort-order newest-first)
-         (:name "gmail-old (del)" :query "tag:del" :sort-order newest-first))))
+         (:name "gmail" :query "tag:gmail" :sort-order newest-first))))
 
 ;; evil
 (use-package
