@@ -115,53 +115,6 @@ in
 
           notmuch.enable = true;
         };
-
-        gmail-old = {
-          primary = false;
-          address = "admin@cvlad.info";
-          userName = "admin@cvlad.info";
-          realName = "Evie Ciobanu";
-
-          signature = {
-            text = ''
-
-              -- Evie
-            '';
-            showSignature = "append";
-          };
-
-          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/cv";
-
-          imap = {
-            host = "imap.gmail.com";
-            port = 993;
-            tls = {
-              enable = true;
-              # useStartTls = true;
-            };
-          };
-
-          smtp = {
-            host = "smtp.gmail.com";
-            port = 587;
-            tls = {
-              enable = true;
-              useStartTls = true;
-            };
-          };
-
-          mbsync = {
-            enable = true;
-            create = "both";
-            remove = "both";
-          };
-
-          msmtp = {
-            enable = true;
-          };
-
-          notmuch.enable = true;
-        };
       };
     };
 
