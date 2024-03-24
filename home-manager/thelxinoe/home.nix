@@ -87,6 +87,9 @@
   evie.wayland = {
     enable = true;
     eww-monitor = "2";
+    showTV = true;
+    showMail = true;
+    showCalendar = true;
     monitors = [
       {
         name = "DP-1";

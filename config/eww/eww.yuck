@@ -5,6 +5,7 @@
 (defpoll mail-unread :initial "0" :interval "10s" "notmuch count tag:unread")
 (deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll sound :initial `{"svolume": 100, "sicon": "./assets/volume.png", "mvolume": 100, "micon": "./assets/mic-volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
+(defpoll weather :interval "600s" "~/.config/eww/scripts/weather.sh")
 
 (defpoll brightness :initial "100" :interval "1s" "~/.config/eww/scripts/get-brightness.sh")
 
@@ -31,7 +32,7 @@
       (label :text "${workspaces}${current_workspace}" :visible false)
 
       (for workspace in workspaces
-        (eventbox :onclick "sleep 0.1; hyprctl dispatch workspace ${workspace.id}"
+        (eventbox :onclick "sleep 0.1; hyprctl dispatch focusworkspaceoncurrentmonitor ${workspace.id}"
           (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
             (label :text "${workspace.id}" :class "workspace-label" :width 3)
             )))
@@ -53,11 +54,12 @@
 	       :show-truncated false
 	       :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`))))
 
-(defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick ?monitor-tooltip ?monitor-middleclick]
+(defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick ?monitor-tooltip ?monitor-middleclick ?monitor-visible]
 	   (button
 	    :onclick monitor-click
 	    :onrightclick monitor-rclick
 	    :onmiddleclick monitor-middleclick
+	    :visible monitor-visible
 	    (box
 	     :class "monitor ${monitor-class}"
 	     :halign "start"
@@ -169,6 +171,7 @@
 	           )))
 
 	    ))
+
 
 (defwidget system-time []
 	   (box
@@ -289,7 +292,7 @@
 	      )))
 
 
-(defwidget statusbar-widget []
+(defwidget statusbar-widget [showBattery showTV showMail showCalendar]
 	   (box :space-evenly false
 		:class "statusbar-box"
 		(workspaces)
@@ -308,15 +311,27 @@
 		      :monitor-text "${round(EWW_RAM.used_mem_perc, 2)}%"
 		      :monitor-icon "./assets/ram.png"))
 		(box
+		     :class "widgets-box box"
+		     :space-evenly false
+		     :halign "start"
+		     :visibility showBattery
+		       (monitor
+		       :monitor-width 4
+		       :monitor-icon "./assets/${EWW_BATTERY.BAT0.status}.png" ; TODO: states Discharging/
+		       :monitor-text "${EWW_BATTERY.BAT0.capacity}%")
+		 )
+		(box
 		     :class "notifications-box box"
 		     :space-evenly false
 		     :halign "start"
 		     (monitor
 		      :monitor-width 2
+		      :monitor-visible showMail
 		      :monitor-text "${mail-important}"
 		      :monitor-icon "./assets/mail.png")
 		     (monitor
 		      :monitor-width 2
+		      :monitor-visible showMail
 		      :monitor-text "${mail-unread}"
 		      :monitor-icon "./assets/envelope.png")
 		     (monitor
@@ -326,6 +341,7 @@
 		      :monitor-click "sleep 0.1; swaync-client -t -sw")
 		     (monitor
 		      :monitor-width 24
+		      :monitor-visible showCalendar
 		      :monitor-text `${cal.time} ${cal.title}`
 		      :monitor-tooltip "${cal.title}"
 		      :monitor-icon `${cal.date == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
@@ -338,8 +354,15 @@
 		 :monitor-width 0
 		 :monitor-class "box"
 		 :monitor-text ""
+		 :monitor-visible showTV
 		 :monitor-icon "./assets/tv-${tvStatus}.png"
 		 :monitor-click "sleep 0.1; ~/.config/eww/scripts/toggle-tv.sh")
+
+		(monitor
+		:monitor-width 4
+		:monitor-class "box"
+		:monitor-text "${round(weather?.current?.temp_c, 0)}℃"
+		:monitor-icon "/home/evie/.config/eww-extras/weather.png")
 		(system-time)))
 
 (include "/home/evie/.config/eww-extras/windows.yuck")

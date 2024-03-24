@@ -59,7 +59,12 @@ in
                :stacking "fg"
                :exclusive "true"
                :focusable "false"
-               (statusbar-widget))
+               (statusbar-widget
+                 :showBattery ${if cfg.showBattery then "true" else "false"}
+                 :showTV ${if cfg.showTV then "true" else "false"}
+                 :showMail ${if cfg.showMail then "true" else "false"}
+                 :showCalendar ${if cfg.showCalendar then "true" else "false"}
+               ))
     '';
 
     programs.eww = {
