@@ -22,6 +22,11 @@ in
       default = "1";
     };
 
+    showBattery = lib.options.mkEnableOption "Show battery widget?";
+    showTV = lib.options.mkEnableOption "Show tv widget?";
+    showMail = lib.options.mkEnableOption "Show email widget?";
+    showCalendar = lib.options.mkEnableOption "Show calendar widget?";
+
     monitors = lib.mkOption
       {
         type = lib.types.listOf (lib.types.submodule {

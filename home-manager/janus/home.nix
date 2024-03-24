@@ -83,6 +83,7 @@
   evie.wayland = {
     enable = true;
     eww-monitor = "1";
+    showBattery = true;
     monitors = [
       {
         name = "eDP-1";
@@ -91,8 +92,8 @@
         keybind = "W";
       }
       {
-        name = "DP-3";
-        resolution = "1920x515@60.07";
+        name = "DP-1";
+        resolution = "1920x515@60.075001";
         position = "0x1080";
         keybind = "E";
       }
