@@ -84,6 +84,9 @@
     enable = true;
     eww-monitor = "1";
     showBattery = true;
+    useSshMailCalendar = true;
+    showMail = true;
+    showCalendar = true;
     monitors = [
       {
         name = "eDP-1";

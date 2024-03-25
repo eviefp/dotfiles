@@ -1,18 +1,14 @@
 (deflisten workspaces :initial "[]" "~/.config/eww/scripts/get-workspaces.sh")
 (deflisten current_workspace :initial "1" "~/.config/eww/scripts/get-active-workspace.sh")
 (deflisten active_window :initial "1" "~/.config/eww/scripts/get-active-window.sh")
-(defpoll mail-important :initial "0" :interval "10s" "notmuch count tag:important")
-(defpoll mail-unread :initial "0" :interval "10s" "notmuch count tag:unread")
-(deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
+
 (defpoll sound :initial `{"svolume": 100, "sicon": "./assets/volume.png", "mvolume": 100, "micon": "./assets/mic-volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
+
 (defpoll weather :interval "600s" "~/.config/eww/scripts/weather.sh")
 
+(deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll brightness :initial "100" :interval "1s" "~/.config/eww/scripts/get-brightness.sh")
-
 (defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
-
-(deflisten cal :initial `{ "title": "Loading...", "time": "00:00", "date": "2050-01-01" }` "~/.config/eww/scripts/get-next-calendar-entry.sh")
-
 (defvar procEntry 0)
 (defpoll proc :initial "[]" :interval "1s" "~/.config/eww/scripts/get-processes.sh")
 
@@ -24,6 +20,8 @@
 (defpoll system :initial "thelxinoe" :interval "60s" "hostname")
 
 (defpoll events :initial "[]" :interval "30s" "ect --upcoming 10")
+
+(include "/home/evie/.config/eww-extras/mail-calendar-vars.yuck")
 
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget"
