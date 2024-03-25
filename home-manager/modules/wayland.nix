@@ -24,8 +24,11 @@ in
 
     showBattery = lib.options.mkEnableOption "Show battery widget?";
     showTV = lib.options.mkEnableOption "Show tv widget?";
+
+    useSshMailCalendar = lib.options.mkEnableOption "Enable on non-thelxinoe";
     showMail = lib.options.mkEnableOption "Show email widget?";
     showCalendar = lib.options.mkEnableOption "Show calendar widget?";
+
 
     monitors = lib.mkOption
       {

@@ -88,6 +88,7 @@
     enable = true;
     eww-monitor = "2";
     showTV = true;
+    useSshMailCalendar = false;
     showMail = true;
     showCalendar = true;
     monitors = [
