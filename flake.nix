@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nil = {
+      url = github:oxalica/nil/main;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lean4-mode = {
       url = github:leanprover/lean4-mode;
       flake = false;
@@ -59,7 +64,7 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, ect }:
+    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, ect }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -77,7 +82,7 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock ect;
+        inherit pkgs nix-path nix-neovim nil lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock ect;
       };
     in
     {

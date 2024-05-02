@@ -43,7 +43,6 @@ in
       gnupg.agent = {
         enable = cfg.enableGPG;
         enableSSHSupport = true;
-        pinentryFlavor = "gnome3";
       };
 
       dconf.enable = cfg.enableDconf;

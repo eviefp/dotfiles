@@ -4,10 +4,9 @@
   * Enable packages I use for nix-related development:
   *   - 'niv' for pinning github repositories
   *   - 'nixfmt' for formatting sources with emacs/nvim (TODO)
-  *   - 'rnix-lsp' as the nix lsp
   *   - 'nix-diff' for finding out how two derivations differ
   ************************************************************************ */
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nil, ... }:
 let cfg = config.evie.programs.dev.nix;
 in
 {
@@ -20,9 +19,9 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.haskellPackages.niv
+      nil
       pkgs.nix-diff
-      pkgs.nixfmt
-      pkgs.rnix-lsp
+      pkgs.nixpkgs-fmt
     ];
   };
 }

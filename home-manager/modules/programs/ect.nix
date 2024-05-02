@@ -9,12 +9,19 @@ let
   yamlFormat = pkgs.formats.yaml { };
 
   ectConfig = {
-    calendars = lib.flatten [ (lib.forEach calendars (cal: cal.org)) [ "/home/evie/code/personal-org/cal-sync/test.org" ] ];
+    calendars = calendars;
     notification = {
       exec = "notify-send {title}";
       threads = 10;
     };
+    export = {
+      enable = true;
+      outputPath = "/home/evie/code/personal-org/cal-sync/local.ics";
+      httpPort = 31234;
+    };
   };
+
+  ectPackage = ect.packages.${pkgs.system}.default;
 in
 {
   imports = [ ];
@@ -30,5 +37,23 @@ in
     ];
 
     xdg.configFile."ect/ect.yaml".source = yamlFormat.generate "ect-config" ectConfig;
+
+    systemd.user.services.ect = {
+      Unit = {
+        Description = "Evie's Calendar Tool";
+      };
+
+      Install = { WantedBy = [ "default.target" ]; };
+
+      Service = {
+        Type = "forking";
+
+        ExecStart = "${ectPackage}/bin/ect --server";
+
+        Restart = "always";
+
+        RestartSec = 3;
+      };
+    };
   };
 }

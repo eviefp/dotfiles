@@ -31,7 +31,7 @@ in
       # X-server related
       pkgs.pass
       pkgs.passff-host
-      pkgs.pinentry-gnome
+      pkgs.pinentry
       pkgs.xdg_utils
 
       pkgs.audacity

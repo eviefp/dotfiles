@@ -19,14 +19,14 @@ in
     ];
 
     home.file = {
-      ".config/tridactyl/tridactylrc".source = ../../../config/tridactyl;
-      ".mozilla/native-messaging-hosts/passff.json".source =
-        "${pkgs.passff-host}/share/passff-host/passff.json";
-      ".mozilla/native-messaging-hosts/firenvim.json".source = ../../../config/firenvim.json;
+      # ".config/tridactyl/tridactylrc".source = ../../../config/tridactyl;
+      # ".mozilla/native-messaging-hosts/passff.json".source =
+      #   "${pkgs.passff-host}/share/passff-host/passff.json";
+      # ".mozilla/native-messaging-hosts/firenvim.json".source = ../../../config/firenvim.json;
     };
     programs = {
       browserpass = {
-        enable = false;
+        enable = true;
         browsers = [ "firefox" ];
       };
       firefox = {
@@ -35,6 +35,22 @@ in
           cfg = {
             enableTridactylNative = true;
           };
+        };
+        # nativeMessagingHosts = []; TODO
+        policies = {
+          AllowFileSelctionDialogs = true;
+          AppAutoUpdate = false;
+          DefaultDownloadDirectory = "~/Downloads";
+          DisableAppUpdate = true;
+          DisableFirefoxStudies = true;
+          DisablePocket = true;
+          DisableSetDesktopBackground = true;
+          DisableTelemetry = true;
+          DisableBookmarksToolbar = true;
+          DisplayMenuBar = false;
+          DontCheckDefaultBrowser = true;
+          SearchBar = "unified";
+          ShowHomeButton = false;
         };
       };
       qutebrowser = {
