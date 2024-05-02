@@ -12,7 +12,6 @@
     ../modules/programs/editors/neovim.nix
     ../modules/fonts.nix
     ../modules/system.nix
-    ../modules/services/calendar-sync.nix
     ../modules/wayland.nix
   ];
 
@@ -80,13 +79,9 @@
     dotfiles = "/home/evie/code/dotfiles";
   };
 
-  evie.services = {
-    calendar-sync.enable = true;
-  };
-
   evie.wayland = {
     enable = true;
-    eww-monitor = "2";
+    eww-monitor = "1";
     showTV = true;
     useSshMailCalendar = false;
     showMail = true;

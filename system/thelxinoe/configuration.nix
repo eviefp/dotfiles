@@ -20,7 +20,7 @@
   evie.network = {
     hostName = "thelxinoe";
     interface = "enp4s0";
-    extraPorts = [ 31337 ];
+    extraPorts = [ 31234 ];
   };
 
   evie.packages = {
@@ -46,11 +46,12 @@
   };
 
   environment.variables = {
-    WLR_NO_HARDWARE_CURSOR = "1";
+    WLR_DRM_NO_ATOMIC = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    __GLX_VRR_ALLOWED = "1";
   };
 }
 

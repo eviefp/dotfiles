@@ -45,7 +45,6 @@ in
         exec-once = hyprpaper
         exec-once = hypridle
         exec-once = eww d & eww open statusbar
-        exec-once = ect --server
 
         # clipboard history
         exec-once = wl-paste --type text --watch cliphist store #Stores only text data
@@ -198,11 +197,14 @@ in
 
         bind = $shiftMod, C, killactive,
         bind = $mainMod, M, exec, $screenshot
-        bind = $mainMod, V, exec, $cliphist
+        bind = $shiftMod, V, exec, $cliphist
         bind = $mainMod, F, togglefloating,
         bind = $mainMod, P, exec, $menu
         bind = $mainMod, O, exec, $pass
         bind = $mainMod, N, exec, $notifications
+        bind = $mainMod, C, exec, eww open cal --toggle
+        bind = $mainMod, V, exec, eww open events --toggle
+        bind = $mainMod, B, exec, eww open cpu --toggle
         bind = $mainMod, Return, layoutmsg, swapwithmaster
         bind = $mainMod, G, fullscreen, 0
 

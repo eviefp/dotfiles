@@ -44,6 +44,8 @@
 
 ;; (global-display-fill-column-indicator-mode)
 
+(setq make-backup-files nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Default config
 (setq evie-font-size 60)
@@ -397,9 +399,9 @@
  ;;         (append
  ;;          (append (list "nix" "develop" "--command") (list (mapconcat 'identity argv " ")))
  ;;          (list (concat (file-name-directory (haskell-cabal-find-file)) "flake.nix")))))
- :config (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
- (lsp-register-client
-  (make-lsp-client :new-connection (lsp-stdio-connection "rnix-lsp") :major-modes '(nix-mode) :server-id 'nix))
+ :config
+   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+   (setq lsp-modeline-code-actions-segments '(count icon name))
  :hook ((haskell-mode . lsp) (lsp-mode . lsp-enable-which-key-integration)) (nix-mode . lsp) (rust-mode . lsp)
  :general
  ;; format: off
@@ -412,6 +414,12 @@
  ;; format: on
  )
 
+(use-package
+  elixir-mode
+  :ensure t
+  :custom
+  (lsp-elixir-server-command '("elixir-ls"))
+  )
 
 (use-package lsp-treemacs :ensure t :general (general-define-key :keymaps 'normal ", e" 'lsp-treemacs-errors-list))
 
@@ -523,6 +531,14 @@
   :states '(normal visual)
   ", u" 'nix-unpack ; this seems bugged; should investigate
   ", b" 'nix-build))
+
+(use-package
+ lsp-nix
+ :ensure lsp-mode
+ :after (lsp-mode)
+ :demand t
+ :custom
+ (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
 
 ;; lua
 (use-package lua-mode :ensure t :init (setq lua-indent-level 4) (setq lua-indent-string-contents t))
@@ -718,12 +734,11 @@
  )
 
 (setq org-agenda-files
-      (quote ("~/code/personal-org/agenda/todo.org"
-              "~/code/personal-org/agenda/backlog.org"
-              "~/code/personal-org/cal-sync/evie.org"
+      (quote ("~/code/personal-org/cal-sync/evie.org"
               "~/code/personal-org/cal-sync/gia-evie.org"
               "~/code/personal-org/cal-sync/proton.org"
-              "~/code/personal-org/agenda/todo-history.org")))
+              "~/code/personal-org/cal-sync/local.org")))
+(setq org-icalendar-combined-agenda-file "~/code/personal-org/cal-sync/calendar.ics")
 (setq org-directory "~/code/personal-org")
 (setq org-default-notes-file "~/code/personal-org/refile.org")
 

@@ -1,7 +1,7 @@
 { lib, config, pkgs, hyprpaper, ... }:
 let
   cfg = config.evie.wayland;
-  files = [ "elsa.png" "evey.png" "hq.png" "mulan.png" ];
+  files = [ "evey.png" "elsa.png" "hq.png" "mulan.png" ];
   preload = lib.lists.foldr (w: acc: "${acc}\n preload = ~/.config/wallpaper/${w}") "" files;
 
   mkWallpaper = p: "wallpaper = ${p.fst.name}, ~/.config/wallpaper/${p.snd}";

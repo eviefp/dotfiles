@@ -74,7 +74,6 @@ in
 
           eza = {
             enable = true;
-            enableAliases = true;
             git = true;
             icons = true;
             extraOptions = [
@@ -83,6 +82,8 @@ in
               "--icons"
               "--classify"
             ];
+            enableBashIntegration = true;
+            enableFishIntegration = true;
           };
 
 
@@ -181,6 +182,16 @@ in
 
           ncspot = {
             enable = true;
+            settings = {
+              initial_screen = "search";
+              use_nerdfont = true;
+              notify = true;
+              keybindings = {
+                "Shift+q" = "search";
+                "Shift+u" = "queue";
+                "Shift+e" = "library";
+              };
+            };
           };
 
           starship = {

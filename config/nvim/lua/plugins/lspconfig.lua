@@ -26,10 +26,15 @@ lspconfig.hls.setup {
 
 -------------------------------------------------------------------------------
 -- nix
-lspconfig.rnix.setup {
-  flags = {
-    debounce_text_changes = 150,
-  },
+lspconfig.nil_ls.setup {
+  autostart = true,
+  settings = {
+      ['nil'] = {
+	  formatting = {
+	      command = { "nixpkgs-fmt" },
+	  },
+      },
+  }
   capabilities = capabilities,
 }
 
