@@ -3,6 +3,7 @@ let
   cfg = config.evie.wayland;
   mkMonitor = mon: "monitor=${mon.name},${mon.resolution},${mon.position},1";
   monitors = lib.lists.foldr (monitor: conf: "${conf}\n${mkMonitor monitor}") "" cfg.monitors;
+  disabledMonitors = lib.lists.foldr (mon: conf: "${conf}\nmonitor=${mon},disabled") "" cfg.disabledMonitors;
   mkMonitorBind = mon: "bind = $mainMod, ${mon.keybind}, focusmonitor, ${mon.name}";
   monitor-binds = lib.lists.foldr (monitor: conf: "${conf}\n${mkMonitorBind monitor}") "" cfg.monitors;
   hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
@@ -37,14 +38,15 @@ in
       plugins = [
       ];
       extraConfig = ''
-        # See https://wiki.hyprland.org/Configuring/Monitors/
         ${monitors}
+
+        ${disabledMonitors}
 
         # notifications, wallpaper, status bar
         exec-once = swaync
         exec-once = hyprpaper
         exec-once = hypridle
-        exec-once = eww d & eww open statusbar
+        exec-once = sleep 2s && eww d & eww open statusbar
 
         # clipboard history
         exec-once = wl-paste --type text --watch cliphist store #Stores only text data
@@ -75,6 +77,12 @@ in
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
         }
 
+        debug {
+           disable_logs = false
+           disable_time = false
+           enable_stdout_logs = true
+        }
+
         general {
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
@@ -85,7 +93,6 @@ in
             col.inactive_border = rgba(595959aa)
 
             layout = master
-            no_cursor_warps = true
 
             resize_on_border = true
             hover_icon_on_border = true
@@ -93,7 +100,10 @@ in
             # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
             allow_tearing = false
 
-            cursor_inactive_timeout = 0
+        }
+
+        cursor {
+            inactive_timeout = 0
         }
 
         decoration {

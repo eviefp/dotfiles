@@ -85,7 +85,6 @@ in
             enable = true;
             wifi.powersave = false;
           };
-          wireless.networks = import ./network-secrets.nix;
         };
       }
       (lib.mkIf (cfg.wifi.interface != "") {

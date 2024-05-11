@@ -23,7 +23,7 @@ in
       };
 
       # Randomly decided the NixOS version should be here.
-      system.stateVersion = "23.11";
+      system.stateVersion = "24.05";
     }
     (lib.mkIf cfg.enableHeadless { boot.kernelParams = [ "nomodeset" ]; })
   ];

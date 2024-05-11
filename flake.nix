@@ -1,70 +1,72 @@
 {
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
-      url = github:nix-community/home-manager;
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ect = {
+      url = "github:eviefp/ect";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     emacs-overlay = {
-      url = github:nix-community/emacs-overlay/master;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nil = {
-      url = github:oxalica/nil/main;
+      url = "github:nix-community/emacs-overlay/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lean4-mode = {
-      url = github:leanprover/lean4-mode;
+      url = "github:leanprover/lean4-mode";
       flake = false;
     };
 
+    nil = {
+      url = "github:oxalica/nil/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-on-droid = {
-      url = github:nix-community/nix-on-droid/master;
+      url = "github:nix-community/nix-on-droid/master";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
 
     nix-neovim = {
-      url = github:eviefp/nix-neovim/main;
+      url = "github:eviefp/nix-neovim/main";
     };
 
+    # Hyprland stuff
     hyprland = {
-      url = github:hyprwm/Hyprland;
+      # url = "github:hyprwm/Hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
 
     hyprpaper = {
-      url = github:hyprwm/hyprpaper;
+      url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprpicker = {
-      url = github:hyprwm/hyprpicker;
+      url = "github:hyprwm/hyprpicker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hypridle = {
-      url = github:hyprwm/hypridle;
+      url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprlock = {
-      url = github:hyprwm/hyprlock;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ect = {
-      url = github:eviefp/ect;
+      url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, ect }:
+    { self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, ect }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {

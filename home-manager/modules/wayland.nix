@@ -30,6 +30,11 @@ in
     showCalendar = lib.options.mkEnableOption "Show calendar widget?";
 
 
+    disabledMonitors = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+    };
+
     monitors = lib.mkOption
       {
         type = lib.types.listOf (lib.types.submodule {
