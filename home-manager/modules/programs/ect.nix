@@ -1,6 +1,6 @@
 /****************************************************************************
   * ect module
-  *
+ 
   **************************************************************************/
 { lib, config, pkgs, ect, ... }:
 let
@@ -13,6 +13,7 @@ let
     notification = {
       exec = "notify-send {title}";
       threads = 10;
+      enable = true;
     };
     export = {
       enable = true;
@@ -46,7 +47,7 @@ in
       Install = { WantedBy = [ "default.target" ]; };
 
       Service = {
-        Type = "forking";
+        Type = "exec";
 
         ExecStart = "${ectPackage}/bin/ect --server";
 

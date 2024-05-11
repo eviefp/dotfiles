@@ -84,8 +84,7 @@ scale slider {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
-  background: linear-gradient(rgba(120, 120, 120, 0.3), rgba(120, 120, 120, 0.3)), url("/home/evie/.config/eww/assets/liberation300.jpg");
-  opacity: 0.85;
+    background-color: rgba($bg-color, 0.7);
     border: 1px solid $bright;
     color: $bright;
     padding: 0 1em;
@@ -128,11 +127,41 @@ scale slider {
     }
 }
 
+.tz {
+    border-radius: 15px;
+    font-family: Hasklug Nerd Font Mono;
+    font-size: 16px;
+    background-color: rgba($bg-color, 0.7);
+    border: 1px solid $bright;
+    color: $bright;
+    padding: 1em;
+
+    .line {
+      border-top: 1px dashed $bright;
+      border-bottom: 1px dashed $bright;
+    }
+}
+
+.events {
+    border-radius: 15px;
+    font-family: Hasklug Nerd Font Mono;
+    font-size: 16px;
+    background-color: rgba($bg-color, 0.7);
+    border: 1px solid $bright;
+    color: $bright;
+    padding: 1em;
+
+    .line {
+      border-top: 1px dashed $bright;
+      border-bottom: 1px dashed $bright;
+    }
+}
+
 .cpu {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
-    background-color: rgba($bg-color, 0.3);
+    background-color: rgba($bg-color, 0.7);
     border: 1px solid $bright;
     color: $bright;
     padding: 1em;

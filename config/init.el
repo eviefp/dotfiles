@@ -64,8 +64,11 @@
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(setq org-todo-keyword-faces '(("TODO" . "magenta") ("BACKLOG" . "gray") ("STARTED" . "hot pink") ("WAITING" . "peach puff") ("DELEGATED" . "yellow") ("APPT" . "light green") ("DONE" . "green") ("DEFERRED" . "purple2") ("CANCELLED" . "maroon2") ))
+
 (setq evie-file-init-el "~/code/dotfiles/config/init.el")
-(setq evie-file-todo "~/code/personal-org/todo.org")
+(setq evie-file-todo "~/code/personal-org/agenda/todo.org")
+(setq evie-file-backlog "~/code/personal-org/agenda/backlog.org")
 (setq evie-file-refile "~/code/personal-org/refile.org")
 
 (setq
@@ -79,6 +82,11 @@
   (interactive)
   (evil-window-vsplit)
   (eshell))
+
+(defun evie-open-file (path)
+  "Open file at path."
+  (interactive)
+  (find-file path))
 
 (defun evie-open-file-other-window (path)
   "Open file at path, in another window."
@@ -216,7 +224,13 @@
   "SPC t E" 'start-term
   "SPC t d" '(lambda ()
                      (interactive)
-                     (evie-open-file-other-window evie-file-todo))
+                     (evie-open-file evie-file-todo))
+  "SPC t b" '(lambda ()
+                     (interactive)
+                     (evie-open-file evie-file-backlog))
+  "SPC t l" '(lambda ()
+                     (interactive)
+                     (evie-open-file evie-local-calendar))
   "C-+" 'text-scale-increase
   "C--" 'text-scale-decrease
   "C-=" '(lambda ()
@@ -224,16 +238,15 @@
                  (text-scale-set 0))
   "SPC f e d" '(lambda ()
                        (interactive)
-                       (evie-open-file-other-window evie-file-init-el))
+                       (evie-open-file evie-file-init-el))
   "SPC o f" 'org-cycle-agenda-files
-  "SPC o o" 'org-todo
   "SPC o a" 'org-agenda
-  "SPC o c" 'calendar
-  "SPC o C" 'org-capture
+  "SPC o C" 'calendar
+  "SPC o c" 'org-capture
   "SPC o w" 'org-refile
-  "SPC o r" '(lambda ()
+  "SPC t r" '(lambda ()
                      (interactive)
-                     (evie-open-file-other-window evie-file-refile))
+                     (evie-open-file evie-file-refile))
   "SPC x e" 'eval-last-sexp)
  ;; format: on
  )
@@ -733,12 +746,22 @@
  ;; format: on
  )
 
+(setq enable-local-variables :safe)
+
+(setq evie-local-calendar "~/code/personal-org/cal-sync/local.org")
+
+(setq evie-todo-files
+     '("~/code/personal-org/cal-sync/local.org"
+       "~/code/personal-org/agenda/todo.org"
+       "~/code/personal-org/agenda/backlog.org"))
+
 (setq org-agenda-files
-      (quote ("~/code/personal-org/cal-sync/evie.org"
-              "~/code/personal-org/cal-sync/gia-evie.org"
-              "~/code/personal-org/cal-sync/proton.org"
-              "~/code/personal-org/cal-sync/local.org")))
-(setq org-icalendar-combined-agenda-file "~/code/personal-org/cal-sync/calendar.ics")
+    (append
+      '("~/code/personal-org/cal-sync/evie.org"
+        "~/code/personal-org/cal-sync/gia-evie.org"
+        "~/code/personal-org/cal-sync/proton.org")
+      evie-todo-files))
+
 (setq org-directory "~/code/personal-org")
 (setq org-default-notes-file "~/code/personal-org/refile.org")
 
@@ -751,37 +774,26 @@
  '(org-agenda-start-on-weekday nil)
  '(org-reverse-note-order t))
 
-(setq org-refile-targets (quote ((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9))))
+(setq org-refile-targets (quote ((nil :maxlevel . 9) (evie-todo-files :maxlevel . 2))))
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
 (setq
  org-capture-templates
  (quote
   (("t" "todo" entry (file "~/code/personal-org/refile.org") "* TODO %?\n")
-   ("r"
-    "respond"
-    entry
-    (file "~/code/personal-org/refile.org")
-    "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n"
-    :clock-in t
-    :clock-resume t
-    :immediate-finish t)
-   ("n" "note" entry (file "~/code/personal-org/refile.org") "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-   ("j" "Journal" entry (file+datetree "~/code/personal-org/diary.org") "* %?\n%U\n" :clock-in t :clock-resume t)
-   ("w" "org-protocol" entry (file "~/code/personal-org/refile.org") "* TODO Review %c\n%U\n" :immediate-finish t)
-   ("m"
-    "Meeting"
-    entry
-    (file "~/code/personal-org/refile.org")
-    "* MEETING with %? :MEETING:\n%U"
-    :clock-in t
-    :clock-resume t)
-   ("p" "Phone call" entry (file "~/code/personal-org/refile.org") "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-   ("h"
-    "Habit"
-    entry
-    (file "~/code/personal-org/refile.org")
-    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+   ("c" "calendar" entry (file+headline "~/code/personal-org/cal-sync/local.org" "Unsorted") "** %^{title} :local:\n\
+  %^{start}T--%^{end}T\n\
+  :PROPERTIES:\n\
+  :UID:                            -\n\
+  :Class:                          Public\n\
+  :Location:                       \n\
+  :Organizer:                      Evie\n\
+  :Sequence:                       1\n\
+  :Status:                         Confirmed\n\
+  :Transparency:                   Opaque\n\
+  :END:\n\
+%?\n")
+  )))
 
 (use-package htmlize :ensure t)
 

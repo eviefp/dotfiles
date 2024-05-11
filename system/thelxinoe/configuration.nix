@@ -50,6 +50,8 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    NVD_BACKEND = "direct";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     __GLX_VRR_ALLOWED = "1";
   };

@@ -182,6 +182,7 @@ in
         $cliphist = cliphist list | rofi -dmenu | cliphist decode | wl-copy
         $notifications = swaync-client -t -sw
         $sleep = sleep 1s; hyprctl dispatch dpms off
+        $toggleTimezones = eww open tz --toggle
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
         $mainMod = SUPER
@@ -202,6 +203,7 @@ in
         bind = $mainMod, P, exec, $menu
         bind = $mainMod, O, exec, $pass
         bind = $mainMod, N, exec, $notifications
+        bind = $mainMod, Z, exec, $toggleTimezones
         bind = $mainMod, C, exec, eww open cal --toggle
         bind = $mainMod, V, exec, eww open events --toggle
         bind = $mainMod, B, exec, eww open cpu --toggle

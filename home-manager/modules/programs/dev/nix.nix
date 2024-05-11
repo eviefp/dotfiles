@@ -19,7 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.haskellPackages.niv
-      nil
+      nil.packages.${pkgs.system}.nil
       pkgs.nix-diff
       pkgs.nixpkgs-fmt
     ];
