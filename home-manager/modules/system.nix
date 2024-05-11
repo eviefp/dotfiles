@@ -23,7 +23,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.stateVersion = "23.11";
+    home.stateVersion = "24.05";
     home.username = "evie";
     home.homeDirectory = "/home/evie";
   };

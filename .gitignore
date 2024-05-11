@@ -1,4 +1,3 @@
-system/carbon/networks.nix
 home/xmonad/xmonad-x86_64-linux
 home/xmonad/xmonad.errors
 home/xmonad/xmonad.hi

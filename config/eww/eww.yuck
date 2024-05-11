@@ -208,7 +208,7 @@
 	   (calendar
 	    :width 200
 	    :class "calendar-box"
-	    :onclick "wl-copy {0}-{1}-{2}")
+	    :onclick "eww close cal; ~/.config/eww/scripts/get-workspaces.sh {0} {1} {2}")
 	   )
 
 (defwidget events-widget []
