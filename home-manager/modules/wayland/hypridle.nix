@@ -1,11 +1,6 @@
 { lib, config, pkgs, hypridle, ... }:
 let
   cfg = config.evie.wayland;
-  files = [ "elsa.png" "evey.png" "hq.png" "mulan.png" ];
-  preload = lib.lists.foldr (w: acc: "${acc}\n preload = ~/.config/wallpaper/${w}") "" files;
-
-  mkWallpaper = p: "wallpaper = ${p.fst.name}, ~/.config/wallpaper/${p.snd}";
-  wallpaper = lib.lists.foldr (p: conf: "${conf}\n${mkWallpaper p}") "" (lib.lists.zipLists cfg.monitors files);
 in
 {
   config = lib.mkIf cfg.enable {
@@ -15,8 +10,8 @@ in
         }
 
         # listener {
-        #   timeout = 300
-        #   on-timeout = hyprlock
+        #  timeout = 300
+        #  on-timeout = hyprlock
         # }
 
         listener {

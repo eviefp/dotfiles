@@ -48,8 +48,6 @@ Emacs: =config/init.el=
 
 ** TODO
 
-- [X] hyprlock
-- [X] hypridle
 - [ ] sddm styling
   - [ ] icon
 - [ ] eww
@@ -65,3 +63,4 @@ Emacs: =config/init.el=
 
 
 awesome wayland https://github.com/natpen/awesome-wayland
+

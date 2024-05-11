@@ -11,6 +11,7 @@
 (defpoll tvStatus :initial `off` :interval "1s" "~/.config/eww/scripts/tv-status.sh")
 (defvar procEntry 0)
 (defpoll proc :initial "[]" :interval "1s" "~/.config/eww/scripts/get-processes.sh")
+(defpoll timezones :initial "[]" :interval "1s" "~/.config/eww/scripts/get-timezones.sh")
 
 
 (defvar showAudio false)
@@ -170,6 +171,28 @@
 
 	    ))
 
+(defwidget timezone-widget []
+	    (box
+	     :orientation "vertical"
+	     :valign "end"
+	     :vexpand true
+             (for other in timezones
+		  (box
+		     :class "line"
+		     :hexpand true
+		    (label
+		     :text "${other.name}"
+	             :halign "start"
+		     :hexpand true
+	             :limit-width 11
+	             :show-truncated false
+	             :width 110)
+		    (label
+		     :text "${other.time}"
+	             :halign "end"
+	             :limit-width 8
+	             :show-truncated false
+	             :width 80)))))
 
 (defwidget system-time []
 	   (box
@@ -185,7 +208,7 @@
 	   (calendar
 	    :width 200
 	    :class "calendar-box"
-	    :onclick "wl-copy {0}/{1}/{2}")
+	    :onclick "wl-copy {0}-{1}-{2}")
 	   )
 
 (defwidget events-widget []
@@ -196,24 +219,26 @@
 		 (box
 		  :orientation "h"
 		  :space-evenly false
+	          :class "line"
 		  (label
 		   :xalign 0
-		   :limit-width 15
-		   :width 150
+		   :limit-width 13
+		   :width 130
 		   :text "${event.date}")
 		  (label
 		   :xalign 0
-		   :limit-width 6
-		   :width 60
+		   :limit-width 8
+		   :width 70
 		   :text "⟨${event.duration}m⟩")
 		  (label
 		   :xalign 0
-		   :limit-width 15
-		   :width 150
+		   :limit-width 7
+		   :width 70
 		   :text "${event.time}")
 		  (label
 		   :xalign 0
-		   :width 100
+		   :limit-width 30
+		   :width 300
 		   :text "${event.title}")))))
 
 (defwidget cpu-widget []

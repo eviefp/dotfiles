@@ -21,15 +21,27 @@ in
     home.file.".config/eww-extras/windows.yuck".text = ''
             (defwindow cal
                        :monitor ${cfg.eww-monitor}
-            	   :geometry (geometry :x "60px"
-            		               :y "10px"
+            	   :geometry (geometry :x "35px"
+            		               :y "5px"
             		               :width "300px"
-            		               :height "200px"
+            		               :height "100px"
             		               :anchor "bottom right")
             	   :stacking "fg"
             	   :exclusive "false"
             	   :focusable "false"
             	   (cal-widget))
+
+            (defwindow tz
+                       :monitor ${cfg.eww-monitor}
+            	   :geometry (geometry :x "35px"
+            		               :y "5px"
+            		               :width "250px"
+            		               :height "70px"
+            		               :anchor "bottom right")
+            	   :stacking "fg"
+            	   :exclusive "false"
+            	   :focusable "false"
+            	   (timezone-widget))
 
             (defwindow cpu
                        :monitor ${cfg.eww-monitor}
@@ -45,10 +57,10 @@ in
 
             (defwindow  events
                  :monitor ${cfg.eww-monitor}
-      	         :geometry (geometry :x "450px"
-      		                           :y "10px"
-      		                           :width "300px"
-      		                           :height "200px"
+      	         :geometry (geometry :x "700px"
+      		                           :y "5px"
+      		                           :width "400px"
+      		                           :height "100px"
       		                           :anchor "bottom left")
       	         :stacking "fg"
       	         :exclusive "false"

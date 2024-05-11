@@ -62,12 +62,13 @@ in
             plasma5.enable = false;
             xterm.enable = false;
           };
-          displayManager.sddm = {
-            enable = true;
-            theme = "/run/current-system/sw/share/sddm/themes/elarun";
-            wayland.enable = true;
-          };
           xkb.layout = "us";
+        };
+
+        displayManager.sddm = {
+          enable = true;
+          theme = "/run/current-system/sw/share/sddm/themes/elarun";
+          wayland.enable = true;
         };
       };
 
@@ -88,7 +89,7 @@ in
           driSupport = true;
           extraPackages =
             if cfg.useNVidia
-            then [ pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl ]
+            then [ pkgs.nvidia-vaapi-driver pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl ]
             else with pkgs; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
           extraPackages32 =
             if cfg.useNVidia
