@@ -111,11 +111,6 @@
   (interactive)
   (evil-collection-notmuch-toggle-tag "important" "search" 'notmuch-search-next-thread))
 
-(defun evie-notmuch-search-toggle-recruit ()
-  "Toggle recruit tag for message."
-  (interactive)
-  (evil-collection-notmuch-toggle-tag "recruitment" "search" 'notmuch-search-next-thread))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
 (require 'use-package)
@@ -128,10 +123,10 @@
  (setq notmuch-fcc-dirs nil) ;; testing
  (setq notmuch-always-prompt-for-sender t)
  (setq notmuch-saved-searches
-       '((:name "important" :query "tag:important" :sort-order oldest-first)
-         (:name "recruitment" :query "tag:recruitment" :sort-order newest-first)
+       '((:name "important" :query "tag:important" :sort-order newest-first)
          (:name "unread" :query "tag:unread" :sort-order newest-first)
          (:name "proton" :query "tag:evie" :sort-order newest-first)
+         (:name "garnix" :query "tag:garnix" :sort-order newest-first)
          (:name "hf" :query "tag:hf" :sort-order newest-first)
          (:name "inbox" :query "tag:gmail or tag:evie or tag:proton" :sort-order newest-first)
          (:name "gmail" :query "tag:gmail" :sort-order newest-first))))
@@ -180,6 +175,8 @@
 ;; which-key
 (use-package which-key :ensure t :config (which-key-mode 1))
 
+(use-package xclip :ensure t :config (xclip-mode 1))
+
 ;; general
 (use-package
  general
@@ -190,7 +187,6 @@
   :states '(normal visual)
   :keymaps 'notmuch-search-mode-map
   "@" 'evie-notmuch-search-toggle-important
-  "#" 'evie-notmuch-search-toggle-recruit
   "d" 'evil-collection-notmuch-search-toggle-delete
   "u" 'evil-collection-notmuch-search-toggle-unread
   "t" 'notmuch-search-add-tag
@@ -476,6 +472,7 @@
  (general-define-key
   :keymaps 'insert
   "C-SPC" 'company-complete
+  "C-@" 'company-complete
   :keymaps 'company-active-map
   "<tab>" 'company-complete-selection
   "C-j" 'company-select-next
@@ -612,6 +609,7 @@
   :keymaps 'org-mode-map
   "RET" 'org-open-at-point
   "C-SPC" 'org-toggle-checkbox
+  "C-@" 'org-toggle-checkbox
   "SPC o s" 'org-schedule
   "SPC o d" 'org-deadline
   "SPC o l" 'org-insert-link
@@ -708,10 +706,12 @@
 (use-package
  modus-themes
  :ensure t
- :init
- (setq modus-themes-italic-constructs t)
- (setq modus-theme-bold-constructs nil)
- :config (load-theme 'modus-vivendi-tritanopia :no-confirm))
+ :config
+ (setq modus-themes-italic-constructs t
+       modus-theme-bold-constructs nil)
+ ;; (setq modus-themes-common-palette-overrides
+ ;;       '((bg-main unspecified)))
+ (load-theme 'modus-vivendi-tritanopia :no-confirm))
 
 (use-package all-the-icons :ensure t)
 
@@ -758,6 +758,7 @@
 (setq org-agenda-files
     (append
       '("~/code/personal-org/cal-sync/evie.org"
+        "~/code/personal-org/cal-sync/garnix.org"
         "~/code/personal-org/cal-sync/gia-evie.org"
         "~/code/personal-org/cal-sync/proton.org")
       evie-todo-files))
@@ -798,6 +799,24 @@
 (use-package htmlize :ensure t)
 
 (require 'lean4-mode)
+
+(use-package
+ sops
+ :ensure t
+ :general
+ ;; format: off
+ (general-define-key
+  :keymaps 'normal
+    ", s" 'sops-save-file
+    ", c" 'sops-cancel
+    ", e" 'sops-edit-file)
+ ;; format: on
+ :init
+   (global-sops-mode 1))
+
+(use-package
+ just-mode
+ :ensure t)
 
 (use-package
  ligature

@@ -69,6 +69,53 @@ in
           notmuch.enable = true;
         };
 
+        garnix = {
+          primary = false;
+          address = "eciobanu@garnix.io";
+          userName = "eciobanu@garnix.io";
+          realName = "Evie Ciobanu";
+
+          signature = {
+            text = ''
+
+              -- Evie
+            '';
+            showSignature = "append";
+          };
+
+          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/garnix";
+
+          imap = {
+            host = "imap.gmail.com";
+            port = 993;
+            tls = {
+              enable = true;
+              # useStartTls = true;
+            };
+          };
+
+          smtp = {
+            host = "smtp.gmail.com";
+            port = 587;
+            tls = {
+              enable = true;
+              useStartTls = true;
+            };
+          };
+
+          mbsync = {
+            enable = true;
+            create = "both";
+            remove = "both";
+          };
+
+          msmtp = {
+            enable = true;
+          };
+
+          notmuch.enable = true;
+        };
+
         gmail-primary = {
           primary = false;
           address = "alexa.eviest@gmail.com";
@@ -138,6 +185,7 @@ in
         hooks = {
           postNew = ''
             notmuch tag +evie -- to:*@eevie.ro
+            notmuch tag +garnix -- to:*@eciobanu@garnix.io
             notmuch tag +gmail -- to:*evie*@gmail.com
             notmuch tag +del -- to:*@cvlad.info
             notmuch tag +hf -- from:*@haskell.foundation

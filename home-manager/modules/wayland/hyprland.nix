@@ -57,80 +57,53 @@ in
 
         # Some default env vars.
         env = XCURSOR_SIZE,24
+        env = HYPRCURSOR_THEME,materialLight
+        env = HYPRCURSOR_SIZE,24
         env = QT_QPA_PLATFORMTHEME,qt6ct # change to qt6ct if you have that
         env = NIXOS_OZONE_WL,hyprland
 
-        # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
-        input {
-            kb_layout = us
-            kb_variant =
-            kb_model =
-            kb_options = compose:pause
-            kb_rules =
-
-            follow_mouse = 2
-
-            touchpad {
-                natural_scroll = no
-            }
-
-            sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-        }
-
-        debug {
-           disable_logs = false
-           disable_time = false
-           enable_stdout_logs = true
-        }
-
         general {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
+            border_size = 2
 
             gaps_in = 5
-            gaps_out = 20
-            border_size = 2
+            gaps_out = 10
+
             col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
             col.inactive_border = rgba(595959aa)
 
             layout = master
 
+            no_focus_fallback = true
+
             resize_on_border = true
             hover_icon_on_border = true
 
-            # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
             allow_tearing = false
-
-        }
-
-        cursor {
-            inactive_timeout = 0
         }
 
         decoration {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
             rounding = 10
+
             active_opacity = 0.9
             inactive_opacity = 0.75
             fullscreen_opacity = 1
 
-
-            blur {
-                enabled = true
-                size = 3
-                passes = 1
-            }
-
             drop_shadow = yes
             shadow_range = 8
             shadow_render_power = 2
+
             col.shadow = rgba(1a1a1aee)
+
+            blur {
+                enabled = true
+                size = 5
+                passes = 3
+            }
+
         }
 
         animations {
             enabled = yes
-
-            # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
             bezier = myBezier, 0.05, 0.9, 0.1, 1.05
 
@@ -142,32 +115,60 @@ in
             animation = workspaces, 1, 6, default
         }
 
+        input {
+            kb_layout = us
+            kb_options = compose:pause
+
+            follow_mouse = 2
+
+            touchpad {
+                natural_scroll = no
+            }
+
+            sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+        }
+
         group {
           groupbar {
-            # enabled = false;
+               font_size = 10
+               height = 16
+               render_titles = true
+               gradients = false
+               text_color = rgba(c934f3ff)
+               col.active = rgba(c934f3ff)
+               col.inactive = rgba(707056ff)
+               col.locked_active = rgba(c934f3ff)
+               col.locked_inactive = rgba(707056ff)
           }
         }
 
+        misc {
+            disable_hyprland_logo = true
+            disable_splash_rendering = true
+            key_press_enables_dpms = true
+            new_window_takes_over_fullscreen = 2
+        }
+
+        cursor {
+            inactive_timeout = 0
+            no_warps = true
+            enable_hyprcursor = true
+        #   hide_on_key_press = true
+        }
+
+        debug {
+           disable_logs = false
+           disable_time = false
+           enable_stdout_logs = true
+        }
+
         dwindle {
-            # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-            pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-            preserve_split = yes # you probably want this
+            pseudotile = yes
+            preserve_split = yes
         }
 
         master {
-            # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
             new_is_master = false
-        }
-
-        gestures {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
-            workspace_swipe = off
-        }
-
-        misc {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
-            force_default_wallpaper = -1 # Set to 0 to disable the anime mascot wallpapers
-            key_press_enables_dpms = true
         }
 
         plugin {
@@ -179,7 +180,7 @@ in
         # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
         windowrulev2 = forcergbx,class:(qutebrowser)
-        windowrulev2 = opacity 1.0 override 0.7,class:(Emacs)
+        # windowrulev2 = opacity 1.0 override 0.7,class:(Emacs)
         windowrulev2 = opacity 1.0 override 0.7,class:(kitty)
         windowrulev2 = workspace 1,class:(discord)
         windowrulev2 = workspace 1,class:(Signal)

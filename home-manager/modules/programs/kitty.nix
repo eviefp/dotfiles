@@ -2,7 +2,7 @@
   * programs/kitty module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 let cfg = config.evie.programs.kitty;
 in
 {
@@ -39,7 +39,17 @@ in
           foreground = "#c934f3";
           window_padding_width = 5;
 
+          enable_audio_bell = "no";
+
+          copy_on_select = "clipboard";
+          strip_trailing_spaces = "smart";
+          mouse_map = "middle release ungrabbed paste_from_clipboard";
+
           linux_display_server = "wayland";
+
+        };
+        keybindings = {
+          "ctrl+space" = "";
         };
         shellIntegration = {
           enableFishIntegration = true;

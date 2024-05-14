@@ -3,7 +3,7 @@
   *
   * Emacs package using emacs-overlay.
   **************************************************************************/
-{ lib, config, pkgs, emacs-overlay, lean4-mode, ... }:
+{ lib, config, pkgs, lean4-mode, ... }:
 let
   initFile = ../../../../config/init.el;
   agendaFile = ../../../../config/agenda.el;
