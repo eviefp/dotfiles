@@ -63,10 +63,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
-    { self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, ect }:
+    { self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -84,7 +89,7 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim nil lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock ect;
+        inherit pkgs nix-path nix-neovim nil lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock hyprcursor ect;
       };
     in
     {
