@@ -1,5 +1,16 @@
 {
   inputs = {
+    lix = {
+      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
@@ -71,7 +82,7 @@
   };
 
   outputs =
-    { self, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect }:
+    { self, lix-module, lix, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -99,6 +110,7 @@
           specialArgs = { inherit hyprland; };
           modules =
             [
+              lix-module.nixosModules.default
               ./system/thelxinoe/configuration.nix
               home-manager.nixosModules.home-manager
               {
@@ -116,6 +128,7 @@
           specialArgs = { inherit hyprland; };
           modules =
             [
+              lix-module.nixosModules.default
               ./system/janus/configuration.nix
               home-manager.nixosModules.home-manager
               {
@@ -132,6 +145,7 @@
         specialArgs = { inherit hyprland; };
         modules =
           [
+            lix-module.nixosModules.default
             ./system/aiode/configuration.nix
             home-manager.nixosModules.home-manager
             {
@@ -147,6 +161,7 @@
         system = system;
         modules =
           [
+            lix-module.nixosModules.default
             ./system/fractal/configuration.nix
             home-manager.nixosModules.home-manager
             {
@@ -171,7 +186,6 @@
               };
             };
           }
-
         ];
 
         ## Different pkgs, need to use the nix-on-droid overlay

@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../modules/nix-settings.nix
     ../modules/boot.nix
     ../modules/network.nix
     ../modules/locale.nix

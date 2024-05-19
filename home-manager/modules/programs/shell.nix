@@ -183,13 +183,25 @@ in
           ncspot = {
             enable = true;
             settings = {
-              initial_screen = "search";
+              command_ley = ":";
+              initial_screen = "library";
               use_nerdfont = true;
               notify = true;
               keybindings = {
-                "Shift+q" = "search";
-                "Shift+u" = "queue";
-                "Shift+e" = "library";
+                "?" = "help";
+                "q" = "quit";
+
+                "Space" = "playpause";
+                "r" = "repeat";
+                "s" = "shuffle";
+
+                "Shift+h" = "prev";
+                "Shift+l" = "next";
+
+                "Ctrl+s" = "focus search";
+                "Ctrl+q" = "focus queue";
+                "Ctrl+l" = "focus library";
+                "Ctrl+c" = "share current";
               };
             };
           };
