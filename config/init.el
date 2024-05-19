@@ -291,9 +291,14 @@
   :keymaps 'normal
   "SPC g s" 'magit-status
   "SPC g b" 'magit-blame
-  "SPC g c" 'magit-blame-cycle-style)
+  "SPC g c" 'magit-blame-cycle-style
+  :keymaps 'smerge-mode-map
+  ", RET" 'smerge-keep-current
+  ", j"   'smerge-next
+  ", k"   'smerge-prev
+  ", r"   'smerge-resolve
  ;; format: on
- )
+ ))
 
 (use-package
  git-gutter
@@ -303,8 +308,8 @@
  ;; format: off
  (general-define-key
   :keymaps 'normal
-  "SPC g n" 'git-gutter:next-hunk
-  "SPC g p" 'git-gutter:previous-hunk
+  "SPC g j" 'git-gutter:next-hunk
+  "SPC g k" 'git-gutter:previous-hunk
   "SPC g w" 'git-gutter:popup-hunk)
  ;; format: on
  )
@@ -344,8 +349,8 @@
  ;; format: off
  (general-define-key
   :keymaps 'normal
-  "f" 'avy-goto-char
-  "F" 'avy-goto-char-timer
+  "f" 'avy-goto-char-timer
+  "F" 'avy-goto-char
   "t" 'avy-goto-line)
  ;; format: on
  )
@@ -357,7 +362,6 @@
  ;; format: off
  (general-define-key
   :keymaps 'normal
-  "SPC f f" 'counsel-find-file
   "SPC SPC" 'counsel-git
   "SPC c r" 'counsel-rg
   "SPC c e" 'counsel-git-grep
@@ -365,12 +369,16 @@
   "SPC c f" 'counsel-flycheck
   "SPC c m" 'counsel-evil-marks
   "SPC m" 'counsel-M-x
+  :keymaps 'counsel-git-grep-map
+  "C-c C-o" 'ivy-occur
   :keymaps 'ivy-occur-grep-mode
-  "SPC w m" 'ivy-wgrep-change-to-wgrep-mode)
+  "SPC i e" 'ivy-wgrep-change-to-wgrep-mode
+  "SPC i w" 'wgrep-finish-edit
+  )
  ;; format: on
  )
 
-(use-package swiper :ensure t :general (general-define-key :keymaps 'normal "SPC f s" 'swiper))
+(use-package swiper :ensure t :general (general-define-key :keymaps 'normal "/" 'swiper))
 
 (use-package
  undo-tree
@@ -392,7 +400,7 @@
  :general
  (general-define-key
   :keymaps 'normal
-  "SPC w w" 'ace-window)
+  "SPC w i" 'ace-window)
  ;; format: on
  )
 
@@ -490,13 +498,26 @@
  lsp-haskell
  :ensure t
  :init
- (setq lsp-haskell-hlint-on t)
- (setq lsp-haskell-max-number-of-problems 100)
- (setq lsp-haskell-diagnostics-on-change nil)
- (setq lsp-haskell-liquid-on nil)
- (setq lsp-haskell-completion-snippets-on t)
- (setq lsp-haskell-formatting-provider "fourmolu")
- (setq lsp-haskell-tactic-on t))
+  (setq lsp-haskell-hlint-on t)
+  (setq lsp-haskell-max-number-of-problems 100)
+  (setq lsp-haskell-diagnostics-on-change nil)
+  (setq lsp-haskell-liquid-on nil)
+  (setq lsp-haskell-completion-snippets-on t)
+  (setq lsp-haskell-formatting-provider "fourmolu")
+  (setq lsp-haskell-tactic-on t)
+ :general
+  ;; format: off
+  (general-define-key
+   :keymaps 'normal
+   "SPC f o" '(lambda ()
+		      (interactive)
+                      (setq lsp-haskell-formatting-provider "ormolu"))
+   "SPC f f" '(lambda ()
+		      (interactive)
+                      (setq lsp-haskell-formatting-provider "formolu")))
+  ;; format: on
+ )
+
 
 (use-package yuck-mode :ensure t)
 

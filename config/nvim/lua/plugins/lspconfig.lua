@@ -34,7 +34,7 @@ lspconfig.nil_ls.setup {
 	      command = { "nixpkgs-fmt" },
 	  },
       },
-  }
+  },
   capabilities = capabilities,
 }
 
