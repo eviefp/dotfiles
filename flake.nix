@@ -50,7 +50,6 @@
 
     # Hyprland stuff
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
 
@@ -82,7 +81,7 @@
   };
 
   outputs =
-    { self, lix-module, lix, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect }:
+    { lix-module, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {

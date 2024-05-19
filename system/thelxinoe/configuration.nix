@@ -48,7 +48,6 @@
 
   environment.variables = {
     WLR_DRM_NO_ATOMIC = "1";
-    WLR_NO_HARDWARE_CURSORS = "0";
     LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
     GBM_BACKEND = "nvidia-drm";

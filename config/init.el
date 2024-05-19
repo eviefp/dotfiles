@@ -127,6 +127,7 @@
          (:name "unread" :query "tag:unread" :sort-order newest-first)
          (:name "proton" :query "tag:evie" :sort-order newest-first)
          (:name "garnix" :query "tag:garnix" :sort-order newest-first)
+         (:name "sent" :query "tag:sent" :sort-order newest-first)
          (:name "hf" :query "tag:hf" :sort-order newest-first)
          (:name "inbox" :query "tag:gmail or tag:evie or tag:proton" :sort-order newest-first)
          (:name "gmail" :query "tag:gmail" :sort-order newest-first))))
