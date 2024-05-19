@@ -185,7 +185,9 @@ in
         hooks = {
           postNew = ''
             notmuch tag +evie -- to:*@eevie.ro
+            notmuch tag +sent -- from:*@eevie.ro
             notmuch tag +garnix -- to:*@eciobanu@garnix.io
+            notmuch tag +sent -- from:*@eciobanu@garnix.io
             notmuch tag +gmail -- to:*evie*@gmail.com
             notmuch tag +del -- to:*@cvlad.info
             notmuch tag +hf -- from:*@haskell.foundation

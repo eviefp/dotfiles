@@ -105,8 +105,14 @@
         position = "3840x0";
         keybind = "R";
       }
+      {
+        name = "HDMI-A-2";
+        resolution = "1920x1080@60";
+        position = "5760x0";
+        keybind = "R";
+      }
     ];
-    disabledMonitors = [ "HDMI-A-2" "Unknown-1" ];
+    disabledMonitors = [ "Unknown-1" ];
   };
 
   home.sessionVariables = {
