@@ -389,6 +389,17 @@
 		:monitor-class "box"
 		:monitor-text "${round(weather?.current?.temp_c, 0)}℃"
 		:monitor-icon "/home/evie/.config/eww-extras/weather.png")
+	        (box
+	         :class "audio-box box"
+	         :halign "start"
+	         :orientation "horizontal"
+	         :space-evenly false
+		 (systray
+		  :spacing 1
+		  :orientation "horizontal"
+		  :space-evenly false
+		  :icon-size 10
+		  :prepend-new false))
 		(system-time)))
 
 (include "/home/evie/.config/eww-extras/windows.yuck")
