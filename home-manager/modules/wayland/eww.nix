@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.wayland;
+  sshThelxinoe = if cfg.useSshMailCalendar then "ssh thelxinoe " else "";
 in
 {
   imports = [ ];
@@ -13,9 +14,10 @@ in
     ];
 
     home.file.".config/eww-extras/mail-calendar-vars.yuck".text = ''
-            (defpoll mail-important :initial "0" :interval "10s" "${if cfg.useSshMailCalendar then "ssh thelxinoe " else ""}notmuch count tag:important")
-            (defpoll mail-unread :initial "0" :interval "10s" "${if cfg.useSshMailCalendar then "ssh thelxinoe " else ""}notmuch count tag:unread")
-      (deflisten cal :initial `{ "title": "Loading...", "time": "00:00", "date": "2050-01-01" }` "${if cfg.useSshMailCalendar then "ssh thelxinoe " else ""}~/.config/eww/scripts/get-next-calendar-entry.sh")
+            (defpoll mail-important :initial "0" :interval "10s" "${sshThelxinoe}notmuch count tag:important")
+            (defpoll mail-unread :initial "0" :interval "10s" "${sshThelxinoe}notmuch count tag:unread")
+            (deflisten cal :initial `{ "title": "Loading...", "time": "00:00", "date": "2050-01-01" }` "${sshThelxinoe}~/.config/eww/scripts/get-next-calendar-entry.sh")
+            (defpoll events :initial "[]" :interval "30s" "${sshThelxinoe}ect --upcoming 10")
     '';
 
     home.file.".config/eww-extras/windows.yuck".text = ''

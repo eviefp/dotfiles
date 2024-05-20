@@ -20,8 +20,6 @@
 
 (defpoll system :initial "thelxinoe" :interval "60s" "hostname")
 
-(defpoll events :initial "[]" :interval "30s" "ect --upcoming 10")
-
 (include "/home/evie/.config/eww-extras/mail-calendar-vars.yuck")
 
 (defwidget workspaces []
