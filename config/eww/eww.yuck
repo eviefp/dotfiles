@@ -398,7 +398,7 @@
 		  :spacing 1
 		  :orientation "horizontal"
 		  :space-evenly false
-		  :icon-size 10
+		  :icon-size 20
 		  :prepend-new false))
 		(system-time)))
 

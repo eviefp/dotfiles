@@ -38,33 +38,12 @@ in
     ];
 
     home.file = {
-
-      ".config/fish/functions/clip.fish".source =
-        ../../config/fish/functions/clip.fish;
-
-      ".config/fish/functions/m0.fish".source =
-        ../../config/fish/functions/m0.fish;
-      ".config/fish/functions/rt.fish".source =
-        ../../config/fish/functions/rt.fish;
       ".config/fish/functions/ssh.fish".source =
         ../../config/fish/functions/ssh.fish;
-      ".config/fish/functions/ec.fish".source =
-        ../../config/fish/functions/ec.fish;
+
       ".config/fish/functions/ed.fish".source =
         ../../config/fish/functions/ed.fish;
-      ".config/fish/functions/tv.fish".source =
-        ../../config/fish/functions/tv.fish;
-      ".config/fish/functions/fixUI.fish".source =
-        ../../config/fish/functions/fixUI.fish;
 
-      ".xmonad/xmonad.hs".source = ../../config/xmonad/xmonad.hs;
-      ".xmonad/get-mic.sh".source = ../../config/xmonad/get-mic.sh;
-      ".xmonad/get-volume.sh".source = ../../config/xmonad/get-volume.sh;
-
-      ".xmobarrc".source =
-        if cfg.useLaptopXmobar
-        then ../../config/xmobarrc-laptop
-        else ../../config/xmobarrc;
       ".XCompose".source = ../../config/XCompose;
     };
 

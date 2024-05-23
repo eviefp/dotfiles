@@ -1,7 +1,0 @@
-cradle:
-  cabal:
-    - path: "./xmonad.hs"
-      component: "xmonad-evie:exe:xmonad-evie"
-
-    - path: "./Paths_xmonad_evie.hs"
-      component: "xmonad-evie:exe:xmonad-evie"

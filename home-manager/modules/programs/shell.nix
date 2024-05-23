@@ -9,7 +9,16 @@
   *   - 'zip'
   **************************************************************************/
 { lib, config, pkgs, ... }:
-let cfg = config.evie.programs.shell;
+let
+  cfg = config.evie.programs.shell;
+  exp = pkgs.writeShellScriptBin "exp" ''
+    echo 'cat foo | choose 2 1:-1'
+    echo 'dust -- du replacement'
+    echo 'sd find replace file'
+    echo 'joshuto - ranger replacement'
+    echo 'atuin - cmd find?'
+    echo 'fd - find'
+  '';
 in
 {
   imports = [ ];
@@ -28,6 +37,13 @@ in
           pkgs.wget
           pkgs.unzip
           pkgs.zip
+
+          # experiments
+          pkgs.choose
+          pkgs.du-dust
+          pkgs.sd
+
+          exp
         ];
 
         programs = {
@@ -84,6 +100,7 @@ in
             ];
             enableBashIntegration = true;
             enableFishIntegration = true;
+            enableNushellIntegration = true;
           };
 
 
@@ -209,8 +226,9 @@ in
           starship = {
             enable = true;
             enableFishIntegration = true;
+            enableNushellIntegration = true;
             settings = {
-              add_newline = false;
+              add_newline = true;
 
               character = {
                 success_symbol = "[λ](bold green)";
@@ -221,13 +239,39 @@ in
               cmd_duration = {
                 min_time = 100;
                 format = "underwent [$duration]($style) ";
+                show_notifications = false;
+              };
+
+              git_branch = {
+                format = "'[$symbol$branch(:$remote_branch)]($style) ";
               };
 
               nix_shell = {
                 disabled = false;
-                impure_msg = "[impure](bold red)";
-                pure_msg = "[pure](bold green)";
-                format = "[$state](bold blue) ";
+                format = "[$symbol$state]($style) ";
+                symbol = "❄️";
+              };
+
+              hostname = {
+                ssh_only = false;
+                format = "[$ssh_symbol$hostname]($style) ";
+              };
+
+              shell = {
+                disabled = true;
+                fish_indicator = "";
+                bash_indicator = "󱆃";
+                nu_indicator = "";
+              };
+
+              username = {
+                style_user = "bold pink";
+                show_always = true;
+                format = "[$user]($style)@";
+              };
+
+              gcloud = {
+                disabled = true;
               };
             };
           };
@@ -236,6 +280,7 @@ in
             enable = true;
             enableBashIntegration = true;
             enableFishIntegration = true;
+            enableNushellIntegration = true;
           };
 
           ## Experimental
@@ -254,6 +299,24 @@ in
           joshuto = {
             enable = true;
           };
+
+          nushell = {
+            enable = true;
+          };
+
+          atuin = {
+            enable = true;
+            enableBashIntegration = true;
+            enableFishIntegration = true;
+            enableNushellIntegration = true;
+          };
+
+          fd = {
+            enable = true;
+            hidden = true;
+          };
+
+
         };
       })
       (lib.mkIf cfg.experimental {

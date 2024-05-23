@@ -62,7 +62,7 @@ map('n' , 'gt'               , '<cmd>Telescope lsp_type_definitions<cr>'  , { no
 map('n' , 'gr'               , '<cmd>Telescope lsp_references<cr>'        , { noremap = true   , silent = true })
 
 map('n' , '<leader><leader>' , '<cmd>Telescope git_files<cr>'             , { noremap = true})
-map('n' , '<leader>ff'       , '<cmd>Telescope live_grep<cr>'             , { noremap = true})
+map('n' , '<leader>cr'       , '<cmd>Telescope live_grep<cr>'             , { noremap = true})
 map('n' , '<leader>ft'       , '<cmd>Telescope file_browser<cr>'          , { noremap = true})
 map('n' , '<leader>fF'       , '<cmd>Telescope find_files<cr>'            , { noremap = true})
 map('n' , '<leader>fz'       , "<cmd>Telescope grep_string<cr>"           , { noremap = true})
