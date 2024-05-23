@@ -412,15 +412,10 @@
  lsp-mode
  :ensure t
  :init (setq lsp-enable-folding nil) (setq lsp-enable-file-watchers nil) (setq lsp-enable-symbol-highlighting nil)
- ;; (setq lsp-haskell-server-wrapper-function
- ;;       (lambda (argv)
- ;;         (append
- ;;          (append (list "nix" "develop" "--command") (list (mapconcat 'identity argv " ")))
- ;;          (list (concat (file-name-directory (haskell-cabal-find-file)) "flake.nix")))))
  :config
    (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
    (setq lsp-modeline-code-actions-segments '(count icon name))
- :hook ((haskell-mode . lsp) (lsp-mode . lsp-enable-which-key-integration)) (nix-mode . lsp) (rust-mode . lsp)
+ :hook ((haskell-mode . lsp) (lsp-mode . lsp-enable-which-key-integration)) (nix-mode . lsp) (rust-mode . lsp) (typescript-ts-mode . lsp)
  :general
  ;; format: off
  (general-define-key
@@ -709,11 +704,6 @@
 
 ;; colors
 (use-package rainbow-mode :ensure t :general (general-define-key :keymaps 'normal "SPC r m" 'rainbow-mode))
-
-(use-package
- zenity-color-picker
- :ensure t
- :general (general-define-key :keymaps 'normal "SPC c c" 'zenity-cp-color-at-point-dwim))
 
 ;; theme -- has a bug and fails
 ;; (use-package doom-themes

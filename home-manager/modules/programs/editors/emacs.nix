@@ -6,7 +6,6 @@
 { lib, config, pkgs, lean4-mode, ... }:
 let
   initFile = ../../../../config/init.el;
-  agendaFile = ../../../../config/agenda.el;
   lean4mode = epkgs: epkgs.trivialBuild {
     pname = "lean4-mode";
     src = lib.cleanSource lean4-mode;
@@ -32,12 +31,16 @@ let
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
       epkgs.lean4-mode
+      epkgs.treesit-grammars.with-all-grammars
     ];
 
     package = pkgs.emacs-git.override {
       withX = false;
       withPgtk = true;
       withGTK3 = true;
+      withTreeSitter = true;
+      withNativeCompilation = true;
+      withWebP = true;
     };
 
     override = final: prev: {
@@ -91,12 +94,11 @@ in
           package-desktop
           pkgs.python3 # needed by emacs-elisp-autofmt
           pkgs.graphviz # dot, needed for org-roam
-          pkgs.gnome.zenity # needed for the color picker
+          pkgs.tree-sitter
         ];
 
     home.file = lib.mkMerge [
       { ".emacs.d/init.el".source = initFile; }
-      { ".emacs.d/agenda.el".source = agendaFile; } # needed for faster batch mode
       (lib.mkIf cfg.locals.enable {
         ".emacs.d/locals.el".source = cfg.locals.file;
       })
