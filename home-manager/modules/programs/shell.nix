@@ -83,6 +83,7 @@ in
           direnv = {
             enable = true;
             enableBashIntegration = true;
+            enableNushellIntegration = true;
             nix-direnv = {
               enable = true;
             };
@@ -116,8 +117,6 @@ in
               set fish_color_error "#c33759"
 
               fish_vi_key_bindings
-
-              bind -M insert \cr 'commandline -f history-pager'
             '';
             shellAliases = {
               # git
@@ -134,8 +133,6 @@ in
 
           fzf = {
             enable = true;
-            enableBashIntegration = true;
-            enableFishIntegration = true;
           };
 
           # https://github.com/shinzui/dotfiles.nix/issues/1
@@ -309,6 +306,7 @@ in
             enableBashIntegration = true;
             enableFishIntegration = true;
             enableNushellIntegration = true;
+            flags = [ "--disable-up-arrow" ];
           };
 
           fd = {
