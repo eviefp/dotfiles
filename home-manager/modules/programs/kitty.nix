@@ -17,6 +17,8 @@ in
       programs.kitty = {
         enable = true;
         settings = {
+          shell = "nu --login --interactive";
+
           scrollback_lines = 10000;
           repaint_delay = 4;
 
