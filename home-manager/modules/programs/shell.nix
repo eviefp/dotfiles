@@ -153,6 +153,10 @@ in
                 navigate = true;
               };
             };
+            signing = {
+              key = "me@eevie.ro";
+              signByDefault = true;
+            };
             difftastic = {
               enable = true;
               color = "auto";
