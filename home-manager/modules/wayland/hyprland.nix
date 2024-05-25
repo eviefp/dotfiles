@@ -261,6 +261,10 @@ in
           "$mainMod, mouse:272, movewindow"
           "$mainMod, mouse:273, resizewindow"
         ];
+
+        bindl = [
+          ",switch:off:Lid Switch,exec,sleep 1s; eww o statusbar"
+        ];
       };
     };
 
