@@ -1,3 +1,3 @@
-(setq evie-font-size 140)
+(setq evie-font-size 120)
 
 (scroll-bar-mode 0)
