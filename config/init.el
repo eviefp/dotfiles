@@ -266,7 +266,7 @@
 	 "~/code/experiments/"
 	 "~/code/garnix/"
 	 "~/code/oss/"
-         "~/code/lean/")
+         "~/code/lean/"))
  :config (projectile-discover-projects-in-search-path) (projectile-mode +1)
  :general
  ;; format: off
