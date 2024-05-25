@@ -208,7 +208,9 @@
   "g r" 'lsp-find-references
   "g c c" 'comment-line
   "SPC n n" 'notmuch
-  "SPC b d" 'kill-this-buffer
+  "SPC b d" '(lambda ()
+	       (interactive)
+	       (kill-buffer (current-buffer)))
   "SPC f b" 'switch-to-buffer
   "SPC q" 'save-buffers-kill-terminal
   "SPC a d" 'dired
@@ -260,13 +262,11 @@
  :init
  (setq projectile-project-search-path
        '("~/code/"
-         "~/Documents/"
-         "~/code/hasura/"
-         "~/code/tests/"
-         "~/code/hasura/mono/"
-         "~/code/hasura/work/"
-         "~/code/lean/"
-         "~/code/dotfiles/config/xmonad/"))
+	 "~/code/blog/"
+	 "~/code/experiments/"
+	 "~/code/garnix/"
+	 "~/code/oss/"
+         "~/code/lean/")
  :config (projectile-discover-projects-in-search-path) (projectile-mode +1)
  :general
  ;; format: off

@@ -81,7 +81,7 @@
 
   evie.wayland = {
     enable = true;
-    eww-monitor = "1";
+    eww-monitor = "0";
     showTV = true;
     useSshMailCalendar = false;
     showMail = true;

@@ -299,6 +299,32 @@ in
 
           nushell = {
             enable = true;
+            configFile.text = ''
+              $env.config = {
+                edit_mode: vi
+
+                keybindings: [
+                { name: evie_down
+                  modifier: control
+                  keycode: char_j
+                  mode: vi_insert
+                  event: { send: MenuNext }
+                }
+                { name: evie_u
+                  modifier: control
+                  keycode: char_k
+                  mode: vi_insert
+                  event: { send: MenuPrevious }
+                }]
+              }
+            '';
+          };
+
+          carapace = {
+            enable = true;
+            enableBashIntegration = true;
+            enableFishIntegration = true;
+            enableNushellIntegration = true;
           };
 
           atuin = {
