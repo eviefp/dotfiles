@@ -1,28 +1,13 @@
 /****************************************************************************
   * ect module
- 
   **************************************************************************/
 { lib, config, pkgs, ect, ... }:
 let
   cfg = config.evie.programs.ect;
-  calendars = (import ../services/calendar-sync-secrets.nix).calendars;
-  yamlFormat = pkgs.formats.yaml { };
-
-  ectConfig = {
-    calendars = calendars;
-    notification = {
-      exec = "notify-send {title}";
-      threads = 10;
-      enable = true;
-    };
-    export = {
-      enable = true;
-      outputPath = "/home/evie/code/personal-org/cal-sync/local.ics";
-      httpPort = 31234;
-    };
-  };
-
   ectPackage = ect.packages.${pkgs.system}.default;
+  ectWrapped = pkgs.writeShellScriptBin "ect" ''
+    ${ectPackage}/bin/ect "$@" --config ${config.sops.secrets.ect_yaml.path}
+  '';
 in
 {
   imports = [ ];
@@ -33,11 +18,9 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      ect.packages.${pkgs.system}.default
+      ectWrapped
       pkgs.libnotify
     ];
-
-    xdg.configFile."ect/ect.yaml".source = yamlFormat.generate "ect-config" ectConfig;
 
     systemd.user.services.ect = {
       Unit = {
@@ -49,7 +32,7 @@ in
       Service = {
         Type = "exec";
 
-        ExecStart = "${ectPackage}/bin/ect --server";
+        ExecStart = "${ectWrapped}/bin/ect server";
 
         Restart = "always";
 

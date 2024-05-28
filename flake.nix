@@ -78,10 +78,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
+
   };
 
   outputs =
-    { lix-module, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect, ... }:
+    { lix-module, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -99,77 +107,79 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim nil lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock hyprcursor ect;
+        inherit pkgs nix-path nix-neovim nil lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock hyprcursor ect sops-nix;
       };
     in
     {
-      nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem
-        {
-          system = system;
-          specialArgs = { inherit hyprland; };
-          modules =
-            [
-              lix-module.nixosModules.default
-              ./system/thelxinoe/configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = home-manager-special-args;
-                home-manager.users.evie = import ./home-manager/thelxinoe/home.nix;
-              }
-            ];
-        };
+      nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit hyprland; };
+        modules = [
+          lix-module.nixosModules.default
+          ./system/thelxinoe/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = home-manager-special-args;
+              users.evie = import ./home-manager/thelxinoe/home.nix;
+            };
+          }
+        ];
+      };
 
-      nixosConfigurations."janus" = nixpkgs.lib.nixosSystem
-        {
-          system = system;
-          specialArgs = { inherit hyprland; };
-          modules =
-            [
-              lix-module.nixosModules.default
-              ./system/janus/configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = home-manager-special-args;
-                home-manager.users.evie = import ./home-manager/janus/home.nix;
-              }
-            ];
-        };
+      nixosConfigurations."janus" = nixpkgs.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit hyprland; };
+        modules = [
+          lix-module.nixosModules.default
+          ./system/janus/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = home-manager-special-args;
+              users.evie = import ./home-manager/janus/home.nix;
+            };
+          }
+        ];
+      };
 
       nixosConfigurations."aiode" = nixpkgs.lib.nixosSystem {
         system = system;
         specialArgs = { inherit hyprland; };
-        modules =
-          [
-            lix-module.nixosModules.default
-            ./system/aiode/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = home-manager-special-args;
-              home-manager.users.evie = import ./home-manager/aiode/home.nix;
-            }
-          ];
+        modules = [
+          lix-module.nixosModules.default
+          ./system/aiode/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = home-manager-special-args;
+              users.evie = import ./home-manager/aiode/home.nix;
+            };
+          }
+        ];
       };
 
       nixosConfigurations."fractal" = nixpkgs.lib.nixosSystem {
         system = system;
-        modules =
-          [
-            lix-module.nixosModules.default
-            ./system/fractal/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = home-manager-special-args;
-              home-manager.users.evie = import ./home-manager/fractal/home.nix;
-            }
-          ];
+        modules = [
+          lix-module.nixosModules.default
+          ./system/fractal/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = home-manager-special-args;
+              users.evie = import ./home-manager/fractal/home.nix;
+            };
+          }
+        ];
       };
 
       nixOnDroidConfigurations.thanatos = nix-on-droid.lib.nixOnDroidConfiguration {

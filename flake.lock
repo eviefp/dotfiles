@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716191411,
-        "narHash": "sha256-TKIGGnPrhlTtetW/chC6kbgYS8KpQhbLc6Eq3R4epOs=",
+        "lastModified": 1716901954,
+        "narHash": "sha256-KNj5W0LMjPrCuagLvU7IGvPumwMIO/HpRJL5otlBqEo=",
         "owner": "eviefp",
         "repo": "ect",
-        "rev": "3fb441f73c96e8fe78c394461bcdfcbce466718d",
+        "rev": "7d824aacb6a2713dd2b89203df542f0f6adc5e64",
         "type": "github"
       },
       "original": {
@@ -1748,7 +1748,8 @@
         "nil": "nil",
         "nix-neovim": "nix-neovim",
         "nix-on-droid": "nix-on-droid",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -1789,6 +1790,29 @@
       "original": {
         "owner": "andreymatin",
         "repo": "scss-reset",
+        "type": "github"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1716400300,
+        "narHash": "sha256-0lMkIk9h3AzOHs1dCL9RXvvN4PM8VBKb+cyGsqOKa4c=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "b549832718b8946e875c016a4785d204fcfc2e53",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     },

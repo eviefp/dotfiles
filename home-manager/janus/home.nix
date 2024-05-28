@@ -13,11 +13,14 @@
     ../modules/fonts.nix
     ../modules/system.nix
     ../modules/wayland.nix
+    ../modules/sops.nix
   ];
 
   evie.programs = {
     enable = true;
 
+
+    ect.enable = true;
 
     browsers.enable = true;
     bower.enable = true;

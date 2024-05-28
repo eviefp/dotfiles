@@ -43,6 +43,8 @@ in
           pkgs.du-dust
           pkgs.sd
 
+          pkgs.sops
+
           exp
         ];
 
@@ -304,8 +306,10 @@ in
           nushell = {
             enable = true;
             configFile.text = ''
+              alias ssh = kitten ssh
               $env.config = {
                 edit_mode: vi
+                shell_integration: true
 
                 keybindings: [
                 { name: evie_down

@@ -372,8 +372,8 @@
 		      :monitor-tooltip "${cal.title}"
 		      :monitor-icon `${cal.date == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
 		      :monitor-click "eww open events --toggle"
-		      :monitor-middleclick "ect --up"
-		      :monitor-rclick "ect --up")
+		      :monitor-middleclick "ect dec"
+		      :monitor-rclick "ect inc")
 		     )
 		(media)
 		(monitor
