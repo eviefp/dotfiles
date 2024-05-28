@@ -119,10 +119,11 @@
  notmuch
  :ensure t
  :init
- ;; (setq send-mail-function 'sendmail-send-it)
- (setq notmuch-fcc-dirs nil) ;; testing
- (setq notmuch-always-prompt-for-sender t)
- (setq notmuch-saved-searches
+ :custom
+ (notmuch-fcc-dirs nil)
+ (notmuch-always-prompt-for-sender t)
+ (notmuch-message-replied-tags '("+replied" "+sent"))
+ (notmuch-saved-searches
        '((:name "important" :query "tag:important" :sort-order newest-first)
          (:name "unread" :query "tag:unread" :sort-order newest-first)
          (:name "proton" :query "tag:evie" :sort-order newest-first)
@@ -264,7 +265,6 @@
        '("~/code/"
 	 "~/code/blog/"
 	 "~/code/experiments/"
-	 "~/code/garnix/"
 	 "~/code/oss/"
          "~/code/lean/"))
  :config (projectile-discover-projects-in-search-path) (projectile-mode +1)
@@ -870,3 +870,27 @@
     "/="
     "=="))
  (global-ligature-mode t))
+
+;; experiments
+
+(use-package
+  telephone-line
+ :ensure t
+ :init
+ (setq telephone-line-lhs
+    '((evil   . (telephone-line-evil-tag-segment))
+            (accent . (telephone-line-vc-segment
+                       telephone-line-erc-modified-channels-segment
+                       telephone-line-process-segment))
+            (nil    . (telephone-line-minor-mode-segment
+                       telephone-line-buffer-segment))))
+ (setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment))
+        (accent . (telephone-line-major-mode-segment))
+        (evil   . (telephone-line-airline-position-segment))))
+ (telephone-line-mode 1))
+
+(use-package rainbow-mode
+  :ensure t
+  :init
+  (rainbow-mode 1))

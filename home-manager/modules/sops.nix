@@ -1,0 +1,21 @@
+{ sops-nix, ... }:
+{
+  imports = [
+    sops-nix.homeManagerModules.sops
+  ];
+
+  sops = {
+    defaultSopsFile = ../../secrets/secrets/secrets.yaml;
+    age.sshKeyPaths = [ "/home/evie/.ssh/evie" ];
+    secrets = {
+      evie_password = { };
+      evie_certificate = { };
+      garnix_password = { };
+      gmail_password = { };
+      ect_yaml = {
+        sopsFile = ../../secrets/secrets/ect.yaml;
+      };
+    };
+  };
+
+}

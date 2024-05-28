@@ -13,7 +13,9 @@
     ../modules/fonts.nix
     ../modules/system.nix
     ../modules/wayland.nix
+    ../modules/sops.nix
   ];
+
 
   evie.programs = {
     enable = true;
@@ -122,3 +124,4 @@
     OOO_FORCE_DESKTOP = "gnome";
   };
 }
+

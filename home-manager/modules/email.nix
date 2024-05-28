@@ -33,7 +33,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/px-key";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.evie_password.path}";
 
           imap = {
             host = "nixos";
@@ -41,7 +41,7 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = ./peroxide.pem;
+              certificatesFile = "${config.sops.secrets.evie_certificate.path}";
             };
           };
 
@@ -51,7 +51,7 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = ./peroxide.pem;
+              certificatesFile = "${config.sops.secrets.evie_certificate.path}";
             };
           };
 
@@ -83,7 +83,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/garnix";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.garnix_password.path}";
 
           imap = {
             host = "imap.gmail.com";
@@ -130,7 +130,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat /home/evie/.secrets/ae";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.gmail_password.path}";
 
           imap = {
             host = "imap.gmail.com";

@@ -111,7 +111,7 @@ in
           kb_layout = "us";
           kb_options = "compose:pause";
 
-          follow_mouse = "2";
+          follow_mouse = "0";
 
           touchpad = {
             natural_scroll = "no";
