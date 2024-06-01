@@ -6,15 +6,36 @@ $focused: #AE6B33;
 $blue: #3fc6de;
 $green: #3fdaa4;
 
-// * { all: unset; }
-
 .left-spacing {
   margin-left: 0.5em;
 }
 
-.statusbar, .statusbar-janus {
+.statusbar, .events, .cal, .cpu {
     background-color: rgba(#000000, 0.0);
+
+    .statusbar-box {
+        padding: 0 0.5em;
+    }
 }
+
+.light .box, .events-box-light, .cal-box-light, .cpu-box-light {
+    background-color: rgba(#ffffff, 0.7);
+    border: 1px solid $bright;
+
+  .cal {
+    color: $bright;
+  }
+
+  .workspace-entry {
+    color: $bright;
+  }
+}
+
+.events-box-dark, cal-box-dark, cpu-box-dark {
+    background-color: rgba($bg-color, 0.7);
+    border: 1px solid $bright;
+}
+
 
 .box {
     border-radius: 15px;
@@ -27,22 +48,17 @@ $green: #3fdaa4;
     margin-right: 10px;
 }
 
-.statusbar-box {
-    padding: 0 0.5em;
-}
+.workspaces-widget {
+    .workspace-entry {
+        color: $fg-color;
+        border-radius: 15px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
 
-.workspace-entry {
-    color: $fg-color;
-    border-radius: 15px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-.current {
-    background-color: $bright;
-}
-
-.workspace-label {
+    .current {
+        background-color: $bright;
+    }
 }
 
 
@@ -56,11 +72,12 @@ $green: #3fdaa4;
 
 .monitor {
     margin-right: 0.5em;
+
+    .monitor-image {
+        margin-right: 5px;
+    }
 }
 
-.monitor-image {
-    margin-right: 5px;
-}
 
 button {
     all: unset;
@@ -73,28 +90,14 @@ scale slider {
     min-height: 25px;
 }
 
-
-.system-time {
-    // border: 1px solid $bright;
-    // padding-right: 1em;
-}
-
-
-.cal {
+.cal-box {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
-    background-color: rgba($bg-color, 0.7);
-    border: 1px solid $bright;
     color: $bright;
     padding: 0 1em;
     margin-right: 10px;
     padding: 1rem;
-
-    .calendar-box {
-	border: none;
-	background: transparent;
-    }
 
     calendar {
 	color: $fg-color;
@@ -142,12 +145,10 @@ scale slider {
     }
 }
 
-.events {
+.events-box {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
-    background-color: rgba($bg-color, 0.7);
-    border: 1px solid $bright;
     color: $bright;
     padding: 1em;
 
@@ -157,16 +158,15 @@ scale slider {
     }
 }
 
-.cpu {
+.cpu-box {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
-    background-color: rgba($bg-color, 0.7);
     border: 1px solid $bright;
     color: $bright;
     padding: 1em;
 
-    .cpu-box {
+    .cpu-box-i {
 	padding: 1em;
 
         .cpu-line {

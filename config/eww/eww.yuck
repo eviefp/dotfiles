@@ -15,6 +15,7 @@
 
 
 (defvar showAudio false)
+(defvar colorMode "dark")
 (defvar showMic false)
 (defvar showBrightness false)
 
@@ -205,12 +206,13 @@
 (defwidget cal-widget []
 	   (calendar
 	    :width 200
-	    :class "calendar-box"
-	    :onclick "eww close cal; ~/.config/eww/scripts/get-workspaces.sh {0} {1} {2}")
+	    :class "cal-box cal-box-${colorMode}"
+	    :onclick "~/.config/eww/scripts/copy-dates.sh {0} {1} {2}")
 	   )
 
 (defwidget events-widget []
 	   (box
+	    :class "events-box events-box-${colorMode}"
 	    :orientation "v"
 	    :space-evenly true
 	    (for event in events
@@ -241,9 +243,10 @@
 
 (defwidget cpu-widget []
 	   (box
+	    :class "cpu-box cpu-box-${colorMode}"
 	    :orientation "v"
 	     (box
-	     :class "cpu-box"
+	     :class "cpu-box-i"
 	     :orientation "v"
 	       (box
 	       :orientation "h"
@@ -320,7 +323,7 @@
 
 (defwidget statusbar-widget [showBattery showTV showMail showCalendar]
 	   (box :space-evenly false
-		:class "statusbar-box"
+		:class "statusbar-box ${colorMode}"
 		(workspaces)
 		(active-window)
 		(box

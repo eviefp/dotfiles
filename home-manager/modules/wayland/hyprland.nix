@@ -2,6 +2,24 @@
 let
   cfg = config.evie.wayland;
   hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
+  switch-colors = pkgs.writeShellScriptBin "switch-colors" ''
+    #!/usr/bin/env bash
+
+    colorMode=`eww get colorMode`
+
+    if [[ "$colorMode" == "light" ]]; then
+      emacsclient --eval "(load-theme 'modus-vivendi-tritanopia :no-confirm)"
+      ln -sf /home/evie/.config/kitty/dark.conf /home/evie/.config/kitty/theme.conf
+      pkill -USR1 kitty
+      eww update colorMode=dark
+    else
+      emacsclient --eval "(load-theme 'modus-operandi-tritanopia :no-confirm)"
+      ln -sf /home/evie/.config/kitty/light.conf /home/evie/.config/kitty/theme.conf
+      pkill -USR1 kitty
+      eww update colorMode=light
+    fi
+
+  '';
 in
 {
   imports = [
@@ -189,7 +207,8 @@ in
           "$shiftMod, O, toggleOpaque,"
           "$shiftMod, I, exec, hyprpicker --format=hex --no-fancy --autocopy"
           "$shiftMod, P, exec, $sleep"
-          "$shiftMod, T, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
+          "$shiftMod, E, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
+          "$shiftMod, T, exec, ${switch-colors}/bin/switch-colors"
 
           "$shiftMod, C, killactive,"
           "$mainMod, M, exec, $screenshot"
