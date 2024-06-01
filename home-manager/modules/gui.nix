@@ -9,16 +9,21 @@ in
 {
   imports = [
     ./programs/browsers.nix
+    ./programs/ect.nix
+    ./programs/kitty.nix
+    ./programs/chat.nix
+    ./wayland.nix
   ];
 
   options.evie.programs.gui = {
-    enable = lib.options.mkEnableOption "Enable generic UI packages.";
     useLaptopXmobar = lib.options.mkEnableOption "Enable battery display.";
   };
 
-  config = (lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       # Multimedia
+      pkgs.zoom-us
+      pkgs.light
       pkgs.fdk_aac
       pkgs.paprefs # multi audio sink setup
       pkgs.pavucontrol
@@ -93,5 +98,5 @@ in
         };
       };
     };
-  });
+  };
 }

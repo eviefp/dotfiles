@@ -2,18 +2,11 @@
   * programs/browsers module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.programs.browsers;
-in
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.browsers = {
-    enable = lib.options.mkEnableOption "Enable browsers";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       # pkgs.chromium
     ];
@@ -93,10 +86,9 @@ in
           };
           tabs = {
             position = "right";
-            show = "multiple";
+            show = "switching";
             last_close = "close";
             select_on_remove = "last-used";
-            # padding = ''{"bottom": 3, "left": 5, "right": 5, "top": 0}'';
           };
           session = {
             default_name = "evie";
@@ -104,7 +96,7 @@ in
           };
           # spellcheck.languages = [ "en-US" "en-GB" "ro-RO" ];
           statusbar = {
-            position = "top";
+            position = "bottom";
           };
           window = {
             transparent = false;

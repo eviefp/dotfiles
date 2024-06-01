@@ -1,11 +1,8 @@
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.wayland;
-in
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       pkgs.tessen
     ];

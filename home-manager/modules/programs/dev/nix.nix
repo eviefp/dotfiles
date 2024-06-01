@@ -6,17 +6,11 @@
   *   - 'nixfmt' for formatting sources with emacs/nvim (TODO)
   *   - 'nix-diff' for finding out how two derivations differ
   ************************************************************************ */
-{ lib, config, pkgs, nil, ... }:
-let cfg = config.evie.programs.dev.nix;
-in
+{ pkgs, nil, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.dev.nix = {
-    enable = lib.options.mkEnableOption "Enable nix";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       pkgs.haskellPackages.niv
       nil.packages.${pkgs.system}.nil

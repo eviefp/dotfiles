@@ -116,14 +116,83 @@
         specialArgs = { inherit hyprland; };
         modules = [
           lix-module.nixosModules.default
-          ./system/thelxinoe/configuration.nix
+          ./system/modules/common.nix
+          ./system/modules/xserver.nix
+          ./system/hardware/thelxinoe.nix
+          {
+            evie.network = {
+              hostName = "thelxinoe";
+              interface = "enp4s0";
+              extraPorts = [ 31234 ];
+            };
+            evie.xserver.useNVidia = true;
+            services.peroxide = {
+              enable = true;
+              settings = {
+                ServerAddress = "nixos";
+              };
+            };
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = home-manager-special-args;
-              users.evie = import ./home-manager/thelxinoe/home.nix;
+              users.evie = {
+                imports = [
+                  ./home-manager/modules/common.nix
+                  ./home-manager/modules/gui.nix
+                  ./home-manager/modules/programs/streaming.nix
+                  ./home-manager/modules/email.nix
+                  ./home-manager/modules/programs/dev.nix
+                ];
+
+                evie = {
+                  system.host = "thelxinoe";
+
+                  programs.editors.emacs.locals = {
+                    enable = true;
+                    file = ./home-manager/locals/thelxinoe.el;
+                  };
+
+                  wayland = {
+                    eww-monitor = "0";
+                    showTV = true;
+                    useSshMailCalendar = false;
+                    showMail = true;
+                    showCalendar = true;
+                    monitors = [
+                      {
+                        name = "DP-1";
+                        resolution = "1920x1080@239.76";
+                        position = "0x0";
+                        keybind = "W";
+                      }
+                      {
+                        name = "DP-3";
+                        resolution = "1920x1080@239.76";
+                        position = "1920x0";
+                        keybind = "E";
+                      }
+                      {
+                        name = "DP-2";
+                        resolution = "1920x1080@239.76";
+                        position = "3840x0";
+                        keybind = "R";
+                      }
+                      {
+                        name = "HDMI-A-2";
+                        resolution = "1920x1080@60";
+                        position = "5760x0";
+                        keybind = "R";
+                      }
+                    ];
+                    disabledMonitors = [ "Unknown-1" ];
+                  };
+                };
+
+              };
             };
           }
         ];
@@ -134,14 +203,67 @@
         specialArgs = { inherit hyprland; };
         modules = [
           lix-module.nixosModules.default
-          ./system/janus/configuration.nix
+          ./system/modules/common.nix
+          ./system/modules/xserver.nix
+          ./system/modules/logind.nix
+          ./system/hardware/janus.nix
+          {
+            nixpkgs.config.packageOverrides = pkgs: {
+              vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+            };
+            evie.network = {
+              hostName = "janus";
+              wifi.enable = true;
+            };
+            evie.packages.extra = [ pkgs.libva pkgs.libva-utils ];
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = home-manager-special-args;
-              users.evie = import ./home-manager/janus/home.nix;
+              users.evie = {
+                imports = [
+                  ./home-manager/modules/common.nix
+                  ./home-manager/modules/gui.nix
+                  ./home-manager/modules/programs/streaming.nix
+                  # ./home-manager/modules/email.nix
+                  ./home-manager/modules/programs/dev.nix
+                ];
+
+                evie = {
+                  system.host = "janus";
+
+                  programs.editors.emacs.locals = {
+                    enable = true;
+                    file = ./home-manager/locals/janus.el;
+                  };
+
+                  wayland = {
+                    eww-monitor = "1";
+                    showBattery = true;
+                    useSshMailCalendar = true;
+                    showMail = true;
+                    showCalendar = true;
+                    monitors = [
+                      {
+                        name = "eDP-1";
+                        resolution = "1920x1080@60.05";
+                        position = "0x0";
+                        keybind = "W";
+                      }
+                      {
+                        name = "DP-1";
+                        resolution = "1920x515@60.075001";
+                        position = "0x1080";
+                        keybind = "E";
+                      }
+                    ];
+                  };
+                };
+
+              };
             };
           }
         ];
@@ -152,14 +274,57 @@
         specialArgs = { inherit hyprland; };
         modules = [
           lix-module.nixosModules.default
-          ./system/aiode/configuration.nix
+          ./system/modules/common.nix
+          ./system/modules/xserver.nix
+          ./system/modules/logind.nix
+          ./system/hardware/aiode.nix
+          {
+            evie.network = {
+              hostName = "aiode";
+              interface = "enp0s31f6";
+              wifi = {
+                enable = true;
+                interface = "wlp2s0";
+              };
+            };
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = home-manager-special-args;
-              users.evie = import ./home-manager/aiode/home.nix;
+              users.evie = {
+                imports = [
+                  ./home-manager/modules/common.nix
+                  ./home-manager/modules/gui.nix
+                  ./home-manager/modules/programs/streaming.nix
+                  # ./home-manager/modules/email.nix
+                  ./home-manager/modules/programs/dev.nix
+                ];
+
+                evie = {
+                  system.host = "aiode";
+
+                  programs.editors.emacs.locals = {
+                    enable = true;
+                    file = ./home-manager/locals/aiode.el;
+                  };
+
+                  wayland = {
+                    eww-monitor = "0";
+                    monitors = [
+                      {
+                        name = "eDP-1";
+                        resolution = "1920x1080";
+                        position = "0x0";
+                        keybind = "W";
+                      }
+                    ];
+                  };
+                };
+
+              };
             };
           }
         ];
@@ -169,14 +334,42 @@
         system = system;
         modules = [
           lix-module.nixosModules.default
-          ./system/fractal/configuration.nix
+          ./system/modules/common.nix
+          ./system/modules/nextcloud.nix
+          ./system/hardware/fractal.nix
+          {
+            evie.boot.enableHeadless = true;
+            evie.network = {
+              hostName = "fractal";
+              interface = "eno1";
+              extraPorts = [ 1025 1143 ];
+            };
+            networking.firewall.allowedUDPPorts = [ ];
+            evie.packages = { extra = [ pkgs.git pkgs.wget ]; };
+            evie.nextcloud.enable = true;
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = home-manager-special-args;
-              users.evie = import ./home-manager/fractal/home.nix;
+              users.evie = {
+                imports = [
+                  ./home-manager/modules/common.nix
+                  ./home-manager/modules/programs/dev.nix
+                ];
+
+                evie = {
+                  system.host = "fractal";
+
+                  programs.editors.emacs.locals = {
+                    enable = true;
+                    file = ./home-manager/locals/fractal.el;
+                  };
+                };
+
+              };
             };
           }
         ];
@@ -184,14 +377,40 @@
 
       nixOnDroidConfigurations.thanatos = nix-on-droid.lib.nixOnDroidConfiguration {
         modules = [
-          ./system/thanatos/configuration.nix
+          {
+            system.stateVersion = "24.05";
+            nix.extraOptions = ''
+              experimental-features = nix-command flakes
+            '';
+          }
           {
             home-manager = {
-              config = ./home-manager/thanatos/home.nix;
               useGlobalPkgs = true;
               extraSpecialArgs = {
                 inherit nix-path nix-neovim;
                 pkgs = aarch-pkgs;
+              };
+              config = {
+                imports = [
+                  ./home-manager/modules/fonts.nix
+                  ./home-manager/modules/programs/shell.nix
+                  ./home-manager/modules/programs/dev/nix.nix
+                  ./home-manager/modules/programs/dev/tools.nix
+                  ./home-manager/modules/programs/editors/helix.nix
+                  ./home-manager/modules/programs/editors/neovim.nix
+                ];
+
+                home = {
+                  stateVersion = "24.05";
+                  packages = [
+                    pkgs.openssh
+                  ];
+
+                  sessionVariables = {
+                    EDITOR = "nvim";
+                    NIX_PATH = nix-path;
+                  };
+                };
               };
             };
           }

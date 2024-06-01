@@ -8,7 +8,7 @@ let
   wallpaper = lib.lists.foldr (p: conf: "${conf}\n${mkWallpaper p}") "" (lib.lists.zipLists cfg.monitors files);
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = {
     home = {
       file.".config/wallpaper" = {
         source = ../../../config/wallpapers;

@@ -35,7 +35,7 @@ in
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = builtins.concatLists [
-      [ pkgs.cachix pkgs.dbus pkgs.vim pkgs.xmonadctl ]
+      [ pkgs.cachix pkgs.dbus pkgs.vim ]
       cfg.extra
     ];
 

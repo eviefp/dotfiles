@@ -1,9 +1,6 @@
-{ lib, config, pkgs, hyprlock, ... }:
-let
-  cfg = config.evie.wayland;
-in
+{ pkgs, hyprlock, ... }:
 {
-  config = lib.mkIf cfg.enable {
+  config = {
     home = {
       file.".config/hypr/hyprlock.conf".text = ''
         general {

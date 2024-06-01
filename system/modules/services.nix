@@ -23,15 +23,11 @@ in
         drivers = [ pkgs.hplip pkgs.gutenprint ];
       };
 
-      # lorri.enable = true;
-
       udev = lib.mkIf cfg.xcompose {
         extraRules = ''
           SUBSYSTEM=="usb", ATTR{idVendor}=="3297", GROUP="plugdev"
           ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.setxkbmap}/bin/setxkbmap -option compose:pause"
         '';
-        # ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.xorg.xmodmap}/bin/xmodmap -e \"keycode 66 = Multi_key\""
-        #   path = [ pkgs.xorg.xmodmap pkgs.xorg.setxkbmap ];
       };
     };
 
@@ -47,9 +43,5 @@ in
       enable = false;
     };
 
-    # I don't recall what this is. Going to randomly leave it here.
-    nix.extraOptions = ''
-      binary-caches-parallel-connections = 5
-    '';
   }];
 }

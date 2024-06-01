@@ -1,7 +1,4 @@
-{ lib, config, ... }:
-let
-  cfg = config.evie.wayland;
-in
+{ lib, ... }:
 {
   imports = [
     ./wayland/hyprland.nix
@@ -15,8 +12,6 @@ in
   ];
 
   options.evie.wayland = {
-    enable = lib.options.mkEnableOption "Enable wayland.";
-
     eww-monitor = lib.mkOption {
       type = lib.types.str;
       default = "1";
