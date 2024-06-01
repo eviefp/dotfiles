@@ -7,6 +7,30 @@
   imports = [ ];
 
   config = {
+    home.file = {
+      ".config/kitty/light.conf".text = ''
+        background_opacity 0.7
+        dynamic_background_opacity yes
+        background_tint 0.5
+
+        cursor #721045
+
+        background #ffffff
+        foreground #721045
+
+      '';
+      ".config/kitty/dark.conf".text = ''
+        background_opacity 0.7
+        dynamic_background_opacity yes
+        background_tint 0.5
+
+        cursor #d62dc9
+
+        background #111111
+        foreground #c934f3
+
+      '';
+    };
     programs.kitty = {
       enable = true;
       settings = {
@@ -15,23 +39,13 @@
         scrollback_lines = 10000;
         repaint_delay = 4;
 
-        font_family = "Hasklug Nerd Font Mono";
-        # bold_font = "Hasklug Bold Nerd Font Complete Mono";
-        # italic_font = "Hasklug Italic Nerd Font Complete Mono";
-        # bold_italic_font = "Hasklug Bold Italic Nerd Font Complete Mono";
-        disable_ligatures = "never";
         font_size = "10.0";
+        font_family = "Hasklug Nerd Font Mono";
+        disable_ligatures = "never";
 
-        background_opacity = "0.7";
-        dynamic_background_opacity = "yes";
-        background_tint = "0.5";
-
-        cursor = "#d62dc9";
         cursor_shape = "block";
         cursor_blink_interval = 0;
 
-        background = "#111111";
-        foreground = "#c934f3";
         window_padding_width = 5;
 
         enable_audio_bell = "no";
@@ -41,6 +55,8 @@
         mouse_map = "middle release ungrabbed paste_from_clipboard";
 
         linux_display_server = "wayland";
+
+        include = "theme.conf";
 
       };
       keybindings = {
