@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   cfg = config.evie.wayland;
   sshThelxinoe = if cfg.useSshMailCalendar then "ssh thelxinoe " else "";
@@ -6,7 +6,7 @@ in
 {
   imports = [ ];
 
-  config = lib.mkIf cfg.enable {
+  config = {
 
     home.packages = [
       pkgs.socat

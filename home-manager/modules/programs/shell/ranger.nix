@@ -7,17 +7,11 @@
   *
   * TODO: expose easy config attribute.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let cfg = config.evie.programs.shell.ranger;
-in
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.shell.ranger = {
-    enable = lib.options.mkEnableOption "Enable ranger";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       pkgs.ranger
       pkgs.w3m # for displaying images

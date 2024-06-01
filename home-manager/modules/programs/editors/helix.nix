@@ -2,18 +2,11 @@
   * programs/editors/helix module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.programs.editors.helix;
-in
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.editors.helix = {
-    enable = lib.options.mkEnableOption "Enable helix";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     programs.helix = {
       package = pkgs.helix;
       enable = true;

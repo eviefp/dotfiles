@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { }, extraPackages ? [] }:
+{ pkgs ? import <nixpkgs> { }, extraPackages ? [ ] }:
 let
   # Do not touch this part.
   def = import ./.;

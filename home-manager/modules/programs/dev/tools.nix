@@ -6,17 +6,11 @@
   *   - 'httpie' for simple http requests
   *   - 'sqlite' for stuff like org roam
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let cfg = config.evie.programs.dev.tools;
-in
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.dev.tools = {
-    enable = lib.options.mkEnableOption "Enable dev tools";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       pkgs.gnumake
       pkgs.httpie

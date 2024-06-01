@@ -3,20 +3,11 @@
   *
   * Neovim package, plugins, and init file.
   **************************************************************************/
-{ lib, config, pkgs, nix-neovim, ... }:
-let
-  cfg = config.evie.programs.editors.neovim;
-  vimUtils = pkgs.vimUtils;
-
-in
+{ pkgs, nix-neovim, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.editors.neovim = {
-    enable = lib.options.mkEnableOption "Enable neovim.";
-  };
-
-  config = (lib.mkIf cfg.enable {
+  config = {
     home.file = {
       ".config/nvim/lua" = {
         source = ../../../../config/nvim/lua;
@@ -30,5 +21,5 @@ in
       (nix-neovim.neovim-with-packages pkgs)
     ];
 
-  });
+  };
 }

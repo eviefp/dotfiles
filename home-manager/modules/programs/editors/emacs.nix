@@ -68,11 +68,13 @@ in
   imports = [ ];
 
   options.evie.programs.editors.emacs = {
-    enable = lib.options.mkEnableOption "Enable the Emacs package.";
-
     no-x = lib.options.mkEnableOption "Use terminal only Emacs.";
 
-    service = lib.options.mkEnableOption "Use emacs service.";
+    service = lib.options.mkOption {
+      description = "Use emacs service.";
+      type = lib.types.bool;
+      default = true;
+    };
 
     locals = {
       enable = lib.options.mkEnableOption "Enable local config.";
@@ -85,7 +87,7 @@ in
 
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages =
       if cfg.no-x
       then [ package-term-only ]

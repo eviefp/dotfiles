@@ -2,17 +2,11 @@
   * programs/dev/lua module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let cfg = config.evie.programs.dev.lua;
-in
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.dev.lua = {
-    enable = lib.options.mkEnableOption "Enable lua";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       pkgs.lua5_3
       pkgs.lua53Packages.lua-lsp

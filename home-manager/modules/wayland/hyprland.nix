@@ -1,4 +1,4 @@
-{ lib, config, pkgs, hyprland, hyprpicker, ... }:
+{ config, pkgs, hyprland, hyprpicker, ... }:
 let
   cfg = config.evie.wayland;
   hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
@@ -7,7 +7,7 @@ in
   imports = [
   ];
 
-  config = lib.mkIf cfg.enable {
+  config = {
 
     home.packages = [
       pkgs.libsForQt5.qtwayland

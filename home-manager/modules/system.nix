@@ -3,15 +3,11 @@
   *
   * This exists so I don't have to symlink each system's config to '/etc/nixos'.
   ************************************************************************ */
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.system;
-in
+{ lib, ... }:
 {
   imports = [ ];
 
   options.evie.system = {
-    enable = lib.options.mkEnableOption "Enable nixos-configuration setup.";
     host = lib.mkOption {
       type = lib.types.str;
       description = "System hostname (should match config directory).";
@@ -19,10 +15,11 @@ in
     dotfiles = lib.mkOption {
       type = lib.types.str;
       description = "Repository base path";
+      default = "/home/evie/code/dotfiles";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
     home.stateVersion = "24.05";
     home.username = "evie";
     home.homeDirectory = "/home/evie";

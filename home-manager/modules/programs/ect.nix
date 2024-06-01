@@ -1,9 +1,8 @@
 /****************************************************************************
   * ect module
   **************************************************************************/
-{ lib, config, pkgs, ect, ... }:
+{ config, pkgs, ect, ... }:
 let
-  cfg = config.evie.programs.ect;
   ectPackage = ect.packages.${pkgs.system}.default;
   ectWrapped = pkgs.writeShellScriptBin "ect" ''
     ${ectPackage}/bin/ect "$@" --config ${config.sops.secrets.ect_yaml.path}
@@ -12,11 +11,7 @@ in
 {
   imports = [ ];
 
-  options.evie.programs.ect = {
-    enable = lib.options.mkEnableOption "Enable ect";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       ectWrapped
       pkgs.libnotify

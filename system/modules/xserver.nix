@@ -10,10 +10,8 @@ in
   imports = [ ];
 
   options.evie.xserver = {
-    enable = lib.options.mkEnableOption "Enable XServer.";
     useNVidia =
       lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
-    useBluetooth = lib.options.mkEnableOption "Enable bluetooth support.";
     monitorSectionDisplaySize = lib.mkOption {
       type = lib.types.str;
       default = "";
@@ -21,7 +19,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable (lib.mkMerge [
+  config = (lib.mkMerge [
     {
       programs.hyprland = {
         enable = true;
@@ -29,11 +27,12 @@ in
         xwayland.enable = true;
       };
 
-      services.pipewire = {
-        enable = true;
-        wireplumber.enable = true;
-      };
       services = {
+        blueman.enable = true;
+        pipewire = {
+          enable = true;
+          wireplumber.enable = true;
+        };
         xserver = {
           enable = true;
           videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
@@ -75,6 +74,7 @@ in
 
       hardware = {
         cpu.intel.updateMicrocode = true;
+        bluetooth.enable = true;
         pulseaudio = {
           enable = true;
           package = pkgs.pulseaudioFull;
@@ -100,10 +100,25 @@ in
       };
 
       sound.enable = true;
+
+      environment.variables = {
+        XDG_SESSION_TYPE = "wayland";
+      };
     }
-    (lib.mkIf cfg.useBluetooth {
-      services.blueman.enable = true;
-      hardware.bluetooth.enable = true;
+    (lib.mkIf cfg.useNVidia {
+      environment.variables = {
+        WLR_DRM_NO_ATOMIC = "1";
+        LIBVA_DRIVER_NAME = "nvidia";
+        GBM_BACKEND = "nvidia-drm";
+        NVD_BACKEND = "direct";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        __GLX_VRR_ALLOWED = "1";
+      };
+    })
+    (lib.mkIf (!cfg.useNVidia) {
+      environment.variables = {
+        VPAU_DRIVER = "va_gl";
+      };
     })
   ]);
 }

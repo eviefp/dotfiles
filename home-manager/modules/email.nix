@@ -3,17 +3,13 @@
   *
   * Set up email account, imap sync, notmuch mail management.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let cfg = config.evie.email;
-in
+{ config, pkgs, ... }:
 {
-  imports = [ ];
+  imports = [
+    ./programs/bower.nix
+  ];
 
-  options.evie.email = {
-    enable = lib.options.mkEnableOption "Enable emails.";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     accounts.email = {
 
       maildirBasePath = "/home/evie/mail";

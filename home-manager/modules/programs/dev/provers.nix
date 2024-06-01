@@ -2,17 +2,11 @@
   * programs/dev/provers module
   *
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let cfg = config.evie.programs.dev.provers;
-in
+{ pkgs, ... }:
 {
   imports = [ ];
 
-  options.evie.programs.dev.provers = {
-    enable = lib.options.mkEnableOption "Enable provers";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = {
     home.packages = [
       pkgs.agda
       pkgs.agdaPackages.standard-library
