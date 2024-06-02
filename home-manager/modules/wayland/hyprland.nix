@@ -205,7 +205,7 @@ in
           "$shiftMod, Return, exec, $terminal"
           "$shiftMod, Q, exit,"
           "$shiftMod, O, toggleOpaque,"
-          "$shiftMod, I, exec, hyprpicker --format=hex --no-fancy --autocopy"
+          "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
           "$shiftMod, P, exec, $sleep"
           "$shiftMod, E, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
           "$shiftMod, T, exec, ${switch-colors}/bin/switch-colors"
