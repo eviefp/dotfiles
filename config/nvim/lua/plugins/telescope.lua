@@ -38,10 +38,10 @@ telescope.setup {
         ['<C-l>'] = actions.preview_scrolling_down,
         ['<C-Space>'] = actions.select_vertical,
         ['<C-Tab>'] = actions.select_horizontal,
-        ['<C-t>'] = trouble.open_with_trouble,
+        ['<C-t>'] = trouble.open,
       },
       n = {
-        ['<C-t>'] = trouble.open_with_trouble,
+        ['<C-t>'] = trouble.open,
       },
     },
   },
