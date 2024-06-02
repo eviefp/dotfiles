@@ -13,22 +13,20 @@
         dynamic_background_opacity yes
         background_tint 0.5
 
-        cursor #d62dc9
+        cursor #822bd8
 
-        background #ffffff
-        foreground #074160
-
+        background #f0c9ff
+        foreground #4c0047
       '';
       ".config/kitty/dark.conf".text = ''
         background_opacity 0.7
         dynamic_background_opacity yes
         background_tint 0.5
 
-        cursor #d62dc9
+        cursor #822bd8
 
         background #111111
-        foreground #c934f3
-
+        foreground #f975df
       '';
     };
     programs.kitty = {
@@ -39,11 +37,8 @@
         scrollback_lines = 10000;
         repaint_delay = 4;
 
-        font_size = "11.0";
-        font_family = "Hasklug Nerd Font Mono Bold";
-        bold_font = "Hasklug Nerd Font Mono Black";
-        italic_font = "Hasklug Nerd Font Mono Bold Italic";
-        bold_italic_font = "Hasklug Nerd Font Mono Black Italic";
+        font_size = "10.0";
+        font_family = "Hasklug Nerd Font Mono";
         disable_ligatures = "never";
 
         cursor_shape = "block";
