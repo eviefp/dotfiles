@@ -19,7 +19,7 @@
   evie.system.dotfiles = "/home/evie/code/dotfiles";
 
   home.sessionVariables = {
-    EDITOR = "ed";
+    EDITOR = "emacsclient -t";
     BROWSER = "qutebrowser";
     NIX_PATH = nix-path;
     OOO_FORCE_DESKTOP = "gnome";
