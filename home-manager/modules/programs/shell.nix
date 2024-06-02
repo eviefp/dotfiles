@@ -250,6 +250,7 @@ in
           hostname = {
             ssh_only = false;
             format = "[$ssh_symbol$hostname]($style) ";
+            style = "bold fg:#d62dc9";
           };
 
           shell = {
@@ -260,9 +261,9 @@ in
           };
 
           username = {
-            style_user = "bold pink";
+            style_user = "bold fg:#d62dc9";
             show_always = true;
-            format = "[$user]($style)@";
+            format = "[$user]($style)[@](fg:#b17361)";
           };
 
           gcloud = {

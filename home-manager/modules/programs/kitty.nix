@@ -13,10 +13,10 @@
         dynamic_background_opacity yes
         background_tint 0.5
 
-        cursor #721045
+        cursor #d62dc9
 
         background #ffffff
-        foreground #721045
+        foreground #074160
 
       '';
       ".config/kitty/dark.conf".text = ''
@@ -39,8 +39,11 @@
         scrollback_lines = 10000;
         repaint_delay = 4;
 
-        font_size = "10.0";
-        font_family = "Hasklug Nerd Font Mono";
+        font_size = "11.0";
+        font_family = "Hasklug Nerd Font Mono Bold";
+        bold_font = "Hasklug Nerd Font Mono Black";
+        italic_font = "Hasklug Nerd Font Mono Bold Italic";
+        bold_italic_font = "Hasklug Nerd Font Mono Black Italic";
         disable_ligatures = "never";
 
         cursor_shape = "block";
