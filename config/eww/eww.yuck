@@ -50,7 +50,7 @@
 	       :limit-width 15
 	       :halign "start"
 	       :show-truncated false
-	       :text `${replace(replace(active_window, '"', ''), 'org.qutebrowser.', '')}`))))
+	       :text `${replace(replace(replace(active_window, '"', ''), 'org.qutebrowser.', ''), 'org.wezfurlong.', '')}`))))
 
 (defwidget monitor [monitor-text monitor-icon monitor-width ?monitor-class ?monitor-click ?monitor-rclick ?monitor-tooltip ?monitor-middleclick ?monitor-visible]
 	   (button

@@ -28,6 +28,7 @@ in
   config = {
 
     home.packages = [
+      pkgs.egl-wayland
       pkgs.libsForQt5.qtwayland
       pkgs.libsForQt5.qt5ct
       pkgs.qt6.qtwayland
@@ -106,7 +107,7 @@ in
           "col.shadow" = "rgba(1a1a1aee)";
 
           blur = {
-            enabled = true;
+            enabled = false;
             size = 5;
             passes = 3;
           };
@@ -183,6 +184,7 @@ in
         windowrulev2 = [
           "forcergbx,class:(qutebrowser)"
           "opacity 1.0 override 0.7,class:(kitty)"
+          "opacity 1.0 override 0.7,class:(wezterm)"
           "workspace 1,class:(discord)"
           "workspace 1,class:(Signal)"
         ];
@@ -202,6 +204,7 @@ in
 
         bind = [
           # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+          # "$shiftMod, Return, exec, [float;tile] wezterm start --always-new-process"
           "$shiftMod, Return, exec, $terminal"
           "$shiftMod, Q, exit,"
           "$shiftMod, O, toggleOpaque,"

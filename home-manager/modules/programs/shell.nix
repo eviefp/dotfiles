@@ -298,6 +298,7 @@ in
 
       nushell = {
         enable = true;
+        package = pkgs.nushellFull;
         configFile.text = ''
           alias ssh = kitten ssh
           $env.config = {
@@ -329,6 +330,7 @@ in
       };
 
       atuin = {
+        #TODO: filter_mode_shell_up_key_binding = "session"
         enable = true;
         enableBashIntegration = true;
         enableFishIntegration = true;
