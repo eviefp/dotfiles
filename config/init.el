@@ -124,14 +124,15 @@
  (notmuch-always-prompt-for-sender t)
  (notmuch-message-replied-tags '("+replied" "+sent"))
  (notmuch-saved-searches
-       '((:name "important" :query "tag:important" :sort-order newest-first)
-         (:name "unread" :query "tag:unread" :sort-order newest-first)
-         (:name "proton" :query "tag:evie" :sort-order newest-first)
-         (:name "garnix" :query "tag:garnix" :sort-order newest-first)
-         (:name "sent" :query "tag:sent" :sort-order newest-first)
-         (:name "hf" :query "tag:hf" :sort-order newest-first)
-         (:name "inbox" :query "tag:gmail or tag:evie or tag:proton" :sort-order newest-first)
-         (:name "gmail" :query "tag:gmail" :sort-order newest-first))))
+       '((:name "important" :query "tag:important" :sort-order newest-first :search-type tree)
+         (:name "unread" :query "tag:unread" :sort-order newest-first :search-type tree)
+         (:name "unsorted" :query "tag:unsorted" :sort-order newest-first :search-type tree)
+         (:name "proton" :query "tag:evie" :sort-order newest-first :search-type tree)
+         (:name "garnix" :query "tag:garnix" :sort-order newest-first :search-type tree)
+         (:name "sent" :query "tag:sent" :sort-order newest-first :search-type tree)
+         (:name "hf" :query "tag:hf" :sort-order newest-first :search-type tree)
+         (:name "inbox" :query "tag:gmail or tag:evie" :sort-order newest-first :search-type tree)
+         (:name "gmail" :query "tag:gmail" :sort-order newest-first :search-type tree))))
 
 ;; evil
 (use-package

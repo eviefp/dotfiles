@@ -1,12 +1,6 @@
 /****************************************************************************
   * programs/shell module
   *
-  * Enable packages I use for shell-related things:
-  *   - 'killall' to easily kill processes
-  *   - 'ripgrep' for navigation
-  *   - 'wget'
-  *   - 'unzip'
-  *   - 'zip'
   **************************************************************************/
 { pkgs, ... }:
 let
@@ -14,9 +8,12 @@ let
     echo 'cat foo | choose 2 1:-1'
     echo 'dust -- du replacement'
     echo 'sd find replace file'
-    echo 'joshuto - ranger replacement'
     echo 'atuin - cmd find?'
     echo 'fd - find'
+    echo nvtop
+    echo sysz - systemctl/journalctl helper
+    echo gping [hosts..]
+    echo 'sudo below live -- todo: config'
   '';
 in
 {
@@ -29,13 +26,15 @@ in
       pkgs.wget
       pkgs.unzip
       pkgs.zip
+      pkgs.sops
 
       # experiments
       pkgs.choose
       pkgs.du-dust
       pkgs.sd
-
-      pkgs.sops
+      pkgs.sysz
+      pkgs.gping
+      pkgs.below
 
       exp
     ];
@@ -290,10 +289,6 @@ in
           lightness = 0.65;
           color_align.mode = "horizontal";
         };
-      };
-
-      joshuto = {
-        enable = true;
       };
 
       nushell = {
