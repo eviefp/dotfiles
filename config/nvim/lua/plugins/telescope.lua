@@ -4,7 +4,7 @@
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 
 telescope.load_extension('fzf')
 telescope.load_extension('file_browser')
