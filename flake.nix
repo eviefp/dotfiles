@@ -393,7 +393,7 @@
               config = {
                 imports = [
                   ./home-manager/modules/fonts.nix
-                  ./home-manager/modules/programs/shell.nix
+                  ./home-manager/modules/programs/term.nix
                   ./home-manager/modules/programs/dev/nix.nix
                   ./home-manager/modules/programs/dev/tools.nix
                   ./home-manager/modules/programs/editors/helix.nix
