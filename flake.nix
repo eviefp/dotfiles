@@ -148,6 +148,11 @@
                   ./home-manager/modules/programs/dev.nix
                 ];
 
+                home.packages = [
+                  pkgs.nvtopPackages.full
+                ];
+
+
                 evie = {
                   system.host = "thelxinoe";
 

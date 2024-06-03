@@ -177,16 +177,15 @@
       };
       notmuch = {
         enable = true;
-        new.tags = [ "unread" "inbox" ];
+        new.tags = [ "unread" "unsorted" "inbox" ];
         hooks = {
           postNew = ''
-            notmuch tag +evie -- to:*@eevie.ro
-            notmuch tag +sent -- from:*@eevie.ro
-            notmuch tag +garnix -- to:*@eciobanu@garnix.io
-            notmuch tag +sent -- from:*@eciobanu@garnix.io
-            notmuch tag +gmail -- to:*evie*@gmail.com
-            notmuch tag +del -- to:*@cvlad.info
-            notmuch tag +hf -- from:*@haskell.foundation
+            notmuch tag +evie -unsorted -- to:*@eevie.ro
+            notmuch tag +sent -unsorted -- from:*@eevie.ro
+            notmuch tag +garnix -unsorted -- to:*@garnix.io
+            notmuch tag +sent -unsorted -- from:eciobanu@garnix.io
+            notmuch tag +gmail -unsorted -- to:*evie*@gmail.com
+            notmuch tag +hf -unsorted -- from:*@haskell.foundation
             notmuch tag --remove-all +junk -- to:glamira@eevie.ro
           '';
         };
