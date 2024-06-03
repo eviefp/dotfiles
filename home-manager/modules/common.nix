@@ -8,7 +8,7 @@
     ./programs/editors/emacs.nix
     ./programs/editors/neovim.nix
     ./programs/editors/helix.nix
-    ./programs/shell.nix
+    ./programs/term.nix
     ./programs/shell/ranger.nix
     ./programs/text.nix
     ./fonts.nix
