@@ -15,7 +15,7 @@
 
         cursor #f975df
 
-        background #f0c9ff
+        background #ffffff
         foreground #822bd8
 
         color0 #15161E
@@ -43,13 +43,13 @@
         color15 #c0caf5
       '';
       ".config/kitty/dark.conf".text = ''
-        background_opacity 0.8
+        background_opacity 0.6
         dynamic_background_opacity yes
-        background_tint 1.0
+        background_tint 0.5
 
         cursor #822bd8
 
-        background #340335
+        background #000000
         foreground #f975df
 
         color0 #15161E

@@ -157,6 +157,7 @@ in
           disable_splash_rendering = true;
           key_press_enables_dpms = true;
           new_window_takes_over_fullscreen = 2;
+          initial_workspace_tracking = 1;
         };
 
         cursor = {
