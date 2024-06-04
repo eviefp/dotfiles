@@ -109,7 +109,12 @@
 (defun evie-notmuch-search-toggle-important ()
   "Toggle important tag for message."
   (interactive)
-  (evil-collection-notmuch-toggle-tag "important" "search" 'notmuch-search-next-thread))
+  (evil-collection-notmuch-toggle-tag "important" "search" 'notmuch-tree-next-thread-in-tree))
+
+(defun evie-notmuch-tree-toggle-important ()
+  "Toggle important tag for message."
+  (interactive)
+  (evil-collection-notmuch-toggle-tag "important" "tree" 'notmuch-tree-next-thread-in-tree))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
@@ -196,6 +201,15 @@
   "T" 'notmuch-search-remove-tag
   "f" 'notmuch-search-filter-by-tag)
  (general-define-key
+  :states '(normal visual)
+  :keymaps 'notmuch-tree-mode-map
+  "@" 'evie-notmuch-tree-toggle-important
+  "d" 'evil-collection-notmuch-tree-toggle-delete
+  "u" 'evil-collection-notmuch-tree-toggle-unread
+  "t" 'notmuch-tree-add-tag
+  "T" 'notmuch-tree-remove-tag
+  "f" 'notmuch-tree-filter-by-tag)
+ (general-define-key
   :keymaps 'dired-mode-map
   "SPC" nil)
  (general-define-key
@@ -213,7 +227,7 @@
   "SPC b d" '(lambda ()
 	       (interactive)
 	       (kill-buffer (current-buffer)))
-  "SPC f b" 'switch-to-buffer
+  "SPC f b" 'counsel-ibuffer
   "SPC q" 'save-buffers-kill-terminal
   "SPC a d" 'dired
   "SPC t f" 'display-fill-column-indicator-mode
@@ -720,11 +734,49 @@
  modus-themes
  :ensure t
  :config
+ (setq modus-vivendi-tritanopia-palette-overrides
+       '((fg-prompt magenta-warmer)
+	 (builtin magenta)
+	 (constant blue-warmer)
+	 (fnname magenta-cooler)
+	 (keyword magenta-warmer)
+	 (preprocessor red-cooler)
+	 (type cyan-cooler)
+	 (variable cyan)
+	 (rx-construct blue-cooler)
+	 (rx-backslash red-warmer)
+	 (name blue-warmer)
+	 (identifier magenta)
+	 (keybind magenta-warmer)
+	 (accent-0 magenta-warmer)
+	 (accent-1 cyan)
+	 (accent-2 blue-warmer)
+	 (accent-3 red-cooler)
+	 (date-common cyan-cooler)
+	 (date-holiday magenta-warmer)
+	 (mail-cite-0 magenta-faint)
+	 (mail-cite-1 cyan-cooler)
+	 (mail-cite-2 green-warmer)
+	 (mail-cite-3 red-faint)
+	 (mail-part cyan)
+	 (mail-recipient magenta)
+	 (mail-subject blue-warmer)
+	 (mail-other magenta-warmer)
+	 (fg-prose-macro red-cooler)
+	 (prose-tag fg-dim)
+	 (cursor "#822bd8")
+	))
+ (setq modus-operandi-tritanopia-palette-overrides
+       '(
+	 (fnname magenta-warmer)
+	 (cursor "#022bd8")
+	 ))
+
  (setq modus-themes-italic-constructs t
-       modus-theme-bold-constructs nil)
- ;; (setq modus-themes-common-palette-overrides
- ;;       '((bg-main unspecified)))
- (load-theme 'modus-vivendi-tritanopia :no-confirm))
+       modus-theme-bold-constructs t
+       )
+ (load-theme 'modus-vivendi-tritanopia :no-confirm)
+ )
 
 (use-package all-the-icons :ensure t)
 

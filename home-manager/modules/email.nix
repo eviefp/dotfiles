@@ -181,11 +181,12 @@
         hooks = {
           postNew = ''
             notmuch tag +evie -unsorted -- to:*@eevie.ro
-            notmuch tag +sent -unsorted -- from:*@eevie.ro
             notmuch tag +garnix -unsorted -- to:*@garnix.io
-            notmuch tag +sent -unsorted -- from:eciobanu@garnix.io
             notmuch tag +gmail -unsorted -- to:*evie*@gmail.com
             notmuch tag +hf -unsorted -- from:*@haskell.foundation
+            notmuch tag +hf -unsorted -- to:*@haskell.foundation
+            notmuch tag +sent -unsorted -- from:*@eevie.ro
+            notmuch tag +sent -unsorted -- from:eciobanu@garnix.io
             notmuch tag --remove-all +junk -- to:glamira@eevie.ro
           '';
         };
