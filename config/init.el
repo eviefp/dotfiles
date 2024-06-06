@@ -221,7 +221,7 @@
   "q" nil
   "g d" 'lsp-find-definition
   "g D" 'goto-def-other-window
-  "g r" 'lsp-find-references
+  "g r" 'lsp-treemacs-call-hierarchy
   "g c c" 'comment-line
   "SPC n n" 'notmuch
   "SPC b d" '(lambda ()
