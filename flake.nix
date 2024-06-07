@@ -253,16 +253,16 @@
                     showCalendar = true;
                     monitors = [
                       {
-                        name = "eDP-1";
-                        resolution = "1920x1080@60.05";
-                        position = "0x0";
-                        keybind = "W";
-                      }
-                      {
                         name = "DP-1";
                         resolution = "1920x515@60.075001";
                         position = "0x1080";
                         keybind = "E";
+                      }
+                      {
+                        name = "eDP-1";
+                        resolution = "1920x1080@60.05";
+                        position = "0x0";
+                        keybind = "W";
                       }
                     ];
                   };
