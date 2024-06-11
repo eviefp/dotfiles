@@ -477,7 +477,8 @@
   "SPC x j" 'flycheck-next-error
   "SPC X k" 'flycheck-previous-error
   "SPC e e" 'flycheck-explain-error-at-point
-  "SPC e l" 'flycheck-list-errors)
+  "SPC e l" 'lsp-treemacs-errors-list
+  "SPC e e" 'lsp-treemacs-errors-list--refresh)
  ;; format: on
  )
 

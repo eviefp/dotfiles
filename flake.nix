@@ -246,7 +246,7 @@
                   };
 
                   wayland = {
-                    eww-monitor = "1";
+                    eww-monitor = "0";
                     showBattery = true;
                     useSshMailCalendar = true;
                     showMail = true;

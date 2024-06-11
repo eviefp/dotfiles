@@ -8,8 +8,8 @@
   # boot.kernelPackages = pkgs.linuxPackages_5_16;
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ "i915" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "kvm-intel" "ddcci" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
   # hardware.firmware = [ lp ]; # TODO: this was empty!!
   hardware.enableRedistributableFirmware = true;
 
