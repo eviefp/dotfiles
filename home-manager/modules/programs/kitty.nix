@@ -9,6 +9,7 @@
   config = {
     home.file = {
       ".config/kitty/light.conf".text = ''
+        font_size 12.0
         background_opacity 0.7
         dynamic_background_opacity yes
         background_tint 1.0
@@ -43,6 +44,7 @@
         color15 #c0caf5
       '';
       ".config/kitty/dark.conf".text = ''
+        font_size 10.0
         background_opacity 0.6
         dynamic_background_opacity yes
         background_tint 0.5
@@ -85,7 +87,6 @@
         scrollback_lines = 10000;
         repaint_delay = 4;
 
-        font_size = "10.0";
         font_family = "Hasklug Nerd Font Mono";
         disable_ligatures = "never";
 
