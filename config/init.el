@@ -365,9 +365,8 @@
  ;; format: off
  (general-define-key
   :keymaps 'normal
-  "f" 'avy-goto-char-timer
-  "F" 'avy-goto-char
-  "t" 'avy-goto-line)
+  "F" 'avy-goto-char-timer
+  "T" 'avy-goto-line)
  ;; format: on
  )
 
