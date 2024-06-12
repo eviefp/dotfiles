@@ -14,6 +14,11 @@
   boot.kernelModules = [ "kvm-amd" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = [ ];
 
+  hardware.enableRedistributableFirmware = true;
+  hardware.firmware = [
+    pkgs.rtl8761b-firmware
+  ];
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e36a4aab-f2fd-4789-ae28-b6eb714b7d85";
     fsType = "ext4";

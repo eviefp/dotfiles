@@ -514,7 +514,7 @@
   (setq lsp-haskell-diagnostics-on-change nil)
   (setq lsp-haskell-liquid-on nil)
   (setq lsp-haskell-completion-snippets-on t)
-  (setq lsp-haskell-formatting-provider "fourmolu")
+  (setq lsp-haskell-formatting-provider "ormolu")
   (setq lsp-haskell-tactic-on t)
  :general
   ;; format: off

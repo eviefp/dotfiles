@@ -8,18 +8,16 @@ keys:
 
 creation_rules:
   - path_regex: secrets/secrets/secrets.yaml$
-    shamir_treshold: 1
     key_groups:
-    - pgp:
-        - *evie
     - age:
         - *thelxinoe
         - *janus
+      pgp:
+        - *evie
   - path_regex: secrets/secrets/ect.yaml$
-    shamir_treshold: 1
     key_groups:
-    - pgp:
-        - *evie
     - age:
         - *thelxinoe
         - *janus
+      pgp:
+        - *evie
