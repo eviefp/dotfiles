@@ -92,5 +92,26 @@ in
       package = pkgs.eww;
       configDir = ./../../../config/eww;
     };
+
+    systemd.user.services.eww = {
+      Unit = {
+        Description = "ElKowar's Wacky Widgets";
+        After = [ "sops-nix.service" ];
+      };
+
+      Install = { WantedBy = [ "default.target" ]; };
+
+      Service = {
+        Type = "forking";
+
+        ExecStart = "${pkgs.eww}/bin/eww d && ${pkgs.eww}/bin/eww o statusbar";
+
+        Restart = "always";
+
+        RestartSec = 3;
+      };
+    };
   };
 }
+
+# "eww d && eww open statusbar"

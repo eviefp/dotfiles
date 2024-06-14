@@ -20,6 +20,7 @@ in
     systemd.user.services.ect = {
       Unit = {
         Description = "Evie's Calendar Tool";
+        After = [ "sops-nix.service" ];
       };
 
       Install = { WantedBy = [ "default.target" ]; };
