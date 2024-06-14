@@ -8,7 +8,6 @@ require 'plugins.telescope'
 require 'plugins.devicons'
 require 'plugins.lualine'
 require 'plugins.rainbow'
-require 'plugins.theme'
 
 -- git
 require 'plugins.fugitive'
@@ -36,8 +35,9 @@ require 'plugins.mergetool'
 require 'plugins.octo'
 require 'plugins.trouble'
 require 'plugins.truezen'
--- require 'plugins.nerveux'
 
 require 'plugins.firenvim'
 
 require 'plugins.ranger'
+
+require 'plugins.theme'

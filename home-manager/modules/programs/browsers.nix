@@ -55,6 +55,8 @@
           normal = {
             "<Ctrl-d>" = "tab-close";
             "<Ctrl-r>" = "reload";
+            "<Ctrl-right>" = "set tabs.show switching";
+            "<Ctrl-left>" = "set tabs.show multiple";
           };
         };
         extraConfig = ''

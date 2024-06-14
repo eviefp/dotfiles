@@ -391,7 +391,7 @@
 		:monitor-width 4
 		:monitor-class "box"
 		:monitor-text "${round(weather?.current?.temp_c, 0)}℃"
-		:monitor-icon "/home/evie/.config/eww-extras/weather.png")
+		:monitor-icon "${true == false ? '' : '/home/evie/.config/eww-extras/weather.png'}")
 	        (box
 	         :class "audio-box box"
 	         :halign "start"
