@@ -2,7 +2,7 @@
   * programs/shell module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ pkgs, porc, ... }:
 let
   exp = pkgs.writeShellScriptBin "exp" ''
     echo 'cat foo | choose 2 1:-1'
@@ -14,6 +14,7 @@ let
     echo sysz - systemctl/journalctl helper
     echo gping [hosts..]
     echo 'sudo below live -- todo: config'
+    echo 'porc [pattern]'
   '';
 in
 {
@@ -35,6 +36,8 @@ in
       pkgs.sysz
       pkgs.gping
       pkgs.below
+
+      porc.packages.${pkgs.system}.default
 
       exp
     ];
