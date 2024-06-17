@@ -34,7 +34,7 @@ in
       pkgs.qt6.qtwayland
       pkgs.qt6Packages.qt6ct
       pkgs.libva
-      pkgs.xdg-desktop-portal-hyprland
+      hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
       hyprpicker.packages.${pkgs.system}.hyprpicker
 
@@ -67,6 +67,9 @@ in
           "hypridle"
           "wl-paste --type text --watch cliphist store" #Stores only text data
           "wl-paste --type image --watch cliphist store" #Stores only image data
+          "eww o statusbar"
+          "blueman-applet"
+          "hyprctl keyword monitor \"HDMI-A-2, disabled\"" # hacky, but eh
         ];
 
         env = [
@@ -212,6 +215,7 @@ in
           "$shiftMod, P, exec, $sleep"
           "$shiftMod, E, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
           "$shiftMod, T, exec, ${switch-colors}/bin/switch-colors"
+          "$shiftMod, L, exec, hyprlock"
 
           "$shiftMod, C, killactive,"
           "$mainMod, M, exec, $screenshot"

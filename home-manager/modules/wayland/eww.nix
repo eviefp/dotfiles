@@ -104,7 +104,7 @@ in
       Service = {
         Type = "forking";
 
-        ExecStart = "${pkgs.eww}/bin/eww d && ${pkgs.eww}/bin/eww o statusbar";
+        ExecStart = "${pkgs.eww}/bin/eww d";
 
         Restart = "always";
 
@@ -113,5 +113,3 @@ in
     };
   };
 }
-
-# "eww d && eww open statusbar"
