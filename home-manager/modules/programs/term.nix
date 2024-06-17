@@ -296,13 +296,23 @@ in
 
       nushell = {
         enable = true;
-        package = pkgs.nushellFull;
+        package = pkgs.nushell;
         configFile.text = ''
           alias ssh = kitten ssh
           $env.config = {
             edit_mode: vi
-            shell_integration: true
+          # next version shell_integration:
+          # {
+          #   osc2: true
+          #   osc7: true
+          #   osc8: false
+          #   osc9_9: true
+          #   osc133: true
+          #   osc633: true
+          #   reset_application_mode: true
+          # }
 
+            shell_integration: true
             keybindings: [
             { name: evie_down
               modifier: control

@@ -2,6 +2,7 @@ $bg-color: #46224c;
 $fg-color: #f7b7f3;
 $bright: #c934f3;
 $focused: #AE6B33;
+$win-bg: #000000;
 
 $blue: #3fc6de;
 $green: #3fdaa4;
@@ -20,7 +21,6 @@ $green: #3fdaa4;
 
 .light .box, .events-box-light, .cal-box-light, .cpu-box-light {
     background-color: rgba(#ffffff, 0.7);
-    border: 1px solid $bright;
 
   .cal {
     color: $bright;
@@ -33,7 +33,6 @@ $green: #3fdaa4;
 
 .events-box-dark, cal-box-dark, cpu-box-dark {
     background-color: rgba($bg-color, 0.7);
-    border: 1px solid $bright;
 }
 
 
@@ -90,7 +89,7 @@ scale slider {
     min-height: 25px;
 }
 
-.cal-box {
+.cal {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
@@ -98,6 +97,7 @@ scale slider {
     padding: 0 1em;
     margin-right: 10px;
     padding: 1rem;
+    background-color: rgba($win-bg, 0.5);
 
     calendar {
 	color: $fg-color;
@@ -134,37 +134,35 @@ scale slider {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
-    background-color: rgba($bg-color, 0.7);
-    border: 1px solid $bright;
+    background-color: rgba($win-bg, 0.5);
     color: $bright;
     padding: 1em;
 
     .line {
-      border-top: 1px dashed $bright;
-      border-bottom: 1px dashed $bright;
+      padding-bottom: 3px;
     }
 }
 
-.events-box {
+.events {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
     color: $bright;
     padding: 1em;
+    background-color: rgba($win-bg, 0.5);
 
     .line {
-      border-top: 1px dashed $bright;
-      border-bottom: 1px dashed $bright;
+      padding-bottom: 3px;
     }
 }
 
-.cpu-box {
+.cpu {
     border-radius: 15px;
     font-family: Hasklug Nerd Font Mono;
     font-size: 16px;
-    border: 1px solid $bright;
     color: $bright;
     padding: 1em;
+    background-color: rgba($win-bg, 0.5);
 
     .cpu-box-i {
 	padding: 1em;

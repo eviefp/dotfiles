@@ -195,7 +195,7 @@
                         name = "HDMI-A-2";
                         resolution = "1920x1080@60";
                         position = "5760x0";
-                        keybind = "R";
+                        keybind = "T";
                       }
                     ];
                     disabledMonitors = [ "Unknown-1" ];
