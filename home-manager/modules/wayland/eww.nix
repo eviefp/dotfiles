@@ -102,9 +102,9 @@ in
       Install = { WantedBy = [ "default.target" ]; };
 
       Service = {
-        Type = "forking";
+        Type = "exec";
 
-        ExecStart = "${pkgs.eww}/bin/eww d";
+        ExecStart = "${pkgs.eww}/bin/eww d --no-daemonize";
 
         Restart = "always";
 
