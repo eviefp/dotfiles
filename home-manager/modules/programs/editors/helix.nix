@@ -7,19 +7,36 @@
   imports = [ ];
 
   config = {
+    home.file.".config/helix/themes/gh_dark_transparent.toml".source = ../../../../config/gh_dark_transparent.toml;
+
     programs.helix = {
       package = pkgs.helix;
       enable = true;
-      languages.language = [{
-        name = "haskell";
-        scope = "source.haskell";
-        file-types = [ "hs" ];
-        roots = [ "*.cabal" ];
-        comment-token = "--";
-        language-servers = [ "haskell-language-server" ];
-      }];
+      languages.language = [
+        {
+          name = "haskell";
+          auto-format = true;
+          scope = "source.haskell";
+          file-types = [ "hs" ];
+          roots = [ "*.cabal" ];
+          comment-token = "--";
+          language-servers = [ "haskell-language-server" ];
+          formatter = {
+            command = "ormolu";
+            args = [ "--stdin-input-file" "." ];
+          };
+        }
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "nixpkgs-fmt";
+          language-servers = [ "nil" ];
+          indent.tab-width = 2;
+          indent.unit = " ";
+        }
+      ];
       settings = {
-        theme = "base16_transparent"; #"nordmod";
+        theme = "gh_dark_transparent";
         editor = {
           line-number = "relative";
           mouse = false;
@@ -47,6 +64,24 @@
             render = true;
             character = "|";
             skip-levels = 0;
+          };
+          statusline = {
+            left = [
+              "mode"
+              "spinner"
+              "file-name"
+              "read-only-indicator"
+              "file-modification-indicator"
+            ];
+            right = [
+              "version-control"
+              "workspace-diagnostics"
+              "selections"
+              "register"
+              "position"
+              "file-encoding"
+              "file-line-ending"
+            ];
           };
         };
       };
