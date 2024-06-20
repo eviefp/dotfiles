@@ -109,7 +109,7 @@ in
           "col.shadow" = "rgba(1a1a1aee)";
 
           blur = {
-            enabled = false;
+            enabled = true;
             size = 5;
             passes = 3;
           };
