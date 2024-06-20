@@ -41,15 +41,17 @@
           line-number = "relative";
           mouse = false;
           cursorline = true;
-          cursorcolumn = true;
+          cursorcolumn = false;
           gutters = [ "diagnostics" "spacer" "line-numbers" "spacer" "diff" ];
           auto-completion = true;
           auto-format = true;
           bufferline = "always";
           color-modes = true;
+          rulers = [ 80 100 120 ];
           lsp = {
             display-messages = true;
           };
+          auto-pairs = false;
           whitespace = {
             render = "all";
             characters = {
@@ -73,12 +75,17 @@
               "read-only-indicator"
               "file-modification-indicator"
             ];
+            center = [
+              "diagnostics"
+              "workspace-diagnostics"
+            ];
             right = [
               "version-control"
               "workspace-diagnostics"
               "selections"
               "register"
               "position"
+              "total-line-numbers"
               "file-encoding"
               "file-line-ending"
             ];

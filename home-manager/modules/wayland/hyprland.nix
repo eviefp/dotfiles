@@ -180,9 +180,7 @@ in
           preserve_split = "yes";
         };
 
-        master = {
-          new_is_master = false;
-        };
+        master = { };
 
         windowrulev2 = [
           "forcergbx,class:(qutebrowser)"

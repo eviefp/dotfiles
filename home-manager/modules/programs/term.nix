@@ -301,18 +301,15 @@ in
           alias ssh = kitten ssh
           $env.config = {
             edit_mode: vi
-          # next version shell_integration:
-          # {
-          #   osc2: true
-          #   osc7: true
-          #   osc8: false
-          #   osc9_9: true
-          #   osc133: true
-          #   osc633: true
-          #   reset_application_mode: true
-          # }
-
-            shell_integration: true
+            shell_integration: {
+              osc2: true
+              osc7: true
+              osc8: true
+              osc9_9: false
+              osc133: true
+              osc633: true
+              reset_application_mode: true
+            }
             keybindings: [
             { name: evie_down
               modifier: control
