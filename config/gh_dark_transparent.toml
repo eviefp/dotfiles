@@ -70,8 +70,8 @@ label = "scale.red.3"
 "ui.cursor" = { modifiers = ["reversed"] }
 "ui.cursorline.primary" = { }
 
-"ui.menu" = { fg = "fg.default" }
-"ui.menu.selected" = { }
+"ui.menu" = { fg = "fg.default", bg = "scale.pink.9" }
+"ui.menu.selected" = { bg = "scale.purple.9" }
 "ui.menu.scroll" = { fg = "scale.gray.5" }
 
 "diagnostic.hint" = { underline = { color = "success.fg", style = "curl" } }
