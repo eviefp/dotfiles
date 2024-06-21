@@ -60,8 +60,15 @@
 <Pause> <s> : "ș"   U0219
 <Pause> <T> : "Ț"   U021A
 <Pause> <t> : "ț"   U021B
-<Pause> <o> : "ö"   U00F6
+
+# Other
 <Pause> <O> : "Ö"   U00D6
+<Pause> <o> : "ö"   U00F6
+<Pause> <C> : "Ç"   U00C7
+<Pause> <c> : "ç"   U00E7
+
+<Pause> <dollar> : "€"   U20AC 
+// <Pause> <asterisk> : "°"  U00B0 
 
 ###############################################################################
 # Logic
