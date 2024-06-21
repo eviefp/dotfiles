@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    gitu = {
+      url = "github:altsem/gitu";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hyprland stuff
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -88,7 +93,7 @@
   };
 
   outputs =
-    { lix-module, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, porc, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect, sops-nix, ... }:
+    { lix-module, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, porc, gitu, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -106,7 +111,7 @@
       };
       nix-path = "nixpkgs=${nixpkgs}";
       home-manager-special-args = {
-        inherit pkgs nix-path nix-neovim nil porc lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock hyprcursor ect sops-nix;
+        inherit pkgs nix-path nix-neovim nil porc gitu lean4-mode hyprland hyprpaper hyprpicker hypridle hyprlock hyprcursor ect sops-nix;
       };
     in
     {
