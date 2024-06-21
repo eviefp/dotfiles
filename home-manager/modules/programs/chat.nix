@@ -11,6 +11,7 @@
       pkgs.discord
       pkgs.slack
       pkgs.signal-desktop
+      pkgs.element-desktop-wayland
       pkgs.chatterino2
     ];
   };

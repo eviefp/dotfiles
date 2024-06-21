@@ -18,7 +18,7 @@
           auto-format = true;
           scope = "source.haskell";
           file-types = [ "hs" ];
-          roots = [ "*.cabal" ];
+          roots = [ "flake.nix" "cabal.project" ];
           comment-token = "--";
           language-servers = [ "haskell-language-server" ];
           formatter = {

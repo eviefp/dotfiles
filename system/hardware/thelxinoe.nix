@@ -19,6 +19,8 @@
     pkgs.rtl8761b-firmware
   ];
 
+  hardware.cpu.amd.updateMicrocode = true;
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e36a4aab-f2fd-4789-ae28-b6eb714b7d85";
     fsType = "ext4";

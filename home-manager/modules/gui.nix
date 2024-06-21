@@ -23,7 +23,6 @@ in
   config = {
     home.packages = [
       # Multimedia
-      pkgs.zoom-us
       pkgs.light
       pkgs.fdk_aac
       pkgs.paprefs # multi audio sink setup
@@ -31,6 +30,7 @@ in
       pkgs.steam
       pkgs.transmission-gtk
       pkgs.xournal
+      pkgs.libreoffice
 
       pkgs.gimp
 
