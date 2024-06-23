@@ -32,7 +32,7 @@
           passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.evie_password.path}";
 
           imap = {
-            host = "nixos";
+            host = "thelxinoe";
             port = 1143;
             tls = {
               enable = true;
@@ -42,7 +42,7 @@
           };
 
           smtp = {
-            host = "nixos";
+            host = "thelxinoe";
             port = 1025;
             tls = {
               enable = true;

@@ -121,6 +121,7 @@
         modules = [
           lix-module.nixosModules.default
           ./system/modules/common.nix
+          ./system/modules/peroxide.nix
           ./system/modules/xserver.nix
           ./system/hardware/thelxinoe.nix
           {
@@ -130,11 +131,9 @@
               extraPorts = [ 31234 ];
             };
             evie.xserver.useNVidia = true;
-            services.peroxide = {
+            evie.services.peroxide = {
               enable = true;
-              settings = {
-                ServerAddress = "nixos";
-              };
+              certificate-name = "thelxinoe";
             };
           }
           home-manager.nixosModules.home-manager
