@@ -60,9 +60,7 @@ in
         hosts = {
           "192.168.1.1" = [ "router" ];
           "192.168.1.15" = [ "bridge" ];
-          # peroxide self-signs the certificate with the C/N 'nixos'
-          # should probably PR a change there
-          "192.168.10.177" = [ "thelxinoe" "nixos" ];
+          "192.168.10.177" = [ "thelxinoe" ];
           "192.168.10.166" = [ "janus" ];
           "192.168.10.206" = [ "fractal" ];
           "192.168.10.1" = [ "router2" ];
