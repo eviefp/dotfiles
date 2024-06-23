@@ -96,19 +96,16 @@ in
     systemd.user.services.eww = {
       Unit = {
         Description = "ElKowar's Wacky Widgets";
-        After = [ "sops-nix.service" ];
+        After = [ "sops-nix.service" "eww.service" ];
       };
 
-      Install = { WantedBy = [ "default.target" ]; };
+      Install = { WantedBy = [ "hyprland-session.target" ]; };
 
       Service = {
-        Type = "exec";
+        ExecStart = "${pkgs.eww}/bin/eww daemon --no-daemonize";
+        ExecStartPost = "${pkgs.eww}/bin/eww open statusbar";
 
-        ExecStart = "${pkgs.eww}/bin/eww d --no-daemonize";
-
-        Restart = "always";
-
-        RestartSec = 3;
+        Restart = "on-failure";
       };
     };
   };

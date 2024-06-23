@@ -67,7 +67,6 @@ in
           "hypridle"
           "wl-paste --type text --watch cliphist store" #Stores only text data
           "wl-paste --type image --watch cliphist store" #Stores only image data
-          "eww o statusbar"
           "blueman-applet"
           "hyprctl keyword monitor \"HDMI-A-2, disabled\"" # hacky, but eh
         ];

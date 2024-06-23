@@ -13,12 +13,12 @@
         }
 
         listener {
-         timeout = 900
+         timeout = 1200
          on-timeout = hyprlock
         }
 
         listener {
-          timeout = 20000
+          timeout = 3600
           on-timeout = systemctl suspend
         }
       '';

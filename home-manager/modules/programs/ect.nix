@@ -23,7 +23,7 @@ in
         After = [ "sops-nix.service" ];
       };
 
-      Install = { WantedBy = [ "default.target" ]; };
+      Install = { WantedBy = [ "hyprland-session.target" ]; };
 
       Service = {
         Type = "exec";
