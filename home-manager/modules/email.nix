@@ -59,7 +59,7 @@
 
           msmtp = {
             enable = true;
-            tls.fingerprint = "20:25:0E:A6:C0:3E:E1:3B:AE:9A:B1:12:B5:A2:C3:04:89:02:A4:F5:38:74:37:EC:D5:23:F0:82:6F:77:3F:C7";
+            tls.fingerprint = "BC:74:78:C0:F2:33:58:9E:D4:7F:03:D9:D4:48:97:E4:12:AB:FC:B9:A7:02:A6:A7:5B:A8:33:CB:42:C0:B9:71";
           };
 
           notmuch.enable = true;
