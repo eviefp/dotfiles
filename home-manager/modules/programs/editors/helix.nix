@@ -91,6 +91,10 @@
             ];
           };
         };
+        keys.normal = {
+          space.c = ":buffer-close";
+          space.C = ":buffer-close-others";
+        };
       };
       themes = {
         nordmod =
