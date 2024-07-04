@@ -28,7 +28,7 @@ in
       pkgs.paprefs # multi audio sink setup
       pkgs.pavucontrol
       pkgs.steam
-      pkgs.transmission-gtk
+      pkgs.transmission_4-gtk
       pkgs.xournal
       pkgs.libreoffice
 

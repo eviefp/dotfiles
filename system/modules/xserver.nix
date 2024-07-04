@@ -84,10 +84,9 @@ in
           open = true;
           package = config.boot.kernelPackages.nvidiaPackages.beta;
         };
-        opengl = {
+        graphics = {
           enable = true;
-          driSupport32Bit = true;
-          driSupport = true;
+          enable32Bit = true;
           extraPackages =
             if cfg.useNVidia
             then [ pkgs.nvidia-vaapi-driver pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl ]

@@ -21,10 +21,6 @@
           roots = [ "flake.nix" "cabal.project" ];
           comment-token = "--";
           language-servers = [ "haskell-language-server" ];
-          formatter = {
-            command = "ormolu";
-            args = [ "--stdin-input-file" "." ];
-          };
         }
         {
           name = "nix";
