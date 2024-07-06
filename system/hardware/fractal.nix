@@ -26,6 +26,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/raid1" = {
+    device = "/dev/md1";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";
