@@ -41,6 +41,10 @@ in
 
       porc.packages.${pkgs.system}.default
 
+      pkgs.ffmpegthumbnailer
+      pkgs.unrar
+      pkgs.poppler
+
       exp
     ];
 
@@ -551,12 +555,25 @@ stash_menu.quit = ["q", "<esc>"]
         enable = true;
       };
 
-      joshuto = {
+      yazi = {
         enable = true;
+        enableBashIntegration = true;
+        enableFishIntegration = true;
+        enableNushellIntegration = true;
+        settings = {
+          manager = {
+            sort_by = "natural";
+            show_hidden = true;
+          };
+        };
+      };
+
+      joshuto = {
+        enable = false;
         settings = {
           xdg_open = true;
           use_trash = false;
-          max_preview_size = 5000000;
+          max_preview_size = 10000000;
           display = {
             show_hidden = true;
           };
