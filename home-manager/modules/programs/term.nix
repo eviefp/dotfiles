@@ -551,6 +551,23 @@ stash_menu.quit = ["q", "<esc>"]
         enable = true;
       };
 
+      joshuto = {
+        enable = true;
+        settings = {
+          xdg_open = true;
+          use_trash = false;
+          max_preview_size = 5000000;
+          display = {
+            show_hidden = true;
+          };
+          preview = {
+            preview_protocol = "kitty";
+            use_xdg_thumbs = true;
+            xdg_thumb_size = "xxlarge";
+          };
+        };
+      };
+
     };
   };
 }
