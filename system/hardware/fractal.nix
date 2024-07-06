@@ -13,6 +13,14 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  boot.swraid = {
+    enable = true;
+    mdadmConf = ''
+      DEVICE /dev/sda1 /dev/sdb1
+      ARRAY /dev/md1 metadata=1.2 name=fractal:1 UUID=da6f6827:de95048d:d6b3eb65:6cd3dac9
+    '';
+  };
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";

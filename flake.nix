@@ -343,7 +343,6 @@
         modules = [
           lix-module.nixosModules.default
           ./system/modules/common.nix
-          ./system/modules/nextcloud.nix
           ./system/hardware/fractal.nix
           {
             evie.boot.enableHeadless = true;
@@ -354,7 +353,6 @@
             };
             networking.firewall.allowedUDPPorts = [ ];
             evie.packages = { extra = [ pkgs.git pkgs.wget ]; };
-            evie.nextcloud.enable = true;
           }
           home-manager.nixosModules.home-manager
           {
