@@ -352,6 +352,17 @@
               extraPorts = [ 1025 1143 ];
             };
             networking.firewall.allowedUDPPorts = [ ];
+
+            services.nfs = {
+              server = {
+                enable = true;
+                hostName = "fractal";
+                exports = ''
+                  /mnt/raid1 192.168.10/24(rw,async)
+                '';
+              };
+            };
+
             evie.packages = { extra = [ pkgs.git pkgs.wget ]; };
           }
           home-manager.nixosModules.home-manager
