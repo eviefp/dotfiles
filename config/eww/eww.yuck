@@ -235,6 +235,11 @@
 		   :limit-width 7
 		   :width 70
 		   :text "${event.time}")
+			(label
+			 :xalign 0
+			 :limit-width 30
+			 :width 150
+			 :text "[${event.source}]")
 		  (label
 		   :xalign 0
 		   :limit-width 30
