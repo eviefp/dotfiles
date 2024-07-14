@@ -351,8 +351,8 @@
 		     :visible showBattery
 		       (monitor
 		       :monitor-width 4
-		       :monitor-icon "./assets/${EWW_BATTERY.BAT0.status}.png" ; TODO: states Discharging/
-		       :monitor-text "${EWW_BATTERY.BAT0.capacity}%")
+		       :monitor-icon "./assets/${EWW_BATTERY != "" ? EWW_BATTERY.BAT0.status : "Charging"}.png"
+		       :monitor-text "${EWW_BATTERY != "" ? EWW_BATTERY.BAT0.capacity : "n/a"}%")
 		 )
 		(box
 		     :class "notifications-box box"
