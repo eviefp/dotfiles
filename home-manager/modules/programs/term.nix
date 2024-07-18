@@ -11,10 +11,8 @@ let
     echo 'atuin - cmd find?'
     echo 'fd - find'
     echo nvtop
-    echo sysz - systemctl/journalctl helper
     echo gping [hosts..]
     echo 'sudo below live -- todo: config'
-    echo 'porc [pattern]'
     echo 'gitu'
   '';
 in
@@ -30,20 +28,21 @@ in
       pkgs.zip
       pkgs.sops
       gitu.packages.${pkgs.system}.default
+      pkgs.sysz
+      porc.packages.${pkgs.system}.default
+      pkgs.nvd
 
       # experiments
       pkgs.choose
       pkgs.du-dust
       pkgs.sd
-      pkgs.sysz
       pkgs.gping
       pkgs.below
 
-      porc.packages.${pkgs.system}.default
-
       pkgs.ffmpegthumbnailer
       pkgs.unrar
-      pkgs.poppler
+
+      pkgs.nvd
 
       exp
     ];
@@ -353,13 +352,13 @@ stash_menu.quit = ["q", "<esc>"]
           # display = "side-by-side";
         };
         aliases = {
-          lol = "log --graph --decorate --oneline --abbrev-commit";
+          ll = "log --graph --decorate --oneline --abbrev-commit";
           lola = "log --graph --decorate --oneline --abbrev-commit --all";
           hist =
             "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
-          lg =
-            "log --color --graph --pretty=format:'%Cred%h$Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
-          recent =
+          lol =
+            "log --color --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
+          br =
             "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
           work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
         };

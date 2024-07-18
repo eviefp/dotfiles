@@ -5,8 +5,8 @@ let host = (hostname)
 print "Building new config..."
 nix build .#nixosConfigurations.($host).config.system.build.toplevel
 
-print "Diff:"
-nix store diff-closures /run/current-system ./result
+# nix store diff-closures /run/current-system ./result
+nvd diff /run/current-system ./result
 
 
 print -n 'Switch to new config? (y/_) '
