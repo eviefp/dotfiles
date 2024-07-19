@@ -98,8 +98,6 @@ in
         };
       };
 
-      sound.enable = true;
-
       environment.variables = {
         XDG_SESSION_TYPE = "wayland";
       };
