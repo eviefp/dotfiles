@@ -351,14 +351,14 @@
               interface = "eno1";
               extraPorts = [ 1025 1143 ];
             };
-            networking.firewall.allowedUDPPorts = [ ];
+            networking.firewall.allowedUDPPorts = [ 2049 ];
 
             services.nfs = {
               server = {
                 enable = true;
                 hostName = "fractal";
                 exports = ''
-                  /mnt/raid1 192.168.10/24(rw,async)
+                  /mnt/raid1 192.168.10.0/24(rw,async)
                 '';
               };
             };
