@@ -351,7 +351,7 @@
               interface = "eno1";
               extraPorts = [ 1025 1143 ];
             };
-            networking.firewall.allowedUDPPorts = [ 2049 ];
+            networking.firewall.allowedTCPPorts = [ 2049 ];
 
             services.nfs = {
               server = {
