@@ -20,3 +20,5 @@ if $result.code == 'y' {
 } else {
   print 'Not updating.'
 }
+
+# nix copy -L .#nixosConfigurations.($host).config.system.build.toplevel --no-check-sigs --to ssh-ng://evie@($host)
