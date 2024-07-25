@@ -1,3 +1,6 @@
+#+ATTR_HTML: :alt built with garnix
+[[https://garnix.io][https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Feviefp%2Fdotfiles%3Fbranch%3Dmain]]
+
 * My system configuration
 
 Please let me know if you see anything dubious or that can be improved.
