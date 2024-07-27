@@ -158,7 +158,7 @@ in
           disable_splash_rendering = true;
           key_press_enables_dpms = true;
           new_window_takes_over_fullscreen = 2;
-          initial_workspace_tracking = 1;
+          initial_workspace_tracking = 0;
         };
 
         cursor = {
@@ -207,7 +207,7 @@ in
           # "$shiftMod, Return, exec, [float;tile] wezterm start --always-new-process"
           "$shiftMod, Return, exec, $terminal"
           "$shiftMod, Q, exit,"
-          "$shiftMod, O, toggleOpaque,"
+          "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
           "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
           "$shiftMod, P, exec, $sleep"
           "$shiftMod, E, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
