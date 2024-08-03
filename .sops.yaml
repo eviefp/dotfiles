@@ -2,6 +2,7 @@ keys:
   # machines
   - &thelxinoe age1r983kf3l6n7ypjlq2cpuszr5a6euxlyugyvj2uc5zazer084v3tqncqurs
   - &janus age1xj3v4p5cz0elkxmvuzwxqkpwuxphs7k7k5qn4lp08d7lysq62axqatqwvf
+  - &aiode age1fx0adxvc4xw6rtky5u63fs0junxlcgvxuxk2cfw0g0rqdtx35qwq9vttf6
 
   # users
   - &evie C0D9F9852861DA37BC9A875C45D28E7139388E21
@@ -14,6 +15,7 @@ creation_rules:
       age:
         - *thelxinoe
         - *janus
+        - *aiode
   - path_regex: secrets/secrets/ect.yaml$
     key_groups:
     - pgp:
@@ -21,3 +23,4 @@ creation_rules:
       age:
         - *thelxinoe
         - *janus
+        - *aiode
