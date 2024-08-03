@@ -104,6 +104,9 @@
 
         linux_display_server = "wayland";
 
+        tab_bar_stule = "powerline";
+        tab_powerline_style = "rounde";
+
         include = "theme.conf";
 
       };
