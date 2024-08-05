@@ -326,6 +326,10 @@
 
                   wayland = {
                     eww-monitor = "0";
+                    showBattery = true;
+                    useSshMailCalendar = true;
+                    showMail = true;
+                    showCalendar = true;
                     monitors = [
                       {
                         name = "eDP-1";
