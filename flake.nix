@@ -125,6 +125,11 @@
           ./system/modules/xserver.nix
           ./system/hardware/thelxinoe.nix
           {
+            hardware = {
+              xone.enable = false;
+              xpadneo.enable = true;
+              steam-hardware.enable = true;
+            };
             evie.network = {
               hostName = "thelxinoe";
               interface = "enp4s0";
