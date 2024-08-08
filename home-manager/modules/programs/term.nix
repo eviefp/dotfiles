@@ -14,6 +14,7 @@ let
     echo gping [hosts..]
     echo 'sudo below live -- todo: config'
     echo 'gitu'
+    echo 'yazi'
   '';
 in
 {

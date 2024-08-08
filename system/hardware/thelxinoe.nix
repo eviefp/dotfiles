@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules =
     [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.kernelModules = [ "kvm-amd" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" "algif_hash" "algif_skcipher" ];
   boot.extraModulePackages = [ ];
 
   hardware.enableRedistributableFirmware = true;
