@@ -74,7 +74,18 @@ in
 
       hardware = {
         cpu.intel.updateMicrocode = true;
-        bluetooth.enable = true;
+        bluetooth = {
+          enable = true;
+          settings = {
+            General = {
+              ControllerMode = "dual";
+              # Privacy = "???";
+            };
+            Policy = {
+              AutoEnable = true;
+            };
+          };
+        };
         pulseaudio = {
           enable = true;
           package = pkgs.pulseaudioFull;
