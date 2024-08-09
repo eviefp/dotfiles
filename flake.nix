@@ -40,6 +40,7 @@
 
     nix-neovim = {
       url = "github:eviefp/nix-neovim/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     porc = {
