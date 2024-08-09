@@ -18,7 +18,7 @@
     home.packages = [
       pkgs.fd
       pkgs.gcc
-      (nix-neovim.neovim-with-packages pkgs)
+      nix-neovim.packages.${pkgs.system}.neovim-with-packages
     ];
 
   };
