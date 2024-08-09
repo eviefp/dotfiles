@@ -93,7 +93,7 @@ in
         nvidia = {
           modesetting.enable = true;
           open = true;
-          package = config.boot.kernelPackages.nvidiaPackages.beta;
+          package = config.boot.kernelPackages.nvidiaPackages.latest;
         };
         graphics = {
           enable = true;
