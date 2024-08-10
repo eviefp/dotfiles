@@ -13,7 +13,6 @@ in
     ./programs/kitty.nix
     # ./programs/wezterm.nix
     ./programs/chat.nix
-    ./sops.nix
   ];
 
   options.evie.programs.gui = {
