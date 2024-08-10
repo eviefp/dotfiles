@@ -15,6 +15,7 @@ in
       type = lib.types.str;
       description = "System hostname (should match config directory).";
     };
+
     user = lib.mkOption {
       type = lib.types.str;
       description = "username";

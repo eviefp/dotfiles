@@ -247,7 +247,6 @@
                   ./home-manager/modules/common.nix
                   ./home-manager/modules/gui.nix
                   ./home-manager/modules/programs/streaming.nix
-                  ./home-manager/modules/email.nix
                   ./home-manager/modules/programs/dev.nix
                 ];
 
