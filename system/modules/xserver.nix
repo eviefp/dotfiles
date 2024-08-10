@@ -73,7 +73,9 @@ in
       };
 
       hardware = {
-        cpu.intel.updateMicrocode = true;
+        xone.enable = false;
+        xpadneo.enable = true;
+        steam-hardware.enable = true;
         bluetooth = {
           enable = true;
           settings = {
@@ -89,11 +91,6 @@ in
         pulseaudio = {
           enable = true;
           package = pkgs.pulseaudioFull;
-        };
-        nvidia = {
-          modesetting.enable = true;
-          open = true;
-          package = config.boot.kernelPackages.nvidiaPackages.latest;
         };
         graphics = {
           enable = true;
@@ -114,6 +111,11 @@ in
       };
     }
     (lib.mkIf cfg.useNVidia {
+      hardware.nvidia = {
+        modesetting.enable = true;
+        open = true;
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
+      };
       environment.variables = {
         WLR_DRM_NO_ATOMIC = "1";
         LIBVA_DRIVER_NAME = "nvidia";

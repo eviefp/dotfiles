@@ -14,6 +14,7 @@
   boot.extraModulePackages = [ ];
 
   hardware.enableRedistributableFirmware = true;
+  hardware.cpu.intel.updateMicrocode = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/4c549ab8-9bd6-40ef-8293-c5d4f12024a0";

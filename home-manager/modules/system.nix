@@ -3,7 +3,10 @@
   *
   * This exists so I don't have to symlink each system's config to '/etc/nixos'.
   ************************************************************************ */
-{ lib, ... }:
+{ lib, config, ... }:
+let
+  cfg = config.evie.system;
+in
 {
   imports = [ ];
 
@@ -12,16 +15,16 @@
       type = lib.types.str;
       description = "System hostname (should match config directory).";
     };
-    dotfiles = lib.mkOption {
+    user = lib.mkOption {
       type = lib.types.str;
-      description = "Repository base path";
-      default = "/home/evie/code/dotfiles";
+      description = "username";
+      default = "evie";
     };
   };
 
   config = {
-    home.stateVersion = "24.05";
-    home.username = "evie";
-    home.homeDirectory = "/home/evie";
+    home.stateVersion = "24.11";
+    home.username = cfg.user;
+    home.homeDirectory = "/home/${cfg.user}";
   };
 }

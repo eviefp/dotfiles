@@ -126,11 +126,6 @@
           ./system/modules/xserver.nix
           ./system/hardware/thelxinoe.nix
           {
-            hardware = {
-              xone.enable = false;
-              xpadneo.enable = true;
-              steam-hardware.enable = true;
-            };
             evie.network = {
               hostName = "thelxinoe";
               interface = "enp4s0";
@@ -152,15 +147,11 @@
                 imports = [
                   ./home-manager/modules/common.nix
                   ./home-manager/modules/gui.nix
+                  ./home-manager/modules/wayland.nix
                   ./home-manager/modules/programs/streaming.nix
                   ./home-manager/modules/email.nix
                   ./home-manager/modules/programs/dev.nix
                 ];
-
-                home.packages = [
-                  pkgs.nvtopPackages.full
-                ];
-
 
                 evie = {
                   system.host = "thelxinoe";
@@ -212,6 +203,85 @@
         ];
       };
 
+      nixosConfigurations."arche" = nixpkgs.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit hyprland; };
+        modules = [
+          lix-module.nixosModules.default
+          ./system/modules/common.nix
+          ./system/modules/xserver.nix
+          ./system/hardware/arche.nix
+          {
+            users.users.every = {
+              isNormalUser = true;
+              extraGroups = [ "wheel" "networkmanager" "video" "docker" "plugdev" "vboxusers" "input" "uinput" "lp" ];
+              shell = pkgs.fish;
+              hashedPassword =
+                "$6$2bJFtErxPXqeCEJO$w4K0Fm1WmRL3tpUUJxkesiBFsM03Q2/IrtX9QvJjIBH3bxlOr1VtMIgWhCtIR1B./3QtmBCKo4H8ajTk51JW2/";
+            };
+
+            hardware = {
+              xone.enable = false;
+              xpadneo.enable = true;
+              steam-hardware.enable = true;
+            };
+
+            services.desktopManager.plasma6.enable = true;
+
+            evie.network = {
+              hostName = "arche";
+              interface = "enp0s31f6";
+              extraPorts = [ 31234 ];
+            };
+            evie.xserver.useNVidia = true;
+          }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = home-manager-special-args;
+
+              users.every = {
+                imports = [
+                  ./home-manager/modules/common.nix
+                  ./home-manager/modules/gui.nix
+                  ./home-manager/modules/programs/streaming.nix
+                  ./home-manager/modules/email.nix
+                  ./home-manager/modules/programs/dev.nix
+                ];
+
+                evie = {
+                  system.host = "arche";
+                  system.user = "every";
+
+                  programs.editors.emacs.locals = {
+                    enable = true;
+                    file = ./home-manager/locals/thelxinoe.el;
+                  };
+                };
+              };
+
+              users.evie = {
+                imports = [
+                  ./home-manager/modules/common.nix
+                  ./home-manager/modules/programs/dev.nix
+                ];
+
+                evie = {
+                  system.host = "arche";
+
+                  programs.editors.emacs.locals = {
+                    enable = true;
+                    file = ./home-manager/locals/thelxinoe.el;
+                  };
+                };
+              };
+            };
+          }
+        ];
+      };
+
       nixosConfigurations."janus" = nixpkgs.lib.nixosSystem {
         system = system;
         specialArgs = { inherit hyprland; };
@@ -241,6 +311,7 @@
                 imports = [
                   ./home-manager/modules/common.nix
                   ./home-manager/modules/gui.nix
+                  ./home-manager/modules/wayland.nix
                   ./home-manager/modules/programs/streaming.nix
                   # ./home-manager/modules/email.nix
                   ./home-manager/modules/programs/dev.nix
@@ -312,6 +383,7 @@
                 imports = [
                   ./home-manager/modules/common.nix
                   ./home-manager/modules/gui.nix
+                  ./home-manager/modules/wayland.nix
                   ./home-manager/modules/programs/streaming.nix
                   # ./home-manager/modules/email.nix
                   ./home-manager/modules/programs/dev.nix

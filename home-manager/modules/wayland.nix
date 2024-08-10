@@ -24,7 +24,6 @@
     showMail = lib.options.mkEnableOption "Show email widget?";
     showCalendar = lib.options.mkEnableOption "Show calendar widget?";
 
-
     disabledMonitors = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];

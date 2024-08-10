@@ -12,6 +12,7 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
   # hardware.firmware = [ lp ]; # TODO: this was empty!!
   hardware.enableRedistributableFirmware = true;
+  hardware.cpu.intel.updateMicrocode = true;
 
   fileSystems."/" =
     {
@@ -28,5 +29,4 @@
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = true;
 }

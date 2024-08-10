@@ -13,7 +13,7 @@ in
     ./programs/kitty.nix
     # ./programs/wezterm.nix
     ./programs/chat.nix
-    ./wayland.nix
+    ./sops.nix
   ];
 
   options.evie.programs.gui = {
@@ -41,6 +41,8 @@ in
       pkgs.xdg_utils
 
       pkgs.audacity
+
+      pkgs.chromium
     ];
 
     home.file = {
