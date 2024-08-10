@@ -261,22 +261,6 @@
                   };
                 };
               };
-
-              users.evie = {
-                imports = [
-                  ./home-manager/modules/common.nix
-                  ./home-manager/modules/programs/dev.nix
-                ];
-
-                evie = {
-                  system.host = "arche";
-
-                  programs.editors.emacs.locals = {
-                    enable = true;
-                    file = ./home-manager/locals/thelxinoe.el;
-                  };
-                };
-              };
             };
           }
         ];
