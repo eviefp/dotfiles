@@ -151,6 +151,7 @@
                   ./home-manager/modules/programs/streaming.nix
                   ./home-manager/modules/email.nix
                   ./home-manager/modules/programs/dev.nix
+                  ./home-manager/modules/sops.nix
                 ];
 
                 evie = {
@@ -297,6 +298,7 @@
                   ./home-manager/modules/wayland.nix
                   ./home-manager/modules/programs/streaming.nix
                   # ./home-manager/modules/email.nix
+                  ./home-manager/modules/sops.nix
                   ./home-manager/modules/programs/dev.nix
                 ];
 
@@ -369,6 +371,7 @@
                   ./home-manager/modules/wayland.nix
                   ./home-manager/modules/programs/streaming.nix
                   # ./home-manager/modules/email.nix
+                  ./home-manager/modules/sops.nix
                   ./home-manager/modules/programs/dev.nix
                 ];
 
