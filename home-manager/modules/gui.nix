@@ -9,7 +9,6 @@ in
 {
   imports = [
     ./programs/browsers.nix
-    ./programs/ect.nix
     ./programs/kitty.nix
     # ./programs/wezterm.nix
     ./programs/chat.nix

@@ -9,6 +9,7 @@
     ./wayland/eww.nix
     ./wayland/screenshot.nix
     ./wayland/rofi.nix
+    ./programs/ect.nix
   ];
 
   options.evie.wayland = {
