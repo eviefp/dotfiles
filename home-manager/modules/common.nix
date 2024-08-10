@@ -13,10 +13,7 @@
     ./programs/text.nix
     ./fonts.nix
     ./system.nix
-    ./sops.nix
   ];
-
-  evie.system.dotfiles = "/home/evie/code/dotfiles";
 
   home.sessionVariables = {
     EDITOR = "hx";
