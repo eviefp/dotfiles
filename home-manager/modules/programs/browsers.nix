@@ -2,7 +2,7 @@
   * programs/browsers module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [ ];
 
@@ -80,7 +80,7 @@
           };
           downloads = {
             location = {
-              directory = "/home/evie/Downloads";
+              directory = "/home/${config.options.evie.system}/Downloads";
               prompt = false;
             };
             position = "bottom";
