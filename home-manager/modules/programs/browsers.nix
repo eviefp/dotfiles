@@ -80,7 +80,7 @@
           };
           downloads = {
             location = {
-              directory = "/home/${config.options.evie.system}/Downloads";
+              directory = "/home/${config.evie.system.user}/Downloads";
               prompt = false;
             };
             position = "bottom";
