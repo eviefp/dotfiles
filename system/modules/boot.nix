@@ -9,22 +9,18 @@
 let cfg = config.evie.boot;
 in
 {
-  imports = [ ];
-
   options.evie.boot = {
     enableHeadless = lib.options.mkEnableOption "Enable headless mode.";
   };
 
-  config = lib.mkMerge [
+  config.boot = lib.mkMerge [
     {
-      boot.loader = {
+      loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-
-      # Randomly decided the NixOS version should be here.
-      system.stateVersion = "24.11";
     }
-    (lib.mkIf cfg.enableHeadless { boot.kernelParams = [ "nomodeset" ]; })
+    # TODO: move this to the server's hardware config and remove setting
+    (lib.mkIf cfg.enableHeadless { kernelParams = [ "nomodeset" ]; })
   ];
 }

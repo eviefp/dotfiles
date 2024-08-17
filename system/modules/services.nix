@@ -1,15 +1,13 @@
 /****************************************************************************
   * Services module
   *
-  * Enable openssh, printing, lorri, and optionally, the XCompose CapsLock key as
+  * Enable openssh, printing, lorri, and optionally, the XCompose Pause key as
   * the Multi_Key, which I use for typing various math symbols.
   **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.services;
 in
 {
-  imports = [ ];
-
   options.evie.services = {
     xcompose = lib.options.mkEnableOption "Enable XCompose Multi_Key.";
   };

@@ -8,16 +8,11 @@
   **************************************************************************/
 { pkgs, ... }:
 {
-  imports = [ ];
-
-  options.evie.users = { };
-
   config = {
     programs.fish.enable = true;
+
     users = {
       groups = { plugdev = { }; };
-
-
       users = {
         evie = {
           isNormalUser = true;

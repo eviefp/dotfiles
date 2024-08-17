@@ -3,10 +3,10 @@
   *
   * Set up email account, imap sync, notmuch mail management.
   **************************************************************************/
-{ config, pkgs, ... }:
+{ dotfiles, config, pkgs, ... }:
 {
   imports = [
-    ./programs/bower.nix
+    dotfiles.self.homeManagerModules.bower
   ];
 
   config = {

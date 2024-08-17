@@ -1,4 +1,4 @@
-{ pkgs, hyprlock, ... }:
+{ dotfiles, pkgs, ... }:
 {
   config = {
     home = {
@@ -54,7 +54,7 @@
       '';
 
       packages = [
-        hyprlock.packages.${pkgs.system}.hyprlock
+        dotfiles.hyprlock.packages.${pkgs.system}.hyprlock
       ];
     };
   };

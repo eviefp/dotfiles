@@ -1,4 +1,4 @@
-{ pkgs, hypridle, ... }:
+{ dotfiles, pkgs, ... }:
 {
   config = {
     home = {
@@ -19,7 +19,7 @@
       '';
 
       packages = [
-        hypridle.packages.${pkgs.system}.hypridle
+        dotfiles.hypridle.packages.${pkgs.system}.hypridle
       ];
     };
   };

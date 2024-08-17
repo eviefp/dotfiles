@@ -4,9 +4,8 @@
   **************************************************************************/
 { pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
+    # TODO: try davinci 
     home.packages = [ pkgs.ffmpeg-full pkgs.kdenlive ];
 
     programs = {

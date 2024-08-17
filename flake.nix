@@ -94,7 +94,7 @@
   };
 
   outputs =
-    { lix-module, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, porc, gitu, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect, sops-nix, ... }:
+    dotfiles@{ lix-module, nixpkgs, home-manager, nix-on-droid, nix-neovim, emacs-overlay, nil, porc, gitu, lean4-mode, hyprland, hyprpaper, hyprpicker, hypridle, hyprlock, hyprcursor, ect, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -116,91 +116,76 @@
       };
     in
     {
-      nixosConfigurations."thelxinoe" = nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = { inherit hyprland; };
+      nixosModules = {
+        common = ./system/modules/common.nix;
+        peroxide = ./system/modules/peroxide.nix;
+        xserver = ./system/modules/xserver.nix;
+        nix-settings = ./system/modules/nix-settings.nix;
+        boot = ./system/modules/boot.nix;
+        network = ./system/modules/network.nix;
+        locale = ./system/modules/locale.nix;
+        packages = ./system/modules/packages.nix;
+        services = ./system/modules/services.nix;
+        users = ./system/modules/users.nix;
+      };
+
+      homeManagerModules = {
+        common = ./home-manager/modules/common.nix;
+        sops = ./home-manager/modules/sops.nix;
+        fonts = ./home-manager/modules/fonts.nix;
+        system = ./home-manager/modules/system.nix;
+
+        email = ./home-manager/modules/email.nix;
+        bower = home-manager/modules/programs/bower.nix;
+        ect = home-manager/modules/programs/ect.nix;
+
+        programs = {
+          term = ./home-manager/modules/programs/term.nix;
+          ranger = ./home-manager/modules/programs/shell/ranger.nix;
+          text = ./home-manager/modules/programs/text.nix;
+          dev = ./home-manager/modules/programs/dev.nix;
+          devModules = {
+            haskell = ./home-manager/modules/programs/dev/haskell.nix;
+            lua = ./home-manager/modules/programs/dev/lua.nix;
+            nix = ./home-manager/modules/programs/dev/nix.nix;
+            provers = ./home-manager/modules/programs/dev/provers.nix;
+            tools = ./home-manager/modules/programs/dev/tools.nix;
+          };
+          browsers = ./home-manager/modules/programs/browsers.nix;
+          kitty = ./home-manager/modules/programs/kitty.nix;
+          chat = ./home-manager/modules/programs/chat.nix;
+          streaming = ./home-manager/modules/programs/streaming.nix;
+        };
+
+        editors = {
+          emacs = ./home-manager/modules/programs/editors/emacs.nix;
+          neovim = ./home-manager/modules/programs/editors/neovim.nix;
+          helix = ./home-manager/modules/programs/editors/helix.nix;
+        };
+
+        gui = ./home-manager/modules/gui.nix;
+
+        wayland = ./home-manager/modules/wayland.nix;
+        waylandModules = {
+          hyprland = home-manager/modules/wayland/hyprland.nix;
+          hyprpaper = home-manager/modules/wayland/hyprpaper.nix;
+          hypridle = home-manager/modules/wayland/hypridle.nix;
+          hyprlock = home-manager/modules/wayland/hyprlock.nix;
+          swaync = home-manager/modules/wayland/swaync.nix;
+          eww = home-manager/modules/wayland/eww.nix;
+          screenshot = home-manager/modules/wayland/screenshot.nix;
+          rofi = home-manager/modules/wayland/rofi.nix;
+        };
+      };
+
+      nixosConfigurations.thelxinoe = nixpkgs.lib.nixosSystem {
+        # The host needs to pass 'dotfiles' to the home-manager module import,
+        # which results in an infinite recursion error if this was replaced by
+        # '_module.args'.
+        # See https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
+        specialArgs = { inherit dotfiles; };
         modules = [
-          lix-module.nixosModules.default
-          ./system/modules/common.nix
-          ./system/modules/peroxide.nix
-          ./system/modules/xserver.nix
-          ./system/hardware/thelxinoe.nix
-          {
-            evie.network = {
-              hostName = "thelxinoe";
-              interface = "enp4s0";
-              extraPorts = [ 31234 ];
-            };
-            evie.xserver.useNVidia = true;
-            evie.services.peroxide = {
-              enable = true;
-              certificate-name = "thelxinoe";
-            };
-          }
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = home-manager-special-args;
-              users.evie = {
-                imports = [
-                  ./home-manager/modules/common.nix
-                  ./home-manager/modules/gui.nix
-                  ./home-manager/modules/wayland.nix
-                  ./home-manager/modules/programs/streaming.nix
-                  ./home-manager/modules/email.nix
-                  ./home-manager/modules/programs/dev.nix
-                  ./home-manager/modules/sops.nix
-                ];
-
-                evie = {
-                  system.host = "thelxinoe";
-
-                  programs.editors.emacs.locals = {
-                    enable = true;
-                    file = ./home-manager/locals/thelxinoe.el;
-                  };
-
-                  wayland = {
-                    eww-monitor = "0";
-                    showTV = true;
-                    useSshMailCalendar = false;
-                    showMail = true;
-                    showCalendar = true;
-                    monitors = [
-                      {
-                        name = "DP-1";
-                        resolution = "1920x1080@239.76";
-                        position = "0x0";
-                        keybind = "W";
-                      }
-                      {
-                        name = "DP-3";
-                        resolution = "1920x1080@239.76";
-                        position = "1920x0";
-                        keybind = "E";
-                      }
-                      {
-                        name = "DP-2";
-                        resolution = "1920x1080@239.76";
-                        position = "3840x0";
-                        keybind = "R";
-                      }
-                      {
-                        name = "HDMI-A-2";
-                        resolution = "1920x1080@60";
-                        position = "5760x0";
-                        keybind = "T";
-                      }
-                    ];
-                    disabledMonitors = [ "Unknown-1" ];
-                  };
-                };
-
-              };
-            };
-          }
+          ./hosts/thelxinoe
         ];
       };
 

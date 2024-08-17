@@ -3,20 +3,13 @@
   *
   * GUI programs such as browsers, multimedia, etc.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
-let cfg = config.evie.programs.gui;
-in
+{ dotfiles, pkgs, ... }:
 {
-  imports = [
-    ./programs/browsers.nix
-    ./programs/kitty.nix
-    # ./programs/wezterm.nix
-    ./programs/chat.nix
+  imports = with dotfiles.self.homeManagerModules.programs; [
+    browsers
+    kitty
+    chat
   ];
-
-  options.evie.programs.gui = {
-    useLaptopXmobar = lib.options.mkEnableOption "Enable battery display.";
-  };
 
   config = {
     home.packages = [
@@ -34,8 +27,7 @@ in
 
       # X-server related
       pkgs.pass
-      pkgs.passff-host
-      pkgs.pinentry
+      pkgs.pinentry #TODO: should be removed I think
       pkgs.xdg_utils
 
       pkgs.audacity
@@ -57,45 +49,5 @@ in
       };
     };
 
-    services = {
-      stalonetray = {
-        enable = false;
-        package = pkgs.stalonetray;
-        config = {
-          decorations = "all";
-          transparent = true;
-          dockapp_mode = "none";
-          geometry =
-            if cfg.useLaptopXmobar
-            then "6x1-210+1059"
-            else "6x1-2120+1059";
-          background = "#46224c";
-          kludges = "force_icons_size";
-          grow_gravity = "SW";
-          icon_gravity = "SE";
-          icon_size = 20;
-          sticky = true;
-          window_strut = "bottom";
-          window_type = "dock";
-          window_layer = "bottom";
-          no_shrink = false;
-          skip_taskbar = true;
-          tint_level = 210;
-          tint_color = "#46224c";
-          parent_bg = true;
-        };
-      };
-
-      xscreensaver = {
-        enable = false;
-        settings = {
-          lock = false;
-          mode = "blank";
-          dpmsEnabled = true;
-          splash = false;
-          fade = false;
-        };
-      };
-    };
   };
 }

@@ -1,16 +1,14 @@
 /****************************************************************************
   * ect module
   **************************************************************************/
-{ config, pkgs, ect, ... }:
+{ dotfiles, config, pkgs, ... }:
 let
-  ectPackage = ect.packages.${pkgs.system}.default;
+  ectPackage = dotfiles.ect.packages.${pkgs.system}.default;
   ectWrapped = pkgs.writeShellScriptBin "ect" ''
     ${ectPackage}/bin/ect "$@" --config ${config.sops.secrets.ect_yaml.path}
   '';
 in
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       ectWrapped

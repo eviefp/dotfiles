@@ -4,11 +4,10 @@
   **************************************************************************/
 { pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       pkgs.ghcid
+      pkgs.ghciwatch
       pkgs.haskellPackages.hp2html
       pkgs.haskellPackages.hp2pretty
     ];

@@ -14,8 +14,6 @@ let
 
 in
 {
-  imports = [ ];
-
   options.evie.locale = {
     timeZone = lib.mkOption {
       default = "Europe/Bucharest";

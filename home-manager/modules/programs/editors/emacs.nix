@@ -3,12 +3,12 @@
   *
   * Emacs package using emacs-overlay.
   **************************************************************************/
-{ lib, config, pkgs, lean4-mode, ... }:
+{ dotfiles, lib, config, pkgs, ... }:
 let
   initFile = ../../../../config/init.el;
   lean4mode = epkgs: epkgs.trivialBuild {
     pname = "lean4-mode";
-    src = lib.cleanSource lean4-mode;
+    src = lib.cleanSource dotfiles.lean4-mode;
     version = "1";
 
     buildPhase = ''

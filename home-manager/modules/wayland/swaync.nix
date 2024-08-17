@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home = {
       file.".config/swaync" = {

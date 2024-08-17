@@ -1,7 +1,7 @@
-{ config, pkgs, hyprland, hyprpicker, ... }:
+{ dotfiles, config, pkgs, ... }:
 let
   cfg = config.evie.wayland;
-  hyprland-package = hyprland.packages.${pkgs.system}.hyprland;
+  hyprland-package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
   switch-colors = pkgs.writeShellScriptBin "switch-colors" ''
     #!/usr/bin/env bash
 
@@ -22,11 +22,7 @@ let
   '';
 in
 {
-  imports = [
-  ];
-
   config = {
-
     home.packages = [
       pkgs.egl-wayland
       pkgs.libsForQt5.qtwayland
@@ -34,9 +30,9 @@ in
       pkgs.qt6.qtwayland
       pkgs.qt6Packages.qt6ct
       pkgs.libva
-      hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+      dotfiles.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
-      hyprpicker.packages.${pkgs.system}.hyprpicker
+      dotfiles.hyprpicker.packages.${pkgs.system}.hyprpicker
 
       # clipboard history
       pkgs.cliphist
@@ -71,12 +67,33 @@ in
           "hyprctl keyword monitor \"HDMI-A-2, disabled\"" # hacky, but eh
         ];
 
+        # TODO: some of these are nvidia specific, fix that
         env = [
+          # https://wiki.hyprland.org/Nvidia/
+          "LIBVA_DRIVER_NAME,nvidia"
+          "XDG_SESSION_TYPE,wayland"
+          "GBM_BACKEND,nvidia-drm"
+          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+          "NVD_BACKEND,direct"
+          "ELECTRON_OZONE_PLATFORM_HINT,auto"
+          # https://wiki.hyprland.org/Configuring/Environment-variables/#nvidia-specific
+          "__GL_VRR_ALLOWED,0"
+          "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+          "QT_QPA_PLATFORM,wayland;xcb"
+          "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+          "QT_QPA_PLATFORMTHEME,qt6ct" # change to qt6ct if you have that
+          # XDG
+          "XDG_CURRENT_DESKTOP,Hyprland"
+          "XDG_SESSION_TYPE,wayland"
+          "XDG_SESSION_DESKTOP,Hyprland"
+          # GTK
+          "GDK_BACKEND,wayland,x11,*"
+          "CLUTTER_BACKEND,wayland"
+          # other
           "XCURSOR_SIZE,24"
           "HYPRCURSOR_THEME,materialLight"
           "HYPRCURSOR_SIZE,24"
-          "QT_QPA_PLATFORMTHEME,qt6ct" # change to qt6ct if you have that
-          "NIXOS_OZONE_WL,hyprland"
+          "NIXOS_OZONE_WL,1"
         ];
 
         general = {
@@ -165,6 +182,7 @@ in
           inactive_timeout = 0;
           no_warps = true;
           enable_hyprcursor = true;
+          no_hardware_cursors = true;
           # hide_on_key_press = true
         };
 

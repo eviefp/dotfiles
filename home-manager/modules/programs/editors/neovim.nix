@@ -3,10 +3,8 @@
   *
   * Neovim package, plugins, and init file.
   **************************************************************************/
-{ pkgs, nix-neovim, ... }:
+{ dotfiles, pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home.file = {
       ".config/nvim/lua" = {
@@ -18,7 +16,7 @@
     home.packages = [
       pkgs.fd
       pkgs.gcc
-      nix-neovim.packages.${pkgs.system}.neovim-with-packages
+      dotfiles.nix-neovim.packages.${pkgs.system}.neovim-with-packages
     ];
 
   };

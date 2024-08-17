@@ -4,8 +4,6 @@
   **************************************************************************/
 { pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home.file.".config/helix/themes/gh_dark_transparent.toml".source = ../../../../config/gh_dark_transparent.toml;
 

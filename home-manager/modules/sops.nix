@@ -1,7 +1,7 @@
-{ sops-nix, ... }:
+{ dotfiles, ... }:
 {
   imports = [
-    sops-nix.homeManagerModules.sops
+    dotfiles.sops-nix.homeManagerModules.sops
   ];
 
   sops = {

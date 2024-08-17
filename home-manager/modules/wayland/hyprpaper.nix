@@ -1,4 +1,4 @@
-{ lib, config, pkgs, hyprpaper, ... }:
+{ dotfiles, lib, config, pkgs, ... }:
 let
   cfg = config.evie.wayland;
   files = [ "evey.png" "elsa.png" "hq.png" "mulan.png" ];
@@ -21,7 +21,7 @@ in
       '';
 
       packages = [
-        hyprpaper.packages.${pkgs.system}.hyprpaper
+        dotfiles.hyprpaper.packages.${pkgs.system}.hyprpaper
       ];
     };
   };

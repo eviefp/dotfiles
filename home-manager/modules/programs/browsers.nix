@@ -4,8 +4,6 @@
   **************************************************************************/
 { pkgs, config, ... }:
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       # pkgs.chromium
@@ -18,10 +16,6 @@
       # ".mozilla/native-messaging-hosts/firenvim.json".source = ../../../config/firenvim.json;
     };
     programs = {
-      browserpass = {
-        enable = true;
-        browsers = [ "firefox" ];
-      };
       firefox = {
         enable = false;
         package = pkgs.firefox.override {
@@ -96,7 +90,6 @@
             default_name = "evie";
             lazy_restore = true;
           };
-          # spellcheck.languages = [ "en-US" "en-GB" "ro-RO" ];
           statusbar = {
             position = "bottom";
           };

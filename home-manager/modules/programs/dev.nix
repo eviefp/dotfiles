@@ -2,13 +2,13 @@
   * Programs module
   *
   **************************************************************************/
-{ ... }:
+{ dotfiles, ... }:
 {
-  imports = [
-    ./dev/haskell.nix
-    ./dev/lua.nix
-    ./dev/nix.nix
-    ./dev/provers.nix
-    ./dev/tools.nix
+  imports = with dotfiles.self.homeManagerModules.programs.devModules; [
+    haskell
+    lua
+    nix
+    provers
+    tools
   ];
 }

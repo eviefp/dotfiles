@@ -1,11 +1,10 @@
 { pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       pkgs.tessen
     ];
+
     programs.rofi = {
       enable = true;
       cycle = true;

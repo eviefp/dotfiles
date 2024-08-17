@@ -1,18 +1,29 @@
+/****************************************************************************
+  * Common module
+  *
+  * This is basically just a shorthand for what most of my systems use.
+  **************************************************************************/
+{ dotfiles, ... }:
 {
-  imports = [
-    ../modules/nix-settings.nix
-    ../modules/boot.nix
-    ../modules/network.nix
-    ../modules/locale.nix
-    ../modules/packages.nix
-    ../modules/services.nix
-    ../modules/users.nix
+  imports = with dotfiles.self.nixosModules; [
+    nix-settings
+    boot
+    network
+    locale
+    packages
+    services
+    users
   ];
 
-  evie.packages = {
-    enableGPG = true;
-    enableDconf = true;
-  };
+  config = {
 
-  evie.services.xcompose = false;
+    nixpkgs.overlays = [ (import dotfiles.emacs-overlay) ];
+
+    evie.packages = {
+      enableGPG = true;
+      enableDconf = true;
+    };
+
+    evie.services.xcompose = false;
+  };
 }

@@ -6,14 +6,12 @@
   *   - 'nixfmt' for formatting sources with emacs/nvim (TODO)
   *   - 'nix-diff' for finding out how two derivations differ
   ************************************************************************ */
-{ pkgs, nil, ... }:
+{ dotfiles, pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       pkgs.haskellPackages.niv
-      nil.packages.${pkgs.system}.nil
+      dotfiles.nil.packages.${pkgs.system}.nil
       pkgs.nix-diff
       pkgs.nixpkgs-fmt
     ];

@@ -2,69 +2,45 @@
   * XServer module
   *
   * XServer, audio, and video settings.
+  * TODO: rename to hardware or something
   **************************************************************************/
-{ lib, config, pkgs, hyprland, ... }:
+{ lib, config, pkgs, dotfiles, ... }:
 let cfg = config.evie.xserver;
 in
 {
-  imports = [ ];
-
   options.evie.xserver = {
     useNVidia =
       lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
-    monitorSectionDisplaySize = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "The DisplaySize monitor section, e.g. 'DisplaySize 100 100'";
-    };
   };
 
   config = (lib.mkMerge [
     {
+      # TODO: make this configurable
       programs.hyprland = {
         enable = true;
-        package = hyprland.packages.${pkgs.system}.hyprland;
+        package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
         xwayland.enable = true;
       };
 
       services = {
         blueman.enable = true;
+
         pipewire = {
           enable = true;
           wireplumber.enable = true;
         };
+
         xserver = {
-          enable = true;
+          enable = false;
           videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
-          monitorSection = ''
-            Option "DPMS" "false"
-          '';
-          windowManager.xmonad = {
-            enable = false;
-            enableContribAndExtras = true;
-            config = ../../config/xmonad/xmonad.hs;
-            haskellPackages = pkgs.haskell.packages.ghc946;
-            extraPackages = haskellPackages: [
-              haskellPackages.async
-              haskellPackages.scotty
-              haskellPackages.raw-strings-qq
-            ];
-            ghcArgs = [
-              "-threaded"
-            ];
-            xmonadCliArgs = [
-              "+RTS"
-              "-N4"
-              "-RTS"
-            ];
-          };
-          desktopManager = {
-            plasma5.enable = false;
-            xterm.enable = false;
-          };
-          xkb.layout = "us";
+          # desktopManager = {
+          #   plasma5.enable = false;
+          #   xterm.enable = false;
+          # };
+          # xkb.layout = "us";
         };
 
+        # TODO: try regreet
         displayManager.sddm = {
           enable = true;
           theme = "/run/current-system/sw/share/sddm/themes/elarun";
@@ -72,10 +48,16 @@ in
         };
       };
 
+      environment.systemPackages = [
+        pkgs.wally-cli
+      ];
+
       hardware = {
         xone.enable = false;
         xpadneo.enable = true;
         steam-hardware.enable = true;
+        keyboard.zsa.enable = true;
+
         bluetooth = {
           enable = true;
           settings = {
@@ -88,10 +70,12 @@ in
             };
           };
         };
+
         pulseaudio = {
           enable = true;
           package = pkgs.pulseaudioFull;
         };
+
         graphics = {
           enable = true;
           enable32Bit = true;
@@ -106,28 +90,23 @@ in
         };
       };
 
-      environment.variables = {
-        XDG_SESSION_TYPE = "wayland";
-      };
     }
     (lib.mkIf cfg.useNVidia {
+      nixpkgs.config.allowUnfree = true;
       hardware.nvidia = {
         modesetting.enable = true;
         open = true;
         package = config.boot.kernelPackages.nvidiaPackages.latest;
+        nvidiaSettings = true;
       };
       environment.variables = {
-        WLR_DRM_NO_ATOMIC = "1";
-        LIBVA_DRIVER_NAME = "nvidia";
-        GBM_BACKEND = "nvidia-drm";
-        NVD_BACKEND = "direct";
-        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-        __GLX_VRR_ALLOWED = "1";
+        # WLR_DRM_NO_ATOMIC = "1";
+        # __GLX_VRR_ALLOWED = "1";
       };
     })
     (lib.mkIf (!cfg.useNVidia) {
       environment.variables = {
-        VPAU_DRIVER = "va_gl";
+        # VPAU_DRIVER = "va_gl";
       };
     })
   ]);

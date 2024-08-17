@@ -2,7 +2,7 @@
   * programs/shell module
   *
   **************************************************************************/
-{ pkgs, porc, gitu, ... }:
+{ dotfiles, pkgs, ... }:
 let
   exp = pkgs.writeShellScriptBin "exp" ''
     echo 'cat foo | choose 2 1:-1'
@@ -18,8 +18,6 @@ let
   '';
 in
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       pkgs.killall
@@ -28,9 +26,9 @@ in
       pkgs.unzip
       pkgs.zip
       pkgs.sops
-      gitu.packages.${pkgs.system}.default
+      dotfiles.gitu.packages.${pkgs.system}.default
       pkgs.sysz
-      porc.packages.${pkgs.system}.default
+      dotfiles.porc.packages.${pkgs.system}.default
       pkgs.nvd
 
       # experiments

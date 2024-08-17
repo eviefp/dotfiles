@@ -1,15 +1,15 @@
-{ lib, ... }:
+{ dotfiles, lib, ... }:
 {
-  imports = [
-    ./wayland/hyprland.nix
-    ./wayland/hyprpaper.nix
-    ./wayland/hypridle.nix
-    ./wayland/hyprlock.nix
-    ./wayland/swaync.nix
-    ./wayland/eww.nix
-    ./wayland/screenshot.nix
-    ./wayland/rofi.nix
-    ./programs/ect.nix
+  imports = with dotfiles.self.homeManagerModules; [
+    waylandModules.hyprland
+    waylandModules.hyprpaper
+    waylandModules.hypridle
+    waylandModules.hyprlock
+    waylandModules.swaync
+    waylandModules.eww
+    waylandModules.screenshot
+    waylandModules.rofi
+    ect
   ];
 
   options.evie.wayland = {
@@ -30,29 +30,28 @@
       default = [ ];
     };
 
-    monitors = lib.mkOption
-      {
-        type = lib.types.listOf (lib.types.submodule {
-          options = {
-            name = lib.mkOption {
-              type = lib.types.str;
-              example = "DP-1";
-            };
-            resolution = lib.mkOption {
-              type = lib.types.str;
-              example = "1920x1080@239.76";
-            };
-            position = lib.mkOption {
-              type = lib.types.str;
-              example = "0x0";
-            };
-            keybind = lib.mkOption {
-              type = lib.types.str;
-              example = "W";
-            };
+    monitors = lib.mkOption {
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            example = "DP-1";
           };
-        });
-        default = [ ];
-      };
+          resolution = lib.mkOption {
+            type = lib.types.str;
+            example = "1920x1080@239.76";
+          };
+          position = lib.mkOption {
+            type = lib.types.str;
+            example = "0x0";
+          };
+          keybind = lib.mkOption {
+            type = lib.types.str;
+            example = "W";
+          };
+        };
+      });
+      default = [ ];
+    };
   };
 }

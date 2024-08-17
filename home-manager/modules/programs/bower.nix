@@ -1,11 +1,10 @@
 /****************************************************************************
   * programs/bower module
   *
+  * TODO: am I really using this?
   **************************************************************************/
 { pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       pkgs.notmuch-bower

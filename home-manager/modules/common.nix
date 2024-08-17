@@ -1,25 +1,28 @@
 /****************************************************************************
-  * Thelxinoe home-manager
+  * Common home-manager module
   *
+  * Adds the modules/settings that all of my systems use.
   **************************************************************************/
-{ nix-path, ... }:
+{ dotfiles, ... }:
 {
-  imports = [
-    ./programs/editors/emacs.nix
-    ./programs/editors/neovim.nix
-    ./programs/editors/helix.nix
-    ./programs/term.nix
-    ./programs/shell/ranger.nix
-    ./programs/text.nix
-    ./fonts.nix
-    ./system.nix
+  imports = with dotfiles.self.homeManagerModules; [
+    fonts
+    system
+
+    editors.emacs
+    editors.neovim
+    editors.helix
+
+    programs.term
+    programs.ranger
+    programs.text
   ];
 
   home.sessionVariables = {
+    # TODO: these should be set in editors/browser/etc.;
     EDITOR = "hx";
     BROWSER = "qutebrowser";
-    NIX_PATH = nix-path;
-    OOO_FORCE_DESKTOP = "gnome";
+    NIX_PATH = "nixpkgs=${dotfiles.nixpkgs}";
   };
 }
 

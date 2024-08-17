@@ -4,10 +4,7 @@ let
   sshThelxinoe = if cfg.useSshMailCalendar then "ssh thelxinoe " else "";
 in
 {
-  imports = [ ];
-
   config = {
-
     home.packages = [
       pkgs.socat
       pkgs.wlr-randr

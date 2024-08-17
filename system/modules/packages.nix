@@ -2,14 +2,15 @@
   * Packages module
   *
   * Sets default packages I want installed "globally" (as opposed to through
-  * home-manager). It's usually stuff I need to either boot or setup a new system.
+  * home-manager).
+  *
+  * TODO: Should all programs just be here? And home-manager should just have
+  * the configs?
   **************************************************************************/
 { lib, config, pkgs, ... }:
 let cfg = config.evie.packages;
 in
 {
-  imports = [ ];
-
   options.evie.packages = {
     extra = lib.mkOption {
       type = lib.types.listOf lib.types.package;
@@ -32,8 +33,6 @@ in
   };
 
   config = {
-    nixpkgs.config.allowUnfree = true;
-
     environment.systemPackages = builtins.concatLists [
       [ pkgs.cachix pkgs.dbus pkgs.vim pkgs.nfs-utils ]
       cfg.extra
@@ -42,9 +41,11 @@ in
     programs = {
       gnupg.agent = {
         enable = cfg.enableGPG;
+        # TODO: this does not work
         enableSSHSupport = true;
       };
 
+      # Needed by home-manager.
       dconf.enable = cfg.enableDconf;
     };
   };

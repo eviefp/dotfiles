@@ -10,8 +10,6 @@
   **************************************************************************/
 { pkgs, ... }:
 {
-  imports = [ ];
-
   config = {
     home.packages = [
       pkgs.mailcap
@@ -22,8 +20,6 @@
     ];
 
     programs = {
-
-
       zathura = {
         enable = true;
         extraConfig = ''
