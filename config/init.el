@@ -608,7 +608,7 @@
  :general (general-define-key :keymaps 'normal "C-SPC" 'markdown-toggle-gfm-checkbox))
 
 ;; pdf/tex
-(use-package pdf-tools :ensure t :init (pdf-tools-install))
+; (use-package pdf-tools :ensure t :init (pdf-tools-install))
 
 (use-package
  lsp-latex

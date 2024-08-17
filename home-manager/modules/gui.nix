@@ -39,8 +39,6 @@ in
       pkgs.xdg_utils
 
       pkgs.audacity
-
-      pkgs.chromium
     ];
 
     home.file = {
