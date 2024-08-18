@@ -1,4 +1,4 @@
-{ dotfiles, config, pkgs, ... }:
+{ dotfiles, config, pkgs, lib, osConfig, ... }:
 let
   cfg = config.evie.wayland;
   hyprland-package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
@@ -22,7 +22,13 @@ let
   '';
 in
 {
-  config = {
+  imports = with dotfiles.self.homeManagerModules.waylandModules.hyprland; [
+    hyprpaper
+    hypridle
+    hyprlock
+  ];
+
+  config = lib.mkIf (osConfig.evie.wayland.compositor == "hyprland") {
     home.packages = [
       pkgs.egl-wayland
       pkgs.libsForQt5.qtwayland
@@ -68,32 +74,46 @@ in
         ];
 
         # TODO: some of these are nvidia specific, fix that
-        env = [
-          # https://wiki.hyprland.org/Nvidia/
-          "LIBVA_DRIVER_NAME,nvidia"
-          "XDG_SESSION_TYPE,wayland"
-          "GBM_BACKEND,nvidia-drm"
-          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-          "NVD_BACKEND,direct"
-          "ELECTRON_OZONE_PLATFORM_HINT,auto"
-          # https://wiki.hyprland.org/Configuring/Environment-variables/#nvidia-specific
-          "__GL_VRR_ALLOWED,0"
-          "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-          "QT_QPA_PLATFORM,wayland;xcb"
-          "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-          "QT_QPA_PLATFORMTHEME,qt6ct" # change to qt6ct if you have that
-          # XDG
-          "XDG_CURRENT_DESKTOP,Hyprland"
-          "XDG_SESSION_TYPE,wayland"
-          "XDG_SESSION_DESKTOP,Hyprland"
-          # GTK
-          "GDK_BACKEND,wayland,x11,*"
-          "CLUTTER_BACKEND,wayland"
-          # other
-          "XCURSOR_SIZE,24"
-          "HYPRCURSOR_THEME,materialLight"
-          "HYPRCURSOR_SIZE,24"
-          "NIXOS_OZONE_WL,1"
+        env = lib.mkMerge [
+          [
+            # https://wiki.hyprland.org/Configuring/Environment-variables
+            # Toolkit Backend Variables
+            "GDK_BACKEND,wayland,x11,*"
+            "QT_QPA_PLATFORM,wayland;xcb"
+            "SDL_VIDEODRIVER,wayland" # run SDL2 applications on Wayland, remove if games have compat issues
+            "CLUTTER_BACKEND,wayland"
+
+            # XDG Specifications
+            "XDG_CURRENT_DESKTOP,Hyprland"
+            "XDG_SESSION_TYPE,wayland"
+            "XDG_SESSION_DESKTOP,Hyprland"
+
+            # QT Variables
+            "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+            "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+            "QT_QPA_PLATFORMTHEME,qt6ct"
+
+            # https://wiki.hyprland.org/Nvidia/
+            "ELECTRON_OZONE_PLATFORM_HINT,auto"
+
+            # https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/#important-notes
+            "XCURSOR_SIZE,24"
+            "HYPRCURSOR_THEME,materialLight"
+            "HYPRCURSOR_SIZE,24"
+          ]
+          (lib.mkIf (osConfig.services.xserver.videoDrivers == "nvidia")
+            [
+              # https://wiki.hyprland.org/Configuring/Environment-variables/#nvidia-specific
+              "GBM_BACKEND,nvidia-drm"
+              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+              "LIBVA_DRIVER_NAME,nvidia"
+              "__GL_GSYNC_ALLOWED,1"
+              "__GL_VRR_ALLOWED,0"
+              # https://wiki.hyprland.org/Nvidia/
+              "XDG_SESSION_TYPE,wayland"
+              "NVD_BACKEND,direct"
+              "NIXOS_OZONE_WL,1"
+            ])
         ];
 
         general = {

@@ -5,7 +5,8 @@
 
     common
     peroxide
-    xserver
+    hardware
+    wayland
 
     ./hardware.nix
 
@@ -27,7 +28,8 @@
       extraPorts = [ 31234 ];
     };
 
-    evie.xserver.useNVidia = true;
+    evie.hardware.useNVidia = true;
+    evie.wayland.compositor = "hyprland";
     evie.services.peroxide.enable = true;
 
     # Randomly decided the NixOS version should be here.

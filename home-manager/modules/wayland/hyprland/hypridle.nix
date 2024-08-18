@@ -1,6 +1,6 @@
-{ dotfiles, pkgs, ... }:
+{ dotfiles, lib, osConfig, pkgs, ... }:
 {
-  config = {
+  config = lib.mkIf (osConfig.evie.wayland.compositor == "hyprland") {
     home = {
       file.".config/hypr/hypridle.conf".text = ''
         general {

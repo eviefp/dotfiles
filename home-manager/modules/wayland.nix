@@ -1,10 +1,8 @@
 { dotfiles, lib, ... }:
 {
   imports = with dotfiles.self.homeManagerModules; [
-    waylandModules.hyprland
-    waylandModules.hyprpaper
-    waylandModules.hypridle
-    waylandModules.hyprlock
+    waylandModules.hyprland.hyprland
+
     waylandModules.swaync
     waylandModules.eww
     waylandModules.screenshot

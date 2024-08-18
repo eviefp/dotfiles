@@ -1,6 +1,6 @@
-{ dotfiles, pkgs, ... }:
+{ dotfiles, pkgs, lib, osConfig, ... }:
 {
-  config = {
+  config = lib.mkIf (osConfig.evie.wayland.compositor == "hyprland") {
     home = {
       file.".config/hypr/hyprlock.conf".text = ''
         general {

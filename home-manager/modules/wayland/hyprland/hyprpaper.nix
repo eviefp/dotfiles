@@ -1,4 +1,4 @@
-{ dotfiles, lib, config, pkgs, ... }:
+{ dotfiles, lib, config, pkgs, osConfig, ... }:
 let
   cfg = config.evie.wayland;
   files = [ "evey.png" "elsa.png" "hq.png" "mulan.png" ];
@@ -8,7 +8,7 @@ let
   wallpaper = lib.lists.foldr (p: conf: "${conf}\n${mkWallpaper p}") "" (lib.lists.zipLists cfg.monitors files);
 in
 {
-  config = {
+  config = lib.mkIf (osConfig.evie.wayland.compositor == "hyprland") {
     home = {
       file.".config/wallpaper" = {
         source = ../../../config/wallpapers;

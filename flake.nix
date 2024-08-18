@@ -118,22 +118,23 @@
     {
       nixosModules = {
         common = ./system/modules/common.nix;
-        peroxide = ./system/modules/peroxide.nix;
-        xserver = ./system/modules/xserver.nix;
-        nix-settings = ./system/modules/nix-settings.nix;
         boot = ./system/modules/boot.nix;
-        network = ./system/modules/network.nix;
+        hardware = ./system/modules/hardware.nix;
         locale = ./system/modules/locale.nix;
+        network = ./system/modules/network.nix;
+        nix-settings = ./system/modules/nix-settings.nix;
+        peroxide = ./system/modules/peroxide.nix;
         packages = ./system/modules/packages.nix;
         services = ./system/modules/services.nix;
         users = ./system/modules/users.nix;
+        wayland = ./system/modules/wayland.nix;
       };
 
       homeManagerModules = {
         common = ./home-manager/modules/common.nix;
-        sops = ./home-manager/modules/sops.nix;
-        fonts = ./home-manager/modules/fonts.nix;
         system = ./home-manager/modules/system.nix;
+        fonts = ./home-manager/modules/fonts.nix;
+        sops = ./home-manager/modules/sops.nix;
 
         email = ./home-manager/modules/email.nix;
         bower = home-manager/modules/programs/bower.nix;
@@ -141,8 +142,13 @@
 
         programs = {
           term = ./home-manager/modules/programs/term.nix;
+          kitty = ./home-manager/modules/programs/kitty.nix;
           ranger = ./home-manager/modules/programs/shell/ranger.nix;
-          text = ./home-manager/modules/programs/text.nix;
+
+          browsers = ./home-manager/modules/programs/browsers.nix;
+          chat = ./home-manager/modules/programs/chat.nix;
+          streaming = ./home-manager/modules/programs/streaming.nix;
+
           dev = ./home-manager/modules/programs/dev.nix;
           devModules = {
             haskell = ./home-manager/modules/programs/dev/haskell.nix;
@@ -151,10 +157,8 @@
             provers = ./home-manager/modules/programs/dev/provers.nix;
             tools = ./home-manager/modules/programs/dev/tools.nix;
           };
-          browsers = ./home-manager/modules/programs/browsers.nix;
-          kitty = ./home-manager/modules/programs/kitty.nix;
-          chat = ./home-manager/modules/programs/chat.nix;
-          streaming = ./home-manager/modules/programs/streaming.nix;
+
+          text = ./home-manager/modules/programs/text.nix;
         };
 
         editors = {
@@ -167,10 +171,12 @@
 
         wayland = ./home-manager/modules/wayland.nix;
         waylandModules = {
-          hyprland = home-manager/modules/wayland/hyprland.nix;
-          hyprpaper = home-manager/modules/wayland/hyprpaper.nix;
-          hypridle = home-manager/modules/wayland/hypridle.nix;
-          hyprlock = home-manager/modules/wayland/hyprlock.nix;
+          hyprland = {
+            hyprland = import ./home-manager/modules/wayland/hyprland/default.nix;
+            hyprpaper = ./home-manager/modules/wayland/hyprland/hyprpaper.nix;
+            hypridle = ./home-manager/modules/wayland/hyprland/hypridle.nix;
+            hyprlock = ./home-manager/modules/wayland/hyprland/hyprlock.nix;
+          };
           swaync = home-manager/modules/wayland/swaync.nix;
           eww = home-manager/modules/wayland/eww.nix;
           screenshot = home-manager/modules/wayland/screenshot.nix;

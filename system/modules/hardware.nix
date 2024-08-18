@@ -1,27 +1,19 @@
 /****************************************************************************
-  * XServer module
+  * Hardware module
   *
-  * XServer, audio, and video settings.
-  * TODO: rename to hardware or something
+  * Audio, video, bluetooth, etc., settings.
   **************************************************************************/
-{ lib, config, pkgs, dotfiles, ... }:
-let cfg = config.evie.xserver;
+{ lib, config, pkgs, ... }:
+let cfg = config.evie.hardware;
 in
 {
-  options.evie.xserver = {
+  options.evie.hardware = {
     useNVidia =
       lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
   };
 
   config = (lib.mkMerge [
     {
-      # TODO: make this configurable
-      programs.hyprland = {
-        enable = true;
-        package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
-        xwayland.enable = true;
-      };
-
       services = {
         blueman.enable = true;
 
@@ -38,13 +30,6 @@ in
           #   xterm.enable = false;
           # };
           # xkb.layout = "us";
-        };
-
-        # TODO: try regreet
-        displayManager.sddm = {
-          enable = true;
-          theme = "/run/current-system/sw/share/sddm/themes/elarun";
-          wayland.enable = true;
         };
       };
 
@@ -98,15 +83,6 @@ in
         open = true;
         package = config.boot.kernelPackages.nvidiaPackages.latest;
         nvidiaSettings = true;
-      };
-      environment.variables = {
-        # WLR_DRM_NO_ATOMIC = "1";
-        # __GLX_VRR_ALLOWED = "1";
-      };
-    })
-    (lib.mkIf (!cfg.useNVidia) {
-      environment.variables = {
-        # VPAU_DRIVER = "va_gl";
       };
     })
   ]);

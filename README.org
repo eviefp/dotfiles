@@ -1,6 +1,17 @@
 #+ATTR_HTML: :alt built with garnix
 [[https://garnix.io][https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Feviefp%2Fdotfiles]]
 
+* Refactor status
+
+  - [X] use flake file for modules
+  - [X] get thelxinoe to use new modules
+  - [ ] try other compositors
+    - [ ] river https://github.com/riverwm/river
+    - [ ] kde/plasma https://invent.kde.org/plasma/kwin
+    - [ ] make hyprland actually configurable/turn-offable
+  - [ ] handle TODOs
+  - [ ] get other configurations to use new modules
+
 * My system configuration
 
 Please let me know if you see anything dubious or that can be improved.
