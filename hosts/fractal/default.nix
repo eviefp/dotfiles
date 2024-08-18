@@ -1,15 +1,9 @@
-{ dotfiles, ... }:
+{ dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
     dotfiles.lix-module.nixosModules.default
-
     common
-    peroxide
-    hardware
-    wayland
-
     ./hardware.nix
-
     dotfiles.home-manager.nixosModules.home-manager
     {
       home-manager = {
@@ -23,14 +17,21 @@
 
   config = {
     evie.network = {
-      hostName = "thelxinoe";
-      interface = "enp4s0";
-      extraPorts = [ 31234 ];
+      hostName = "fractal";
+      interface = "eno1";
+      extraPorts = [ 1025 1143 2049 ];
     };
+    evie.packages.extra = [ pkgs.git pkgs.wget ];
 
-    evie.hardware.useNVidia = true;
-    evie.wayland.compositors = [ "hyprland" "river" ];
-    evie.services.peroxide.enable = true;
+    services.nfs = {
+      server = {
+        enable = true;
+        hostName = "fractal";
+        exports = ''
+          /mnt/raid1 192.168.10.0/24(rw,async)
+        '';
+      };
+    };
 
     # Randomly decided the NixOS version should be here.
     system.stateVersion = "24.11";

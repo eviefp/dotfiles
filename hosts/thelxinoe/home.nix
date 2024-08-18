@@ -5,9 +5,9 @@
     email
     sops
     programs.streaming
-    programs.dev
+    programs.dev.default
     gui
-    wayland
+    wayland.default
   ];
 
   config = {
@@ -15,7 +15,7 @@
     evie = {
       programs.editors.emacs.locals = {
         enable = true;
-        file = ../../home-manager/locals/thelxinoe.el;
+        file = ./thelxinoe.el;
       };
 
       wayland = {

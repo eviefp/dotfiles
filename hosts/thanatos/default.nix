@@ -1,13 +1,6 @@
 { dotfiles, ... }:
 {
-  imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
-    common
-    peroxide
-    hardware
-    wayland
-
+  imports = [
     ./hardware.nix
 
     dotfiles.home-manager.nixosModules.home-manager
@@ -22,15 +15,10 @@
   ];
 
   config = {
-    evie.network = {
-      hostName = "thelxinoe";
-      interface = "enp4s0";
-      extraPorts = [ 31234 ];
+    nixpkgs.overlays = [ (import dotfiles.nix-on-droid.overlays.default) ];
+    nixpkgs.config.packageOverrides = pkgs: {
+      vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
     };
-
-    evie.hardware.useNVidia = true;
-    evie.wayland.compositors = [ "hyprland" "river" ];
-    evie.services.peroxide.enable = true;
 
     # Randomly decided the NixOS version should be here.
     system.stateVersion = "24.11";
