@@ -1,7 +1,7 @@
 ; IMPORTANT: Remember to add `:ensure t` to use-package in order to add them to
 ;; the available packages.
 
-;;  TODO: this has to be manually run on first install.
+;;  IMPORTANT: this has to be manually run on first install.
 ;;  (all-the-icons-install-fonts))
 
 ;; Not sure what this does. This bit was copy/pasted from the NixOS manual.
