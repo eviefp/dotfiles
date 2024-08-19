@@ -30,6 +30,23 @@
           indent.tab-width = 2;
           indent.unit = " ";
         }
+        {
+          name = "rust";
+          auto-format = true;
+          file-types = [ "rs" ];
+          roots = [ "Cargo.toml" "Cargo.lock" ];
+          language-servers = [ "rust-analyzer" ];
+        }
+        {
+          name = "purescript";
+          auto-format = true;
+          formatter.command = "purs-tidy";
+          language-servers = [ "purescript-language-server" ];
+          roots = [ "spago.yaml" "spago.dhall" ];
+          file-types = [ "purs" ];
+          indent.tab-width = 2;
+          indent.unit = " ";
+        }
       ];
       settings = {
         theme = "gh_dark_transparent";
