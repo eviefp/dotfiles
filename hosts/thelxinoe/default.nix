@@ -28,7 +28,11 @@
       extraPorts = [ 31234 ];
     };
 
-    evie.hardware.useNVidia = true;
+    evie.hardware.nvidia = {
+      enable = true;
+      useOpen = true;
+    };
+
     evie.wayland.compositors = [ "hyprland" "river" ];
     evie.services.peroxide.enable = true;
 

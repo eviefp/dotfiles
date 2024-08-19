@@ -4,12 +4,12 @@
   * Audio, video, bluetooth, etc., settings.
   **************************************************************************/
 { lib, config, pkgs, ... }:
-let cfg = config.evie.hardware;
+let cfg = config.evie.hardware.nvidia;
 in
 {
-  options.evie.hardware = {
-    useNVidia =
-      lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
+  options.evie.hardware.nvidia = {
+    enable = lib.options.mkEnableOption "Use NVidia instead of Intel drivers.";
+    useOpen = lib.options.mkEnableOption "Use NVidia open drivers.";
   };
 
   config = (lib.mkMerge [
@@ -24,7 +24,7 @@ in
 
         xserver = {
           enable = false;
-          videoDrivers = if cfg.useNVidia then [ "nvidia" ] else [ "intel" ];
+          videoDrivers = if cfg.enable then [ "nvidia" ] else [ "intel" ];
           # desktopManager = {
           #   plasma5.enable = false;
           #   xterm.enable = false;
@@ -65,21 +65,21 @@ in
           enable = true;
           enable32Bit = true;
           extraPackages =
-            if cfg.useNVidia
+            if cfg.enable
             then [ pkgs.nvidia-vaapi-driver pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl ]
             else with pkgs; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
           extraPackages32 =
-            if cfg.useNVidia
+            if cfg.enable
             then [ ]
             else with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
         };
       };
 
     }
-    (lib.mkIf cfg.useNVidia {
+    (lib.mkIf cfg.enable {
       hardware.nvidia = {
         modesetting.enable = true;
-        open = true;
+        open = cfg.useOpen;
         package = config.boot.kernelPackages.nvidiaPackages.latest;
         nvidiaSettings = true;
       };
