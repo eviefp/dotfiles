@@ -123,74 +123,8 @@
         };
       })) //
     {
-      nixosModules = {
-        common = ./modules/nixos/common.nix;
-        boot = ./modules/nixos/boot.nix;
-        hardware = ./modules/nixos/hardware.nix;
-        locale = ./modules/nixos/locale.nix;
-        network = ./modules/nixos/network.nix;
-        nix-settings = ./modules/nixos/nix-settings.nix;
-        peroxide = ./modules/nixos/peroxide.nix;
-        packages = ./modules/nixos/packages.nix;
-        services = ./modules/nixos/services.nix;
-        users = ./modules/nixos/users.nix;
-        wayland = ./modules/nixos/wayland.nix;
-      };
-
-      homeManagerModules = {
-        common = ./modules/home-manager/common.nix;
-        system = ./modules/home-manager/system.nix;
-        fonts = ./modules/home-manager/fonts.nix;
-        sops = ./modules/home-manager/sops.nix;
-
-        email = ./modules/home-manager/email.nix;
-        bower = ./modules/home-manager/programs/bower.nix;
-        ect = ./modules/home-manager/programs/ect.nix;
-
-        programs = {
-          term = ./modules/home-manager/programs/term.nix;
-          kitty = ./modules/home-manager/programs/kitty.nix;
-          ranger = ./modules/home-manager/programs/shell/ranger.nix;
-
-          browsers = ./modules/home-manager/programs/browsers.nix;
-          chat = ./modules/home-manager/programs/chat.nix;
-          streaming = ./modules/home-manager/programs/streaming.nix;
-
-          dev = {
-            default = ./modules/home-manager/programs/dev.nix;
-            haskell = ./modules/home-manager/programs/dev/haskell.nix;
-            lua = ./modules/home-manager/programs/dev/lua.nix;
-            nix = ./modules/home-manager/programs/dev/nix.nix;
-            provers = ./modules/home-manager/programs/dev/provers.nix;
-            tools = ./modules/home-manager/programs/dev/tools.nix;
-          };
-
-          text = ./modules/home-manager/programs/text.nix;
-        };
-
-        editors = {
-          emacs = ./modules/home-manager/programs/editors/emacs.nix;
-          neovim = ./modules/home-manager/programs/editors/neovim.nix;
-          helix = ./modules/home-manager/programs/editors/helix.nix;
-        };
-
-        gui = ./modules/home-manager/gui.nix;
-
-        wayland = {
-          default = ./modules/home-manager/wayland.nix;
-          hyprland = {
-            hyprland = ./modules/home-manager/wayland/hyprland/hyprland.nix;
-            hyprpaper = ./modules/home-manager/wayland/hyprland/hyprpaper.nix;
-            hypridle = ./modules/home-manager/wayland/hyprland/hypridle.nix;
-            hyprlock = ./modules/home-manager/wayland/hyprland/hyprlock.nix;
-          };
-          river = ./modules/home-manager/wayland/river.nix;
-          swaync = ./modules/home-manager/wayland/swaync.nix;
-          eww = ./modules/home-manager/wayland/eww.nix;
-          screenshot = ./modules/home-manager/wayland/screenshot.nix;
-          rofi = ./modules/home-manager/wayland/rofi.nix;
-        };
-      };
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations.thelxinoe = dotfiles.nixpkgs.lib.nixosSystem {
         # The host needs to pass 'dotfiles' to the home-manager module import,
