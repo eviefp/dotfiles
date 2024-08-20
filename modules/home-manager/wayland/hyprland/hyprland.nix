@@ -18,7 +18,12 @@ let
       pkill -USR1 kitty
       eww update colorMode=light
     fi
+  '';
+  grimblast = pkgs.writeShellScriptBin "grimblast" ''
+    #!/usr/bin/env bash
 
+    rm ~/screenshot.png || true
+    ${lib.getExe pkgs.grimblast} copysave area ~/screenshot.png
   '';
 in
 {
@@ -195,6 +200,7 @@ in
           key_press_enables_dpms = true;
           new_window_takes_over_fullscreen = 2;
           initial_workspace_tracking = 0;
+          vrr = 0;
         };
 
         cursor = {
@@ -252,7 +258,7 @@ in
           "$shiftMod, L, exec, hyprlock"
 
           "$shiftMod, C, killactive,"
-          "$mainMod, M, exec, $screenshot"
+          "$mainMod, M, exec, ${lib.getExe grimblast}"
           "$shiftMod, V, exec, $cliphist"
           "$mainMod, F, togglefloating,"
           "$mainMod, P, exec, $menu"
