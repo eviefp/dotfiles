@@ -44,7 +44,11 @@
       interface = "enp0s31f6";
     };
 
-    evie.hardware.nvidia.enable = true;
+    evie.hardware.nvidia = {
+      enable = true;
+      useOpen = false;
+    };
+
     evie.wayland.compositors = [ "hyprland" "plasma" ];
 
     # Randomly decided the NixOS version should be here.

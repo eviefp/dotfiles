@@ -1,4 +1,4 @@
-{ dotfiles, ... }:
+{ dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.homeManagerModules; [
     common
@@ -9,6 +9,10 @@
   ];
 
   config = {
+
+    home.packages = [
+      pkgs.chromium
+    ];
 
     evie = {
       system.user = "every";
