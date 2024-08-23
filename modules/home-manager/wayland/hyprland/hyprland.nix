@@ -75,7 +75,7 @@ in
           "wl-paste --type text --watch cliphist store" #Stores only text data
           "wl-paste --type image --watch cliphist store" #Stores only image data
           "blueman-applet"
-          "hyprctl keyword monitor \"HDMI-A-2, disabled\"" # hacky, but eh
+          "hyprctl keyword monitor \"HDMI-A-1, disabled\"" # hacky, but eh
         ];
 
         env = lib.mkMerge [
@@ -134,6 +134,12 @@ in
           hover_icon_on_border = true;
           allow_tearing = false;
         };
+
+        # renderer = (lib.mkIf (osConfig.services.xserver.videoDrivers == "nvidia") {
+        #   explicit_sync = 0;
+        #   explicit_sync_kms = 0;
+        #   direct_scanout = false;
+        # });
 
         decoration = {
           rounding = 10;

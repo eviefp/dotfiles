@@ -28,9 +28,8 @@
       extraPorts = [ 31234 ];
     };
 
-    evie.hardware.nvidia = {
+    evie.hardware.amdgpu = {
       enable = true;
-      useOpen = true;
     };
 
     evie.wayland.compositors = [ "hyprland" "river" ];

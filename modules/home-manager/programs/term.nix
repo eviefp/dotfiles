@@ -43,6 +43,8 @@ in
 
       pkgs.nvd
 
+      pkgs.nix-tree
+
       exp
     ];
 
@@ -419,9 +421,9 @@ stash_menu.quit = ["q", "<esc>"]
           add_newline = true;
 
           character = {
-            success_symbol = "[λ](bold green)";
+            success_symbol = "[☭](bold green)";
             error_symbol = "[✗](bold red)";
-            vicmd_symbol = "[λ](bold yellow)";
+            vicmd_symbol = "[☭](bold yellow)";
           };
 
           cmd_duration = {
