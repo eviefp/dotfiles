@@ -16,10 +16,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [
     "kvm-amd"
-    "nvidia"
-    "nvidia_modeset"
-    "nvidia_uvm"
-    "nvidia_drm"
+    "amdgpu"
     "algif_hash"
     "algif_skcipher"
   ];
