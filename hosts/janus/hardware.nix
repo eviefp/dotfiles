@@ -2,7 +2,11 @@
   * Janus hardware configuration
   *
   **************************************************************************/
-{ config, lib, pkgs, ... }:
+{ dotfiles, system, config, lib, pkgs, ... }:
+let
+  asus-wmi-screenpad = dotfiles.asus-wmi-screenpad.defaultPackage.${system}.override kernelPackages.kernel;
+  kernelPackages = config.boot.kernelPackages;
+in
 {
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -14,8 +18,9 @@
     "rtsx_usb_sdmmc"
   ];
   boot.initrd.kernelModules = [ "i915" ];
-  boot.kernelModules = [ "kvm-intel" "ddcci" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+  boot.kernelModules = [ "kvm-intel" "ddcci" "asus-wmi-screenpad" ];
+  boot.blacklistedKernelModules = [ "nouveau" ];
+  boot.extraModulePackages = with kernelPackages; [ ddcci-driver turbostat asus-wmi-screenpad ];
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = true;

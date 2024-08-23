@@ -68,6 +68,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+
+    asus-wmi-screenpad = {
+      url = "github:MatthewCash/asus-wmi-screenpad-module";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hyprland stuff
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
