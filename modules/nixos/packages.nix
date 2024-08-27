@@ -40,7 +40,7 @@ in
         enable = cfg.enableGPG;
         # TODO: this does not work
         enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-qt;
+        pinentryPackage = pkgs.pinentry-gtk2;
       };
 
       # Needed by home-manager.
