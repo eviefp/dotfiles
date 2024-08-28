@@ -91,7 +91,8 @@ in
         opencl.enable = true;
         amdvlk.enable = true;
         amdvlk.support32Bit.enable = true;
-        # amdvlk.settings = {}; TODO
+        # https://github.com/GPUOpen-Drivers/AMDVLK?tab=readme-ov-file#runtime-settings 
+        amdvlk.settings = { };
       };
     })
   ]);

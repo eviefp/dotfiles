@@ -373,6 +373,16 @@ stash_menu.quit = ["q", "<esc>"]
         userName = "Evie Ciobanu";
       };
 
+      jujutsu = {
+        enable = true;
+        settings = {
+          user = {
+            email = "me@eeie.ro";
+            name = "Evie Ciobanu";
+          };
+        };
+      };
+
       home-manager = {
         enable = false;
       };
