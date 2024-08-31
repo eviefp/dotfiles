@@ -15,7 +15,7 @@ map('' , '<leader>gp'  , '<cmd>Git push<cr>'                    , {})
 map('' , '<leader>gP'  , '<cmd>Git push --force-with-lease<cr>' , {})
 map('' , '<leader>gu'  , '<cmd>Git pull<cr>'                    , {})
 
-map('' , '<leader>gsd' , '<cmd>Gdiffsplit!<cr>'                 , {})
+map('' , '<leader>gds' , '<cmd>Gdiffsplit!<cr>'                 , {})
 map('' , '<Leader>gdh' , '<cmd>diffget //2<cr>:diffupdate<cr>'  , {})
 map('' , '<Leader>gdl' , '<cmd>diffget //3<cr>:diffupdate<cr>'  , {})
 
