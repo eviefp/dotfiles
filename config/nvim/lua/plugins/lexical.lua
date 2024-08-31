@@ -14,7 +14,7 @@ augroup END
 
 
 vim.g['lexical#thesaurus']      = { '~/.config/nvim/lua/thesaurus.txt' }
-vim.g['lexical#spell_key']      = '<leader>s'
+vim.g['lexical#spell_key']      = '<leader>p'
 vim.g['lexical#thesaurus_key']  = '<leader>st'
 vim.g['lexical#dictionary_key'] = '<leader>sk'
 

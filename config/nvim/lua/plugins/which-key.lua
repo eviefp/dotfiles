@@ -26,7 +26,7 @@ wk.setup({
       g = true, -- bindings for prefixed with g
     },
   },
-  window = {
+  win = {
     border = "none", -- none, single, double, shadow
     position = "bottom", -- bottom, top
     margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
