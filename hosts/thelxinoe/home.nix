@@ -32,16 +32,16 @@
             keybind = "W";
           }
           {
-            name = "DP-2";
-            resolution = "1920x1080@239.76";
-            position = "3840x0";
-            keybind = "R";
-          }
-          {
             name = "DP-1";
             resolution = "1920x1080@239.76";
             position = "1920x0";
             keybind = "E";
+          }
+          {
+            name = "DP-2";
+            resolution = "1920x1080@239.76";
+            position = "3840x0";
+            keybind = "R";
           }
           {
             name = "HDMI-A-1";

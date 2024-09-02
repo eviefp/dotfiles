@@ -502,6 +502,10 @@ stash_menu.quit = ["q", "<esc>"]
         package = pkgs.nushell;
         configFile.text = ''
           alias ssh = kitten ssh
+          alias gco = git checkout
+          alias gf = git fetch
+          alias gb = git br
+          alias sw = git switch
           $env.config = {
             edit_mode: vi
             shell_integration: {
