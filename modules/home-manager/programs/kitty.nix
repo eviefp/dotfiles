@@ -110,6 +110,7 @@
       };
       keybindings = {
         "ctrl+space" = "";
+        "ctrl+z" = "";
       };
       shellIntegration = {
         enableFishIntegration = true;

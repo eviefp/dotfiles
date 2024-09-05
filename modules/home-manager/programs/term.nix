@@ -506,6 +506,7 @@ stash_menu.quit = ["q", "<esc>"]
           alias gf = git fetch
           alias gb = git br
           alias sw = git switch
+          alias gp = git pull
           $env.config = {
             edit_mode: vi
             shell_integration: {
