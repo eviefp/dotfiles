@@ -18,7 +18,6 @@
 ;; https://github.com/kritzcreek/a-whole-new-world/blob/master/init.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Generic config stuff
 (setq debug-on-errror t)
@@ -51,14 +50,14 @@
 (setq evie-font-size 60)
 
 ;; This requires an emacs built with `withGTK3` and `withX`.
-(set-frame-parameter nil 'alpha-background 80) ; For current frame
-(add-to-list 'default-frame-alist '(alpha-background . 80)) ; For all new frames henceforth
+(set-frame-parameter nil 'alpha-background 95) ; For current frame
+(add-to-list 'default-frame-alist '(alpha-background . 95)) ; For all new frames henceforth
 
 ;; Load local config (useful for machine-local setups).
 (ignore-errors
   (load "~/.emacs.d/locals.el"))
 
-(set-face-attribute 'default nil :family "Hasklug Nerd Font Mono")
+(set-face-attribute 'default nil :family "Hasklug Nerd Font Mono Regular")
 (set-face-attribute 'default nil :height evie-font-size)
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
