@@ -8,7 +8,7 @@
 
         background {
             monitor =
-            path = /home/evie/.config/wallpaper/elsa.png   # only png supported for now
+            path = /home/evie/.config/wallpaper/rev.png   # only png supported for now
             color = rgba(25, 20, 20, 1.0)
 
             # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
