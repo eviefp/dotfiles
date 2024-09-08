@@ -40,11 +40,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    nix-neovim = {
-      url = "github:eviefp/nix-neovim/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     porc = {
       url = "github:soenkehahn/porc/main";
       inputs.nixpkgs.follows = "nixpkgs";
