@@ -16,6 +16,7 @@
       };
 
       wayland = {
+        wallpaperSkip = 1;
         eww-monitor = "0";
         showBattery = true;
         useSshMailCalendar = true;

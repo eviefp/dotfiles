@@ -11,6 +11,11 @@
   ];
 
   options.evie.wayland = {
+    wallpaperSkip = lib.mkOption {
+      type = lib.types.int;
+      default = 0;
+    };
+
     eww-monitor = lib.mkOption {
       type = lib.types.str;
       default = "1";
