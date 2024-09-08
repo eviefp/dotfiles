@@ -1,7 +1,7 @@
 { dotfiles, lib, config, pkgs, osConfig, ... }:
 let
   cfg = config.evie.wayland;
-  files = [ "nomi.jpg" "rev.jpg" "c.jpg" "evey.png" ];
+  files = lib.lists.drop cfg.wallpaperSkip (lib.lists.flatten (lib.lists.replicate 10 [ "nomi.jpg" "rev.jpg" "c.jpg" "evey.png" ]));
   preload = lib.lists.foldr (w: acc: "${acc}\n preload = ~/.config/wallpaper/${w}") "" files;
 
   mkWallpaper = p: "wallpaper = ${p.fst.name}, ~/.config/wallpaper/${p.snd}";
