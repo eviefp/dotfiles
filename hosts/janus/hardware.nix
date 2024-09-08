@@ -2,9 +2,9 @@
   * Janus hardware configuration
   *
   **************************************************************************/
-{ dotfiles, system, config, lib, pkgs, ... }:
+{ dotfiles, config, lib, pkgs, ... }:
 let
-  asus-wmi-screenpad = dotfiles.asus-wmi-screenpad.defaultPackage.${system}.override kernelPackages.kernel;
+  asus-wmi-screenpad = dotfiles.asus-wmi-screenpad.defaultPackage.x86_64-linux.override kernelPackages.kernel;
   kernelPackages = config.boot.kernelPackages;
 in
 {
