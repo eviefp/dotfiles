@@ -242,7 +242,7 @@ in
 
         "$terminal" = "kitty";
         "$menu" = "rofi -show drun";
-        "$pass" = "tessen -p pass -d rofi -a copy";
+        "$pass" = "tessen -p pass -d rofi -a autotype";
         "$screenshot" = "grimblast copy area";
         "$cliphist" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
         "$notifications" = "swaync-client -t -sw";

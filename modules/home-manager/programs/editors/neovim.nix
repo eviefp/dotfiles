@@ -44,6 +44,55 @@
         key = "<leader>gs";
         action = "<cmd>Neogit cwd=%:p:h<cr>";
       }
+      {
+        key = "<up>";
+        action = "";
+      }
+      {
+        key = "<down>";
+        action = "";
+      }
+      {
+        key = "<left>";
+        action = "";
+      }
+      {
+        key = "<right>";
+        action = "";
+      }
+      {
+        key = "<leader>fn";
+        action = ":let @+ = expand(\"%\")<cr>";
+      }
+      {
+        key = "<leader>wv";
+        action = ":vsplit<cr>";
+      }
+      {
+        key = "<leader>ws";
+        action = ":split<cr>";
+      }
+      {
+        key = "<leader>wq";
+        action = ":q<cr>";
+      }
+      {
+        key = "<leader>ww";
+        action = ":w<cr>";
+      }
+      {
+        key = "<leader>tt";
+        action = ":vsplit<cr>:term:<cr>a";
+      }
+      {
+        key = "<leader>ts";
+        action = ":split<cr>:term:<cr>a";
+      }
+      {
+        key = "<esc>";
+        action = "<C-\\><C-n>";
+        mode = "t";
+      }
       ## Git/gitsigns
       {
         key = "]g";
@@ -71,11 +120,11 @@
         action = "<cmd>BufferLineCyclePrev<cr>";
       }
       {
-        key = "gc";
+        key = "<leader>bc";
         action = "<cmd>bdelete<cr>";
       }
       {
-        key = "gC";
+        key = "<leader>bC";
         action = "<cmd>BufferLineCloseOthers<cr>";
       }
 
@@ -280,6 +329,11 @@
           "<leader>fm" = "marks";
           "<leader>fq" = "quickfix";
         };
+      };
+
+      which-key = {
+        enable = true;
+
       };
 
       marks = {
