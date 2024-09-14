@@ -21,6 +21,9 @@
       number = true;
       relativenumber = true;
 
+      splitright = true;
+      splitbelow = true;
+
       shiftwidth = 2;
       shiftround = true;
       expandtab = true;
@@ -82,11 +85,11 @@
       }
       {
         key = "<leader>tt";
-        action = ":vsplit<cr>:term:<cr>a";
+        action = ":vsplit<cr>:term<cr>a";
       }
       {
         key = "<leader>ts";
-        action = ":split<cr>:term:<cr>a";
+        action = ":split<cr>:term<cr>a";
       }
       {
         key = "<esc>";
@@ -184,12 +187,14 @@
       neogit = {
         enable = true;
 
-        settings.options = {
+        settings = {
           graph_style = "unicode";
-          integrations = {
-            telescope = true;
-            diffview = true;
-          };
+          disable_insert_on_commit = true;
+          console_timeout = 10000; # password input can be slow
+          # integrations = {
+          #   telescope = true;
+          #   diffview = true;
+          # };
         };
       };
 
@@ -224,7 +229,7 @@
         enable = true;
         nixGrammars = true;
 
-        settings.options = {
+        settings = {
           auto_install = true;
           ensure_installed = "all";
           sync_install = true;
@@ -305,7 +310,7 @@
       lualine = {
         enable = true;
 
-        settings.options = {
+        settings = {
           theme = "vscode";
         };
       };
