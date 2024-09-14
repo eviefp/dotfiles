@@ -6,14 +6,10 @@
 let
   exp = pkgs.writeShellScriptBin "exp" ''
     echo 'cat foo | choose 2 1:-1'
-    echo 'dust -- du replacement'
     echo 'sd find replace file'
     echo 'atuin - cmd find?'
-    echo 'fd - find'
-    echo nvtop
     echo gping [hosts..]
     echo 'sudo below live -- todo: config'
-    echo 'gitu'
     echo 'yazi'
   '';
 in
@@ -41,9 +37,9 @@ in
       pkgs.ffmpegthumbnailer
       pkgs.unrar
 
-      pkgs.nvd
-
       pkgs.nix-tree
+
+      pkgs.calc
 
       exp
     ];
