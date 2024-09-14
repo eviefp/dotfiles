@@ -43,9 +43,9 @@
       '';
       ".config/kitty/dark.conf".text = ''
         font_size 10.0
-        background_opacity 0.6
+        background_opacity 0.8
         dynamic_background_opacity yes
-        background_tint 0.5
+        background_tint 0.8
 
         cursor #822bd8
 

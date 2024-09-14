@@ -52,3 +52,4 @@ nix-shell -p ssh-to-age
 cat public_ed25519 | ssh-to-age # use this as the public key in the sops file
 cat private_ed25519 | ssh-to-age -private-key # put this in ~/.config/sops/age/keys.txt
 #+end_src
+

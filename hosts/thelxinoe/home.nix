@@ -19,7 +19,7 @@
       };
 
       wayland = {
-        eww-monitor = "0";
+        eww-monitor = "2";
         showTV = true;
         useSshMailCalendar = false;
         showMail = true;
