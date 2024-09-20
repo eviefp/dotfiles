@@ -503,6 +503,7 @@ stash_menu.quit = ["q", "<esc>"]
           alias gb = git br
           alias sw = git switch
           alias gp = git pull
+          alias vi = nvim
           $env.config = {
             edit_mode: vi
             shell_integration: {

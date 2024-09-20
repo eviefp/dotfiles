@@ -57,7 +57,7 @@
 (ignore-errors
   (load "~/.emacs.d/locals.el"))
 
-(set-face-attribute 'default nil :family "Hasklug Nerd Font Mono Regular")
+(set-face-attribute 'default nil :family "Hasklug Nerd Font Mono")
 (set-face-attribute 'default nil :height evie-font-size)
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'

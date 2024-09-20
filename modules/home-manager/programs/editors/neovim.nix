@@ -40,13 +40,11 @@
       clipboard = "unnamedplus";
 
       showtabline = 2;
+
+      fillchars = "eob:☭";
     };
 
     keymaps = [
-      {
-        key = "<leader>gs";
-        action = "<cmd>Neogit cwd=%:p:h<cr>";
-      }
       {
         key = "<up>";
         action = "";
@@ -96,7 +94,20 @@
         action = "<C-\\><C-n>";
         mode = "t";
       }
+      ## lsp
+      {
+        key = "<leader>ac";
+        action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
+      }
+      {
+        key = "<leader>fm";
+        action = "<cmd>lua vim.lsp.buf.format()<cr>";
+      }
       ## Git/gitsigns
+      {
+        key = "<leader>gs";
+        action = "<cmd>Neogit cwd=%:p:h<cr>";
+      }
       {
         key = "]g";
         action = "<cmd>Gitsigns next_hunk<cr>";
@@ -106,11 +117,11 @@
         action = "<cmd>Gitsigns prev_hunk<cr>";
       }
       {
-        key = "]g";
+        key = "[g";
         action = "<cmd>Gitsigns prev_hunk<cr>";
       }
       {
-        key = "]G";
+        key = "[G";
         action = "<cmd>Gitsigns next_hunk<cr>";
       }
       ## Bufferline
@@ -130,12 +141,26 @@
         key = "<leader>bC";
         action = "<cmd>BufferLineCloseOthers<cr>";
       }
+      ## ccc
+      {
+        key = "<leader>cc";
+        action = "<cmd>CccPick<cr>";
+      }
 
     ];
 
     extraPlugins = [
       pkgs.vimPlugins.nvim-nu
       pkgs.vimPlugins.nvim-surround
+      (pkgs.vimUtils.buildVimPlugin {
+        inherit (pkgs.luaPackages.lua-utils-nvim) pname version src;
+      })
+      (pkgs.vimUtils.buildVimPlugin {
+        inherit (pkgs.luaPackages.pathlib-nvim) pname version src;
+      })
+      (pkgs.vimUtils.buildVimPlugin {
+        inherit (pkgs.luaPackages.nvim-nio) pname version src;
+      })
     ];
 
     extraConfigLua = ''
@@ -176,6 +201,9 @@
             bg = "NONE";
             underline = true;
             sp = "NvimLightYellow";
+          };
+          "@function" = {
+            fg = "#9c74ef";
           };
         };
       };
@@ -289,6 +317,29 @@
 
       };
 
+      ## misc
+      ccc = {
+        enable = true;
+        settings = {
+          highlighter = {
+            auto_enable = true;
+          };
+        };
+      };
+
+      neorg = {
+        enable = true;
+        modules = {
+          "core.defaults".__empty = null;
+          "core.concealer".__empty = null;
+          "core.dirman".config.workspaces = {
+            notes = "~/code/neorg";
+          };
+          "core.summary".__empty = null;
+          "core.text-objects".__empty = null;
+        };
+      };
+
       ## UI
       bufferline = {
         enable = true;
@@ -310,8 +361,8 @@
       lualine = {
         enable = true;
 
-        settings = {
-          theme = "vscode";
+        settings.options = {
+          theme = "palenight";
         };
       };
 
