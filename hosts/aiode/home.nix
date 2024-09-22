@@ -20,14 +20,21 @@
         eww-monitor = "0";
         showBattery = true;
         useSshMailCalendar = true;
-        showMail = true;
-        showCalendar = true;
+        showMail = false;
+        showCalendar = false;
+        showTV = true;
         monitors = [
           {
             name = "eDP-1";
             resolution = "1920x1080";
             position = "0x0";
             keybind = "W";
+          }
+          {
+            name = "DP-2";
+            resolution = "1920x1080";
+            position = "1920x0";
+            keybind = "E";
           }
         ];
       };
