@@ -9,6 +9,10 @@
     dotfiles.nixvim.homeManagerModules.nixvim
   ];
 
+  config.home.packages = [
+    pkgs.obsidian
+  ];
+
   config.programs.nixvim = {
     enable = true;
 
@@ -42,6 +46,8 @@
       showtabline = 2;
 
       fillchars = "eob:☭";
+
+      conceallevel = 1;
     };
 
     keymaps = [
@@ -161,12 +167,18 @@
       (pkgs.vimUtils.buildVimPlugin {
         inherit (pkgs.luaPackages.nvim-nio) pname version src;
       })
+      pkgs.vimPlugins.lualine-lsp-progress
+      pkgs.vimPlugins.tiny-inline-diagnostic-nvim
     ];
 
     extraConfigLua = ''
       require('nu').setup{}
 
       require('nvim-surround').setup{}
+
+      vim.diagnostic.config({ virtual_text = false })
+      require('tiny-inline-diagnostic').setup({
+      })
     '';
 
     colorschemes.vscode = {
@@ -286,7 +298,7 @@
 
           lspBuf = {
             "gd" = "definition";
-            "gD" = "references";
+            "gr" = "references";
             "K" = "hover";
           };
         };
@@ -328,7 +340,7 @@
       };
 
       neorg = {
-        enable = true;
+        enable = false;
         modules = {
           "core.defaults".__empty = null;
           "core.concealer".__empty = null;
@@ -337,6 +349,23 @@
           };
           "core.summary".__empty = null;
           "core.text-objects".__empty = null;
+        };
+      };
+
+      obsidian = {
+        enable = true;
+        settings = {
+          workspaces = [
+            {
+              name = "notes";
+              path = "~/code/notes";
+            }
+          ];
+
+          completion = {
+            nvim_cmp = false;
+            min_chars = 2;
+          };
         };
       };
 
@@ -361,8 +390,27 @@
       lualine = {
         enable = true;
 
-        settings.options = {
-          theme = "palenight";
+        settings = {
+          options = {
+            theme = "palenight";
+          };
+          sections = {
+            lualine_a = ["mode" "hostname"];
+            lualine_b = ["branch" "diff" "diagnostics"];
+            lualine_c = ["filename"];
+            lualine_x = ["lsp_progress" "encoding" "fileformat" "filetype"];
+            lualine_y = ["progress"];
+            lualine_z = ["location"];
+          };
+          inactive_sections = {
+            lualine_a = [];
+            lualine_b = [];
+            lualine_c = ["filename"];
+            lualine_x = ["location"];
+            lualine_y = [];
+            lualine_z = [];
+          };
+          extensions = [ "quickfix" ];
         };
       };
 
@@ -375,7 +423,7 @@
           "<leader>m" = "commands";
           "<leader>/" = "current_buffer_fuzzy_find";
           "<leader>ff" = "fd";
-          "<leader>fw" = "diagnostics";
+          "<leader>fe" = "diagnostics";
           "<leader>fch" = "highlights";
           "<leader>fk" = "keymaps";
           "<leader>fj" = "jumplist";
