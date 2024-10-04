@@ -13,6 +13,7 @@
     packages
     services
     users
+    sops
   ];
 
   config = {
