@@ -2,7 +2,7 @@
   * Nix settings
   *
   **************************************************************************/
-{ dotfiles, pkgs, lib, ... }:
+{ dotfiles, pkgs, lib, config, ... }:
 {
   config.nix = {
     registry.nixpkgs.flake = dotfiles.nixpkgs;
@@ -28,6 +28,7 @@
     nrBuildUsers = 50;
     extraOptions = ''
       binary-caches-parallel-connections = 5
+      netrc-file = ${config.sops.secrets.garnix_netrc.path}
     '';
   };
 }

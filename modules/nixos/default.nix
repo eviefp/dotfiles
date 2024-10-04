@@ -8,6 +8,7 @@
   peroxide = ./peroxide.nix;
   packages = ./packages.nix;
   services = ./services.nix;
+  sops = ./sops.nix;
   users = ./users.nix;
   wayland = ./wayland.nix;
 }
