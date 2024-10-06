@@ -7,8 +7,6 @@
   config = {
     home.file.".config/helix/themes/gh_dark_transparent.toml".source = ../../../../config/gh_dark_transparent.toml;
 
-    home.sessionVariables.EDITOR = "hx";
-
     programs.helix = {
       package = pkgs.helix;
       enable = true;
