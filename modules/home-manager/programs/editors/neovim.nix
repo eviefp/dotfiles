@@ -11,7 +11,14 @@
 
   config.home.packages = [
     pkgs.obsidian
+    pkgs.codespell
+    pkgs.shellcheck
+    pkgs.shfmt
+    pkgs.haskellPackages.cabal-fmt
+    pkgs.yamlfmt
   ];
+
+  config.home.sessionVariables.EDITOR = "nvim";
 
   config.programs.nixvim = {
     enable = true;
@@ -105,10 +112,10 @@
         key = "<leader>ac";
         action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
       }
-      {
-        key = "<leader>fm";
-        action = "<cmd>lua vim.lsp.buf.format()<cr>";
-      }
+      # {
+      #   key = "<leader>fm";
+      #   action = "<cmd>lua vim.lsp.buf.format()<cr>";
+      # }
       ## Git/gitsigns
       {
         key = "<leader>gs";
@@ -222,7 +229,6 @@
     };
 
     plugins = {
-
       ## Git
       neogit = {
         enable = true;
@@ -306,6 +312,13 @@
         servers = {
           hls = {
             enable = true;
+            extraOptions = {
+              settings = {
+                haskell = {
+                  formattingProvider = "ormolu";
+                };
+              };
+            };
           };
 
           rust-analyzer = {
@@ -325,8 +338,44 @@
           nil-ls = {
             enable = true;
           };
+
         };
 
+      };
+
+      conform-nvim = {
+        enable = true;
+        settings = {
+
+          formatters_by_ft = {
+            haskell = {
+              __unkeyed-1 = "fourmolu";
+              __unkeyed-2 = "ormolu";
+              stop_after_first = true;
+            };
+            go = [ "gofmt" ];
+            nix = [ "nixpkgs_fmt" ];
+            bash = [ "shellcheck" "shfmt" ];
+            markdown = [ "mdsf" ];
+            javascript = [ "prettier" ];
+            typescript = [ "prettier" ];
+            cabalproject = [ "cabal_fmt" ];
+            purescript = [ "purs-tidy" ];
+            yaml = [ "yamlfmt" ];
+            rust = [ "rustfmt" ];
+            "*" = [ "codespell" "trim_whitespace" ];
+          };
+
+          format_on_save = {
+            timeout_ms = 500;
+            lsp_format = "fallback";
+          };
+        };
+      };
+      
+      none-ls = {
+        enable = true;
+        enableLspFormat = false;
       };
 
       ## misc
@@ -416,6 +465,29 @@
 
       telescope = {
         enable = true;
+
+        extensions = {
+          file-browser = {
+            enable = true;
+            settings.hijack_netrw = false;
+          };
+          fzf-native = {
+            enable = true;
+          };
+          manix = {
+            enable = true;
+          };
+          media-files = {
+            enable = true;
+          };
+          ui-select = {
+            enable = true;
+          };
+          undo = {
+            enable = true;
+          };
+        };
+
         keymaps = {
           "<leader><leader>" = "git_files";
           "<leader>fg" = "live_grep";
@@ -441,6 +513,10 @@
       };
 
       marks = {
+        enable = true;
+      };
+
+      web-devicons = {
         enable = true;
       };
     };
