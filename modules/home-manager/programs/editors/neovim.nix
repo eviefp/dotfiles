@@ -11,7 +11,6 @@
 
   config.home.packages = [
     pkgs.obsidian
-    pkgs.codespell
     pkgs.shellcheck
     pkgs.shfmt
     pkgs.haskellPackages.cabal-fmt
@@ -176,6 +175,16 @@
       })
       pkgs.vimPlugins.lualine-lsp-progress
       pkgs.vimPlugins.tiny-inline-diagnostic-nvim
+      (pkgs.vimUtils.buildVimPlugin {
+        pname = "blame.nvim";
+        version = "v1.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "FabijanZulj";
+          repo = "blame.nvim";
+          rev = "59cf695685c1d8d603d99b246cc8d42421937c09";
+          hash = "sha256-9eI+4nv9vu0BlsuUk9n0d0k4jY4tu1RRO4yqItKwBkQ=";
+        };
+      })
     ];
 
     extraConfigLua = ''
@@ -185,6 +194,9 @@
 
       vim.diagnostic.config({ virtual_text = false })
       require('tiny-inline-diagnostic').setup({
+      })
+
+      require('blame').setup({
       })
     '';
 
@@ -363,7 +375,7 @@
             purescript = [ "purs-tidy" ];
             yaml = [ "yamlfmt" ];
             rust = [ "rustfmt" ];
-            "*" = [ "codespell" "trim_whitespace" ];
+            "*" = [ "trim_whitespace" ];
           };
 
           format_on_save = {
@@ -372,7 +384,7 @@
           };
         };
       };
-      
+
       none-ls = {
         enable = true;
         enableLspFormat = false;
@@ -444,20 +456,20 @@
             theme = "palenight";
           };
           sections = {
-            lualine_a = ["mode" "hostname"];
-            lualine_b = ["branch" "diff" "diagnostics"];
-            lualine_c = ["filename"];
-            lualine_x = ["lsp_progress" "encoding" "fileformat" "filetype"];
-            lualine_y = ["progress"];
-            lualine_z = ["location"];
+            lualine_a = [ "mode" "hostname" ];
+            lualine_b = [ "branch" "diff" "diagnostics" ];
+            lualine_c = [ "filename" ];
+            lualine_x = [ "lsp_progress" "encoding" "fileformat" "filetype" ];
+            lualine_y = [ "progress" ];
+            lualine_z = [ "location" ];
           };
           inactive_sections = {
-            lualine_a = [];
-            lualine_b = [];
-            lualine_c = ["filename"];
-            lualine_x = ["location"];
-            lualine_y = [];
-            lualine_z = [];
+            lualine_a = [ ];
+            lualine_b = [ ];
+            lualine_c = [ "filename" ];
+            lualine_x = [ "location" ];
+            lualine_y = [ ];
+            lualine_z = [ ];
           };
           extensions = [ "quickfix" ];
         };
@@ -494,6 +506,7 @@
           "<leader>fb" = "buffers";
           "<leader>m" = "commands";
           "<leader>/" = "current_buffer_fuzzy_find";
+          "/" = "current_buffer_fuzzy_find";
           "<leader>ff" = "fd";
           "<leader>fe" = "diagnostics";
           "<leader>fch" = "highlights";
