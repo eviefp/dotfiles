@@ -339,10 +339,6 @@
             installCargo = false;
           };
 
-          purescriptls = {
-            enable = true;
-          };
-
           nushell = {
             enable = true;
           };
