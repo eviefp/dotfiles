@@ -22,6 +22,14 @@
   config.programs.nixvim = {
     enable = true;
 
+    autoCmd = [
+      {
+        event = [ "BufEnter" ];
+        pattern = [ "*.purs" ];
+        command = ":setlocal filetype=purescript";
+      }
+    ];
+
     globals = {
       mapleader = " ";
       maplocalleader = ",";
@@ -285,21 +293,166 @@
       ## Languages
       treesitter = {
         enable = true;
-        nixGrammars = true;
+        # nixGrammars = true;
+
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          agda
+          awk
+          bash
+          bibtex
+          c
+          c_sharp
+          cmake
+          commonlisp
+          cpp
+          css
+          csv
+          dhall
+          dockerfile
+          dot
+          ebnf
+          elixir
+          erlang
+          fennel
+          fish
+          gdscript
+          gdshader
+          git_config
+          gitattributes
+          gitcommit
+          gitignore
+          glsl
+          go
+          godot_resource
+          gomod
+          gpg
+          haskell
+          haskell_persistent
+          html
+          ini
+          javascript
+          jq
+          json
+          just
+          latex
+          lua
+          make
+          markdown
+          markdown_inline
+          mermaid
+          muttrc
+          nginx
+          nim
+          nix
+          norg
+          ocaml
+          ocaml_interface
+          org
+          perl
+          purescript
+          python
+          racket
+          rst
+          rust
+          scheme
+          scss
+          sql
+          ssh_config
+          strace
+          toml
+          tsx
+          typescript
+          vim
+          xcompose
+          xml
+          yaml
+          yuck
+          zathurarc
+        ];
 
         settings = {
-          auto_install = true;
-          ensure_installed = "all";
-          sync_install = true;
+          # auto_install = true;
+          # ensure_installed = "all";
+          # sync_install = true;
 
           highlight = {
             enable = true;
-            additional_vim_regex_highlighting = true;
+            additional_vim_regex_highlighting = false;
           };
 
-          incremental_selection.enable = true;
+          incremental_selection = {
+            enable = true;
+            keymaps = {
+              init_selection = "gsa";
+              node_incremental = "gsl";
+              node_decremental = "gsL";
+              scope_incremental = "gsk";
+            };
+          };
 
           indent.enable = true;
+        };
+      };
+
+      treesitter-context = {
+        enable = true;
+        settings = {
+          max_lines = 8;
+          trim_scope = "outer";
+          mode = "cursor";
+        };
+      };
+
+      treesitter-refactor = {
+        enable = true;
+
+        highlightDefinitions.enable = true;
+
+        smartRename = {
+          enable = true;
+          keymaps.smartRename = "grr";
+        };
+
+        navigation = {
+          enable = false;
+          keymaps = {
+            # gotoDefinition = "";
+            # gotoDefinitionLspFallback = "";
+            # listDefinitions = "";
+            # listDefinitionsToc = "";
+            # gotoNextUsage = "";
+            # gotoPreviousUsage = "";
+          };
+        };
+      };
+
+      treesitter-textobjects = {
+        enable = true;
+
+        select = {
+          enable = false;
+        };
+
+        swap = {
+          enable = true;
+          swapNext = {
+            "]wf" = "@function.outer";
+            "]wp" = "@parameter.inner";
+          };
+          swapPrevious = {
+            "[wf" = "@function.outer";
+            "[wp" = "@parameter.inner";
+          };
+        };
+
+        move = {
+          enable = true;
+          gotoNext = {
+            "]f" = "@function.outer";
+          };
+          gotoPrevious = {
+            "[f" = "@function.outer";
+          };
         };
       };
 
@@ -333,7 +486,7 @@
             };
           };
 
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             installRustc = false;
             installCargo = false;
@@ -343,8 +496,20 @@
             enable = true;
           };
 
-          nil-ls = {
+          nil_ls = {
             enable = true;
+          };
+
+          purescriptls = {
+            enable = true;
+            package = null;
+            extraOptions = {
+              root_dir.__raw = "require('lspconfig').util.root_pattern('spago.dhall')";
+              settings.purescript = {
+                formatter = "purs-tidy";
+                addSpagoSources = true;
+              };
+            };
           };
 
         };
