@@ -200,9 +200,14 @@
 
       require('nvim-surround').setup{}
 
-      vim.diagnostic.config({ virtual_text = false })
       require('tiny-inline-diagnostic').setup({
+        options = {
+          overflow = {
+            mode = "oneline",
+          },
+        },
       })
+      vim.diagnostic.config({ virtual_text = false })
 
       require('blame').setup({
       })
@@ -477,6 +482,7 @@
         servers = {
           hls = {
             enable = true;
+            installGhc = false;
             extraOptions = {
               settings = {
                 haskell = {
@@ -604,7 +610,7 @@
           show_closed_icon = false;
           always_show_bufferline = true;
           sort_by = "insert_at_end";
-          diagnostics = "nvim_lsp";
+          # diagnostics = "nvim_lsp";
           indicator.style = "underline";
         };
       };

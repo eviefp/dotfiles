@@ -29,11 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lean4-mode = {
-      url = "github:leanprover/lean4-mode";
-      flake = false;
-    };
-
     nil = {
       url = "github:oxalica/nil/main";
       inputs.nixpkgs.follows = "nixpkgs";
