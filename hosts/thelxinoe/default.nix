@@ -1,4 +1,4 @@
-{ dotfiles, ... }:
+{ dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
     dotfiles.lix-module.nixosModules.default
@@ -33,7 +33,10 @@
     };
 
     evie.wayland.compositors = [ "hyprland" "river" ];
-    evie.services.peroxide.enable = true;
+    evie.services.peroxide = {
+      enable = true;
+      package = pkgs.callPackage dotfiles.self.nixosModules.peroxide-override { };
+    };
 
     # Randomly decided the NixOS version should be here.
     system.stateVersion = "24.11";
