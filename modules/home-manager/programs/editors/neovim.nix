@@ -117,8 +117,36 @@
       ## lsp
       {
         key = "<leader>ac";
-        action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
+        action = "<cmd>Lspsaga code_action<cr>";
       }
+      {
+        key = "<leader>fi";
+        action = "<cmd>Lspsaga incoming_calls<cr>";
+      }
+      {
+        key = "<leader>fo";
+        action = "<cmd>Lspsaga outgoing_calls<cr>";
+      }
+      {
+        key = "]d";
+        action = "<cmd>Lspsaga diagnostic_jump_next<cr>";
+      }
+      {
+        key = "[d";
+        action = "<cmd>Lspsaga diagnostic_jump_prev<cr>";
+      }
+      {
+        key = "<leader>fr";
+        action = "<cmd>Lspsaga finder<cr>";
+      }
+      {
+        key = "<C-t>";
+        action = "<cmd>lua require('FTerm').toggle()<cr>";
+      }
+      # {
+      #   key = "<C-o>";
+      #   action = "<cmd>Lspsaga term_toggle<cr>";
+      # }
       # {
       #   key = "<leader>fm";
       #   action = "<cmd>lua vim.lsp.buf.format()<cr>";
@@ -174,15 +202,15 @@
       pkgs.vimPlugins.nvim-surround
       (pkgs.vimUtils.buildVimPlugin {
         inherit (pkgs.luaPackages.lua-utils-nvim) pname version src;
-      })
+      }) # same
       (pkgs.vimUtils.buildVimPlugin {
         inherit (pkgs.luaPackages.pathlib-nvim) pname version src;
-      })
+      }) # same as below
       (pkgs.vimUtils.buildVimPlugin {
         inherit (pkgs.luaPackages.nvim-nio) pname version src;
-      })
+      }) # ???, probably needed by something else?
       pkgs.vimPlugins.lualine-lsp-progress
-      pkgs.vimPlugins.tiny-inline-diagnostic-nvim
+      pkgs.vimPlugins.tiny-inline-diagnostic-nvim # nicer diagnostic, overlaps with ]d a bit
       (pkgs.vimUtils.buildVimPlugin {
         pname = "blame.nvim";
         version = "v1.0";
@@ -192,7 +220,20 @@
           rev = "59cf695685c1d8d603d99b246cc8d42421937c09";
           hash = "sha256-9eI+4nv9vu0BlsuUk9n0d0k4jY4tu1RRO4yqItKwBkQ=";
         };
-      })
+      }) # :Blame, but would be nice if it could go recursively
+      pkgs.vimPlugins.outline-nvim # lsp outline, todo keybind
+      pkgs.vimPlugins.mkdir-nvim # auto-mkdir when dir does not exist when saving files
+      pkgs.vimPlugins.FTerm-nvim
+      (pkgs.vimUtils.buildVimPlugin {
+        pname = "co-author.nvim";
+        version = "v1.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "2KAbhishek";
+          repo = "co-author.nvim";
+          rev = "db0debbde453c0ce10d1b925cd9f3139e4291c42";
+          hash = "sha256-ItUjSbuTNUSRKV3Ei77y4jH6hPJQNMP1bpcmv7GtTR8=";
+        };
+      }) # :CoAuthor
     ];
 
     extraConfigLua = ''
@@ -211,6 +252,17 @@
 
       require('blame').setup({
       })
+
+      require('outline').setup({
+        outline_window = {
+          position = 'left',
+        },
+        preview_window = {
+          auto_preview = true,
+        },
+      })
+
+      require('FTerm').setup {}
     '';
 
     colorschemes.vscode = {
@@ -267,6 +319,10 @@
           #   diffview = true;
           # };
         };
+      };
+
+      octo = {
+        enable = true;
       };
 
       gitsigns = {
@@ -466,10 +522,10 @@
 
         keymaps = {
           diagnostic = {
-            "]d" = "goto_next";
-            "]D" = "goto_prev";
-            "[d" = "goto_prev";
-            "[D" = "goto_next";
+            # "]d" = "goto_next";
+            # "]D" = "goto_prev";
+            # "[d" = "goto_prev";
+            # "[D" = "goto_next";
           };
 
           lspBuf = {
@@ -555,6 +611,14 @@
       none-ls = {
         enable = true;
         enableLspFormat = false;
+      };
+
+      lspsaga = {
+        enable = true;
+        symbolInWinbar = {
+          enable = true;
+        };
+        lightbulb.enable = false;
       };
 
       ## misc
@@ -681,10 +745,22 @@
           "<leader>fj" = "jumplist";
           "<leader>fd" = "lsp_document_symbols";
           "<leader>fD" = "lsp_workspace_symbols";
-          "<leader>fr" = "lsp_references";
+          # "<leader>fr" = "lsp_references";
           "<leader>fm" = "marks";
           "<leader>fq" = "quickfix";
         };
+      };
+
+      nvim-bqf = {
+        enable = true;
+      };
+
+      leap = {
+        enable = true;
+      };
+
+      oil = {
+        enable = true;
       };
 
       which-key = {
