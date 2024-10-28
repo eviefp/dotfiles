@@ -24,7 +24,7 @@
       nix-path = lib.mkForce "nixpkgs=${dotfiles.nixpkgs}";
     };
 
-    package = pkgs.nixFlakes;
+    # package = pkgs.nixFlakes;
     nrBuildUsers = 50;
     extraOptions = ''
       binary-caches-parallel-connections = 5
