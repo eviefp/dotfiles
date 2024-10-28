@@ -16,10 +16,10 @@
       };
 
       wayland = {
-        eww-monitor = "0";
+        eww-monitor = "1";
         showBattery = true;
         useSshMailCalendar = true;
-        showMail = true;
+        showMail = false;
         showCalendar = true;
         monitors = [
           {

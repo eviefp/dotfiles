@@ -28,7 +28,7 @@
       # X-server related
       pkgs.pass
       pkgs.pinentry-all
-      pkgs.xdg_utils
+      pkgs.xdg-utils
 
       pkgs.audacity
     ];
