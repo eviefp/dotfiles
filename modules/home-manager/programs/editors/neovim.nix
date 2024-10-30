@@ -234,6 +234,17 @@
           hash = "sha256-ItUjSbuTNUSRKV3Ei77y4jH6hPJQNMP1bpcmv7GtTR8=";
         };
       }) # :CoAuthor
+      pkgs.vimPlugins.litee-nvim # needed by gh.nvim
+      (pkgs.vimUtils.buildVimPlugin {
+        pname = "gh.nvim";
+        version = "v1.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "ldelossa";
+          repo = "gh.nvim";
+          rev = "ebbaac254ef7dd6f85b439825fbce82d0dc84515";
+          hash = "sha256-5MWv/TpJSJfPY3y2dC1f2T/9sP4wn0kZ0Sed5OOFM5c=";
+        };
+      }) # :Gh
     ];
 
     extraConfigLua = ''
@@ -263,6 +274,9 @@
       })
 
       require('FTerm').setup {}
+
+      require('litee.lib').setup {}
+      require('litee.gh').setup {}
     '';
 
     colorschemes.vscode = {
