@@ -2,6 +2,7 @@
 {
   imports = with dotfiles.self.homeManagerModules; [
     common
+    calendar # TODO: should this be global? an enable option? in common?
     email
     sops
     programs.streaming

@@ -8,6 +8,8 @@
   bower = ./programs/bower.nix;
   ect = ./programs/ect.nix;
 
+  calendar = ./calendar.nix;
+
   programs = {
     term = ./programs/term.nix;
     kitty = ./programs/kitty.nix;
