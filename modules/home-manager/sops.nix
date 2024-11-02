@@ -2,7 +2,6 @@
 {
   imports = [
     dotfiles.sops-nix.homeManagerModules.sops
-    dotfiles.self.homeManagerModules.ect
   ];
 
   sops = {
@@ -13,9 +12,8 @@
       evie_certificate = { };
       garnix_password = { };
       gmail_password = { };
-      ect_yaml = {
-        sopsFile = ../../secrets/secrets/ect.yaml;
-      };
+      gmailCalendarClientId = { };
+      gmailCalendarClientSecret = { };
     };
   };
 
