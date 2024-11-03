@@ -32,7 +32,7 @@ def diff($finish; $start):
     | . += {duration: diff(.endDT;.startDT)}'
 
 
-  let json = (khal list ...$onlyCalendars --format ($format) --notstarted --day-format "" today ($nextWeek)
+  let json = (khal list ...$onlyCalendars --format ($format) --notstarted --day-format "" now ($nextWeek)
     | jq -scM ($jqArgsWithDuration)
     | jq -scM ($jqArgs)
   )
