@@ -481,7 +481,7 @@
       treesitter-refactor = {
         enable = true;
 
-        highlightDefinitions.enable = true;
+        highlightDefinitions.enable = false;
 
         smartRename = {
           enable = true;

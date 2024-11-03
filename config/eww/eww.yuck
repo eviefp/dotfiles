@@ -229,7 +229,7 @@
 		   :xalign 0
 		   :limit-width 8
 		   :width 70
-		   :text "⟨${event.duration}m⟩")
+		   :text "⟨${event.duration}⟩")
 		  (label
 		   :xalign 0
 		   :limit-width 7
@@ -376,9 +376,9 @@
 		     (monitor
 		      :monitor-width 24
 		      :monitor-visible showCalendar
-		      :monitor-text `${cal.time} ⟨${cal.duration}m⟩ ${cal.title}`
+		      :monitor-text `${cal.time} ⟨${cal.duration}⟩ ${cal.title}`
 		      :monitor-tooltip "${cal.title}"
-		      :monitor-icon `${cal.date == formattime(EWW_TIME, "%Y-%m-%d") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
+		      :monitor-icon `${cal.date == formattime(EWW_TIME, "%d/%m/%Y") ? "./assets/calendar.png" : "./assets/calendar-free.png"}`
 		      :monitor-click "eww open events --toggle"
 		      :monitor-middleclick "ect dec"
 		      :monitor-rclick "ect inc")
