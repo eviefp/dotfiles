@@ -18,8 +18,13 @@ def diff($finish; $start):
   | "\($h)h\($m)m" ;
                 '
   let jqArgs = match $type {
-    'single' => ' .[1]',
+    'single' => ' .[0]',
     _        => '.'
+  }
+
+  let extraArgs = match $type {
+    'single' => [ '--once' '--notstarted'],
+    _        => [ ],
   }
 
   let jqArgsWithDuration = $jqQuery + '
@@ -32,10 +37,23 @@ def diff($finish; $start):
     | . += {duration: diff(.endDT;.startDT)}'
 
 
-  let json = (khal list ...$onlyCalendars --format ($format) --day-format "" now ($nextWeek)
+  let json = (khal list ...$onlyCalendars --format ($format) ...$extraArgs --day-format "" now ($nextWeek)
     | jq -scM ($jqArgsWithDuration)
     | jq -scM ($jqArgs)
   )
+
+  if $type != 'single' {
+    let result = $json | from json
+    let now = 'now' | into datetime
+
+    $result | each {|it|
+          if $it.date == ($now | format date "%d/%m/%Y") {
+            if $it.time == ($now - 15min | format date "%H:%M") {
+              notify-send $it.title
+            }
+          }
+      }
+  }
 
   ($calendars
     | reduce --fold $json {|it, acc| $acc | sd -F $it.calendar $it.name}

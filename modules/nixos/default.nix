@@ -11,5 +11,6 @@
   services = ./services.nix;
   sops = ./sops.nix;
   users = ./users.nix;
+  yubikey = ./yubikey.nix;
   wayland = ./wayland.nix;
 }

@@ -14,6 +14,7 @@
     services
     users
     sops
+    yubikey
   ];
 
   config = {

@@ -166,9 +166,6 @@
     '';
 
     programs = {
-      alot = {
-        enable = true;
-      };
       mbsync = {
         enable = true;
       };

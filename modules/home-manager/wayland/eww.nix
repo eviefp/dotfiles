@@ -14,8 +14,8 @@ in
     home.file.".config/eww-extras/mail-calendar-vars.yuck".text = ''
       (defpoll mail-important :initial "0" :interval "10s" "${sshThelxinoe}notmuch count tag:important")
       (defpoll mail-unread :initial "0" :interval "10s" "${sshThelxinoe}notmuch count tag:unread")
-      (defpoll cal :initial `{ "title": "Loading...", "time": "00:00", "date": "2050-01-01" }` :interval "60s" "~/.config/eww/scripts/get-next-calendar-entry.nu single")
-      (defpoll events :initial "[]" :interval "60s" "~/.config/eww/scripts/get-next-calendar-entry.nu all")
+      (defpoll cal :initial `{ "title": "Loading...", "time": "00:00", "date": "2050-01-01" }` :interval "40s" "~/.config/eww/scripts/get-next-calendar-entry.nu single")
+      (defpoll events :initial "[]" :interval "40s" "~/.config/eww/scripts/get-next-calendar-entry.nu all")
     '';
 
     home.file.".config/eww-extras/windows.yuck".text = ''
