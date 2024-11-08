@@ -66,6 +66,10 @@
 
     keymaps = [
       {
+        key = "\\";
+        action = ":nohl<cr>";
+      }
+      {
         key = "<up>";
         action = "";
       }
@@ -217,7 +221,7 @@
         src = pkgs.fetchFromGitHub {
           owner = "FabijanZulj";
           repo = "blame.nvim";
-          rev = "59cf695685c1d8d603d99b246cc8d42421937c09";
+          rev = "39bb4cda9e658d053a43919b10ca52c0a4d738e1";
           hash = "sha256-9eI+4nv9vu0BlsuUk9n0d0k4jY4tu1RRO4yqItKwBkQ=";
         };
       }) # :Blame, but would be nice if it could go recursively
