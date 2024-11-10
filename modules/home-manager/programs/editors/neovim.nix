@@ -200,11 +200,11 @@
       }
       # sops
       {
-        key = "leader>ce";
+        key = "<leader>ce";
         action = "<cmd>SopsEncrypt<cr>";
       }
       {
-        key = "leader>cd";
+        key = "<leader>cd";
         action = "<cmd>SopsDecrypt<cr>";
       }
 
