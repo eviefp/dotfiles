@@ -9,6 +9,7 @@ in
       pkgs.socat
       pkgs.wlr-randr
       pkgs.alsa-utils
+      pkgs.libnotify
     ];
 
     home.file.".config/eww-extras/mail-calendar-vars.yuck".text = ''

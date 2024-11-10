@@ -48,7 +48,7 @@ def diff($finish; $start):
 
     $result | each {|it|
           if $it.date == ($now | format date "%d/%m/%Y") {
-            if $it.time == ($now - 15min | format date "%H:%M") {
+            if $it.time == ($now + 15min | format date "%H:%M") {
               notify-send $it.title
             }
           }
