@@ -14,7 +14,6 @@
     pkgs.shellcheck
     pkgs.shfmt
     pkgs.haskellPackages.cabal-fmt
-    pkgs.yamlfmt
   ];
 
   config.home.sessionVariables.EDITOR = "nvim";
@@ -624,7 +623,6 @@
             typescript = [ "prettier" ];
             cabalproject = [ "cabal_fmt" ];
             purescript = [ "purs-tidy" ];
-            yaml = [ "yamlfmt" ];
             rust = [ "rustfmt" ];
             "*" = [ "trim_whitespace" ];
           };
