@@ -198,6 +198,15 @@
         key = "<leader>cc";
         action = "<cmd>CccPick<cr>";
       }
+      # sops
+      {
+        key = "leader>ce";
+        action = "<cmd>SopsEncrypt<cr>";
+      }
+      {
+        key = "leader>cd";
+        action = "<cmd>SopsDecrypt<cr>";
+      }
 
     ];
 
@@ -249,6 +258,7 @@
           hash = "sha256-5MWv/TpJSJfPY3y2dC1f2T/9sP4wn0kZ0Sed5OOFM5c=";
         };
       }) # :Gh
+      pkgs.vimPlugins.nvim-sops
     ];
 
     extraConfigLua = ''
