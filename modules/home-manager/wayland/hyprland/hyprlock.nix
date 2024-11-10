@@ -4,7 +4,7 @@
     home = {
       file.".config/hypr/hyprlock.conf".text = ''
         general {
-          pam_module = "hyprlock"
+          pam_module = hyprlock
         }
 
         background {
@@ -43,7 +43,7 @@
 
         label {
             monitor =
-            text = Hi $USER
+            text = Hi $USER ☭
             color = rgba(200, 200, 200, 1.0)
             font_size = 25
             font_family = Noto Sans
