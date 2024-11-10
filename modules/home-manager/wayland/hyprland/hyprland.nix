@@ -135,12 +135,6 @@ in
           allow_tearing = false;
         };
 
-        # renderer = (lib.mkIf (osConfig.services.xserver.videoDrivers == "nvidia") {
-        #   explicit_sync = 0;
-        #   explicit_sync_kms = 0;
-        #   direct_scanout = false;
-        # });
-
         decoration = {
           rounding = 10;
 
@@ -148,11 +142,12 @@ in
           inactive_opacity = 0.75;
           fullscreen_opacity = 1;
 
-          drop_shadow = "yes";
-          shadow_range = 8;
-          shadow_render_power = 2;
-
-          "col.shadow" = "rgba(1a1a1aee)";
+          shadow = {
+            enabled = true;
+            range = 8;
+            render_power = 2;
+            color = "rgba(1a1a1aee)";
+          };
 
           blur = {
             enabled = false;
