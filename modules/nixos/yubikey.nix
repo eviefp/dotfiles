@@ -1,7 +1,7 @@
 /****************************************************************************
   * Yubikey module
   **************************************************************************/
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   key = "evie:l5rCPM1n8ApINtpaomR6TUPO+kgmV3DrOvwuJ27b7pnRQV35UFJ8P9VL61PZIZxZS1vft8r+f70Og4H20YFt4w==,UTsPZfb7kufe/r43I51K61lpqkcvOhStOU5l3QgntBDnyedHf97JY3KqNivAePsElQGV8tdWChiUNj8I+ZQlrA==,es256,+presence";
 in
