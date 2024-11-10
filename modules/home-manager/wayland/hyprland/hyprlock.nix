@@ -4,6 +4,7 @@
     home = {
       file.".config/hypr/hyprlock.conf".text = ''
         general {
+          pam_module = "hyprlock"
         }
 
         background {

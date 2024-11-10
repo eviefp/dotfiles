@@ -4,6 +4,7 @@
   **************************************************************************/
 { dotfiles, pkgs, ... }:
 let
+  scripts = import ../scripts.nix { inherit pkgs; };
   exp = pkgs.writeShellScriptBin "exp" ''
     echo 'cat foo | choose 2 1:-1'
     echo 'sd find replace file'
@@ -339,7 +340,7 @@ stash_menu.quit = ["q", "<esc>"]
           };
         };
         signing = {
-          key = "me@eevie.ro";
+          key = "me@evie.ro";
           signByDefault = true;
         };
         difftastic = {
@@ -365,15 +366,15 @@ stash_menu.quit = ["q", "<esc>"]
           merge.conflictstyle = "diff3";
         };
         ignores = [ "TAGS" ];
-        userEmail = "me@eevie.ro";
+        userEmail = "me@evie.ro";
         userName = "Evie Ciobanu";
       };
 
       jujutsu = {
-        enable = true;
+        enable = false;
         settings = {
           user = {
-            email = "me@eeie.ro";
+            email = "me@evie.ro";
             name = "Evie Ciobanu";
           };
         };
@@ -496,14 +497,18 @@ stash_menu.quit = ["q", "<esc>"]
       nushell = {
         enable = true;
         package = pkgs.nushell;
+        shellAliases = {
+          kssh = "kitten ssh";
+          gco = "git checkout";
+          gf = "git fetch";
+          gb = "git br";
+          vi = "nvim";
+        };
+        environmentVariables = {
+          KEYID_EVIE = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
+        };
         configFile.text = ''
-          alias ssh = kitten ssh
-          alias gco = git checkout
-          alias gf = git fetch
-          alias gb = git br
-          alias sw = git switch
-          alias gp = git pull
-          alias vi = nvim
+          use ${scripts.crypto} *
           $env.config = {
             edit_mode: vi
             shell_integration: {

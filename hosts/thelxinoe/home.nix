@@ -9,6 +9,7 @@
     programs.dev.default
     gui
     wayland.default
+    gpg
   ];
 
   config = {

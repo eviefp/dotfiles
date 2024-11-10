@@ -10,6 +10,8 @@
 
   calendar = ./calendar.nix;
 
+  gpg = ./gpg.nix;
+
   programs = {
     term = ./programs/term.nix;
     kitty = ./programs/kitty.nix;
