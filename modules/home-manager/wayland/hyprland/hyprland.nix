@@ -138,8 +138,8 @@ in
         decoration = {
           rounding = 10;
 
-          active_opacity = 0.9;
-          inactive_opacity = 0.75;
+          active_opacity = 0.95;
+          inactive_opacity = 0.90;
           fullscreen_opacity = 1;
 
           shadow = {
@@ -225,13 +225,7 @@ in
 
         master = { };
 
-        windowrulev2 = [
-          "forcergbx,class:(qutebrowser)"
-          "opacity 1.0 override 0.7,class:(kitty)"
-          "opacity 1.0 override 0.7,class:(wezterm)"
-          "workspace 1,class:(discord)"
-          "workspace 1,class:(Signal)"
-        ];
+        windowrulev2 = [ ];
 
         plugin = { };
 
