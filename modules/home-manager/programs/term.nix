@@ -34,7 +34,6 @@ in
       pkgs.sd
       pkgs.gping
       pkgs.below
-
       pkgs.ffmpegthumbnailer
       pkgs.unrar
 
@@ -550,7 +549,9 @@ stash_menu.quit = ["q", "<esc>"]
         enableFishIntegration = true;
         enableNushellIntegration = true;
         flags = [ ];
-        settings = { };
+        settings = {
+          filter_mode_shell_up_key_binding = "session";
+        };
       };
 
       fd = {
