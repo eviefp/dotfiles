@@ -119,6 +119,10 @@
       }
       ## lsp
       {
+        key = "gD";
+        action = ":vsplit<cr>:lua vim.lsp.buf.definition()<cr>";
+      }
+      {
         key = "<leader>ac";
         action = "<cmd>Lspsaga code_action<cr>";
       }
@@ -206,6 +210,11 @@
         key = "<leader>cd";
         action = "<cmd>SopsDecrypt<cr>";
       }
+      #
+      {
+        key = "<leader>ta";
+        action = ":Tabularize ";
+      }
 
     ];
 
@@ -258,6 +267,7 @@
         };
       }) # :Gh
       pkgs.vimPlugins.nvim-sops
+      pkgs.vimPlugins.tabular # :Tabularize
     ];
 
     extraConfigLua = ''
@@ -732,6 +742,10 @@
         };
       };
 
+      indent-blankline = {
+        enable = true;
+      };
+
       telescope = {
         enable = true;
 
@@ -774,6 +788,7 @@
           # "<leader>fr" = "lsp_references";
           "<leader>fm" = "marks";
           "<leader>fq" = "quickfix";
+          "<leader>fu" = "undo";
         };
       };
 
