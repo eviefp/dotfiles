@@ -12,6 +12,7 @@
     dotfiles.home-manager.nixosModules.home-manager
     {
       home-manager = {
+        backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = { inherit dotfiles; };
