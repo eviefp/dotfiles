@@ -1,8 +1,9 @@
 keys:
   # machines
-  - &thelxinoe age1r983kf3l6n7ypjlq2cpuszr5a6euxlyugyvj2uc5zazer084v3tqncqurs
-  - &janus age1xj3v4p5cz0elkxmvuzwxqkpwuxphs7k7k5qn4lp08d7lysq62axqatqwvf
-  - &aiode age1fx0adxvc4xw6rtky5u63fs0junxlcgvxuxk2cfw0g0rqdtx35qwq9vttf6
+  - &thelxinoe age1kaz2lph2d479z7kvwu7ah3thnx7eaztnnzztxkvv2dwmjt5c944qeh4xl0
+  - &janus age1mcmh3m8cy7rpu53r27cj6rcx6h30w8v8cjdv5dkhuxp4y5psvcxql70ppe
+  - &aiode age1w4xku5n3fckgevkca8rt7xcmj0l8ynq09mp0usuhexgf3emh3ycsdj2rdg
+  - &fractal age160yg0kapx3h3ks23h59mry0drhg6u5mawdqmsdx7m8x49laq7qgstyssgw
   # users
   - &evie 6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD
 creation_rules:
@@ -14,11 +15,4 @@ creation_rules:
           - *thelxinoe
           - *janus
           - *aiode
-  - path_regex: secrets/secrets/ect.yaml$
-    key_groups:
-      - pgp:
-          - *evie
-        age:
-          - *thelxinoe
-          - *janus
-          - *aiode
+          - *fractal

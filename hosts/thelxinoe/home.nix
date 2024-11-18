@@ -1,24 +1,24 @@
 { dotfiles, ... }:
 {
   imports = with dotfiles.self.homeManagerModules; [
+    calendar
     common
-    calendar # TODO: should this be global? an enable option? in common?
     email
-    sops
-    programs.streaming
-    programs.dev.default
-    gui
-    wayland.default
     gpg
+    gui
+    programs.dev.default
+    programs.streaming
+    sops
+    wayland.default
   ];
 
   config = {
 
     evie = {
-      programs.editors.emacs.locals = {
-        enable = true;
-        file = ./thelxinoe.el;
-      };
+      # programs.editors.emacs.locals = {
+      #   enable = true;
+      #   file = ./thelxinoe.el;
+      # };
 
       wayland = {
         eww-monitor = "2";

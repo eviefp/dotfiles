@@ -33,13 +33,13 @@
       enable = true;
     };
 
-    evie.wayland.compositors = [ "hyprland" "river" ];
+    evie.wayland.compositors = [ "hyprland" ];
     evie.services.peroxide = {
       enable = true;
       package = pkgs.callPackage dotfiles.self.nixosModules.peroxide-override { };
     };
 
     # Randomly decided the NixOS version should be here.
-    system.stateVersion = "24.11";
+    system.stateVersion = "25.05";
   };
 }

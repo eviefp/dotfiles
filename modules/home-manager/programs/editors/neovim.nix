@@ -190,7 +190,7 @@
       }
       {
         key = "<leader>bc";
-        action = "<cmd>bdelete<cr>";
+        action = ":lua require('bufdelete').bufdelete()<cr>";
       }
       {
         key = "<leader>bC";
@@ -814,6 +814,10 @@
       };
 
       web-devicons = {
+        enable = true;
+      };
+
+      bufdelete = {
         enable = true;
       };
     };

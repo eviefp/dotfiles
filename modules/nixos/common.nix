@@ -23,7 +23,6 @@
     nixpkgs.config.allowUnfree = true;
 
     evie.packages = {
-      enableGPG = true;
       enableDconf = true;
     };
 
