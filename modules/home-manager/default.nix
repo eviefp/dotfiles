@@ -14,6 +14,7 @@
 
   programs = {
     term = ./programs/term.nix;
+    scripts = ./programs/scripts.nix;
     kitty = ./programs/kitty.nix;
     ranger = ./programs/shell/ranger.nix;
 

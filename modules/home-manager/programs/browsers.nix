@@ -62,7 +62,7 @@
           config.unbind('r')
         '';
         settings = {
-          editor.command = [ "emacsclient" "-q" "-u" "-c" "{}" ];
+          editor.command = [ "kitty" "-e" "nvim" "{}" ];
           auto_save.session = true;
           colors = {
             webpage = {

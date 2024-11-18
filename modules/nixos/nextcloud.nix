@@ -4,7 +4,7 @@
   * Everything is hardcoded because I have a single server which hosts this. No
   * need to generalise!
   **************************************************************************/
-{ lib, config, ... }:
+{ lib, ... }:
 {
   imports = [ ];
 

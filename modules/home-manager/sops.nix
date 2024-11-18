@@ -6,7 +6,7 @@
 
   sops = {
     defaultSopsFile = ../../secrets/secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/home/evie/.ssh/id_ed25519" ];
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
       evie_password = { };
       evie_certificate = { };

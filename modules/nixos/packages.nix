@@ -25,7 +25,6 @@ in
       '';
     };
 
-    enableGPG = lib.mkEnableOption "Enable GPG agent.";
     enableDconf = lib.mkEnableOption "Enable dconf.";
   };
 
@@ -36,14 +35,7 @@ in
     ];
 
     programs = {
-      # gnupg.agent = {
-      #   enable = cfg.enableGPG;
-      #   # TODO: this does not work
-      #   enableSSHSupport = true;
-      #   pinentryPackage = pkgs.pinentry-gtk2;
-      # };
-
-      # Needed by home-manager.
+      # TODO: can I remove this? Needed by home-manager?
       dconf.enable = cfg.enableDconf;
     };
   };

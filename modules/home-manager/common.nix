@@ -9,11 +9,12 @@
     fonts
     system
 
-    editors.emacs
+    # editors.emaacs
     editors.neovim
     editors.helix
 
     programs.term
+    programs.scripts
     programs.ranger
     programs.text
   ];

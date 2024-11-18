@@ -21,6 +21,11 @@
           userName = "evieciobanu..thelxinoe";
           realName = "Evie Ciobanu";
 
+          gpg = {
+            key = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
+            signByDefault = false;
+          };
+
           signature = {
             text = ''
 
@@ -63,6 +68,7 @@
           };
 
           notmuch.enable = true;
+          astroid.enable = true;
         };
 
         garnix = {
@@ -70,6 +76,11 @@
           address = "eciobanu@garnix.io";
           userName = "eciobanu@garnix.io";
           realName = "Evie Ciobanu";
+
+          gpg = {
+            key = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
+            signByDefault = false;
+          };
 
           signature = {
             text = ''
@@ -110,6 +121,7 @@
           };
 
           notmuch.enable = true;
+          himalaya.enable = true;
         };
 
         gmail-primary = {
@@ -117,6 +129,11 @@
           address = "alexa.eviest@gmail.com";
           userName = "alexa.eviest@gmail.com";
           realName = "Evie Ciobanu";
+
+          gpg = {
+            key = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
+            signByDefault = false;
+          };
 
           signature = {
             text = ''
@@ -157,12 +174,67 @@
           };
 
           notmuch.enable = true;
+          astroid.enable = true;
         };
       };
     };
 
     home.file.".mailcap".text = ''
       text/html;  w3m -dump -o document_charset=%{charset} '%s'; nametemplate=%s.html; copiousoutput
+    '';
+
+    home.file.".config/astroid/keybindings".text = ''
+      # searching in main window
+      main_window.search_tag=?
+      main_window.search=/
+      main_window.show_help=H
+
+      # switching between buffers
+      main_window.next_page=K
+      main_window.previous_page=J
+      thread_index.next_page=K
+      thread_index.previous_page=J
+      help.next_page=K
+      help.previous_page=J
+      thread_view.scroll_up=u
+      thread_view.scroll_down=d
+      help.scroll_up=u
+      help.scroll_down=d
+      help.page_down=u
+      help.page_up=d
+      thread_view.delete=D
+      thread_index.scroll_up=u
+      thread_index.scroll_down=d
+      main_window.open_new_window=T
+      main_window.jump_to_page=C-1
+
+      # undo
+      thread_index.undo=U
+
+      # beginning/end of buffer
+      thread_index.scroll_home=g
+      thread_index.scroll_end=G
+      thread_view.scroll_home=g
+      thread_view.scroll_end=G
+
+      # replying, composing, etc
+      main_window.new_mail=c
+      thread_index.reply=r
+      thread_index.reply_all=R
+      thread_view.reply=r
+      thread_view.reply_all=R
+
+
+      # tagging, etc
+      main_window.mark_unread=N
+      thread_index.multi.achive=a
+      thread_index.delete=D
+      thread_index.label=l
+
+      # closing app, tabs
+      main_window.quit_ask=q # Quit astroid, default: q
+      main_window.quit=Q # Quit astroid (without asking), default: Q
+      main_window.close_page=x # Close mode (or window if other windows are open), default: C-w
     '';
 
     programs = {
@@ -188,6 +260,26 @@
           '';
         };
       };
+
+      astroid = {
+        enable = true;
+        externalEditor = "kitty -e nvim %1";
+        extraConfig = {
+          editor = {
+            attachment_directory = "~/Downloads/mail";
+          };
+          startup.queries = {
+            "1. important" = "tag:important";
+            "2. unread" = "tag:unread";
+            "3. inbox" = "tag:gmail or tag:evie or tag:garnix";
+            "4. unsorted" = "tag:unsorted";
+            "5. evie" = "tag:evie";
+            "6. garnix" = "tag:garnix";
+            "7. gmail" = "tag:gmail";
+          };
+        };
+      };
+      # TODO: try himalaya
     };
 
     services = {
