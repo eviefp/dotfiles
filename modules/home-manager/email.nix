@@ -269,13 +269,19 @@
             attachment_directory = "~/Downloads/mail";
           };
           startup.queries = {
-            "1. important" = "tag:important";
-            "2. unread" = "tag:unread";
-            "3. inbox" = "tag:gmail or tag:evie or tag:garnix";
-            "4. unsorted" = "tag:unsorted";
-            "5. evie" = "tag:evie";
-            "6. garnix" = "tag:garnix";
-            "7. gmail" = "tag:gmail";
+            "a_important" = "tag:important";
+            "b_unread" = "tag:unread";
+            "c_inbox" = "tag:gmail or tag:evie or tag:garnix";
+            "d_unsorted" = "tag:unsorted";
+            "e_evie" = "tag:evie";
+            "f_garnix" = "tag:garnix";
+            "g_gmail" = "tag:gmail";
+          };
+          thread_view = {
+            expand_flagged = true;
+            indent_messages = true;
+            open_html_part_external = true;
+            # preferred_html_only = true;
           };
         };
       };
