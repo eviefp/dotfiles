@@ -9,7 +9,7 @@
     fonts
     system
 
-    # editors.emaacs
+    editors.emacs
     editors.neovim
     editors.helix
 

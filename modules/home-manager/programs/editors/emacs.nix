@@ -26,7 +26,7 @@ let
     config = initFile;
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
-      epkgs.org-roam-ui
+      # epkgs.org-roam-ui
       epkgs.ligature
     ];
 

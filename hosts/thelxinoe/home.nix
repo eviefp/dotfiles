@@ -15,10 +15,10 @@
   config = {
 
     evie = {
-      # programs.editors.emacs.locals = {
-      #   enable = true;
-      #   file = ./thelxinoe.el;
-      # };
+      programs.editors.emacs.locals = {
+        enable = true;
+        file = ./thelxinoe.el;
+      };
 
       wayland = {
         eww-monitor = "2";

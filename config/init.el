@@ -650,42 +650,42 @@
 
 (use-package org-bullets :ensure t :hook (org-mode . org-bullets-mode))
 
-(use-package
- org-roam
- :ensure t
- :init
- (setq org-roam-directory "~/code/personal-org/roam")
- (setq org-roam-dailies-directory "daily/") ;; relative to roam-directory
- (setq org-roam-index-file "~/code/personal-org/roam/index.org")
- (setq org-roam-update-method 'idle-timer)
- (setq org-roam-db-update-idle-seconds 5)
- :config
- (org-roam-db-autosync-mode)
- (require 'org-roam-export)
- :hook (after-init . org-roam-setup)
- :general
- ;; format: off
- (general-define-key
-  :keymaps 'normal
-  "SPC r f" 'org-roam-node-find
-  "SPC r i" 'org-roam-node-insert
-  "SPC r b" 'org-roam-backlinks-get
-  "SPC r g" 'org-roam-graph
-  "SPC r I" (lambda ()
-                    (interactive)
-                    (visit-org-roam-index)))
- ;; format: on
- )
+;; (use-package
+;;  org-roam
+;;  :ensure t
+;;  :init
+;;  (setq org-roam-directory "~/code/personal-org/roam")
+;;  (setq org-roam-dailies-directory "daily/") ;; relative to roam-directory
+;;  (setq org-roam-index-file "~/code/personal-org/roam/index.org")
+;;  (setq org-roam-update-method 'idle-timer)
+;;  (setq org-roam-db-update-idle-seconds 5)
+;;  :config
+;;  (org-roam-db-autosync-mode)
+;;  (require 'org-roam-export)
+;;  :hook (after-init . org-roam-setup)
+;;  :general
+;;  ;; format: off
+;;  (general-define-key
+;;   :keymaps 'normal
+;;   "SPC r f" 'org-roam-node-find
+;;   "SPC r i" 'org-roam-node-insert
+;;   "SPC r b" 'org-roam-backlinks-get
+;;   "SPC r g" 'org-roam-graph
+;;   "SPC r I" (lambda ()
+;;                     (interactive)
+;;                     (visit-org-roam-index)))
+;;  ;; format: on
+;;  )
 
-(use-package
- org-roam-ui
- :ensure t
- :config
- (setq
-  org-roam-ui-sync-theme t
-  org-roam-ui-follow t
-  org-roam-ui-update-on-save t
-  org-roam-ui-open-on-start t))
+;; (use-package
+;;  org-roam-ui
+;;  :ensure t
+;;  :config
+;;  (setq
+;;   org-roam-ui-sync-theme t
+;;   org-roam-ui-follow t
+;;   org-roam-ui-update-on-save t
+;;   org-roam-ui-open-on-start t))
 
 (use-package
  org-tree-slide
