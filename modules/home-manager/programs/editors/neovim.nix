@@ -667,19 +667,6 @@
         };
       };
 
-      neorg = {
-        enable = false;
-        modules = {
-          "core.defaults".__empty = null;
-          "core.concealer".__empty = null;
-          "core.dirman".config.workspaces = {
-            notes = "~/code/neorg";
-          };
-          "core.summary".__empty = null;
-          "core.text-objects".__empty = null;
-        };
-      };
-
       obsidian = {
         enable = true;
         settings = {
