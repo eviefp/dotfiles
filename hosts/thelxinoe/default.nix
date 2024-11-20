@@ -29,8 +29,11 @@
       extraPorts = [ 31234 ];
     };
 
-    evie.hardware.amdgpu = {
+    evie.common.enable = true;
+
+    evie.hardware = {
       enable = true;
+      amdgpu.enable = true;
     };
 
     evie.wayland.compositors = [ "hyprland" ];

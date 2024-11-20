@@ -3,14 +3,19 @@
   *
   * All my systems are setup as UEFI.
   **************************************************************************/
-{ lib, ... }:
+{ lib, config, ... }:
+let
+  cfg = config.evie.boot;
+in
 {
-  config.boot = lib.mkMerge [
-    {
-      loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
-      };
-    }
-  ];
+  options.evie.boot = {
+    enable = lib.mkEnableOption "boot defaults";
+  };
+
+  config.boot = lib.mkIf cfg.enable {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 }
