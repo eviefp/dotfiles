@@ -13,15 +13,8 @@
   gpg = ./gpg.nix;
 
   programs = {
-    term = ./programs/term.nix;
-    scripts = ./programs/scripts.nix;
-    kitty = ./programs/kitty.nix;
-    ranger = ./programs/shell/ranger.nix;
-
     browsers = ./programs/browsers.nix;
     chat = ./programs/chat.nix;
-    streaming = ./programs/streaming.nix;
-
     dev = {
       default = ./programs/dev.nix;
       haskell = ./programs/dev/haskell.nix;
@@ -30,7 +23,12 @@
       provers = ./programs/dev/provers.nix;
       tools = ./programs/dev/tools.nix;
     };
-
+    kitty = ./programs/kitty.nix;
+    ranger = ./programs/shell/ranger.nix;
+    scripts = ./programs/scripts.nix;
+    spotify-player = ./programs/spotify-player.nix;
+    streaming = ./programs/streaming.nix;
+    term = ./programs/term.nix;
     text = ./programs/text.nix;
   };
 

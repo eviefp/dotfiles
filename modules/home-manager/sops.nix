@@ -14,6 +14,8 @@
       gmail_password = { };
       gmailCalendarClientId = { };
       gmailCalendarClientSecret = { };
+      spotifyAppClientId = { };
+      spotifyAppClientSecret = { };
     };
   };
 
