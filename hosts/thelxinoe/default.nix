@@ -24,22 +24,20 @@
 
   config = {
 
-    evie.common.enable = true;
-    evie.hardware = {
-      enable = true;
-      amdgpu.enable = true;
-    };
-
-    evie.network = {
-      enable = true;
-      hostName = "thelxinoe";
-      extraPorts = [ 31234 ];
+    evie = {
+      common.enable = true;
+      hardware = {
+        enable = true;
+        amdgpu.enable = true;
+      };
+      network = {
+        enable = true;
+        hostName = "thelxinoe";
+        extraPorts = [ 31234 ];
+      };
+      peroxide.enable = true;
     };
 
     evie.wayland.compositors = [ "hyprland" ];
-    evie.services.peroxide = {
-      enable = true;
-      package = pkgs.callPackage dotfiles.self.nixosModules.peroxide-override { };
-    };
   };
 }
