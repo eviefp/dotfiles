@@ -36,8 +36,10 @@
         extraPorts = [ 31234 ];
       };
       peroxide.enable = true;
+      wayland = {
+        enable = true;
+        compositors = [ "hyprland" ];
+      };
     };
-
-    evie.wayland.compositors = [ "hyprland" ];
   };
 }
