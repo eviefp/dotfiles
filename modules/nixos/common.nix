@@ -34,6 +34,7 @@ in
         enableDconf = true;
       };
       services.enable = true;
+      sops.enable = true;
     };
 
     system.stateVersion = "25.05";

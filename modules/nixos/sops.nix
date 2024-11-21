@@ -1,15 +1,24 @@
-{ dotfiles, ... }:
+{ dotfiles, lib, config, ... }:
+let
+  cfg = config.evie.sops;
+in
 {
+  options.evie.sops = {
+    enable = lib.mkEnableOption "sops efaults";
+  };
+
   imports = [
     dotfiles.sops-nix.nixosModules.sops
   ];
 
-  sops = {
-    defaultSopsFile = ../../secrets/secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets = {
-      garnix_netrc = { };
-      yubiAuthFile = { };
+  config = lib.mkIf cfg.enable {
+    sops = {
+      defaultSopsFile = ../../secrets/secrets/secrets.yaml;
+      age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      secrets = {
+        garnix_netrc = { };
+        yubiAuthFile = { };
+      };
     };
   };
 }
