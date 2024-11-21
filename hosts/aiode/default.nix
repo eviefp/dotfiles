@@ -21,6 +21,7 @@
     }
   ];
 
+  # TODO: logind?
   config = {
     evie.network = {
       hostName = "aiode";
