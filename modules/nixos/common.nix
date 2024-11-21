@@ -36,6 +36,7 @@ in
       services.enable = true;
       sops.enable = true;
       users.enable = true;
+      yubikey.enable = true;
     };
 
     system.stateVersion = "25.05";

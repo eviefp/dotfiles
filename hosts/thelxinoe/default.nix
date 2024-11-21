@@ -6,6 +6,7 @@
     common
     peroxide
     hardware
+    yubikey
     wayland
 
     ./hardware.nix
@@ -40,6 +41,7 @@
         enable = true;
         compositors = [ "hyprland" ];
       };
+      yubikey.enable = true;
     };
   };
 }

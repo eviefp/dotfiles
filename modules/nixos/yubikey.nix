@@ -1,9 +1,16 @@
 /****************************************************************************
   * Yubikey module
   **************************************************************************/
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
+let
+  cfg = config.evie.yubikey;
+in
 {
-  config = {
+  options.evie.yubikey = {
+    enable = lib.mkEnableOption "yubikey defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.yubikey-personalization pkgs.yubikey-manager ];
 
     services = {
