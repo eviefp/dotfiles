@@ -23,17 +23,17 @@
   ];
 
   config = {
+
+    evie.common.enable = true;
+    evie.hardware = {
+      enable = true;
+      amdgpu.enable = true;
+    };
+
     evie.network = {
       hostName = "thelxinoe";
       interface = "enp4s0";
       extraPorts = [ 31234 ];
-    };
-
-    evie.common.enable = true;
-
-    evie.hardware = {
-      enable = true;
-      amdgpu.enable = true;
     };
 
     evie.wayland.compositors = [ "hyprland" ];
