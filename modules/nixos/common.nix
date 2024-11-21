@@ -29,10 +29,10 @@ in
       boot.enable = true;
       locale.enable = true;
       nix-settings.enable = true;
-    };
-
-    evie.packages = {
-      enableDconf = true;
+      packages = {
+        enable = true;
+        enableDconf = true;
+      };
     };
 
     evie.services.xcompose = false;
