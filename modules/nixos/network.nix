@@ -8,19 +8,15 @@
   * proper DNS, so I use a hosts file to name them.
   **************************************************************************/
 { lib, config, ... }:
-let cfg = config.evie.network;
+let
+  cfg = config.evie.network;
 in
 {
   options.evie.network = {
+    enable = lib.mkEnableOption "network";
     hostName = lib.mkOption {
       type = lib.types.str;
       description = "The hostname for the device.";
-    };
-
-    interface = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "Ethernet device name.";
     };
 
     extraPorts = lib.mkOption {
@@ -28,17 +24,6 @@ in
       default = [ ];
       description = "Extra ports to open.";
     };
-
-    wifi = {
-      enable = lib.options.mkEnableOption "Enable WiFi.";
-
-      interface = lib.mkOption {
-        type = lib.types.str;
-        description = "WiFi device name.";
-        default = "";
-      };
-    };
-
   };
 
   config.networking = lib.mkMerge [
@@ -58,19 +43,5 @@ in
         "192.168.10.67" = [ "arche" ];
       };
     }
-    (lib.mkIf (cfg.interface != "")
-      { interfaces."${cfg.interface}".useDHCP = true; }
-    )
-    (lib.mkIf cfg.wifi.enable (lib.mkMerge [
-      {
-        networkmanager = {
-          enable = true;
-          wifi.powersave = false;
-        };
-      }
-      (lib.mkIf (cfg.wifi.interface != "") {
-        interfaces."${cfg.wifi.interface}".useDHCP = false;
-      })
-    ]))
   ];
 }

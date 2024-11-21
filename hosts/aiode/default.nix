@@ -24,12 +24,8 @@
   # TODO: logind?
   config = {
     evie.network = {
+      enable = true;
       hostName = "aiode";
-      interface = "enp0s31f6";
-      wifi = {
-        enable = true;
-        interface = "wlp2s0";
-      };
     };
 
     evie.wayland.compositors = [ "hyprland" "river" ];

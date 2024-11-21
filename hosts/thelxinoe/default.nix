@@ -31,8 +31,8 @@
     };
 
     evie.network = {
+      enable = true;
       hostName = "thelxinoe";
-      interface = "enp4s0";
       extraPorts = [ 31234 ];
     };
 
