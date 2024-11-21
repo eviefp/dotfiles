@@ -13,14 +13,14 @@ in
   };
 
   imports = with dotfiles.self.nixosModules; [
-    nix-settings
     boot
-    network
     locale
+    network
+    nix-settings
     packages
     services
-    users
     sops
+    users
     yubikey
   ];
 
