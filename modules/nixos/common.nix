@@ -33,9 +33,8 @@ in
         enable = true;
         enableDconf = true;
       };
+      services.enable = true;
     };
-
-    evie.services.xcompose = false;
 
     system.stateVersion = "25.05";
   };
