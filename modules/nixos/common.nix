@@ -28,10 +28,8 @@ in
     evie = {
       boot.enable = true;
       locale.enable = true;
+      nix-settings.enable = true;
     };
-
-    nixpkgs.overlays = [ (import dotfiles.emacs-overlay) ];
-    nixpkgs.config.allowUnfree = true;
 
     evie.packages = {
       enableDconf = true;
