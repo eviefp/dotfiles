@@ -13,6 +13,8 @@ in
   };
 
   imports = with dotfiles.self.nixosModules; [
+    dotfiles.lix-module.nixosModules.default
+
     boot
     locale
     network
@@ -21,7 +23,6 @@ in
     services
     sops
     users
-    yubikey
   ];
 
   config = lib.mkIf cfg.enable {
@@ -36,7 +37,6 @@ in
       services.enable = true;
       sops.enable = true;
       users.enable = true;
-      yubikey.enable = true;
     };
 
     system.stateVersion = "25.05";
