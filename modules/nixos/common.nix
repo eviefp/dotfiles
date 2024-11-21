@@ -27,6 +27,7 @@ in
   config = lib.mkIf cfg.enable {
     evie = {
       boot.enable = true;
+      locale.enable = true;
     };
 
     nixpkgs.overlays = [ (import dotfiles.emacs-overlay) ];
