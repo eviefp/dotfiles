@@ -35,6 +35,7 @@ in
       };
       services.enable = true;
       sops.enable = true;
+      users.enable = true;
     };
 
     system.stateVersion = "25.05";
