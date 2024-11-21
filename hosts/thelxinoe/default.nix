@@ -41,8 +41,5 @@
       enable = true;
       package = pkgs.callPackage dotfiles.self.nixosModules.peroxide-override { };
     };
-
-    # Randomly decided the NixOS version should be here.
-    system.stateVersion = "25.05";
   };
 }

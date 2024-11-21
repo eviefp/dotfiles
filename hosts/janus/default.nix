@@ -34,8 +34,5 @@
     evie.wayland.compositors = [ "hyprland" "river" ];
 
     evie.packages.extra = [ pkgs.libva pkgs.libva-utils ];
-
-    # Randomly decided the NixOS version should be here.
-    system.stateVersion = "24.11";
   };
 }

@@ -37,5 +37,7 @@ in
     };
 
     evie.services.xcompose = false;
+
+    system.stateVersion = "25.05";
   };
 }
