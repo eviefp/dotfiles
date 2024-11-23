@@ -2,9 +2,12 @@
   * programs/shell module
   *
   **************************************************************************/
-{ dotfiles, pkgs, ... }:
+{ dotfiles, lib, config, pkgs, ... }:
 let
-  scripts = import ../scripts.nix { inherit pkgs; };
+  cfg = config.evie.term;
+  scripts = {
+    crypto = pkgs.concatScript "crypto" [ ../../../scripts/crypto.nu ];
+  };
   exp = pkgs.writeShellScriptBin "exp" ''
     echo 'cat foo | choose 2 1:-1'
     echo 'sd find replace file'
@@ -25,7 +28,11 @@ let
   '';
 in
 {
-  config = {
+  options.evie.term = {
+    enable = lib.mkEnableOption "term defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.killall
       pkgs.ripgrep
@@ -412,6 +419,34 @@ in
             show_hidden = true;
           };
         };
+        # keymap = {
+        #   manager.keymap = [
+        #     { run = "escape"; on = "<Esc>"; }
+        #     { run = "quit"; on = "q"; }
+        #
+        #     { run = "arrow -1"; on = "k"; }
+        #     { run = "arrow 1"; on = "j"; }
+        #
+        #     { run = "arrow -50%"; on = "<C-u>"; }
+        #     { run = "arrow 50%"; on = "<C-d>"; }
+        #
+        #     { run = "arrow -99999999"; on = [ "g" "g" ]; }
+        #     { run = "arrow 99999999"; on = "G"; }
+        #
+        #     { run = "leave"; on = "h"; }
+        #     { run = "enter"; on = "l"; }
+        #
+        #     { run = [ "toggle" "arrow 1" ]; on = "<Space>"; }
+        #     { run = "visual_mode"; on = "v"; }
+        #     { run = "visual_mode --unset"; on = "V"; }
+        #
+        #     { run = "seek -5"; on = "K"; }
+        #     { run = "seek 5"; on = "J"; }
+        #
+        #     { run = "open"; on = "o"; }
+        #     { run = "open --interactive"; on = "O"; }
+        #   ];
+        # };
       };
 
       joshuto = {

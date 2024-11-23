@@ -1,14 +1,19 @@
 /****************************************************************************
-  * programs/wezterm module
+  * term/wezterm module
   *
   * https://wezfurlong.org/wezterm
-  *
+  * Does NOT work on wayland :(
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.term.wezterm;
+in
 {
-  imports = [ ];
+  options.evie.term.wezterm = {
+    enable = lib.mkEnableOption "wezterm defaults";
+  };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     programs.wezterm = {
       enable = true;
       package = pkgs.wezterm;

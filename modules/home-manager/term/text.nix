@@ -8,9 +8,16 @@
   *   - 'tectonic' for building latex packages
   *   - 'texlab' for I'm not sure what
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.term.text;
+in
 {
-  config = {
+  options.evie.term.text = {
+    enable = lib.mkEnableOption "text defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.mailcap
       pkgs.ispell

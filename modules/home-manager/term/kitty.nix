@@ -1,10 +1,17 @@
 /****************************************************************************
-  * programs/kitty module
+  * term/kitty module
   *
   **************************************************************************/
-{ ... }:
+{ lib, config, ... }:
+let
+  cfg = config.evie.term.kitty;
+in
 {
-  config = {
+  options.evie.term.kitty = {
+    enable = lib.mkEnableOption "kitty defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.file = {
       ".config/kitty/light.conf".text = ''
         font_size 12.0

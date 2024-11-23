@@ -1,5 +1,6 @@
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
+  cfg = config.evie.term.scripts;
   nuShellScript = pkgs.callPackage ../../../lib/nuShellScript.nix { };
   scrcpy = nuShellScript
     {
@@ -11,7 +12,13 @@ let
     };
 in
 {
-  home.packages = [
-    scrcpy
-  ];
+  options.evie.term.scripts = {
+    enable = lib.mkEnableOption "scripts";
+  };
+
+  config = lib.mkIf cfg.enable {
+    home.packages = [
+      scrcpy
+    ];
+  };
 }

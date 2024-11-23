@@ -1,10 +1,10 @@
 { lib, config, pkgs, ... }:
 let
-  cfg = config.evie.programs.spotify;
+  cfg = config.evie.term.spotify;
   settingsFormat = pkgs.formats.toml { };
 in
 {
-  options.evie.programs.spotify = {
+  options.evie.term.spotify = {
     enable = lib.mkEnableOption "spotify";
     package = lib.mkPackageOption pkgs "spotify-player" { };
     settings = lib.mkOption {
