@@ -2,12 +2,18 @@
   * programs/chat module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.programs.chat;
+in
 {
-  config = {
+  options.evie.programs.chat = {
+    enable = lib.mkEnableOption "chat defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.discord
-      pkgs.slack
       pkgs.signal-desktop
       pkgs.element-desktop-wayland
       pkgs.chatterino2

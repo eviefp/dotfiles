@@ -3,15 +3,16 @@
   *
   * GUI programs such as browsers, multimedia, etc.
   **************************************************************************/
-{ dotfiles, pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.programs.gui;
+in
 {
-  imports = with dotfiles.self.homeManagerModules.programs; [
-    browsers
-    kitty
-    chat
-  ];
+  options.evie.programs.gui = {
+    enable = lib.mkEnableOption "gui defaults";
+  };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = [
       # Multimedia
       pkgs.light
@@ -34,13 +35,9 @@
     ];
 
     home.file = {
-      ".config/fish/functions/ssh.fish".source =
-        ../../config/fish/functions/ssh.fish;
-
-      ".config/fish/functions/ed.fish".source =
-        ../../config/fish/functions/ed.fish;
-
-      ".XCompose".source = ../../config/XCompose;
+      ".config/fish/functions/ssh.fish".source = ../../../config/fish/functions/ssh.fish;
+      ".config/fish/functions/ed.fish".source = ../../../config/fish/functions/ed.fish;
+      ".XCompose".source = ../../../config/XCompose;
     };
 
     programs = {

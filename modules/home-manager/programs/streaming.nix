@@ -2,11 +2,17 @@
   * programs/streaming module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.programs.streaming;
+in
 {
-  config = {
-    home.packages = [ pkgs.davinci-resolve pkgs.ffmpeg-full pkgs.kdenlive ];
+  options.evie.programs.streaming = {
+    enable = lib.mkEnableOption "qutebrowser defaults";
+  };
 
+  config = lib.mkIf cfg.enable {
+    home.packages = [ pkgs.davinci-resolve pkgs.ffmpeg-full pkgs.kdenlive ];
     programs = {
       obs-studio = {
         enable = true;
