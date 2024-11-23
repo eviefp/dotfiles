@@ -1,14 +1,20 @@
 /****************************************************************************
-  * programs/dev/nix module
+  * dev/nix module
   *
   * Enable packages I use for nix-related development:
   *   - 'niv' for pinning github repositories
-  *   - 'nixfmt' for formatting sources with emacs/nvim
+  *   - 'nixpkgs-fmt' for formatting sources with emacs/nvim
   *   - 'nix-diff' for finding out how two derivations differ
   ************************************************************************ */
-{ dotfiles, pkgs, ... }:
+{ dotfiles, config, lib, pkgs, ... }:
+let
+  cfg = config.evie.dev.nix;
+in
 {
-  config = {
+  options.evie.dev.nix = {
+    enable = lib.mkEnableOption "nix defaults";
+  };
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.haskellPackages.niv
       dotfiles.nil.packages.${pkgs.system}.nil

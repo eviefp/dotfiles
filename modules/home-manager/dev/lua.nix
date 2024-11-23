@@ -1,10 +1,16 @@
 /****************************************************************************
-  * programs/dev/lua module
+  * dev/lua module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.dev.lua;
+in
 {
-  config = {
+  options.evie.dev.lua = {
+    enable = lib.mkEnableOption "lua defaults";
+  };
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.lua5_3
       pkgs.lua53Packages.lua-cjson

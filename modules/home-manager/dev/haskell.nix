@@ -1,10 +1,16 @@
 /****************************************************************************
-  * programs/dev/haskell module
+  * dev/haskell module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.dev.haskell;
+in
 {
-  config = {
+  options.evie.dev.haskell = {
+    enable = lib.mkEnableOption "haskell defaults";
+  };
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.ghcid
       pkgs.ghciwatch
@@ -13,7 +19,11 @@
     ];
 
     home.file = {
-      ".ghci".source = ../../../../config/ghci;
+      ".ghci".text = ''
+        import Prelude
+
+        :set prompt "λ "
+      '';
     };
 
   };

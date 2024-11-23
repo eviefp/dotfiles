@@ -1,14 +1,17 @@
 /****************************************************************************
-  * programs/dev/provers module
+  * dev/provers module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.dev.provers;
+in
 {
-  config = {
+  options.evie.dev.provers = {
+    enable = lib.mkEnableOption "provers defaults";
+  };
+  config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.agda
-      pkgs.agdaPackages.standard-library
-      pkgs.coq
       pkgs.idris2
       pkgs.lean4
     ];
