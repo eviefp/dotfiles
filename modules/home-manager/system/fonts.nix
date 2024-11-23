@@ -2,9 +2,16 @@
   * Fonts module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.system.fonts;
+in
 {
-  config = {
+  options.evie.system.fonts = {
+    enable = lib.mkEnableOption "fonts defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.comic-mono
       pkgs.fira-code

@@ -4,9 +4,16 @@
   * Set up calendar accounts.
   * TODO: manually run 'vdirsyncer discover <name>' for each account.
   **************************************************************************/
-{ config, ... }:
+{ lib, config, ... }:
+let
+  cfg = config.evie.system.calendar;
+in
 {
-  config = {
+  options.evie.system.calendar = {
+    enable = lib.mkEnableOption "calendar defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     accounts.calendar = {
       basePath = "${config.xdg.dataHome}/calendars";
       accounts = {

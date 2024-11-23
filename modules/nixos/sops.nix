@@ -4,7 +4,7 @@ let
 in
 {
   options.evie.sops = {
-    enable = lib.mkEnableOption "sops efaults";
+    enable = lib.mkEnableOption "sops defaults";
   };
 
   imports = [

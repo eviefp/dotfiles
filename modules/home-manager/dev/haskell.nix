@@ -10,6 +10,7 @@ in
   options.evie.dev.haskell = {
     enable = lib.mkEnableOption "haskell defaults";
   };
+
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.ghcid

@@ -3,13 +3,16 @@
   *
   * Set up email account, imap sync, notmuch mail management.
   **************************************************************************/
-{ dotfiles, config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.system.email;
+in
 {
-  imports = [
-    dotfiles.self.homeManagerModules.bower
-  ];
+  options.evie.system.email = {
+    enable = lib.mkEnableOption "calendar defaults";
+  };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     accounts.email = {
 
       maildirBasePath = "/home/evie/mail";
