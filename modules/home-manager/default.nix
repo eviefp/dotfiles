@@ -1,17 +1,17 @@
 {
-  common = ./common.nix;
-  system = ./system.nix;
-  fonts = ./fonts.nix;
-  sops = ./sops.nix;
-
-  email = ./email.nix;
   bower = ./programs/bower.nix;
-  ect = ./programs/ect.nix;
-
   calendar = ./calendar.nix;
-
+  common = ./common.nix;
+  ect = ./programs/ect.nix;
+  editors = {
+    emacs = ./programs/editors/emacs.nix;
+    neovim = ./programs/editors/neovim.nix;
+    helix = ./programs/editors/helix.nix;
+  };
+  email = ./email.nix;
+  fonts = ./fonts.nix;
   gpg = ./gpg.nix;
-
+  gui = ./gui.nix;
   programs = {
     browsers = ./programs/browsers.nix;
     chat = ./programs/chat.nix;
@@ -31,15 +31,8 @@
     term = ./programs/term.nix;
     text = ./programs/text.nix;
   };
-
-  editors = {
-    emacs = ./programs/editors/emacs.nix;
-    neovim = ./programs/editors/neovim.nix;
-    helix = ./programs/editors/helix.nix;
-  };
-
-  gui = ./gui.nix;
-
+  sops = ./sops.nix;
+  system = ./system.nix;
   wayland = {
     default = ./wayland.nix;
     hyprland = {
