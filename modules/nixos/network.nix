@@ -29,7 +29,7 @@ in
   config.networking = lib.mkMerge [
     {
       hostName = cfg.hostName;
-      useDHCP = false;
+      useDHCP = true;
       firewall.allowedTCPPorts = lib.lists.unique
         (builtins.concatLists [ [ 22 80 443 1143 8080 ] cfg.extraPorts ]);
       hosts = {
