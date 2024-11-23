@@ -22,7 +22,7 @@
       interface = "eno1";
       extraPorts = [ 1025 1143 2049 ];
     };
-    evie.packages.extra = [ pkgs.git pkgs.wget ];
+    evie.packages.extra = [ pkgs.git pkgs.wget pkgs.ntfs3g ];
 
     services.nfs = {
       server = {
