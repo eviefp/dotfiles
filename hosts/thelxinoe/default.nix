@@ -1,11 +1,7 @@
-{ dotfiles, pkgs, ... }:
+{ dotfiles, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
     common
-    hardware
-    peroxide
-    wayland
-    yubikey
 
     ./hardware.nix
 

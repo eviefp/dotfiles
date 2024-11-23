@@ -7,7 +7,7 @@
   **************************************************************************/
 { lib, config, ... }:
 let
-  cfg = config.evie.boot;
+  cfg = config.evie.nextcloud;
 in
 {
   imports = [ ];

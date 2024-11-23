@@ -1,0 +1,3 @@
+{
+  peroxide = ./peroxide.nix;
+}

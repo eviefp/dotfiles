@@ -23,7 +23,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = pkgs.callPackage dotfiles.self.nixosModules.peroxide-override { };
+      default = pkgs.callPackage dotfiles.self.packages.peroxide { };
     };
 
     logLevel = mkOption {

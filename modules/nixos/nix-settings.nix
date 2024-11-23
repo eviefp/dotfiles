@@ -4,12 +4,15 @@
   **************************************************************************/
 { dotfiles, lib, config, ... }:
 let
-  cfg = config.evie.boot;
+  cfg = config.evie.nix-settings;
 in
 {
   options.evie.nix-settings = {
     enable = lib.options.mkEnableOption "Enable custom nix-settings.";
   };
+  imports = [
+    dotfiles.lix-module.nixosModules.default
+  ];
   config = lib.mkIf cfg.enable {
     nix = {
       registry.nixpkgs.flake = dotfiles.nixpkgs;

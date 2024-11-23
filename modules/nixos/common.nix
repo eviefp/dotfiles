@@ -6,24 +6,14 @@
 { dotfiles, lib, config, ... }:
 let
   cfg = config.evie.common;
+  removeCommon = n: _: n != "common";
 in
 {
   options.evie.common = {
     enable = lib.mkEnableOption "common config";
   };
 
-  imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
-    boot
-    locale
-    network
-    nix-settings
-    packages
-    services
-    sops
-    users
-  ];
+  imports = lib.attrValues (lib.filterAttrs removeCommon dotfiles.self.nixosModules);
 
   config = lib.mkIf cfg.enable {
     evie = {
