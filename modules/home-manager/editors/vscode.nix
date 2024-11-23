@@ -1,12 +1,17 @@
 /****************************************************************************
-  * programs/editors/vscode module
+  * editors/vscode module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.editors.vscode;
+in
 {
-  imports = [ ];
+  options.evie.editors.vscode = {
+    enable = lib.mkEnableOption "vscode defaults";
+  };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;

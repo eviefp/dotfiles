@@ -5,6 +5,7 @@
   **************************************************************************/
 { lib, config, pkgs, ... }:
 let
+  cfg = config.evie.editors.emacs;
   initFile = ../../../../config/init.el;
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
@@ -32,12 +33,11 @@ let
 
     package = pkgs.emacs-git-nox.override { };
   };
-  cfg = config.evie.programs.editors.emacs;
 in
 {
-  imports = [ ];
+  options.evie.editors.emacs = {
+    enable = lib.mkEnableOption "emacs defaults";
 
-  options.evie.programs.editors.emacs = {
     no-x = lib.options.mkEnableOption "Use terminal only Emacs.";
 
     service = lib.options.mkOption {
@@ -57,7 +57,7 @@ in
 
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages =
       if cfg.no-x
       then [ package-term-only ]

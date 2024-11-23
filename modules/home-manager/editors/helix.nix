@@ -1,10 +1,17 @@
 /****************************************************************************
-  * programs/editors/helix module
+  * editors/helix module
   *
   **************************************************************************/
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.evie.editors.helix;
+in
 {
-  config = {
+  options.evie.editors.helix = {
+    enable = lib.mkEnableOption "helix defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.file.".config/helix/themes/gh_dark_transparent.toml".source = ../../../../config/gh_dark_transparent.toml;
 
     programs.helix = {
