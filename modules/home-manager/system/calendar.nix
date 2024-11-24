@@ -4,7 +4,7 @@
   * Set up calendar accounts.
   * TODO: manually run 'vdirsyncer discover <name>' for each account.
   **************************************************************************/
-{ lib, config, ... }:
+{ lib, config, osConfig, ... }:
 let
   cfg = config.evie.system.calendar;
 in
@@ -30,8 +30,8 @@ in
             enable = true;
             metadata = [ "color" ];
             tokenFile = "/home/evie/.local/share/vdirsyncer/token";
-            clientIdCommand = [ "cat" "${config.sops.secrets.gmailCalendarClientId.path}" ];
-            clientSecretCommand = [ "cat" "${config.sops.secrets.gmailCalendarClientSecret.path}" ];
+            clientIdCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientId.path}" ];
+            clientSecretCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientSecret.path}" ];
             collections = [ "from a" "from b" ];
             conflictResolution = "remote wins";
           };
@@ -48,8 +48,8 @@ in
             enable = true;
             metadata = [ "color" ];
             tokenFile = "/home/evie/.local/share/vdirsyncer/garnix-token";
-            clientIdCommand = [ "cat" "${config.sops.secrets.gmailCalendarClientId.path}" ];
-            clientSecretCommand = [ "cat" "${config.sops.secrets.gmailCalendarClientSecret.path}" ];
+            clientIdCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientId.path}" ];
+            clientSecretCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientSecret.path}" ];
             collections = [ "from a" "from b" ];
             conflictResolution = "remote wins";
           };

@@ -3,7 +3,7 @@
   *
   * Adds the modules/settings that all of my systems use.
   **************************************************************************/
-{ dotfiles, lib, config, ... }:
+{ dotfiles, lib, config, osConfig, ... }:
 let
   cfg = config.evie.common;
   removeCommon = n: _: n != "common";
@@ -52,7 +52,7 @@ in
             spotify = {
               enable = true;
               settings = {
-                client_id_command = "cat ${config.sops.secrets.spotifyAppClientId.path}";
+                client_id_command = "cat ${osConfig.sops.secrets.spotifyAppClientId.path}";
               };
               keymap = {
                 keymaps = [

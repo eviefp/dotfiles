@@ -3,7 +3,7 @@
   *
   * Set up email account, imap sync, notmuch mail management.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, osConfig, ... }:
 let
   cfg = config.evie.system.email;
 in
@@ -37,7 +37,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.evie_password.path}";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.evie_password.path}";
 
           imap = {
             host = "thelxinoe";
@@ -45,7 +45,7 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = "${config.sops.secrets.evie_certificate.path}";
+              certificatesFile = "${osConfig.sops.secrets.evie_certificate.path}";
             };
           };
 
@@ -55,7 +55,7 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = "${config.sops.secrets.evie_certificate.path}";
+              certificatesFile = "${osConfig.sops.secrets.evie_certificate.path}";
             };
           };
 
@@ -93,7 +93,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.garnix_password.path}";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.garnix_password.path}";
 
           imap = {
             host = "imap.gmail.com";
@@ -146,7 +146,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.gmail_password.path}";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.gmail_password.path}";
 
           imap = {
             host = "imap.gmail.com";

@@ -4,5 +4,4 @@
   fonts = ./fonts.nix;
   gpg = ./gpg.nix;
   home-manager = ./home-manager.nix;
-  sops = ./sops.nix;
 }
