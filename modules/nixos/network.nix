@@ -46,7 +46,7 @@ in
       };
     }
     (lib.mkIf cfg.enableWifi {
-      config.networking.wireless = {
+      wireless = {
         enable = true;
         iwd.enable = true;
       };
