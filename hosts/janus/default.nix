@@ -27,8 +27,8 @@
       hardware.enable = true;
       network = {
         enable = true;
-        hostName = "janus";
         enableWifi = true;
+        hostName = "janus";
       };
       packages.extra = [ pkgs.libva pkgs.libva-utils ];
       wayland = {
