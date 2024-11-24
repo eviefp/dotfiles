@@ -1,9 +1,10 @@
 { dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
     common
+
     ./hardware.nix
+
     dotfiles.home-manager.nixosModules.home-manager
     {
       home-manager = {
@@ -17,12 +18,18 @@
   ];
 
   config = {
-    evie.network = {
-      hostName = "fractal";
-      interface = "eno1";
-      extraPorts = [ 1025 1143 2049 ];
+    evie = {
+      common.enable = true;
+      hardware = {
+        enable = true;
+      };
+      network = {
+        hostName = "fractal";
+        interface = "eno1";
+        extraPorts = [ 1025 1143 2049 ];
+      };
+      packages.extra = [ pkgs.git pkgs.wget pkgs.ntfs3g ];
     };
-    evie.packages.extra = [ pkgs.git pkgs.wget pkgs.ntfs3g ];
 
     services.nfs = {
       server = {
