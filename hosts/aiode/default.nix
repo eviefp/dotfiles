@@ -1,12 +1,7 @@
 { dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
     common
-    hardware
-    wayland
-
     ./hardware.nix
 
     dotfiles.home-manager.nixosModules.home-manager
@@ -21,15 +16,18 @@
     }
   ];
 
-  # TODO: logind?
-  config = {
-    evie.network = {
+  config.evie = {
+    common.enable = true;
+    hardware.enable = true;
+    network = {
       enable = true;
       hostName = "aiode";
     };
-
-    evie.wayland.compositors = [ "hyprland" "river" ];
-
-    evie.packages.extra = [ pkgs.libva pkgs.libva-utils ];
+    packages.extra = [ pkgs.libva pkgs.libva-utils ];
+    wayland = {
+      enable = true;
+      compositors = [ "hyprland" ];
+    };
+    yubikey.enable = true;
   };
 }
