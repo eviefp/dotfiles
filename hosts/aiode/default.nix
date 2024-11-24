@@ -22,6 +22,7 @@
     hardware.enable = true;
     network = {
       enable = true;
+      enableWifi = true;
       hostName = "aiode";
     };
     packages.extra = [ pkgs.libva pkgs.libva-utils ];

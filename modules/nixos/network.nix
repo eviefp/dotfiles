@@ -19,6 +19,8 @@ in
       description = "The hostname for the device.";
     };
 
+    enableWifi = lib.mkEnableOption "wifi";
+
     extraPorts = lib.mkOption {
       type = lib.types.listOf lib.types.port;
       default = [ ];
@@ -43,5 +45,11 @@ in
         "192.168.10.67" = [ "arche" ];
       };
     }
+    (lib.mkIf cfg.enableWifi {
+      config.networking.wireless = {
+        enable = true;
+        iwd.enable = true;
+      };
+    })
   ];
 }
