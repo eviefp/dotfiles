@@ -13,7 +13,7 @@ in
 
       publicKeys = [
         {
-          source = ../../config/272D83521C488CCD-2024-11-09.asc;
+          source = ../../../config/272D83521C488CCD-2024-11-09.asc;
           trust = "ultimate";
         }
       ];

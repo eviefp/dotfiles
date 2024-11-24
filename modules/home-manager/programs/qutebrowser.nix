@@ -52,7 +52,7 @@ in
         };
         downloads = {
           location = {
-            directory = "/home/${config.evie.system.user}/Downloads";
+            directory = "/home/${config.evie.system.home-manager.user}/Downloads";
             prompt = false;
           };
           position = "bottom";

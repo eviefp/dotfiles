@@ -3,24 +3,223 @@
   *
   * Adds the modules/settings that all of my systems use.
   **************************************************************************/
-{ dotfiles, ... }:
+{ dotfiles, lib, config, ... }:
+let
+  cfg = config.evie.common;
+  removeCommon = n: _: n != "common";
+  notAttrs = n: !(lib.isAttrs n);
+in
 {
-  imports = with dotfiles.self.homeManagerModules; [
-    fonts
-    system
-
-    editors.emacs
-    editors.neovim
-    editors.helix
-
-    programs.term
-    programs.scripts
-    programs.ranger
-    programs.text
-  ];
-
-  home.sessionVariables = {
-    NIX_PATH = "nixpkgs=${dotfiles.nixpkgs}";
+  options.evie.common = {
+    enable = lib.mkEnableOption "common config";
   };
+
+  imports = lib.collect notAttrs (lib.filterAttrs removeCommon dotfiles.self.homeManagerModules);
+  #   with dotfiles.self.homeManagerModules; [
+  #   fonts
+  #   system
+  #
+  #   editors.emacs
+  #   editors.neovim
+  #   editors.helix
+  #
+  #   programs.term
+  #   programs.scripts
+  #   programs.ranger
+  #   programs.text
+  # ];
+
+  config = lib.mkIf cfg.enable
+    (lib.mkMerge [
+      {
+        evie = {
+          dev = {
+            nix.enable = true;
+            tools.enable = true;
+          };
+          editors = {
+            neovim.enable = true;
+          };
+
+          system = {
+            fonts.enable = true;
+            home-manager.enable = true;
+          };
+
+          term = {
+            enable = true;
+            scripts.enable = true;
+            text.enable = true;
+          };
+        };
+      }
+      (lib.mkIf config.evie.wayland.enable {
+        evie = {
+          programs = {
+            chat.enable = true;
+            gui.enable = true;
+            qutebrowser.enable = true;
+          };
+          term = {
+            kitty.enable = true;
+            spotify = {
+              enable = true;
+              settings = {
+                client_id_command = "cat ${config.sops.secrets.spotifyAppClientId.path}";
+              };
+              keymap = {
+                keymaps = [
+                  {
+                    command = "NextTrack";
+                    key_sequence = "J";
+                  }
+                  {
+                    command = "PreviousTrack";
+                    key_sequence = "K";
+                  }
+                  {
+                    command = "ResumePause";
+                    key_sequence = "space";
+                  }
+                  {
+                    command = "Repeat";
+                    key_sequence = "C-r";
+                  }
+                  {
+                    command = "Shuffle";
+                    key_sequence = "C-s";
+                  }
+                  {
+                    command = "VolumeUp";
+                    key_sequence = "+";
+                  }
+                  {
+                    command = "VolumeDown";
+                    key_sequence = "-";
+                  }
+                  {
+                    command = "SeekForward";
+                    key_sequence = ">";
+                  }
+                  {
+                    command = "SeekBackward";
+                    key_sequence = "<";
+                  }
+                  {
+                    command = "Quit";
+                    key_sequence = "Q";
+                  }
+                  {
+                    command = "ClosePopup";
+                    key_sequence = "esc";
+                  }
+                  {
+                    command = "SelectNextOrScrollDown";
+                    key_sequence = "j";
+                  }
+                  {
+                    command = "SelectPreviousOrScrollUp";
+                    key_sequence = "k";
+                  }
+                  {
+                    command = "SelectFirstOrScrollToTop";
+                    key_sequence = "g g";
+                  }
+                  {
+                    command = "SelectLastOrScrollToBottom";
+                    key_sequence = "G";
+                  }
+                  {
+                    command = "ChooseSelected";
+                    key_sequence = "enter";
+                  }
+                  {
+                    command = "RefreshPlayback";
+                    key_sequence = "g r";
+                  }
+                  {
+                    command = "ShowActionsOnSelectedItem";
+                    key_sequence = "a s";
+                  }
+                  {
+                    command = "ShowActionsOnCurrentTrack";
+                    key_sequence = "a c";
+                  }
+                  {
+                    command = "Search";
+                    key_sequence = "/";
+                  }
+                  {
+                    command = "BrowseUserPlaylists";
+                    key_sequence = "f p";
+                  }
+                  {
+                    command = "BrowseFollowedArtists";
+                    key_sequence = "f a";
+                  }
+                  {
+                    command = "BrowseUserSavedAlbums";
+                    key_sequence = "f b";
+                  }
+                  {
+                    command = "CurrentlyPlayingContextPage";
+                    key_sequence = "f c";
+                  }
+                  {
+                    command = "LyricPage";
+                    key_sequence = "g v";
+                  }
+                  {
+                    command = "LibraryPage";
+                    key_sequence = "g l";
+                  }
+                  {
+                    command = "SearchPage";
+                    key_sequence = "g s";
+                  }
+                  {
+                    command = "BrowsePage";
+                    key_sequence = "g b";
+                  }
+                  {
+                    command = "Queue";
+                    key_sequence = "g q";
+                  }
+                  {
+                    command = "OpenCommandHelp";
+                    key_sequence = "?";
+                  }
+                  {
+                    command = "MovePlaylistItemUp";
+                    key_sequence = "C-k";
+                  }
+                  {
+                    command = "MovePlaylistItemDown";
+                    key_sequence = "C-j";
+                  }
+                  {
+                    command = "CreatePlaylist";
+                    key_sequence = "N";
+                  }
+                ];
+              };
+            };
+          };
+
+          wayland = {
+            eww.enable = true;
+            rofi.enable = true;
+            screenshot.enable = true;
+            swaync.enable = true;
+
+            hyprland.enable = true;
+            hypridle.enable = true;
+            hyprlock.enable = true;
+            hyprpaper.enable = true;
+          };
+        };
+      })
+    ]
+    );
 }
 

@@ -2,7 +2,8 @@
 let
   cfg = config.evie.wayland.eww;
   wayland = config.evie.wayland;
-  sshThelxinoe = if cfg.useSshMailCalendar then "ssh thelxinoe " else "";
+  # TODO: these settings should probably be here
+  sshThelxinoe = if wayland.useSshMailCalendar then "ssh thelxinoe " else "";
 in
 {
   options.evie.wayland.eww = {

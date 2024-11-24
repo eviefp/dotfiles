@@ -6,7 +6,7 @@
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.editors.emacs;
-  initFile = ../../../../config/init.el;
+  initFile = ../../../config/init.el;
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
     extraEmacsPackages = epkgs: [

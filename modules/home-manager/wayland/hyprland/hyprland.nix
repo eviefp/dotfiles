@@ -1,4 +1,4 @@
-{ dotfiles, config, pkgs, lib, ... }:
+{ dotfiles, config, pkgs, lib, osConfig, ... }:
 let
   cfg = config.evie.wayland.hyprland;
   wayland = config.evie.wayland;
