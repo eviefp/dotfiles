@@ -25,7 +25,6 @@
       };
       network = {
         hostName = "fractal";
-        interface = "eno1";
         extraPorts = [ 1025 1143 2049 ];
       };
       packages.extra = [ pkgs.git pkgs.wget pkgs.ntfs3g ];
