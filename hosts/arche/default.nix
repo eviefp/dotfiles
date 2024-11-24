@@ -1,11 +1,7 @@
 { dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
     common
-    hardware
-    wayland
 
     ./hardware.nix
 
@@ -17,6 +13,7 @@
         useUserPackages = true;
         extraSpecialArgs = { inherit dotfiles; };
         users.every = ./home.nix;
+        users.evie = ./home-evie.nix;
       };
     }
   ];
@@ -40,16 +37,22 @@
         "$6$2bJFtErxPXqeCEJO$w4K0Fm1WmRL3tpUUJxkesiBFsM03Q2/IrtX9QvJjIBH3bxlOr1VtMIgWhCtIR1B./3QtmBCKo4H8ajTk51JW2/";
     };
 
-    evie.network = {
-      hostName = "arche";
-      interface = "enp0s31f6";
+    evie = {
+      common.enable = true;
+      hardware = {
+        enable = true;
+        nvidia = {
+          enable = true;
+          useOpen = false;
+        };
+      };
+      network = {
+        hostName = "arche";
+      };
+
+      wayland.compositors = [ "hyprland" "plasma" ];
     };
 
-    evie.hardware.nvidia = {
-      enable = true;
-      useOpen = false;
-    };
 
-    evie.wayland.compositors = [ "hyprland" "plasma" ];
   };
 }
