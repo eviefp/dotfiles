@@ -2,6 +2,7 @@
 {
   imports = with dotfiles.self.nixosModules; [
     common
+
     ./hardware.nix
 
     dotfiles.home-manager.nixosModules.home-manager
