@@ -15,19 +15,6 @@ in
   };
 
   imports = lib.collect notAttrs (lib.filterAttrs removeCommon dotfiles.self.homeManagerModules);
-  #   with dotfiles.self.homeManagerModules; [
-  #   fonts
-  #   system
-  #
-  #   editors.emacs
-  #   editors.neovim
-  #   editors.helix
-  #
-  #   programs.term
-  #   programs.scripts
-  #   programs.ranger
-  #   programs.text
-  # ];
 
   config = lib.mkIf cfg.enable
     (lib.mkMerge [
