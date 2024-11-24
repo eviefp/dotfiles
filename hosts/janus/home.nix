@@ -2,40 +2,30 @@
 {
   imports = with dotfiles.self.homeManagerModules; [
     common
-    sops
-    programs.dev.default
-    gui
-    wayland.default
   ];
 
-  config = {
-    evie = {
-      programs.editors.emacs.locals = {
-        enable = true;
-        file = ./janus.el;
-      };
+  config.evie = {
 
-      wayland = {
-        eww-monitor = "1";
-        showBattery = true;
-        useSshMailCalendar = true;
-        showMail = false;
-        showCalendar = true;
-        monitors = [
-          {
-            name = "DP-1";
-            resolution = "1920x515@60.075001";
-            position = "0x1080";
-            keybind = "E";
-          }
-          {
-            name = "eDP-1";
-            resolution = "1920x1080@60.05";
-            position = "0x0";
-            keybind = "W";
-          }
-        ];
-      };
+    common.enable = true;
+    system = {
+      gpg.enable = true;
+    };
+
+    wayland = {
+      eww-monitor = "0";
+      showBattery = true;
+      useSshMailCalendar = false;
+      showMail = false;
+      showCalendar = false;
+      disabledMonitors = [ "DP-1" ];
+      monitors = [
+        {
+          name = "eDP-1";
+          resolution = "1920x1080@60.05";
+          position = "0x0";
+          keybind = "W";
+        }
+      ];
     };
   };
 }

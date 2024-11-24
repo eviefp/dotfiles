@@ -1,11 +1,7 @@
 { dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
     common
-    hardware
-    wayland
 
     ./hardware.nix
 
@@ -26,13 +22,19 @@
       vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
     };
 
-    evie.network = {
-      hostName = "janus";
-      wifi.enable = true;
+    evie = {
+      common.enable = true;
+      hardware.enable = true;
+      network = {
+        enable = true;
+        hostName = "janus";
+      };
+      packages.extra = [ pkgs.libva pkgs.libva-utils ];
+      wayland = {
+        enable = true;
+        compositors = [ "hyprland" ];
+      };
     };
 
-    evie.wayland.compositors = [ "hyprland" "river" ];
-
-    evie.packages.extra = [ pkgs.libva pkgs.libva-utils ];
   };
 }
