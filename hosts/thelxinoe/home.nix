@@ -31,7 +31,6 @@
       calendar.enable = true;
       email.enable = true;
       gpg.enable = true;
-      sops.enable = true;
     };
 
     wayland = {
