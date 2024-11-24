@@ -1,6 +1,13 @@
-{ dotfiles, lib, osConfig, pkgs, ... }:
+{ dotfiles, config, lib, pkgs, ... }:
+let
+  cfg = config.evie.wayland.hypridle;
+in
 {
-  config = lib.mkIf (lib.elem "hyprland" osConfig.evie.wayland.compositors) {
+  options.evie.wayland.hypridle = {
+    enable = lib.mkEnableOption "hypridle defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home = {
       file.".config/hypr/hypridle.conf".text = ''
         general {

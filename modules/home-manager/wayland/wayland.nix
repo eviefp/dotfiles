@@ -1,16 +1,8 @@
-{ dotfiles, lib, ... }:
+{ lib, ... }:
 {
-  imports = with dotfiles.self.homeManagerModules; [
-    wayland.hyprland.hyprland
-    wayland.river
-
-    wayland.swaync
-    wayland.eww
-    wayland.screenshot
-    wayland.rofi
-  ];
-
   options.evie.wayland = {
+    enable = lib.mkEnableOption "wayland defaults";
+
     wallpaperSkip = lib.mkOption {
       type = lib.types.int;
       default = 0;

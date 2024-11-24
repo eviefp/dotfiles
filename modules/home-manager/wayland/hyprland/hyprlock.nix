@@ -1,6 +1,13 @@
-{ dotfiles, pkgs, lib, osConfig, ... }:
+{ dotfiles, config, lib, pkgs, ... }:
+let
+  cfg = config.evie.wayland.hyprlock;
+in
 {
-  config = lib.mkIf (lib.elem "hyprland" osConfig.evie.wayland.compositors) {
+  options.evie.wayland.hyprlock = {
+    enable = lib.mkEnableOption "hyprlock defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     home = {
       file.".config/hypr/hyprlock.conf".text = ''
         general {
