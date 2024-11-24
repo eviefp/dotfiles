@@ -22,7 +22,6 @@
     };
     system = {
       gpg.enable = true;
-      sops.enable = true;
     };
 
     wayland = {
