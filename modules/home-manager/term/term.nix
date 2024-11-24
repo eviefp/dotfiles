@@ -22,7 +22,7 @@ let
     echo 'gpg-tui -- gpg tui'
     echo 'thokr -- typing tui'
     echo 'impala -- wifi tui'
-    echo 'bluetui -- wifi tui'
+    echo 'bluetui -- bluetooth tui'
     echo 'diskonaut -- disk space cleaner tui'
     echo 'confetty'
   '';
