@@ -21,9 +21,9 @@ in
     home.homeDirectory = "/home/${cfg.user}";
     home.stateVersion = osConfig.system.stateVersion;
 
-    # TODO: I don't think this is needed?
-    # home.sessionVariables = {
-    #   NIX_PATH = "nixpkgs=${dotfiles.nixpkgs}";
-    # };
+    # Turns out, this is needed.
+    home.sessionVariables = {
+      NIX_PATH = "nixpkgs=${dotfiles.nixpkgs}";
+    };
   };
 }
