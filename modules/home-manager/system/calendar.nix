@@ -2,7 +2,7 @@
   * Calendar module
   *
   * Set up calendar accounts.
-  * TODO: manually run 'vdirsyncer discover <name>' for each account.
+  * Manual setup: manually run 'vdirsyncer discover <name>' for each account.
   **************************************************************************/
 { lib, config, osConfig, ... }:
 let

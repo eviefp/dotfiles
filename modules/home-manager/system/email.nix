@@ -288,7 +288,6 @@ in
           };
         };
       };
-      # TODO: try himalaya
     };
 
     services = {
