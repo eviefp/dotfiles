@@ -1,11 +1,7 @@
 { dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
     common
-    hardware
-    wayland
 
     ./hardware.nix
 
@@ -26,16 +22,20 @@
       vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
     };
 
-    evie.network = {
-      hostName = "janus";
-      wifi.enable = true;
+    evie = {
+      common.enable = true;
+      hardware.enable = true;
+      network = {
+        enable = true;
+        enableWifi = true;
+        hostName = "janus";
+      };
+      packages.extra = [ pkgs.libva pkgs.libva-utils ];
+      wayland = {
+        enable = true;
+        compositors = [ "hyprland" ];
+      };
     };
 
-    evie.wayland.compositors = [ "hyprland" "river" ];
-
-    evie.packages.extra = [ pkgs.libva pkgs.libva-utils ];
-
-    # Randomly decided the NixOS version should be here.
-    system.stateVersion = "24.11";
   };
 }

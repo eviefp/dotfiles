@@ -1,6 +1,7 @@
 { dotfiles, config, pkgs, lib, osConfig, ... }:
 let
-  cfg = config.evie.wayland;
+  cfg = config.evie.wayland.hyprland;
+  wayland = config.evie.wayland;
   hyprland-package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
   switch-colors = pkgs.writeShellScriptBin "switch-colors" ''
     #!/usr/bin/env bash
@@ -27,13 +28,11 @@ let
   '';
 in
 {
-  imports = with dotfiles.self.homeManagerModules.wayland.hyprland; [
-    hyprpaper
-    hypridle
-    hyprlock
-  ];
+  options.evie.wayland.hyprland = {
+    enable = lib.mkEnableOption "hyprland defaults";
+  };
 
-  config = lib.mkIf (lib.elem "hyprland" osConfig.evie.wayland.compositors) {
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.egl-wayland
       pkgs.libsForQt5.qtwayland
@@ -65,8 +64,8 @@ in
 
       settings = {
         monitor =
-          map (mon: "${mon.name}, ${mon.resolution}, ${mon.position}, 1") cfg.monitors
-          ++ map (name: "${name}, disabled") cfg.disabledMonitors;
+          map (mon: "${mon.name}, ${mon.resolution}, ${mon.position}, 1") wayland.monitors
+          ++ map (name: "${name}, disabled") wayland.disabledMonitors;
 
         exec-once = [
           "swaync"
@@ -310,7 +309,7 @@ in
           "$shiftMod, m, moveoutofgroup,"
           "$mainMod, a, changegroupactive, b"
           "$mainMod, s, changegroupactive, f"
-        ] ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") cfg.monitors;
+        ] ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors;
 
         binde = [
           "$mainMod, H, resizeactive, -10 0"

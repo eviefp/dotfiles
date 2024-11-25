@@ -1,12 +1,7 @@
-{ dotfiles, pkgs, ... }:
+{ dotfiles, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
     common
-    peroxide
-    hardware
-    wayland
 
     ./hardware.nix
 
@@ -22,24 +17,22 @@
     }
   ];
 
-  config = {
-    evie.network = {
+  config.evie = {
+    common.enable = true;
+    hardware = {
+      enable = true;
+      amdgpu.enable = true;
+    };
+    network = {
+      enable = true;
       hostName = "thelxinoe";
-      interface = "enp4s0";
       extraPorts = [ 31234 ];
     };
-
-    evie.hardware.amdgpu = {
+    peroxide.enable = true;
+    wayland = {
       enable = true;
+      compositors = [ "hyprland" ];
     };
-
-    evie.wayland.compositors = [ "hyprland" ];
-    evie.services.peroxide = {
-      enable = true;
-      package = pkgs.callPackage dotfiles.self.nixosModules.peroxide-override { };
-    };
-
-    # Randomly decided the NixOS version should be here.
-    system.stateVersion = "25.05";
+    yubikey.enable = true;
   };
 }

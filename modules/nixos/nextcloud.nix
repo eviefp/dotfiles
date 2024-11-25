@@ -3,16 +3,20 @@
   *
   * Everything is hardcoded because I have a single server which hosts this. No
   * need to generalise!
+  * TODO: will I reuse this?
   **************************************************************************/
-{ lib, ... }:
+{ lib, config, ... }:
+let
+  cfg = config.evie.nextcloud;
+in
 {
   imports = [ ];
 
   options.evie.nextcloud = {
-    enable = lib.options.mkEnableOption "Enable NextCloud mode.";
+    enable = lib.options.mkEnableOption "Enable NextCloud service.";
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     fileSystems."/mnt/raid" = {
       device = "/dev/md126";
       label = "raid";

@@ -1,11 +1,7 @@
 { dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
-    dotfiles.lix-module.nixosModules.default
-
     common
-    hardware
-    wayland
 
     ./hardware.nix
 
@@ -21,21 +17,19 @@
     }
   ];
 
-  config = {
-    evie.network = {
+  config.evie = {
+    common.enable = true;
+    hardware.enable = true;
+    network = {
+      enable = true;
+      enableWifi = true;
       hostName = "aiode";
-      interface = "enp0s31f6";
-      wifi = {
-        enable = true;
-        interface = "wlp2s0";
-      };
     };
-
-    evie.wayland.compositors = [ "hyprland" "river" ];
-
-    evie.packages.extra = [ pkgs.libva pkgs.libva-utils ];
-
-    # Randomly decided the NixOS version should be here.
-    system.stateVersion = "24.11";
+    packages.extra = [ pkgs.libva pkgs.libva-utils ];
+    wayland = {
+      enable = true;
+      compositors = [ "hyprland" ];
+    };
+    yubikey.enable = true;
   };
 }

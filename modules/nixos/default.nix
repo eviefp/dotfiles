@@ -8,7 +8,6 @@
   nextcloud = ./nextcloud.nix;
   nix-settings = ./nix-settings.nix;
   packages = ./packages.nix;
-  peroxide-override = ./peroxide-override.nix;
   peroxide = ./peroxide.nix;
   services = ./services.nix;
   sops = ./sops.nix;

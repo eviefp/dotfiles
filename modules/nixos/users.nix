@@ -4,9 +4,16 @@
   * Nothing much to say here. Just my default user, along with the groups I needed
   * for various things.
   **************************************************************************/
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
+let
+  cfg = config.evie.users;
+in
 {
-  config = {
+  options.evie.users = {
+    enable = lib.mkEnableOption "users defaults";
+  };
+
+  config = lib.mkIf cfg.enable {
     programs.fish.enable = true;
 
     users = {

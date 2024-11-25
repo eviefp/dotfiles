@@ -1,9 +1,13 @@
-{ lib, osConfig, ... }:
+{ lib, config, ... }:
+let
+  cfg = config.evie.wayland.river;
+in
 {
-  config = lib.mkIf (lib.elem "river" osConfig.evie.wayland.compositors) {
-    home.packages = [
-    ];
+  options.evie.wayland.river = {
+    enable = lib.mkEnableOption "river defaults";
+  };
 
+  config = lib.mkIf cfg.enable {
     wayland.windowManager.river = {
       enable = true;
       extraConfig = ''

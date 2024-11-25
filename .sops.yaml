@@ -4,6 +4,7 @@ keys:
   - &janus age1mcmh3m8cy7rpu53r27cj6rcx6h30w8v8cjdv5dkhuxp4y5psvcxql70ppe
   - &aiode age1w4xku5n3fckgevkca8rt7xcmj0l8ynq09mp0usuhexgf3emh3ycsdj2rdg
   - &fractal age160yg0kapx3h3ks23h59mry0drhg6u5mawdqmsdx7m8x49laq7qgstyssgw
+  - &arche age1nrld44nukcc4rumexuz7ld78sjw4sf0nmyan3d6t3gkat3nmqc2qjsmlfy
   # users
   - &evie 6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD
 creation_rules:
@@ -16,3 +17,4 @@ creation_rules:
           - *janus
           - *aiode
           - *fractal
+          - *arche

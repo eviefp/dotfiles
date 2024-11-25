@@ -1,6 +1,12 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.evie.wayland.rofi;
+in
 {
-  config = {
+  options.evie.wayland.rofi = {
+    enable = lib.mkEnableOption "wayland defaults";
+  };
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.tessen
     ];

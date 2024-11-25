@@ -15,6 +15,7 @@ let
 in
 {
   options.evie.locale = {
+    enable = lib.mkEnableOption "locale";
     timeZone = lib.mkOption {
       default = "Europe/Bucharest";
       type = timezone;
@@ -28,9 +29,14 @@ in
         using timedatectl.
       '';
     };
+    systemFonts = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [ pkgs.nerdfonts ];
+      description = "List of fonts to install";
+    };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     i18n.defaultLocale = "en_US.UTF-8";
 
     console = {
@@ -38,7 +44,7 @@ in
       keyMap = "us";
     };
 
-    fonts.packages = [ pkgs.nerdfonts ];
+    fonts.packages = cfg.systemFonts;
 
     time.timeZone = cfg.timeZone;
   };
