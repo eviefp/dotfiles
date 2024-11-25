@@ -3,29 +3,32 @@
   *
   * This is basically just a shorthand for what most of my systems use.
   **************************************************************************/
-{ dotfiles, ... }:
+{ dotfiles, lib, config, ... }:
+let
+  cfg = config.evie.common;
+  removeCommon = n: _: n != "common";
+in
 {
-  imports = with dotfiles.self.nixosModules; [
-    nix-settings
-    boot
-    network
-    locale
-    packages
-    services
-    users
-    sops
-    yubikey
-  ];
+  options.evie.common = {
+    enable = lib.mkEnableOption "common config";
+  };
 
-  config = {
+  imports = lib.attrValues (lib.filterAttrs removeCommon dotfiles.self.nixosModules);
 
-    nixpkgs.overlays = [ (import dotfiles.emacs-overlay) ];
-    nixpkgs.config.allowUnfree = true;
-
-    evie.packages = {
-      enableDconf = true;
+  config = lib.mkIf cfg.enable {
+    evie = {
+      boot.enable = true;
+      locale.enable = true;
+      nix-settings.enable = true;
+      packages = {
+        enable = true;
+        enableDconf = true;
+      };
+      services.enable = true;
+      sops.enable = true;
+      users.enable = true;
     };
 
-    evie.services.xcompose = false;
+    system.stateVersion = "25.05";
   };
 }

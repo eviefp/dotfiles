@@ -5,7 +5,6 @@
 { lib, config, ... }:
 let
   cfg = config.evie.logind;
-
 in
 {
   imports = [ ];

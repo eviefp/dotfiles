@@ -1,16 +1,29 @@
-{ config, lib, pkgs, ... }:
+{ dotfiles, config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.evie.services.peroxide;
+  cfg = config.evie.peroxide;
   settingsFormat = pkgs.formats.yaml { };
+  # peroxide deletes the cache directory on startup, which requires write
+  # permission on the parent directory, so we can't use
+  # /var/cache/peroxide
   stateDir = "peroxide";
+  defaultSettings = {
+    UserPortImap = 1143;
+    UserPortSmtp = 1025;
+    ServerAddress = "[::0]";
+    X509Key = "/var/lib/${stateDir}/key.pem";
+    X509Cert = "/var/lib/${stateDir}/cert.pem";
+    CookieJar = "/var/lib/${stateDir}/cookies.json";
+    CredentialsStore = "/var/lib/${stateDir}/credentials.json";
+  };
 in
 {
-  options.evie.services.peroxide = {
+  options.evie.peroxide = {
     enable = mkEnableOption (lib.mdDoc "peroxide");
 
-    package = mkPackageOption pkgs "peroxide" {
-      default = [ "peroxide" ];
+    package = mkOption {
+      type = types.package;
+      default = pkgs.callPackage dotfiles.self.packages.peroxide { };
     };
 
     logLevel = mkOption {
@@ -27,25 +40,45 @@ in
         options = {
           UserPortImap = mkOption {
             type = types.port;
-            default = 1143;
+            default = defaultSettings.UserPortImap;
             description = lib.mdDoc "The port on which to listen for IMAP connections.";
           };
 
           UserPortSmtp = mkOption {
             type = types.port;
-            default = 1025;
+            default = defaultSettings.UserPortSmtp;
             description = lib.mdDoc "The port on which to listen for SMTP connections.";
           };
 
           ServerAddress = mkOption {
             type = types.str;
-            default = "[::0]";
+            default = defaultSettings.ServerAddress;
             example = "localhost";
             description = lib.mdDoc "The address on which to listen for connections.";
           };
+
+          X509Key = mkOption {
+            type = types.str;
+            default = defaultSettings.X509Key;
+          };
+
+          X509Cert = mkOption {
+            type = types.str;
+            default = defaultSettings.X509Cert;
+          };
+
+          CookieJar = mkOption {
+            type = types.str;
+            default = "/var/lib/${stateDir}/cookies.json";
+          };
+
+          CredentialsStore = mkOption {
+            type = types.str;
+            default = "/var/lib/${stateDir}/credentials.json";
+          };
         };
       };
-      default = { };
+      default = defaultSettings;
       description = lib.mdDoc ''
         Configuration for peroxide.  See
         [config.example.yaml](https://github.com/ljanyst/peroxide/blob/master/config.example.yaml)
@@ -55,17 +88,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    evie.services.peroxide.settings = {
-      # peroxide deletes the cache directory on startup, which requires write
-      # permission on the parent directory, so we can't use
-      # /var/cache/peroxide
-      CacheDir = "/var/cache/peroxide/cache";
-      X509Key = mkDefault "/var/lib/${stateDir}/key.pem";
-      X509Cert = mkDefault "/var/lib/${stateDir}/cert.pem";
-      CookieJar = "/var/lib/${stateDir}/cookies.json";
-      CredentialsStore = "/var/lib/${stateDir}/credentials.json";
-    };
-
     users.users.peroxide = {
       isSystemUser = true;
       group = "peroxide";
@@ -123,6 +145,4 @@ in
     environment.etc."peroxide.conf".source = settingsFormat.generate "peroxide.conf" cfg.settings;
     environment.systemPackages = [ cfg.package ];
   };
-
-  meta.maintainers = with maintainers; [ aanderse aidalgol ];
 }

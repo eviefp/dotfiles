@@ -5,10 +5,12 @@
   * home-manager).
   **************************************************************************/
 { lib, config, pkgs, ... }:
-let cfg = config.evie.packages;
+let
+  cfg = config.evie.packages;
 in
 {
   options.evie.packages = {
+    enable = lib.mkEnableOption "packages defaults";
     extra = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = [ ];

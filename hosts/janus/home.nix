@@ -1,33 +1,30 @@
-{ dotfiles, ... }:
+{ dotfiles, pkgs, ... }:
 {
   imports = with dotfiles.self.homeManagerModules; [
     common
-    sops
-    programs.dev.default
-    gui
-    wayland.default
   ];
 
   config = {
+    home.packages = [
+      pkgs.firefox
+    ];
+
     evie = {
-      programs.editors.emacs.locals = {
-        enable = true;
-        file = ./janus.el;
+      common.enable = true;
+
+      system = {
+        gpg.enable = true;
       };
 
       wayland = {
-        eww-monitor = "1";
+        enable = true;
+        eww-monitor = "0";
         showBattery = true;
-        useSshMailCalendar = true;
+        useSshMailCalendar = false;
         showMail = false;
-        showCalendar = true;
+        showCalendar = false;
+        disabledMonitors = [ "DP-1" ];
         monitors = [
-          {
-            name = "DP-1";
-            resolution = "1920x515@60.075001";
-            position = "0x1080";
-            keybind = "E";
-          }
           {
             name = "eDP-1";
             resolution = "1920x1080@60.05";
