@@ -4,7 +4,7 @@
 
 (defpoll sound :initial `{"svolume": 100, "sicon": "./assets/volume.png", "mvolume": 100, "micon": "./assets/mic-volume.png"}` :interval "1s" "~/.config/eww/scripts/get-sound.sh")
 
-(defpoll weather :interval "600s" "~/.config/eww/scripts/weather.sh")
+(defpoll weather :initial "{}" :interval "300s" "~/.config/eww/scripts/weather.sh")
 
 (deflisten notifications :initial `{ "text": "0", "alt": "none", "tooltip": "", "class": "none" }` "swaync-client -swb")
 (defpoll brightness :initial "100" :interval "1s" "~/.config/eww/scripts/get-brightness.sh")
