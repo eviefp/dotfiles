@@ -20,8 +20,13 @@
   config.evie = {
     common.enable = true;
     hardware = {
-      enable = true;
-      amdgpu.enable = true;
+      bluetooth.enable = true;
+      moonlander.enable = true;
+      pipewire.enable = true;
+      video = {
+        enable = true;
+        amdgpu.enable = true;
+      };
     };
     network = {
       enable = true;

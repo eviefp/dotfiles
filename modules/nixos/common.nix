@@ -7,13 +7,14 @@
 let
   cfg = config.evie.common;
   removeCommon = n: _: n != "common";
+  notAttrs = n: !(lib.isAttrs n);
 in
 {
   options.evie.common = {
     enable = lib.mkEnableOption "common config";
   };
 
-  imports = lib.attrValues (lib.filterAttrs removeCommon dotfiles.self.nixosModules);
+  imports = lib.collect notAttrs (lib.filterAttrs removeCommon dotfiles.self.nixosModules);
 
   config = lib.mkIf cfg.enable {
     evie = {

@@ -18,7 +18,8 @@ in
       pkgs.light
       pkgs.fdk_aac
       pkgs.paprefs # multi audio sink setup
-      pkgs.pavucontrol
+      pkgs.pwvucontrol
+      pkgs.sonusmix
       pkgs.steam
       pkgs.transmission_4-gtk
       pkgs.xournal

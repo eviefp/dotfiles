@@ -20,9 +20,6 @@
   config = {
     evie = {
       common.enable = true;
-      hardware = {
-        enable = true;
-      };
       network = {
         hostName = "fractal";
         extraPorts = [ 1025 1143 2049 ];
