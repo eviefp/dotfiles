@@ -13,7 +13,6 @@
         useUserPackages = true;
         extraSpecialArgs = { inherit dotfiles; };
         users.every = ./home.nix;
-        users.evie = ./home-evie.nix;
       };
     }
   ];
@@ -50,7 +49,10 @@
         hostName = "arche";
       };
 
-      wayland.compositors = [ "hyprland" "plasma" ];
+      wayland = {
+        enable = true;
+        compositors = [ "plasma" ];
+      };
     };
 
 
