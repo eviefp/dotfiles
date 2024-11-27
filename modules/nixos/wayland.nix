@@ -46,6 +46,7 @@ in
       })
 
       (lib.mkIf (lib.elem "plasma" cfg.compositors) {
+        services.displayManager.defaultSession = "plasma";
         services.desktopManager.plasma6.enable = true;
       })
     ]);

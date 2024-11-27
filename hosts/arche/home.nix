@@ -14,6 +14,10 @@
           user = "every";
         };
       };
+
+      wayland = {
+        enable = true;
+      };
     };
 
     home.packages = [
