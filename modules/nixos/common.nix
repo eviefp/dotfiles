@@ -20,10 +20,7 @@ in
       boot.enable = true;
       locale.enable = true;
       nix-settings.enable = true;
-      packages = {
-        enable = true;
-        enableDconf = true;
-      };
+      packages.enable = true;
       services.enable = true;
       sops.enable = true;
       users.enable = true;
