@@ -26,8 +26,6 @@ in
         <filename>/nix/var/nix/profiles/default</filename>.
       '';
     };
-
-    enableDconf = lib.mkEnableOption "Enable dconf.";
   };
 
   config = {
@@ -37,8 +35,8 @@ in
     ];
 
     programs = {
-      # TODO: can I remove this? Needed by home-manager?
-      dconf.enable = cfg.enableDconf;
+      # this is needed by home-manager
+      dconf.enable = true;
     };
   };
 }
