@@ -26,13 +26,16 @@
 
     wayland = {
       enable = true;
-      wallpaperSkip = 1;
-      eww-monitor = "0";
-      showBattery = true;
-      useSshMailCalendar = true;
-      showMail = false;
-      showCalendar = false;
-      showTV = true;
+      eww = {
+        enable = true;
+        wallpaperSkip = 1;
+        eww-monitor = "0";
+        showBattery = true;
+        useSshMailCalendar = true;
+        showMail = false;
+        showCalendar = false;
+        showTV = true;
+      };
       monitors = [
         {
           name = "eDP-1";
