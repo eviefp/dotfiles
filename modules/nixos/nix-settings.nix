@@ -30,7 +30,6 @@ in
           "ca-derivations"
           "flakes"
           "nix-command"
-          "no-url-literals"
           "repl-flake"
         ];
         nix-path = lib.mkForce "nixpkgs=${dotfiles.nixpkgs}";
