@@ -28,13 +28,15 @@
       enable = true;
       eww = {
         enable = true;
-        wallpaperSkip = 1;
         eww-monitor = "0";
         showBattery = true;
         useSshMailCalendar = true;
         showMail = false;
         showCalendar = false;
         showTV = true;
+      };
+      hyprpaper = {
+        wallpaperSkip = 1;
       };
       monitors = [
         {

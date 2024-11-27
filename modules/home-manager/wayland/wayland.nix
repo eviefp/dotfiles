@@ -3,11 +3,6 @@
   options.evie.wayland = {
     enable = lib.mkEnableOption "wayland defaults";
 
-    wallpaperSkip = lib.mkOption {
-      type = lib.types.int;
-      default = 0;
-    };
-
     disabledMonitors = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
