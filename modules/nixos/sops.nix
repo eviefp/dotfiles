@@ -60,6 +60,11 @@ in
           mode = "400";
           owner = "evie";
         };
+
+        weatherKey = {
+          mode = "400";
+          owner = "evie";
+        };
       };
     };
   };
