@@ -30,6 +30,9 @@ in
     programs.nixvim = {
       enable = true;
 
+      viAlias = true;
+      vimAlias = true;
+
       autoCmd = [
         {
           event = [ "BufEnter" ];
@@ -41,6 +44,7 @@ in
       globals = {
         mapleader = " ";
         maplocalleader = ",";
+        markdown_recommended_style = 0;
       };
 
       opts = {
@@ -94,7 +98,7 @@ in
           action = "";
         }
         {
-          key = "<leader>fn";
+          key = "<leader>fx";
           action = ":let @+ = expand(\"%\")<cr>";
         }
         {
@@ -224,7 +228,39 @@ in
           key = "<leader>ta";
           action = ":Tabularize ";
         }
-
+        # Obsidian
+        {
+          key = "<leader>fn";
+          action = ":ObsidianQuickSwitch<cr>";
+        }
+        {
+          key = "<leader>ot";
+          action = ":ObsidianTags<cr>";
+        }
+        {
+          key = "<leader>o1";
+          action = ":ObsidianToday<cr>";
+        }
+        {
+          key = "<leader>o2";
+          action = ":ObsidianTomorrow<cr>";
+        }
+        {
+          key = "<leader>ol";
+          action = ":ObsidianLink<cr>";
+        }
+        {
+          key = "<leader>oL";
+          action = ":ObsidianLinkNew<cr>";
+        }
+        {
+          key = "<leader>or";
+          action = ":ObsidianRename";
+        }
+        {
+          key = "<leader>ox";
+          action = ":ObsidianExtractNote<cr>";
+        }
       ];
 
       extraPlugins = [
@@ -689,6 +725,19 @@ in
             completion = {
               nvim_cmp = false;
               min_chars = 2;
+            };
+
+            ui = {
+              checkboxes = {
+                " " = {
+                  char = "󰄱";
+                  hl_group = "ObsidianTodo";
+                };
+                "x" = {
+                  char = "";
+                  hl_group = "ObsidianDone";
+                };
+              };
             };
           };
         };
