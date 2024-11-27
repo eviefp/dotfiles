@@ -1,13 +1,27 @@
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.wayland.eww;
-  wayland = config.evie.wayland;
-  # TODO: these settings should probably be here
-  sshThelxinoe = if wayland.useSshMailCalendar then "ssh thelxinoe " else "";
+  sshThelxinoe = if cfg.useSshMailCalendar then "ssh thelxinoe " else "";
 in
 {
   options.evie.wayland.eww = {
     enable = lib.mkEnableOption "enable eww";
+
+    eww-monitor = lib.mkOption {
+      type = lib.types.str;
+      default = "1";
+    };
+
+    showBattery = lib.options.mkEnableOption "Show battery widget?";
+
+    showTV = lib.options.mkEnableOption "Show tv widget?";
+
+    useSshMailCalendar = lib.options.mkEnableOption "Enable on non-thelxinoe";
+
+    showMail = lib.options.mkEnableOption "Show email widget?";
+
+    showCalendar = lib.options.mkEnableOption "Show calendar widget?";
+
   };
 
   config = lib.mkIf cfg.enable {
@@ -27,7 +41,7 @@ in
 
     home.file.".config/eww-extras/windows.yuck".text = ''
             (defwindow cal
-                       :monitor ${wayland.eww-monitor}
+                       :monitor ${cfg.eww-monitor}
             	   :geometry (geometry :x "35px"
             		               :y "5px"
             		               :width "300px"
@@ -39,7 +53,7 @@ in
             	   (cal-widget))
 
             (defwindow tz
-                       :monitor ${wayland.eww-monitor}
+                       :monitor ${cfg.eww-monitor}
             	   :geometry (geometry :x "35px"
             		               :y "5px"
             		               :width "250px"
@@ -51,7 +65,7 @@ in
             	   (timezone-widget))
 
             (defwindow cpu
-                       :monitor ${wayland.eww-monitor}
+                       :monitor ${cfg.eww-monitor}
             	   :geometry (geometry :x "350px"
             		               :y "10px"
             		               :width "600px"
@@ -63,7 +77,7 @@ in
             	   (cpu-widget))
 
             (defwindow  events
-                 :monitor ${wayland.eww-monitor}
+                 :monitor ${cfg.eww-monitor}
       	         :geometry (geometry :x "700px"
       		                           :y "5px"
       		                           :width "400px"
@@ -75,7 +89,7 @@ in
       	         (events-widget))
 
             (defwindow statusbar
-               :monitor ${wayland.eww-monitor}
+               :monitor ${cfg.eww-monitor}
                :geometry (geometry :x "0%"
             	               :y "5px"
             	               :width "98%"
@@ -85,10 +99,10 @@ in
                :exclusive "true"
                :focusable "false"
                (statusbar-widget
-                 :showBattery ${if wayland.showBattery then "true" else "false"}
-                 :showTV ${if wayland.showTV then "true" else "false"}
-                 :showMail ${if wayland.showMail then "true" else "false"}
-                 :showCalendar ${if wayland.showCalendar then "true" else "false"}
+                 :showBattery ${if cfg.showBattery then "true" else "false"}
+                 :showTV ${if cfg.showTV then "true" else "false"}
+                 :showMail ${if cfg.showMail then "true" else "false"}
+                 :showCalendar ${if cfg.showCalendar then "true" else "false"}
                ))
     '';
 

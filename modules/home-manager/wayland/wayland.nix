@@ -8,18 +8,6 @@
       default = 0;
     };
 
-    eww-monitor = lib.mkOption {
-      type = lib.types.str;
-      default = "1";
-    };
-
-    showBattery = lib.options.mkEnableOption "Show battery widget?";
-    showTV = lib.options.mkEnableOption "Show tv widget?";
-
-    useSshMailCalendar = lib.options.mkEnableOption "Enable on non-thelxinoe";
-    showMail = lib.options.mkEnableOption "Show email widget?";
-    showCalendar = lib.options.mkEnableOption "Show calendar widget?";
-
     disabledMonitors = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];

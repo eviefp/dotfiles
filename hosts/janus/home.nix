@@ -18,11 +18,13 @@
 
       wayland = {
         enable = true;
-        eww-monitor = "0";
-        showBattery = true;
-        useSshMailCalendar = false;
-        showMail = false;
-        showCalendar = false;
+        eww = {
+          eww-monitor = "0";
+          showBattery = true;
+          useSshMailCalendar = false;
+          showMail = false;
+          showCalendar = false;
+        };
         disabledMonitors = [ "DP-1" ];
         monitors = [
           {

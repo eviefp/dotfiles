@@ -35,11 +35,13 @@
 
     wayland = {
       enable = true;
-      eww-monitor = "2";
-      showTV = true;
-      useSshMailCalendar = false;
-      showMail = true;
-      showCalendar = true;
+      eww = {
+        eww-monitor = "2";
+        showTV = true;
+        useSshMailCalendar = false;
+        showMail = true;
+        showCalendar = true;
+      };
       monitors = [
         {
           name = "DP-3";
