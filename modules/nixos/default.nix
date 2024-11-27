@@ -1,7 +1,7 @@
 {
   boot = ./boot.nix;
   common = ./common.nix;
-  hardware = ./hardware.nix;
+  hardware = import ./hardware;
   locale = ./locale.nix;
   logind = ./logind.nix;
   network = ./network.nix;

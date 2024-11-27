@@ -19,7 +19,12 @@
 
   config.evie = {
     common.enable = true;
-    hardware.enable = true;
+    hardware = {
+      bluetooth.enable = true;
+      moonlander.enable = true;
+      pipewire.enable = true;
+      video.enable = true;
+    };
     network = {
       enable = true;
       enableWifi = true;

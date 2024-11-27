@@ -24,7 +24,11 @@
 
     evie = {
       common.enable = true;
-      hardware.enable = true;
+      hardware = {
+        bluetooth.enable = true;
+        pipewire.enable = true;
+        video.enable = true;
+      };
       network = {
         enable = true;
         enableWifi = true;
