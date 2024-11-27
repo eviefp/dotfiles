@@ -10,7 +10,6 @@ let
   };
   exp = pkgs.writeShellScriptBin "exp" ''
     echo 'cat foo | choose 2 1:-1'
-    echo 'sd find replace file'
     echo 'dust -- du, but nicer'
     echo 'gping [hosts..]'
     echo 'sudo below live -- todo: config'
@@ -34,21 +33,22 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.killall
-      pkgs.ripgrep
-      pkgs.wget
-      pkgs.unzip
-      pkgs.unrar
-      pkgs.zip
-      pkgs.sops
       dotfiles.porc.packages.${pkgs.system}.default
-      pkgs.nvd
       pkgs.calc
+      pkgs.dig
+      pkgs.killall
+      pkgs.nvd
+      pkgs.ripgrep
+      pkgs.sops
+      pkgs.unrar
+      pkgs.unzip
+      pkgs.wget
+      pkgs.zip
+      pkgs.sd
 
       # experiments
       pkgs.choose
       pkgs.du-dust
-      pkgs.sd
       pkgs.gping
       pkgs.below
       pkgs.ffmpegthumbnailer
