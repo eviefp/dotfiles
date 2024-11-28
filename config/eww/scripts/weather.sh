@@ -6,18 +6,19 @@ weather=`http 'http://api.weatherapi.com/v1/current.json?key='$apikey'&q=Buchare
 
 icon=`echo $weather | jq -r .current.condition.icon`
 
-http http:$icon -o /home/evie/.config/eww-extras/weather_tmp.png
+http get http:$icon -o /home/evie/.config/eww-extras/weather_tmp.png
 
 now=`date`
 fileType=`file -i /home/evie/.config/eww-extras/weather_tmp.png`
-echo $fileType
 if [[ "$fileType" == "/home/evie/.config/eww-extras/weather_tmp.png: image/png; charset=binary" ]]; then
     mv /home/evie/.config/eww-extras/weather_tmp.png /home/evie/.config/eww-extras/weather.png
     echo "$now success " >> /home/evie/.config/eww-extras/last-run
 else
-  echo "$now failure; weather: $weather" >> /home/evie/.config/eww-extras/last-run
-  echo "              icon   : $icon" >> /home/evie/.config/eww-extras/last-run
-  rm /home/evie/.config/eww-extras/weather_tmp.png
+  echo "$now *** failure" >> /home/evie/.config/eww-extras/last-run
+  echo "  -> weather : $weather" >> /home/evie/.config/eww-extras/last-run
+  echo "  -> icon    : $icon" >> /home/evie/.config/eww-extras/last-run
+  echo "  -> filetype: $filetype" >> /home/evie/.config/eww-extras/last-run
+  echo "\n\n" >> /home/evie/.config/eww-extras/last-run
 fi
 
 echo $weather
