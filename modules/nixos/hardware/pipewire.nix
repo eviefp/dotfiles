@@ -1,7 +1,7 @@
 /****************************************************************************
   * Pipewire
   **************************************************************************/
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.evie.hardware.pipewire;
 in
@@ -11,6 +11,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [
+      pkgs.pulseaudio
+    ];
     hardware.pulseaudio.enable = false;
     services. pipewire = {
       enable = true;

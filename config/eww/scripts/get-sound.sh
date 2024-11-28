@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-sound=`amixer get Master | tail -n1 | grep -wo 'on'`
+sinkMute=`pactl get-sink-mute @DEFAULT_SINK@ | choose 1`
 
-if [[ "$sound" == "on" ]]; then
-  svolume=`amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`
+if [[ "$sinkMute" == "no" ]]; then
+  svolume=`pactl get-sink-volume @DEFAULT_SINK@ | choose 4 | tr -d '[]%'`
 else
   svolume="0"
 fi
@@ -14,10 +14,12 @@ else
     sicon="./assets/mute.png"
 fi
 
-microphone=`amixer get Capture | tail -n1 | grep -wo 'on'`
+sname=`pactl get-default-sink`
 
-if [[ "$microphone" == "on" ]]; then
-  mvolume=`amixer get Capture | tail -n1 | awk -F ' ' '{print $4}' | tr -d '[]%'`
+sourceMute=`pactl get-source-mute @DEFAULT_SOURCE@ | choose 1`
+
+if [[ "$sourceMute" == "no" ]]; then
+  mvolume=`pactl get-source-volume @DEFAULT_SOURCE@ | choose 4 | tr -d '[]%'`
 else
   mvolume="0"
 fi
@@ -28,8 +30,12 @@ else
     micon="./assets/mic-mute.png"
 fi
 
+mname=`pactl get-default-source`
+
 echo \
     "{\"svolume\": \"$svolume\",\
       \"sicon\": \"$sicon\",\
+      \"sname\": \"$sname\",\
       \"mvolume\": \"$mvolume\",\
-      \"micon\": \"$micon\"}"
+      \"micon\": \"$micon\",\
+      \"mname\": \"$mname\"}"

@@ -93,10 +93,11 @@
 	         :space-evenly false
 	           (button
 	            :class "audio-button"
-	            :onclick "amixer set Master toggle"
+	            :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 	            (image
 	             :path "${sound.sicon}"
 	             :image-width 20
+                     :tooltip "${sound.sname}"
 	             :image-height 20))
 	           (revealer
 	            :transition "slideright"
@@ -109,7 +110,7 @@
 	                :tooltip "${sound.svolume}"
 	                :min 0
 	                :max 101
-	                :onchange "amixer -Mq set Master,0 {}% unmute")
+	                :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
 	           )))
 
 	    (eventbox
@@ -122,10 +123,11 @@
 	         :class "left-spacing"
 	           (button
 	            :class "audio-button"
-	            :onclick "amixer set Capture toggle"
+	            :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
 	            (image
 	             :path "${sound.micon}"
 	             :image-width 20
+                     :tooltip "${sound.mname}"
 	             :image-height 20))
 	       (revealer
 	        :transition "slideright"
@@ -138,7 +140,7 @@
 	            :tooltip "${sound.mvolume}"
 	            :min 0
 	            :max 101
-	            :onchange "amixer -Mq set Capture,0 {}% unmute"))
+                    :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"))
 	       ))
 
 	    (eventbox
