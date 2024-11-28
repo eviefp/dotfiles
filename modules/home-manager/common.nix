@@ -196,7 +196,6 @@ in
           wayland = {
             eww.enable = true;
             rofi.enable = true;
-            screenshot.enable = true;
             swaync.enable = true;
 
             hyprland.enable = true;
