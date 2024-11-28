@@ -24,6 +24,8 @@ let
     echo 'bluetui -- bluetooth tui'
     echo 'diskonaut -- disk space cleaner tui'
     echo 'confetty'
+    echo 'serpl - tui search and replace'
+    echo 'isw -i <seconds>[,seconds...]'
   '';
 in
 {
@@ -63,6 +65,8 @@ in
       pkgs.impala
       pkgs.bluetui
       pkgs.diskonaut
+      pkgs.serpl
+      dotfiles.self.packages.${pkgs.system}.isw
       exp
     ];
 
