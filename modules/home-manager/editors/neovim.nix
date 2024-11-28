@@ -426,10 +426,42 @@ in
 
         ## Completion
         coq-nvim = {
-          enable = true;
+          enable = false;
           installArtifacts = true;
           settings = {
             auto_start = true;
+          };
+        };
+
+        cmp = {
+          enable = true;
+          autoEnableSources = true;
+          settings = {
+            sources = [
+              { name = "async_path"; }
+              { name = "buffer"; }
+              { name = "calc"; }
+              { name = "cmdline"; }
+              { name = "cmp-cmdline-history"; }
+              { name = "cmp-pandoc"; }
+              { name = "cmp-dictionary"; }
+              { name = "emoji"; }
+              { name = "git"; }
+              { name = "nvim_lsp"; }
+              { name = "rg"; }
+              { name = "spell"; }
+              { name = "treesitter"; }
+            ];
+
+            window = {
+              completion = {
+                border = "rounded";
+                scrollbar = false;
+              };
+              documentation = {
+                border = "rounded";
+              };
+            };
           };
         };
 
@@ -723,7 +755,7 @@ in
             ];
 
             completion = {
-              nvim_cmp = false;
+              nvim_cmp = true;
               min_chars = 2;
             };
 
