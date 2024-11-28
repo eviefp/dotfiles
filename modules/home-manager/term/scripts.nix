@@ -5,7 +5,7 @@ let
   scrcpy = nuShellScript {
     name = "scrcpy";
     text = ''
-      scrcpy --video-codec=h265 -m1920 --max-fps=60 -K
+      scrcpy --video-codec=h265 -m1920 --max-fps=60 -K --legacy-paste
     '';
     runtimeInputs = [ pkgs.scrcpy ];
   };
