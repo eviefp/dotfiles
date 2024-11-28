@@ -65,6 +65,11 @@ in
           mode = "400";
           owner = "evie";
         };
+
+        twitchToken = {
+          mode = "400";
+          owner = "evie";
+        };
       };
     };
   };
