@@ -25,6 +25,7 @@
 
     programs = {
       streaming.enable = true;
+      twitch-tui.enable = true;
     };
 
     system = {
