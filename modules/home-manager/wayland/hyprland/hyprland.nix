@@ -33,16 +33,19 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    evie.wayland.screenshot.enable = true;
+
     home.packages = [
+      dotfiles.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+      dotfiles.hyprpicker.packages.${pkgs.system}.hyprpicker
       pkgs.egl-wayland
-      pkgs.libsForQt5.qtwayland
       pkgs.libsForQt5.qt5ct
+      pkgs.libsForQt5.qtwayland
+      pkgs.libva
       pkgs.qt6.qtwayland
       pkgs.qt6Packages.qt6ct
-      pkgs.libva
-      dotfiles.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+      pkgs.wl-clipboard
       pkgs.xdg-desktop-portal-gtk
-      dotfiles.hyprpicker.packages.${pkgs.system}.hyprpicker
 
       # clipboard history
       pkgs.cliphist
@@ -231,7 +234,7 @@ in
         "$terminal" = "kitty";
         "$menu" = "rofi -show drun";
         "$pass" = "tessen -p pass -d rofi -a autotype";
-        "$screenshot" = "grimblast copy area";
+        "$screenshot" = "${lib.getExe config.evie.wayland.screenshot.package}";
         "$cliphist" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
         "$notifications" = "swaync-client -t -sw";
         "$sleep" = "sleep 1s; hyprctl dispatch dpms off";

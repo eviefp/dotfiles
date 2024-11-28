@@ -1,16 +1,28 @@
-# TODO: export this as a script and use that in hyprland config
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, dotfiles, ... }:
 let
   cfg = config.evie.wayland.screenshot;
+  nuShellScript = dotfiles.self.packages.${pkgs.system}.nuShellScript;
+  screenshot = nuShellScript {
+    name = "screenshot";
+    text = ''
+      grimblast copy area
+    '';
+    runtimeInputs = [
+      pkgs.grimblast
+    ];
+  };
 in
 {
   options.evie.wayland.screenshot = {
     enable = lib.mkEnableOption "screenshot utils";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = screenshot;
+    };
   };
   config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.grimblast
-      pkgs.wl-clipboard
+      screenshot
     ];
   };
 }
