@@ -35,6 +35,7 @@
         showCalendar = false;
         showTV = true;
       };
+      hypridle.lock = true;
       hyprpaper = {
         wallpaperSkip = 1;
       };
