@@ -116,14 +116,17 @@
       in
       {
         formatter = treefmt.wrapper;
+
         checks = {
           fmt = treefmt.check dotfiles.self;
         };
+
+        packages = import ./packages { inherit pkgs; };
+
       })) //
     {
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
-      packages = import ./packages;
 
       nixosConfigurations.thelxinoe = dotfiles.nixpkgs.lib.nixosSystem {
         # The host needs to pass 'dotfiles' to the home-manager module import,

@@ -1,7 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, dotfiles, ... }:
 let
   cfg = config.evie.term.scripts;
-  nuShellScript = pkgs.callPackage ../../../lib/nuShellScript.nix { };
+  nuShellScript = dotfiles.self.packages.${pkgs.system}.nuShellScript; # pkgs.callPackage ../../../lib/nuShellScript.nix { };
   scrcpy = nuShellScript
     {
       name = "scrcpy";
