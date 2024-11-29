@@ -1,8 +1,7 @@
 { config, lib, pkgs, dotfiles, ... }:
 let
   cfg = config.evie.wayland.screenshot;
-  nuShellScript = dotfiles.self.packages.${pkgs.system}.nuShellScript;
-  screenshot = nuShellScript {
+  screenshot = dotfiles.self.lib.nuShellScript {
     name = "screenshot";
     text = ''
       grimblast copy area
