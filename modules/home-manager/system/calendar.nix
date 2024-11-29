@@ -82,5 +82,33 @@ in
       enable = true;
       frequency = "*:0/5";
     };
+
+    systemd.user.timers.calendar-notifier = {
+      Unit = {
+        Description = "Calendar notification";
+        After = [ "sops-nix.service" "eww.service" ];
+      };
+      Timer = {
+        Unit = "calendar-notifier.service";
+        OnBootSec = "15min";
+        OnUnitActiveSec = "45s";
+      };
+      Install = {
+        WantedBy = [ "hyprland-session.target" ];
+      };
+    };
+    systemd.user.services.calendar-notifier = {
+      Unit = {
+        Description = "Calendar notification";
+        After = [ "sops-nix.service" "eww.service" ];
+      };
+
+      Install = { WantedBy = [ "hyprland-session.target" ]; };
+
+      Service = {
+        Type = "oneshot";
+        ExecStart = "/home/evie/.config/eww/scripts/get-next-calendar-entry.nu notify";
+      };
+    };
   };
 }

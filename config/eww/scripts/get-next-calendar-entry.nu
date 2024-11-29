@@ -42,7 +42,7 @@ def diff($finish; $start):
     | jq -scM ($jqArgs)
   )
 
-  if $type != 'single' {
+  if $type == 'notify' {
     let result = $json | from json
     let now = 'now' | into datetime
 
