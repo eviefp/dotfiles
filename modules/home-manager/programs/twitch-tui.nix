@@ -2,8 +2,7 @@
 let
   cfg = config.evie.programs.twitch-tui;
   settingsFormat = pkgs.formats.toml { };
-  nuShellScript = dotfiles.self.packages.${pkgs.system}.nuShellScript;
-  wrapper = pkg: nuShellScript {
+  wrapper = pkg: dotfiles.self.lib.nuShellScript {
     name = "twitch-tui";
     text = ''
       let secret = (cat ${osConfig.sops.secrets.twitchToken.path})

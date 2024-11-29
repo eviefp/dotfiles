@@ -128,6 +128,14 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
+      lib =
+        let
+          pkgs = import dotfiles.nixpkgs {
+            system = "x86_64-linux";
+          };
+        in
+        import ./lib { inherit pkgs; };
+
       nixosConfigurations.thelxinoe = dotfiles.nixpkgs.lib.nixosSystem {
         # The host needs to pass 'dotfiles' to the home-manager module import,
         # which results in an infinite recursion error if this was replaced by
@@ -173,5 +181,6 @@
         ];
       };
     }
+
   ;
 }
