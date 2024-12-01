@@ -18,6 +18,7 @@
 
       wayland = {
         enable = true;
+        hyprland.enable = true;
         eww = {
           eww-monitor = "0";
           showBattery = true;

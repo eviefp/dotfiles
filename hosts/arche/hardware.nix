@@ -14,7 +14,7 @@
   boot.kernelModules = [
     "kvm-intel"
     "nvidia"
-    "nvidia_mideset"
+    "nvidia_modeset"
     "nvidia_uvm"
     "nvidia_drm"
     "alif_hash"
