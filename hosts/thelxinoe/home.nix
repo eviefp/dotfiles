@@ -36,6 +36,7 @@
 
     wayland = {
       enable = true;
+      hyprland.enable = true;
       eww = {
         eww-monitor = "2";
         showTV = true;

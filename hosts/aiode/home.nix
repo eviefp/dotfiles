@@ -26,6 +26,7 @@
 
     wayland = {
       enable = true;
+      hyprland.enable = true;
       eww = {
         enable = true;
         eww-monitor = "0";

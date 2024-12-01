@@ -193,12 +193,11 @@ in
             };
           };
 
-          wayland = {
+          wayland = lib.mkIf config.evie.wayland.hyprland.enable {
             eww.enable = true;
             rofi.enable = true;
             swaync.enable = true;
 
-            hyprland.enable = true;
             hypridle.enable = true;
             hyprlock.enable = true;
             hyprpaper.enable = true;

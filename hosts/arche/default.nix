@@ -39,13 +39,14 @@
     evie = {
       common.enable = true;
       hardware = {
+        enable = true;
         bluetooth.enable = true;
         pipewire.enable = true;
         video = {
           enable = true;
           nvidia = {
             enable = true;
-            useOpen = false;
+            useOpen = true;
           };
         };
       };
