@@ -71,6 +71,26 @@ in
         firstweekday = 1;
 
       };
+      settings = {
+        keybindings = {
+          delete = "d";
+          down = "j";
+          duplicate = "p";
+          export = "x";
+          external_edit = "e";
+          left = "h";
+          log = "L";
+          mark = "v";
+          new = "n";
+          other = "o";
+          right = "l";
+          save = "ctrl enter";
+          search = "/";
+          today = "t";
+          up = "k";
+          view = "enter";
+        };
+      };
       # format: "%A, %d %B, %H:%M"
     };
 
