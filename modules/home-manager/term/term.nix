@@ -341,6 +341,7 @@ in
           gf = "git fetch";
           gb = "git br";
           vi = "nvim";
+          ki = "khal interactive";
         };
         environmentVariables = {
           KEYID_EVIE = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
