@@ -1,4 +1,5 @@
 {
+  experimental = ./experimental.nix;
   kitty = ./kitty.nix;
   ranger = ./ranger.nix;
   scripts = ./scripts.nix;
