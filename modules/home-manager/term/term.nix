@@ -8,25 +8,6 @@ let
   scripts = {
     crypto = pkgs.concatScript "crypto" [ ../../../scripts/crypto.nu ];
   };
-  exp = pkgs.writeShellScriptBin "exp" ''
-    echo 'cat foo | choose 2 1:-1'
-    echo 'dust -- du, but nicer'
-    echo 'gping [hosts..]'
-    echo 'sudo below live -- todo: config'
-    echo 'yazi -- file term'
-    echo 'bandwhich -- bandwith info'
-    echo 'systemctl-tui'
-    echo 'serie -- pretty git log graph'
-    echo 'rainfrog --url <PGCONN> --driver postgres -- pretty git log graph'
-    echo 'gpg-tui -- gpg tui'
-    echo 'thokr -- typing tui'
-    echo 'impala -- wifi tui'
-    echo 'bluetui -- bluetooth tui'
-    echo 'diskonaut -- disk space cleaner tui'
-    echo 'confetty'
-    echo 'serpl - tui search and replace'
-    echo 'isw -i <seconds>[,seconds...]'
-  '';
 in
 {
   options.evie.term = {
@@ -48,27 +29,6 @@ in
       pkgs.wget
       pkgs.zip
       pkgs.sd
-
-      # experiments
-      pkgs.choose
-      pkgs.du-dust
-      pkgs.gping
-      pkgs.below
-      pkgs.ffmpegthumbnailer
-      pkgs.nix-tree
-      pkgs.bandwhich
-      pkgs.confetty
-      pkgs.systemctl-tui
-      pkgs.serie
-      pkgs.rainfrog
-      pkgs.thokr
-      pkgs.gpg-tui
-      pkgs.impala
-      pkgs.bluetui
-      pkgs.diskonaut
-      pkgs.serpl
-      dotfiles.self.packages.${pkgs.system}.isw
-      exp
     ];
 
     home.file.".config/gitu/config.toml".text = ''

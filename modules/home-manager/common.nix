@@ -35,6 +35,7 @@ in
 
           term = {
             enable = true;
+            experimental.enable = true;
             scripts.enable = true;
             text.enable = true;
           };
