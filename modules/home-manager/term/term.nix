@@ -420,32 +420,6 @@ stash_menu.quit = ["q", "<esc>"]
         enableBashIntegration = true;
       };
 
-      ncspot = {
-        enable = true;
-        settings = {
-          command_ley = ":";
-          initial_screen = "library";
-          use_nerdfont = true;
-          notify = true;
-          keybindings = {
-            "?" = "help";
-            "q" = "quit";
-
-            "Space" = "playpause";
-            "r" = "repeat";
-            "s" = "shuffle";
-
-            "Shift+h" = "prev";
-            "Shift+l" = "next";
-
-            "Ctrl+s" = "focus search";
-            "Ctrl+q" = "focus queue";
-            "Ctrl+l" = "focus library";
-            "Ctrl+c" = "share current";
-          };
-        };
-      };
-
       starship = {
         enable = true;
         enableFishIntegration = true;
@@ -507,7 +481,6 @@ stash_menu.quit = ["q", "<esc>"]
         enableNushellIntegration = true;
       };
 
-      ## Experimental
       hyfetch = {
         enable = true;
         settings = {
@@ -587,20 +560,6 @@ stash_menu.quit = ["q", "<esc>"]
         hidden = true;
       };
 
-      broot = {
-        enable = true;
-        enableFishIntegration = true;
-        enableBashIntegration = true;
-        settings = {
-          modal = false;
-          skin = { default = "none none / gray(20) none"; };
-        };
-      };
-
-      lazygit = {
-        enable = true;
-      };
-
       yazi = {
         enable = true;
         enableBashIntegration = true;
@@ -641,24 +600,6 @@ stash_menu.quit = ["q", "<esc>"]
         #   ];
         # };
       };
-
-      joshuto = {
-        enable = false;
-        settings = {
-          xdg_open = true;
-          use_trash = false;
-          max_preview_size = 10000000;
-          display = {
-            show_hidden = true;
-          };
-          preview = {
-            preview_protocol = "kitty";
-            use_xdg_thumbs = true;
-            xdg_thumb_size = "xxlarge";
-          };
-        };
-      };
-
     };
   };
 }
