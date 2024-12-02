@@ -171,6 +171,10 @@ in
         #   key = "<leader>fm";
         #   action = "<cmd>lua vim.lsp.buf.format()<cr>";
         # }
+        {
+          key = "<leader>gb";
+          action = "<cmd>BlameToggle<cr>";
+        }
         ## Git/gitsigns
         {
           key = "<leader>gs";
