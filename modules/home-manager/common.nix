@@ -38,6 +38,7 @@ in
             experimental.enable = true;
             scripts.enable = true;
             text.enable = true;
+            tui.enable = true;
           };
         };
       }
