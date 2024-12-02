@@ -43,6 +43,22 @@ in
     };
 
     programs = {
+      feh = {
+        enable = true;
+        keybindings = {
+          zoom_in = [ "plus" "J" ];
+          zoom_out = [ "minus" "K" ];
+          zoom_default = "0";
+          scroll_left = "h";
+          scroll_right = "l";
+          scroll_up = "k";
+          scroll_down = "j";
+          quit = "q";
+          next_img = "Right";
+          prev_img = "Left";
+        };
+      };
+
       mpv = {
         enable = true;
         config = {
