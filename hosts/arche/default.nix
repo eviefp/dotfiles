@@ -39,7 +39,6 @@
     evie = {
       common.enable = true;
       hardware = {
-        enable = true;
         bluetooth.enable = true;
         pipewire.enable = true;
         video = {
