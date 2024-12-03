@@ -470,7 +470,7 @@ in
             mapping = {
               "<C-j>" = "cmp.mapping.select_next_item()";
               "<C-k>" = "cmp.mapping.select_prev_item()";
-              "<CR>" = "cmp.mapping.confirm({ select = true })";
+              "<C-CR>" = "cmp.mapping.confirm({ select = false })";
               "<C-e>" = "cmp.mapping.close()";
             };
           };
