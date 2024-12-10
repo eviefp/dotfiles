@@ -320,6 +320,12 @@ in
       ];
 
       extraConfigLua = ''
+        local originalNotify = vim.notify
+        vim.notify = function (msg, log_level, optopts)
+          -- TODO: only ignore the message about textDocument/documentColor
+          -- originalNotify(msg, log_level, opts)
+        end
+
         require('nu').setup{}
 
         require('nvim-surround').setup{}
@@ -443,13 +449,7 @@ in
           settings = {
             sources = [
               { name = "async_path"; }
-              { name = "buffer"; }
-              { name = "calc"; }
-              { name = "cmdline"; }
-              { name = "cmp-cmdline-history"; }
-              { name = "cmp-pandoc"; }
               { name = "cmp-dictionary"; }
-              { name = "emoji"; }
               { name = "git"; }
               { name = "nvim_lsp"; }
               { name = "rg"; }
@@ -664,10 +664,12 @@ in
             hls = {
               enable = true;
               installGhc = false;
+              package = null;
               extraOptions = {
                 settings = {
                   haskell = {
                     formattingProvider = "ormolu";
+                    cabalFormattingProvider = "cabalfmt";
                   };
                 };
               };
@@ -675,6 +677,7 @@ in
 
             rust_analyzer = {
               enable = true;
+              package = null;
               installRustc = false;
               installCargo = false;
             };
