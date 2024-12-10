@@ -143,7 +143,7 @@ in
                     key_sequence = "f p";
                   }
                   {
-                    command = "BrowseFollowedArtists";
+                    command = "BrowseUserFollowedArtists";
                     key_sequence = "f a";
                   }
                   {
