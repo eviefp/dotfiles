@@ -17,7 +17,6 @@ in
       pkgs.fira-code
       pkgs.font-awesome
       pkgs.monaspace
-      pkgs.nerdfonts
     ];
 
     fonts.fontconfig.enable = true;
