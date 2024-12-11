@@ -23,7 +23,7 @@ in
       pkgs.coppwr
       pkgs.steam
       pkgs.transmission_4-gtk
-      pkgs.xournal
+      pkgs.xournalpp
       pkgs.libreoffice
 
       pkgs.gimp

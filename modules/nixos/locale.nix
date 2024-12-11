@@ -31,7 +31,7 @@ in
     };
     systemFonts = lib.mkOption {
       type = lib.types.listOf lib.types.package;
-      default = [ pkgs.nerdfonts ];
+      default = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
       description = "List of fonts to install";
     };
   };
@@ -44,7 +44,8 @@ in
       keyMap = "us";
     };
 
-    fonts.packages = cfg.systemFonts;
+    fonts.packages = cfg.systemFonts
+    ;
 
     time.timeZone = cfg.timeZone;
   };
