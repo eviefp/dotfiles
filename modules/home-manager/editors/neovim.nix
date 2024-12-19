@@ -137,40 +137,12 @@ in
         }
         {
           key = "<leader>ac";
-          action = "<cmd>Lspsaga code_action<cr>";
-        }
-        {
-          key = "<leader>fi";
-          action = "<cmd>Lspsaga incoming_calls<cr>";
-        }
-        {
-          key = "<leader>fo";
-          action = "<cmd>Lspsaga outgoing_calls<cr>";
-        }
-        {
-          key = "]d";
-          action = "<cmd>Lspsaga diagnostic_jump_next<cr>";
-        }
-        {
-          key = "[d";
-          action = "<cmd>Lspsaga diagnostic_jump_prev<cr>";
-        }
-        {
-          key = "<leader>fr";
-          action = "<cmd>Lspsaga finder<cr>";
+          action = "<cmd>lua require('actions-preview').code_actions()<cr>";
         }
         {
           key = "<C-t>";
           action = "<cmd>lua require('FTerm').toggle()<cr>";
         }
-        # {
-        #   key = "<C-o>";
-        #   action = "<cmd>Lspsaga term_toggle<cr>";
-        # }
-        # {
-        #   key = "<leader>fm";
-        #   action = "<cmd>lua vim.lsp.buf.format()<cr>";
-        # }
         {
           key = "<leader>gb";
           action = "<cmd>BlameToggle<cr>";
@@ -317,6 +289,7 @@ in
         }) # :Gh
         pkgs.vimPlugins.nvim-sops
         pkgs.vimPlugins.tabular # :Tabularize
+        pkgs.vimPlugins.actions-preview-nvim
       ];
 
       extraConfigLua = ''
@@ -355,6 +328,13 @@ in
 
         require('litee.lib').setup {}
         require('litee.gh').setup {}
+
+        require('actions-preview').setup {
+          highlight_command = {
+            require('actions-preview.highlight').delta()
+          },
+          backend = { 'telescope' },
+        }
       '';
 
       colorschemes.vscode = {
@@ -740,8 +720,15 @@ in
           enableLspFormat = false;
         };
 
-        lspsaga = {
+        trouble = {
           enable = true;
+          settings = {
+            auto_refresh = true;
+          };
+        };
+
+        lspsaga = {
+          enable = false; # buggy :/
           symbolInWinbar = {
             enable = true;
           };
