@@ -240,7 +240,16 @@ in
       ];
 
       extraPlugins = [
-        pkgs.vimPlugins.nvim-nu
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "nvim-nu";
+          version = "2024-12-10";
+          src = pkgs.fetchFromGitHub {
+            owner = "LhKipp";
+            repo = "nvim-nu";
+            rev = "161b005944e1d0704d1c8c83dcfc9b6b459a2d2d";
+            hash = "sha256-mW6m1SqZEpP0hVmMh6ORZY3afJoS5aUBUHlTza9b+w8=";
+          };
+        })
         pkgs.vimPlugins.nvim-surround
         (pkgs.vimUtils.buildVimPlugin {
           inherit (pkgs.luaPackages.lua-utils-nvim) pname version src;
@@ -272,8 +281,8 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "2KAbhishek";
             repo = "co-author.nvim";
-            rev = "db0debbde453c0ce10d1b925cd9f3139e4291c42";
-            hash = "sha256-ItUjSbuTNUSRKV3Ei77y4jH6hPJQNMP1bpcmv7GtTR8=";
+            rev = "e6458cb9d42266336a92e750c9452ac12ee03079";
+            hash = "sha256-kL3y6CfbdIqBJFFWgDpQAzvHCk7/z8GpxjMQoLD1usk=";
           };
         }) # :CoAuthor
         pkgs.vimPlugins.litee-nvim # needed by gh.nvim
