@@ -762,6 +762,10 @@ in
                 name = "notes";
                 path = "~/code/notes";
               }
+              {
+                name = "eviero";
+                path = "~/code/blog/eviero/site/wiki";
+              }
             ];
 
             completion = {
