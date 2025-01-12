@@ -265,7 +265,7 @@ in
       };
 
       astroid = {
-        enable = true;
+        enable = false;
         externalEditor = "kitty -e nvim %1";
         extraConfig = {
           editor = {
