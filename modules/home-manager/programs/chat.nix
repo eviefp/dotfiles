@@ -15,7 +15,7 @@ in
     home.packages = [
       pkgs.discord
       pkgs.signal-desktop
-      pkgs.element-desktop-wayland
+      pkgs.element-desktop
       pkgs.chatterino2
     ];
   };

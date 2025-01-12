@@ -240,26 +240,8 @@ in
       ];
 
       extraPlugins = [
-        (pkgs.vimUtils.buildVimPlugin {
-          pname = "nvim-nu";
-          version = "2024-12-10";
-          src = pkgs.fetchFromGitHub {
-            owner = "LhKipp";
-            repo = "nvim-nu";
-            rev = "161b005944e1d0704d1c8c83dcfc9b6b459a2d2d";
-            hash = "sha256-mW6m1SqZEpP0hVmMh6ORZY3afJoS5aUBUHlTza9b+w8=";
-          };
-        })
+        pkgs.vimPlugins.nvim-nu
         pkgs.vimPlugins.nvim-surround
-        (pkgs.vimUtils.buildVimPlugin {
-          inherit (pkgs.luaPackages.lua-utils-nvim) pname version src;
-        }) # same
-        (pkgs.vimUtils.buildVimPlugin {
-          inherit (pkgs.luaPackages.pathlib-nvim) pname version src;
-        }) # same as below
-        (pkgs.vimUtils.buildVimPlugin {
-          inherit (pkgs.luaPackages.nvim-nio) pname version src;
-        }) # ???, probably needed by something else?
         pkgs.vimPlugins.lualine-lsp-progress
         pkgs.vimPlugins.tiny-inline-diagnostic-nvim # nicer diagnostic, overlaps with ]d a bit
         (pkgs.vimUtils.buildVimPlugin {
@@ -285,17 +267,6 @@ in
             hash = "sha256-kL3y6CfbdIqBJFFWgDpQAzvHCk7/z8GpxjMQoLD1usk=";
           };
         }) # :CoAuthor
-        pkgs.vimPlugins.litee-nvim # needed by gh.nvim
-        (pkgs.vimUtils.buildVimPlugin {
-          pname = "gh.nvim";
-          version = "v1.0";
-          src = pkgs.fetchFromGitHub {
-            owner = "ldelossa";
-            repo = "gh.nvim";
-            rev = "ebbaac254ef7dd6f85b439825fbce82d0dc84515";
-            hash = "sha256-5MWv/TpJSJfPY3y2dC1f2T/9sP4wn0kZ0Sed5OOFM5c=";
-          };
-        }) # :Gh
         pkgs.vimPlugins.nvim-sops
         pkgs.vimPlugins.tabular # :Tabularize
         pkgs.vimPlugins.actions-preview-nvim
@@ -334,9 +305,6 @@ in
         })
 
         require('FTerm').setup {}
-
-        require('litee.lib').setup {}
-        require('litee.gh').setup {}
 
         require('actions-preview').setup {
           highlight_command = {

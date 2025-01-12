@@ -62,6 +62,7 @@ in
       pinentryPackage = pkgs.pinentry-gtk2;
       extraConfig = ''
         ttyname $GPG_TTY
+        no-allow-external-cache
       '';
     };
   };
