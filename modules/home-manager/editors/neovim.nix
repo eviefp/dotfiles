@@ -639,6 +639,16 @@ in
               installCargo = false;
             };
 
+            ts_ls = {
+              enable = true;
+              package = null;
+            };
+
+            gopls = {
+              enable = true;
+              package = null;
+            };
+
             nushell = {
               enable = true;
             };
