@@ -688,7 +688,9 @@ in
               bash = [ "shellcheck" "shfmt" ];
               markdown = [ "mdsf" ];
               javascript = [ "prettier" ];
+              javascriptreact = [ "prettier" ];
               typescript = [ "prettier" ];
+              typescriptreact = [ "prettier" ];
               cabalproject = [ "cabal_fmt" ];
               purescript = [ "purs-tidy" ];
               rust = [ "rustfmt" ];
