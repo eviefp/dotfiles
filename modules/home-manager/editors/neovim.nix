@@ -642,6 +642,7 @@ in
             ts_ls = {
               enable = true;
               package = null;
+              rootDir = ''require("lspconfig").util.root_pattern("package.json", "tsconfig.json")'';
             };
 
             gopls = {
@@ -691,6 +692,8 @@ in
               javascriptreact = [ "prettier" ];
               typescript = [ "prettier" ];
               typescriptreact = [ "prettier" ];
+              "javascript.tsx" = [ "prettier" ];
+              "typescript.tsx" = [ "prettier" ];
               cabalproject = [ "cabal_fmt" ];
               purescript = [ "purs-tidy" ];
               rust = [ "rustfmt" ];
