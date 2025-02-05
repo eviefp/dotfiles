@@ -34,6 +34,23 @@ in
             sort_by = "natural";
             show_hidden = true;
           };
+          open = {
+            prepend_rules = [
+              {
+                name = "*.pdf";
+                use = "zathura";
+              }
+            ];
+          };
+          opener = {
+            zathura = [
+              {
+                run = "zathura";
+                orphan = false;
+                for = "unix";
+              }
+            ];
+          };
         };
         # keymap = {
         #   manager.keymap = [

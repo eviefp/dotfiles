@@ -139,14 +139,6 @@ in
           '';
         }
         {
-          name = "diskonaut";
-          package = pkgs.diskonaut;
-          short = "usage per directory";
-          help = ''
-            diskonaut
-          '';
-        }
-        {
           name = "serpl";
           package = pkgs.serpl;
           short = "search and replace tui";
