@@ -36,7 +36,6 @@ in
     evie.wayland.screenshot.enable = true;
 
     home.packages = [
-      dotfiles.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
       dotfiles.hyprpicker.packages.${pkgs.system}.hyprpicker
       pkgs.egl-wayland
       pkgs.libsForQt5.qt5ct
@@ -59,6 +58,8 @@ in
       enable = true;
 
       package = hyprland-package;
+
+      portalPackage = dotfiles.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
 
       plugins = [
       ];
