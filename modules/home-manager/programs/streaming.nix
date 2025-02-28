@@ -12,7 +12,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.davinci-resolve pkgs.ffmpeg-full pkgs.kdenlive ];
+    home.packages = [ pkgs.davinci-resolve pkgs.ffmpeg-full pkgs.kdePackages.kdenlive ];
     programs = {
       obs-studio = {
         enable = true;
