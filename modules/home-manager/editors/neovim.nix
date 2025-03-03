@@ -362,11 +362,11 @@ in
           settings = {
             graph_style = "unicode";
             disable_insert_on_commit = true;
-            console_timeout = 10000; # password input can be slow
-            # integrations = {
-            #   telescope = true;
-            #   diffview = true;
-            # };
+            # console_timeout = 10000; # password input can be slow
+            integrations = {
+              telescope = true;
+              diffview = true;
+            };
           };
         };
 
@@ -389,6 +389,7 @@ in
 
         diffview = {
           enable = true;
+          enhancedDiffHl = true;
         };
 
         ## Completion
