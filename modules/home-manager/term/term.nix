@@ -284,8 +284,7 @@ in
 
       carapace = {
         enable = true;
-        enableBashIntegration = true;
-        enableFishIntegration = true;
+        enableFishIntegration = false;
         enableNushellIntegration = true;
       };
 
