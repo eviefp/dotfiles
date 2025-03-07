@@ -491,7 +491,6 @@ in
             norg
             ocaml
             ocaml_interface
-            org
             perl
             purescript
             python
