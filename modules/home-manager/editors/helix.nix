@@ -12,7 +12,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.file.".config/helix/themes/gh_dark_transparent.toml".source = ../../../../config/gh_dark_transparent.toml;
+    home.file.".config/helix/themes/gh_dark_transparent.toml".source = ./../../../config/gh_dark_transparent.toml;
 
     programs.helix = {
       package = pkgs.helix;
@@ -20,7 +20,7 @@ in
       languages.language = [
         {
           name = "haskell";
-          auto-format = true;
+          auto-format = false;
           scope = "source.haskell";
           file-types = [ "hs" ];
           roots = [ "flake.nix" "cabal.project" ];
@@ -29,7 +29,7 @@ in
         }
         {
           name = "nix";
-          auto-format = true;
+          auto-format = false;
           formatter.command = "nixpkgs-fmt";
           language-servers = [ "nil" ];
           indent.tab-width = 2;
@@ -37,14 +37,14 @@ in
         }
         {
           name = "rust";
-          auto-format = true;
+          auto-format = false;
           file-types = [ "rs" ];
           roots = [ "Cargo.toml" "Cargo.lock" ];
           language-servers = [ "rust-analyzer" ];
         }
         {
           name = "purescript";
-          auto-format = true;
+          auto-format = false;
           formatter.command = "purs-tidy";
           language-servers = [ "purescript-language-server" ];
           roots = [ "spago.yaml" "spago.dhall" ];

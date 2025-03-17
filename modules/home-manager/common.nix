@@ -26,6 +26,7 @@ in
           };
           editors = {
             neovim.enable = true;
+            helix.enable = true;
           };
 
           system = {
