@@ -148,7 +148,7 @@
  (setq evil-vsplit-window-right t)
  (setq evil-want-integration t)
  (setq evil-want-keybinding nil)
- (evil-mode 1)
+ (evil-mode)
  (evil-declare-change-repeat 'company-complete))
 
 (use-package
@@ -166,7 +166,7 @@
  evil-surround
  :ensure t
  :init
- (global-evil-surround-mode 1)
+ ;(global-evil-surround-mode)
  (evil-define-key 'visual evil-surround-mode-map "s" 'evil-surround-region)
  (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region))
 
@@ -278,9 +278,9 @@
  (setq projectile-project-search-path
        '("~/code/"
 	 "~/code/blog/"
-	 "~/code/experiments/"
-	 "~/code/oss/"
-         "~/code/lean/"))
+         "~/code/tests/"
+         "~/code/extra-garnix/"
+	 "~/code/oss/"))
  :config (projectile-discover-projects-in-search-path) (projectile-mode +1)
  :general
  ;; format: off
@@ -862,7 +862,7 @@
 
 (use-package htmlize :ensure t)
 
-(require 'lean4-mode)
+;(require 'lean4-mode)
 
 (use-package
  sops

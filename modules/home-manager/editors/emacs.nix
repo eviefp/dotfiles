@@ -9,6 +9,10 @@ let
   initFile = ../../../config/init.el;
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
     config = initFile;
+
+    defaultInitFile = true;
+    alwaysEnsure = true;
+
     extraEmacsPackages = epkgs: [
       epkgs.rainbow-delimiters
       epkgs.treesit-grammars.with-all-grammars

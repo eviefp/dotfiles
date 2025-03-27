@@ -61,14 +61,6 @@ in
             key_sequence = "C-s";
           }
           {
-            command = "VolumeUp";
-            key_sequence = "+";
-          }
-          {
-            command = "VolumeDown";
-            key_sequence = "-";
-          }
-          {
             command = "SeekForward";
             key_sequence = ">";
           }
@@ -137,7 +129,7 @@ in
             key_sequence = "f c";
           }
           {
-            command = "LyricPage";
+            command = "LyricsPage";
             key_sequence = "g v";
           }
           {
