@@ -781,19 +781,6 @@
 
 (use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
 
-(use-package
- ranger
- :ensure t
- :init
- (setq helm-descbinds-window-style 'same-window)
- (setq ranger-cleanup-on-disable t)
- (setq ranger-cleanup-eagerly t)
- (setq ranger-show-hidden t)
- (setq ranger-modify-header t)
- (setq ranger-preview-file t)
- :config (ranger-override-dired-mode t)
- :general (general-define-key :keymaps 'normal "SPC r a" 'ranger))
-
 (use-package wgrep :ensure t)
 
 (use-package

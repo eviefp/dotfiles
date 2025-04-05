@@ -7,6 +7,8 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixpkgs2411.url = "github:NixOS/nixpkgs/nixos-24.11-small";
+
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
@@ -106,6 +108,9 @@
         pkgs = import dotfiles.nixpkgs {
           inherit system;
         };
+        pkgs-2411 = import dotfiles.nixpkgs2411 {
+          inherit system;
+        };
         treefmt-config = {
           projectRootFile = "flake.nix";
           programs = {
@@ -121,7 +126,7 @@
           fmt = treefmt.check dotfiles.self;
         };
 
-        packages = import ./packages { inherit pkgs; };
+        packages = import ./packages { inherit pkgs; inherit pkgs-2411; };
 
       })) //
     {
