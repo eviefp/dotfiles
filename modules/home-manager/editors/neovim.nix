@@ -622,7 +622,7 @@ in
               enable = true;
               installGhc = false;
               package = null;
-              cmd = [ "haskell-language-server-wrapper" "--logfile" "hls.log" "--lsp" ]; # "--debug" ];
+              cmd = [ "haskell-language-server-wrapper" "--logfile" "hls.log" "--debug" "--lsp" ]; # "--debug" ];
               extraOptions = {
                 settings = {
                   haskell = {

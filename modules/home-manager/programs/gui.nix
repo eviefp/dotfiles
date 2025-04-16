@@ -23,7 +23,7 @@ in
       pkgs.coppwr
       pkgs.steam
       pkgs.instawow
-      pkgs.transmission_4-gtk
+      pkgs.transmission_3-gtk
       pkgs.xournalpp
       pkgs.libreoffice
 

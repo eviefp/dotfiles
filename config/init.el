@@ -428,7 +428,14 @@
  :config
    (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
    (setq lsp-modeline-code-actions-segments '(count icon name))
- :hook ((haskell-mode . lsp) (lsp-mode . lsp-enable-which-key-integration)) (nix-mode . lsp) (rust-mode . lsp) (typescript-ts-mode . lsp)
+   :hook (
+	  (haskell-mode . lsp)
+	  (lsp-mode . lsp-enable-which-key-integration)
+	  (nix-mode . lsp)
+	  (rust-mode . lsp)
+	  (typescript-ts-mode . lsp)
+	  (lsp-bridge-mode . lsp)
+	  )
  :general
  ;; format: off
  (general-define-key
@@ -439,6 +446,12 @@
   ", l" 'haskell-process-load-file)
  ;; format: on
  )
+
+(use-package
+  lsp-bridge
+  :ensure t
+  :init
+  (global-lsp-bridge-mode))
 
 (use-package
   elixir-mode
