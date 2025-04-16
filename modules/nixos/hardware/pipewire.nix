@@ -28,6 +28,7 @@ in
         enable = true;
       };
     };
+    security.rtkit.enable = true;
   };
 }
 
