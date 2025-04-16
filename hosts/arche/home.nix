@@ -17,6 +17,22 @@
 
       wayland = {
         enable = true;
+        hyprland.enable = true;
+        eww = {
+          eww-monitor = "1";
+          showTV = false;
+          useSshMailCalendar = false;
+          showMail = false;
+          showCalendar = false;
+        };
+        monitors = [
+          {
+            name = "HDMI-A-%";
+            resolution = "1920x1080@60";
+            position = "0x0";
+            keybind = "W";
+          }
+        ];
       };
     };
 

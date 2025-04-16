@@ -32,6 +32,10 @@ in
     {
       hostName = cfg.hostName;
       useDHCP = true;
+      dhcpcd = {
+        wait = "background";
+        IPv6rs = false;
+      };
       firewall.allowedTCPPorts = lib.lists.unique
         (builtins.concatLists [ [ 22 80 443 1143 8080 ] cfg.extraPorts ]);
       hosts = {
