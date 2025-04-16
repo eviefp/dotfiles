@@ -10,7 +10,7 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-jw6uoMNdU7sm0CF5199xyQtFJB98vP0TlzDjWzw+TPw=";
   };
 
-  cargoHash = "sha256-n/lpStXu48gCzgXwRCVv824/30zK6OPUfh11wf7anDg=";
+  cargoHash = "sha256-JMe3UJLkpCO+slwSHxCbVMZfnE9rqniPXxqJdmeKPLc=";
 
   meta = {
     description = "a simple terminal stopwatch application";
