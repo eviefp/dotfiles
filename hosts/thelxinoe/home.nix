@@ -21,6 +21,7 @@
           file = ./thelxinoe.el;
         };
       };
+      neovim.obsidian = true;
     };
 
     programs = {

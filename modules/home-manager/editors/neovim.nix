@@ -14,6 +14,8 @@ in
 
   options.evie.editors.neovim = {
     enable = lib.mkEnableOption "neovim defaults";
+    obsidian = lib.mkEnableOption "enable obsidian";
+
   };
 
   config = lib.mkIf cfg.enable {
@@ -738,7 +740,7 @@ in
           };
         };
 
-        obsidian = {
+        obsidian = lib.mkIf cfg.obsidian {
           enable = true;
           settings = {
             workspaces = [
