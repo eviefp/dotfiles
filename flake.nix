@@ -36,12 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     porc = {
       url = "github:soenkehahn/porc/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -177,12 +171,6 @@
         specialArgs = { inherit dotfiles; };
         modules = [
           ./hosts/arche
-        ];
-      };
-
-      nixOnDroidConfigurations.thanatos = dotfiles.nix-on-droid.lib.nixOnDroidConfiguration {
-        modules = [
-          ./hosts/thanatos
         ];
       };
     }
