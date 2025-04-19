@@ -55,7 +55,7 @@
 
       wayland = {
         enable = true;
-        compositors = [ "plasma" ];
+        compositors = [ "hyprland" "plasma" ];
       };
     };
 
