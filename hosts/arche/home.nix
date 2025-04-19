@@ -19,7 +19,7 @@
         enable = true;
         hyprland.enable = true;
         eww = {
-          eww-monitor = "1";
+          eww-monitor = "0";
           showTV = false;
           useSshMailCalendar = false;
           showMail = false;

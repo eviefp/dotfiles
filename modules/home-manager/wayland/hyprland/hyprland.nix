@@ -260,6 +260,7 @@ in
           "$shiftMod, V, exec, $cliphist"
           "$mainMod, F, togglefloating,"
           "$mainMod, P, exec, $menu"
+          "$mainMod, Space, exec, $menu"
           "$mainMod, O, exec, $pass"
           "$mainMod, N, exec, $notifications"
           "$mainMod, Z, exec, $toggleTimezones"
