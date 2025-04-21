@@ -675,7 +675,7 @@
       wayland = {
         enable = true;
         hyprland.enable = true;
-        eww.enable = lib.mkForce 20 false;
+        eww.enable = lib.mkForce false;
         monitors = [
           {
             name = "HDMI-A-%";

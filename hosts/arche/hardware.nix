@@ -11,6 +11,7 @@
     "usbhid"
     "sd_mod"
   ];
+  boot.blacklistedKernelModules = [ "kms" "nouveau" ];
   boot.kernelModules = [
     "kvm-intel"
     "nvidia"
