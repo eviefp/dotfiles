@@ -11,13 +11,13 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.blacklistedKernelModules = [ "kms" "nouveau" ];
+  boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [
     "kvm-intel"
-    "nvidia"
-    "nvidia_modeset"
-    "nvidia_uvm"
-    "nvidia_drm"
+    # "nvidia"
+    # "nvidia_modeset"
+    # "nvidia_uvm"
+    # "nvidia_drm"
     "alif_hash"
     "algif_skcipher"
   ];
