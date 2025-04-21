@@ -11,18 +11,19 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.blacklistedKernelModules = [ "nouveau" ];
+  boot.blacklistedKernelModules = [ "nouveau" "nvidiafb" ];
   boot.kernelModules = [
     "kvm-intel"
-    # "nvidia"
-    # "nvidia_modeset"
-    # "nvidia_uvm"
-    # "nvidia_drm"
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_uvm"
+    "nvidia_drm"
     "alif_hash"
     "algif_skcipher"
   ];
 
   hardware.enableRedistributableFirmware = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.cpu.intel.updateMicrocode = true;
 
