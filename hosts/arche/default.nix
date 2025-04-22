@@ -45,7 +45,7 @@
           enable = true;
           nvidia = {
             enable = true;
-            useOpen = true;
+            useOpen = false;
           };
         };
       };

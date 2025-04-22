@@ -36,7 +36,7 @@ in
       hardware.nvidia = {
         modesetting.enable = true;
         open = cfg.nvidia.useOpen;
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaSettings = true;
       };
     })
