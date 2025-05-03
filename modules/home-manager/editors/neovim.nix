@@ -645,7 +645,7 @@ in
             ts_ls = {
               enable = true;
               package = null;
-              rootDir = ''require("lspconfig").util.root_pattern("package.json", "tsconfig.json")'';
+              rootMarkers = [ "package.json" "tsconfig.json" ];
             };
 
             gopls = {
@@ -665,7 +665,6 @@ in
               enable = true;
               package = null;
               extraOptions = {
-                root_dir.__raw = "require('lspconfig').util.root_pattern('spago.dhall')";
                 settings.purescript = {
                   formatter = "purs-tidy";
                   addSpagoSources = true;
