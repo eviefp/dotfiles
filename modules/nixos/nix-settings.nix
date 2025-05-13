@@ -30,8 +30,6 @@ in
           "ca-derivations"
           "flakes"
           "nix-command"
-          "repl-flake"
-          "recursive-nix"
         ];
         nix-path = lib.mkForce "nixpkgs=${dotfiles.nixpkgs}";
       };
