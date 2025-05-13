@@ -252,8 +252,8 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "FabijanZulj";
             repo = "blame.nvim";
-            rev = "39bb4cda9e658d053a43919b10ca52c0a4d738e1";
-            hash = "sha256-9eI+4nv9vu0BlsuUk9n0d0k4jY4tu1RRO4yqItKwBkQ=";
+            rev = "b87b8c820e4cec06fbbd2f946b7b35c45906ee0c";
+            hash = "sha256-v4ieZ7NIWP1khvrcyzTSGX6IHHn0kjZICbyRqS2xqHM=";
           };
         }) # :Blame, but would be nice if it could go recursively
         pkgs.vimPlugins.outline-nvim # lsp outline, todo keybind
@@ -265,8 +265,8 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "2KAbhishek";
             repo = "co-author.nvim";
-            rev = "e6458cb9d42266336a92e750c9452ac12ee03079";
-            hash = "sha256-kL3y6CfbdIqBJFFWgDpQAzvHCk7/z8GpxjMQoLD1usk=";
+            rev = "362a04007356a41f650b006fbd317d3761d65aab";
+            hash = "sha256-H9hE4gC2mp2hEYGWwtWUS8IowhxJBieUMn/10fcv2I0=";
           };
         }) # :CoAuthor
         pkgs.vimPlugins.nvim-sops

@@ -59,7 +59,7 @@ in
       defaultCacheTtlSsh = 60;
       maxCacheTtl = 120;
       maxCacheTtlSsh = 120;
-      pinentryPackage = pkgs.pinentry-gtk2;
+      pinentry.package = pkgs.pinentry-gtk2;
       extraConfig = ''
         ttyname $GPG_TTY
         no-allow-external-cache
