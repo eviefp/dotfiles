@@ -16,7 +16,7 @@ in
       pkgs.discord
       pkgs.signal-desktop
       pkgs.element-desktop
-      # pkgs.chatterino2 broken
+      pkgs.chatterino2
     ];
   };
 }
