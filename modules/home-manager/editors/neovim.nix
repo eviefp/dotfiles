@@ -490,7 +490,6 @@ in
             nginx
             nim
             nix
-            norg
             ocaml
             ocaml_interface
             perl
