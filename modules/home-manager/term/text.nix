@@ -22,7 +22,7 @@ in
       pkgs.mailcap
       pkgs.ispell
       pkgs.pandoc
-      # pkgs.tectonic -- broken
+      pkgs.tectonic
       pkgs.texlab
     ];
 
