@@ -41,6 +41,9 @@ in
       };
     })
     (lib.mkIf cfg.amdgpu.enable {
+      environment.systemPackages = [ pkgs.lact ];
+      systemd.packages = [ pkgs.lact ];
+      systemd.services.lact.wantedBy = [ "multi-user.target" ];
       hardware.amdgpu = {
         initrd.enable = true;
         opencl.enable = true;
