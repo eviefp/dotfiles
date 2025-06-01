@@ -37,7 +37,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.evie_password.path}";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.peroxide_thelxinoe.path}";
 
           imap = {
             host = "thelxinoe";
@@ -72,59 +72,6 @@ in
 
           notmuch.enable = true;
           astroid.enable = true;
-        };
-
-        garnix = {
-          primary = false;
-          address = "eciobanu@garnix.io";
-          userName = "eciobanu@garnix.io";
-          realName = "Evie Ciobanu";
-
-          gpg = {
-            key = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
-            signByDefault = false;
-          };
-
-          signature = {
-            text = ''
-
-              -- Evie
-            '';
-            showSignature = "append";
-          };
-
-          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.garnix_password.path}";
-
-          imap = {
-            host = "imap.gmail.com";
-            port = 993;
-            tls = {
-              enable = true;
-              # useStartTls = true;
-            };
-          };
-
-          smtp = {
-            host = "smtp.gmail.com";
-            port = 587;
-            tls = {
-              enable = true;
-              useStartTls = true;
-            };
-          };
-
-          mbsync = {
-            enable = true;
-            create = "both";
-            remove = "both";
-          };
-
-          msmtp = {
-            enable = true;
-          };
-
-          notmuch.enable = true;
-          himalaya.enable = true;
         };
 
         gmail-primary = {
@@ -253,12 +200,12 @@ in
         hooks = {
           postNew = ''
             notmuch tag +evie -unsorted -- to:*@eevie.ro
-            notmuch tag +garnix -unsorted -- to:*@garnix.io
+            notmuch tag +evie -unsorted -- to:me@eevie.ro
+            notmuch tag +evie -unsorted -- to:'Evie Ciobanu'
             notmuch tag +gmail -unsorted -- to:*evie*@gmail.com
             notmuch tag +hf -unsorted -- from:*@haskell.foundation
             notmuch tag +hf -unsorted -- to:*@haskell.foundation
             notmuch tag +sent -unsorted -- from:*@eevie.ro
-            notmuch tag +sent -unsorted -- from:eciobanu@garnix.io
             notmuch tag --remove-all +junk -- to:glamira@eevie.ro
           '';
         };
@@ -274,10 +221,9 @@ in
           startup.queries = {
             "a_important" = "tag:important";
             "b_unread" = "tag:unread";
-            "c_inbox" = "tag:gmail or tag:evie or tag:garnix";
+            "c_inbox" = "tag:gmail or tag:evie";
             "d_unsorted" = "tag:unsorted";
             "e_evie" = "tag:evie";
-            "f_garnix" = "tag:garnix";
             "g_gmail" = "tag:gmail";
           };
           thread_view = {

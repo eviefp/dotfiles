@@ -23,7 +23,7 @@ in
           mode = "444";
         };
 
-        evie_password = {
+        peroxide_thelxinoe = {
           mode = "400";
           owner = "evie";
         };
