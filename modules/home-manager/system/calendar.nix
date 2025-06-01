@@ -36,24 +36,6 @@ in
             conflictResolution = "remote wins";
           };
         };
-        garnix = {
-          khal = {
-            enable = true;
-            # addresses = [ "alexa.eviest@gmail.com" "alexaeviest@gmail.com" ];
-            color = "light green";
-            type = "discover";
-          };
-          remote.type = "google_calendar";
-          vdirsyncer = {
-            enable = true;
-            metadata = [ "color" ];
-            tokenFile = "/home/evie/.local/share/vdirsyncer/garnix-token";
-            clientIdCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientId.path}" ];
-            clientSecretCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientSecret.path}" ];
-            collections = [ "from a" "from b" ];
-            conflictResolution = "remote wins";
-          };
-        };
       };
     };
 
