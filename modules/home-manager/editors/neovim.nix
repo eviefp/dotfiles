@@ -627,7 +627,7 @@ in
               extraOptions = {
                 settings = {
                   haskell = {
-                    formattingProvider = "ormolu";
+                    formattingProvider = "fourmolu";
                     cabalFormattingProvider = "cabalfmt";
                   };
                 };
@@ -680,11 +680,11 @@ in
           settings = {
 
             formatters_by_ft = {
-              # haskell = {
-              #   __unkeyed-1 = "fourmolu";
-              #   __unkeyed-2 = "ormolu";
-              #   stop_after_first = true;
-              # };
+              haskell = {
+                __unkeyed-1 = "fourmolu";
+                __unkeyed-2 = "ormolu";
+                stop_after_first = true;
+              };
               go = [ "gofmt" ];
               nix = [ "nixpkgs_fmt" ];
               bash = [ "shellcheck" "shfmt" ];
