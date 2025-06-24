@@ -3,6 +3,7 @@ let
   cfg = config.evie.term;
   scripts = {
     crypto = pkgs.concatScript "crypto" [ ../../../scripts/crypto.nu ];
+    misc = pkgs.concatScript "misc" [ ../../../scripts/misc.nu ];
   };
 in
 {
@@ -247,9 +248,11 @@ in
         };
         environmentVariables = {
           KEYID_EVIE = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
+          EDITOR = "nvim";
         };
         configFile.text = ''
           use ${scripts.crypto} *
+          use ${scripts.misc} *
           $env.config = {
             edit_mode: vi
             shell_integration: {
