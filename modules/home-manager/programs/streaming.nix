@@ -8,7 +8,7 @@ let
 in
 {
   options.evie.programs.streaming = {
-    enable = lib.mkEnableOption "qutebrowser defaults";
+    enable = lib.mkEnableOption "streaming defaults";
   };
 
   config = lib.mkIf cfg.enable {
