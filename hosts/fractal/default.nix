@@ -22,6 +22,7 @@
     networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 ];
     evie = {
       common.enable = true;
+      minecraft.enable = true;
       network = {
         hostName = "fractal";
         extraPorts = [ 111 1025 1143 2049 4000 4001 4002 ];
