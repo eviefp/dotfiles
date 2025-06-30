@@ -1,6 +1,18 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.evie.minecraft;
+  mode = {
+    survival = 0;
+    creative = 1;
+    adventure = 2;
+    default = 5;
+  };
+  difficulty = {
+    peaceful = 0;
+    easy = 1;
+    normal = 2;
+    hard = 3;
+  };
 in
 {
   imports = [ ];
@@ -17,8 +29,8 @@ in
       declarative = true;
 
       serverProperties = {
-        gamemode = 1; # creative
-        difficulty = 0; # peaceful
+        gamemode = mode.survival;
+        difficulty = difficulty.peaceful;
         motd = "evie";
 
         # white-list = true;
