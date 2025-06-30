@@ -14,7 +14,6 @@ in
       enable = true;
       eula = true;
       openFirewall = true;
-      enableReload = true;
       declarative = true;
 
       serverProperties = {
@@ -33,14 +32,14 @@ in
 
       # see hotspot docs for more info:
       # https://docs.oracle.com/en/java/javase/11/gctuning/garbage-first-garbage-collector-tuning.html
-      jvmOpts = builtins.concatStringsSep " " [
-        "-Xms2G"
-        "-Xmx3G"
-        "-XX:+CMSIncrementalPacing"
-        "-XX:+CMSClassUnloadingEnabled"
-        "-XX:+ParallelRefProcEnabled"
-        "-XX:+DisableExplicitGC"
-      ];
+      # jvmOpts = builtins.concatStringsSep " " [
+      #   "-Xms2G"
+      #   "-Xmx3G"
+      #   "-XX:+CMSIncrementalPacing"
+      #   "-XX:+CMSClassUnloadingEnabled"
+      #   "-XX:+ParallelRefProcEnabled"
+      #   "-XX:+DisableExplicitGC"
+      # ];
     };
   };
 }
