@@ -5,6 +5,16 @@
 { dotfiles, lib, config, ... }:
 let
   cfg = config.evie.nix-settings;
+  lxml-skip-tests = final: prev: {
+    python313 = prev.python313.override {
+      packageOverrides = pyfinal: pyprev: {
+        lxml-html-clean = pyprev.lxml-html-clean.overridePythonAttrs (oldAttrs: {
+          doCheck = false;
+        });
+      };
+    };
+  };
+
 in
 {
   options.evie.nix-settings = {
@@ -27,7 +37,6 @@ in
           "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         ];
         extra-experimental-features = [
-          "ca-derivations"
           "flakes"
           "nix-command"
         ];
@@ -43,7 +52,7 @@ in
     };
 
     nixpkgs = {
-      overlays = [ (import dotfiles.emacs-overlay) ];
+      overlays = [ (import dotfiles.emacs-overlay) lxml-skip-tests ];
       config.allowUnfree = true;
     };
   };

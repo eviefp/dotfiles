@@ -4,6 +4,7 @@
   hardware = import ./hardware;
   locale = ./locale.nix;
   logind = ./logind.nix;
+  minecraft = ./minecraft.nix;
   network = ./network.nix;
   nextcloud = ./nextcloud.nix;
   nix-settings = ./nix-settings.nix;

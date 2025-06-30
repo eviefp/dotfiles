@@ -22,6 +22,7 @@ in
       pkgs.sonusmix
       pkgs.coppwr
       pkgs.steam
+      pkgs.prismlauncher
       pkgs.instawow
       pkgs.transmission_3-gtk
       pkgs.xournalpp
