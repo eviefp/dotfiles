@@ -1223,11 +1223,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1750762203,
-        "narHash": "sha256-LmQhjQ7c+AOkwhvR9GFgJOy8oHW35MoQRELtrwyVnPw=",
-        "rev": "38b358ce27203f972faa2973cf44ba80c758f46e",
+        "lastModified": 1751235704,
+        "narHash": "sha256-J4ycLoXHPsoBoQtEXFCelL4xlq5pT8U9tNWNKm43+YI=",
+        "rev": "1d7368585eebaa2c4bdbcb88fe600cfb2239b2c6",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/38b358ce27203f972faa2973cf44ba80c758f46e.tar.gz?rev=38b358ce27203f972faa2973cf44ba80c758f46e"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/1d7368585eebaa2c4bdbcb88fe600cfb2239b2c6.tar.gz?rev=1d7368585eebaa2c4bdbcb88fe600cfb2239b2c6"
       },
       "original": {
         "type": "tarball",
