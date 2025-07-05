@@ -5,16 +5,6 @@
 { dotfiles, lib, config, ... }:
 let
   cfg = config.evie.nix-settings;
-  lxml-skip-tests = final: prev: {
-    python313 = prev.python313.override {
-      packageOverrides = pyfinal: pyprev: {
-        lxml-html-clean = pyprev.lxml-html-clean.overridePythonAttrs (oldAttrs: {
-          doCheck = false;
-        });
-      };
-    };
-  };
-
 in
 {
   options.evie.nix-settings = {
@@ -52,7 +42,7 @@ in
     };
 
     nixpkgs = {
-      overlays = [ (import dotfiles.emacs-overlay) lxml-skip-tests ];
+      overlays = [ (import dotfiles.emacs-overlay) ];
       config.allowUnfree = true;
     };
   };
