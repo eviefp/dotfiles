@@ -22,6 +22,8 @@
   ];
   boot.extraModulePackages = [ ];
 
+  boot.loader.systemd-boot.memtest86.enable = true;
+
   hardware.enableRedistributableFirmware = true;
   hardware.firmware = [
     pkgs.rtl8761b-firmware
