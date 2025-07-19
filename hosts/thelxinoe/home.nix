@@ -39,7 +39,7 @@
       enable = true;
       hyprland.enable = true;
       eww = {
-        eww-monitor = "2";
+        eww-monitor = "1";
         showTV = true;
         useSshMailCalendar = false;
         showMail = true;
@@ -47,13 +47,13 @@
       };
       monitors = [
         {
-          name = "DP-3";
+          name = "DP-2";
           resolution = "1920x1080@239.76";
           position = "0x0";
           keybind = "W";
         }
         {
-          name = "DP-2";
+          name = "DP-3";
           resolution = "1920x1080@239.76";
           position = "1920x0";
           keybind = "E";
