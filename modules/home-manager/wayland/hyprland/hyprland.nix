@@ -186,17 +186,17 @@ in
 
         group = {
           groupbar = {
-            font_size = 12;
+            font_size = 15;
             height = 16;
             render_titles = true;
             gradients = true;
             gradient_rounding = 8;
             rounding = 8;
-            text_color = "rgba(f7b7f3ff)";
-            "col.active" = "rgba(46224cd5)";
-            "col.inactive" = "rgba(46224c30)";
-            "col.locked_active" = "rgba(46224cd5)";
-            "col.locked_inactive" = "rgba(46224c30)";
+            text_color = "rgba(ffc4e9ff)";
+            "col.active" = "rgba(46224cd5) rgba(663390d5) 90deg";
+            "col.inactive" = "rgba(46224c66)";
+            "col.locked_active" = "rgba(46224cd5) rgba(663390d5) 90deg";
+            "col.locked_inactive" = "rgba(46224c66)";
           };
         };
 
