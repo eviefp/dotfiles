@@ -132,6 +132,7 @@
          (:name "unread" :query "tag:unread" :sort-order newest-first :search-type tree)
          (:name "unsorted" :query "tag:unsorted" :sort-order newest-first :search-type tree)
          (:name "proton" :query "tag:evie" :sort-order newest-first :search-type tree)
+         (:name "meowing" :query "tag:meowing" :sort-order newest-first :search-type tree)
          (:name "sent" :query "tag:sent" :sort-order newest-first :search-type tree)
          (:name "hf" :query "tag:hf" :sort-order newest-first :search-type tree)
          (:name "inbox" :query "tag:gmail or tag:evie" :sort-order newest-first :search-type tree)
