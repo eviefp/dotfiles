@@ -108,7 +108,7 @@ in
           };
         };
         signing = {
-          key = "me@evie.ro";
+          key = "59FDB6CD4C63F6B2";
           signByDefault = true;
         };
         difftastic = {
