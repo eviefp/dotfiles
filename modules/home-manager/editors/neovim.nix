@@ -209,35 +209,35 @@ in
         # Obsidian
         {
           key = "<leader>fn";
-          action = ":ObsidianQuickSwitch<cr>";
+          action = ":Obsidian quick_switch<cr>";
         }
         {
           key = "<leader>ot";
-          action = ":ObsidianTags<cr>";
+          action = ":Obsidian tags<cr>";
         }
         {
           key = "<leader>o1";
-          action = ":ObsidianToday<cr>";
+          action = ":Obsidian today<cr>";
         }
         {
           key = "<leader>o2";
-          action = ":ObsidianTomorrow<cr>";
+          action = ":Obsidian tomorrow<cr>";
         }
         {
           key = "<leader>ol";
-          action = ":ObsidianLink<cr>";
+          action = ":Obsidian link<cr>";
         }
         {
           key = "<leader>oL";
-          action = ":ObsidianLinkNew<cr>";
+          action = ":Obsidian link_new<cr>";
         }
         {
           key = "<leader>or";
-          action = ":ObsidianRename";
+          action = ":Obsidian rename";
         }
         {
           key = "<leader>ox";
-          action = ":ObsidianExtractNote<cr>";
+          action = ":Obsidian extract_note<cr>";
         }
         {
           key = "<leader>fe";
@@ -792,6 +792,7 @@ in
         obsidian = lib.mkIf cfg.obsidian {
           enable = true;
           settings = {
+            legacy_commands = false;
             workspaces = [
               {
                 name = "notes";
