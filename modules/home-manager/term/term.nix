@@ -249,6 +249,7 @@ in
         environmentVariables = {
           KEYID_EVIE = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
           EDITOR = "nvim";
+          DIRENV_WARN_TIMEOUT = "0";
         };
         configFile.text = ''
           use ${scripts.crypto} *
