@@ -27,6 +27,11 @@
             type = lib.types.str;
             example = "W";
           };
+          transform = lib.mkOption {
+            type = lib.types.str;
+            default = "0";
+            example = "0";
+          };
         };
       });
       default = [ ];
