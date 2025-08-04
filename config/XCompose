@@ -67,8 +67,8 @@
 <Pause> <C> : "Ç"   U00C7
 <Pause> <c> : "ç"   U00E7
 
-<Pause> <dollar> : "€"   U20AC 
-<Pause> <asterisk> : "°"  U00B0 
+<Pause> <dollar> : "€"   U20AC
+<Pause> <asterisk> : "°"  U00B0
 
 ###############################################################################
 # Logic
@@ -114,3 +114,4 @@
 <Pause> <equal> <a> : "ä" U00E4
 <Pause> <equal> <A> : "Ä" U00C4
 
+<Pause> <minus> <minus> : "—" U2014

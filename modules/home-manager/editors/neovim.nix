@@ -418,7 +418,7 @@ in
             # console_timeout = 10000; # password input can be slow
             integrations = {
               telescope = true;
-              diffview = true;
+              diffview = false;
             };
           };
         };
@@ -441,7 +441,7 @@ in
         };
 
         diffview = {
-          enable = true;
+          enable = false; # kinda annoying, trying out git-conflict
           enhancedDiffHl = true;
         };
 
@@ -798,10 +798,6 @@ in
                 name = "notes";
                 path = "~/code/notes";
               }
-              {
-                name = "eviero";
-                path = "~/code/blog/eviero/site/wiki";
-              }
             ];
 
             completion = {
@@ -945,6 +941,10 @@ in
         };
 
         bufdelete = {
+          enable = true;
+        };
+
+        git-conflict = {
           enable = true;
         };
       };
