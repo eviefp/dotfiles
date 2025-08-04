@@ -28,15 +28,19 @@ in
         actions = [
           {
             action = "AddToLiked";
-            key_sequence = "a l";
+            key_sequence = "C-l";
+          }
+          {
+            action = "AddToPlaylist";
+            key_sequence = "C-p";
           }
           {
             action = "AddToQueue";
-            key_sequence = "a q";
+            key_sequence = "C-w";
           }
           {
             action = "DeleteFromLiked";
-            key_sequence = "d l";
+            key_sequence = "C-L";
           }
         ];
         keymaps = [

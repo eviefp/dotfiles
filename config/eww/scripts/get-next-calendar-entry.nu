@@ -3,7 +3,7 @@
 def main [type: string] {
   let format = '{{ "title": "{title}", "date": "{start-date}", "time": "{start-time}", "end": "{end-date}", "endTime": "{end-time}", "status": "{status}", "location": "{location}", "source": "{calendar}" }}'
   let nextWeek = (date now) + (7day) | format date "%d/%m/%Y"
-  let calendars = [['name' 'calendar']; ['Evie' 'alexaeviest@gmail.com'] ['Evie & Every' 's810p67l2bi1168j8luka5nic0@group.calendar.google.com']]
+  let calendars = [['name' 'calendar']; ['Evie' 'alexaeviest@gmail.com']] # ['Evie & Every' 's810p67l2bi1168j8luka5nic0@group.calendar.google.com']]
   let onlyCalendars = $calendars | reduce --fold [] {|it, acc| [ ...$acc '-a' $it.calendar ]}
 
   let jqQuery = '
