@@ -68,7 +68,7 @@ in
 
       settings = {
         monitor =
-          map (mon: "${mon.name}, ${mon.resolution}, ${mon.position}, 1") wayland.monitors
+          map (mon: "${mon.name}, ${mon.resolution}, ${mon.position}, 1, transform, ${mon.transform}") wayland.monitors
           ++ map (name: "${name}, disabled") wayland.disabledMonitors;
 
         exec-once = [
