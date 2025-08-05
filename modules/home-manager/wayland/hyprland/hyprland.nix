@@ -131,7 +131,7 @@ in
           "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
           "col.inactive_border" = "rgba(595959aa)";
 
-          layout = "master";
+          layout = "dwindle";
           no_focus_fallback = true;
           resize_on_border = true;
           hover_icon_on_border = true;
@@ -224,14 +224,18 @@ in
         };
 
         dwindle = {
-          pseudotile = "yes";
-          preserve_split = "yes";
+          pseudotile = true;
+          force_split = 2;
+          preserve_split = false;
+          default_split_ratio = 1.5;
         };
 
-        master = { };
+        master = {
+          allow_small_split = true;
+
+        };
 
         windowrulev2 = [ ];
-
         plugin = { };
 
         "$terminal" = "kitty";
@@ -244,6 +248,7 @@ in
         "$toggleTimezones" = "eww open tz --toggle";
         "$mainMod" = "SUPER";
         "$shiftMod" = "SUPER_SHIFT";
+        "$ctrlMod" = "SUPER&Control";
 
         bind = [
           # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -255,7 +260,6 @@ in
           "$shiftMod, P, exec, $sleep"
           "$shiftMod, T, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
           "$shiftMod, E, exec, ${switch-colors}/bin/switch-colors"
-          "$shiftMod, L, exec, hyprlock"
 
           "$shiftMod, C, killactive,"
           "$mainMod, M, exec, ${lib.getExe grimblast}"
@@ -273,10 +277,12 @@ in
           "$mainMod, G, fullscreen, 0"
 
           # Move focus with mainMod + arrow keys
-          "$mainMod, J, layoutmsg, cycleprev"
-          "$mainMod, K, layoutmsg, cyclenext"
-          "$mainMod, backslash, layoutmsg, addmaster"
-          "$mainMod, apostrophe, layoutmsg, removemaster"
+          "$mainMod, J, cyclenext, prev"
+          "$mainMod, K, cyclenext"
+          "$mainMod, backslash, swapnext"
+          "$mainMod, apostrophe, swapnext, prev"
+          # "$mainMod, backslash, layoutmsg, addmaster"
+          # "$mainMod, apostrophe, layoutmsg, removemaster"
 
           # Switch workspaces with mainMod + [0-9]
           "$mainMod, 1, focusworkspaceoncurrentmonitor, 1"
@@ -319,8 +325,10 @@ in
         ] ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors;
 
         binde = [
-          "$mainMod, H, resizeactive, -10 0"
-          "$mainMod, L, resizeactive, 10 0"
+          "$ctrlMod, H, resizeactive, -10   0"
+          "$ctrlMod, L, resizeactive,  10   0"
+          "$ctrlMod, K, resizeactive,   0 -10"
+          "$ctrlMod, J, resizeactive,   0  10"
         ];
 
         bindm = [
