@@ -12,9 +12,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # TODO:
+    # - native
+    # - editor
     home.file = {
       ".config/tridactyl/tridactylrc".text = ''
-        autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+        colourscheme dark
 
         set allowautofocus false
         set searchengine duckduckgo
@@ -22,8 +25,31 @@ in
         set hintfiltermode vimperator-reflow
         set hintchars fdsqjklmrezauiopwxcvghtybn
 
-        blacklistadd twitter.com
-        blacklistadd gmail.com
+        quickmark tw https://twitch.tv/directory/all
+        quickmark gm https://www.group-meowing.ro/
+
+        bind --mode=normal J tabnext
+        bind --mode=normal K tabprev
+
+        bind --mode=normal o fillcmdline open
+        bind --mode=normal go current_url open
+        bind --mode=normal O fillcmdline tabopen
+        bind --mode=normal gO current_url tabopen
+
+        bind / fillcmdline find
+        bind ? fillcmdline find --reverse
+        bind n findnext --search-from-view
+        bind N findnext --search-from-view --reverse
+        bind gn findselect
+        bind gN composite findnext --search-from-view --reverse; findselect
+        bind ,<Space> nohlsearch
+
+        bind --mode=browser <C-.> sidebartoggle
+
+        bind q mute toggle
+
+        bind <C-p> pin
+        bind <C-P> unpin
       '';
       ".mozilla/native-messaging-hosts/passff.json".source =
         "${pkgs.passff-host}/share/passff-host/passff.json";
@@ -34,10 +60,13 @@ in
 
     programs = {
       firefox = {
-        enable = false;
+        enable = true;
         package = pkgs.firefox.override {
+          nativeMessagingHosts = [ pkgs.tridactyl-native ];
           cfg = {
-            enableTridactylNative = true;
+            pipewireSupport = true;
+            ffmpegSupport = true;
+            smartcardSupport = true;
           };
         };
         policies = {
