@@ -49,6 +49,7 @@ in
             chat.enable = true;
             gui.enable = true;
             qutebrowser.enable = true;
+            firefox.enable = true;
           };
           term = {
             kitty.enable = true;
