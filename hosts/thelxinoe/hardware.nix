@@ -41,6 +41,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/mnt/hda" = {
+    device = "/dev/disk/by-uuid/815b8878-dee6-42ab-b876-5ec196e6262b";
+    fsType = "ext4";
+  };
+
   fileSystems."/mnt/raid" = {
     device = "fractal:/mnt/raid1";
     fsType = "nfs";

@@ -2,6 +2,7 @@
   boot = ./boot.nix;
   common = ./common.nix;
   hardware = import ./hardware;
+  jellyfin = ./jellyfin.nix;
   locale = ./locale.nix;
   logind = ./logind.nix;
   minecraft = ./minecraft.nix;
