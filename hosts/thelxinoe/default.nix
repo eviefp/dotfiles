@@ -34,6 +34,7 @@
       extraPorts = [ 31234 ];
     };
     peroxide.enable = true;
+    jellyfin.enable = true;
     wayland = {
       enable = true;
       compositors = [ "hyprland" ];
