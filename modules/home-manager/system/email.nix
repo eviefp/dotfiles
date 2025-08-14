@@ -242,6 +242,7 @@ in
       mbsync = {
         enable = true;
         postExec = "${pkgs.notmuch}/bin/notmuch new";
+        frequency = "*-*-* *:*:00";
         verbose = true;
       };
     };
