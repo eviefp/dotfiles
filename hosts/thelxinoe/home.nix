@@ -49,26 +49,26 @@
         {
           name = "DP-1";
           resolution = "1920x1080@239.76";
-          position = "0x395";
+          position = "1920x395";
           keybind = "W";
         }
         {
           name = "DP-3";
           resolution = "1920x1080@239.76";
-          position = "1920x395";
+          position = "3840x395";
           keybind = "E";
         }
         {
           name = "DP-2";
           resolution = "1920x1080@239.76";
-          position = "3840x0";
+          position = "5760x0";
           transform = "3";
           keybind = "R";
         }
         {
           name = "HDMI-A-1";
           resolution = "1920x1080@60";
-          position = "0x1475";
+          position = "0x395";
           keybind = "T";
         }
       ];
