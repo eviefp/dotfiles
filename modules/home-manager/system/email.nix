@@ -204,7 +204,8 @@ in
             notmuch tag +evie -unsorted -- to:'Evie Ciobanu'
             notmuch tag +meowing -unsorted -- to:*@group-meowing.ro
             notmuch tag +meowing -unsorted -- from:*@noreply@codeberg.org
-            notmuch tag +gmail -unsorted -- to:*evie*@gmail.com
+            notmuch tag +gmail -unsorted -- to:alexaeviest@gmail.com
+            notmuch tag +gmail -unsorted -- to:alexa.eviest@gmail.com
             notmuch tag +hf -unsorted -- from:*@haskell.foundation
             notmuch tag +hf -unsorted -- to:*@haskell.foundation
             notmuch tag +sent -unsorted -- from:*@eevie.ro
