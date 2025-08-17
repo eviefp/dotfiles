@@ -239,10 +239,6 @@ in
           key = "<leader>ox";
           action = ":Obsidian extract_note<cr>";
         }
-        {
-          key = "<leader>fe";
-          action = ":Explorer<cr>";
-        }
       ];
 
       extraPlugins = [
@@ -276,18 +272,6 @@ in
         pkgs.vimPlugins.nvim-sops
         pkgs.vimPlugins.tabular # :Tabularize
         pkgs.vimPlugins.actions-preview-nvim
-        pkgs.vimPlugins.fzf-lua
-        (pkgs.vimUtils.buildVimPlugin {
-          pname = "fzf-lua-explorer";
-          version = "v1.0";
-          doCheck = false; # needs fzf-lua in scope for the tests
-          src = pkgs.fetchFromGitHub {
-            owner = "otavioschwanck";
-            repo = "fzf-lua-explorer.nvim";
-            rev = "d57b8f5a3abc341c986e0d045f08c585ab544244";
-            hash = "sha256-h+REeGuckibojMqkp15CHeu8qsSO64DNU2bpiDtnp5o=";
-          };
-        })
       ];
 
       extraConfigLua = ''
@@ -331,40 +315,6 @@ in
           backend = { 'telescope' },
         }
 
-        require("fzf-lua-explorer").setup {
-          -- Show file and folder icons
-          show_icons = true,            -- Default: true
-
-          -- Create files directly from input query
-          create_file_from_input = false, -- Default: false
-
-          -- Customize keybindings
-          keybindings = {
-            create_file = 'ctrl-a',
-            rename_file = 'ctrl-r',
-            cut_files = 'ctrl-x',
-            copy_files = 'ctrl-y',
-            paste_files = 'ctrl-v',
-            clean_clipboard = 'ctrl-e',
-            go_to_cwd = 'ctrl-g',
-            go_to_parent = 'ctrl-b',
-            find_folders = 'ctrl-f',
-            delete_files = 'del',
-            open_vsplit = 'ctrl-s',
-            open_hsplit = 'ctrl-h'
-          },
-
-          -- Customize clipboard buffer
-          clipboard_buffer = {
-            enabled = true,             -- Show clipboard buffer
-            min_width = 40,             -- Minimum width
-            max_width = 80,             -- Maximum width
-            height = 10,                -- Height
-            row = 2,                    -- Row position from top
-            col_offset = 2,             -- Offset from right edge
-            border = 'rounded'          -- Border style
-          }
-        }
       '';
 
       colorschemes.vscode = {
@@ -873,10 +823,6 @@ in
           enable = true;
 
           extensions = {
-            file-browser = {
-              enable = true;
-              settings.hijack_netrw = false;
-            };
             fzf-native = {
               enable = true;
             };
@@ -902,7 +848,6 @@ in
             "<leader>/" = "current_buffer_fuzzy_find";
             "/" = "current_buffer_fuzzy_find";
             "<leader>ff" = "fd";
-            "<leader>fe" = "diagnostics";
             "<leader>fch" = "highlights";
             "<leader>fk" = "keymaps";
             "<leader>fj" = "jumplist";
@@ -912,6 +857,7 @@ in
             "<leader>fm" = "marks";
             "<leader>fq" = "quickfix";
             "<leader>fu" = "undo";
+            "<leader>fe" = "file_browser";
           };
         };
 
