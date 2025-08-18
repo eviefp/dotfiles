@@ -42,7 +42,7 @@ in
     };
 
     nixpkgs = {
-      overlays = [ (import dotfiles.emacs-overlay) ];
+      overlays = [ dotfiles.nix-minecraft.overlay (import dotfiles.emacs-overlay) ];
       config.allowUnfree = true;
     };
   };
