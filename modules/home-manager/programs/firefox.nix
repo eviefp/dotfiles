@@ -5,6 +5,19 @@
 { lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.firefox;
+  quickmarks = {
+    tw = "https://twitch.tv/directory/all";
+    gm = "https://www.group-meowing.ro/";
+    hm = "https://nix-community.github.io/home-manager/options.xhtml";
+  };
+  go = str: key: url: ''
+    ${str}
+    bind go${key} open ${url}
+    bind gt${key} tabopen ${url}
+    bind gw${key} winopen ${url}
+
+  '';
+  generatedQuickmarks = lib.attrsets.foldlAttrs go "" quickmarks;
 in
 {
   options.evie.programs.firefox = {
@@ -25,8 +38,10 @@ in
         set hintfiltermode vimperator-reflow
         set hintchars fdsqjklmrezauiopwxcvghtybn
 
-        quickmark tw https://twitch.tv/directory/all
-        quickmark gm https://www.group-meowing.ro/
+        unbind gt
+        unbind gT
+        unbind go
+        unbind gO
 
         bind --mode=normal J tabnext
         bind --mode=normal K tabprev
@@ -50,6 +65,12 @@ in
 
         bind <C-p> pin
         bind <C-P> unpin
+
+        ${generatedQuickmarks}
+
+        " Lose most features but keep keybindings for buggy sites: https://github.com/tridactyl/tridactyl/issues/5050
+        seturl ^https://nix-community.github.io/home-manager/options.xhtml noiframe true
+
       '';
       ".mozilla/native-messaging-hosts/passff.json".source =
         "${pkgs.passff-host}/share/passff-host/passff.json";
