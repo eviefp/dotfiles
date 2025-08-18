@@ -286,9 +286,20 @@ in
         require('nvim-surround').setup{}
 
         require('tiny-inline-diagnostic').setup({
+          preset = "powerline";
           options = {
+            multilines = {
+              enable = true,
+              always_show = true,
+              trim_whitespace = false,
+              tabstop = 4,
+            };
             overflow = {
-              mode = "oneline",
+              mode = "wrap",
+            },
+            break_line = {
+              enabled = false,
+              after = 30,
             },
           },
         })
@@ -755,18 +766,10 @@ in
               min_chars = 2;
             };
 
-            ui = {
-              checkboxes = {
-                " " = {
-                  char = "󰄱";
-                  hl_group = "ObsidianTodo";
-                };
-                "x" = {
-                  char = "";
-                  hl_group = "ObsidianDone";
-                };
-              };
+            checkbox = {
+              order = [ " " "x" ">" "~" ];
             };
+
           };
         };
 
