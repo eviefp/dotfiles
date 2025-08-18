@@ -32,6 +32,7 @@ in
       ".config/tridactyl/tridactylrc".text = ''
         colourscheme dark
 
+        set editorcmd kitty -e nvim "%f" "+normal!%lGzv%c|"
         set allowautofocus false
         set searchengine duckduckgo
 
