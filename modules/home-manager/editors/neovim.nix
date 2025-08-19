@@ -826,6 +826,9 @@ in
           enable = true;
 
           extensions = {
+            file-browser = {
+              enable = true;
+            };
             fzf-native = {
               enable = true;
             };
@@ -861,6 +864,7 @@ in
             "<leader>fq" = "quickfix";
             "<leader>fu" = "undo";
             "<leader>fe" = "file_browser";
+            "<leader>fE" = "file_browser path=%:p:h select_buffer=true";
           };
         };
 

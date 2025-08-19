@@ -1,14 +1,11 @@
 /* ---- Configuration ---- */
 configuration {
-    modi:                       "drun,filebrowser,window,run";
+    modi:                       "drun";
     font:                       "Fira Sans 11";
     show-icons:                 true;
     icon-theme:                 "kora";
     display-drun:                " ";
-    display-run:                 " ";
-    display-filebrowser:         "  ";
-    display-window:              "  ";
-	drun-display-format:        "{name}";
+    drun-display-format:        "{name}";
     hover-select:               false;
     scroll-method:              1;
     me-select-entry:            "";
@@ -17,208 +14,104 @@ configuration {
 
 }
 
-@theme "~/.local/share/rofi/themes/rofi-theme"
-
 * {
-  border-width: 3px;
-  border-radius: 2em;
-  background:    #511f6d55;
-  foreground: #b138f7;
-  color11: #4d286399;
+    bg0:    #212121F2;
+    bg1:    #2A2A2A;
+    bg2:    #3D3D3D80;
+    bg3:    #EC407AF2;
+    fg0:    #E6E6E6;
+    fg1:    #FFFFFF;
+    fg2:    #969696;
+    fg3:    #3D3D3D;
 
+    font:   "Roboto 12";
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0px;
+    padding:    0px;
+    spacing:    0px;
 }
 
-// Main //
 window {
-    height:                      35em;
-    width:                       56em;
-    transparency:                "real";
-    fullscreen:                  false;
-    enabled:                     true;
-    cursor:                      "default";
-    spacing:                     0em;
-    padding:                     0em;
-    border:                      @border-width;
-    border-color:                @foreground;
-    border-radius:               @border-radius;
-    background-color:            @background;
+    location:       north;
+    y-offset:       calc(50% - 176px);
+    width:          480;
+    border-radius:  24px;
+
+    background-color:   @bg0;
 }
 
 mainbox {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     0em;
-    orientation:                 vertical;
-    children:                    [ "inputbar" , "listbox" ];
-    background-color:            transparent;
+    padding:    12px;
 }
 
-
-// Inputs //
 inputbar {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     5em;
-    children:                    [ "textbox-prompt-colon", "entry" ];
-    background-color:            transparent;
+    background-color:   @bg1;
+    border-color:       @bg3;
+
+    border:         2px;
+    border-radius:  16px;
+
+    padding:    8px 16px;
+    spacing:    8px;
+    children:   [ prompt, entry ];
 }
 
-textbox-prompt-colon {
-    enabled:                     true;
-    expand:                      false;
-    str:                         "  ";
-    padding:                     1em 0.2em 0em 0em;
-    text-color:                  @foreground;
-    border-radius:               2em 0em 0em 2em;
-    background-color:            @background;
+prompt {
+    text-color: @fg2;
 }
 
 entry {
-    enabled:                     true;
-    border-radius:               0em 2em 2em 0em;
-    spacing:                     1em;
-    padding:                     1em;
-    background-color:            @background;
-    text-color:                  @foreground;
-    cursor:                      text;
-    placeholder:                 "Search";
-    placeholder-color:           inherit;
+    placeholder:        "Search";
+    placeholder-color:  @fg3;
 }
 
-// Lists //
-listbox {
-    padding:                     0em;
-    spacing:                     0em;
-    margin:                      1em;
-    orientation:                 horizontal;
-    children:                    [ "listview" , "mode-switcher" ];
-    background-color:            @background;
-}
-
-listview {
-    padding:                     0.5em;
-    spacing:                     0.5em;
-    enabled:                     true;
-    columns:                     2;
-    lines:                       3;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    layout:                      vertical;
-    reverse:                     false;
-    fixed-height:                true;
-    fixed-columns:               true;
-    cursor:                      "default";
-    background-color:            transparent;
-    text-color:                  @foreground;
-}
-
-
-// Modes //
-mode-switcher {
-    orientation:                 vertical;
-    width:                       6.6em;
-    enabled:                     true;
-    padding:                     1.5em;
-    spacing:                     1.5em;
-    background-color:            transparent;
-}
-
-button {
-    cursor:                      pointer;
-    border-radius:               2em;
-    background-color:            @background;
-    text-color:                  @foreground;
-}
-
-button selected {
-    background-color:            @color11;
-    text-color:                  @foreground;
-}
-
-
-// Elements //
-element {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     0.5em;
-    cursor:                      pointer;
-    background-color:            transparent;
-    text-color:                  @foreground;
-}
-
-element selected.normal {
-    background-color:            @color11;
-    text-color:                  @foreground;
-    border-radius:               1.5em;
-}
-
-element normal.normal {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element normal.urgent {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element normal.active {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element selected.urgent {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element selected.active {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element alternate.normal {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element alternate.urgent {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element alternate.active {
-    background-color:            inherit;
-    text-color:                  @foreground;
-}
-
-element-icon {
-    size:                        3em;
-    cursor:                      inherit;
-    background-color:            transparent;
-    text-color:                  inherit;
-}
-
-element-text {
-    vertical-align:              0.5;
-    horizontal-align:            0.1;
-    cursor:                      inherit;
-    background-color:            transparent;
-    text-color:                  inherit;
-}
-
-// Error message //
-error-message {
-    text-color:                  @foreground;
-    background-color:            @background;
-    text-transform:              capitalize;
-    children:                    [ "textbox" ];
+message {
+    margin:             12px 0 0;
+    border-radius:      16px;
+    border-color:       @bg2;
+    background-color:   @bg2;
 }
 
 textbox {
-    text-color:                  inherit;
-    background-color:            inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.5;
+    padding:    8px 24px;
+}
+
+listview {
+    background-color:   transparent;
+
+    margin:     12px 0 0;
+    lines:      8;
+    columns:    1;
+
+    fixed-height: false;
+}
+
+element {
+    padding:        8px 16px;
+    spacing:        8px;
+    border-radius:  16px;
+}
+
+element normal active {
+    text-color: @bg3;
+}
+
+element alternate active {
+    text-color: @bg3;
+}
+
+element selected normal, element selected active {
+    background-color:   @bg3;
+}
+
+element-icon {
+    size:           1em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: inherit;
 }
