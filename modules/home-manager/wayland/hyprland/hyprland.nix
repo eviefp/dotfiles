@@ -258,7 +258,7 @@ in
           "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
           "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
           "$shiftMod, P, exec, $sleep"
-          "$shiftMod, T, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
+          "$shiftMod, T, exec, /home/evie/.config/waybar/scripts/toggle-tv.sh"
           "$shiftMod, E, exec, ${switch-colors}/bin/switch-colors"
 
           "$shiftMod, C, killactive,"

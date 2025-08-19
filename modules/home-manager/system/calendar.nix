@@ -109,7 +109,7 @@ in
 
       Service = {
         Type = "oneshot";
-        ExecStart = "/home/evie/.config/eww/scripts/get-next-calendar-entry.nu notify";
+        ExecStart = "/home/evie/.config/wayland/scripts/get-next-calendar-entry.nu notify";
       };
     };
   };

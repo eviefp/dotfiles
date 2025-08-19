@@ -10,5 +10,6 @@
   rofi = ./rofi.nix;
   screenshot = ./screenshot.nix;
   swaync = ./swaync.nix;
+  waybar = ./waybar.nix;
   wayland = ./wayland.nix;
 }
