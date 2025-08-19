@@ -165,13 +165,15 @@ in
 
           wireplumber = {
             format = "{icon} {volume}% {format_source}";
-            format-muted = "";
+            format-muted = " {format_source}";
             format-source = " {}";
-            format-source-muted = "";
+            format-source-muted = " ";
             format-icons = {
-              default = [ "" "" "" ];
+              default = [ "" "" ];
             };
-            on-click = "pwvucontrol";
+            tooltip-format = "{node_name} {source_desc}";
+            on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           };
 
           "custom/tv" = {
