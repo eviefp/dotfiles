@@ -20,6 +20,11 @@ in
     programs.waybar = {
       enable = true;
       settings = {
+        systemd = {
+          enable = true;
+          target = "hyprland-session.target";
+        };
+
         mainBar = {
           layer = "top";
           output = "DP-1";
@@ -31,11 +36,6 @@ in
           margin-left = 8;
           margin-right = 8;
           mode = "dock";
-
-          systemd = {
-            enable = true;
-            target = "hyprland-session.target";
-          };
 
           reload_on_style_change = true;
 
@@ -96,6 +96,7 @@ in
             modules = [
               "cpu"
               "memory"
+              "systemd-failed-units"
             ];
           };
 
@@ -109,6 +110,13 @@ in
             on-click = "kitty -e btm";
           };
 
+          systemd-failed-units = {
+            hide-on-ok = false;
+            format = "✗ {nr_failed}";
+            format-ok = "✓";
+            system = true;
+            user = false;
+          };
 
           "group/email" = {
             orientation = "horizontal";
@@ -351,6 +359,7 @@ in
         }
 
         #cpu,
+        #memory,
         #custom-email-important,
         #custom-email-unread,
         #custom-notifications,
