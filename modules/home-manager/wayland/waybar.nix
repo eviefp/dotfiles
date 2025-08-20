@@ -198,9 +198,15 @@ in
           };
 
           "custom/tv" = {
-            exec = "~/.config/waybar/scripts/tv-status.sh";
+            exec = "~/.config/waybar/scripts/tv-status.nu";
             interval = 1;
-            format = " {text}";
+            format = "{icon}";
+            return-type = "json";
+            format-icons = {
+              # nope, need to do json and this needs to be the alt
+              on = "<span foreground='green'> </span>";
+              off = " ";
+            };
             on-click = "~/.config/waybar/scripts/toggle-tv.sh";
           };
 
