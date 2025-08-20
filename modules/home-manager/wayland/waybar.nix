@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ dotfiles, pkgs, config, lib, ... }:
 let
   cfg = config.evie.wayland.waybar;
 in
@@ -19,6 +19,7 @@ in
 
     programs.waybar = {
       enable = true;
+      package = dotfiles.self.packages.${pkgs.system}.waybar;
       settings = {
         systemd = {
           enable = true;
@@ -74,6 +75,7 @@ in
             on-scroll-up = "hyprctl dispatch workspace r-1";
             on-scroll-down = "hyprctl dispatch workspace r+1";
             on-click = "activate";
+            sort-by = "output";
           };
 
           "hyprland/window" = {
