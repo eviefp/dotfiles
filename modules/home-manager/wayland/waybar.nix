@@ -178,6 +178,7 @@ in
             modules = [
               "wireplumber"
               "custom/tv"
+              "bluetooth"
             ];
           };
 
@@ -199,6 +200,16 @@ in
             interval = 1;
             format = " {text}";
             on-click = "~/.config/waybar/scripts/toggle-tv.sh";
+          };
+
+          bluetooth = {
+            format = " {status}";
+            format-connected = " {device_alias}";
+            format-connected-battery = " {device_alias} {device_battery_percentage}%";
+            tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+            tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+            tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+            tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
           };
 
           tray = {
@@ -344,6 +355,7 @@ in
           margin-right: 8px;
         }
 
+        /* all groups here except workspaces */
         #custom-appmenu,
         #window,
         #hardware,
@@ -358,6 +370,7 @@ in
           box-shadow: 0px 0px 8px 4px @shadow inset;
         }
 
+        /* all groups also here, except appmenu and workspaces */
         #window,
         #hardware,
         #email,
@@ -369,12 +382,14 @@ in
           padding: 0 0.5rem;
         }
 
+        /* all but rightmost item in a group */
         #cpu,
         #memory,
         #custom-email-important,
         #custom-email-unread,
         #custom-notifications,
-        #wireplumber {
+        #wireplumber,
+        #custom-tv {
           padding-right: 0.5rem;
         }
 
