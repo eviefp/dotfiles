@@ -191,6 +191,7 @@ in
             render_titles = true;
             gradients = true;
             gradient_rounding = 8;
+            keep_upper_gap = false;
             rounding = 8;
             text_color = "rgba(ffc4e9ff)";
             "col.active" = "rgba(46224cd5) rgba(663390d5) 90deg";

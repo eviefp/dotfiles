@@ -28,12 +28,12 @@ in
 
         mainBar = {
           layer = "top";
-          output = "DP-1";
+          output = "DP-3";
           position = "bottom";
-          height = 16; # todo: try auto
+          # height = 16; # todo: try auto
           spacing = 8; # space between modules
-          margin-top = 0;
-          margin-bottom = 8;
+          margin-top = 2;
+          margin-bottom = 2;
           margin-left = 8;
           margin-right = 8;
           mode = "dock";
@@ -306,13 +306,13 @@ in
 
         @define-color base alpha(#000000, 0.1);
         /* @define-color surface alpha(@lavender, 0.1); */
-        @define-color surface alpha(#000000, 0.1);
+        @define-color surface alpha(#000000, 0.7);
         @define-color text #cdd6f4;
         @define-color hoverBg alpha(@mauve, 1);
         @define-color hoverFg #000000;
         @define-color activeBg alpha(@mauve, 1);
         @define-color activeFg #000000;
-        @define-color shadow alpha(@lavender, 0.3);
+        @define-color shadow alpha(@blue, 0.7);
 
         * {
           all: unset;
@@ -334,6 +334,7 @@ in
           min-height: 32px;
           border-radius: 999px;
           color: @text;
+          background-color: @surface;
           box-shadow: 0px 0px 8px 4px @shadow inset;
           transition:
             all 50ms cubic-bezier(0.55, 0, 0.28, 1.682),
