@@ -156,11 +156,21 @@ in
             };
           };
 
+          # "custom/events" = {
+          #   exec = "~/.config/waybar/scripts/get-next-calendar-waybar.nu";
+          #   interval = 45;
+          #   format = " {}";
+          #   max-length = 64;
+          # };
           "custom/events" = {
-            exec = "~/.config/waybar/scripts/get-next-calendar-waybar.nu";
-            interval = 45;
-            format = " {}";
-            max-length = 64;
+            format = "{}";
+            tooltip = true;
+            interval = 300;
+            format-icons = {
+              default = "";
+            };
+            exec = "~/.config/waybar/scripts/waybar-khal.py";
+            return-type = "json";
           };
 
           "group/media" = {
@@ -188,6 +198,7 @@ in
             exec = "~/.config/waybar/scripts/tv-status.sh";
             interval = 1;
             format = " {text}";
+            on-click = "~/.config/waybar/scripts/toggle-tv.sh";
           };
 
           tray = {
