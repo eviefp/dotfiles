@@ -65,13 +65,8 @@
           transform = "3";
           keybind = "R";
         }
-        {
-          name = "HDMI-A-1";
-          resolution = "1920x1080@60";
-          position = "0x395";
-          keybind = "T";
-        }
       ];
+      disabledMonitors = [ "HDMI-A-1" ];
     };
   };
 }
