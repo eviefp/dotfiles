@@ -43,6 +43,8 @@ in
         unbind gT
         unbind go
         unbind gO
+        unbind d
+        unbind D
 
         bind --mode=normal J tabnext
         bind --mode=normal K tabprev
