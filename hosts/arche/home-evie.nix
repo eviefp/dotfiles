@@ -27,7 +27,10 @@
             keybind = "W";
           }
         ];
-        disabledMonitors = [ "Unknown-1" ];
+        disabledMonitors = [{
+          name = "Unknown-1";
+          keybind = "E";
+        }];
       };
     };
 

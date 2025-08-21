@@ -69,7 +69,7 @@ in
       settings = {
         monitor =
           map (mon: "${mon.name}, ${mon.resolution}, ${mon.position}, 1, transform, ${mon.transform}") wayland.monitors
-          ++ map (name: "${name}, disabled") wayland.disabledMonitors;
+          ++ map (mon: "${mon.name}, disabled") wayland.disabledMonitors;
 
         exec-once = [
           "swaync"
@@ -322,7 +322,9 @@ in
           "$shiftMod, m, moveoutofgroup,"
           "$mainMod, a, changegroupactive, b"
           "$mainMod, s, changegroupactive, f"
-        ] ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors;
+        ]
+        ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors
+        ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.disabledMonitors;
 
         binde = [
           "$ctrlMod, H, resizeactive, -10   0"

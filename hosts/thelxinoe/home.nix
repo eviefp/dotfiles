@@ -66,7 +66,10 @@
           keybind = "R";
         }
       ];
-      disabledMonitors = [ "HDMI-A-1" ];
+      disabledMonitors = [{
+        name = "HDMI-A-1";
+        keybind = "T";
+      }];
     };
   };
 }

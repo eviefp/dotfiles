@@ -26,7 +26,10 @@
           showMail = false;
           showCalendar = false;
         };
-        disabledMonitors = [ "DP-1" ];
+        disabledMonitors = [{
+          name = "DP-1";
+          keybind = "E";
+        }];
         monitors = [
           {
             name = "eDP-1";
