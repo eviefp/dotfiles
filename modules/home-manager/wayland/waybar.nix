@@ -28,7 +28,7 @@ in
 
         mainBar = {
           layer = "top";
-          output = "DP-3";
+          output = "DP-2";
           position = "bottom";
           # height = 16; # todo: try auto
           spacing = 8; # space between modules

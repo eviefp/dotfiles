@@ -53,13 +53,13 @@
           keybind = "W";
         }
         {
-          name = "DP-3";
+          name = "DP-2";
           resolution = "1920x1080@239.76";
           position = "3840x395";
           keybind = "E";
         }
         {
-          name = "DP-2";
+          name = "DP-3";
           resolution = "1920x1080@239.76";
           position = "5760x0";
           transform = "3";
