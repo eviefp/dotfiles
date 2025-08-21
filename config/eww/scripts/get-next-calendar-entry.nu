@@ -44,7 +44,7 @@ def diff($finish; $start):
 
   if $type == 'notify' {
     let result = $json | from json
-    let now = 'now' | into datetime
+    let now = date now
 
     $result | each {|it|
           if $it.date == ($now | format date "%d/%m/%Y") {
