@@ -123,7 +123,7 @@ in
             format = "✗ {nr_failed}";
             format-ok = "✓";
             system = true;
-            user = false;
+            user = true;
           };
 
           "group/email" = {
@@ -154,7 +154,7 @@ in
             on-click = "swaync-client -t -sw";
             return-type = "json";
             format = "{icon}";
-            min-length = 2;
+            min-length = 3;
             format-icons = {
               notification = "<span foreground='red'><sup></sup></span>";
               none = "";
