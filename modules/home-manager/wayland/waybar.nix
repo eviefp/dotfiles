@@ -60,6 +60,10 @@ in
             "clock"
           ];
 
+          "custom/separator" = {
+            format = "❱"; # ❫
+          };
+
           ## modules
           "custom/appmenu" = {
             format = "λ";
@@ -96,9 +100,11 @@ in
           "group/hardware" = {
             orientation = "horizontal";
             modules = [
-              "cpu"
-              "memory"
               "systemd-failed-units"
+              "custom/separator"
+              "cpu"
+              "custom/separator"
+              "memory"
             ];
           };
 
@@ -124,7 +130,9 @@ in
             orientation = "horizontal";
             modules = [
               "custom/email-important"
+              "custom/separator"
               "custom/email-unread"
+              "custom/separator"
               "custom/notifications"
             ];
           };
@@ -146,6 +154,7 @@ in
             on-click = "swaync-client -t -sw";
             return-type = "json";
             format = "{icon}";
+            min-length = 2;
             format-icons = {
               notification = "<span foreground='red'><sup></sup></span>";
               none = "";
@@ -158,12 +167,6 @@ in
             };
           };
 
-          # "custom/events" = {
-          #   exec = "~/.config/waybar/scripts/get-next-calendar-waybar.nu";
-          #   interval = 45;
-          #   format = " {}";
-          #   max-length = 64;
-          # };
           "custom/events" = {
             format = "{}";
             tooltip = true;
@@ -179,7 +182,9 @@ in
             orientation = "horizontal";
             modules = [
               "wireplumber"
+              "custom/separator"
               "custom/tv"
+              "custom/separator"
               "bluetooth"
             ];
           };
@@ -200,12 +205,12 @@ in
           "custom/tv" = {
             exec = "~/.config/waybar/scripts/tv-status.nu";
             interval = 1;
-            format = "{icon}";
+            format = "{icon} ";
             return-type = "json";
             format-icons = {
               # nope, need to do json and this needs to be the alt
-              on = "<span foreground='green'> </span>";
-              off = " ";
+              on = "<span foreground='green'></span>";
+              off = "";
             };
             on-click = "~/.config/waybar/scripts/toggle-tv.sh";
           };
@@ -213,11 +218,12 @@ in
           bluetooth = {
             format = " {status}";
             format-connected = " {device_alias}";
-            format-connected-battery = " {device_alias} {device_battery_percentage}%";
+            format-connected-battery = " {device_battery_percentage}% {device_alias}";
             tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
             tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
             tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+            max-length = 10;
           };
 
           tray = {
@@ -364,6 +370,12 @@ in
           margin-right: 8px;
         }
 
+        .blue,
+        #custom-separator {
+          color: @blue;
+          padding: 0 0.3rem;
+        }
+
         /* all groups here except workspaces */
         #custom-appmenu,
         #window,
@@ -399,7 +411,7 @@ in
         #custom-notifications,
         #wireplumber,
         #custom-tv {
-          padding-right: 0.5rem;
+          /* padding-right: 0.5rem; */
         }
 
         #custom-appmenu {
@@ -439,6 +451,14 @@ in
         #tray > .needs-attention {
           -gtk-icon-effect: highlight;
           background-color: @activeBg;
+        }
+
+        #systemd-failed-units.ok {
+          color: @green;
+        }
+
+        #systemd-failed-units.degraded {
+          color: @red;
         }
 
         label:focus {
