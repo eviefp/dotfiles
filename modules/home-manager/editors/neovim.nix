@@ -519,6 +519,7 @@ in
             tsx
             typescript
             vim
+            vimdoc
             xcompose
             xml
             yaml
