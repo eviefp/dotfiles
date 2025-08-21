@@ -9,6 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
+      pkgs.socat
       pkgs.wttrbar
     ];
 
@@ -43,7 +44,7 @@ in
           modules-left = [
             "custom/appmenu"
             "hyprland/workspaces"
-            "hyprland/window"
+            "custom/window"
             "custom/empty"
           ];
 
@@ -55,13 +56,12 @@ in
 
           modules-right = [
             "custom/events"
-            # "tray"
             "custom/weather"
             "clock"
           ];
 
           "custom/separator" = {
-            format = "❱"; # ❫
+            format = "❱";
           };
 
           ## modules
@@ -82,15 +82,10 @@ in
             sort-by = "output";
           };
 
-          "hyprland/window" = {
-            max-length = 60;
-            rewrite = {
-              "(.*) — Mozilla Firefox" = "🌐 $1";
-              "Signal" = "signal";
-              "(.*) - GNU Emacs.*" = "emacs $1";
-              "~/(.*)" = "🐈 $1";
-            };
-            separate-outputs = false;
+          "custom/window" = {
+            exec = "~/.config/waybar/scripts/get-active-window.sh";
+            restart-interval = "30";
+            format = "{}";
           };
 
           "custom/empty" = {
@@ -249,47 +244,6 @@ in
             };
           };
 
-          # network = {
-          #   format = "{ifname}";
-          #   format-wifi = " {essid} ({signalStrength}%)";
-          #   format-ethernet = "  {ifname}";
-          #   format-disconnected = "Disconnected ⚠";
-          #   tooltip-format = " {ifname} via {gwaddri}";
-          #   tooltip-format-wifi = "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}";
-          #   tooltip-format-ethernet = " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}";
-          #   tooltip-format-disconnected = "Disconnected";
-          #   max-length = 50;
-          #   on-click = "~/.config/ml4w/settings/networkmanager.sh";
-          #   on-click-right = "~/.config/ml4w/scripts/nm-applet.sh toggle";
-          # };
-          #
-          # pulseaudio = {
-          #   format = "{icon}  {volume}%";
-          #   format-bluetooth = "{volume}% {icon} {format_source}";
-          #   format-bluetooth-muted = " {icon} {format_source}";
-          #   format-muted = " {format_source}";
-          #   format-source = "{volume}% ";
-          #   format-source-muted = "";
-          #   format-icons = {
-          #     headphone = " ";
-          #     hands-free = " ";
-          #     headset = " ";
-          #     phone = " ";
-          #     portable = " ";
-          #     car = " ";
-          #     default = [ "" "" "" ];
-          #   };
-          #   on-click = "pavucontrol";
-          # };
-
-          # bluetooth = {
-          #   format = " {status}";
-          #   format-disabled = "";
-          #   format-off = "";
-          #   interval = 30;
-          #   on-click = "blueman-manager";
-          #   format-no-controller = "";
-          # };
 
         };
       };
@@ -362,11 +316,11 @@ in
           opacity: 1;
         }
 
-        window#waybar.empty #window {
+        #custom-window {
           background-color: transparent;
         }
 
-        #window {
+        #custom-window {
           margin-right: 8px;
         }
 
@@ -378,7 +332,7 @@ in
 
         /* all groups here except workspaces */
         #custom-appmenu,
-        #window,
+        #custom-window,
         #hardware,
         #email,
         #media,
@@ -392,7 +346,7 @@ in
         }
 
         /* all groups also here, except appmenu and workspaces */
-        #window,
+        #custom-window,
         #hardware,
         #email,
         #media,
