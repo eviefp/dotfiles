@@ -12,7 +12,7 @@ data = {}
 today = datetime.date.today().strftime("%A, %d %B %Y")
 
 next_week = (datetime.date.today() +
-             datetime.timedelta(days=14)).strftime("%d/%m/%Y")
+             datetime.timedelta(days=7)).strftime("%d/%m/%Y")
 
 output = subprocess.check_output("khal list now "+next_week, shell=True)
 output = output.decode("utf-8")
