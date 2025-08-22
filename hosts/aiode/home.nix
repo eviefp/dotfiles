@@ -27,14 +27,9 @@
     wayland = {
       enable = true;
       hyprland.enable = true;
-      eww = {
+      waybar = {
         enable = true;
-        eww-monitor = "0";
-        showBattery = true;
-        useSshMailCalendar = true;
-        showMail = false;
-        showCalendar = false;
-        showTV = true;
+        outputMonitor = "eDP-1";
       };
       hypridle.lock = true;
       hyprpaper = {

@@ -5,10 +5,6 @@
   ];
 
   config = {
-    home.packages = [
-      pkgs.firefox
-    ];
-
     evie = {
       common.enable = true;
 
@@ -19,12 +15,9 @@
       wayland = {
         enable = true;
         hyprland.enable = true;
-        eww = {
-          eww-monitor = "0";
-          showBattery = true;
-          useSshMailCalendar = false;
-          showMail = false;
-          showCalendar = false;
+        waybar = {
+          enable = true;
+          outputMonitor = "eDP-1";
         };
         disabledMonitors = [{
           name = "DP-1";
