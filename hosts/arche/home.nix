@@ -21,6 +21,9 @@
         waybar = {
           enable = true;
           outputMonitor = "HDMI-A-4";
+          modules = {
+            enableBT = true;
+          };
           hyprland.onlyActiveWorkspaces = false;
         };
         monitors = [

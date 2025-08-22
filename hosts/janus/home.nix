@@ -18,6 +18,9 @@
         waybar = {
           enable = true;
           outputMonitor = "eDP-1";
+          modules = {
+            enableBT = true;
+          };
         };
         disabledMonitors = [{
           name = "DP-1";

@@ -30,6 +30,9 @@
       waybar = {
         enable = true;
         outputMonitor = "eDP-1";
+        modules = {
+          enableBT = true;
+        };
       };
       hypridle.lock = true;
       hyprpaper = {
