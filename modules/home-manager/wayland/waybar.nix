@@ -126,11 +126,21 @@ in
           cpu = {
             format = " {usage}%";
             on-click = "kitty -e btm";
+            states = {
+              low = 20;
+              medium = 40;
+              high = 80;
+            };
           };
 
           memory = {
             format = " {}%";
             on-click = "kitty -e btm";
+            states = {
+              low = 20;
+              medium = 40;
+              high = 80;
+            };
           };
 
           systemd-failed-units = {
@@ -193,6 +203,7 @@ in
             };
             exec = "~/.config/waybar/scripts/waybar-khal.py";
             return-type = "json";
+            max-length = 32;
           };
 
           "group/media" = {
@@ -214,6 +225,9 @@ in
             tooltip-format = "{node_name} {source_desc}";
             on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
             on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+            states = {
+              low = 10;
+            };
           };
 
           "custom/tv" = {
@@ -447,6 +461,16 @@ in
         }
 
         #systemd-failed-units.degraded {
+          color: @red;
+        }
+
+        #cpu.low, #memory.low {
+          color: @green;
+        }
+        #cpu.medium, #memory.medium, #wireplumber.medium {
+          color: @yellow;
+        }
+        #cpu.high, #memory.high, #wireplumber.high, #wireplumber.low {
           color: @red;
         }
 
