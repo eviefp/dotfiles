@@ -4,7 +4,7 @@
   * Set up calendar accounts.
   * Manual setup: manually run 'vdirsyncer discover <name>' for each account.
   **************************************************************************/
-{ lib, config, osConfig, ... }:
+{ pkgs, lib, config, dotfiles, osConfig, ... }:
 let
   cfg = config.evie.system.calendar;
 in
@@ -109,7 +109,7 @@ in
 
       Service = {
         Type = "oneshot";
-        ExecStart = "/home/evie/.config/waybar/scripts/get-next-calendar-entry.nu notify";
+        ExecStart = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.get-next-calendar-entry} notify";
       };
     };
   };

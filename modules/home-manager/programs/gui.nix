@@ -3,9 +3,16 @@
   *
   * GUI programs such as browsers, multimedia, etc.
   **************************************************************************/
-{ lib, config, pkgs, ... }:
+{ dotfiles, lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.gui;
+  scrcpy = dotfiles.self.lib.nuShellScript {
+    name = "scrcpy";
+    text = ''
+      scrcpy --video-codec=h265 -m1920 --max-fps=60 -K --legacy-paste
+    '';
+    runtimeInputs = [ pkgs.scrcpy ];
+  };
 in
 {
   options.evie.programs.gui = {
@@ -36,6 +43,9 @@ in
       pkgs.xdg-utils
 
       pkgs.audacity
+
+      # phone mirroring
+      scrcpy
     ];
 
     home.file = {

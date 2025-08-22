@@ -32,7 +32,6 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.socat
       pkgs.wttrbar
     ];
 
@@ -106,7 +105,7 @@ in
           };
 
           "custom/window" = {
-            exec = "~/.config/waybar/scripts/get-active-window.sh";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.get-active-window}";
             max-length = 32;
             restart-interval = "30";
             format = "{}";
@@ -202,7 +201,7 @@ in
             format-icons = {
               default = "";
             };
-            exec = "~/.config/waybar/scripts/waybar-khal.py";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.waybar-khal}";
             return-type = "json";
             max-length = 32;
           };
@@ -228,12 +227,13 @@ in
             on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
             states = {
               low = 0;
-              medium = 50;
+              medium = 30;
+              high = 50;
             };
           };
 
           "custom/tv" = {
-            exec = "~/.config/waybar/scripts/tv-status.nu";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.tv-status}";
             interval = 1;
             format = "{icon} ";
             return-type = "json";
@@ -243,7 +243,7 @@ in
               on = "<span foreground='green'></span>";
               off = "";
             };
-            on-click = "~/.config/waybar/scripts/toggle-tv.sh";
+            on-click = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.tv-toggle}";
           };
 
           bluetooth = {
@@ -284,6 +284,10 @@ in
             interval = 1;
             timezones = [ "Europe/Bucharest" "Europe/Berlin" "America/New_York" "America/Los_Angeles" ];
             tooltip = false;
+            actions = {
+              on-scroll-up = "tz_up";
+              on-scroll-down = "tz_down";
+            };
           };
 
           "clock#date" = {
@@ -472,7 +476,7 @@ in
         #cpu.medium, #memory.medium, #wireplumber.medium {
           color: @yellow;
         }
-        #cpu.high, #memory.high, #wireplumber.high, #wireplumber.low {
+        #cpu.high, #memory.high, #wireplumber.low {
           color: @red;
         }
 

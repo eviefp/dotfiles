@@ -23,6 +23,7 @@
       rev = "c522cb0e96dad3bf3a834df5c6a8988f5c13a1a3";
       hash = "sha256-KPEN54yO3OQMxd+dn5lCw8dfvokfwzeTEqSEpy7e208=";
     };
-
   });
+
+  scripts = import ./scripts.nix { inherit pkgs; };
 }
