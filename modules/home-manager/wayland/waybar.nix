@@ -16,16 +16,17 @@ in
       enableTV = lib.mkEnableOption "enable TV indicator";
       enableBT = lib.mkEnableOption "enable Bluetooth indicator";
       enableEmails = lib.mkEnableOption "enable emails indicator";
-      enableCalendar = lib.mkOption {
-        default = true;
-        example = false;
-        description = "enable calendars indicator";
-        type = lib.types.bool;
-      };
+      enableCalendar = lib.mkEnableOption "enable calendars indicator";
     };
 
     hyprland = {
-      onlyActiveWorkspaces = lib.mkEnableOption "only show active workspaces";
+      onlyActiveWorkspaces = lib.mkOption {
+        default = true;
+        example = false;
+        description = "only show active workspaces";
+        type = lib.types.bool;
+      };
+
     };
   };
 
@@ -66,7 +67,6 @@ in
             "custom/appmenu"
             "hyprland/workspaces"
             "custom/window"
-            "custom/empty"
           ];
 
           modules-center = [
@@ -78,10 +78,11 @@ in
             (if cfg.modules.enableCalendar then [ "custom/events" ] else [ ])
             ++ [
               "custom/weather"
-              "clock"
+              "group/date-time"
             ];
 
           "custom/separator" = {
+            tooltip = false;
             format = "❱";
           };
 
@@ -105,12 +106,10 @@ in
 
           "custom/window" = {
             exec = "~/.config/waybar/scripts/get-active-window.sh";
+            max-length = 32;
             restart-interval = "30";
             format = "{}";
-          };
-
-          "custom/empty" = {
-            format = "";
+            tooltip = false;
           };
 
           "group/hardware" = {
@@ -157,12 +156,14 @@ in
             exec = "notmuch count tag:important";
             interval = 5;
             format = " {}";
+            tooltip = false;
           };
 
           "custom/email-unread" = {
             exec = "notmuch count tag:unread";
             interval = 5;
             format = " {}";
+            tooltip = false;
           };
 
           "custom/notifications" = {
@@ -220,6 +221,7 @@ in
             interval = 1;
             format = "{icon} ";
             return-type = "json";
+            tooltip = false;
             format-icons = {
               # nope, need to do json and this needs to be the alt
               on = "<span foreground='green'></span>";
@@ -252,16 +254,46 @@ in
             return-type = "json";
           };
 
-          clock = {
-            format = "{:%a, %d %b %T}";
-            tooltip-format = "{calendar}";
-            interval = 1;
-            timezones = [ "Europe/Bucharest" "Europe/Berlin" "America/New_York" "America/Los_Angeles" ];
-            calendar = {
-              mode = "year";
-            };
+          "group/date-time" = {
+            orientation = "horizontal";
+            modules = [
+              "clock#date"
+              "custom/separator"
+              "clock"
+            ];
           };
 
+          clock = {
+            format = "{:%T %Z}"; # todo: add timezone
+            interval = 1;
+            timezones = [ "Europe/Bucharest" "Europe/Berlin" "America/New_York" "America/Los_Angeles" ];
+            tooltip = false;
+          };
+
+          "clock#date" = {
+            format = "{:%a, %d %b}";
+            smooth-scrolling-treshold = 4;
+            tooltip = true;
+            tooltip-format = "<tt>{calendar}</tt>";
+            calendar = {
+              mode = "year";
+              mode-mon-col = 3;
+              on-scroll = 1;
+              on-click-right = "mode";
+              format = {
+                months = "<span color='#ffead3'><b>{}</b></span>";
+                days = "<span color='#ecc6d9'><b>{}</b></span>";
+                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+              };
+            };
+            actions = {
+              on-right-click = "mode";
+              on-scroll-up = "shift_up";
+              on-scroll-down = "shift_down";
+            };
+          };
 
         };
       };
@@ -330,10 +362,6 @@ in
           background: @activeBg;
         }
 
-        tooltip {
-          opacity: 1;
-        }
-
         #custom-window {
           background-color: transparent;
         }
@@ -356,7 +384,7 @@ in
         #media,
         #custom-events,
         #custom-weather,
-        #clock,
+        #date-time,
         #tray {
           background-color: @surface;
           border-radius: 999px;
@@ -370,20 +398,9 @@ in
         #media,
         #custom-events,
         #custom-weather,
-        #clock,
+        #date-time,
         #tray {
           padding: 0 0.5rem;
-        }
-
-        /* all but rightmost item in a group */
-        #cpu,
-        #memory,
-        #custom-email-important,
-        #custom-email-unread,
-        #custom-notifications,
-        #wireplumber,
-        #custom-tv {
-          /* padding-right: 0.5rem; */
         }
 
         #custom-appmenu {
@@ -437,6 +454,12 @@ in
           background-color: @activeBg;
         }
 
+        tooltip {
+          background-color: @shadow;
+          border-radius: 12px;
+          border: 1px solid @mauve;
+          padding: 6px;
+        }
       '';
     };
   };

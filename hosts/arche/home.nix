@@ -24,7 +24,6 @@
           modules = {
             enableBT = true;
           };
-          hyprland.onlyActiveWorkspaces = false;
         };
         monitors = [
           {
