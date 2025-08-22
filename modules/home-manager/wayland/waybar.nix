@@ -5,6 +5,21 @@ in
 {
   options.evie.wayland.waybar = {
     enable = lib.mkEnableOption "waybar defaults";
+    modules = {
+      enableTV = lib.mkEnableOption "enable TV indicator";
+      enableBT = lib.mkEnableOption "enable Bluetooth indicator";
+      enableEmails = lib.mkEnableOption "enable emails indicator";
+      enableCalendar = lib.mkOption {
+        default = true;
+        example = false;
+        description = "enable calendars indicator";
+        type = lib.types.bool;
+      };
+    };
+
+    hyprland = {
+      onlyActiveWorkspaces = lib.mkEnableOption "only show active workspaces";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -31,8 +46,7 @@ in
           layer = "top";
           output = "DP-2";
           position = "bottom";
-          # height = 16; # todo: try auto
-          spacing = 8; # space between modules
+          spacing = 8;
           margin-top = 2;
           margin-bottom = 2;
           margin-left = 8;
@@ -51,14 +65,14 @@ in
           modules-center = [
             "group/hardware"
             "group/media"
-            "group/email"
-          ];
+          ] ++ (if cfg.modules.enableEmails then [ "group/email" ] else [ ]);
 
-          modules-right = [
-            "custom/events"
-            "custom/weather"
-            "clock"
-          ];
+          modules-right =
+            (if cfg.modules.enableCalendar then [ "custom/events" ] else [ ])
+            ++ [
+              "custom/weather"
+              "clock"
+            ];
 
           "custom/separator" = {
             format = "❱";
@@ -73,7 +87,7 @@ in
           };
 
           "hyprland/workspaces" = {
-            active-only = true;
+            active-only = cfg.hyprland.onlyActiveWorkspaces;
             all-outputs = true;
             format = "{id}";
             on-scroll-up = "hyprctl dispatch workspace r-1";
@@ -175,13 +189,10 @@ in
 
           "group/media" = {
             orientation = "horizontal";
-            modules = [
-              "wireplumber"
-              "custom/separator"
-              "custom/tv"
-              "custom/separator"
-              "bluetooth"
-            ];
+            modules =
+              [ "wireplumber" ]
+              ++ (if cfg.modules.enableTV then [ "custom/separator" "custom/tv" ] else [ ])
+              ++ (if cfg.modules.enableBT then [ "custom/separator" "bluetooth" ] else [ ]);
           };
 
           wireplumber = {

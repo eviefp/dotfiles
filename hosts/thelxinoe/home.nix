@@ -38,12 +38,14 @@
     wayland = {
       enable = true;
       hyprland.enable = true;
-      eww = {
-        eww-monitor = "0";
-        showTV = true;
-        useSshMailCalendar = false;
-        showMail = true;
-        showCalendar = true;
+      waybar = {
+        enable = true;
+        modules = {
+          enableTV = true;
+          enableBT = true;
+          enableEmails = true;
+          enableCalendar = true;
+        };
       };
       monitors = [
         {

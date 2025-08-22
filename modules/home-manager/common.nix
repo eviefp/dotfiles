@@ -63,7 +63,6 @@ in
           };
 
           wayland = lib.mkIf config.evie.wayland.hyprland.enable {
-            eww.enable = false;
             rofi.enable = true;
             swaync.enable = true;
             waybar.enable = true;
