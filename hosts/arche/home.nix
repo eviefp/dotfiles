@@ -20,6 +20,7 @@
         hyprland.enable = true;
         waybar = {
           enable = true;
+          outputMonitor = "HDMI-A-4";
           hyprland.onlyActiveWorkspaces = false;
         };
         monitors = [

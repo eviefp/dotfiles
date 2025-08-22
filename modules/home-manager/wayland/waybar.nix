@@ -5,6 +5,13 @@ in
 {
   options.evie.wayland.waybar = {
     enable = lib.mkEnableOption "waybar defaults";
+
+    outputMonitor = lib.mkOption {
+      type = lib.types.str;
+      example = "DP-1";
+    };
+
+
     modules = {
       enableTV = lib.mkEnableOption "enable TV indicator";
       enableBT = lib.mkEnableOption "enable Bluetooth indicator";
@@ -44,7 +51,7 @@ in
 
         mainBar = {
           layer = "top";
-          output = "DP-2";
+          output = cfg.outputMonitor;
           position = "bottom";
           spacing = 8;
           margin-top = 2;

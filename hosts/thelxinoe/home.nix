@@ -40,6 +40,7 @@
       hyprland.enable = true;
       waybar = {
         enable = true;
+        outputMonitor = "DP-2";
         modules = {
           enableTV = true;
           enableBT = true;
