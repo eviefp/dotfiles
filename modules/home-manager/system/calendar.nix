@@ -88,7 +88,7 @@ in
     systemd.user.timers.calendar-notifier = {
       Unit = {
         Description = "Calendar notification";
-        After = [ "sops-nix.service" "eww.service" ];
+        After = [ "sops-nix.service" ];
       };
       Timer = {
         Unit = "calendar-notifier.service";
@@ -102,7 +102,7 @@ in
     systemd.user.services.calendar-notifier = {
       Unit = {
         Description = "Calendar notification";
-        After = [ "sops-nix.service" "eww.service" ];
+        After = [ "sops-nix.service" ];
       };
 
       Install = { WantedBy = [ "hyprland-session.target" ]; };

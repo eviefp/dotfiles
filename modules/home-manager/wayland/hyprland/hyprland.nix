@@ -6,18 +6,17 @@ let
   switch-colors = pkgs.writeShellScriptBin "switch-colors" ''
     #!/usr/bin/env bash
 
-    colorMode=`eww get colorMode`
+    # TODO: this is now broken
+    # colorMode=`eww get colorMode`
 
     if [[ "$colorMode" == "light" ]]; then
       emacsclient --eval "(load-theme 'modus-vivendi-tritanopia :no-confirm)"
       ln -sf /home/evie/.config/kitty/dark.conf /home/evie/.config/kitty/theme.conf
       pkill -USR1 kitty
-      eww update colorMode=dark
     else
       emacsclient --eval "(load-theme 'modus-operandi-tritanopia :no-confirm)"
       ln -sf /home/evie/.config/kitty/light.conf /home/evie/.config/kitty/theme.conf
       pkill -USR1 kitty
-      eww update colorMode=light
     fi
   '';
   grimblast = pkgs.writeShellScriptBin "grimblast" ''
@@ -245,7 +244,6 @@ in
         "$cliphist" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
         "$notifications" = "swaync-client -t -sw";
         "$sleep" = "sleep 1s; hyprctl dispatch dpms off";
-        "$toggleTimezones" = "eww open tz --toggle";
         "$mainMod" = "SUPER";
         "$shiftMod" = "SUPER_SHIFT";
         "$ctrlMod" = "SUPER&Control";
@@ -269,10 +267,6 @@ in
           "$mainMod, Space, exec, $menu"
           "$mainMod, O, exec, $pass"
           "$mainMod, N, exec, $notifications"
-          "$mainMod, Z, exec, $toggleTimezones"
-          "$mainMod, C, exec, eww open cal --toggle"
-          "$mainMod, V, exec, eww open events --toggle"
-          "$mainMod, B, exec, eww open cpu --toggle"
           "$mainMod, Return, layoutmsg, swapwithmaster"
           "$mainMod, G, fullscreen, 0"
 
@@ -340,7 +334,7 @@ in
         ];
 
         bindl = [
-          ",switch:off:Lid Switch,exec,sleep 1s; eww o statusbar"
+          ",switch:off:Lid Switch,exec,sleep 1s"
         ];
       };
     };

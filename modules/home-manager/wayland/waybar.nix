@@ -36,9 +36,10 @@ in
       pkgs.wttrbar
     ];
 
+    # TODO: remove this
     home.file.".config/waybar/scripts" = {
       recursive = true;
-      source = ./../../../config/eww/scripts;
+      source = ./../../../scripts;
     };
 
     programs.waybar = {
@@ -226,7 +227,8 @@ in
             on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
             on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
             states = {
-              low = 10;
+              low = 0;
+              medium = 50;
             };
           };
 

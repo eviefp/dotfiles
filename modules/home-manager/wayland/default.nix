@@ -1,5 +1,4 @@
 {
-  eww = ./eww.nix;
   hyprland = {
     hypridle = ./hyprland/hypridle.nix;
     hyprland = ./hyprland/hyprland.nix;
