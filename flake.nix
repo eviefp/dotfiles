@@ -138,6 +138,11 @@
           };
         };
         treefmt = (dotfiles.treefmt-nix.lib.evalModule pkgs treefmt-config).config.build;
+        haskellPackages = pkgs.haskell.packages.ghc9102.override (prevArgs: {
+          overrides = pkgs.lib.composeExtensions (prevArgs.overrides or (_: _: { })) (final: _prev: {
+            dotfiles-script = final.callCabal2nix "dotfiles-script" ./scripts/dotfiles-script { };
+          });
+        });
       in
       {
         formatter = treefmt.wrapper;
@@ -147,6 +152,16 @@
         };
 
         packages = import ./packages { inherit pkgs; inherit pkgs-2411; };
+
+        devShells.default = haskellPackages.shellFor {
+          packages = p: [ p.dotfiles-script ];
+          buildInputs = [
+            pkgs.haskell.compiler.ghc9102
+            pkgs.haskell.packages.ghc9102.cabal-install
+            pkgs.haskell.packages.ghc9102.haskell-language-server
+            pkgs.zlib.dev
+          ];
+        };
 
       })) //
     {

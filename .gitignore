@@ -7,3 +7,6 @@ home/xmonad/xmonad.o
 /switch.sh
 /home-manager/modules/services/calendar-sync-secrets.nix
 *.pem
+.envrc
+scripts/dotfiles-script/dist-newstyle/
+scripts/dotfiles-script/hls.log

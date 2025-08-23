@@ -15,6 +15,7 @@ in
     modules = {
       enableTV = lib.mkEnableOption "enable TV indicator";
       enableBT = lib.mkEnableOption "enable Bluetooth indicator";
+      enableWebcam = lib.mkEnableOption "enable webcam indicator";
       enableEmails = lib.mkEnableOption "enable emails indicator";
       enableCalendar = lib.mkEnableOption "enable calendars indicator";
     };
@@ -211,7 +212,8 @@ in
             modules =
               [ "wireplumber" ]
               ++ (if cfg.modules.enableTV then [ "custom/separator" "custom/tv" ] else [ ])
-              ++ (if cfg.modules.enableBT then [ "custom/separator" "bluetooth" ] else [ ]);
+              ++ (if cfg.modules.enableBT then [ "custom/separator" "bluetooth" ] else [ ])
+              ++ (if cfg.modules.enableWebcam then [ "custom/separator" "custom/webcam" ] else [ ]);
           };
 
           wireplumber = {
@@ -255,6 +257,14 @@ in
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
             tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
             max-length = 10;
+          };
+
+          "custom/webcam" = {
+            format = "{} ";
+            tooltip = true;
+            interval = 10;
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.webcam-status}";
+            return-type = "json";
           };
 
           tray = {
@@ -489,6 +499,16 @@ in
           border-radius: 12px;
           border: 1px solid @mauve;
           padding: 6px;
+        }
+
+        #custom-webcam.active {
+          color: @red;
+        }
+        #custom-webcam.enabled {
+          /* color: @green; */
+        }
+        #custom-webcam.none {
+          color: @yellow;
         }
       '';
     };

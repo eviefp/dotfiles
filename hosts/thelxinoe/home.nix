@@ -44,6 +44,7 @@
         modules = {
           enableTV = true;
           enableBT = true;
+          enableWebcam = true;
           enableEmails = true;
           enableCalendar = true;
         };
