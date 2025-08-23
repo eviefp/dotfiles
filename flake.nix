@@ -125,6 +125,16 @@
           projectRootFile = "flake.nix";
           programs = {
             nixpkgs-fmt.enable = true;
+            cabal-fmt.enable = true;
+            deadnix.enable = true;
+            fourmolu = {
+              enable = true;
+              package = pkgs.haskell.packages.ghc9102.fourmolu;
+            };
+            hlint.enable = true;
+            mdformat.enable = true;
+            shellcheck.enable = true;
+            jsonfmt.enable = true;
           };
         };
         treefmt = (dotfiles.treefmt-nix.lib.evalModule pkgs treefmt-config).config.build;

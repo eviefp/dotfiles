@@ -1,1 +1,9 @@
-{ "name": "firenvim", "description": "Turn your browser into a Neovim GUI.", "path": "/home/evie/.local/share/firenvim/firenvim", "type": "stdio", "allowed_extensions": ["firenvim@lacamb.re"]}
+{
+  "name": "firenvim",
+  "description": "Turn your browser into a Neovim GUI.",
+  "path": "/home/evie/.local/share/firenvim/firenvim",
+  "type": "stdio",
+  "allowed_extensions": [
+    "firenvim@lacamb.re"
+  ]
+}
