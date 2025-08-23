@@ -482,13 +482,13 @@ in
           color: @red;
         }
 
-        #cpu.low, #memory.low, #custom-email-important.none, #custom-email-unread.none {
+        #cpu.low, #memory.low {
           color: @green;
         }
-        #cpu.medium, #memory.medium, #wireplumber.medium {
+        #cpu.medium, #memory.medium, #wireplumber.medium, #custom-email-unread.unread {
           color: @yellow;
         }
-        #cpu.high, #memory.high, #wireplumber.low, #custom-email-important.unread, #custom-email-unread.unread {
+        #cpu.high, #memory.high, #wireplumber.low, #custom-email-important.unread {
           color: @red;
         }
 
