@@ -164,17 +164,19 @@ in
           };
 
           "custom/email-important" = {
-            exec = "notmuch count tag:important";
-            interval = 5;
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.email-status} important";
             format = " {}";
-            tooltip = false;
+            interval = 5;
+            return-type = "json";
+            tooltip = true;
           };
 
           "custom/email-unread" = {
-            exec = "notmuch count tag:unread";
-            interval = 5;
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.email-status} unread";
             format = " {}";
-            tooltip = false;
+            interval = 5;
+            return-type = "json";
+            tooltip = true;
           };
 
           "custom/notifications" = {
@@ -480,13 +482,13 @@ in
           color: @red;
         }
 
-        #cpu.low, #memory.low {
+        #cpu.low, #memory.low, #custom-email-important.none, #custom-email-unread.none {
           color: @green;
         }
         #cpu.medium, #memory.medium, #wireplumber.medium {
           color: @yellow;
         }
-        #cpu.high, #memory.high, #wireplumber.low {
+        #cpu.high, #memory.high, #wireplumber.low, #custom-email-important.unread, #custom-email-unread.unread {
           color: @red;
         }
 

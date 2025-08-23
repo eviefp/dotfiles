@@ -20,63 +20,63 @@ import Control.DeepSeq (NFData)
 import Data.Aeson ((.=))
 import qualified Data.Aeson as Aeson
 import Data.Bool (bool)
-import Data.ByteString.Lazy (ByteString)
-import qualified Data.ByteString.Lazy.Char8 as BS
-import Data.List.Extra (nubOrdOn)
+import Data.ByteString.Lazy.Char8 (ByteString)
+import qualified Data.ByteString.Lazy.Char8 as LBS
 import GHC.Generics (Generic)
 import Shh
-import System.FilePath ((</>))
+import qualified System.Environment as Env
+import qualified Text.Layout.Table as Table
 
 $(loadEnv SearchPath)
 
-deviceRoot, runtimeEnabled, runtimeStatus, cameraIcon :: String
-deviceRoot = "/sys/class/video4linux"
-runtimeEnabled = "device/power/runtime_enabled"
-runtimeStatus = "device/power/runtime_status"
-cameraIcon = "\61488"
-
 main :: IO ()
-main =
-  ls deviceRoot
-    |> readInputLinesP (traverse getDeviceInfo)
-    >>= printJsonSummary . nubOrdOn name
+main = do
+  Env.getArgs >>= \case
+    [tag] -> run tag
+    _ -> error "expected a single argument: notmuch tag"
 
-data DeviceInfo = DeviceInfo
-  { name :: String
-  , enabled :: Bool
-  , active :: Bool
-  }
-  deriving stock (Generic, Eq, Ord, Show)
-  deriving anyclass (Aeson.ToJSON, NFData)
-
-getDeviceInfo :: ByteString -> Proc DeviceInfo
-getDeviceInfo videoDevice = do
+run :: String -> IO ()
+run tag = do
   let
-    root = deviceRoot </> BS.unpack videoDevice
-  name <- cat (root </> "name") |> readInput (pure . BS.unpack . trim)
-  enabled <- cat (root </> runtimeEnabled) |> readInput (pure . (== "enabled") . trim)
-  active <- cat (root </> runtimeStatus) |> readInput (pure . (== "active") . trim)
-  pure DeviceInfo {..}
+    searchTerm = "tag:" <> tag
+  count <- notmuch "count" searchTerm |> readInput pure
+  emails <-
+    notmuch "search" "--limit=20" "--format=json" searchTerm
+      |> readInput (Aeson.throwDecode @[EmailSummary])
+  printJsonSummary count emails
 
-printJsonSummary :: [DeviceInfo] -> IO ()
-printJsonSummary devices =
+data EmailSummary = EmailSummary
+  { date_relative :: String
+  , authors :: String
+  , subject :: String
+  , tags :: [String]
+  }
+  deriving stock (Generic, Show)
+  deriving anyclass (NFData, Aeson.ToJSON, Aeson.FromJSON)
+
+printJsonSummary :: ByteString -> [EmailSummary] -> IO ()
+printJsonSummary count emails =
   writeOutput
     . Aeson.encode
     . Aeson.object
-    $ [ "text" .= cameraIcon
+    $ [ "text" .= LBS.unpack count
       , "alt" .= ""
-      , "tooltip" .= (unlines . fmap formatDevice $ devices)
-      , "class"
-          .= if any active devices
-            then "active"
-            else bool "none" "enabled" . any enabled $ devices
+      , "tooltip" .= formatTable (fmap formatEmail $ emails)
+      , "class" .= (bool "none" "unread" $ count == "0")
       ]
  where
-  formatDevice :: DeviceInfo -> String
-  formatDevice DeviceInfo {..} =
-    unwords
-      [ cameraIcon
-      , name
-      , bool "disabled" "enabled" enabled
-      , bool "active" "suspended" active
-      ]
+  formatEmail :: EmailSummary -> [String]
+  formatEmail EmailSummary {..} =
+    [ date_relative
+    , authors
+    , subject
+    , unwords tags
+    ]
+
+  formatTable :: [[String]] -> String
+  formatTable =
+    Table.tableString
+      . Table.headerlessTableS
+        [Table.def, Table.numCol]
+        Table.unicodeRoundS
+      . fmap Table.rowG
