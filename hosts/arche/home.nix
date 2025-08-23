@@ -1,6 +1,6 @@
 { dotfiles, pkgs, ... }:
 {
-  imports = with dotfiles.self.homeManagerModules; [
+  imports = with dotfiles.self.homeModules; [
     common
   ];
 

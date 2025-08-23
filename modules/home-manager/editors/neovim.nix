@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    dotfiles.nixvim.homeManagerModules.nixvim
+    dotfiles.nixvim.homeModules.nixvim
   ];
 
   options.evie.editors.neovim = {
