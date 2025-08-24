@@ -25,9 +25,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO:
-    # - native
-    # - editor
     home.file = {
       ".config/tridactyl/tridactylrc".text = ''
         colourscheme dark
@@ -43,6 +40,8 @@ in
         unbind gT
         unbind go
         unbind gO
+        unbind d
+        unbind D
 
         bind --mode=normal J tabnext
         bind --mode=normal K tabprev

@@ -1,6 +1,6 @@
 { dotfiles, ... }:
 {
-  imports = with dotfiles.self.homeManagerModules; [
+  imports = with dotfiles.self.homeModules; [
     common
   ];
 
@@ -27,14 +27,12 @@
     wayland = {
       enable = true;
       hyprland.enable = true;
-      eww = {
+      waybar = {
         enable = true;
-        eww-monitor = "0";
-        showBattery = true;
-        useSshMailCalendar = true;
-        showMail = false;
-        showCalendar = false;
-        showTV = true;
+        outputMonitor = "eDP-1";
+        modules = {
+          enableBT = true;
+        };
       };
       hypridle.lock = true;
       hyprpaper = {

@@ -4,7 +4,18 @@
     enable = lib.mkEnableOption "wayland defaults";
 
     disabledMonitors = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            example = "DP-1";
+          };
+          keybind = lib.mkOption {
+            type = lib.types.str;
+            example = "W";
+          };
+        };
+      });
       default = [ ];
     };
 

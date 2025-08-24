@@ -1,14 +1,10 @@
-{ dotfiles, pkgs, ... }:
+{ dotfiles, ... }:
 {
-  imports = with dotfiles.self.homeManagerModules; [
+  imports = with dotfiles.self.homeModules; [
     common
   ];
 
   config = {
-    home.packages = [
-      pkgs.firefox
-    ];
-
     evie = {
       common.enable = true;
 
@@ -19,14 +15,17 @@
       wayland = {
         enable = true;
         hyprland.enable = true;
-        eww = {
-          eww-monitor = "0";
-          showBattery = true;
-          useSshMailCalendar = false;
-          showMail = false;
-          showCalendar = false;
+        waybar = {
+          enable = true;
+          outputMonitor = "eDP-1";
+          modules = {
+            enableBT = true;
+          };
         };
-        disabledMonitors = [ "DP-1" ];
+        disabledMonitors = [{
+          name = "DP-1";
+          keybind = "E";
+        }];
         monitors = [
           {
             name = "eDP-1";

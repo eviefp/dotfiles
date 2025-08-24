@@ -12,13 +12,22 @@
       "type": "string",
       "description": "Horizontal position of control center and notification window",
       "default": "right",
-      "enum": ["right", "left", "center"]
+      "enum": [
+        "right",
+        "left",
+        "center"
+      ]
     },
     "layer": {
       "type": "string",
       "description": "Layer of notification window",
       "default": "overlay",
-      "enum": ["background", "bottom", "top", "overlay"]
+      "enum": [
+        "background",
+        "bottom",
+        "top",
+        "overlay"
+      ]
     },
     "layer-shell": {
       "type": "boolean",
@@ -29,25 +38,41 @@
       "type": "string",
       "description": "Which GTK priority to use when loading the default and user CSS files. Pick \"user\" to override XDG_CONFIG_HOME/gtk-3.0/gtk.css",
       "default": "application",
-      "enum": ["application", "user"]
+      "enum": [
+        "application",
+        "user"
+      ]
     },
     "positionY": {
       "type": "string",
       "description": "Vertical position of control center and notification window",
       "default": "top",
-      "enum": ["top", "center", "bottom"]
+      "enum": [
+        "top",
+        "center",
+        "bottom"
+      ]
     },
     "control-center-positionX": {
       "type": "string",
       "description": "Optional: Horizontal position of the control center. Supersedes positionX if not set to `none`",
       "default": "none",
-      "enum": ["right", "left", "center", "none"]
+      "enum": [
+        "right",
+        "left",
+        "center",
+        "none"
+      ]
     },
     "control-center-positionY": {
       "type": "string",
       "description": "Optional: Vertical position of the control center. Supersedes positionY if not set to `none`",
       "default": "none",
-      "enum": ["top", "bottom", "none"]
+      "enum": [
+        "top",
+        "bottom",
+        "none"
+      ]
     },
     "control-center-margin-top": {
       "type": "integer",
@@ -73,7 +98,13 @@
       "type": "string",
       "description": "Layer of control center window",
       "default": "none",
-      "enum": ["background", "bottom", "top", "overlay", "none"]
+      "enum": [
+        "background",
+        "bottom",
+        "top",
+        "overlay",
+        "none"
+      ]
     },
     "notification-2fa-action": {
       "type": "boolean",
@@ -149,7 +180,11 @@
       "type": "string",
       "description": "An explanation about the purpose of this instance.",
       "default": "when-available",
-      "enum": ["always", "when-available", "never"]
+      "enum": [
+        "always",
+        "when-available",
+        "never"
+      ]
     },
     "transition-time": {
       "type": "integer",
@@ -180,7 +215,9 @@
         "^.{1,}$": {
           "type": "object",
           "description": "Your script object.",
-          "required": ["exec"],
+          "required": [
+            "exec"
+          ],
           "minProperties": 2,
           "additionalProperties": false,
           "properties": {
@@ -208,7 +245,11 @@
               "type": "string",
               "description": "The urgency of the notification.",
               "default": "Normal",
-              "enum": ["Low", "Normal", "Critical"]
+              "enum": [
+                "Low",
+                "Normal",
+                "Critical"
+              ]
             },
             "category": {
               "type": "string",
@@ -217,7 +258,10 @@
             "run-on": {
               "type": "string",
               "description": "Whether to run the script on an action being activated, or when the notification is received.",
-              "enum": ["action", "receive"],
+              "enum": [
+                "action",
+                "receive"
+              ],
               "default": "receive"
             }
           }
@@ -233,7 +277,9 @@
         "^.{1,}$": {
           "type": "object",
           "description": "Your script object.",
-          "required": ["state"],
+          "required": [
+            "state"
+          ],
           "minProperties": 2,
           "additionalProperties": false,
           "properties": {
@@ -241,7 +287,12 @@
               "type": "string",
               "description": "The notification visibility state.",
               "default": "enabled",
-              "enum": ["ignored", "muted", "enabled", "transient"]
+              "enum": [
+                "ignored",
+                "muted",
+                "enabled",
+                "transient"
+              ]
             },
             "app-name": {
               "type": "string",
@@ -263,13 +314,22 @@
               "type": "string",
               "description": "The urgency of the notification.",
               "default": "Normal",
-              "enum": ["Low", "Normal", "Critical"]
+              "enum": [
+                "Low",
+                "Normal",
+                "Critical"
+              ]
             },
             "override-urgency": {
               "type": "string",
               "description": "The new urgency of the notification (optional)",
               "default": "unset",
-              "enum": ["unset", "low", "normal", "critical"]
+              "enum": [
+                "unset",
+                "low",
+                "normal",
+                "critical"
+              ]
             },
             "category": {
               "type": "string",
@@ -282,10 +342,14 @@
     "widgets": {
       "type": "array",
       "description": "Which order and which widgets to display. If the \"notifications\" widget isn't specified, it will be placed at the bottom.",
-      "default": ["inhibitors", "title", "dnd", "notifications"],
+      "default": [
+        "inhibitors",
+        "title",
+        "dnd",
+        "notifications"
+      ],
       "items": {
         "type": "string",
-        // Sadly can't use regex and enums at the same time. Fix in the future?
         "pattern": "^[a-zA-Z0-9_-]{1,}(#[a-zA-Z0-9_-]{1,}){0,1}?$"
       }
     },
@@ -294,9 +358,7 @@
       "description": "Configure specific widget properties.",
       "additionalProperties": false,
       "patternProperties": {
-        // New widgets go here
         "^title(#[a-zA-Z0-9_-]{1,}){0,1}?$": {
-          // References the widget structure from "widgets" below
           "$ref": "#/widgets/title"
         },
         "^dnd(#[a-zA-Z0-9_-]{1,}){0,1}?$": {
@@ -321,14 +383,12 @@
           "$ref": "#/widgets/backlight"
         },
         "^inhibitors(#[a-zA-Z0-9_-]{1,}){0,1}?$": {
-          // References the widget structure from "widgets" below
           "$ref": "#/widgets/inhibitors"
         }
       }
     }
   },
   "widgets": {
-    // New widgets go here
     "title": {
       "type": "object",
       "description": "Control Center Title Widget",
@@ -442,21 +502,28 @@
               "type": "string",
               "description": "Horizontal position of the button in the bar",
               "default": "right",
-              "enum": ["right", "left"]
+              "enum": [
+                "right",
+                "left"
+              ]
             },
             "animation-type": {
               "type": "string",
               "default": "slide_down",
               "description": "Animation type for menu",
-              "enum": ["slide_down", "slide_up", "none"]
+              "enum": [
+                "slide_down",
+                "slide_up",
+                "none"
+              ]
             },
-            "animation-duration":{
+            "animation-duration": {
               "type": "integer",
               "default": 250,
               "description": "Duration of animation in milliseconds"
             },
             "actions": {
-              "$ref" : "#/widgets/buttons-grid/properties/actions"
+              "$ref": "#/widgets/buttons-grid/properties/actions"
             }
           }
         },
@@ -469,10 +536,13 @@
               "type": "string",
               "description": "Horizontal position of the button in the bar",
               "default": "right",
-              "enum": ["right", "left"]
+              "enum": [
+                "right",
+                "left"
+              ]
             },
             "actions": {
-              "$ref" : "#/widgets/buttons-grid/properties/actions"
+              "$ref": "#/widgets/buttons-grid/properties/actions"
             }
           }
         }
@@ -517,9 +587,13 @@
           "type": "string",
           "default": "slide_down",
           "description": "Animation type for menu",
-          "enum": ["slide_down", "slide_up", "none"]
+          "enum": [
+            "slide_down",
+            "slide_up",
+            "none"
+          ]
         },
-        "animation-duration":{
+        "animation-duration": {
           "type": "integer",
           "default": 250,
           "description": "Duration of animation in milliseconds"
@@ -545,7 +619,10 @@
           "type": "string",
           "description": "Kernel subsystem for brightness control",
           "default": "backlight",
-          "enum": ["backlight", "leds"]
+          "enum": [
+            "backlight",
+            "leds"
+          ]
         },
         "min": {
           "type": "integer",

@@ -1,3 +1,4 @@
+;; -*- mode: emacs-lisp; lexical-binding: nil; -*-
 ; IMPORTANT: Remember to add `:ensure t` to use-package in order to add them to
 ;; the available packages.
 
@@ -11,7 +12,7 @@
 (setq package-archives nil)
 
 (setq package-enable-at-startup nil)
-(package-initialize)
+;; (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Shamelessly stolen from Christoph Hegeman's emacs config

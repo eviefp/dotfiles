@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    dotfiles.nixvim.homeManagerModules.nixvim
+    dotfiles.nixvim.homeModules.nixvim
   ];
 
   options.evie.editors.neovim = {
@@ -31,6 +31,8 @@ in
 
     programs.nixvim = {
       enable = true;
+
+      package = dotfiles.self.packages.${pkgs.system}.neovim;
 
       viAlias = true;
       vimAlias = true;
@@ -239,6 +241,10 @@ in
           key = "<leader>ox";
           action = ":Obsidian extract_note<cr>";
         }
+        {
+          key = "<leader>oo";
+          action = ":Outline<cr>";
+        }
       ];
 
       extraPlugins = [
@@ -265,8 +271,8 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "2KAbhishek";
             repo = "co-author.nvim";
-            rev = "362a04007356a41f650b006fbd317d3761d65aab";
-            hash = "sha256-H9hE4gC2mp2hEYGWwtWUS8IowhxJBieUMn/10fcv2I0=";
+            rev = "2f012714247dfe1959ba53fa50e4b1320d86d1b8";
+            hash = "sha256-5/UORMt9TxOM7LRDKSbRymBt11XPe3OWN/8rwy0IkZg=";
           };
         }) # :CoAuthor
         pkgs.vimPlugins.nvim-sops
@@ -311,6 +317,7 @@ in
         require('outline').setup({
           outline_window = {
             position = 'left',
+            auto_close = true,
           },
           preview_window = {
             auto_preview = true,
@@ -519,6 +526,7 @@ in
             tsx
             typescript
             vim
+            vimdoc
             xcompose
             xml
             yaml

@@ -1,5 +1,4 @@
 {
-  eww = ./eww.nix;
   hyprland = {
     hypridle = ./hyprland/hypridle.nix;
     hyprland = ./hyprland/hyprland.nix;
@@ -10,5 +9,6 @@
   rofi = ./rofi.nix;
   screenshot = ./screenshot.nix;
   swaync = ./swaync.nix;
+  waybar = ./waybar.nix;
   wayland = ./wayland.nix;
 }

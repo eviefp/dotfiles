@@ -6,18 +6,17 @@ let
   switch-colors = pkgs.writeShellScriptBin "switch-colors" ''
     #!/usr/bin/env bash
 
-    colorMode=`eww get colorMode`
+    # TODO: this is now broken
+    # colorMode=`eww get colorMode`
 
     if [[ "$colorMode" == "light" ]]; then
       emacsclient --eval "(load-theme 'modus-vivendi-tritanopia :no-confirm)"
       ln -sf /home/evie/.config/kitty/dark.conf /home/evie/.config/kitty/theme.conf
       pkill -USR1 kitty
-      eww update colorMode=dark
     else
       emacsclient --eval "(load-theme 'modus-operandi-tritanopia :no-confirm)"
       ln -sf /home/evie/.config/kitty/light.conf /home/evie/.config/kitty/theme.conf
       pkill -USR1 kitty
-      eww update colorMode=light
     fi
   '';
   grimblast = pkgs.writeShellScriptBin "grimblast" ''
@@ -69,7 +68,7 @@ in
       settings = {
         monitor =
           map (mon: "${mon.name}, ${mon.resolution}, ${mon.position}, 1, transform, ${mon.transform}") wayland.monitors
-          ++ map (name: "${name}, disabled") wayland.disabledMonitors;
+          ++ map (mon: "${mon.name}, disabled") wayland.disabledMonitors;
 
         exec-once = [
           "swaync"
@@ -78,7 +77,6 @@ in
           "wl-paste --type text --watch cliphist store" #Stores only text data
           "wl-paste --type image --watch cliphist store" #Stores only image data
           "blueman-applet"
-          "hyprctl keyword monitor \"HDMI-A-1, disabled\"" # hacky, but eh
         ];
 
         env = lib.mkMerge [
@@ -191,6 +189,7 @@ in
             render_titles = true;
             gradients = true;
             gradient_rounding = 8;
+            keep_upper_gap = false;
             rounding = 8;
             text_color = "rgba(ffc4e9ff)";
             "col.active" = "rgba(46224cd5) rgba(663390d5) 90deg";
@@ -235,7 +234,9 @@ in
 
         };
 
-        windowrulev2 = [ ];
+        windowrule = [
+          "fullscreen,class:Minecraft(.*)"
+        ];
         plugin = { };
 
         "$terminal" = "kitty";
@@ -245,7 +246,6 @@ in
         "$cliphist" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
         "$notifications" = "swaync-client -t -sw";
         "$sleep" = "sleep 1s; hyprctl dispatch dpms off";
-        "$toggleTimezones" = "eww open tz --toggle";
         "$mainMod" = "SUPER";
         "$shiftMod" = "SUPER_SHIFT";
         "$ctrlMod" = "SUPER&Control";
@@ -258,7 +258,7 @@ in
           "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
           "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
           "$shiftMod, P, exec, $sleep"
-          "$shiftMod, T, exec, /home/evie/.config/eww/scripts/toggle-tv.sh"
+          "$shiftMod, T, exec, ${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.tv-toggle}"
           "$shiftMod, E, exec, ${switch-colors}/bin/switch-colors"
 
           "$shiftMod, C, killactive,"
@@ -269,10 +269,6 @@ in
           "$mainMod, Space, exec, $menu"
           "$mainMod, O, exec, $pass"
           "$mainMod, N, exec, $notifications"
-          "$mainMod, Z, exec, $toggleTimezones"
-          "$mainMod, C, exec, eww open cal --toggle"
-          "$mainMod, V, exec, eww open events --toggle"
-          "$mainMod, B, exec, eww open cpu --toggle"
           "$mainMod, Return, layoutmsg, swapwithmaster"
           "$mainMod, G, fullscreen, 0"
 
@@ -322,7 +318,9 @@ in
           "$shiftMod, m, moveoutofgroup,"
           "$mainMod, a, changegroupactive, b"
           "$mainMod, s, changegroupactive, f"
-        ] ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors;
+        ]
+        ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors
+        ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.disabledMonitors;
 
         binde = [
           "$ctrlMod, H, resizeactive, -10   0"
@@ -338,7 +336,7 @@ in
         ];
 
         bindl = [
-          ",switch:off:Lid Switch,exec,sleep 1s; eww o statusbar"
+          ",switch:off:Lid Switch,exec,sleep 1s"
         ];
       };
     };

@@ -243,8 +243,11 @@ in
           gco = "git checkout";
           gf = "git fetch";
           gb = "git br";
+          gs = "git status";
           vi = "nvim";
           ki = "khal interactive";
+          calm = "cal --week-start mo --month-names";
+          caly = "cal --week-start mo --month-names --full-year 2025"; # todo: maybe make this a script instead
         };
         environmentVariables = {
           KEYID_EVIE = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
