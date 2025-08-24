@@ -234,7 +234,9 @@ in
 
         };
 
-        windowrulev2 = [ ];
+        windowrule = [
+          "fullscreen,class:Minecraft(.*)"
+        ];
         plugin = { };
 
         "$terminal" = "kitty";
