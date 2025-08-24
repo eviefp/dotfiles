@@ -1,6 +1,11 @@
 #+ATTR_HTML: :alt built with garnix
 [[https://garnix.io/repo/eviefp/dotfiles][https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Feviefp%2Fdotfiles]]
 
+Manual updates:
+
+- ./packages/default.nix: neovim, Waybar
+- ./modules/home-manager/editors/neovim.nix: a couple of plugins
+
 * My system configuration
 
 Please let me know if you see anything dubious or that can be improved.

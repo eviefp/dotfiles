@@ -14,7 +14,7 @@ in
     enable = lib.mkEnableOption "common config";
   };
 
-  imports = lib.collect notAttrs (lib.filterAttrs removeCommon dotfiles.self.homeManagerModules);
+  imports = lib.collect notAttrs (lib.filterAttrs removeCommon dotfiles.self.homeModules);
 
   config = lib.mkIf cfg.enable
     (lib.mkMerge [
@@ -63,9 +63,9 @@ in
           };
 
           wayland = lib.mkIf config.evie.wayland.hyprland.enable {
-            eww.enable = true;
             rofi.enable = true;
             swaync.enable = true;
+            waybar.enable = true;
 
             hypridle.enable = true;
             hyprlock.enable = true;

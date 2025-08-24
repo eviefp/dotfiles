@@ -1,6 +1,6 @@
 { dotfiles, ... }:
 {
-  imports = with dotfiles.self.homeManagerModules; [
+  imports = with dotfiles.self.homeModules; [
     common
   ];
 
@@ -38,12 +38,16 @@
     wayland = {
       enable = true;
       hyprland.enable = true;
-      eww = {
-        eww-monitor = "0";
-        showTV = true;
-        useSshMailCalendar = false;
-        showMail = true;
-        showCalendar = true;
+      waybar = {
+        enable = true;
+        outputMonitor = "DP-2";
+        modules = {
+          enableTV = true;
+          enableBT = true;
+          enableWebcam = true;
+          enableEmails = true;
+          enableCalendar = true;
+        };
       };
       monitors = [
         {
@@ -53,25 +57,23 @@
           keybind = "W";
         }
         {
-          name = "DP-3";
+          name = "DP-2";
           resolution = "1920x1080@239.76";
           position = "3840x395";
           keybind = "E";
         }
         {
-          name = "DP-2";
+          name = "DP-3";
           resolution = "1920x1080@239.76";
           position = "5760x0";
           transform = "3";
           keybind = "R";
         }
-        {
-          name = "HDMI-A-1";
-          resolution = "1920x1080@60";
-          position = "0x395";
-          keybind = "T";
-        }
       ];
+      disabledMonitors = [{
+        name = "HDMI-A-1";
+        keybind = "T";
+      }];
     };
   };
 }

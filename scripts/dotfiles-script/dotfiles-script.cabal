@@ -1,0 +1,32 @@
+cabal-version: 3.4
+name:          dotfiles-script
+version:       0.1.0.0
+homepage:      https://github.com/eviefp/dotfiles
+license:       MIT
+license-file:  LICENSE
+author:        Evie Ciobanu
+maintainer:    me@evie.ro
+category:      System
+build-type:    Simple
+
+common warnings
+  ghc-options: -Wall
+
+executable dotfiles-script
+  import:             warnings
+  main-is:            Main.hs
+  build-depends:
+    , aeson
+    , base   ^>=4.20.1.0
+    , bytestring
+    , chronos
+    , deepseq
+    , extra
+    , filepath
+    , shh
+    , table-layout
+    , text
+    , torsor
+
+  hs-source-dirs:     exe
+  default-language:   Haskell2010

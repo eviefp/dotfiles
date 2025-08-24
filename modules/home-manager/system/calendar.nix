@@ -4,7 +4,7 @@
   * Set up calendar accounts.
   * Manual setup: manually run 'vdirsyncer discover <name>' for each account.
   **************************************************************************/
-{ lib, config, osConfig, ... }:
+{ pkgs, lib, config, dotfiles, osConfig, ... }:
 let
   cfg = config.evie.system.calendar;
 in
@@ -88,7 +88,7 @@ in
     systemd.user.timers.calendar-notifier = {
       Unit = {
         Description = "Calendar notification";
-        After = [ "sops-nix.service" "eww.service" ];
+        After = [ "sops-nix.service" ];
       };
       Timer = {
         Unit = "calendar-notifier.service";
@@ -102,14 +102,14 @@ in
     systemd.user.services.calendar-notifier = {
       Unit = {
         Description = "Calendar notification";
-        After = [ "sops-nix.service" "eww.service" ];
+        After = [ "sops-nix.service" ];
       };
 
       Install = { WantedBy = [ "hyprland-session.target" ]; };
 
       Service = {
         Type = "oneshot";
-        ExecStart = "/home/evie/.config/eww/scripts/get-next-calendar-entry.nu notify";
+        ExecStart = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.calendar-notify}";
       };
     };
   };
