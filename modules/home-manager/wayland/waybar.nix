@@ -36,12 +36,6 @@ in
       pkgs.wttrbar
     ];
 
-    # TODO: remove this
-    home.file.".config/waybar/scripts" = {
-      recursive = true;
-      source = ./../../../scripts;
-    };
-
     programs.waybar = {
       enable = true;
       package = dotfiles.self.packages.${pkgs.system}.waybar;

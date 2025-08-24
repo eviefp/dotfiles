@@ -25,9 +25,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO:
-    # - native
-    # - editor
     home.file = {
       ".config/tridactyl/tridactylrc".text = ''
         colourscheme dark
