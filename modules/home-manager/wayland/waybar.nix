@@ -183,7 +183,7 @@ in
             exec = "swaync-client -swb";
             on-click = "swaync-client -t -sw";
             return-type = "json";
-            format = "{icon}";
+            format = "{icon} {}";
             min-length = 3;
             format-icons = {
               notification = "<span foreground='red'><sup></sup></span>";
@@ -488,9 +488,11 @@ in
         #cpu.medium, #memory.medium, #wireplumber.medium, #custom-email-unread.unread {
           color: @yellow;
         }
-        #cpu.high, #memory.high, #wireplumber.low, #custom-email-important.unread {
+        #cpu.high, #memory.high, #wireplumber.low, #custom-email-important.unread, #custom-notifications.notification {
           color: @red;
         }
+
+        /* #custom-notifications.dnd-none, #custom-notifications.dnd-notification */
 
         label:focus {
           background-color: @activeBg;
