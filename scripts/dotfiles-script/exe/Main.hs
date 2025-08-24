@@ -16,67 +16,59 @@
 
 module Main where
 
+import qualified Chronos
 import Control.DeepSeq (NFData)
-import Data.Aeson ((.=))
 import qualified Data.Aeson as Aeson
 import Data.Bool (bool)
-import Data.ByteString.Lazy.Char8 (ByteString)
-import qualified Data.ByteString.Lazy.Char8 as LBS
+import qualified Data.ByteString.Lazy as BS
+import Data.Foldable (traverse_)
+import qualified Data.Text as T
+import qualified Data.Text.Encoding as T
 import GHC.Generics (Generic)
 import Shh
-import qualified System.Environment as Env
-import qualified Text.Layout.Table as Table
+import qualified Torsor
 
 $(loadEnv SearchPath)
 
 main :: IO ()
 main = do
-  Env.getArgs >>= \case
-    [tag] -> run tag
-    _ -> error "expected a single argument: notmuch tag"
+  khal "list" "--notstarted" "--json" "title" "--json" "start" "--json" "calendar" "today" "today"
+    |> readInput (pure . Aeson.decode @[CalendarEntry])
+    >>= maybe (print "cannot parse khal output") (traverse_ go)
+ where
+  go :: CalendarEntry -> IO ()
+  go entry = do
+    now <-
+      date "+%d/%m/%Y %R"
+        |> readInput
+          ( maybe (error "cannot determine system time") pure
+              . Chronos.decode_DmyHMS_opt_S_lenient
+              . T.decodeUtf8Lenient
+              . BS.toStrict
+              . trim
+          )
+    case Chronos.decode_DmyHMS_opt_S_lenient . T.pack . start $ entry of
+      Nothing -> pure ()
+      Just when -> bool mempty (notify entry) . shouldNotify when $ now
 
-run :: String -> IO ()
-run tag = do
+shouldNotify :: Chronos.Datetime -> Chronos.Datetime -> Bool
+shouldNotify event now =
   let
-    searchTerm = "tag:" <> tag
-  count <- notmuch "count" searchTerm |> readInput pure
-  emails <-
-    notmuch "search" "--limit=20" "--format=json" searchTerm
-      |> readInput (Aeson.throwDecode @[EmailSummary])
-  printJsonSummary count emails
+    fifteenMinutes = Torsor.scale 15 Chronos.minute
+    eventTime = Chronos.datetimeToTime event
+    nowTime = Chronos.datetimeToTime now
+    diff = Torsor.difference eventTime (Torsor.add fifteenMinutes nowTime)
+  in
+    diff < Chronos.minute && diff >= mempty
 
-data EmailSummary = EmailSummary
-  { date_relative :: String
-  , authors :: String
-  , subject :: String
-  , tags :: [String]
+data CalendarEntry = CalendarEntry
+  { start :: String
+  , title :: String
+  , calendar :: String
   }
   deriving stock (Generic, Show)
   deriving anyclass (NFData, Aeson.ToJSON, Aeson.FromJSON)
 
-printJsonSummary :: ByteString -> [EmailSummary] -> IO ()
-printJsonSummary count emails =
-  writeOutput
-    . Aeson.encode
-    . Aeson.object
-    $ [ "text" .= LBS.unpack count
-      , "alt" .= ""
-      , "tooltip" .= formatTable (fmap formatEmail $ emails)
-      , "class" .= (bool "none" "unread" $ count == "0")
-      ]
- where
-  formatEmail :: EmailSummary -> [String]
-  formatEmail EmailSummary {..} =
-    [ date_relative
-    , authors
-    , subject
-    , unwords tags
-    ]
-
-  formatTable :: [[String]] -> String
-  formatTable =
-    Table.tableString
-      . Table.headerlessTableS
-        [Table.def, Table.numCol]
-        Table.unicodeRoundS
-      . fmap Table.rowG
+notify :: CalendarEntry -> IO ()
+notify CalendarEntry {..} =
+  exe "notify-send" (title <> " at " <> start)

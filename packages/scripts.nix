@@ -1,6 +1,23 @@
 { pkgs, ... }:
 let
   my-lib = import ./../lib { inherit pkgs; };
+  haskellLanguagePragmas = ''
+    {-# LANGUAGE BlockArguments #-}
+    {-# LANGUAGE DeriveAnyClass #-}
+    {-# LANGUAGE DeriveGeneric #-}
+    {-# LANGUAGE DerivingStrategies #-}
+    {-# LANGUAGE ExtendedDefaultRules #-}
+    {-# LANGUAGE LambdaCase #-}
+    {-# LANGUAGE NamedFieldPuns #-}
+    {-# LANGUAGE OverloadedStrings #-}
+    {-# LANGUAGE QuasiQuotes #-}
+    {-# LANGUAGE RecordWildCards #-}
+    {-# LANGUAGE ScopedTypeVariables #-}
+    {-# LANGUAGE TemplateHaskell #-}
+    {-# LANGUAGE TupleSections #-}
+    {-# LANGUAGE TypeApplications #-}
+    {-# OPTIONS_GHC -Wno-type-defaults #-}
+  '';
 in
 {
   get-active-window = pkgs.writeShellApplication {
@@ -87,73 +104,73 @@ in
     print(json.dumps(data))
   '';
 
-  get-next-calendar-entry = my-lib.nuShellScript {
-    name = "get-next-calendar-entry";
-    text = ''
-      #!/usr/bin/env nu
+  calendar-notify = pkgs.writers.writeHaskellBin
+    "calendar-notify"
+    {
+      libraries = with pkgs.haskellPackages; [ aeson bytestring chronos deepseq shh text torsor ];
+    }
+    ''
+      ${haskellLanguagePragmas}
 
-      def main [type: string] {
-        let format = '{{ "title": "{title}", "date": "{start-date}", "time": "{start-time}", "end": "{end-date}", "endTime": "{end-time}", "status": "{status}", "location": "{location}", "source": "{calendar}" }}'
-        let nextWeek = (date now) + (7day) | format date "%d/%m/%Y"
-        let calendars = [['name' 'calendar']; ['Evie' 'alexaeviest@gmail.com'] ['Evie & Every' 's810p67l2bi1168j8luka5nic0@group.calendar.google.com']]
-        let onlyCalendars = $calendars | reduce --fold [] {|it, acc| [ ...$acc '-a' $it.calendar ]}
+      module Main where
 
-        let jqQuery = '
-      def diff($finish; $start):
-        def twodigits: "00" + tostring | .[-2:];
-        [$finish, $start]
-        | map(strptime("%d/%m/%Y %H:%M") | mktime) # seconds
-        | .[0] - .[1]
-        | (. % 60 | twodigits) as $s
-        | (((. / 60) % 60) | twodigits)  as $m
-        | (./3600 | floor) as $h
-        | "\($h)h\($m)m" ;
-                      '
-        let jqArgs = match $type {
-          'single' => ' .[0]',
-          _        => '.'
+      import qualified Chronos
+      import Control.DeepSeq (NFData)
+      import qualified Data.Aeson as Aeson
+      import Data.Bool (bool)
+      import qualified Data.ByteString.Lazy as BS
+      import Data.Foldable (traverse_)
+      import qualified Data.Text as T
+      import qualified Data.Text.Encoding as T
+      import GHC.Generics (Generic)
+      import Shh
+      import qualified Torsor
+
+      loadFromBins ["${pkgs.khal}", "${pkgs.libnotify}", "${pkgs.coreutils}"]
+
+      main :: IO ()
+      main = do
+        khal "list" "--notstarted" "--json" "title" "--json" "start" "--json" "calendar" "today" "today"
+          |> readInput (pure . Aeson.decode @[CalendarEntry])
+          >>= maybe (print "cannot parse khal output") (traverse_ go)
+        where
+          go :: CalendarEntry -> IO ()
+          go entry = do
+            now <-
+              date "+%d/%m/%Y %T"
+                |> readInput
+                  ( maybe (error "cannot determine system time") pure
+                      . Chronos.decode_DmyHMS_opt_S_lenient
+                      . T.decodeUtf8Lenient
+                      . BS.toStrict
+                      . trim
+                  )
+            case Chronos.decode_DmyHMS_opt_S_lenient . T.pack . start $ entry of
+              Nothing -> pure ()
+              Just when -> bool mempty (notify entry) . shouldNotify when $ now
+
+      shouldNotify :: Chronos.Datetime -> Chronos.Datetime -> Bool
+      shouldNotify event now =
+        let
+          fifteenMinutes = Torsor.scale 15 Chronos.minute
+          eventTime = Chronos.datetimeToTime event
+          nowTime = Chronos.datetimeToTime now
+          diff = Torsor.difference eventTime (Torsor.add fifteenMinutes nowTime)
+        in
+          diff < Chronos.minute && diff >= mempty
+
+      data CalendarEntry = CalendarEntry
+        { start :: String
+        , title :: String
+        , calendar :: String
         }
+        deriving stock (Generic, Show)
+        deriving anyclass (NFData, Aeson.ToJSON, Aeson.FromJSON)
 
-        let extraArgs = match $type {
-          'single' => [ '--once' '--notstarted'],
-          _        => [ ],
-        }
-
-        let jqArgsWithDuration = $jqQuery + '
-            .[]
-          | (select (.time == "")).time |= "00:00"
-          | (select (.endTime == "")).endTime |= "00:00"
-          | (select (.end == "")).end |= .date
-          | . += {startDT: (.date + " " + .time)}
-          | . += {endDT: (.end + " " + .endTime)}
-          | . += {duration: diff(.endDT;.startDT)}'
-
-
-        let json = (khal list ...$onlyCalendars --format ($format) ...$extraArgs --day-format "" now ($nextWeek)
-          | jq -scM ($jqArgsWithDuration)
-          | jq -scM ($jqArgs)
-        )
-
-        if $type == 'notify' {
-          let result = $json | from json
-          let now = date now
-
-          $result | each {|it|
-                if $it.date == ($now | format date "%d/%m/%Y") {
-                  if $it.time == ($now + 15min | format date "%H:%M") {
-                    notify-send $it.title
-                  }
-                }
-            }
-        }
-
-        ($calendars
-          | reduce --fold $json {|it, acc| $acc | sd -F $it.calendar $it.name}
-        )
-      }
+      notify :: CalendarEntry -> IO ()
+      notify CalendarEntry {..} =
+        exe "${pkgs.lib.getExe pkgs.libnotify}" (title <> " at " <> start)
     '';
-    runtimeInputs = [ pkgs.khal pkgs.libnotify pkgs.jq ];
-  };
 
   webcam-status = pkgs.writers.writeHaskellBin
     "webcam-status"
@@ -161,21 +178,9 @@ in
       libraries = with pkgs.haskellPackages; [ aeson bytestring deepseq extra filepath shh ];
     }
     ''
-      {-# LANGUAGE BlockArguments #-}
-      {-# LANGUAGE DeriveAnyClass #-}
-      {-# LANGUAGE DeriveGeneric #-}
-      {-# LANGUAGE DerivingStrategies #-}
-      {-# LANGUAGE ExtendedDefaultRules #-}
-      {-# LANGUAGE LambdaCase #-}
-      {-# LANGUAGE NamedFieldPuns #-}
-      {-# LANGUAGE OverloadedStrings #-}
-      {-# LANGUAGE QuasiQuotes #-}
-      {-# LANGUAGE RecordWildCards #-}
-      {-# LANGUAGE ScopedTypeVariables #-}
-      {-# LANGUAGE TemplateHaskell #-}
-      {-# LANGUAGE TupleSections #-}
-      {-# LANGUAGE TypeApplications #-}
-      {-# OPTIONS_GHC -Wno-type-defaults #-}
+      ${haskellLanguagePragmas}
+
+      module Main where
 
       import Control.DeepSeq (NFData)
       import Data.Aeson ((.=))
@@ -249,21 +254,9 @@ in
       libraries = with pkgs.haskellPackages; [ aeson bytestring deepseq table-layout shh ];
     }
     ''
-      {-# LANGUAGE BlockArguments #-}
-      {-# LANGUAGE DeriveAnyClass #-}
-      {-# LANGUAGE DeriveGeneric #-}
-      {-# LANGUAGE DerivingStrategies #-}
-      {-# LANGUAGE ExtendedDefaultRules #-}
-      {-# LANGUAGE LambdaCase #-}
-      {-# LANGUAGE NamedFieldPuns #-}
-      {-# LANGUAGE OverloadedStrings #-}
-      {-# LANGUAGE QuasiQuotes #-}
-      {-# LANGUAGE RecordWildCards #-}
-      {-# LANGUAGE ScopedTypeVariables #-}
-      {-# LANGUAGE TemplateHaskell #-}
-      {-# LANGUAGE TupleSections #-}
-      {-# LANGUAGE TypeApplications #-}
-      {-# OPTIONS_GHC -Wno-type-defaults #-}
+      ${haskellLanguagePragmas}
+
+      module Main where
 
       import Control.DeepSeq (NFData)
       import Data.Aeson ((.=))
