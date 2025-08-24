@@ -241,6 +241,10 @@ in
           key = "<leader>ox";
           action = ":Obsidian extract_note<cr>";
         }
+        {
+          key = "<leader>oo";
+          action = ":Outline<cr>";
+        }
       ];
 
       extraPlugins = [
@@ -313,6 +317,7 @@ in
         require('outline').setup({
           outline_window = {
             position = 'left',
+            auto_close = true,
           },
           preview_window = {
             auto_preview = true,
