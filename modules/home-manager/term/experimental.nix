@@ -73,14 +73,6 @@ in
           '';
         }
         {
-          name = "nix-tree";
-          package = pkgs.nix-tree;
-          short = "show derivation tree";
-          help = ''
-            nix-tree .#nixosConfigurations.thelxinoe.config.system.build.toplevel
-          '';
-        }
-        {
           name = "bandwhich";
           package = pkgs.bandwhich;
           short = "show bandwidth usage per process";
@@ -94,14 +86,6 @@ in
           short = "yay";
           help = ''
             confetty
-          '';
-        }
-        {
-          name = "sysz";
-          package = pkgs.sysz;
-          short = "systemctl tui";
-          help = ''
-            sysz
           '';
         }
         {

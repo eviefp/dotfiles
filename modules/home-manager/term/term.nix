@@ -15,10 +15,12 @@ in
     home.packages = [
       pkgs.dig
       pkgs.killall
+      pkgs.nix-tree
       pkgs.nvd
       pkgs.ripgrep
       pkgs.sd
       pkgs.sops
+      pkgs.sysz
       pkgs.unrar
       pkgs.unzip
       pkgs.wget
