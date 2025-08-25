@@ -46,6 +46,7 @@
     fsType = "ext4";
   };
 
+  boot.supportedFilesystems = [ "nfs" ];
   fileSystems."/mnt/raid" = {
     device = "fractal:/mnt/raid1";
     fsType = "nfs";

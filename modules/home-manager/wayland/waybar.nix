@@ -21,7 +21,7 @@ in
     };
 
     hyprland = {
-      onlyActiveWorkspaces = lib.mkOption {
+      showAllWorkspaces = lib.mkOption {
         default = true;
         example = false;
         description = "only show active workspaces";
@@ -89,7 +89,7 @@ in
           };
 
           "hyprland/workspaces" = {
-            active-only = cfg.hyprland.onlyActiveWorkspaces;
+            active-only = !cfg.hyprland.showAllWorkspaces;
             all-outputs = true;
             format = "{id}";
             on-scroll-up = "hyprctl dispatch workspace r-1";

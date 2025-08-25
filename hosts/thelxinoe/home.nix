@@ -48,6 +48,7 @@
           enableEmails = true;
           enableCalendar = true;
         };
+        hyprland.showAllWorkspaces = false;
       };
       monitors = [
         {
