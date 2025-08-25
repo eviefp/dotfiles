@@ -235,7 +235,8 @@ in
         };
 
         windowrule = [
-          "fullscreen,class:Minecraft(.*)"
+          "fullscreen, class:Minecraft(.*)"
+          "float, class:xdg-desktop-portal-gtk"
         ];
         plugin = { };
 
