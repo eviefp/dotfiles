@@ -741,11 +741,11 @@ in
         };
 
         lspsaga = {
-          enable = false; # buggy :/
-          symbolInWinbar = {
-            enable = true;
+          enable = false;
+          settings = {
+            symbolInWinbar.enable = true;
+            lightbulb.enable = false;
           };
-          lightbulb.enable = false;
         };
 
         ## misc
