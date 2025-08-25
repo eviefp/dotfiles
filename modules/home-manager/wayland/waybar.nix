@@ -39,12 +39,11 @@ in
     programs.waybar = {
       enable = true;
       package = dotfiles.self.packages.${pkgs.system}.waybar;
+      systemd = {
+        enable = true;
+        target = "hyprland-session.target";
+      };
       settings = {
-        systemd = {
-          enable = true;
-          target = "hyprland-session.target";
-        };
-
         mainBar = {
           layer = "top";
           output = cfg.outputMonitor;
