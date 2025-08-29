@@ -16,9 +16,6 @@ in
       defaultSopsFile = ../../secrets/secrets/secrets.yaml;
       age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       secrets = {
-        garnix_netrc = {
-          mode = "444";
-        };
         yubiAuthFile = {
           mode = "444";
         };
@@ -30,11 +27,6 @@ in
 
         evie_certificate = {
           mode = "444";
-        };
-
-        garnix_password = {
-          mode = "400";
-          owner = "evie";
         };
 
         gmail_password = {
