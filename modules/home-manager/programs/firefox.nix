@@ -40,16 +40,23 @@ in
         unbind gT
         unbind go
         unbind gO
+        unbind GO
+        unbind GT
         unbind d
         unbind D
+        unbind T
+        unbind O
 
         bind --mode=normal J tabnext
         bind --mode=normal K tabprev
 
         bind --mode=normal o fillcmdline open
-        bind --mode=normal go current_url open
-        bind --mode=normal O fillcmdline tabopen
-        bind --mode=normal gO current_url tabopen
+        bind --mode=normal gO current_url open
+        bind --mode=normal t fillcmdline tabopen
+        bind --mode=normal gT current_url tabopen
+
+        bind --mode=normal O fillcmdline open -c work
+        bind --mode=normal T fillcmdline tabopen -c work
 
         bind / fillcmdline find
         bind ? fillcmdline find --reverse
