@@ -270,7 +270,7 @@ in
           "custom/weather" = {
             format = "{}°C";
             tooltip = true;
-            interval = 3600;
+            interval = 600;
             exec = "wttrbar --location bucharest --date-format \"%d/%m\" --lang en --observation-time";
             return-type = "json";
           };
