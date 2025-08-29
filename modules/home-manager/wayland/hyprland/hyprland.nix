@@ -249,13 +249,14 @@ in
         "$sleep" = "sleep 1s; hyprctl dispatch dpms off";
         "$mainMod" = "SUPER";
         "$shiftMod" = "SUPER_SHIFT";
-        "$ctrlMod" = "SUPER&Control";
+        "$ctrlMod" = "SUPER_CTRL";
+        "$shiftCtrlSuper" = "SUPER_CTRL_SHIFT";
 
         bind = [
           # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
           # "$shiftMod, Return, exec, [float;tile] wezterm start --always-new-process"
           "$shiftMod, Return, exec, $terminal"
-          "$shiftMod, Q, exit,"
+          "$shiftCtrlSuper, Q, exit,"
           "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
           "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
           "$shiftMod, P, exec, $sleep"
