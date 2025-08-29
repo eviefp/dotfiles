@@ -23,7 +23,10 @@ function firefox(title) {
   t = mr(title, "• Discord \\| ", "  ")
   if (t != "") { return t }
 
-  t = mr(title, "— Bluesky$", " ")
+  t = mr(title, "Following — Bluesky$", " bsky ")
+  if (t != "") { return t }
+
+  t = mr(title, "— Bluesky$", " bsky ")
   if (t != "") { return t }
 
   t = mr(title, "^WhatsApp$", " whatsapp")
