@@ -110,7 +110,7 @@ in
           };
         };
         signing = {
-          key = "59FDB6CD4C63F6B2";
+          key = "CBD1E075BF7B2E7C";
           signByDefault = true;
         };
         difftastic = {

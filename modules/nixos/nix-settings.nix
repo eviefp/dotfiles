@@ -37,7 +37,6 @@ in
 
       extraOptions = ''
         binary-caches-parallel-connections = 5
-        netrc-file = ${config.sops.secrets.garnix_netrc.path}
       '';
     };
 

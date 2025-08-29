@@ -12,8 +12,12 @@ in
       enable = true;
 
       publicKeys = [
+        # {
+        #   source = ../../../config/272D83521C488CCD-2024-11-09.asc;
+        #   trust = "ultimate";
+        # }
         {
-          source = ../../../config/272D83521C488CCD-2024-11-09.asc;
+          source = ../../../config/9B61460007838C21-2025-08-28.asc;
           trust = "ultimate";
         }
       ];
