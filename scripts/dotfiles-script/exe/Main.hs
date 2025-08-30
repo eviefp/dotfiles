@@ -17,14 +17,14 @@
 module Main where
 
 import qualified Chronos
-import Control.DeepSeq (NFData)
+import Data.Aeson ((.=))
 import qualified Data.Aeson as Aeson
-import Data.Bool (bool)
-import qualified Data.ByteString.Lazy as BS
-import Data.Foldable (traverse_)
+import qualified Data.ByteString.Lazy.Char8 as BS
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
-import GHC.Generics (Generic)
+import Data.Text.Lazy (Text)
+import qualified Data.Text.Lazy as TL
+import qualified Data.Text.Lazy.Encoding as TL
 import Shh
 import qualified Torsor
 
@@ -32,43 +32,67 @@ $(loadEnv SearchPath)
 
 main :: IO ()
 main = do
-  khal "list" "--notstarted" "--json" "title" "--json" "start" "--json" "calendar" "today" "today"
-    |> readInput (pure . Aeson.decode @[CalendarEntry])
-    >>= maybe (print "cannot parse khal output") (traverse_ go)
- where
-  go :: CalendarEntry -> IO ()
-  go entry = do
-    now <-
-      date "+%d/%m/%Y %R"
-        |> readInput
-          ( maybe (error "cannot determine system time") pure
-              . Chronos.decode_DmyHMS_opt_S_lenient
-              . T.decodeUtf8Lenient
-              . BS.toStrict
-              . trim
-          )
-    case Chronos.decode_DmyHMS_opt_S_lenient . T.pack . start $ entry of
-      Nothing -> pure ()
-      Just when -> bool mempty (notify entry) . shouldNotify when $ now
-
-shouldNotify :: Chronos.Datetime -> Chronos.Datetime -> Bool
-shouldNotify event now =
+  today <- getToday
   let
-    fifteenMinutes = Torsor.scale 15 Chronos.minute
-    eventTime = Chronos.datetimeToTime event
-    nowTime = Chronos.datetimeToTime now
-    diff = Torsor.difference eventTime (Torsor.add fifteenMinutes nowTime)
-  in
-    diff < Chronos.minute && diff >= mempty
+    nextWeek = Chronos.timeToDatetime . Torsor.add (Torsor.scale 7 Chronos.day) . Chronos.datetimeToTime $ today
 
-data CalendarEntry = CalendarEntry
-  { start :: String
-  , title :: String
-  , calendar :: String
-  }
-  deriving stock (Generic, Show)
-  deriving anyclass (NFData, Aeson.ToJSON, Aeson.FromJSON)
+  khal
+    "list"
+    "--format"
+    "[{calendar}] {cancelled}{start-end-time-style} {title}{repeat-symbol}"
+    "now"
+    (T.unpack . Chronos.encode_Dmy (Just '/') . Chronos.datetimeDate $ nextWeek)
+    |> readInputLines printJsonSummary
 
-notify :: CalendarEntry -> IO ()
-notify CalendarEntry {..} =
-  exe "notify-send" (title <> " at " <> start)
+printJsonSummary :: [BS.ByteString] -> IO ()
+printJsonSummary input =
+  writeOutput
+    . Aeson.encode
+    . Aeson.object
+    $ [ "text" .= text
+      , "alt" .= ""
+      , "tooltip" .= tooltip
+      , "class"
+          .= if text == "\61747"
+            then "today"
+            else "none"
+      ]
+ where
+  text :: Text
+  text =
+    case TL.words tooltip of
+      ("Today" : _) ->
+        case TL.lines tooltip of
+          (_ : event : _) ->
+            "\61555 " <> event
+          _ -> "\61747"
+      _ -> "\61747"
+
+  tooltip :: Text
+  tooltip =
+    TL.strip
+      . foldl parseLine TL.empty
+      . fmap TL.decodeUtf8
+      $ input
+
+  parseLine :: Text -> Text -> Text
+  parseLine acc bs =
+    case TL.head bs of
+      '[' -> acc <> replaceCalendarNames bs
+      _ -> acc <> "<b>" <> bs <> "</b>\n"
+
+  replaceCalendarNames :: Text -> Text
+  replaceCalendarNames =
+    TL.replace "s810p67l2bi1168j8luka5nic0@group.calendar.google.com" "Every & Evie"
+      . TL.replace "alexaeviest@gmail.com" "gmail"
+
+getToday :: IO Chronos.Datetime
+getToday =
+  date "+%d/%m/%Y %R"
+    |> readInput
+      ( maybe (error "cannot determine system time") pure
+          . Chronos.decode_DmyHMS_opt_S_lenient
+          . T.decodeUtf8Lenient
+          . BS.toStrict
+          . trim
+      )
