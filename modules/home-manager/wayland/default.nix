@@ -4,6 +4,7 @@
     hyprland = ./hyprland/hyprland.nix;
     hyprlock = ./hyprland/hyprlock.nix;
     hyprpaper = ./hyprland/hyprpaper.nix;
+    hyprshade = ./hyprland/hyprshade.nix;
   };
   river = ./river.nix;
   rofi = ./rofi.nix;
