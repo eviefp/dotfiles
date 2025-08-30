@@ -197,7 +197,7 @@ in
             format-icons = {
               default = "";
             };
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.waybar-khal}";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.calendar-status}";
             return-type = "json";
             max-length = 32;
           };
