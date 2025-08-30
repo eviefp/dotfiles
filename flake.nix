@@ -21,6 +21,11 @@
 
     nixpkgs2411.url = "github:NixOS/nixpkgs/nixos-24.11-small";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
