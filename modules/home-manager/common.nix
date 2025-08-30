@@ -70,6 +70,7 @@ in
             hypridle.enable = true;
             hyprlock.enable = true;
             hyprpaper.enable = true;
+            hyprshade.enable = true;
           };
         };
       })
