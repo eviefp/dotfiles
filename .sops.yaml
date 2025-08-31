@@ -5,6 +5,7 @@ keys:
   - &aiode age1w4xku5n3fckgevkca8rt7xcmj0l8ynq09mp0usuhexgf3emh3ycsdj2rdg
   - &fractal age160yg0kapx3h3ks23h59mry0drhg6u5mawdqmsdx7m8x49laq7qgstyssgw
   - &arche age1nrld44nukcc4rumexuz7ld78sjw4sf0nmyan3d6t3gkat3nmqc2qjsmlfy
+  - &jellyfin age1hgqapcskhltnrnh4wraxc4r0qlnlg45ctmh903luevxrp59lfs8q6kav0c
   # users
   - &yubikey 335E69EF5FEA7F8C1347C8EB9B61460007838C21
 creation_rules:
@@ -18,3 +19,4 @@ creation_rules:
           - *aiode
           - *fractal
           - *arche
+          - *jellyfin

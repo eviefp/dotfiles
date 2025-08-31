@@ -9,6 +9,8 @@
   network = ./network.nix;
   nextcloud = ./nextcloud.nix;
   nix-settings = ./nix-settings.nix;
+  openvpn-client = ./openvpn-client.nix;
+  openvpn-server = ./openvpn-server.nix;
   packages = ./packages.nix;
   peroxide = ./peroxide.nix;
   services = ./services.nix;

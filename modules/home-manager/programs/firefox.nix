@@ -2,7 +2,7 @@
   * programs/firefox module
   *
   **************************************************************************/
-{ lib, config, pkgs, dotfiles, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.evie.programs.firefox;
   quickmarks = {

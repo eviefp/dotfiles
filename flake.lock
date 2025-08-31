@@ -85,6 +85,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756115622,
+        "narHash": "sha256-iv8xVtmLMNLWFcDM/HcAPLRGONyTRpzL9NS09RnryRM=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "bafad29f89e83b2d861b493aa23034ea16595560",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "ect": {
       "inputs": {
         "nixpkgs": [
@@ -1565,6 +1585,7 @@
     "root": {
       "inputs": {
         "asus-wmi-screenpad": "asus-wmi-screenpad",
+        "disko": "disko",
         "ect": "ect",
         "emacs-overlay": "emacs-overlay",
         "flake-utils": "flake-utils_2",

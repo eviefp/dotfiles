@@ -83,7 +83,7 @@ printJsonSummary input =
   parseLine acc bs =
     case TL.head bs of
       '[' ->
-        (bs `elem`) <$> S.get >>= \case
+        S.gets (bs `elem`) >>= \case
           True -> pure acc
           False -> do
             when (TL.elem '↔' bs) $ S.modify (<> [bs])
