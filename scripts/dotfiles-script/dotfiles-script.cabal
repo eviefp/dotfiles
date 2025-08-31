@@ -23,6 +23,7 @@ executable dotfiles-script
     , deepseq
     , extra
     , filepath
+    , mtl
     , shh
     , table-layout
     , text
