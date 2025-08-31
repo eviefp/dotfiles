@@ -215,7 +215,7 @@ in
   calendar-status = pkgs.writers.writeHaskellBin
     "calendar-status"
     {
-      libraries = with pkgs.haskellPackages; [ bytestring chronos shh text torsor ];
+      libraries = with pkgs.haskellPackages; [ bytestring chronos mtl shh text torsor ];
     }
     ''
       ${haskellLanguagePragmas}
@@ -223,9 +223,12 @@ in
       module Main where
 
       import qualified Chronos
+      import Control.Monad (when)
+      import qualified Control.Monad.State as S
       import Data.Aeson ((.=))
       import qualified Data.Aeson as Aeson
       import qualified Data.ByteString.Lazy.Char8 as BS
+      import Data.Foldable (foldlM)
       import qualified Data.Text as T
       import qualified Data.Text.Encoding as T
       import Data.Text.Lazy (Text)
@@ -277,19 +280,25 @@ in
         tooltip :: Text
         tooltip =
           TL.strip
-            . foldl parseLine TL.empty
+            . flip S.evalState []
+            . foldlM parseLine TL.empty
             . fmap TL.decodeUtf8
             $ input
 
-        parseLine :: Text -> Text -> Text
+        parseLine :: Text -> Text -> S.State [Text] Text
         parseLine acc bs =
           case TL.head bs of
-            '[' -> acc <> replaceCalendarNames bs <> "\n"
-            _ -> acc <> "\n<b>" <> bs <> "</b>\n"
+            '[' ->
+              (bs `elem`) <$> S.get >>= \case
+                True -> pure acc
+                False -> do
+                  when (TL.elem '↔' bs) $ S.modify (<> [bs])
+                  pure $ acc <> replaceCalendarNames bs <> "\n"
+            _ -> pure $ acc <> "\n" <> bs <> "\n"
 
         replaceCalendarNames :: Text -> Text
         replaceCalendarNames =
-          TL.replace "s810p67l2bi1168j8luka5nic0@group.calendar.google.com" "Every &amp; Evie"
+          TL.replace "s810p67l2bi1168j8luka5nic0@group.calendar.google.com" "Every"
             . TL.replace "alexaeviest@gmail.com" "gmail"
 
       getToday :: IO Chronos.Datetime
