@@ -194,9 +194,6 @@ in
             format = "{}";
             tooltip = true;
             interval = 300;
-            format-icons = {
-              default = "";
-            };
             exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.calendar-status}";
             return-type = "json";
             max-length = 32;

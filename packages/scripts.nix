@@ -8,6 +8,7 @@ let
     {-# LANGUAGE DerivingStrategies #-}
     {-# LANGUAGE ExtendedDefaultRules #-}
     {-# LANGUAGE LambdaCase #-}
+    {-# LANGUAGE MultiWayIf #-}
     {-# LANGUAGE NamedFieldPuns #-}
     {-# LANGUAGE OverloadedStrings #-}
     {-# LANGUAGE QuasiQuotes #-}
@@ -90,7 +91,7 @@ in
       import Shh
       import qualified Torsor
 
-      loadFromBins ["${pkgs.khal}", "${pkgs.libnotify}", "${pkgs.coreutils}"]
+      loadFromBins ["${pkgs.khal}", "${pkgs.libnotify}", "${pkgs.coreutils}", "${pkgs.mpv}"]
 
       main :: IO ()
       main = do
@@ -132,8 +133,9 @@ in
         deriving anyclass (NFData, Aeson.ToJSON, Aeson.FromJSON)
 
       notify :: CalendarEntry -> IO ()
-      notify CalendarEntry {..} =
-        exe "${pkgs.lib.getExe pkgs.libnotify}" (title <> " at " <> start)
+      notify CalendarEntry {..} = do
+        exe "${pkgs.lib.getExe pkgs.libnotify}" "-a" "calendar-notify" (title <> " at " <> start)
+        mpv " --terminal=no" "~/.config/swaync/sounds/calendar.mp3"
     '';
 
   webcam-status = pkgs.writers.writeHaskellBin
@@ -227,6 +229,7 @@ in
       import qualified Control.Monad.State as S
       import Data.Aeson ((.=))
       import qualified Data.Aeson as Aeson
+      import Data.Bool (bool)
       import qualified Data.ByteString.Lazy.Char8 as BS
       import Data.Foldable (foldlM)
       import qualified Data.Text as T
@@ -270,12 +273,23 @@ in
         text :: Text
         text =
           case TL.words tooltip of
-            ("Today" : _) ->
-              case TL.lines tooltip of
-                (_ : event : _) ->
-                  "\61555 " <> event
-                _ -> "\61747"
+            ("Today," : _) -> S.evalState (go . drop 1 . TL.lines $ tooltip) "\61747"
             _ -> "\61747"
+
+        go :: [Text] -> S.State Text Text
+        go = \case -- ⟳
+          (x:xs) ->
+            if | (fst <$> TL.uncons x) /= Just '[' ->  S.get
+               | '↔' `TL.elem` x  -> S.modify (\st -> ("\61555 " <>) . skipCalendar . bool st x . TL.elem '↔' $ st) *> go xs
+               | '⟳' `TL.elem` x  -> S.put ("\61555 " <> skipCalendar x) *> go xs
+               | otherwise        -> pure ("\61555 " <> skipCalendar x)
+          [] -> S.get
+
+        skipCalendar :: Text -> Text
+        skipCalendar e = case TL.words e of
+                           [] -> e
+                           [single] -> single
+                           (_cal:rest) -> TL.unwords rest
 
         tooltip :: Text
         tooltip =
