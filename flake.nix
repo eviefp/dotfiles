@@ -26,6 +26,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
@@ -217,6 +222,13 @@
         specialArgs = { inherit dotfiles; };
         modules = [
           ./hosts/arche
+        ];
+      };
+
+      nixosConfigurations."jellyfin" = dotfiles.nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit dotfiles; };
+        modules = [
+          ./hosts/jellyfin
         ];
       };
     }

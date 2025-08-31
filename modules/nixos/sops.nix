@@ -34,6 +34,11 @@ in
           owner = "evie";
         };
 
+        thelxinoe-openvpn-key = {
+          mode = "400";
+          owner = "evie";
+        };
+
         gmailCalendarClientId = {
           mode = "400";
           owner = "evie";

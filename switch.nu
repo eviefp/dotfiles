@@ -22,3 +22,5 @@ if $result.code == 'y' {
 }
 
 # nix copy -L .#nixosConfigurations.($host).config.system.build.toplevel --no-check-sigs --to ssh-ng://evie@($host)
+
+# nixos-rebuild --flake .#jellyfin --target-host evie@host --use-remote-sudo switch

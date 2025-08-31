@@ -2,6 +2,7 @@
 {
   imports = with dotfiles.self.nixosModules; [
     common
+    openvpn-client
 
     ./hardware.nix
 
@@ -33,6 +34,7 @@
       hostName = "thelxinoe";
       extraPorts = [ 31234 ];
     };
+    openvpn-client.enable = true;
     peroxide.enable = true;
     jellyfin.enable = true;
     wayland = {
