@@ -36,6 +36,7 @@ in
         set editorcmd kitty -e nvim "%f" "+normal!%lGzv%c|"
         set allowautofocus false
         set searchengine duckduckgo
+        set autocontainmode relaxed
 
         set hintfiltermode vimperator-reflow
         set hintchars fdsqjklmrezauiopwxcvghtybn
@@ -178,7 +179,7 @@ in
 
         profiles = {
           evie = {
-            isDefault = true; # The container icon. Valid icons are: "fingerprint", "briefcase", "dollar", "cart", "circle", "gift", "vacation", "food", "fruit", "pet", "tree", "chill". If no icon is chosen, it defaults to "fingerprint".
+            isDefault = true;
             containers = {
               # icon can be fingerprint, briefcase, dollar, cart, vacation, gift, food, fruit, pet, tree, chill, circle, fence
               # color can be blue, turquoise, green, yellow, orange, red, pink, purple, toolbar
