@@ -268,7 +268,7 @@ in
             format = "{}°C";
             tooltip = true;
             interval = 600;
-            exec = "wttrbar --location bucharest --date-format \"%d/%m\" --lang en --observation-time";
+            exec = "wttrbar --location Bucuresti --date-format \"%d/%m\" --lang en --observation-time";
             return-type = "json";
           };
 

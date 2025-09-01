@@ -372,6 +372,7 @@ in
             ssh remote "nvd" "diff" "/run/current-system" path
           else do
             nvd "diff" "/run/current-system" path
+            -- nvd "diff" "~/.local/state/nix/profiles/home-manager" path
 
         BS.putStr $ "Update [local=" <> bool "n" "y" isLocal <> ", remote=" <> remote <> "] (y/n): "
         BS.hGet H.stdin 1 >>= \case

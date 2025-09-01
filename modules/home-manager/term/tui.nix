@@ -30,7 +30,7 @@ in
         enableFishIntegration = true;
         enableNushellIntegration = true;
         settings = {
-          manager = {
+          mgr = {
             sort_by = "natural";
             show_hidden = true;
           };
