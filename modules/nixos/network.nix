@@ -47,6 +47,7 @@ in
         "192.168.10.1" = [ "router2" ];
         "192.168.10.25" = [ "aiode" ];
         "192.168.10.67" = [ "arche" ];
+        "91.98.68.213" = [ "jellyfin" ];
       };
     }
     (lib.mkIf cfg.enableWifi {

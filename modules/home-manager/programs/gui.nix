@@ -30,7 +30,7 @@ in
       pkgs.coppwr
       pkgs.steam
       pkgs.prismlauncher
-      pkgs.instawow
+      # pkgs.instawow
       pkgs.transmission_3-gtk
       pkgs.xournalpp
       pkgs.libreoffice
