@@ -46,6 +46,9 @@ in
 
       # phone mirroring
       scrcpy
+
+      # work
+      pkgs.teams-for-linux
     ];
 
     home.file = {
