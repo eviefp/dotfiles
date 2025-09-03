@@ -75,15 +75,32 @@ in
 
         showtabline = 2;
 
-        fillchars = "eob:☭";
-
         conceallevel = 1;
+
+        foldmethod = "expr";
+        foldexpr = "nvim_treesitter#foldexpr()";
+        foldtext = "";
+        fillchars = "fold: ";
+        foldenable = true;
+        foldlevel = 99;
       };
 
       keymaps = [
         {
           key = "\\";
           action = ":nohl<cr>";
+        }
+        {
+          key = "<Tab>";
+          action = "za";
+        }
+        {
+          key = "<S-Tab>";
+          action = ":set foldlevel=1<cr>";
+        }
+        {
+          key = "<A-Tab>";
+          action = ":set foldlevel=99<cr>";
         }
         {
           key = "<up>";
@@ -250,7 +267,6 @@ in
       extraPlugins = [
         pkgs.vimPlugins.nvim-nu
         pkgs.vimPlugins.nvim-surround
-        pkgs.vimPlugins.lualine-lsp-progress
         pkgs.vimPlugins.tiny-inline-diagnostic-nvim # nicer diagnostic, overlaps with ]d a bit
         (pkgs.vimUtils.buildVimPlugin {
           pname = "blame.nvim";
@@ -332,7 +348,6 @@ in
           },
           backend = { 'telescope' },
         }
-
       '';
 
       colorschemes.vscode = {
@@ -623,6 +638,10 @@ in
         lsp = {
           enable = true;
 
+          luaConfig.post = ''
+            vim.lsp.enable('omnisharp')
+          '';
+
           keymaps = {
             diagnostic = {
               # "]d" = "goto_next";
@@ -652,6 +671,13 @@ in
                   };
                 };
               };
+            };
+
+            omnisharp = {
+              enable = true;
+              package = null;
+              cmd = [ "OmniSharp" ];
+              filetypes = [ "cs" ];
             };
 
             rust_analyzer = {
@@ -806,12 +832,30 @@ in
             options = {
               theme = "palenight";
             };
+            winbar = {
+              lualine_a = [
+                {
+                  __unkeyed-1 = "filename";
+                  path = 1;
+                  shortening_target = 0;
+                }
+              ];
+              lualine_b = [ ];
+              lualine_c = [
+              ];
+              lualine_x = [ ];
+              lualine_y = [ ];
+              lualine_z = [ ];
+            };
             sections = {
               lualine_a = [ "mode" "hostname" ];
               lualine_b = [ "branch" "diff" "diagnostics" ];
               lualine_c = [ "filename" ];
-              lualine_x = [ "lsp_progress" "encoding" "fileformat" "filetype" ];
-              lualine_y = [ "progress" ];
+              lualine_x = [ ];
+              lualine_y = [
+                "encoding"
+                "fileformat"
+              ];
               lualine_z = [ "location" ];
             };
             inactive_sections = {
@@ -860,14 +904,14 @@ in
             "<leader>fb" = "buffers";
             "<leader>m" = "commands";
             "<leader>/" = "current_buffer_fuzzy_find";
-            "/" = "current_buffer_fuzzy_find";
+            # "/" = "current_buffer_fuzzy_find";
             "<leader>ff" = "fd";
             "<leader>fch" = "highlights";
             "<leader>fk" = "keymaps";
             "<leader>fj" = "jumplist";
             "<leader>fd" = "lsp_document_symbols";
             "<leader>fD" = "lsp_workspace_symbols";
-            # "<leader>fr" = "lsp_references";
+            "<leader>fr" = "lsp_references";
             "<leader>fm" = "marks";
             "<leader>fq" = "quickfix";
             "<leader>fu" = "undo";
