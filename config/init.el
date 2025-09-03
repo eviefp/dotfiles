@@ -3,7 +3,7 @@
 ;; the available packages.
 
 ;;  IMPORTANT: this has to be manually run on first install.
-;;  (all-the-icons-install-fonts))
+;;  (all-the-icons-install-fonts)
 
 ;; Not sure what this does. This bit was copy/pasted from the NixOS manual.
 (require 'package)
@@ -280,7 +280,7 @@
        '("~/code/"
 	 "~/code/blog/"
          "~/code/tests/"
-         "~/code/extra-garnix/"
+         "~/code/enpal/"
 	 "~/code/oss/"))
  :config (projectile-discover-projects-in-search-path) (projectile-mode +1)
  :general
