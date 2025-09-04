@@ -300,7 +300,14 @@ in
         enableNushellIntegration = true;
         flags = [ ];
         settings = {
+          auto_sync = false;
+          update_check = false;
           filter_mode_shell_up_key_binding = "session";
+          workspaces = true;
+          style = "compact";
+          inline_height = 0;
+          store_failed = false;
+          scroll_exits = false;
         };
       };
 
