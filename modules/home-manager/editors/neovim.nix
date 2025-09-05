@@ -870,9 +870,20 @@ in
           };
         };
 
-        indent-blankline = {
+        indent-blankline.enable = true;
+        indent-o-matic = {
           enable = true;
+          settings = {
+            skip_multiline = true;
+            standard_widths = [ 2 4 ];
+          };
         };
+
+        dressing.enable = true;
+        cursorline.enable = true;
+        rainbow-delimiters.enable = true;
+
+        # oil! https://github.com/stevearc/oil.nvim
 
         telescope = {
           enable = true;
