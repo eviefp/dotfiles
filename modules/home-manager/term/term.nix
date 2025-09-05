@@ -228,12 +228,15 @@ in
       hyfetch = {
         enable = true;
         settings = {
-          backend = "neofetch";
           preset = "transgender";
           mode = "rgb";
-          light_dark = "dark";
+          auto_detect_light_dark = true;
           lightness = 0.65;
           color_align.mode = "horizontal";
+          backend = "neofetch";
+          args = null;
+          distro = "nixos_small";
+          pride_month_disable = false;
         };
       };
 
