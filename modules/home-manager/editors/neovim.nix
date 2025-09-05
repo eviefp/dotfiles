@@ -212,8 +212,12 @@ in
           key = "<leader>bp";
           action = "<cmd>BufferPin<cr>";
         }
-
-        ## ccc
+        # gx
+        {
+          key = "gx";
+          action = "<cmd>Browse<cr>";
+        }
+        # ccc
         {
           key = "<leader>cc";
           action = "<cmd>CccPick<cr>";
@@ -1084,6 +1088,13 @@ in
               };
             };
           };
+        };
+
+        # Open link in browser.
+        # TODO: add handlers for stuff like "github:foo/bar" in flake.nix files or pkgs.bar, etc.
+        # see https://github.com/chrishrb/gx.nvim
+        gx = {
+          enable = true;
         };
 
       };
