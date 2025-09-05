@@ -308,11 +308,11 @@ in
       ];
 
       extraConfigLua = ''
-        local originalNotify = vim.notify
-        vim.notify = function (msg, log_level, optopts)
-          -- TODO: only ignore the message about textDocument/documentColor
-          -- originalNotify(msg, log_level, opts)
-        end
+        -- local originalNotify = vim.notify
+        -- vim.notify = function (msg, log_level, optopts)
+        --   -- TODO: only ignore the message about textDocument/documentColor
+        --   -- originalNotify(msg, log_level, opts)
+        -- end
 
         require('nu').setup{}
 
@@ -1022,6 +1022,26 @@ in
             backend = "kitty";
           };
         };
+
+        # Show LSP starting messages and other notifications.
+        fidget = {
+          enable = true;
+          settings = {
+            progress = {
+              display.done_ttl = 10;
+            };
+            notification = {
+              override_vim_notify = true;
+              window = {
+                border = "rounded";
+              };
+            };
+            integration = {
+              nvim-tree.enable = false;
+            };
+          };
+        };
+
       };
     };
   };
