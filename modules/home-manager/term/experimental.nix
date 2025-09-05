@@ -49,6 +49,14 @@ in
 
       default = [
         {
+          name = "ncdu";
+          package = pkgs.ncdu;
+          short = "disk usage and cleanup TUI";
+          help = ''
+            ncdu -- opens the TUI from CWD
+          '';
+        }
+        {
           name = "choose";
           package = pkgs.choose;
           short = "ws-based text filtering";
