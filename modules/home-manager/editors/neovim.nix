@@ -1117,6 +1117,9 @@ in
             };
           };
         };
+
+        # Hilight code in nix strings. Auto-detect plus `/* lang */` hints before the string.
+        hmts.enable = true;
       };
     };
   };
