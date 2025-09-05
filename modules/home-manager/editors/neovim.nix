@@ -167,10 +167,6 @@ in
           action = "<cmd>lua require('actions-preview').code_actions()<cr>";
         }
         {
-          key = "<C-t>";
-          action = "<cmd>lua require('FTerm').toggle()<cr>";
-        }
-        {
           key = "<leader>gb";
           action = "<cmd>BlameToggle<cr>";
         }
@@ -291,7 +287,6 @@ in
         }) # :Blame, but would be nice if it could go recursively
         pkgs.vimPlugins.outline-nvim # lsp outline, todo keybind
         pkgs.vimPlugins.mkdir-nvim # auto-mkdir when dir does not exist when saving files
-        pkgs.vimPlugins.FTerm-nvim
         (pkgs.vimUtils.buildVimPlugin {
           pname = "co-author.nvim";
           version = "v1.0";
@@ -350,8 +345,6 @@ in
             auto_preview = true,
           },
         })
-
-        require('FTerm').setup {}
 
         require('actions-preview').setup {
           highlight_command = {
@@ -861,6 +854,21 @@ in
               lualine_y = [ ];
               lualine_z = [ ];
             };
+            inactive_winbar = {
+              lualine_a = [
+                {
+                  __unkeyed-1 = "filename";
+                  path = 1;
+                  shortening_target = 0;
+                }
+              ];
+              lualine_b = [ ];
+              lualine_c = [
+              ];
+              lualine_x = [ ];
+              lualine_y = [ ];
+              lualine_z = [ ];
+            };
             sections = {
               lualine_a = [ "mode" "hostname" ];
               lualine_b = [ "branch" "diff" "diagnostics" ];
@@ -1039,6 +1047,18 @@ in
             integration = {
               nvim-tree.enable = false;
             };
+          };
+        };
+
+        # Floating terminal.
+        # Can also add multiple terminals and navigate through them.
+        floaterm = {
+          enable = true;
+          settings = {
+            shell = "nu";
+            position = "bottom";
+            keymap_new = "<A-T>";
+            keymap_toggle = "<A-t>";
           };
         };
 
