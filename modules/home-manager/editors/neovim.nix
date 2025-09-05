@@ -25,6 +25,12 @@ in
       pkgs.shellcheck
       pkgs.shfmt
       pkgs.haskellPackages.cabal-fmt
+
+      # diagram
+      pkgs.mermaid-cli
+      pkgs.plantuml
+      pkgs.d2
+      pkgs.gnuplot
     ];
 
     home.sessionVariables.EDITOR = "nvim";
@@ -1002,6 +1008,19 @@ in
         # TODO: use it with blink https://github.com/xzbdmw/colorful-menu.nvim
         colorful-menu = {
           enable = true;
+        };
+
+        # Show mermaid diagrams in-line.
+        diagram = {
+          enable = true;
+        };
+
+        # Needed by 'diagram'.
+        image = {
+          enable = true;
+          settings = {
+            backend = "kitty";
+          };
         };
       };
     };
