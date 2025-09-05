@@ -901,8 +901,6 @@ in
           };
         };
 
-        indent-blankline.enable = true;
-
         # oil! https://github.com/stevearc/oil.nvim
 
         telescope = {
@@ -1097,6 +1095,16 @@ in
           enable = true;
         };
 
+        # indent-blankline.enable = true;
+        hlchunk = {
+          enable = true;
+          settings = {
+            chunk.enable = true;
+            indent.enable = true;
+            line_num.enable = true;
+            blank.enable = true;
+          };
+        };
       };
     };
   };
