@@ -1095,14 +1095,26 @@ in
           enable = true;
         };
 
-        # indent-blankline.enable = true;
+        # Indentation highlighter.
         hlchunk = {
           enable = true;
           settings = {
-            chunk.enable = true;
-            indent.enable = true;
-            line_num.enable = true;
-            blank.enable = true;
+            chunk = {
+              enable = true;
+              use_treesitter = true;
+            };
+            indent = {
+              enable = true;
+              chars = [ "│" "¦" "┆" "┊" ];
+            };
+            line_num = {
+              enable = true;
+              style = "#806d9c";
+            };
+            blank = {
+              enable = true;
+              chars = [ " " "․" "⁚" "⁖" "⁘" "⁙" ];
+            };
           };
         };
       };
