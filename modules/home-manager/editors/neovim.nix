@@ -394,6 +394,10 @@ in
               sp = "NvimLightYellow";
               underline = true;
             };
+            GitSignsCurrentLineBlame = {
+              bg = "NONE";
+              fg = "#4EC9B0";
+            };
           };
         };
       };
@@ -422,11 +426,17 @@ in
           enable = true;
 
           settings = {
+            signs_staged_enable = true;
+            signcolumn = true;
             numhl = true;
+            auto_attach = true;
+            attach_to_untracked = false;
             current_line_blame = true;
             current_line_blame_opts = {
-              delay = 500;
+              virt_text = true;
               virt_text_pos = "right_align";
+              delay = 500;
+              ignore_whitespace = false;
             };
           };
         };
