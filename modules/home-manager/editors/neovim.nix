@@ -975,7 +975,6 @@ in
         };
 
         dressing.enable = true;
-        cursorline.enable = true;
         rainbow-delimiters.enable = true;
 
         # Arrow: cross-session jump through files.
