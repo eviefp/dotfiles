@@ -431,11 +431,6 @@ in
           };
         };
 
-        diffview = {
-          enable = false; # kinda annoying, trying out git-conflict
-          enhancedDiffHl = true;
-        };
-
         ## Completion
         coq-nvim = {
           enable = false;
