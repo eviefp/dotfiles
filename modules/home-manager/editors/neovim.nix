@@ -189,23 +189,28 @@ in
           key = "[G";
           action = "<cmd>Gitsigns next_hunk<cr>";
         }
-        ## Bufferline
+        # barbar
         {
           key = "gn";
-          action = "<cmd>BufferLineCycleNext<cr>";
+          action = "<cmd>BufferNext<cr>";
         }
         {
           key = "gp";
-          action = "<cmd>BufferLineCyclePrev<cr>";
+          action = "<cmd>BufferPrevious<cr>";
         }
         {
           key = "<leader>bc";
-          action = ":lua require('bufdelete').bufdelete()<cr>";
+          action = "<cmd>BufferClose<cr>";
         }
         {
           key = "<leader>bC";
-          action = "<cmd>BufferLineCloseOthers<cr>";
+          action = "<cmd>BufferLineCloseAllButCurrent<cr>";
         }
+        {
+          key = "<leader>bp";
+          action = "<cmd>BufferPin<cr>";
+        }
+
         ## ccc
         {
           key = "<leader>cc";
@@ -385,6 +390,10 @@ in
             };
             "@function" = {
               fg = "#9c74ef";
+            };
+            BufferCurrent = {
+              sp = "NvimLightYellow";
+              underline = true;
             };
           };
         };
@@ -808,22 +817,6 @@ in
         };
 
         ## UI
-        bufferline = {
-          enable = true;
-          settings.options = {
-            mode = "buffers";
-            themable = true;
-            numbers = "none";
-            style = "underline";
-            separator_style = "thin";
-            show_buffer_close_icons = false;
-            show_closed_icon = false;
-            always_show_bufferline = true;
-            sort_by = "insert_at_end";
-            # diagnostics = "nvim_lsp";
-            indicator.style = "underline";
-          };
-        };
 
         lualine = {
           enable = true;
@@ -946,7 +939,7 @@ in
         };
 
         bufdelete = {
-          enable = true;
+          enable = false;
         };
 
         git-conflict = {
@@ -980,6 +973,14 @@ in
             always_show_path = true;
             separate_by_branch = true;
             leader_key = ";";
+          };
+        };
+
+        # barbar: tabline plugin
+        barbar = {
+          enable = true;
+          settings = {
+            highlight_visible = true;
           };
         };
       };
