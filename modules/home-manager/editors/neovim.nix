@@ -871,17 +871,6 @@ in
         };
 
         indent-blankline.enable = true;
-        indent-o-matic = {
-          enable = true;
-          settings = {
-            skip_multiline = true;
-            standard_widths = [ 2 4 ];
-          };
-        };
-
-        dressing.enable = true;
-        cursorline.enable = true;
-        rainbow-delimiters.enable = true;
 
         # oil! https://github.com/stevearc/oil.nvim
 
@@ -962,6 +951,36 @@ in
 
         git-conflict = {
           enable = true;
+        };
+
+        #######################################################################
+        # Experiments
+        #######################################################################
+
+        # TODO: sort through these
+        indent-o-matic = {
+          enable = true;
+          settings = {
+            skip_multiline = true;
+            standard_widths = [ 2 4 ];
+          };
+        };
+
+        dressing.enable = true;
+        cursorline.enable = true;
+        rainbow-delimiters.enable = true;
+
+        # Arrow: cross-session jump through files.
+        # + easy ui
+        # - breaks folding
+        arrow = {
+          enable = true;
+          settings = {
+            show_icons = true;
+            always_show_path = true;
+            separate_by_branch = true;
+            leader_key = ";";
+          };
         };
       };
     };
