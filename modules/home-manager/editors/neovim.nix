@@ -1149,6 +1149,14 @@ in
             select_signature_key = "<C-n>";
           };
         };
+
+        # TODO: enable when switching cmp for blink
+        # lspkind = {
+        #   enable = true;
+        #   settings = {
+        #     mode = "symbol_text";
+        #   };
+        # };
       };
     };
   };
