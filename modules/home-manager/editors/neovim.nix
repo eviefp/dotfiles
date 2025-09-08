@@ -51,6 +51,10 @@ in
         }
       ];
 
+      diagnostic.settings = {
+        virtual_lines = true;
+      };
+
       globals = {
         mapleader = " ";
         maplocalleader = ",";
@@ -277,12 +281,16 @@ in
           key = "<leader>oo";
           action = ":Outline<cr>";
         }
+        # lsp-lines
+        {
+          key = "<leader>dt";
+          action = ":lua require('lsp_lines').toggle()<cr>";
+        }
       ];
 
       extraPlugins = [
         pkgs.vimPlugins.nvim-nu
         pkgs.vimPlugins.nvim-surround
-        pkgs.vimPlugins.tiny-inline-diagnostic-nvim # nicer diagnostic, overlaps with ]d a bit
         (pkgs.vimUtils.buildVimPlugin {
           pname = "blame.nvim";
           version = "v1.0";
@@ -320,26 +328,6 @@ in
         require('nu').setup{}
 
         require('nvim-surround').setup{}
-
-        require('tiny-inline-diagnostic').setup({
-          preset = "powerline";
-          options = {
-            multilines = {
-              enable = true,
-              always_show = true,
-              trim_whitespace = false,
-              tabstop = 4,
-            };
-            overflow = {
-              mode = "wrap",
-            },
-            break_line = {
-              enabled = false,
-              after = 30,
-            },
-          },
-        })
-        vim.diagnostic.config({ virtual_text = false })
 
         require('blame').setup({
         })
@@ -1147,6 +1135,11 @@ in
               height = 5;
             };
           };
+        };
+
+        # In-line errors.
+        lsp-lines = {
+          enable = true;
         };
       };
     };
