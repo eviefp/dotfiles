@@ -927,6 +927,7 @@ in
             "<leader>fu" = "undo";
             "<leader>fe" = "file_browser";
             "<leader>fE" = "file_browser path=%:p:h select_buffer=true";
+            "<leader>fi" = "nerdy";
           };
         };
 
@@ -1161,6 +1162,13 @@ in
         markview = {
           enable = true;
         };
+
+        # Search through nerd fonts.
+        nerdy = {
+          enable = true;
+          enableTelescope = true;
+        };
+
       };
     };
   };
