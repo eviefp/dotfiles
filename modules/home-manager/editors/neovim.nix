@@ -802,14 +802,6 @@ in
           };
         };
 
-        lspsaga = {
-          enable = false;
-          settings = {
-            symbolInWinbar.enable = true;
-            lightbulb.enable = false;
-          };
-        };
-
         ## misc
         ccc = {
           enable = true;
@@ -905,8 +897,6 @@ in
           };
         };
 
-        # oil! https://github.com/stevearc/oil.nvim
-
         telescope = {
           enable = true;
 
@@ -953,6 +943,7 @@ in
           };
         };
 
+        # better quickfix
         nvim-bqf = {
           enable = true;
         };
@@ -961,13 +952,13 @@ in
           enable = true;
         };
 
+        # oil! https://github.com/stevearc/oil.nvim
         oil = {
           enable = true;
         };
 
         which-key = {
           enable = true;
-
         };
 
         marks = {
@@ -976,10 +967,6 @@ in
 
         web-devicons = {
           enable = true;
-        };
-
-        bufdelete = {
-          enable = false;
         };
 
         git-conflict = {
