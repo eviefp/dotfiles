@@ -1141,6 +1141,14 @@ in
         lsp-lines = {
           enable = true;
         };
+
+        # Show signature help for multi-param functions.
+        lsp-signature = {
+          enable = true;
+          settings = {
+            select_signature_key = "<C-n>";
+          };
+        };
       };
     };
   };
