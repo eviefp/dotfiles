@@ -553,6 +553,7 @@ in
             purescript
             python
             racket
+            regex
             rst
             rust
             scheme
@@ -1096,9 +1097,6 @@ in
           };
         };
 
-        # Hilight code in nix strings. Auto-detect plus `/* lang */` hints before the string.
-        hmts.enable = true;
-
         # lean lsp
         lean = {
           enable = true;
@@ -1169,6 +1167,51 @@ in
           enableTelescope = true;
         };
 
+        # UI improvements
+        noice = {
+          enable = true;
+          settings = {
+            cmdline = {
+              enabled = true;
+              view = "cmdline";
+            };
+            messages = {
+              enabled = true;
+              view = "notify";
+              view_error = "notify";
+              view_warn = "notify";
+              view_history = "messages";
+              view_search = "virtualtext";
+            };
+            popupmenu = {
+              enabled = true;
+              backend = "nui";
+            };
+            notify = {
+              enabled = true;
+              view = "notify";
+            };
+            lsp = {
+              enabled = false;
+            };
+            presets = {
+              bottom_search = true;
+              command_palette = true;
+              long_message_to_split = true;
+              inc_rename = false;
+              lsp_doc_border = true;
+            };
+          };
+        };
+
+        # Used by noice.
+        notify = {
+          enable = true;
+          settings = {
+            level = "info";
+            background_color = "#000000";
+          };
+        };
       };
     };
   };
