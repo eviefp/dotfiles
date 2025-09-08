@@ -1194,11 +1194,14 @@ in
         };
 
         # Used by noice.
+        nui.enable = true;
+
+        # Used by noice.
         notify = {
           enable = true;
           settings = {
-            level = "info";
-            background_color = "#000000";
+            level = "warn";
+            background_colour = "#000000";
           };
         };
       };
