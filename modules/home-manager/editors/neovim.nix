@@ -1157,6 +1157,11 @@ in
         #     mode = "symbol_text";
         #   };
         # };
+
+        # Nicer markdown.
+        markview = {
+          enable = true;
+        };
       };
     };
   };
