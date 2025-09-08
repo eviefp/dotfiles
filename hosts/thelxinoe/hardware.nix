@@ -50,6 +50,12 @@
   fileSystems."/mnt/raid" = {
     device = "fractal:/mnt/raid1";
     fsType = "nfs";
+    options = [
+      "x-systemd.requires=network-online.target"
+      "x-systemd.after=network-online.target"
+      "x-systemd.required=multi-user.target"
+      "x-systemd.before=multi-user.target"
+    ];
   };
 
   swapDevices =
