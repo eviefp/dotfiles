@@ -191,6 +191,10 @@ in
           key = "[G";
           action = "<cmd>Gitsigns next_hunk<cr>";
         }
+        {
+          key = "<leader>gt";
+          action = "<Cmd>Gitsigns toggle_current_line_blame<cr>";
+        }
         # barbar
         {
           key = "gn";
@@ -435,7 +439,7 @@ in
             numhl = true;
             auto_attach = true;
             attach_to_untracked = false;
-            current_line_blame = true;
+            current_line_blame = false;
             current_line_blame_opts = {
               virt_text = true;
               virt_text_pos = "right_align";
