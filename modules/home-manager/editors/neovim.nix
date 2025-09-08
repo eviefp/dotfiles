@@ -995,7 +995,6 @@ in
           };
         };
 
-        dressing.enable = true;
         rainbow-delimiters.enable = true;
 
         # Arrow: cross-session jump through files.
