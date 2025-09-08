@@ -726,10 +726,6 @@ in
               enable = true;
             };
 
-            nil_ls = {
-              enable = true;
-            };
-
             purescriptls = {
               enable = true;
               package = null;
@@ -740,9 +736,7 @@ in
                 };
               };
             };
-
           };
-
         };
 
         conform-nvim = {
@@ -776,11 +770,6 @@ in
               lsp_format = "fallback";
             };
           };
-        };
-
-        none-ls = {
-          enable = true;
-          enableLspFormat = false;
         };
 
         trouble = {
