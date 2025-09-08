@@ -404,9 +404,8 @@ in
           enable = true;
 
           settings = {
-            graph_style = "unicode";
+            graph_style = "kitty";
             disable_insert_on_commit = true;
-            # console_timeout = 10000; # password input can be slow
             integrations = {
               telescope = true;
               diffview = false;
