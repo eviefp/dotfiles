@@ -93,16 +93,13 @@ in
         fillchars = "fold: ";
         foldenable = true;
         foldlevel = 99;
+        foldlevelstart = 99;
       };
 
       keymaps = [
         {
           key = "\\";
           action = ":nohl<cr>";
-        }
-        {
-          key = "<Tab>";
-          action = "za";
         }
         {
           key = "<S-Tab>";
@@ -1241,6 +1238,26 @@ in
 
         orgmode = {
           enable = true;
+        };
+
+        # folding
+        origami = {
+          enable = true;
+          settings = {
+            useLspFoldsWithTreesitterFallback = true;
+            pauseFoldsOnSearch = true;
+            foldtext = {
+              enabled = true;
+              padding = 2;
+            };
+            autoFold = {
+              enabled = false;
+            };
+            foldKeymaps = {
+              setup = true;
+              hOnlyOpensOnFirstColumn = false;
+            };
+          };
         };
 
       };
