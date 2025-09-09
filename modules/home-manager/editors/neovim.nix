@@ -1264,6 +1264,11 @@ in
         rest = {
           enable = true;
         };
+
+        # cursor effect
+        smear-cursor = {
+          enable = true;
+        };
       };
     };
   };
