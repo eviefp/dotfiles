@@ -926,11 +926,6 @@ in
           };
         };
 
-        # better quickfix
-        nvim-bqf = {
-          enable = true;
-        };
-
         leap = {
           enable = true;
         };
@@ -1170,8 +1165,7 @@ in
               view = "cmdline";
             };
             messages = {
-              enabled = true;
-              view = "notify";
+              enabled = false;
               view_error = "notify";
               view_warn = "notify";
               view_history = "messages";
@@ -1209,6 +1203,14 @@ in
             background_colour = "#000000";
           };
         };
+
+        # better quickfix
+        nvim-bqf = {
+          enable = true;
+          autoEnable = true;
+          magicWindow = false;
+        };
+
       };
     };
   };
