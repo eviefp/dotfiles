@@ -1260,6 +1260,10 @@ in
           };
         };
 
+        # REST API helper; use :Rest on a .http file
+        rest = {
+          enable = true;
+        };
       };
     };
   };
