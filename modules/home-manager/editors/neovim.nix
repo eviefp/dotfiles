@@ -1239,6 +1239,10 @@ in
           };
         };
 
+        orgmode = {
+          enable = true;
+        };
+
       };
     };
   };
