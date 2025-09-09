@@ -290,7 +290,6 @@ in
 
       extraPlugins = [
         pkgs.vimPlugins.nvim-nu
-        pkgs.vimPlugins.nvim-surround
         (pkgs.vimUtils.buildVimPlugin {
           pname = "blame.nvim";
           version = "v1.0";
@@ -326,8 +325,6 @@ in
         -- end
 
         require('nu').setup{}
-
-        require('nvim-surround').setup{}
 
         require('blame').setup({
         })
@@ -1209,6 +1206,11 @@ in
           enable = true;
           autoEnable = true;
           magicWindow = false;
+        };
+
+        # surround; ys/yS
+        nvim-surround = {
+          enable = true;
         };
 
       };
