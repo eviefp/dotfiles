@@ -62,6 +62,7 @@ in
       };
 
       opts = {
+        cmdline = 0;
         number = true;
         relativenumber = true;
 
