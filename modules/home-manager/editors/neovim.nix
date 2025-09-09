@@ -717,10 +717,15 @@ in
               rootMarkers = [ "package.json" "tsconfig.json" ];
             };
 
+            nil_ls = {
+              enable = true;
+            };
+
             gopls = {
               enable = true;
               package = null;
             };
+
 
             nushell = {
               enable = true;
