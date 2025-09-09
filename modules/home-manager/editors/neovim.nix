@@ -410,10 +410,6 @@ in
           };
         };
 
-        octo = {
-          enable = true;
-        };
-
         gitsigns = {
           enable = true;
 
