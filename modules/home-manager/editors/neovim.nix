@@ -62,7 +62,7 @@ in
       };
 
       opts = {
-        cmdline = 0;
+        cmdheight = 0;
         number = true;
         relativenumber = true;
 
@@ -88,10 +88,6 @@ in
 
         conceallevel = 1;
 
-        foldmethod = "expr";
-        foldexpr = "nvim_treesitter#foldexpr()";
-        foldtext = "";
-        fillchars = "fold: ";
         foldenable = true;
         foldlevel = 99;
         foldlevelstart = 99;
@@ -1126,7 +1122,7 @@ in
           settings = {
             cmdline = {
               enabled = true;
-              view = "cmdline";
+              view = "cmdline_popup";
             };
             messages = {
               enabled = false;
