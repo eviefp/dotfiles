@@ -1000,6 +1000,7 @@ in
         };
 
         # Find-and-Replace UI.
+        # alternative: nvim-spectre
         grug-far = {
           enable = true;
           settings = {
@@ -1268,6 +1269,19 @@ in
         # cursor effect
         smear-cursor = {
           enable = true;
+        };
+
+        # make w, e, and b respect words with camelCase, etc.
+        spider = {
+          enable = true;
+          keymaps = {
+            silent = true;
+            motions = {
+              w = "w";
+              e = "e";
+              b = "b";
+            };
+          };
         };
       };
     };
