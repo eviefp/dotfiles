@@ -904,11 +904,6 @@ in
           enable = true;
         };
 
-        # oil! https://github.com/stevearc/oil.nvim
-        oil = {
-          enable = true;
-        };
-
         which-key = {
           enable = true;
         };
@@ -1232,6 +1227,18 @@ in
 
             checkbox = {
               order = [ " " ">" "x" "~" ];
+            };
+          };
+        };
+
+        # edit files in a buffer
+        oil = {
+          enable = true;
+          settings = {
+            default_file_explorer = true;
+            columns = [ "icon" "permissions" "size" "mtime" ];
+            view_options = {
+              show_hidden = true;
             };
           };
         };
