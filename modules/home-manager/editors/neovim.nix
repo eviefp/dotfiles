@@ -791,29 +791,6 @@ in
           };
         };
 
-        obsidian = lib.mkIf cfg.obsidian {
-          enable = true;
-          settings = {
-            legacy_commands = false;
-            workspaces = [
-              {
-                name = "notes";
-                path = "~/code/notes";
-              }
-            ];
-
-            completion = {
-              nvim_cmp = true;
-              min_chars = 2;
-            };
-
-            checkbox = {
-              order = [ " " ">" "x" "~" ];
-            };
-
-          };
-        };
-
         ## UI
 
         lualine = {
@@ -1211,6 +1188,52 @@ in
         # surround; ys/yS
         nvim-surround = {
           enable = true;
+        };
+
+        # TODO: blink snacks
+        obsidian = lib.mkIf cfg.obsidian {
+          enable = true;
+          settings = {
+            legacy_commands = false;
+
+            workspaces = [
+              {
+                name = "notes";
+                path = "~/code/notes";
+              }
+            ];
+
+            notes_subdir = "notes";
+
+            daily_notes = {
+              folder = "notes/daily";
+              date_format = "%Y-%m-%d";
+              alias_format = "%B %-d, %T";
+              workdays_only = false;
+            };
+
+            completion = {
+              nvim_cmp = true;
+              min_chars = 2;
+            };
+
+            new_notes_location = "notes_subdir";
+
+            preferred_link_style = "wiki";
+
+            picker = {
+              name = "telescope.nvim";
+            };
+
+            ui = {
+              enable = true;
+              ignore_conceal_warn = true;
+            };
+
+            checkbox = {
+              order = [ " " ">" "x" "~" ];
+            };
+          };
         };
 
       };
