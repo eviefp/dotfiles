@@ -512,8 +512,7 @@ in
         ## Languages
         treesitter = {
           enable = true;
-          # nixGrammars = true;
-
+          nixGrammars = true;
           grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
             agda
             awk
@@ -645,6 +644,7 @@ in
           };
         };
 
+        # TODO: look into this
         treesitter-textobjects = {
           enable = true;
 
