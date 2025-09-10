@@ -401,6 +401,19 @@ in
             String = {
               fg = "orange";
             };
+            TreeSitterContext = {
+              fg = "NONE";
+              bg = "NONE";
+            };
+            TreeSitterContextLineNumber = {
+              bg = "purple";
+            };
+            TreesitterContextBottom = {
+              underline = true;
+              fg = "NONE";
+              bg = "NONE";
+              sp = "purple";
+            };
           };
         };
       };
@@ -603,7 +616,7 @@ in
         treesitter-context = {
           enable = true;
           settings = {
-            max_lines = 8;
+            max_lines = 12;
             trim_scope = "outer";
             mode = "cursor";
           };
