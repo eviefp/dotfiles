@@ -52,6 +52,8 @@ in
             ];
           };
         };
+        # TODO: add theme from cyberdream
+
         # keymap = {
         #   manager.keymap = [
         #     { run = "escape"; on = "<Esc>"; }
@@ -84,7 +86,7 @@ in
 
     };
 
-    home.file.".config/gitu/config.toml".text = ''
+    home.file.".config/gitu/config.toml".text = /*toml*/ ''
 
 # This file contains Gitu's default configuration.
 # It is possible to override settings with an equivalent file at:

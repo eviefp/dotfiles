@@ -13,75 +13,73 @@ in
 
   config = lib.mkIf cfg.enable {
     home.file = {
-      ".config/kitty/light.conf".text = ''
+      ".config/kitty/light.conf".text = /*toml*/ ''
         font_size 12.0
         background_opacity 0.7
         dynamic_background_opacity yes
         background_tint 1.0
 
-        cursor #f975df
-
-        background #ffffff
-        foreground #822bd8
-
-        color0 #15161E
-        color8 #414868
-
-        color1 #f7768e
-        color9 #f7768e
-
-        color2 #9ece6a
-        color10 #9ece6a
-
-        color3 #e0af68
-        color11 #e0af68
-
-        color4 #7aa2f7
-        color12 #7aa2f7
-
-        color5 #bb9af7
-        color13 #bb9af7
-
-        color6 #7dcfff
-        color14 #7dcfff
-
-        color7 #a9b1d6
-        color15 #c0caf5
+        # cyberdream theme for kitty
+        background            #ffffff
+        foreground            #16181a
+        cursor                #16181a
+        cursor_text_color     #ffffff
+        selection_background  #acacac
+        color0                #ffffff
+        color8                #acacac
+        color1                #d11500
+        color9                #d11500
+        color2                #008b0c
+        color10               #008b0c
+        color3                #997b00
+        color11               #997b00
+        color4                #0057d1
+        color12               #0057d1
+        color5                #a018ff
+        color13               #a018ff
+        color6                #008c99
+        color14               #008c99
+        color7                #16181a
+        color15               #16181a
+        selection_foreground  #16181a
+        active_tab_foreground #000000
+        active_tab_background #d17c00
+        inactive_tab_foreground #16181a
+        inactive_tab_background #ffffff
       '';
-      ".config/kitty/dark.conf".text = ''
+      ".config/kitty/dark.conf".text = /*toml*/ ''
         font_size 10.0
         background_opacity 0.8
         dynamic_background_opacity yes
         background_tint 0.8
 
-        cursor #822bd8
-
-        background #000000
-        foreground #f975df
-
-        color0 #15161E
-        color8 #414868
-
-        color1 #f7768e
-        color9 #f7768e
-
-        color2 #9ece6a
-        color10 #9ece6a
-
-        color3 #e0af68
-        color11 #e0af68
-
-        color4 #7aa2f7
-        color12 #7aa2f7
-
-        color5 #bb9af7
-        color13 #bb9af7
-
-        color6 #7dcfff
-        color14 #7dcfff
-
-        color7 #a9b1d6
-        color15 #c0caf5
+        # cyberdream theme for kitty
+        background            #000000
+        foreground            #ffffff
+        cursor                #ffffff
+        cursor_text_color     #16181a
+        selection_background  #3c4048
+        color0                #16181a
+        color8                #3c4048
+        color1                #ff6e5e
+        color9                #ff6e5e
+        color2                #5eff6c
+        color10               #5eff6c
+        color3                #f1ff5e
+        color11               #f1ff5e
+        color4                #5ea1ff
+        color12               #5ea1ff
+        color5                #bd5eff
+        color13               #bd5eff
+        color6                #5ef1ff
+        color14               #5ef1ff
+        color7                #ffffff
+        color15               #ffffff
+        selection_foreground  #ffffff
+        active_tab_foreground #000000
+        active_tab_background #ffbd5e
+        inactive_tab_foreground #ffffff
+        inactive_tab_background #16181a
       '';
     };
     programs.kitty = {
