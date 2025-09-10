@@ -626,6 +626,7 @@ in
           enable = true;
 
           highlightDefinitions.enable = false;
+          highlightCurrentScope.enable = false;
 
           smartRename = {
             enable = true;
@@ -633,14 +634,13 @@ in
           };
 
           navigation = {
-            enable = false;
+            enable = true;
             keymaps = {
-              # gotoDefinition = "";
-              # gotoDefinitionLspFallback = "";
-              # listDefinitions = "";
-              # listDefinitionsToc = "";
-              # gotoNextUsage = "";
-              # gotoPreviousUsage = "";
+              gotoDefinitionLspFallback = "gd";
+              listDefinitions = "gnd";
+              listDefinitionsToc = "gO";
+              gotoNextUsage = "gnj";
+              gotoPreviousUsage = "gnk";
             };
           };
         };
