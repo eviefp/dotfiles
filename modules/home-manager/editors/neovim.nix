@@ -1306,6 +1306,11 @@ in
           };
         };
 
+        # highlights FIX, TODO, HACK, WARN, PERF, NOTE, TEST. can be configured.
+        todo-comments = {
+          enable = true;
+        };
+
       };
     };
   };
