@@ -1285,6 +1285,27 @@ in
             };
           };
         };
+
+        # travel through versions of a file; start with ':Tardis'
+        # TODO: review if I really want this. It's not exactly blame, but it can git travel.
+        tardis = {
+          enable = true;
+          settings = {
+            keymap = {
+              next = "<C-j>";
+              prev = "<C-k>";
+              quit = "q";
+              revision_message = "<C-m>";
+              commit = "<C-g>";
+            };
+            settings = {
+              initial_revisions = 10;
+              max_revisions = 256;
+              show_commit_index = true;
+            };
+          };
+        };
+
       };
     };
   };
