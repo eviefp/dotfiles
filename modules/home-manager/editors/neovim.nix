@@ -793,13 +793,6 @@ in
           };
         };
 
-        trouble = {
-          enable = true;
-          settings = {
-            auto_refresh = true;
-          };
-        };
-
         ## misc
         ccc = {
           enable = true;
@@ -917,6 +910,22 @@ in
             "<leader>fE" = "file_browser path=%:p:h select_buffer=true";
             "<leader>fi" = "nerdy";
           };
+
+          settings = {
+            pickers.colorscheme.enable_preview = true;
+            defaults.mappings = {
+              i = {
+                "<C-t>" = "open_with_trouble";
+              };
+              n = {
+                "<C-t>" = "open_with_trouble";
+              };
+            };
+          };
+
+          luaConfig.post = ''
+            require('telescope.actions').open_with_trouble = require('trouble.sources.telescope').open
+          '';
         };
 
         leap = {
@@ -1193,13 +1202,6 @@ in
           };
         };
 
-        # better quickfix
-        nvim-bqf = {
-          enable = true;
-          autoEnable = true;
-          magicWindow = false;
-        };
-
         # surround; ys/yS
         nvim-surround = {
           enable = true;
@@ -1343,6 +1345,20 @@ in
             exclude_grups = [ ];
           };
         };
+
+        trouble = {
+          enable = true;
+          package = pkgs.vimPlugins.trouble-nvim.overrideAttrs (previousAttrs: {
+            patches =
+              (previousAttrs.patches or [ ])
+              ++ [ ./neovim/0001-fix-view-adapt-to-the-changes-for-nvim_set_decoratio.patch ];
+          });
+          settings = {
+            auto_refresh = true;
+          };
+        };
+
+
 
       };
     };
