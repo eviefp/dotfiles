@@ -280,6 +280,11 @@ in
           key = "<leader>dt";
           action = ":lua require('lsp_lines').toggle()<cr>";
         }
+        # markview
+        {
+          key = "<leader>mv";
+          action = "<cmd>Markview Toggle<cr>";
+        }
       ];
 
       extraPlugins = [
@@ -871,7 +876,6 @@ in
             "<leader><leader>" = "git_files";
             "<leader>fg" = "live_grep";
             "<leader>fb" = "buffers";
-            "<leader>m" = "commands";
             "<leader>/" = "current_buffer_fuzzy_find";
             # "/" = "current_buffer_fuzzy_find";
             "<leader>ff" = "fd";
@@ -881,7 +885,8 @@ in
             "<leader>fd" = "lsp_document_symbols";
             "<leader>fD" = "lsp_workspace_symbols";
             "<leader>fr" = "lsp_references";
-            "<leader>fm" = "marks";
+            "<leader>fm" = "commands";
+            "<leader>f'" = "marks";
             "<leader>fq" = "quickfix";
             "<leader>fu" = "undo";
             "<leader>fe" = "file_browser";
