@@ -314,6 +314,12 @@ in
           action = "<cmd>Markview Toggle<cr>";
           options.desc = "markview toggle";
         }
+        # yazi
+        {
+          key = "<leader>ya";
+          action = "<cmd>Yazi toggle<cr>";
+          options.desc = "yazi toggle";
+        }
       ];
 
       extraPlugins = [
@@ -1415,6 +1421,16 @@ in
               };
             };
           };
+        };
+
+        # provides 'yow' to toggle wrapping
+        wrapping = {
+          enable = true;
+        };
+
+        # yazi-inside-neovim
+        yazi = {
+          enable = true;
         };
 
       };
