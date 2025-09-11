@@ -31,6 +31,18 @@ in
       pkgs.plantuml
       pkgs.d2
       pkgs.gnuplot
+
+      # conform.vim
+      pkgs.mdsf
+
+      # grug-far
+      pkgs.ast-grep
+
+      # treesitter
+      pkgs.nodejs
+
+      # snacks
+      pkgs.ghostscript
     ];
 
     home.sessionVariables.EDITOR = "nvim";
@@ -212,6 +224,16 @@ in
           options.desc = "buffer: goto prev";
         }
         {
+          key = "gN";
+          action = "<cmd>BufferMoveNext<cr>";
+          options.desc = "buffer: goto next";
+        }
+        {
+          key = "gP";
+          action = "<cmd>BufferMovePrevious<cr>";
+          options.desc = "buffer: pin";
+        }
+        {
           key = "<leader>bc";
           action = "<cmd>BufferClose<cr>";
           options.desc = "buffer: close";
@@ -323,7 +345,7 @@ in
       ];
 
       extraPlugins = [
-        pkgs.vimPlugins.nvim-nu
+        pkgs.vimPlugins.nvim-nu # TODO: is it now in nixpkgs now?
         (pkgs.vimUtils.buildVimPlugin {
           pname = "blame.nvim";
           version = "v1.0";
@@ -335,7 +357,6 @@ in
           };
         }) # :Blame, but would be nice if it could go recursively
         pkgs.vimPlugins.outline-nvim # lsp outline, todo keybind
-        pkgs.vimPlugins.mkdir-nvim # auto-mkdir when dir does not exist when saving files
         (pkgs.vimUtils.buildVimPlugin {
           pname = "co-author.nvim";
           version = "v1.0";
@@ -349,6 +370,16 @@ in
         pkgs.vimPlugins.nvim-sops
         pkgs.vimPlugins.tabular # :Tabularize
         pkgs.vimPlugins.actions-preview-nvim
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "time-machine.nvim";
+          version = "v1.5.4";
+          src = pkgs.fetchFromGitHub {
+            owner = "y3owk1n";
+            repo = "time-machine.nvim";
+            rev = "6657a7db8a07ecfa8a266be34bebfb6827bb2eab";
+            hash = "sha256-8KRWE0eNPSBh4HT6sDix9hz6QWcVk3Ne1bjmb/NDPio=";
+          };
+        })
       ];
 
       extraConfigLua = ''
@@ -379,6 +410,9 @@ in
           },
           backend = { 'telescope' },
         }
+
+        require('time-machine').setup {
+        };
       '';
 
       # TODO: move these into some default system colors.
@@ -1254,7 +1288,6 @@ in
           enable = true;
         };
 
-        # TODO: snacks
         obsidian = lib.mkIf cfg.obsidian {
           enable = true;
           settings = {
