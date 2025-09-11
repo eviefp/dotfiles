@@ -942,6 +942,10 @@ in
 
         web-devicons = {
           enable = true;
+          settings = {
+            default = true;
+            variant = "dark";
+          };
         };
 
         git-conflict = {
@@ -1357,8 +1361,6 @@ in
             auto_refresh = true;
           };
         };
-
-
 
       };
     };
