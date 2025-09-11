@@ -496,54 +496,6 @@ in
           };
         };
 
-        cmp = {
-          enable = true;
-          autoEnableSources = true;
-          settings = {
-            formatting.format.__raw = ''
-              function(entry, vim_item)
-                local highlights_info = require("colorful-menu").cmp_highlights(entry)
-
-                -- highlight_info is nil means we are missing the ts parser, it's
-                -- better to fallback to use default `vim_item.abbr`. What this plugin
-                -- offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
-                if highlights_info ~= nil then
-                    vim_item.abbr_hl_group = highlights_info.highlights
-                    vim_item.abbr = highlights_info.text
-                end
-
-                return vim_item
-              end
-            '';
-            sources = [
-              { name = "async_path"; }
-              { name = "cmp-dictionary"; }
-              { name = "git"; }
-              { name = "nvim_lsp"; }
-              { name = "rg"; }
-              { name = "spell"; }
-              { name = "treesitter"; }
-            ];
-
-            window = {
-              completion = {
-                border = "rounded";
-                scrollbar = false;
-              };
-              documentation = {
-                border = "rounded";
-              };
-            };
-
-            mapping = {
-              "<C-j>" = "cmp.mapping.select_next_item()";
-              "<C-k>" = "cmp.mapping.select_prev_item()";
-              "<C-CR>" = "cmp.mapping.confirm({ select = false })";
-              "<C-e>" = "cmp.mapping.close()";
-            };
-          };
-        };
-
         ## Languages
         treesitter = {
           enable = true;
@@ -1019,8 +971,76 @@ in
           };
         };
 
+        blink-cmp = {
+          enable = true;
+          settings = {
+            keymap.preset = "default";
+            appearance.nerd_fond_variant = "mono";
+            completion = {
+              documentation.auto_show = true;
+              menu.draw = {
+                columns = [
+                  {
+                    __unkeyed = "kind_icon";
+                  }
+                  {
+                    __unkeyed = "label";
+                    gap = 1;
+                  }
+                ];
+                components = {
+                  label = {
+                    text.__raw = ''
+                      function(ctx)
+                        return require("colorful-menu").blink_components_text(ctx)
+                      end
+                    '';
+                    highlight.__raw = ''
+                      function(ctx)
+                        return require("colorful-menu").blink_components_highlight(ctx)
+                      end
+                    '';
+                  };
+                };
+              };
+            };
+            surces.default = [ "lsp" "git" "path" "buffer" "emoji" "latex-symbols" "dictionary" ];
+            fuzzy.implementation = "prefer_rust_with_warning";
+
+            soruces.providers = {
+              dictionary = {
+                module = "blink-cmp-dictionary";
+                name = "Dict";
+                score_offset = 100;
+                min_keyword_length = 3;
+              };
+              git = {
+                module = "blink-cmp-git";
+                name = "git";
+                score_offset = 100;
+                min_keyword_length = 3;
+              };
+              latex-symbols = {
+                module = "blink-cmp-latex";
+                name = "latex";
+                score_offset = 100;
+                opts = {
+                  insert_command = false;
+                };
+              };
+              emoji = {
+                module = "blink-emoji";
+                name = "emoji";
+                score_offset = 100;
+                opts = {
+                  insert = false;
+                };
+              };
+            };
+          };
+        };
+
         # Color completion menus.
-        # TODO: use it with blink https://github.com/xzbdmw/colorful-menu.nvim
         colorful-menu = {
           enable = true;
         };
@@ -1170,14 +1190,6 @@ in
           };
         };
 
-        # TODO: enable when switching cmp for blink
-        # lspkind = {
-        #   enable = true;
-        #   settings = {
-        #     mode = "symbol_text";
-        #   };
-        # };
-
         # Nicer markdown.
         markview = {
           enable = true;
@@ -1198,7 +1210,7 @@ in
               view = "cmdline_popup";
             };
             messages = {
-              enabled = false;
+              enabled = true;
               view_error = "notify";
               view_warn = "notify";
               view_history = "messages";
@@ -1242,7 +1254,7 @@ in
           enable = true;
         };
 
-        # TODO: blink snacks
+        # TODO: snacks
         obsidian = lib.mkIf cfg.obsidian {
           enable = true;
           settings = {
@@ -1265,7 +1277,7 @@ in
             };
 
             completion = {
-              nvim_cmp = true;
+              blink = true;
               min_chars = 2;
             };
 
