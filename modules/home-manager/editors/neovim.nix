@@ -97,14 +97,17 @@ in
         {
           key = "\\";
           action = ":nohl<cr>";
+          options.desc = "highlight clear";
         }
         {
           key = "<S-Tab>";
           action = ":set foldlevel=1<cr>";
+          options.desc = "fold first level";
         }
         {
           key = "<A-Tab>";
           action = ":set foldlevel=99<cr>";
+          options.desc = "un-fold all";
         }
         {
           key = "<up>";
@@ -125,165 +128,191 @@ in
         {
           key = "<leader>fx";
           action = ":let @+ = expand(\"%\")<cr>";
+          options.desc = "path to clipboard";
         }
         {
           key = "<leader>wv";
           action = ":vsplit<cr>";
+          options.desc = "split vertically";
         }
         {
           key = "<leader>ws";
           action = ":split<cr>";
-        }
-        {
-          key = "<leader>wq";
-          action = ":q<cr>";
+          options.desc = "split horizontally";
         }
         {
           key = "<leader>ww";
           action = ":w<cr>";
+          options.desc = "window: jump to next";
         }
         {
           key = "<leader>tt";
           action = ":vsplit<cr>:term<cr>a";
+          options.desc = "term: vertical split";
         }
         {
           key = "<leader>ts";
           action = ":split<cr>:term<cr>a";
+          options.desc = "term: horizontal split";
         }
         {
           key = "<esc>";
           action = "<C-\\><C-n>";
           mode = "t";
+          options.desc = "term: normal mode";
         }
         ## lsp
         {
           key = "gD";
-          action = ":vsplit<cr>:lua vim.lsp.buf.definition()<cr>";
+          action = ":split<cr>:lua vim.lsp.buf.definition()<cr>";
+          options.desc = "lsp definition: horizontal split";
         }
         {
           key = "<leader>ac";
           action = "<cmd>lua require('actions-preview').code_actions()<cr>";
+          options.desc = "lsp: code actions";
         }
+        # blame
         {
           key = "<leader>gb";
           action = "<cmd>BlameToggle<cr>";
+          options.desc = "blame toggle";
         }
-        ## Git/gitsigns
+        # Neogit
         {
           key = "<leader>gs";
           action = "<cmd>Neogit cwd=%:p:h<cr>";
+          options.desc = "neogit UI";
         }
+        # gitsigns
         {
           key = "]g";
           action = "<cmd>Gitsigns next_hunk<cr>";
-        }
-        {
-          key = "]G";
-          action = "<cmd>Gitsigns prev_hunk<cr>";
+          options.desc = "goto next git hunk";
         }
         {
           key = "[g";
           action = "<cmd>Gitsigns prev_hunk<cr>";
-        }
-        {
-          key = "[G";
-          action = "<cmd>Gitsigns next_hunk<cr>";
+          options.desc = "goto prev git hunk";
         }
         {
           key = "<leader>gt";
           action = "<Cmd>Gitsigns toggle_current_line_blame<cr>";
+          options.desc = "blame: current line toggle";
         }
         # barbar
         {
           key = "gn";
           action = "<cmd>BufferNext<cr>";
+          options.desc = "buffer: goto next";
         }
         {
           key = "gp";
           action = "<cmd>BufferPrevious<cr>";
+          options.desc = "buffer: goto prev";
         }
         {
           key = "<leader>bc";
           action = "<cmd>BufferClose<cr>";
+          options.desc = "buffer: close";
         }
         {
           key = "<leader>bC";
           action = "<cmd>BufferLineCloseAllButCurrent<cr>";
+          options.desc = "buffer: close all but current";
         }
         {
           key = "<leader>bp";
           action = "<cmd>BufferPin<cr>";
+          options.desc = "buffer: pin";
         }
         # gx
         {
           key = "gx";
           action = "<cmd>Browse<cr>";
+          options.desc = "browse link";
         }
         # ccc
         {
           key = "<leader>cc";
           action = "<cmd>CccPick<cr>";
+          options.desc = "color picker";
         }
         # sops
         {
           key = "<leader>ce";
           action = "<cmd>SopsEncrypt<cr>";
+          options.desc = "sops: encrypt";
         }
         {
           key = "<leader>cd";
           action = "<cmd>SopsDecrypt<cr>";
+          options.desc = "sops: decrypt";
         }
-        #
+        # tabularize
         {
           key = "<leader>ta";
           action = ":Tabularize ";
+          options.desc = "custom align";
         }
         # Obsidian
         {
           key = "<leader>fn";
           action = ":Obsidian quick_switch<cr>";
+          options.desc = "obsidian open";
         }
         {
           key = "<leader>ot";
           action = ":Obsidian tags<cr>";
+          options.desc = "obsidian tags";
         }
         {
           key = "<leader>o1";
           action = ":Obsidian today<cr>";
+          options.desc = "obsidian today";
         }
         {
           key = "<leader>o2";
           action = ":Obsidian tomorrow<cr>";
+          options.desc = "obsidian tomorrow";
         }
         {
           key = "<leader>ol";
           action = ":Obsidian link<cr>";
+          options.desc = "obsidian link";
         }
         {
           key = "<leader>oL";
           action = ":Obsidian link_new<cr>";
+          options.desc = "obsidian link create";
         }
         {
           key = "<leader>or";
           action = ":Obsidian rename";
+          options.desc = "obsidian rename";
         }
         {
           key = "<leader>ox";
           action = ":Obsidian extract_note<cr>";
+          options.desc = "obsidian extract note";
         }
+        # outline
         {
           key = "<leader>oo";
           action = ":Outline<cr>";
+          options.desc = "outline";
         }
         # lsp-lines
         {
           key = "<leader>dt";
           action = ":lua require('lsp_lines').toggle()<cr>";
+          options.desc = "line diagnostics toggle";
         }
         # markview
         {
           key = "<leader>mv";
           action = "<cmd>Markview Toggle<cr>";
+          options.desc = "markview toggle";
         }
       ];
 
@@ -932,10 +961,6 @@ in
           enable = true;
         };
 
-        which-key = {
-          enable = true;
-        };
-
         marks = {
           enable = true;
         };
@@ -1362,7 +1387,38 @@ in
           };
         };
 
+        which-key = {
+          enable = true;
+          settings = {
+            preset = "classic";
+            notify = true;
+            plugins = {
+              marks = true;
+              registers = true;
+              spelling = {
+                enabled = true;
+                suggestions = 20;
+              };
+              presets = {
+                operators = true;
+                motions = true;
+                text_objects = true;
+                windows = true;
+                nav = true;
+                z = true;
+                g = true;
+              };
+            };
+            win = {
+              wo = {
+                winblend = 50;
+              };
+            };
+          };
+        };
+
       };
     };
   };
 }
+
