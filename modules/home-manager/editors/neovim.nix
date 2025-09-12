@@ -1227,6 +1227,9 @@ in
         # Nicer markdown.
         markview = {
           enable = true;
+          settings = {
+            preview.map_gx = false;
+          };
         };
 
         # Search through nerd fonts.
