@@ -32,6 +32,8 @@
         outputMonitor = "eDP-1";
         modules = {
           enableBT = true;
+          enableWebcam = true;
+          enableLaptop = true;
         };
       };
       hypridle.lock = true;

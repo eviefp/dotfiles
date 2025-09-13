@@ -18,6 +18,7 @@ in
       enableWebcam = lib.mkEnableOption "enable webcam indicator";
       enableEmails = lib.mkEnableOption "enable emails indicator";
       enableCalendar = lib.mkEnableOption "enable calendars indicator";
+      enableLaptop = lib.mkEnableOption "enable calendars indicator";
     };
 
     hyprland = {
@@ -66,7 +67,9 @@ in
           modules-center = [
             "group/hardware"
             "group/media"
-          ] ++ (if cfg.modules.enableEmails then [ "group/email" ] else [ ]);
+          ]
+          ++ (if cfg.modules.enableLaptop then [ "group/laptop" ] else [ ])
+          ++ (if cfg.modules.enableEmails then [ "group/email" ] else [ ]);
 
           modules-right =
             (if cfg.modules.enableCalendar then [ "custom/events" ] else [ ])
@@ -145,6 +148,16 @@ in
             user = true;
           };
 
+          "group/laptop" = {
+            orientation = "horizontal";
+            modules = [
+              "backlight"
+              "custom/separator"
+              "battery"
+            ];
+          };
+
+
           "group/email" = {
             orientation = "horizontal";
             modules = [
@@ -202,7 +215,7 @@ in
           "group/media" = {
             orientation = "horizontal";
             modules =
-              [ "wireplumber" ]
+              [ "wireplumber" "custom/separator" "custom/hyprshade" ]
               ++ (if cfg.modules.enableTV then [ "custom/separator" "custom/tv" ] else [ ])
               ++ (if cfg.modules.enableBT then [ "custom/separator" "bluetooth" ] else [ ])
               ++ (if cfg.modules.enableWebcam then [ "custom/separator" "custom/webcam" ] else [ ]);
@@ -226,6 +239,20 @@ in
             };
           };
 
+          "custom/hyprshade" = {
+            # add hyprshade script
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.hyprshade-ctl} status";
+            interval = 1;
+            format = "{icon}";
+            return-type = "json";
+            tooltip = true;
+            format-icons = {
+              on = "<span foreground='pink'></span>";
+              off = "";
+            };
+            on-click = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.hyprshade-ctl} toggle";
+          };
+
           "custom/tv" = {
             exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.tv-status}";
             interval = 1;
@@ -233,7 +260,6 @@ in
             return-type = "json";
             tooltip = false;
             format-icons = {
-              # nope, need to do json and this needs to be the alt
               on = "<span foreground='green'></span>";
               off = "";
             };
@@ -257,6 +283,18 @@ in
             interval = 10;
             exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.webcam-status}";
             return-type = "json";
+          };
+
+          backlight = {
+            interval = 1;
+            format = "󰃟 {percent}%";
+            on-click = "sudo light -S 1";
+            on-scroll-up = "sudo light -A 1";
+            on-scroll-down = "sudo light -U 1";
+          };
+
+          battery = {
+            format = " {capacity}%";
           };
 
           tray = {
@@ -320,7 +358,7 @@ in
         };
       };
       # can also be file
-      style = ''
+      style = /*scss */ ''
         @define-color rosewater #f5e0dc;
         @define-color flamingo #f2cdcd;
         @define-color pink #f5c2e7;
@@ -403,6 +441,7 @@ in
         #custom-window,
         #hardware,
         #email,
+        #laptop,
         #media,
         #custom-events,
         #custom-weather,
@@ -417,6 +456,7 @@ in
         #custom-window,
         #hardware,
         #email,
+        #laptop,
         #media,
         #custom-events,
         #custom-weather,
