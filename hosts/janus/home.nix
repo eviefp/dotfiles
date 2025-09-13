@@ -20,6 +20,8 @@
           outputMonitor = "eDP-1";
           modules = {
             enableBT = true;
+            enableWebcam = true;
+            enableLaptop = true;
           };
         };
         disabledMonitors = [{

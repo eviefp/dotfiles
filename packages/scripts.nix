@@ -478,4 +478,48 @@ in
           '\n' -> '\r'
           c -> c
     '';
+  hyprshade-ctl = pkgs.writers.writeHaskellBin
+    "hyprshade-ctl"
+    {
+      libraries = with pkgs.haskellPackages; [ aeson bytestring text shh ];
+    }
+    ''
+      ${haskellLanguagePragmas}
+
+      module Main where
+
+      import Data.Aeson ((.=))
+      import qualified Data.Aeson as Aeson
+      import Data.Bool (bool)
+      import Data.ByteString.Lazy (ByteString)
+      import qualified Data.ByteString.Lazy.Char8 as BSL
+      import qualified Data.Text.Lazy as TL
+      import qualified Data.Text.Lazy.Encoding as TL
+      import Shh
+      import qualified System.Environment as Env
+
+      loadFromBins ["${pkgs.hyprshade}"]
+
+      main :: IO ()
+      main = do
+        Env.getArgs >>= \case
+          ["status"] -> hyprshade "current" |> readInputLines (status)
+          ["toggle"] -> hyprshade "toggle" "blue-light-filter"
+          [msg] -> error $ "unexpected command: " <> msg
+          _ -> error "expected a single argument"
+
+      status :: [ByteString] -> IO ()
+      status bs =
+        writeOutput
+          . Aeson.encode
+          . Aeson.object
+          $ [ "text" .= ""
+            , "alt" .= bool "off" "on" hasAnyFilter
+            , "tooltip" .= (TL.strip . TL.decodeUtf8 . BSL.unlines $ bs)
+            , "class" .= bool "disabled" "enabled" hasAnyFilter
+            ]
+          where
+            hasAnyFilter :: Bool
+            hasAnyFilter = bs /= []
+    '';
 }
