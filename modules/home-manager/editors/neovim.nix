@@ -226,12 +226,12 @@ in
         {
           key = "gN";
           action = "<cmd>BufferMoveNext<cr>";
-          options.desc = "buffer: goto next";
+          options.desc = "buffer: move next";
         }
         {
           key = "gP";
           action = "<cmd>BufferMovePrevious<cr>";
-          options.desc = "buffer: pin";
+          options.desc = "buffer: move ";
         }
         {
           key = "<leader>bc";
@@ -240,7 +240,7 @@ in
         }
         {
           key = "<leader>bC";
-          action = "<cmd>BufferLineCloseAllButCurrent<cr>";
+          action = "<cmd>BufferLineCloseAllButCurrentOrPinned<cr>";
           options.desc = "buffer: close all but current";
         }
         {
@@ -654,13 +654,13 @@ in
           };
 
           navigation = {
-            enable = true;
+            enable = false;
             keymaps = {
               gotoDefinitionLspFallback = "gd";
-              listDefinitions = "gnd";
+              listDefinitions = "grd";
               listDefinitionsToc = "gO";
-              gotoNextUsage = "gnj";
-              gotoPreviousUsage = "gnk";
+              gotoNextUsage = "grj";
+              gotoPreviousUsage = "grk";
             };
           };
         };
