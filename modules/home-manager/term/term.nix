@@ -309,7 +309,7 @@ in
           workspaces = true;
           style = "compact";
           inline_height = 0;
-          store_failed = false;
+          store_failed = true;
           scroll_exits = false;
         };
       };

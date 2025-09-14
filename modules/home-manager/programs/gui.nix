@@ -26,7 +26,6 @@ in
       pkgs.fdk_aac
       pkgs.paprefs # multi audio sink setup
       pkgs.pwvucontrol
-      pkgs.sonusmix
       pkgs.coppwr
       pkgs.steam
       pkgs.prismlauncher

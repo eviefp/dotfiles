@@ -345,7 +345,7 @@ in
       ];
 
       extraPlugins = [
-        pkgs.vimPlugins.nvim-nu # TODO: is it now in nixpkgs now?
+        pkgs.vimPlugins.nvim-nu #
         (pkgs.vimUtils.buildVimPlugin {
           pname = "blame.nvim";
           version = "v1.0";
@@ -355,8 +355,8 @@ in
             rev = "b87b8c820e4cec06fbbd2f946b7b35c45906ee0c";
             hash = "sha256-v4ieZ7NIWP1khvrcyzTSGX6IHHn0kjZICbyRqS2xqHM=";
           };
-        }) # :Blame, but would be nice if it could go recursively
-        pkgs.vimPlugins.outline-nvim # lsp outline, todo keybind
+        }) # https://github.com/FabijanZulj/blame.nvim
+        pkgs.vimPlugins.outline-nvim
         (pkgs.vimUtils.buildVimPlugin {
           pname = "co-author.nvim";
           version = "v1.0";
@@ -366,10 +366,9 @@ in
             rev = "2f012714247dfe1959ba53fa50e4b1320d86d1b8";
             hash = "sha256-5/UORMt9TxOM7LRDKSbRymBt11XPe3OWN/8rwy0IkZg=";
           };
-        }) # :CoAuthor
+        }) # https://github.com/2KAbhishek/co-author.nvim
         pkgs.vimPlugins.nvim-sops
-        pkgs.vimPlugins.tabular # :Tabularize
-        pkgs.vimPlugins.actions-preview-nvim
+        pkgs.vimPlugins.tabular
         (pkgs.vimUtils.buildVimPlugin {
           pname = "time-machine.nvim";
           version = "v1.5.4";
@@ -379,7 +378,7 @@ in
             rev = "6657a7db8a07ecfa8a266be34bebfb6827bb2eab";
             hash = "sha256-8KRWE0eNPSBh4HT6sDix9hz6QWcVk3Ne1bjmb/NDPio=";
           };
-        })
+        }) # https://github.com/y3owk1n/time-machine.nvim
       ];
 
       extraConfigLua = ''
@@ -403,13 +402,6 @@ in
             auto_preview = true,
           },
         })
-
-        require('actions-preview').setup {
-          highlight_command = {
-            require('actions-preview.highlight').delta()
-          },
-          backend = { 'telescope' },
-        }
 
         require('time-machine').setup {
         };
@@ -983,6 +975,20 @@ in
         };
 
         rainbow-delimiters.enable = true;
+
+        actions-preview = {
+          enable = true;
+
+          settings = {
+            highlight_command.__raw = /*lua*/ ''
+              {
+                require('actions-preview.highlight').delta 'delta --side-by-side',
+                require('actions-preview.highlight').diff_so_fancy(),
+                require('actions-preview.highlight').diff_highlight(),
+              }
+            '';
+          };
+        };
 
         # Arrow: cross-session jump through files.
         # + easy ui

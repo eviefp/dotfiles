@@ -14,7 +14,7 @@ in
     programs.rofi = {
       enable = true;
       cycle = true;
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi;
       pass = {
         enable = true;
       };
