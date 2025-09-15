@@ -174,7 +174,7 @@
         };
 
       })) //
-    {
+    rec {
       nixosModules = import ./modules/nixos;
       homeModules = import ./modules/home-manager;
 
@@ -191,42 +191,42 @@
         # which results in an infinite recursion error if this was replaced by
         # '_module.args'.
         # See https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-        specialArgs = { inherit dotfiles; };
+        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
         modules = [
           ./hosts/thelxinoe
         ];
       };
 
       nixosConfigurations."janus" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; };
+        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
         modules = [
           ./hosts/janus
         ];
       };
 
       nixosConfigurations."aiode" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; };
+        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
         modules = [
           ./hosts/aiode
         ];
       };
 
       nixosConfigurations."fractal" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; };
+        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
         modules = [
           ./hosts/fractal
         ];
       };
 
       nixosConfigurations."arche" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; };
+        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
         modules = [
           ./hosts/arche
         ];
       };
 
       nixosConfigurations."jellyfin" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; };
+        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
         modules = [
           ./hosts/jellyfin
         ];
