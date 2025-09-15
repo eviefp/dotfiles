@@ -1194,6 +1194,12 @@ in
           enable = true;
           settings = {
             preview.map_gx = false;
+            markdown = {
+              enable = true;
+              list_items = {
+                enable = false; # indentation makes it weird
+              };
+            };
           };
         };
 
