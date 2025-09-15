@@ -1,4 +1,4 @@
-{ dotfiles, pkgs, config, lib, ... }:
+{ dotfiles, pkgs, config, lib, theme, ... }:
 let
   cfg = config.evie.wayland.waybar;
 in
@@ -341,11 +341,11 @@ in
               on-scroll = 1;
               on-click-right = "mode";
               format = {
-                months = "<span color='#ffead3'><b>{}</b></span>";
-                days = "<span color='#ecc6d9'><b>{}</b></span>";
-                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+                months = "<span color='${theme.dark.blue}'><b>{}</b></span>";
+                days = "<span color='${theme.dark.pink}'><b>{}</b></span>";
+                weeks = "<span color='${theme.dark.cyan}'><b>W{}</b></span>";
+                weekdays = "<span color='${theme.dark.yellow}'><b>{}</b></span>";
+                today = "<span color='${theme.dark.red}'><b><u>{}</u></b></span>";
               };
             };
             actions = {
@@ -359,25 +359,16 @@ in
       };
       # can also be file
       style = /*scss */ ''
-        @define-color rosewater #f5e0dc;
-        @define-color flamingo #f2cdcd;
-        @define-color pink #f5c2e7;
-        @define-color mauve #cba6f7;
-        @define-color red #f38ba8;
-        @define-color maroon #eba0ac;
-        @define-color peach #fab387;
-        @define-color yellow #f9e2af;
-        @define-color green #a6e3a1;
-        @define-color teal #94e2d5;
-        @define-color sky #89dceb;
-        @define-color sapphire #74c7ec;
-        @define-color blue #89b4fa;
-        @define-color lavender #b4befe;
+        @define-color pink ${theme.dark.pink};
+        @define-color mauve ${theme.dark.magenta};
+        @define-color red ${theme.dark.red};
+        @define-color yellow ${theme.dark.yellow};
+        @define-color green ${theme.dark.green};
+        @define-color blue ${theme.dark.blue};
 
         @define-color base alpha(#000000, 0.1);
-        /* @define-color surface alpha(@lavender, 0.1); */
         @define-color surface alpha(#000000, 0.7);
-        @define-color text #cdd6f4;
+        @define-color text ${theme.dark.fg};
         @define-color hoverBg alpha(@mauve, 1);
         @define-color hoverFg #000000;
         @define-color activeBg alpha(@mauve, 1);
@@ -388,7 +379,7 @@ in
           all: unset;
           font-size: 1rem;
           font-weight: 900;
-          color: @pink;
+          color: @fg;
           font-family:
             JetBrainsMonoNerdFont,
             Font Awesome,

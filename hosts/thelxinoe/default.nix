@@ -1,4 +1,4 @@
-{ dotfiles, ... }:
+{ dotfiles, theme, ... }:
 {
   imports = with dotfiles.self.nixosModules; [
     common
@@ -12,7 +12,7 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit dotfiles; };
+        extraSpecialArgs = { inherit dotfiles theme; };
         users.evie = ./home.nix;
       };
     }
