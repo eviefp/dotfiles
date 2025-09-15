@@ -211,6 +211,7 @@ in
                 stylus
                 tridactyl
                 facebook-container
+                passff
               ];
               settings = {
                 # "tridactyl.vim@cmcaine.co.uk" = { };
