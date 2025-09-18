@@ -1,7 +1,3 @@
-Manual updates:
-- ./packages/default.nix: neovim
-- ./modules/home-manager/editors/neovim.nix: a couple of plugins
-
 # My system configuration
 
 Please let me know if you see anything dubious or that can be improved.
@@ -41,9 +37,10 @@ If you want to update the flake pins, you can run `nix flake update`.
 
 ## Neovim/Emacs/Helix
 
-Neovim: `./modules/home-manager/editors/neovim.nix`
-Emacs: `./modules/home-manager/editors/emacs.nix` and `./config/init.el`
-Helix: `./modules/home-manager/editors/helix.nix`
+Easy access to configs:
+- [neovim.nix](./modules/home-manager/editors/neovim.nix)
+- [emacs.nix](./modules/home-manager/editors/emacs.nix) and [init.el](./config/init.el)
+- [helix.nix](./modules/home-manager/editors/helix.nix)
 
 ## Sops stuff
 
