@@ -23,4 +23,13 @@
 
     # TODO: aerospace
   };
+
+  config = {
+    home = {
+      stateVersion = "25.05";
+      sessionVariables = {
+        NIX_PATH = "nixpkgs=${dotfiles.nixpkgs}";
+      };
+    };
+  };
 }
