@@ -46,6 +46,7 @@
     nixpkgs = {
       overlays = [ (import dotfiles.emacs-overlay) dotfiles.nur.overlays.default ];
       hostPlatform = "aarch64-darwin";
+      config.allowUnfree = true;
     };
 
     security = {
