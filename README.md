@@ -9,6 +9,7 @@ system-wide settings being setup through NixOS modules and personal/user
 settings being configured through the NixOS home-manager module.
 
 The directory structure is:
+
 - `config` are random configuration files that are used in nix modules
 - `hosts` contain the nixos/darwin/home-manager entry modules
 - `lib` has a couple of nix helpers
@@ -29,7 +30,7 @@ You will probably want to pick one of my devices as an example:
 - `fractal` is my headless home server
 - `jellyfin` is a hetzner VM
 
-``` bash
+```bash
 sudo nixos-rebuild switch --flake .#newname
 ```
 
@@ -38,6 +39,7 @@ If you want to update the flake pins, you can run `nix flake update`.
 ## Neovim/Emacs/Helix
 
 Easy access to configs:
+
 - [neovim.nix](./modules/home-manager/editors/neovim.nix)
 - [emacs.nix](./modules/home-manager/editors/emacs.nix) and [init.el](./config/init.el)
 - [helix.nix](./modules/home-manager/editors/helix.nix)
@@ -46,7 +48,7 @@ Easy access to configs:
 
 For age keys
 
-``` bash
+```bash
 nix-shell -p ssh-to-age
 cat public_ed25519 | ssh-to-age # use this as the public key in the sops file
 cat private_ed25519 | ssh-to-age -private-key # put this in ~/.config/sops/age/keys.txt
