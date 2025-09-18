@@ -63,13 +63,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    porc = {
-      url = "github:soenkehahn/porc/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    gitu = {
-      url = "github:altsem/gitu";
+    treetop = {
+      url = "github:soenkehahn/treetop/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
