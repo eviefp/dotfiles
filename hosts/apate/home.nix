@@ -1,4 +1,4 @@
-{ dotfiles, ... }:
+{ dotfiles, lib, ... }:
 {
   imports = with dotfiles.self.homeModules; [
     common
@@ -25,7 +25,10 @@
         emacs.enable = false;
         neovim.obsidian = true;
       };
-      system.gpg.enable = true;
+      system = {
+        gpg.enable = true;
+        home-manager.enable = lib.mkForce false;
+      };
       programs.firefox.enable = true;
       term.kitty.enable = true;
 
