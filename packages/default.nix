@@ -25,5 +25,5 @@
     };
   });
 
-  scripts = import ./scripts.nix { inherit pkgs; };
-}
+
+} // (import ./scripts.nix { inherit pkgs; })

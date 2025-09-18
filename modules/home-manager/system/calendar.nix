@@ -109,7 +109,7 @@ in
 
       Service = {
         Type = "oneshot";
-        ExecStart = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.calendar-notify}";
+        ExecStart = "${lib.getExe dotfiles.self.packages.${pkgs.system}.calendar-notify}";
       };
     };
   };

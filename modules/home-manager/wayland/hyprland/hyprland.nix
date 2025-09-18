@@ -260,7 +260,7 @@ in
           "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
           "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
           "$shiftMod, P, exec, $sleep"
-          "$shiftMod, T, exec, ${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.tv-toggle}"
+          "$shiftMod, T, exec, ${lib.getExe dotfiles.self.packages.${pkgs.system}.tv-toggle}"
           "$shiftMod, E, exec, ${switch-colors}/bin/switch-colors"
 
           "$shiftMod, C, killactive,"

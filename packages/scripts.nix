@@ -478,6 +478,7 @@ in
           '\n' -> '\r'
           c -> c
     '';
+
   hyprshade-ctl = pkgs.writers.writeHaskellBin
     "hyprshade-ctl"
     {

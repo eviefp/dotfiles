@@ -102,7 +102,7 @@ in
           };
 
           "custom/window" = {
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.get-active-window}";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.get-active-window}";
             max-length = 32;
             restart-interval = "30";
             format = "{}";
@@ -170,7 +170,7 @@ in
           };
 
           "custom/email-important" = {
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.email-status} important";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.email-status} important";
             format = " {}";
             interval = 5;
             return-type = "json";
@@ -178,7 +178,7 @@ in
           };
 
           "custom/email-unread" = {
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.email-status} unread";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.email-status} unread";
             format = " {}";
             interval = 5;
             return-type = "json";
@@ -207,7 +207,7 @@ in
             format = "{}";
             tooltip = true;
             interval = 300;
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.calendar-status}";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.calendar-status}";
             return-type = "json";
             max-length = 32;
           };
@@ -241,7 +241,7 @@ in
 
           "custom/hyprshade" = {
             # add hyprshade script
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.hyprshade-ctl} status";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.hyprshade-ctl} status";
             interval = 1;
             format = "{icon}";
             return-type = "json";
@@ -250,11 +250,11 @@ in
               on = "<span foreground='pink'></span>";
               off = "";
             };
-            on-click = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.hyprshade-ctl} toggle";
+            on-click = "${lib.getExe dotfiles.self.packages.${pkgs.system}.hyprshade-ctl} toggle";
           };
 
           "custom/tv" = {
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.tv-status}";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.tv-status}";
             interval = 1;
             format = "{icon} ";
             return-type = "json";
@@ -263,7 +263,7 @@ in
               on = "<span foreground='green'></span>";
               off = "";
             };
-            on-click = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.tv-toggle}";
+            on-click = "${lib.getExe dotfiles.self.packages.${pkgs.system}.tv-toggle}";
           };
 
           bluetooth = {
@@ -281,7 +281,7 @@ in
             format = "{} ";
             tooltip = true;
             interval = 10;
-            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.scripts.webcam-status}";
+            exec = "${lib.getExe dotfiles.self.packages.${pkgs.system}.webcam-status}";
             return-type = "json";
           };
 
