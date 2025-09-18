@@ -21,6 +21,11 @@
 
     nixpkgs2411.url = "github:NixOS/nixpkgs/nixos-24.11-small";
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -197,40 +202,50 @@
         ];
       };
 
-      nixosConfigurations."janus" = dotfiles.nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+        "janus" = dotfiles.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          modules = [
+            ./hosts/janus
+          ];
+        };
+
+        "aiode" = dotfiles.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          modules = [
+            ./hosts/aiode
+          ];
+        };
+
+        "fractal" = dotfiles.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          modules = [
+            ./hosts/fractal
+          ];
+        };
+
+        "arche" = dotfiles.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          modules = [
+            ./hosts/arche
+          ];
+        };
+
+        "jellyfin" = dotfiles.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          modules = [
+            ./hosts/jellyfin
+          ];
+        };
+      };
+
+      darwinConfigurations."apate" = dotfiles.nix-darwin.lib.darwinSystem {
         specialArgs = { inherit dotfiles; theme = lib.theme.default; };
         modules = [
-          ./hosts/janus
+          ./hosts/apate
         ];
       };
 
-      nixosConfigurations."aiode" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
-        modules = [
-          ./hosts/aiode
-        ];
-      };
-
-      nixosConfigurations."fractal" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
-        modules = [
-          ./hosts/fractal
-        ];
-      };
-
-      nixosConfigurations."arche" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
-        modules = [
-          ./hosts/arche
-        ];
-      };
-
-      nixosConfigurations."jellyfin" = dotfiles.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
-        modules = [
-          ./hosts/jellyfin
-        ];
-      };
     }
 
   ;
