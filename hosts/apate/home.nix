@@ -2,6 +2,7 @@
 {
   imports = with dotfiles.self.homeModules; [
     common
+    dotfiles.self.homeModules.macos.aerospace
   ];
 
   config = {
@@ -14,6 +15,8 @@
 
     evie = {
       common.enable = true;
+
+      macos.aerospace.enable = true;
 
       dev = {
         haskell.enable = true;
@@ -28,8 +31,8 @@
       system = {
         gpg.enable = true;
         home-manager.enable = lib.mkForce false;
-        fonts.enable = lib.mkForce false;
       };
+
       programs.firefox.enable = true;
       term.kitty.enable = true;
       term.experimental.enable = lib.mkForce false;

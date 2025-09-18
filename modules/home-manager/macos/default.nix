@@ -1,0 +1,3 @@
+{
+  aerospace = ./aerospace.nix;
+}

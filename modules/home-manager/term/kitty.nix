@@ -2,7 +2,7 @@
   * term/kitty module
   *
   **************************************************************************/
-{ lib, config, theme, ... }:
+{ lib, pkgs, config, theme, ... }:
 let
   cfg = config.evie.term.kitty;
 in
@@ -84,7 +84,7 @@ in
     programs.kitty = {
       enable = true;
       settings = {
-        shell = "nu --login --interactive";
+        shell = "${lib.getExe pkgs.nushell} --login --interactive";
 
         scrollback_lines = 10000;
         repaint_delay = 4;
