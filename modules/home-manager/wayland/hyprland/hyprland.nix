@@ -1,4 +1,4 @@
-{ dotfiles, config, pkgs, lib, osConfig, ... }:
+{ dotfiles, config, pkgs, lib, ... }:
 let
   cfg = config.evie.wayland.hyprland;
   wayland = config.evie.wayland;
@@ -30,6 +30,7 @@ in
 {
   options.evie.wayland.hyprland = {
     enable = lib.mkEnableOption "hyprland defaults";
+    tryToFixNvidiaBullshit = lib.mkEnableOption "nvidia settings";
   };
 
   config = lib.mkIf cfg.enable {
@@ -107,7 +108,7 @@ in
             "HYPRCURSOR_THEME,materialLight"
             "HYPRCURSOR_SIZE,24"
           ]
-          (lib.mkIf (osConfig.services.xserver.videoDrivers == "nvidia")
+          (lib.mkIf cfg.tryToFixNvidiaBullshit
             [
               # https://wiki.hyprland.org/Configuring/Environment-variables/#nvidia-specific
               "GBM_BACKEND,nvidia-drm"

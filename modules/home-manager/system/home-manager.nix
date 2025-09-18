@@ -1,7 +1,7 @@
 /****************************************************************************
   * home-manager module
   ************************************************************************ */
-{ lib, config, osConfig, dotfiles, ... }:
+{ lib, config, dotfiles, ... }:
 let
   cfg = config.evie.system.home-manager;
 in
@@ -19,7 +19,6 @@ in
   config = lib.mkIf cfg.enable {
     home.username = cfg.user;
     home.homeDirectory = "/home/${cfg.user}";
-    home.stateVersion = osConfig.system.stateVersion;
 
     # Turns out, this is needed.
     home.sessionVariables = {

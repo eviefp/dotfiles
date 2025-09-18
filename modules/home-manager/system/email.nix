@@ -3,7 +3,7 @@
   *
   * Set up email account, imap sync, notmuch mail management.
   **************************************************************************/
-{ lib, config, pkgs, osConfig, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.evie.system.email;
 in
@@ -37,7 +37,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.peroxide_thelxinoe.path}";
+          passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/peroxide_thelxinoe";
 
           imap = {
             host = "thelxinoe";
@@ -45,7 +45,7 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = "${osConfig.sops.secrets.evie_certificate.path}";
+              certificatesFile = "/run/secrets/evie_certificate";
             };
           };
 
@@ -55,7 +55,7 @@ in
             tls = {
               enable = true;
               useStartTls = true;
-              certificatesFile = "${osConfig.sops.secrets.evie_certificate.path}";
+              certificatesFile = "/run/secrets/evie_certificate";
             };
           };
 
@@ -92,7 +92,7 @@ in
             showSignature = "append";
           };
 
-          passwordCommand = "${pkgs.coreutils}/bin/cat ${osConfig.sops.secrets.gmail_password.path}";
+          passwordCommand = "${pkgs.coreutils}/bin/cat /run/secrets/gmail_password";
 
           imap = {
             host = "imap.gmail.com";

@@ -3,8 +3,11 @@
   imports = with dotfiles.self.homeModules; [
     common
   ];
+  config = {
+    home.stateVersion = "25.05";
 
-  config.evie = {
-    common.enable = true;
+    evie = {
+      common.enable = true;
+    };
   };
 }

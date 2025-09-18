@@ -1,11 +1,11 @@
-{ lib, config, pkgs, dotfiles, osConfig, ... }:
+{ lib, config, pkgs, dotfiles, ... }:
 let
   cfg = config.evie.programs.twitch-tui;
   settingsFormat = pkgs.formats.toml { };
   wrapper = pkg: dotfiles.self.lib.nuShellScript {
     name = "twitch-tui";
     text = ''
-      let secret = (cat ${osConfig.sops.secrets.twitchToken.path})
+      let secret = (cat /run/secrets/twitchToken)
       with-env { TWT_TOKEN: $secret } { ${lib.getExe pkg} }
     '';
     runtimeInputs = [ pkg ];
@@ -69,7 +69,7 @@ in
           bettertv_emotes = true;
           seventv_emotes = true;
           frankerfacez_emotes = true;
-          favorite_channels = [ "evie__ro" "elmurorosa" "hasanabi" "AdmiralBahroo" "Catonmarz" ];
+          favorite_channels = [ ];
           recent_channel_count = 5;
           border_type = "rounded";
           hide_chat_border = false;

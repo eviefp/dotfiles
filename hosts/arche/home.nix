@@ -5,6 +5,8 @@
   ];
 
   config = {
+    home.stateVersion = "25.05";
+
     evie = {
       common.enable = true;
 
@@ -17,7 +19,10 @@
 
       wayland = {
         enable = true;
-        hyprland.enable = true;
+        hyprland = {
+          enable = true;
+          tryToFixNvidiaBullshit = true;
+        };
         waybar = {
           enable = true;
           outputMonitor = "HDMI-A-4";

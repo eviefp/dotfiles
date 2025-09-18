@@ -4,7 +4,7 @@
   * Set up calendar accounts.
   * Manual setup: manually run 'vdirsyncer discover <name>' for each account.
   **************************************************************************/
-{ pkgs, lib, config, dotfiles, osConfig, ... }:
+{ pkgs, lib, config, dotfiles, ... }:
 let
   cfg = config.evie.system.calendar;
 in
@@ -30,8 +30,8 @@ in
             enable = true;
             metadata = [ "color" ];
             tokenFile = "/home/evie/.local/share/vdirsyncer/token";
-            clientIdCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientId.path}" ];
-            clientSecretCommand = [ "cat" "${osConfig.sops.secrets.gmailCalendarClientSecret.path}" ];
+            clientIdCommand = [ "cat" "/run/secrets/gmailCalendarClientId" ];
+            clientSecretCommand = [ "cat" "/run/secrets/gmailCalendarClientSecret" ];
             collections = [ "from a" "from b" ];
             conflictResolution = "remote wins";
           };
