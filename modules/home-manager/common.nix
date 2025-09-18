@@ -3,7 +3,7 @@
   *
   * Adds the modules/settings that all of my systems use.
   **************************************************************************/
-{ dotfiles, lib, config, osConfig, ... }:
+{ dotfiles, lib, config, ... }:
 let
   cfg = config.evie.common;
   removeCommon = n: _: n != "common";
@@ -53,13 +53,6 @@ in
           };
           term = {
             kitty.enable = true;
-            spotify = {
-              enable = true;
-              settings = {
-                client_id_command = "cat ${osConfig.sops.secrets.spotifyAppClientId.path}";
-                enable_notify = false;
-              };
-            };
           };
 
           wayland = lib.mkIf config.evie.wayland.hyprland.enable {
