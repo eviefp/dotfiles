@@ -64,6 +64,8 @@
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDP+cKsCIfQyFN06ZX1VhfsHvu7FT3F3cwY7fmnZ8kIjmhSz/uYlG4wIJikeZhqWrMsu4ozQaiWdl0zKsw3KpQyyJ8alhfxAtOeBkuifL61Tnq4QOQ2y8/8zziD5eVD2WY2Nw4n8+fT13pAK/117WWOpoWMC1CbRr0YZWoobkABhOIVKDMWj+pUgbmMTAbg1rCyRuQYrlo5dsdK/mWQJRnOFUK0u9mx/lu2Iz22pU1oBxwSJQ2FhyDX/DSKG732paSblC7o4GwiH5uIKmJPDUtT4LCZy9j5DpxD2q5HcQAgsA1xRTSxnAg+8gJXo1BSX7eepLwBtAJJq6IuRKxIRlvq4HA5WEfLvpddNzMOVDNWmVi1i+oO6xZNDbxOUat0G36MzAdhExsBmwiw5ga9soOMu/QqNz4vAQ3/Hnyh17AntrkjekyYoT1nXrGKS+f+sGjoFNDsWwdfDpiDn6B5nCrIb5b5eX3XmCKz1NVLspKyELVVCmFdJfEvxhnFOevNOW3kWSwtQW4VJshcIR8NydkEjWjcezWeIChym+bFBmgjDjYwOxFGyRHDooPwXhmeQDORA7mY/az6tQLSk0UTeoLmavcUI73Qv8aNtuXrAWTG4BJ2rf/+yvs3ygpckZGydq9L7xtFHqHGY3gOnGjcFAp8xnsSVJE5h32/PDxi6j+HBw== cardno:31_472_472"
       ];
     };
+
+    system.stateVersion = 6;
   };
 
 }
