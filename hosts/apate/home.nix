@@ -28,6 +28,7 @@
       system = {
         gpg.enable = true;
         home-manager.enable = lib.mkForce false;
+        fonts.enable = lib.mkForce false;
       };
       programs.firefox.enable = true;
       term.kitty.enable = true;
