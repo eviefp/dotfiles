@@ -32,6 +32,7 @@
       };
       programs.firefox.enable = true;
       term.kitty.enable = true;
+      term.experimental.enable = lib.mkForce false;
 
       # TODO: aerospace
     };
