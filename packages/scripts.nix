@@ -409,6 +409,8 @@ in
           BS.putStrLn "Pulling latest version on remote..."
           runSshCwd "git pull"
 
+        when isLocal do cd "~/code/dotfiles"
+
         when (not isFast) do
           BS.putStrLn "Building... "
           path <- case buildRemotely of
