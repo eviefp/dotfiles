@@ -17,7 +17,7 @@ executable dotfiles-script
   main-is:          Main.hs
   build-depends:
     , aeson
-    , base          ^>=4.20.1.0
+    , base                  ^>=4.20.1.0
     , bytestring
     , chronos
     , deepseq

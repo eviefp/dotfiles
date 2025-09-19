@@ -18,7 +18,7 @@ module Main where
 
 import Control.Applicative ((<**>))
 import Control.DeepSeq (NFData)
-import Control.Monad (when)
+import Control.Monad (unless, when)
 import Data.Bool (bool)
 import Data.ByteString.Lazy.Char8 (ByteString)
 import qualified Data.ByteString.Lazy.Char8 as BS
@@ -49,19 +49,19 @@ deploy localhost =
         <> Opt.progDesc "Deploy nix configurations remotely"
         <> Opt.header "depoy nixos configs"
     )
- where
-  parser :: Opt.Parser Deploy
-  parser =
-    Deploy
-      <$> Opt.switch
-        (Opt.long "fast" <> Opt.short 'f' <> Opt.help "Skip evaluating twice but also skip diffs")
-      <*> Opt.switch
-        (Opt.long "unattended" <> Opt.short 'u' <> Opt.help "Disable asking for confirmation")
-      <*> Opt.switch
-        (Opt.long "remote" <> Opt.short 'r' <> Opt.help "Run everything on remote. Makes target required")
-      <*> Opt.strArgument
-        (Opt.value localhost <> Opt.metavar "target" <> Opt.help "Host to deploy to")
-      <*> pure localhost
+  where
+    parser :: Opt.Parser Deploy
+    parser =
+      Deploy
+        <$> Opt.switch
+          (Opt.long "fast" <> Opt.short 'f' <> Opt.help "Skip evaluating twice but also skip diffs")
+        <*> Opt.switch
+          (Opt.long "unattended" <> Opt.short 'u' <> Opt.help "Disable asking for confirmation")
+        <*> Opt.switch
+          (Opt.long "remote" <> Opt.short 'r' <> Opt.help "Run everything on remote. Makes target required")
+        <*> Opt.strArgument
+          (Opt.value localhost <> Opt.metavar "target" <> Opt.help "Host to deploy to")
+        <*> pure localhost
 
 -- TODO: investigate using this, probably if/when switching to stand-alone home-manager
 -- nvd "diff" "~/.local/state/nix/profiles/home-manager" path
@@ -88,7 +88,9 @@ main = do
     BS.putStrLn "Pulling latest version on remote..."
     runSshCwd "git pull"
 
-  when (not isFast) do
+  when isLocal do cd "~/code/dotfiles"
+
+  unless isFast do
     BS.putStrLn "Building... "
     path <- case buildRemotely of
       False -> do
@@ -98,16 +100,14 @@ main = do
         runSshCwd $ "nix build " <> package
         runSshCwd "readlink ./result" |> captureTrim
 
-    case buildRemotely of
-      False ->
-        if (not isLocal)
-          then do
-            echo "Copying to remote host..."
-            exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget)
-            ssh sshTarget "nvd" "diff" "/run/current-system" path
-          else do
-            nvd "diff" "/run/current-system" path
-      True ->
+    case (isLocal, buildRemotely) of
+      (False, False) -> do
+        echo "Copying to remote host..."
+        exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget)
+        ssh sshTarget "nvd" "diff" "/run/current-system" path
+      (True, False) ->
+        nvd "diff" "/run/current-system" path
+      (_, True) ->
         runSshCwd $ "nvd diff /run/current-system " <> path
 
   shouldUpdate <-

@@ -339,7 +339,7 @@ in
 
       import Control.Applicative ((<**>))
       import Control.DeepSeq (NFData)
-      import Control.Monad (when)
+      import Control.Monad (unless, when)
       import Data.Bool (bool)
       import Data.ByteString.Lazy.Char8 (ByteString)
       import qualified Data.ByteString.Lazy.Char8 as BS
@@ -411,7 +411,7 @@ in
 
         when isLocal do cd "~/code/dotfiles"
 
-        when (not isFast) do
+        unless isFast do
           BS.putStrLn "Building... "
           path <- case buildRemotely of
             False -> do
@@ -421,16 +421,14 @@ in
               runSshCwd $ "nix build " <> package
               runSshCwd "readlink ./result" |> captureTrim
 
-          case buildRemotely of
-            False ->
-              if (not isLocal)
-                then do
-                  echo "Copying to remote host..."
-                  exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget)
-                  ssh sshTarget "nvd" "diff" "/run/current-system" path
-                else do
-                  nvd "diff" "/run/current-system" path
-            True ->
+          case (isLocal, buildRemotely) of
+            (False, False) -> do
+              echo "Copying to remote host..."
+              exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget)
+              ssh sshTarget "nvd" "diff" "/run/current-system" path
+            (True, False) ->
+              nvd "diff" "/run/current-system" path
+            (_, True) ->
               runSshCwd $ "nvd diff /run/current-system " <> path
 
         shouldUpdate <-
@@ -466,7 +464,7 @@ in
       mkSshTarget :: BS.ByteString -> BS.ByteString
       mkSshTarget =
         \case
-          "apate" -> error "apate is not yet supported"
+          "apate" -> error "Apate is not yet supported"
           "arche" -> "every@arche"
           sshTarget -> "evie@" <> sshTarget
     '';

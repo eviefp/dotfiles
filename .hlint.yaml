@@ -1,3 +1,4 @@
 - arguments: [-XQuasiQuotes]
 - ignore: {name: Redundant id}
 - ignore: {name: Fuse traverse/fmap}
+- ignore: {name: Use if}
