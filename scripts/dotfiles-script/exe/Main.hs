@@ -22,11 +22,15 @@ import Control.Monad (unless, when)
 import Data.Bool (bool)
 import Data.ByteString.Lazy.Char8 (ByteString)
 import qualified Data.ByteString.Lazy.Char8 as BS
+import Data.Foldable (traverse_)
+import Data.Maybe (catMaybes)
 import GHC.Generics (Generic)
 import qualified GHC.IO.StdHandles as H
 import qualified Options.Applicative as Opt
 import Shh
+import qualified System.Console.ANSI as Ansi
 import System.Exit (exitFailure)
+import qualified System.IO as H
 
 $(loadEnv SearchPath)
 
@@ -41,8 +45,8 @@ data Deploy = Deploy
 
 instance NFData Deploy
 
-deploy :: ByteString -> Opt.ParserInfo Deploy
-deploy localhost =
+parseDeploy :: ByteString -> Opt.ParserInfo Deploy
+parseDeploy localhost =
   Opt.info
     (parser <**> Opt.helper)
     ( Opt.fullDesc
@@ -67,43 +71,81 @@ deploy localhost =
 -- nvd "diff" "~/.local/state/nix/profiles/home-manager" path
 main :: IO ()
 main = do
-  localhost <- hostname |> readInput (pure . trim)
-  (Deploy isFast isUnattended buildRemotely target _) <- Opt.execParser (deploy localhost)
+  localhost <- hostname |> captureTrim
+  (Deploy isFast isUnattended buildRemotely target _) <- Opt.execParser (parseDeploy localhost)
   let
     isLocal = target == localhost
     package = ".#nixosConfigurations." <> target <> ".config.system.build.toplevel"
     hostPackage = ".#" <> target
-    kind = bool "locally" "remotely" buildRemotely
     sshTarget = mkSshTarget target
     runSshCwd cmd = ssh sshTarget ("cd code/dotfiles; " <> cmd)
 
   when (isLocal && buildRemotely) do
-    BS.putStrLn
-      "Cannot build remotely and deploy locally. You probably want to run this on a different host."
+    output Ansi.Red "Cannot build remotely and deploy locally.\n"
     exitFailure
 
-  BS.putStrLn $ "Running " <> kind <> " for " <> sshTarget
+  traverse_ (uncurry output)
+    . catMaybes
+    $ [ Just (Ansi.Red, "deploy ")
+      , Just . bool (Ansi.Green, "locally ") (Ansi.Red, "remotely ") $ buildRemotely
+      , Just (Ansi.White, "for ")
+      , Just (Ansi.Magenta, sshTarget)
+      , bool Nothing (Just (Ansi.Cyan, "fast ")) isFast
+      , bool Nothing (Just (Ansi.Cyan, "unattended ")) isUnattended
+      , Just (Ansi.White, "\n\n")
+      ]
 
+  cd (getDotfilesPath localhost)
+
+  -- Print detailed local git status. This is relevant in all cases:
+  --   - build local, deploying local: dirty local state
+  --   - build local, deploying remote: same
+  --   - remote local: will deploy whatever origin/main is!
+  git "status" "--porcelain" "-b"
+    |> fmap parseGitStatus captureLines
+    >>= gitStatus localhost
+
+  -- 'ssh git pull' for remote builds
   when buildRemotely do
-    BS.putStrLn "Pulling latest version on remote..."
-    runSshCwd "git pull"
-
-  when isLocal do cd "~/code/dotfiles"
+    traverse_
+      (uncurry output)
+      [ (Ansi.White, "[")
+      , (Ansi.Magenta, sshTarget)
+      , (Ansi.White, "] git pull\n\n")
+      ]
+    runSshCwd "git pull" &> devNull
+    runSshCwd "git status --porcelain -b"
+      |> fmap parseGitStatus captureLines
+      >>= gitStatus target
 
   unless isFast do
-    BS.putStrLn "Building... "
+    traverse_
+      (uncurry output)
+      [ (Ansi.White, "[")
+      , (Ansi.Magenta, sshTarget)
+      , (Ansi.White, "] nix build ")
+      , (Ansi.Green, package)
+      , (Ansi.White, "\n\n")
+      ]
     path <- case buildRemotely of
       False -> do
-        exe "nix" "build" package
+        exe "nix" "build" package &> devNull
         readlink "./result" |> captureTrim
       True -> do
-        runSshCwd $ "nix build " <> package
+        runSshCwd ("nix build " <> package) &> devNull
         runSshCwd "readlink ./result" |> captureTrim
 
     case (isLocal, buildRemotely) of
       (False, False) -> do
-        echo "Copying to remote host..."
-        exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget)
+        traverse_
+          (uncurry output)
+          [ (Ansi.White, "[")
+          , (Ansi.Magenta, sshTarget)
+          , (Ansi.White, "] nix copy ")
+          , (Ansi.Green, package)
+          , (Ansi.White, "\n\n")
+          ]
+        exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget) &> devNull
         ssh sshTarget "nvd" "diff" "/run/current-system" path
       (True, False) ->
         nvd "diff" "/run/current-system" path
@@ -114,19 +156,31 @@ main = do
     if isUnattended
       then pure True
       else do
-        BS.putStr $
-          "Update [local="
-            <> bool "n" "y" isLocal
-            <> ", remote="
-            <> sshTarget
-            <> ", buildRemotely="
-            <> bool "n" "y" buildRemotely
-            <> "] (y/n): "
-        BS.hGet H.stdin 1 >>= \case
-          "y" -> pure True
+        traverse_
+          (uncurry output)
+          [ (Ansi.White, "\n")
+          , (Ansi.White, "[")
+          , (Ansi.Magenta, sshTarget)
+          , (Ansi.White, "] start ")
+          , (Ansi.Red, "deploy ")
+          , (Ansi.White, "(y/n): ")
+          ]
+        H.hSetBuffering H.stdin H.NoBuffering
+        H.getChar >>= \case
+          'y' -> pure True
           _ -> pure False
 
   when shouldUpdate do
+    traverse_
+      (uncurry output)
+      [ (Ansi.White, "[")
+      , (Ansi.Magenta, sshTarget)
+      , (Ansi.White, "] ")
+      , (Ansi.Red, "deploy")
+      , (Ansi.White, "ing ")
+      , (Ansi.Green, package)
+      , (Ansi.White, " ... \n\n")
+      ]
     case (isLocal, buildRemotely) of
       (True, False) -> exe "sudo" "nixos-rebuild" "switch" "--flake" hostPackage
       (False, True) -> runSshCwd $ "sudo nixos-rebuild switch --flake " <> hostPackage
@@ -140,9 +194,78 @@ main = do
           "--use-remote-sudo"
           "switch"
 
+output :: (ExecArg s) => Ansi.Color -> s -> IO ()
+output color text = do
+  Ansi.setSGR [Ansi.SetColor Ansi.Foreground Ansi.Vivid color]
+  writeOutput text
+
 mkSshTarget :: BS.ByteString -> BS.ByteString
 mkSshTarget =
   \case
     "apate" -> error "Apate is not yet supported"
     "arche" -> "every@arche"
     sshTarget -> "evie@" <> sshTarget
+
+getDotfilesPath :: ByteString -> FilePath
+getDotfilesPath =
+  \case
+    "apate" -> error "Apate is not yet supported"
+    "arche" -> "/home/every/code/dotfiles"
+    _ -> "/home/evie/code/dotfiles"
+
+gitStatus :: ByteString -> GitStatus -> IO ()
+gitStatus remote =
+  \case
+    Clean ->
+      traverse_
+        (uncurry output)
+        [ (Ansi.White, "[")
+        , (Ansi.Magenta, remote)
+        , (Ansi.White, ":")
+        , (Ansi.Cyan, BS.pack $ getDotfilesPath remote)
+        , (Ansi.White, "] git status ")
+        , (Ansi.Green, "clean\n\n")
+        ]
+    Dirty aheadOrBehind branch xs ->
+      traverse_
+        (uncurry output)
+        [ (Ansi.White, "[")
+        , (Ansi.Magenta, remote)
+        , (Ansi.White, ":")
+        , (Ansi.Cyan, BS.pack $ getDotfilesPath remote)
+        , (Ansi.White, "] git status ")
+        , (Ansi.Red, "dirty ")
+        , maybe (Ansi.White, "") ((Ansi.Cyan,) . (<> " ")) branch
+        , maybe (Ansi.White, "") (Ansi.Yellow,) aheadOrBehind
+        , (Ansi.White, "\n")
+        , bool (Ansi.White, "") (Ansi.White, "\n") . null $ xs
+        , (Ansi.Yellow, BS.unlines . fmap trim $ xs)
+        , (Ansi.White, "\n")
+        ]
+
+data GitStatus = Clean | Dirty (Maybe ByteString) (Maybe ByteString) [ByteString]
+
+parseGitStatus :: [ByteString] -> GitStatus
+parseGitStatus =
+  \case
+    [] -> error "Unexpected empty 'git status' output."
+    [branchStatus] ->
+      case parseHeader branchStatus of
+        (Nothing, Nothing) -> Clean
+        (aheadOrBehind, branch) -> Dirty aheadOrBehind branch []
+    (branchStatus : rest) ->
+      let
+        (aheadOrBehind, branch) = parseHeader branchStatus
+      in
+        Dirty aheadOrBehind branch rest
+  where
+    parseHeader :: ByteString -> (Maybe ByteString, Maybe ByteString)
+    parseHeader branchStatus =
+      case BS.words branchStatus of
+        ("##" : "main...origin/main" : []) -> (Nothing, Nothing)
+        ("##" : br : []) -> (Nothing, Just br)
+        ("##" : "main...origin/main" : "[ahead" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " ahead", Nothing)
+        ("##" : "main...origin/main" : "[behind" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " behind", Nothing)
+        ("##" : br : "[ahead" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " ahead", Just br)
+        ("##" : br : "[behind" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " behind", Just br)
+        xs -> error $ "Unexpected 'git status' header: " <> show xs
