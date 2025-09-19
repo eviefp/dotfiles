@@ -64,7 +64,9 @@ in
       ];
 
       diagnostic.settings = {
-        virtual_lines = true;
+        virtual_lines = {
+          only_current_line = true;
+        };
       };
 
       globals = {
