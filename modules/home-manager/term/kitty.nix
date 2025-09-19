@@ -53,7 +53,7 @@ in
         background_tint 0.8
 
         # cyberdream theme for kitty
-        background            ${theme.dark.bg}
+        background            #000000
         foreground            ${theme.dark.fg}
         cursor                ${theme.dark.fg}
         cursor_text_color     ${theme.dark.bg}

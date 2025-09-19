@@ -414,14 +414,20 @@ in
           terminal_colors = true;
           highlights = {
             Comment = {
-              fg = "pink";
+              fg = "${theme.dark.green}";
               italic = true;
             };
             Character = {
-              fg = "orange";
+              fg = "${theme.dark.orange}";
             };
             String = {
-              fg = "orange";
+              fg = "${theme.dark.orange}";
+            };
+            Keyword = {
+              fg = "${theme.dark.blue}";
+            };
+            Function = {
+              fg = "${theme.dark.pink}";
             };
             TreeSitterContext = {
               fg = "NONE";
@@ -434,7 +440,7 @@ in
               underline = true;
               fg = "NONE";
               bg = "NONE";
-              sp = "purple";
+              sp = "${theme.dark.purple}";
             };
           };
         };
