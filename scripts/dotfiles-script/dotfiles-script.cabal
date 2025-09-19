@@ -24,6 +24,7 @@ executable dotfiles-script
     , extra
     , filepath
     , mtl
+    , optparse-applicative
     , shh
     , table-layout
     , text

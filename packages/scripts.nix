@@ -330,71 +330,143 @@ in
   deploy = pkgs.writers.writeHaskellBin
     "deploy"
     {
-      libraries = with pkgs.haskellPackages; [ bytestring shh ];
+      libraries = with pkgs.haskellPackages; [ bytestring deepseq optparse-applicative shh ];
     }
     ''
       ${haskellLanguagePragmas}
 
       module Main where
 
+      import Control.Applicative ((<**>))
+      import Control.DeepSeq (NFData)
+      import Control.Monad (when)
       import Data.Bool (bool)
+      import Data.ByteString.Lazy.Char8 (ByteString)
       import qualified Data.ByteString.Lazy.Char8 as BS
+      import GHC.Generics (Generic)
       import qualified GHC.IO.StdHandles as H
+      import qualified Options.Applicative as Opt
       import Shh
-      import qualified System.Environment as Env
+      import System.Exit (exitFailure)
 
       loadFromBins ["${pkgs.coreutils}", "${pkgs.hostname}", "${pkgs.nvd}", "${pkgs.openssh}"]
 
+      data Deploy = Deploy
+        { fast :: Bool
+        , unattended :: Bool
+        , remote :: Bool
+        , target :: ByteString
+        , localhost :: ByteString
+        }
+        deriving stock (Generic)
+
+      instance NFData Deploy
+
+      deploy :: ByteString -> Opt.ParserInfo Deploy
+      deploy localhost =
+        Opt.info
+          (parser <**> Opt.helper)
+          ( Opt.fullDesc
+              <> Opt.progDesc "Deploy nix configurations remotely"
+              <> Opt.header "depoy nixos configs"
+          )
+        where
+          parser :: Opt.Parser Deploy
+          parser =
+            Deploy
+              <$> Opt.switch
+                (Opt.long "fast" <> Opt.short 'f' <> Opt.help "Skip evaluating twice but also skip diffs")
+              <*> Opt.switch
+                (Opt.long "unattended" <> Opt.short 'u' <> Opt.help "Disable asking for confirmation")
+              <*> Opt.switch
+                (Opt.long "remote" <> Opt.short 'r' <> Opt.help "Run everything on remote. Makes target required")
+              <*> Opt.strArgument
+                (Opt.value localhost <> Opt.metavar "target" <> Opt.help "Host to deploy to")
+              <*> pure localhost
+
+      -- TODO: investigate using this, probably if/when switching to stand-alone home-manager
+      -- nvd "diff" "~/.local/state/nix/profiles/home-manager" path
       main :: IO ()
       main = do
-        (deployTo, isLocal) <-
-          Env.getArgs >>= \case
-            [] -> hostname |> readInput (pure . (,True) . trim)
-            [arg] -> pure $ (BS.pack arg, False)
-            _ -> error "Expected either no arguments or a single argument, the hostname"
-
+        localhost <- hostname |> readInput (pure . trim)
+        (Deploy isFast isUnattended buildRemotely target _) <- Opt.execParser (deploy localhost)
         let
-          package = ".#nixosConfigurations." <> deployTo <> ".config.system.build.toplevel"
-          hostPackage = ".#" <> deployTo
-          remote = mkRemote deployTo
+          isLocal = target == localhost
+          package = ".#nixosConfigurations." <> target <> ".config.system.build.toplevel"
+          hostPackage = ".#" <> target
+          kind = bool "locally" "remotely" buildRemotely
+          sshTarget = mkSshTarget target
+          runSshCwd cmd = ssh sshTarget ("cd code/dotfiles; " <> cmd)
 
-        BS.putStrLn $ "Running for " <> remote
+        when (isLocal && buildRemotely) do
+          BS.putStrLn
+            "Cannot build remotely and deploy locally. You probably want to run this on a different host."
+          exitFailure
 
-        BS.putStrLn "Building... "
-        exe "nix" "build" package
+        BS.putStrLn $ "Running " <> kind <> " for " <> sshTarget
 
-        path <- readlink "./result" |> readInput (pure . trim)
+        when buildRemotely do
+          BS.putStrLn "Pulling latest version on remote..."
+          runSshCwd "git pull"
 
-        if (not isLocal)
-          then do
-            echo "Copying..."
-            exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> remote)
-            ssh remote "nvd" "diff" "/run/current-system" path
-          else do
-            nvd "diff" "/run/current-system" path
-            -- nvd "diff" "~/.local/state/nix/profiles/home-manager" path
+        when (not isFast) do
+          BS.putStrLn "Building... "
+          path <- case buildRemotely of
+            False -> do
+              exe "nix" "build" package
+              readlink "./result" |> captureTrim
+            True -> do
+              runSshCwd $ "nix build " <> package
+              runSshCwd "readlink ./result" |> captureTrim
 
-        BS.putStr $ "Update [local=" <> bool "n" "y" isLocal <> ", remote=" <> remote <> "] (y/n): "
-        BS.hGet H.stdin 1 >>= \case
-          "y" ->
-            if isLocal
-              then exe "sudo" "nixos-rebuild" "switch" "--flake" hostPackage
-              else
-                exe
-                  "nixos-rebuild"
-                  "--flake"
-                  hostPackage
-                  "--target-host"
-                  remote
-                  "--use-remote-sudo"
-                  "switch"
-          _ -> pure ()
+          case buildRemotely of
+            False ->
+              if (not isLocal)
+                then do
+                  echo "Copying to remote host..."
+                  exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget)
+                  ssh sshTarget "nvd" "diff" "/run/current-system" path
+                else do
+                  nvd "diff" "/run/current-system" path
+            True ->
+              runSshCwd $ "nvd diff /run/current-system " <> path
 
-      mkRemote :: BS.ByteString -> BS.ByteString
-      mkRemote =
+        shouldUpdate <-
+          if isUnattended
+            then pure True
+            else do
+              BS.putStr $
+                "Update [local="
+                  <> bool "n" "y" isLocal
+                  <> ", remote="
+                  <> sshTarget
+                  <> ", buildRemotely="
+                  <> bool "n" "y" buildRemotely
+                  <> "] (y/n): "
+              BS.hGet H.stdin 1 >>= \case
+                "y" -> pure True
+                _ -> pure False
+
+        when shouldUpdate do
+          case (isLocal, buildRemotely) of
+            (True, False) -> exe "sudo" "nixos-rebuild" "switch" "--flake" hostPackage
+            (False, True) -> runSshCwd $ "sudo nixos-rebuild switch --flake " <> hostPackage
+            _ ->
+              exe
+                "nixos-rebuild"
+                "--flake"
+                hostPackage
+                "--target-host"
+                sshTarget
+                "--use-remote-sudo"
+                "switch"
+
+      mkSshTarget :: BS.ByteString -> BS.ByteString
+      mkSshTarget =
         \case
+          "apate" -> error "apate is not yet supported"
           "arche" -> "every@arche"
-          remote -> "evie@" <> remote
+          sshTarget -> "evie@" <> sshTarget
     '';
 
   email-status = pkgs.writers.writeHaskellBin

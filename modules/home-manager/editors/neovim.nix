@@ -1402,11 +1402,6 @@ in
 
         trouble = {
           enable = true;
-          package = pkgs.vimPlugins.trouble-nvim.overrideAttrs (previousAttrs: {
-            patches =
-              (previousAttrs.patches or [ ])
-              ++ [ ./neovim/0001-fix-view-adapt-to-the-changes-for-nvim_set_decoratio.patch ];
-          });
           settings = {
             auto_refresh = true;
           };

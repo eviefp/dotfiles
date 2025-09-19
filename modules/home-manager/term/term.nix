@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, dotfiles, ... }:
 let
   cfg = config.evie.term;
   scripts = {
@@ -25,6 +25,7 @@ in
       pkgs.unzip
       pkgs.wget
       pkgs.zip
+      dotfiles.self.packages.${pkgs.system}.deploy
     ];
 
     programs = {
