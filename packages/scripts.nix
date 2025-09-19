@@ -558,7 +558,7 @@ in
               , (Ansi.Red, "dirty ")
               , maybe (Ansi.White, "") ((Ansi.Cyan,) . (<> " ")) branch
               , maybe (Ansi.White, "") (Ansi.Yellow,) aheadOrBehind
-              , (Ansi.White, "\n")
+              , bool (Ansi.White, "\n") (Ansi.White, "") . null $ xs
               , (Ansi.Yellow, trim . BS.unlines . fmap trim $ xs)
               , (Ansi.White, "\n\n")
               ]
