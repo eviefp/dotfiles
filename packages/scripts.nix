@@ -450,10 +450,10 @@ in
             ]
           path <- case buildRemotely of
             False -> do
-              exe "nix" "build" package &> devNull
+              exe "nix" "build" "--quiet" "--quiet" package &> devNull
               readlink "./result" |> captureTrim
             True -> do
-              runSshCwd ("nix build " <> package) &> devNull
+              runSshCwd ("nix build --quiet --quiet " <> package) &> devNull &!> devNull
               runSshCwd "readlink ./result" |> captureTrim
 
           case (isLocal, buildRemotely) of
@@ -490,6 +490,7 @@ in
               H.getChar >>= \case
                 'y' -> pure True
                 _ -> pure False
+              output Ansi.White "\n"
 
         when shouldUpdate do
           traverse_
@@ -503,11 +504,13 @@ in
             , (Ansi.White, " ... \n\n")
             ]
           case (isLocal, buildRemotely) of
-            (True, False) -> exe "sudo" "nixos-rebuild" "switch" "--flake" hostPackage
-            (False, True) -> runSshCwd $ "sudo nixos-rebuild switch --flake " <> hostPackage
+            (True, False) -> exe "sudo" "nixos-rebuild" "switch" "--quiet" "--quiet" "--flake" hostPackage
+            (False, True) -> runSshCwd $ "sudo nixos-rebuild switch --quiet --quiet --flake " <> hostPackage
             _ ->
               exe
                 "nixos-rebuild"
+                "--quiet"
+                "--quiet"
                 "--flake"
                 hostPackage
                 "--target-host"
