@@ -586,12 +586,12 @@ in
           parseHeader :: ByteString -> (Maybe ByteString, Maybe ByteString)
           parseHeader branchStatus =
             case BS.words branchStatus of
-              ("##" : "main...origin/main" : []) -> (Nothing, Nothing)
-              ("##" : br : []) -> (Nothing, Just br)
-              ("##" : "main...origin/main" : "[ahead" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " ahead", Nothing)
-              ("##" : "main...origin/main" : "[behind" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " behind", Nothing)
-              ("##" : br : "[ahead" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " ahead", Just br)
-              ("##" : br : "[behind" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " behind", Just br)
+              ["##", "main...origin/main"] -> (Nothing, Nothing)
+              ["##", br] -> (Nothing, Just br)
+              ["##", "main...origin/main", "[ahead", nr] -> (Just $ BS.dropEnd 1 nr <> " ahead", Nothing)
+              ["##", "main...origin/main", "[behind", nr] -> (Just $ BS.dropEnd 1 nr <> " behind", Nothing)
+              ["##", br, "[ahead", nr] -> (Just $ BS.dropEnd 1 nr <> " ahead", Just br)
+              ["##", br, "[behind", nr] -> (Just $ BS.dropEnd 1 nr <> " behind", Just br)
               xs -> error $ "Unexpected 'git status' header: " <> show xs
     '';
 

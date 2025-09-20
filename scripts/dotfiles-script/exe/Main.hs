@@ -23,6 +23,7 @@ import Data.Bool (bool)
 import Data.ByteString.Lazy.Char8 (ByteString)
 import qualified Data.ByteString.Lazy.Char8 as BS
 import Data.Foldable (traverse_)
+import Data.Functor (($>))
 import Data.Maybe (catMaybes)
 import GHC.Generics (Generic)
 import qualified GHC.IO.StdHandles as H
@@ -86,13 +87,14 @@ main = do
 
   traverse_ (uncurry output)
     . catMaybes
-    $ [ Just (Ansi.Red, "deploy ")
+    $ [ Just (Ansi.Magenta, "-> ")
+      , Just (Ansi.Red, "deploy ")
       , Just . bool (Ansi.Green, "locally ") (Ansi.Red, "remotely ") $ buildRemotely
       , Just (Ansi.White, "for ")
       , Just (Ansi.Magenta, sshTarget)
       , bool Nothing (Just (Ansi.Cyan, "fast ")) isFast
       , bool Nothing (Just (Ansi.Cyan, "unattended ")) isUnattended
-      , Just (Ansi.White, "\n\n")
+      , Just (Ansi.White, "\n")
       ]
 
   cd (getDotfilesPath localhost)
@@ -111,7 +113,7 @@ main = do
       (uncurry output)
       [ (Ansi.White, "[")
       , (Ansi.Magenta, sshTarget)
-      , (Ansi.White, "] git pull\n\n")
+      , (Ansi.White, "] git pull\n")
       ]
     runSshCwd "git pull" &> devNull
     runSshCwd "git status --porcelain -b"
@@ -125,14 +127,14 @@ main = do
       , (Ansi.Magenta, sshTarget)
       , (Ansi.White, "] nix build ")
       , (Ansi.Green, package)
-      , (Ansi.White, "\n\n")
+      , (Ansi.White, "\n")
       ]
     path <- case buildRemotely of
       False -> do
-        exe "nix" "build" package &> devNull
+        exe "nix" "build" "--quiet" "--quiet" package &> devNull
         readlink "./result" |> captureTrim
       True -> do
-        runSshCwd ("nix build " <> package) &> devNull
+        runSshCwd ("nix build --quiet --quiet " <> package) &> devNull &!> devNull
         runSshCwd "readlink ./result" |> captureTrim
 
     case (isLocal, buildRemotely) of
@@ -143,7 +145,7 @@ main = do
           , (Ansi.Magenta, sshTarget)
           , (Ansi.White, "] nix copy ")
           , (Ansi.Green, package)
-          , (Ansi.White, "\n\n")
+          , (Ansi.White, "\n")
           ]
         exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget) &> devNull
         ssh sshTarget "nvd" "diff" "/run/current-system" path
@@ -167,8 +169,8 @@ main = do
           ]
         H.hSetBuffering H.stdin H.NoBuffering
         H.getChar >>= \case
-          'y' -> pure True
-          _ -> pure False
+          'y' -> output Ansi.White "\n" $> True
+          _ -> output Ansi.White "\n" $> False
 
   when shouldUpdate do
     traverse_
@@ -179,14 +181,16 @@ main = do
       , (Ansi.Red, "deploy")
       , (Ansi.White, "ing ")
       , (Ansi.Green, package)
-      , (Ansi.White, " ... \n\n")
+      , (Ansi.White, " ... \n")
       ]
     case (isLocal, buildRemotely) of
-      (True, False) -> exe "sudo" "nixos-rebuild" "switch" "--flake" hostPackage
-      (False, True) -> runSshCwd $ "sudo nixos-rebuild switch --flake " <> hostPackage
+      (True, False) -> exe "sudo" "nixos-rebuild" "switch" "--quiet" "--quiet" "--flake" hostPackage
+      (False, True) -> runSshCwd $ "sudo nixos-rebuild switch --quiet --quiet --flake " <> hostPackage
       _ ->
         exe
           "nixos-rebuild"
+          "--quiet"
+          "--quiet"
           "--flake"
           hostPackage
           "--target-host"
@@ -224,7 +228,7 @@ gitStatus remote =
         , (Ansi.White, ":")
         , (Ansi.Cyan, BS.pack $ getDotfilesPath remote)
         , (Ansi.White, "] git status ")
-        , (Ansi.Green, "clean\n\n")
+        , (Ansi.Green, "clean\n")
         ]
     Dirty aheadOrBehind branch xs ->
       traverse_
@@ -237,9 +241,8 @@ gitStatus remote =
         , (Ansi.Red, "dirty ")
         , maybe (Ansi.White, "") ((Ansi.Cyan,) . (<> " ")) branch
         , maybe (Ansi.White, "") (Ansi.Yellow,) aheadOrBehind
-        , (Ansi.White, "\n")
-        , bool (Ansi.White, "") (Ansi.White, "\n") . null $ xs
-        , (Ansi.Yellow, BS.unlines . fmap trim $ xs)
+        , bool (Ansi.White, "\n") (Ansi.White, "") . null $ xs
+        , (Ansi.Yellow, trim . BS.unlines . fmap trim $ xs)
         , (Ansi.White, "\n")
         ]
 
@@ -262,10 +265,10 @@ parseGitStatus =
     parseHeader :: ByteString -> (Maybe ByteString, Maybe ByteString)
     parseHeader branchStatus =
       case BS.words branchStatus of
-        ("##" : "main...origin/main" : []) -> (Nothing, Nothing)
-        ("##" : br : []) -> (Nothing, Just br)
-        ("##" : "main...origin/main" : "[ahead" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " ahead", Nothing)
-        ("##" : "main...origin/main" : "[behind" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " behind", Nothing)
-        ("##" : br : "[ahead" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " ahead", Just br)
-        ("##" : br : "[behind" : nr : []) -> (Just $ BS.dropEnd 1 nr <> " behind", Just br)
+        ["##", "main...origin/main"] -> (Nothing, Nothing)
+        ["##", br] -> (Nothing, Just br)
+        ["##", "main...origin/main", "[ahead", nr] -> (Just $ BS.dropEnd 1 nr <> " ahead", Nothing)
+        ["##", "main...origin/main", "[behind", nr] -> (Just $ BS.dropEnd 1 nr <> " behind", Nothing)
+        ["##", br, "[ahead", nr] -> (Just $ BS.dropEnd 1 nr <> " ahead", Just br)
+        ["##", br, "[behind", nr] -> (Just $ BS.dropEnd 1 nr <> " behind", Just br)
         xs -> error $ "Unexpected 'git status' header: " <> show xs
