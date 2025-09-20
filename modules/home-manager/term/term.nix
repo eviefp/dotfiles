@@ -103,6 +103,11 @@ in
         };
       };
 
+      # this automatically also configures 'git'
+      mergiraf = {
+        enable = true;
+      };
+
       git = {
         enable = true;
         delta = {
