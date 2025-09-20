@@ -658,10 +658,6 @@ in
         lsp = {
           enable = true;
 
-          luaConfig.post = ''
-            vim.lsp.enable('omnisharp')
-          '';
-
           keymaps = {
             diagnostic = {
               # "]d" = "goto_next";
@@ -693,11 +689,9 @@ in
               };
             };
 
-            omnisharp = {
+            csharp_ls = {
               enable = true;
-              package = null;
-              cmd = [ "OmniSharp" ];
-              filetypes = [ "cs" ];
+              package = pkgs.csharp-ls;
             };
 
             rust_analyzer = {
