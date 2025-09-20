@@ -13,6 +13,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
+      pkgs.delta # needed by git blame config
       pkgs.dig
       pkgs.killall
       pkgs.nix-tree
@@ -118,7 +119,7 @@ in
           enable = true;
           color = "auto";
           background = "dark";
-          # display = "side-by-side";
+          display = "side-by-side";
         };
         aliases = {
           ll = "log --graph --decorate --oneline --abbrev-commit";
@@ -132,6 +133,7 @@ in
           work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
         };
         extraConfig = {
+          core.pager = "delta";
           init.defaultBranch = "main";
           pull.ff = "only";
           merge.conflictstyle = "diff3";
