@@ -344,6 +344,7 @@ in
       import Data.ByteString.Lazy.Char8 (ByteString)
       import qualified Data.ByteString.Lazy.Char8 as BS
       import Data.Foldable (traverse_)
+      import Data.Functor (($>))
       import Data.Maybe (catMaybes)
       import GHC.Generics (Generic)
       import qualified GHC.IO.StdHandles as H
@@ -407,13 +408,14 @@ in
 
         traverse_ (uncurry output)
           . catMaybes
-          $ [ Just (Ansi.Red, "deploy ")
+          $ [ Just (Ansi.Magenta, "-> ")
+            , Just (Ansi.Red, "deploy ")
             , Just . bool (Ansi.Green, "locally ") (Ansi.Red, "remotely ") $ buildRemotely
             , Just (Ansi.White, "for ")
             , Just (Ansi.Magenta, sshTarget)
             , bool Nothing (Just (Ansi.Cyan, "fast ")) isFast
             , bool Nothing (Just (Ansi.Cyan, "unattended ")) isUnattended
-            , Just (Ansi.White, "\n\n")
+            , Just (Ansi.White, "\n")
             ]
 
         cd (getDotfilesPath localhost)
@@ -432,7 +434,7 @@ in
             (uncurry output)
             [ (Ansi.White, "[")
             , (Ansi.Magenta, sshTarget)
-            , (Ansi.White, "] git pull\n\n")
+            , (Ansi.White, "] git pull\n")
             ]
           runSshCwd "git pull" &> devNull
           runSshCwd "git status --porcelain -b"
@@ -446,7 +448,7 @@ in
             , (Ansi.Magenta, sshTarget)
             , (Ansi.White, "] nix build ")
             , (Ansi.Green, package)
-            , (Ansi.White, "\n\n")
+            , (Ansi.White, "\n")
             ]
           path <- case buildRemotely of
             False -> do
@@ -464,7 +466,7 @@ in
                 , (Ansi.Magenta, sshTarget)
                 , (Ansi.White, "] nix copy ")
                 , (Ansi.Green, package)
-                , (Ansi.White, "\n\n")
+                , (Ansi.White, "\n")
                 ]
               exe "nix" "copy" "-L" package "--no-check-sigs" "--to" ("ssh-ng://" <> sshTarget) &> devNull
               ssh sshTarget "nvd" "diff" "/run/current-system" path
@@ -488,9 +490,8 @@ in
                 ]
               H.hSetBuffering H.stdin H.NoBuffering
               H.getChar >>= \case
-                'y' -> pure True
-                _ -> pure False
-              output Ansi.White "\n"
+                'y' -> output Ansi.White "\n" $> True
+                _ -> output Ansi.White "\n" $>  False
 
         when shouldUpdate do
           traverse_
@@ -501,7 +502,7 @@ in
             , (Ansi.Red, "deploy")
             , (Ansi.White, "ing ")
             , (Ansi.Green, package)
-            , (Ansi.White, " ... \n\n")
+            , (Ansi.White, " ... \n")
             ]
           case (isLocal, buildRemotely) of
             (True, False) -> exe "sudo" "nixos-rebuild" "switch" "--quiet" "--quiet" "--flake" hostPackage
@@ -548,7 +549,7 @@ in
               , (Ansi.White, ":")
               , (Ansi.Cyan, BS.pack $ getDotfilesPath remote)
               , (Ansi.White, "] git status ")
-              , (Ansi.Green, "clean\n\n")
+              , (Ansi.Green, "clean\n")
               ]
           Dirty aheadOrBehind branch xs ->
             traverse_
@@ -563,7 +564,7 @@ in
               , maybe (Ansi.White, "") (Ansi.Yellow,) aheadOrBehind
               , bool (Ansi.White, "\n") (Ansi.White, "") . null $ xs
               , (Ansi.Yellow, trim . BS.unlines . fmap trim $ xs)
-              , (Ansi.White, "\n\n")
+              , (Ansi.White, "\n")
               ]
 
       data GitStatus = Clean | Dirty (Maybe ByteString) (Maybe ByteString) [ByteString]
