@@ -1339,7 +1339,7 @@ in
               enabled = false;
             };
             foldKeymaps = {
-              setup = true;
+              setup = false;
               hOnlyOpensOnFirstColumn = false;
             };
           };
