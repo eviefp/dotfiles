@@ -1,4 +1,4 @@
-{ pkgs, pkgs-2411, ... }:
+{ pkgs, pkgs-2411, lib, ... }:
 {
   isw = pkgs.callPackage ./isw.nix { };
 
@@ -26,4 +26,4 @@
   });
 
 
-} // (import ./scripts.nix { inherit pkgs; })
+} // (import ./scripts.nix { inherit pkgs lib; })

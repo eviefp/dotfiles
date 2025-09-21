@@ -161,7 +161,7 @@
           fmt = treefmt.check dotfiles.self;
         };
 
-        packages = import ./packages { inherit pkgs; inherit pkgs-2411; };
+        packages = import ./packages { inherit pkgs pkgs-2411; lib = dotfiles.nixpkgs.lib; };
 
         devShells.default = haskellPackages.shellFor {
           packages = p: [ p.dotfiles-script ];
