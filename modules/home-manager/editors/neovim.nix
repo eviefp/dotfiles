@@ -349,6 +349,17 @@ in {
           action = "<cmd>Yazi toggle<cr>";
           options.desc = "yazi toggle";
         }
+        # origami
+        {
+          key = "<C-h>";
+          action = ":lua require('origami').h()<cr>";
+          options.desc = "fold region";
+        }
+        {
+          key = "<C-l>";
+          action = ":lua require('origami').l()<cr>";
+          options.desc = "un-fold region";
+        }
       ];
 
       extraPlugins = [
