@@ -1,10 +1,15 @@
-{ pkgs, pkgs-2411, lib, ... }:
 {
-  isw = pkgs.callPackage ./isw.nix { };
+  pkgs,
+  pkgs-2411,
+  lib,
+  ...
+}:
+{
+  isw = pkgs.callPackage ./isw.nix {};
 
   # peroxide uses buildGo122Module which has been deprecated in nixpkgs-25.05
   # TODO: use Hydroxide or fork peroxide
-  peroxide = pkgs-2411.callPackage ./peroxide.nix { };
+  peroxide = pkgs-2411.callPackage ./peroxide.nix {};
 
   waybar = pkgs.waybar.overrideAttrs (_: {
     src = pkgs.fetchFromGitHub {
@@ -24,6 +29,5 @@
       hash = "sha256-q+mHkaPUjHbpGnNjI8OdqX+TTzv3zyPb1NA30YB7A04=";
     };
   });
-
-
-} // (import ./scripts.nix { inherit pkgs lib; })
+}
+// (import ./scripts.nix {inherit pkgs lib;})

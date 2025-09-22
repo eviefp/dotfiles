@@ -1,8 +1,11 @@
-{ dotfiles, lib, config, ... }:
-let
-  cfg = config.evie.sops;
-in
 {
+  dotfiles,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.evie.sops;
+in {
   options.evie.sops = {
     enable = lib.mkEnableOption "sops defaults";
   };
@@ -14,7 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     sops = {
       defaultSopsFile = ../../secrets/secrets/secrets.yaml;
-      age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       secrets = {
         yubiAuthFile = {
           mode = "444";

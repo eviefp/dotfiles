@@ -1,8 +1,12 @@
-{ dotfiles, config, lib, pkgs, ... }:
-let
-  cfg = config.evie.wayland.hyprlock;
-in
 {
+  dotfiles,
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.wayland.hyprlock;
+in {
   options.evie.wayland.hyprlock = {
     enable = lib.mkEnableOption "hyprlock defaults";
   };

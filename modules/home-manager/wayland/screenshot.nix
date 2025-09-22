@@ -1,5 +1,10 @@
-{ config, lib, pkgs, dotfiles, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  dotfiles,
+  ...
+}: let
   cfg = config.evie.wayland.screenshot;
   screenshot = dotfiles.self.lib.nuShellScript {
     name = "screenshot";
@@ -10,8 +15,7 @@ let
       pkgs.grimblast
     ];
   };
-in
-{
+in {
   options.evie.wayland.screenshot = {
     enable = lib.mkEnableOption "screenshot utils";
     package = lib.mkOption {

@@ -1,13 +1,17 @@
-/****************************************************************************
-  * Boot module
-  *
-  * All my systems are setup as UEFI.
-  **************************************************************************/
-{ lib, config, ... }:
-let
-  cfg = config.evie.boot;
-in
+/**
+**************************************************************************
+* Boot module
+*
+* All my systems are setup as UEFI.
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.evie.boot;
+in {
   options.evie.boot = {
     enable = lib.mkEnableOption "boot defaults";
   };

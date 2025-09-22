@@ -1,11 +1,16 @@
-/****************************************************************************
-  * Video
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.hardware.video;
-in
+/**
+**************************************************************************
+* Video
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.hardware.video;
+in {
   options.evie.hardware.video = {
     enable = lib.mkEnableOption "pipewire";
     nvidia = {
@@ -23,13 +28,17 @@ in
         enable = true;
         enable32Bit = true;
         extraPackages =
-          if cfg.nvidia.enable then [ pkgs.nvidia-vaapi-driver pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl ]
-          else if cfg.amdgpu.enable then [ pkgs.libvdpau-va-gl ]
-          else with pkgs; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
+          if cfg.nvidia.enable
+          then [pkgs.nvidia-vaapi-driver pkgs.libglvnd pkgs.vaapiVdpau pkgs.libvdpau-va-gl]
+          else if cfg.amdgpu.enable
+          then [pkgs.libvdpau-va-gl]
+          else with pkgs; [vaapiIntel libvdpau-va-gl intel-media-driver];
         extraPackages32 =
-          if cfg.nvidia.enable then [ ]
-          else if cfg.amdgpu.enable then with pkgs.pkgsi686Linux; [ libvdpau-va-gl ]
-          else with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl intel-media-driver ];
+          if cfg.nvidia.enable
+          then []
+          else if cfg.amdgpu.enable
+          then with pkgs.pkgsi686Linux; [libvdpau-va-gl]
+          else with pkgs.pkgsi686Linux; [vaapiIntel libvdpau-va-gl intel-media-driver];
       };
     }
     (lib.mkIf cfg.nvidia.enable {
@@ -41,7 +50,7 @@ in
       };
     })
     (lib.mkIf cfg.amdgpu.enable {
-      environment.systemPackages = [ pkgs.lact ];
+      environment.systemPackages = [pkgs.lact];
       hardware.amdgpu = {
         initrd.enable = true;
         overdrive.enable = true;
@@ -49,7 +58,7 @@ in
         amdvlk.enable = true;
         amdvlk.support32Bit.enable = true;
         # https://github.com/GPUOpen-Drivers/AMDVLK?tab=readme-ov-file#runtime-settings
-        amdvlk.settings = { };
+        amdvlk.settings = {};
       };
     })
   ]);

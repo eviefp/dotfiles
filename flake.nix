@@ -78,7 +78,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     asus-wmi-screenpad = {
       url = "github:MatthewCash/asus-wmi-screenpad-module";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -117,14 +116,11 @@
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
     };
-
   };
 
-  outputs =
-    dotfiles:
+  outputs = dotfiles:
     (dotfiles.flake-utils.lib.eachDefaultSystem
-      (system:
-      let
+      (system: let
         pkgs = import dotfiles.nixpkgs {
           inherit system;
         };
@@ -134,7 +130,7 @@
         treefmt-config = {
           projectRootFile = "flake.nix";
           programs = {
-            nixpkgs-fmt.enable = true;
+            alejandra.enable = true;
             cabal-fmt.enable = true;
             deadnix.enable = true;
             fourmolu = {
@@ -149,49 +145,53 @@
         };
         treefmt = (dotfiles.treefmt-nix.lib.evalModule pkgs treefmt-config).config.build;
         haskellPackages = pkgs.haskell.packages.ghc9102.override (prevArgs: {
-          overrides = pkgs.lib.composeExtensions (prevArgs.overrides or (_: _: { })) (final: _prev: {
-            dotfiles-script = final.callCabal2nix "dotfiles-script" ./scripts/dotfiles-script { };
+          overrides = pkgs.lib.composeExtensions (prevArgs.overrides or (_: _: {})) (final: _prev: {
+            dotfiles-script = final.callCabal2nix "dotfiles-script" ./scripts/dotfiles-script {};
           });
         });
-      in
-      {
+      in {
         formatter = treefmt.wrapper;
 
         checks = {
           fmt = treefmt.check dotfiles.self;
         };
 
-        packages = import ./packages { inherit pkgs pkgs-2411; lib = dotfiles.nixpkgs.lib; };
+        packages = import ./packages {
+          inherit pkgs pkgs-2411;
+          lib = dotfiles.nixpkgs.lib;
+        };
 
         devShells.default = haskellPackages.shellFor {
-          packages = p: [ p.dotfiles-script ];
+          packages = p: [p.dotfiles-script];
           buildInputs = [
+            pkgs.alejandra
             pkgs.haskell.compiler.ghc9102
             pkgs.haskell.packages.ghc9102.cabal-install
             pkgs.haskell.packages.ghc9102.haskell-language-server
             pkgs.zlib.dev
           ];
         };
-
-      })) //
-    rec {
+      }))
+    // rec {
       nixosModules = import ./modules/nixos;
       homeModules = import ./modules/home-manager;
 
-      lib =
-        let
-          pkgs = import dotfiles.nixpkgs {
-            system = "x86_64-linux";
-          };
-        in
-        import ./lib { inherit pkgs; };
+      lib = let
+        pkgs = import dotfiles.nixpkgs {
+          system = "x86_64-linux";
+        };
+      in
+        import ./lib {inherit pkgs;};
 
       nixosConfigurations.thelxinoe = dotfiles.nixpkgs.lib.nixosSystem {
         # The host needs to pass 'dotfiles' to the home-manager module import,
         # which results in an infinite recursion error if this was replaced by
         # '_module.args'.
         # See https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-and-module-system#pass-non-default-parameters-to-submodules
-        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+        specialArgs = {
+          inherit dotfiles;
+          theme = lib.theme.default;
+        };
         modules = [
           ./hosts/thelxinoe
         ];
@@ -199,35 +199,50 @@
 
       nixosConfigurations = {
         "janus" = dotfiles.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          specialArgs = {
+            inherit dotfiles;
+            theme = lib.theme.default;
+          };
           modules = [
             ./hosts/janus
           ];
         };
 
         "aiode" = dotfiles.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          specialArgs = {
+            inherit dotfiles;
+            theme = lib.theme.default;
+          };
           modules = [
             ./hosts/aiode
           ];
         };
 
         "fractal" = dotfiles.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          specialArgs = {
+            inherit dotfiles;
+            theme = lib.theme.default;
+          };
           modules = [
             ./hosts/fractal
           ];
         };
 
         "arche" = dotfiles.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          specialArgs = {
+            inherit dotfiles;
+            theme = lib.theme.default;
+          };
           modules = [
             ./hosts/arche
           ];
         };
 
         "jellyfin" = dotfiles.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+          specialArgs = {
+            inherit dotfiles;
+            theme = lib.theme.default;
+          };
           modules = [
             ./hosts/jellyfin
           ];
@@ -235,13 +250,13 @@
       };
 
       darwinConfigurations."apate" = dotfiles.nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit dotfiles; theme = lib.theme.default; };
+        specialArgs = {
+          inherit dotfiles;
+          theme = lib.theme.default;
+        };
         modules = [
           ./hosts/apate
         ];
       };
-
-    }
-
-  ;
+    };
 }

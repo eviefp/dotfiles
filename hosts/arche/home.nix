@@ -1,5 +1,8 @@
-{ dotfiles, pkgs, ... }:
 {
+  dotfiles,
+  pkgs,
+  ...
+}: {
   imports = with dotfiles.self.homeModules; [
     common
   ];

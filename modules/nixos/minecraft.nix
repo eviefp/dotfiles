@@ -1,5 +1,10 @@
-{ config, lib, pkgs, dotfiles, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  dotfiles,
+  ...
+}: let
   cfg = config.evie.minecraft;
   mode = {
     survival = 0;
@@ -13,8 +18,7 @@ let
     normal = 2;
     hard = 3;
   };
-in
-{
+in {
   imports = [
     dotfiles.nix-minecraft.nixosModules.minecraft-servers
   ];
@@ -71,7 +75,8 @@ in
           };
 
           symlinks = {
-            mods = pkgs.linkFarmFromDrvs "mods"
+            mods =
+              pkgs.linkFarmFromDrvs "mods"
               (
                 builtins.attrValues {
                   Fabric-API = pkgs.fetchurl {

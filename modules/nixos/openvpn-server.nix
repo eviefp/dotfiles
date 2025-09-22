@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.evie.openvpn-server;
   vpn-device = "tun0";
   port = 1194;
@@ -22,8 +25,7 @@ let
     persist-tun
     secret ${client-key}
   '';
-in
-{
+in {
   options.evie.openvpn-server = {
     enable = lib.mkEnableOption "openvpn defaults";
     client-config = lib.mkOption {
@@ -31,16 +33,16 @@ in
     };
   };
 
-
-  config = lib.mkMerge
+  config =
+    lib.mkMerge
     [
       (lib.mkIf cfg.enable {
         networking.nat = {
           enable = true;
           externalInterface = "enp1s0";
-          internalInterfaces = [ vpn-device ];
+          internalInterfaces = [vpn-device];
         };
-        networking.firewall.allowedUDPPorts = [ port ];
+        networking.firewall.allowedUDPPorts = [port];
         services.openvpn.servers.thelxinoe.config = ''
           dev ${vpn-device}
           proto udp
@@ -69,5 +71,3 @@ in
       }
     ];
 }
-
-

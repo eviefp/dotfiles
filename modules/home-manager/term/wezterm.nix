@@ -1,14 +1,19 @@
-/****************************************************************************
-  * term/wezterm module
-  *
-  * https://wezfurlong.org/wezterm
-  * Does NOT work on wayland :(
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.term.wezterm;
-in
+/**
+**************************************************************************
+* term/wezterm module
+*
+* https://wezfurlong.org/wezterm
+* Does NOT work on wayland :(
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.term.wezterm;
+in {
   options.evie.term.wezterm = {
     enable = lib.mkEnableOption "wezterm defaults";
   };
@@ -28,8 +33,8 @@ in
           selection_fg = "#c0caf5";
           compose_cursor = "#f7768e";
 
-          ansi = [ "#15161E" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#a9b1d6" ];
-          brights = [ "#414868" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#c0caf5" ];
+          ansi = ["#15161E" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#a9b1d6"];
+          brights = ["#414868" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#c0caf5"];
         };
         light = {
           # todo
@@ -42,8 +47,8 @@ in
           selection_fg = "#c0caf5";
           compose_cursor = "#f7768e";
 
-          ansi = [ "#15161E" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#a9b1d6" ];
-          brights = [ "#414868" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#c0caf5" ];
+          ansi = ["#15161E" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#a9b1d6"];
+          brights = ["#414868" "#f7768e" "#9ece6a" "#e0af68" "#7aa2f7" "#bb9af7" "#7dcfff" "#c0caf5"];
         };
       };
       extraConfig = ''

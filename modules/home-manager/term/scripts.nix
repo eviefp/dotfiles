@@ -1,8 +1,7 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   options.evie.term.scripts = {
     enable = lib.mkEnableOption "scripts";
   };
 
-  config.evie.term.scripts = { };
+  config.evie.term.scripts = {};
 }

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   config = {
     home.shell = {
       enableFishIntegration = true;
@@ -8,4 +7,3 @@
     };
   };
 }
-

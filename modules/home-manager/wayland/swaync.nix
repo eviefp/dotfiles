@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.evie.wayland.swaync;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.wayland.swaync;
+in {
   options.evie.wayland.swaync = {
     enable = lib.mkEnableOption "swaync defaults";
   };

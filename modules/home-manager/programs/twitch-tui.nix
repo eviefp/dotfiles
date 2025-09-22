@@ -1,23 +1,29 @@
-{ lib, config, pkgs, dotfiles, ... }:
-let
-  cfg = config.evie.programs.twitch-tui;
-  settingsFormat = pkgs.formats.toml { };
-  wrapper = pkg: dotfiles.self.lib.nuShellScript {
-    name = "twitch-tui";
-    text = ''
-      let secret = (cat /run/secrets/twitchToken)
-      with-env { TWT_TOKEN: $secret } { ${lib.getExe pkg} }
-    '';
-    runtimeInputs = [ pkg ];
-  };
-in
 {
+  lib,
+  config,
+  pkgs,
+  dotfiles,
+  ...
+}: let
+  cfg = config.evie.programs.twitch-tui;
+  settingsFormat = pkgs.formats.toml {};
+  wrapper = pkg:
+    dotfiles.self.lib.nuShellScript {
+      name = "twitch-tui";
+      text = ''
+        let secret = (cat /run/secrets/twitchToken)
+        with-env { TWT_TOKEN: $secret } { ${lib.getExe pkg} }
+      '';
+      runtimeInputs = [pkg];
+    };
+in {
   options.evie.programs.twitch-tui = {
     enable = lib.mkEnableOption "twitch";
-    package = lib.mkPackageOption pkgs "twitch-tui" { };
+    package = lib.mkPackageOption pkgs "twitch-tui" {};
     settings = lib.mkOption {
       type = settingsFormat.type;
-      example = lib.literalExpression ''
+      example =
+        lib.literalExpression ''
         '';
       default = {
         twitch = {
@@ -69,7 +75,7 @@ in
           bettertv_emotes = true;
           seventv_emotes = true;
           frankerfacez_emotes = true;
-          favorite_channels = [ ];
+          favorite_channels = [];
           recent_channel_count = 5;
           border_type = "rounded";
           hide_chat_border = false;
@@ -85,7 +91,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ (wrapper cfg.package) ];
+    home.packages = [(wrapper cfg.package)];
     xdg.configFile."twt/config.toml".source = settingsFormat.generate "config.toml" cfg.settings;
   };
 }

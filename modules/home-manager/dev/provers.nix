@@ -1,12 +1,17 @@
-/****************************************************************************
-  * dev/provers module
-  *
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.dev.provers;
-in
+/**
+**************************************************************************
+* dev/provers module
+*
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.dev.provers;
+in {
   options.evie.dev.provers = {
     enable = lib.mkEnableOption "provers defaults";
   };

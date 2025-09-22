@@ -1,12 +1,17 @@
-/****************************************************************************
-  * editors/vscode module
-  *
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.editors.vscode;
-in
+/**
+**************************************************************************
+* editors/vscode module
+*
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.editors.vscode;
+in {
   options.evie.editors.vscode = {
     enable = lib.mkEnableOption "vscode defaults";
   };
@@ -28,8 +33,8 @@ in
         haskell.haskell
       ];
       mutableExtensionsDir = false;
-      keybindings = [ ];
-      userSettings = { };
+      keybindings = [];
+      userSettings = {};
     };
   };
 }

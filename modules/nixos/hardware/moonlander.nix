@@ -1,11 +1,16 @@
-/****************************************************************************
-  * Moonlander
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.hardware.moonlander;
-in
+/**
+**************************************************************************
+* Moonlander
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.hardware.moonlander;
+in {
   options.evie.hardware.moonlander = {
     enable = lib.mkEnableOption "moonlander";
   };

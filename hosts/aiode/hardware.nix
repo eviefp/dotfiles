@@ -1,19 +1,23 @@
-/****************************************************************************
-  * Aiode hardware configuration
-  *
-  **************************************************************************/
-{ lib, pkgs, ... }:
-
+/**
+**************************************************************************
+* Aiode hardware configuration
+*
+*************************************************************************
+*/
 {
+  lib,
+  pkgs,
+  ...
+}: {
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "nvme"
     "usb_storage"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = true;
@@ -28,8 +32,7 @@
     fsType = "vfat";
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/63cdfc74-8715-42c8-973b-f0e92a0f26e1"; }];
+  swapDevices = [{device = "/dev/disk/by-uuid/63cdfc74-8715-42c8-973b-f0e92a0f26e1";}];
 
   nix.settings.max-jobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

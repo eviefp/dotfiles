@@ -1,12 +1,17 @@
-/****************************************************************************
-  * programs/chat module
-  *
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.programs.chat;
-in
+/**
+**************************************************************************
+* programs/chat module
+*
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.programs.chat;
+in {
   options.evie.programs.chat = {
     enable = lib.mkEnableOption "chat defaults";
   };

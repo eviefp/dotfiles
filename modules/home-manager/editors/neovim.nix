@@ -1,13 +1,20 @@
-/****************************************************************************
-  * Neovim module
-  *
-  * Neovim package, plugins, and init file.
-  **************************************************************************/
-{ dotfiles, config, lib, pkgs, theme, ... }:
-let
-  cfg = config.evie.editors.neovim;
-in
+/**
+**************************************************************************
+* Neovim module
+*
+* Neovim package, plugins, and init file.
+*************************************************************************
+*/
 {
+  dotfiles,
+  config,
+  lib,
+  pkgs,
+  theme,
+  ...
+}: let
+  cfg = config.evie.editors.neovim;
+in {
   imports = [
     dotfiles.nixvim.homeModules.nixvim
   ];
@@ -15,11 +22,9 @@ in
   options.evie.editors.neovim = {
     enable = lib.mkEnableOption "neovim defaults";
     obsidian = lib.mkEnableOption "enable obsidian";
-
   };
 
   config = lib.mkIf cfg.enable {
-
     home.packages = [
       pkgs.obsidian
       pkgs.shellcheck
@@ -57,8 +62,8 @@ in
 
       autoCmd = [
         {
-          event = [ "BufEnter" ];
-          pattern = [ "*.purs" ];
+          event = ["BufEnter"];
+          pattern = ["*.purs"];
           command = ":setlocal filetype=purescript";
         }
       ];
@@ -678,7 +683,7 @@ in
               enable = true;
               installGhc = false;
               package = null;
-              cmd = [ "haskell-language-server-wrapper" "--logfile" "hls.log" "--debug" "--lsp" ]; # "--debug" ];
+              cmd = ["haskell-language-server-wrapper" "--logfile" "hls.log" "--debug" "--lsp"]; # "--debug" ];
               extraOptions = {
                 settings = {
                   haskell = {
@@ -704,7 +709,7 @@ in
             ts_ls = {
               enable = true;
               package = null;
-              rootMarkers = [ "package.json" "tsconfig.json" ];
+              rootMarkers = ["package.json" "tsconfig.json"];
             };
 
             nil_ls = {
@@ -715,7 +720,6 @@ in
               enable = true;
               package = null;
             };
-
 
             nushell = {
               enable = true;
@@ -737,27 +741,26 @@ in
         conform-nvim = {
           enable = true;
           settings = {
-
             formatters_by_ft = {
               haskell = {
                 __unkeyed-1 = "fourmolu";
                 __unkeyed-2 = "ormolu";
                 stop_after_first = true;
               };
-              go = [ "gofmt" ];
-              nix = [ "nixpkgs_fmt" ];
-              bash = [ "shellcheck" "shfmt" ];
-              markdown = [ "mdsf" ];
-              javascript = [ "prettier" ];
-              javascriptreact = [ "prettier" ];
-              typescript = [ "prettier" ];
-              typescriptreact = [ "prettier" ];
-              "javascript.tsx" = [ "prettier" ];
-              "typescript.tsx" = [ "prettier" ];
-              cabalproject = [ "cabal_fmt" ];
-              purescript = [ "purs-tidy" ];
-              rust = [ "rustfmt" ];
-              "*" = [ "trim_whitespace" ];
+              go = ["gofmt"];
+              nix = ["alejandra"];
+              bash = ["shellcheck" "shfmt"];
+              markdown = ["mdsf"];
+              javascript = ["prettier"];
+              javascriptreact = ["prettier"];
+              typescript = ["prettier"];
+              typescriptreact = ["prettier"];
+              "javascript.tsx" = ["prettier"];
+              "typescript.tsx" = ["prettier"];
+              cabalproject = ["cabal_fmt"];
+              purescript = ["purs-tidy"];
+              rust = ["rustfmt"];
+              "*" = ["trim_whitespace"];
             };
 
             format_on_save = {
@@ -794,12 +797,12 @@ in
                   shortening_target = 0;
                 }
               ];
-              lualine_b = [ ];
+              lualine_b = [];
               lualine_c = [
               ];
-              lualine_x = [ ];
-              lualine_y = [ ];
-              lualine_z = [ ];
+              lualine_x = [];
+              lualine_y = [];
+              lualine_z = [];
             };
             inactive_winbar = {
               lualine_a = [
@@ -809,33 +812,33 @@ in
                   shortening_target = 0;
                 }
               ];
-              lualine_b = [ ];
+              lualine_b = [];
               lualine_c = [
               ];
-              lualine_x = [ ];
-              lualine_y = [ ];
-              lualine_z = [ ];
+              lualine_x = [];
+              lualine_y = [];
+              lualine_z = [];
             };
             sections = {
-              lualine_a = [ "mode" "hostname" ];
-              lualine_b = [ "branch" "diff" "diagnostics" ];
-              lualine_c = [ "filename" ];
-              lualine_x = [ ];
+              lualine_a = ["mode" "hostname"];
+              lualine_b = ["branch" "diff" "diagnostics"];
+              lualine_c = ["filename"];
+              lualine_x = [];
               lualine_y = [
                 "encoding"
                 "fileformat"
               ];
-              lualine_z = [ "location" ];
+              lualine_z = ["location"];
             };
             inactive_sections = {
-              lualine_a = [ ];
-              lualine_b = [ ];
-              lualine_c = [ "filename" ];
-              lualine_x = [ "location" ];
-              lualine_y = [ ];
-              lualine_z = [ ];
+              lualine_a = [];
+              lualine_b = [];
+              lualine_c = ["filename"];
+              lualine_x = ["location"];
+              lualine_y = [];
+              lualine_z = [];
             };
-            extensions = [ "quickfix" ];
+            extensions = ["quickfix"];
           };
         };
 
@@ -931,7 +934,7 @@ in
           enable = true;
           settings = {
             skip_multiline = true;
-            standard_widths = [ 2 4 ];
+            standard_widths = [2 4];
           };
         };
 
@@ -941,13 +944,17 @@ in
           enable = true;
 
           settings = {
-            highlight_command.__raw = /*lua*/ ''
-              {
-                require('actions-preview.highlight').delta 'delta --side-by-side',
-                require('actions-preview.highlight').diff_so_fancy(),
-                require('actions-preview.highlight').diff_highlight(),
-              }
-            '';
+            highlight_command.__raw =
+              /*
+              lua
+              */
+              ''
+                {
+                  require('actions-preview.highlight').delta 'delta --side-by-side',
+                  require('actions-preview.highlight').diff_so_fancy(),
+                  require('actions-preview.highlight').diff_highlight(),
+                }
+              '';
           };
         };
 
@@ -1005,7 +1012,7 @@ in
                 };
               };
             };
-            surces.default = [ "lsp" "git" "path" "buffer" "emoji" "latex-symbols" "dictionary" ];
+            surces.default = ["lsp" "git" "path" "buffer" "emoji" "latex-symbols" "dictionary"];
             fuzzy.implementation = "prefer_rust_with_warning";
 
             soruces.providers = {
@@ -1127,7 +1134,7 @@ in
             };
             indent = {
               enable = true;
-              chars = [ "│" "¦" "┆" "┊" ];
+              chars = ["│" "¦" "┆" "┊"];
             };
             line_num = {
               enable = true;
@@ -1135,7 +1142,7 @@ in
             };
             blank = {
               enable = true;
-              chars = [ " " "․" "⁚" "⁖" "⁘" "⁙" ];
+              chars = [" " "․" "⁚" "⁖" "⁘" "⁙"];
             };
           };
         };
@@ -1304,7 +1311,7 @@ in
             };
 
             checkbox = {
-              order = [ " " ">" "x" "~" ];
+              order = [" " ">" "x" "~"];
             };
           };
         };
@@ -1314,7 +1321,7 @@ in
           enable = true;
           settings = {
             default_file_explorer = true;
-            columns = [ "icon" "permissions" "size" "mtime" ];
+            columns = ["icon" "permissions" "size" "mtime"];
             view_options = {
               show_hidden = true;
             };
@@ -1397,8 +1404,8 @@ in
         transparent = {
           enable = true;
           settings = {
-            extra_groups = [ ];
-            exclude_grups = [ ];
+            extra_groups = [];
+            exclude_grups = [];
           };
         };
 
@@ -1459,9 +1466,7 @@ in
             default_mappings = 1;
           };
         };
-
       };
     };
   };
 }
-

@@ -1,5 +1,9 @@
-{ dotfiles, pkgs, theme, ... }:
 {
+  dotfiles,
+  pkgs,
+  theme,
+  ...
+}: {
   imports = with dotfiles.self.nixosModules; [
     common
 
@@ -11,7 +15,7 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit dotfiles theme; };
+        extraSpecialArgs = {inherit dotfiles theme;};
         users.every = ./home.nix;
       };
     }
@@ -32,8 +36,7 @@
         "lp"
       ];
       shell = pkgs.fish;
-      hashedPassword =
-        "$6$2bJFtErxPXqeCEJO$w4K0Fm1WmRL3tpUUJxkesiBFsM03Q2/IrtX9QvJjIBH3bxlOr1VtMIgWhCtIR1B./3QtmBCKo4H8ajTk51JW2/";
+      hashedPassword = "$6$2bJFtErxPXqeCEJO$w4K0Fm1WmRL3tpUUJxkesiBFsM03Q2/IrtX9QvJjIBH3bxlOr1VtMIgWhCtIR1B./3QtmBCKo4H8ajTk51JW2/";
     };
 
     evie = {
@@ -55,10 +58,8 @@
 
       wayland = {
         enable = true;
-        compositors = [ "hyprland" ];
+        compositors = ["hyprland"];
       };
     };
-
-
   };
 }

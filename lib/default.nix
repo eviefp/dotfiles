@@ -1,5 +1,4 @@
-{ pkgs }:
-{
-  nuShellScript = pkgs.callPackage ./nuShellScript.nix { };
+{pkgs}: {
+  nuShellScript = pkgs.callPackage ./nuShellScript.nix {};
   theme = import ./theme.nix;
 }

@@ -1,5 +1,9 @@
-{ dotfiles, pkgs, theme, ... }:
 {
+  dotfiles,
+  pkgs,
+  theme,
+  ...
+}: {
   imports = with dotfiles.self.nixosModules; [
     common
 
@@ -11,7 +15,7 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit dotfiles theme; };
+        extraSpecialArgs = {inherit dotfiles theme;};
         users.evie = ./home.nix;
       };
     }
@@ -30,10 +34,10 @@
       enableWifi = true;
       hostName = "aiode";
     };
-    packages.extra = [ pkgs.libva pkgs.libva-utils ];
+    packages.extra = [pkgs.libva pkgs.libva-utils];
     wayland = {
       enable = true;
-      compositors = [ "hyprland" ];
+      compositors = ["hyprland"];
     };
     yubikey.enable = true;
   };

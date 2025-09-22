@@ -1,14 +1,17 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.evie.wayland.hyprshade;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.wayland.hyprshade;
+in {
   options.evie.wayland.hyprshade = {
     enable = lib.mkEnableOption "hyprshade defaults";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.hyprshade ];
+    home.packages = [pkgs.hyprshade];
 
     home.file.".config/hypr/shaders" = {
       recursive = true;

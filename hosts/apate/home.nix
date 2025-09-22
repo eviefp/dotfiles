@@ -1,5 +1,8 @@
-{ dotfiles, lib, ... }:
 {
+  dotfiles,
+  lib,
+  ...
+}: {
   imports = with dotfiles.self.homeModules; [
     common
     dotfiles.self.homeModules.macos.aerospace

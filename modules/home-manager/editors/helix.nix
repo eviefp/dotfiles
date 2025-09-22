@@ -1,12 +1,17 @@
-/****************************************************************************
-  * editors/helix module
-  *
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.editors.helix;
-in
+/**
+**************************************************************************
+* editors/helix module
+*
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.editors.helix;
+in {
   options.evie.editors.helix = {
     enable = lib.mkEnableOption "helix defaults";
   };
@@ -127,33 +132,33 @@ in
           name = "haskell";
           auto-format = false;
           scope = "source.haskell";
-          file-types = [ "hs" ];
-          roots = [ "flake.nix" "cabal.project" ];
+          file-types = ["hs"];
+          roots = ["flake.nix" "cabal.project"];
           comment-token = "--";
-          language-servers = [ "haskell-language-server" ];
+          language-servers = ["haskell-language-server"];
         }
         {
           name = "nix";
           auto-format = false;
           formatter.command = "nixpkgs-fmt";
-          language-servers = [ "nil" ];
+          language-servers = ["nil"];
           indent.tab-width = 2;
           indent.unit = " ";
         }
         {
           name = "rust";
           auto-format = false;
-          file-types = [ "rs" ];
-          roots = [ "Cargo.toml" "Cargo.lock" ];
-          language-servers = [ "rust-analyzer" ];
+          file-types = ["rs"];
+          roots = ["Cargo.toml" "Cargo.lock"];
+          language-servers = ["rust-analyzer"];
         }
         {
           name = "purescript";
           auto-format = false;
           formatter.command = "purs-tidy";
-          language-servers = [ "purescript-language-server" ];
-          roots = [ "spago.yaml" "spago.dhall" ];
-          file-types = [ "purs" ];
+          language-servers = ["purescript-language-server"];
+          roots = ["spago.yaml" "spago.dhall"];
+          file-types = ["purs"];
           indent.tab-width = 2;
           indent.unit = " ";
         }
@@ -165,12 +170,12 @@ in
           mouse = false;
           cursorline = true;
           cursorcolumn = false;
-          gutters = [ "diagnostics" "spacer" "line-numbers" "spacer" "diff" ];
+          gutters = ["diagnostics" "spacer" "line-numbers" "spacer" "diff"];
           auto-completion = true;
           auto-format = true;
           bufferline = "always";
           color-modes = true;
-          rulers = [ 80 100 120 ];
+          rulers = [80 100 120];
           lsp = {
             display-messages = true;
           };
@@ -220,20 +225,18 @@ in
         };
       };
       themes = {
-        nordmod =
-          let
-            transparent = {
-              fg = "white";
-            };
-          in
-          {
-            inherits = "nord";
-            "ui.menu" = transparent;
-            "ui.background" = transparent;
-            "ui.popup" = transparent;
-            "ui.window" = transparent;
-            "ui.statusline" = transparent;
+        nordmod = let
+          transparent = {
+            fg = "white";
           };
+        in {
+          inherits = "nord";
+          "ui.menu" = transparent;
+          "ui.background" = transparent;
+          "ui.popup" = transparent;
+          "ui.window" = transparent;
+          "ui.statusline" = transparent;
+        };
       };
     };
   };

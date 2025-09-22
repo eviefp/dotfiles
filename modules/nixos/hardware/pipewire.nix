@@ -1,11 +1,16 @@
-/****************************************************************************
-  * Pipewire
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.hardware.pipewire;
-in
+/**
+**************************************************************************
+* Pipewire
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.hardware.pipewire;
+in {
   options.evie.hardware.pipewire = {
     enable = lib.mkEnableOption "pipewire";
   };
@@ -31,4 +36,3 @@ in
     security.rtkit.enable = true;
   };
 }
-

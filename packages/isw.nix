@@ -1,4 +1,8 @@
-{ lib, fetchFromGitLab, rustPlatform }:
+{
+  lib,
+  fetchFromGitLab,
+  rustPlatform,
+}:
 rustPlatform.buildRustPackage rec {
   pname = "isw";
   version = "0.3.3";
@@ -16,7 +20,7 @@ rustPlatform.buildRustPackage rec {
     description = "a simple terminal stopwatch application";
     homepage = "https://gitlab.com/thom-cameron/isw";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [ thom-cameron ];
+    maintainers = with lib.maintainers; [thom-cameron];
     mainProgram = "isw";
   };
 }

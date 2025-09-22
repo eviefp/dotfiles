@@ -1,5 +1,8 @@
-{ dotfiles, theme, ... }:
 {
+  dotfiles,
+  theme,
+  ...
+}: {
   imports = with dotfiles.self.nixosModules; [
     common
     openvpn-client
@@ -12,7 +15,7 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit dotfiles theme; };
+        extraSpecialArgs = {inherit dotfiles theme;};
         users.evie = ./home.nix;
       };
     }
@@ -32,14 +35,14 @@
     network = {
       enable = true;
       hostName = "thelxinoe";
-      extraPorts = [ 31234 ];
+      extraPorts = [31234];
     };
     openvpn-client.enable = true;
     peroxide.enable = true;
     jellyfin.enable = true;
     wayland = {
       enable = true;
-      compositors = [ "hyprland" ];
+      compositors = ["hyprland"];
     };
     yubikey.enable = true;
   };

@@ -1,9 +1,14 @@
-/****************************************************************************
-  * Arche hardware configuration
-  *
-  **************************************************************************/
-{ lib, pkgs, ... }:
+/**
+**************************************************************************
+* Arche hardware configuration
+*
+*************************************************************************
+*/
 {
+  lib,
+  pkgs,
+  ...
+}: {
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -11,7 +16,7 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.blacklistedKernelModules = [ "nouveau" "nvidiafb" ];
+  boot.blacklistedKernelModules = ["nouveau" "nvidiafb"];
   boot.kernelModules = [
     "kvm-intel"
     "nvidia"
@@ -23,7 +28,7 @@
   ];
 
   hardware.enableRedistributableFirmware = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.cpu.intel.updateMicrocode = true;
 
@@ -38,9 +43,8 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
+    {device = "/dev/disk/by-label/swap";}
   ];
-
 
   nix.settings.max-jobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

@@ -1,22 +1,27 @@
-/****************************************************************************
-  * Yubikey module
-  **************************************************************************/
-{ pkgs, config, lib, ... }:
-let
-  cfg = config.evie.yubikey;
-in
+/**
+**************************************************************************
+* Yubikey module
+*************************************************************************
+*/
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.evie.yubikey;
+in {
   options.evie.yubikey = {
     enable = lib.mkEnableOption "yubikey defaults";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.yubikey-personalization pkgs.yubikey-manager ];
+    environment.systemPackages = [pkgs.yubikey-personalization pkgs.yubikey-manager];
 
     services = {
       pcscd.enable = true;
-      udev.packages = [ pkgs.yubikey-personalization ];
-      dbus.packages = [ pkgs.gcr ];
+      udev.packages = [pkgs.yubikey-personalization];
+      dbus.packages = [pkgs.gcr];
     };
 
     security.pam = {

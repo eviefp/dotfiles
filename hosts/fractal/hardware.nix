@@ -1,10 +1,10 @@
-/****************************************************************************
-  * Fractal hardware configuration
-  *
-  **************************************************************************/
-{ lib, ... }:
-
-{
+/**
+**************************************************************************
+* Fractal hardware configuration
+*
+*************************************************************************
+*/
+{lib, ...}: {
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -13,10 +13,10 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.kernelParams = [ "nomodeset" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelParams = ["nomodeset"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   boot.swraid = {
     enable = true;
@@ -41,7 +41,7 @@
     fsType = "vfat";
   };
 
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [{device = "/dev/disk/by-label/swap";}];
 
   nix.settings.max-jobs = lib.mkDefault 12;
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

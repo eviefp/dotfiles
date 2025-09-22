@@ -1,5 +1,4 @@
-{ dotfiles, ... }:
-{
+{dotfiles, ...}: {
   imports = with dotfiles.self.homeModules; [
     common
   ];
@@ -26,10 +25,12 @@
             enableLaptop = true;
           };
         };
-        disabledMonitors = [{
-          name = "DP-1";
-          keybind = "E";
-        }];
+        disabledMonitors = [
+          {
+            name = "DP-1";
+            keybind = "E";
+          }
+        ];
         monitors = [
           {
             name = "eDP-1";

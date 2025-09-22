@@ -1,8 +1,10 @@
-{ lib, config, ... }:
-let
-  cfg = config.evie.wayland.river;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.evie.wayland.river;
+in {
   options.evie.wayland.river = {
     enable = lib.mkEnableOption "river defaults";
   };
@@ -188,6 +190,5 @@ in
       # };
       # };
     };
-
   };
 }

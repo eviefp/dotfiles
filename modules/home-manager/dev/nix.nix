@@ -1,16 +1,22 @@
-/****************************************************************************
-  * dev/nix module
-  *
-  * Enable packages I use for nix-related development:
-  *   - 'niv' for pinning github repositories
-  *   - 'nixpkgs-fmt' for formatting sources with emacs/nvim
-  *   - 'nix-diff' for finding out how two derivations differ
-  ************************************************************************ */
-{ dotfiles, config, lib, pkgs, ... }:
-let
-  cfg = config.evie.dev.nix;
-in
+/**
+**************************************************************************
+* dev/nix module
+*
+* Enable packages I use for nix-related development:
+*   - 'niv' for pinning github repositories
+*   - 'nixpkgs-fmt' for formatting sources with emacs/nvim
+*   - 'nix-diff' for finding out how two derivations differ
+************************************************************************
+*/
 {
+  dotfiles,
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.dev.nix;
+in {
   options.evie.dev.nix = {
     enable = lib.mkEnableOption "nix defaults";
   };

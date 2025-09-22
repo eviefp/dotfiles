@@ -1,9 +1,14 @@
-/****************************************************************************
-  * Thelxinoe hardware configuration
-  *
-  **************************************************************************/
-{ lib, pkgs, ... }:
+/**
+**************************************************************************
+* Thelxinoe hardware configuration
+*
+*************************************************************************
+*/
 {
+  lib,
+  pkgs,
+  ...
+}: {
   boot.loader.grub.useOSProber = true;
   boot.initrd.availableKernelModules = [
     "nvme"
@@ -13,14 +18,14 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = [
     "kvm-amd"
     "amdgpu"
     "algif_hash"
     "algif_skcipher"
   ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [];
 
   boot.loader.systemd-boot.memtest86.enable = true;
 
@@ -46,7 +51,7 @@
     fsType = "ext4";
   };
 
-  boot.supportedFilesystems = [ "nfs" ];
+  boot.supportedFilesystems = ["nfs"];
   fileSystems."/mnt/raid" = {
     device = "fractal:/mnt/raid1";
     fsType = "nfs";
@@ -58,8 +63,7 @@
     ];
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/5fbea3ce-b59a-40de-9330-9d4e0264c8f0"; }];
+  swapDevices = [{device = "/dev/disk/by-uuid/5fbea3ce-b59a-40de-9330-9d4e0264c8f0";}];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   # High-DPI console

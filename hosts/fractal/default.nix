@@ -1,5 +1,9 @@
-{ dotfiles, pkgs, theme, ... }:
 {
+  dotfiles,
+  pkgs,
+  theme,
+  ...
+}: {
   imports = with dotfiles.self.nixosModules; [
     common
 
@@ -11,23 +15,22 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit dotfiles theme; };
+        extraSpecialArgs = {inherit dotfiles theme;};
         users.evie = ./home.nix;
       };
     }
   ];
 
   config = {
-
-    networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 ];
+    networking.firewall.allowedUDPPorts = [111 2049 4000 4001 4002];
     evie = {
       common.enable = true;
       minecraft.enable = true;
       network = {
         hostName = "fractal";
-        extraPorts = [ 111 1025 1143 2049 4000 4001 4002 ];
+        extraPorts = [111 1025 1143 2049 4000 4001 4002];
       };
-      packages.extra = [ pkgs.git pkgs.wget pkgs.ntfs3g ];
+      packages.extra = [pkgs.git pkgs.wget pkgs.ntfs3g];
     };
 
     services.nfs = {

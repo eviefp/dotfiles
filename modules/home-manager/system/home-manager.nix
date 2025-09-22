@@ -1,11 +1,16 @@
-/****************************************************************************
-  * home-manager module
-  ************************************************************************ */
-{ lib, config, dotfiles, ... }:
-let
-  cfg = config.evie.system.home-manager;
-in
+/**
+**************************************************************************
+* home-manager module
+************************************************************************
+*/
 {
+  lib,
+  config,
+  dotfiles,
+  ...
+}: let
+  cfg = config.evie.system.home-manager;
+in {
   options.evie.system.home-manager = {
     enable = lib.mkEnableOption "home-manager defaults";
 

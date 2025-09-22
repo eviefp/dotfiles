@@ -1,9 +1,16 @@
-/****************************************************************************
-  * experimental terminal apps
-  *
-  **************************************************************************/
-{ dotfiles, lib, config, pkgs, ... }:
-let
+/**
+**************************************************************************
+* experimental terminal apps
+*
+*************************************************************************
+*/
+{
+  dotfiles,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.evie.term.experimental;
   mapMain = exp: ''
     print "${exp.name} - ${exp.short}"
@@ -24,8 +31,7 @@ let
       ${lib.strings.concatStringsSep "\n" (lib.lists.map mapDetails cfg.experiments)}
     '';
   };
-in
-{
+in {
   options.evie.term.experimental = {
     enable = lib.mkEnableOption "term defaults";
     experiments = lib.mkOption {
@@ -146,12 +152,11 @@ in
             isw -i seconds[,seconds,...]
           '';
         }
-
       ];
     };
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = (lib.lists.map (exp: exp.package) cfg.experiments) ++ [ exp ];
+    home.packages = (lib.lists.map (exp: exp.package) cfg.experiments) ++ [exp];
   };
 }

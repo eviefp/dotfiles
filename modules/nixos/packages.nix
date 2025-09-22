@@ -1,19 +1,24 @@
-/****************************************************************************
-  * Packages module
-  *
-  * Sets default packages I want installed "globally" (as opposed to through
-  * home-manager).
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.packages;
-in
+/**
+**************************************************************************
+* Packages module
+*
+* Sets default packages I want installed "globally" (as opposed to through
+* home-manager).
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.packages;
+in {
   options.evie.packages = {
     enable = lib.mkEnableOption "packages defaults";
     extra = lib.mkOption {
       type = lib.types.listOf lib.types.package;
-      default = [ ];
+      default = [];
       example =
         lib.options.literalExpression "[ pkgs.firefox pkgs.thunderbird ]";
       description = ''
@@ -30,7 +35,7 @@ in
 
   config = {
     environment.systemPackages = builtins.concatLists [
-      [ pkgs.cachix pkgs.dbus pkgs.vim pkgs.nfs-utils ]
+      [pkgs.cachix pkgs.dbus pkgs.vim pkgs.nfs-utils]
       cfg.extra
     ];
 

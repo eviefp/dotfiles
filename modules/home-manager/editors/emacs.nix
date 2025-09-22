@@ -1,10 +1,16 @@
-/****************************************************************************
-  * Emacs module
-  *
-  * Emacs package using emacs-overlay.
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
+/**
+**************************************************************************
+* Emacs module
+*
+* Emacs package using emacs-overlay.
+*************************************************************************
+*/
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.evie.editors.emacs;
   initFile = ../../../config/init.el;
   package-desktop = pkgs.emacsWithPackagesFromUsePackage {
@@ -35,10 +41,9 @@ let
       epkgs.ligature
     ];
 
-    package = pkgs.emacs-git-nox.override { };
+    package = pkgs.emacs-git-nox.override {};
   };
-in
-{
+in {
   options.evie.editors.emacs = {
     enable = lib.mkEnableOption "emacs defaults";
 
@@ -58,23 +63,21 @@ in
         description = "Emacs locals file.";
       };
     };
-
   };
 
   config = lib.mkIf cfg.enable {
     home.packages =
       if cfg.no-x
-      then [ package-term-only ]
-      else
-        [
-          package-desktop
-          pkgs.python3 # needed by emacs-elisp-autofmt
-          pkgs.graphviz # dot, needed for org-roam
-          pkgs.tree-sitter
-        ];
+      then [package-term-only]
+      else [
+        package-desktop
+        pkgs.python3 # needed by emacs-elisp-autofmt
+        pkgs.graphviz # dot, needed for org-roam
+        pkgs.tree-sitter
+      ];
 
     home.file = lib.mkMerge [
-      { ".emacs.d/init.el".source = initFile; }
+      {".emacs.d/init.el".source = initFile;}
       (lib.mkIf cfg.locals.enable {
         ".emacs.d/locals.el".source = cfg.locals.file;
       })
@@ -83,10 +86,13 @@ in
     services = {
       emacs = {
         enable = cfg.service;
-        package = if cfg.no-x then package-term-only else package-desktop;
+        package =
+          if cfg.no-x
+          then package-term-only
+          else package-desktop;
         client = {
           enable = true;
-          arguments = [ "-c" ];
+          arguments = ["-c"];
         };
         socketActivation.enable = true;
         startWithUserSession = true;

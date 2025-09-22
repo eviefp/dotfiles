@@ -1,14 +1,20 @@
-/****************************************************************************
-  * Calendar module
-  *
-  * Set up calendar accounts.
-  * Manual setup: manually run 'vdirsyncer discover <name>' for each account.
-  **************************************************************************/
-{ pkgs, lib, config, dotfiles, ... }:
-let
-  cfg = config.evie.system.calendar;
-in
+/**
+**************************************************************************
+* Calendar module
+*
+* Set up calendar accounts.
+* Manual setup: manually run 'vdirsyncer discover <name>' for each account.
+*************************************************************************
+*/
 {
+  pkgs,
+  lib,
+  config,
+  dotfiles,
+  ...
+}: let
+  cfg = config.evie.system.calendar;
+in {
   options.evie.system.calendar = {
     enable = lib.mkEnableOption "calendar defaults";
   };
@@ -17,7 +23,6 @@ in
     accounts.calendar = {
       basePath = "${config.xdg.dataHome}/calendars";
       accounts = {
-
         gmailPrimary = {
           khal = {
             enable = true;
@@ -28,11 +33,11 @@ in
           remote.type = "google_calendar";
           vdirsyncer = {
             enable = true;
-            metadata = [ "color" ];
+            metadata = ["color"];
             tokenFile = "/home/evie/.local/share/vdirsyncer/token";
-            clientIdCommand = [ "cat" "/run/secrets/gmailCalendarClientId" ];
-            clientSecretCommand = [ "cat" "/run/secrets/gmailCalendarClientSecret" ];
-            collections = [ "from a" "from b" ];
+            clientIdCommand = ["cat" "/run/secrets/gmailCalendarClientId"];
+            clientSecretCommand = ["cat" "/run/secrets/gmailCalendarClientSecret"];
+            collections = ["from a" "from b"];
             conflictResolution = "remote wins";
           };
         };
@@ -51,7 +56,6 @@ in
         timeformat = "%H:%M";
 
         firstweekday = 1;
-
       };
       settings = {
         keybindings = {
@@ -88,7 +92,7 @@ in
     systemd.user.timers.calendar-notifier = {
       Unit = {
         Description = "Calendar notification";
-        After = [ "sops-nix.service" ];
+        After = ["sops-nix.service"];
       };
       Timer = {
         Unit = "calendar-notifier.service";
@@ -96,16 +100,16 @@ in
         OnUnitActiveSec = "45s";
       };
       Install = {
-        WantedBy = [ "hyprland-session.target" ];
+        WantedBy = ["hyprland-session.target"];
       };
     };
     systemd.user.services.calendar-notifier = {
       Unit = {
         Description = "Calendar notification";
-        After = [ "sops-nix.service" ];
+        After = ["sops-nix.service"];
       };
 
-      Install = { WantedBy = [ "hyprland-session.target" ]; };
+      Install = {WantedBy = ["hyprland-session.target"];};
 
       Service = {
         Type = "oneshot";

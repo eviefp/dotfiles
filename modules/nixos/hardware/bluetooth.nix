@@ -1,11 +1,15 @@
-/****************************************************************************
-  * Bluetooth
-  **************************************************************************/
-{ lib, config, ... }:
-let
-  cfg = config.evie.hardware.bluetooth;
-in
+/**
+**************************************************************************
+* Bluetooth
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.evie.hardware.bluetooth;
+in {
   options.evie.hardware.bluetooth = {
     enable = lib.mkEnableOption "bluetooth";
   };
@@ -30,7 +34,6 @@ in
           };
         };
       };
-
     };
 
     services.blueman.enable = true;

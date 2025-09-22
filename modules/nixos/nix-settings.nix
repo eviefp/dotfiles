@@ -1,12 +1,17 @@
-/****************************************************************************
-  * Nix settings
-  *
-  **************************************************************************/
-{ dotfiles, lib, config, ... }:
-let
-  cfg = config.evie.nix-settings;
-in
+/**
+**************************************************************************
+* Nix settings
+*
+*************************************************************************
+*/
 {
+  dotfiles,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.evie.nix-settings;
+in {
   options.evie.nix-settings = {
     enable = lib.options.mkEnableOption "Enable custom nix-settings.";
   };
@@ -17,7 +22,7 @@ in
     nix = {
       registry.nixpkgs.flake = dotfiles.nixpkgs;
       settings = {
-        trusted-users = [ "root" "@wheel" "evie" ];
+        trusted-users = ["root" "@wheel" "evie"];
         extra-substituters = [
           "https://nix-community.cachix.org"
           "https://cache.lix.systems"
@@ -41,7 +46,7 @@ in
     };
 
     nixpkgs = {
-      overlays = [ dotfiles.nix-minecraft.overlay (import dotfiles.emacs-overlay) dotfiles.nur.overlays.default ];
+      overlays = [dotfiles.nix-minecraft.overlay (import dotfiles.emacs-overlay) dotfiles.nur.overlays.default];
       config.allowUnfree = true;
     };
   };

@@ -1,5 +1,4 @@
-{ dotfiles, ... }:
-{
+{dotfiles, ...}: {
   imports = with dotfiles.self.homeModules; [
     common
   ];
@@ -73,10 +72,12 @@
             keybind = "R";
           }
         ];
-        disabledMonitors = [{
-          name = "HDMI-A-1";
-          keybind = "T";
-        }];
+        disabledMonitors = [
+          {
+            name = "HDMI-A-1";
+            keybind = "T";
+          }
+        ];
       };
     };
   };

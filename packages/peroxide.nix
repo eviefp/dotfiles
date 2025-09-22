@@ -1,9 +1,9 @@
-{ lib
-, buildGo122Module
-, fetchFromGitHub
-, nixosTests
+{
+  lib,
+  buildGo122Module,
+  fetchFromGitHub,
+  nixosTests,
 }:
-
 buildGo122Module rec {
   pname = "peroxide";
   version = "0.5.0";
@@ -30,7 +30,7 @@ buildGo122Module rec {
   meta = with lib; {
     homepage = "https://github.com/ljanyst/peroxide";
     license = licenses.gpl3Plus;
-    maintainers = with maintainers; [ aidalgol ];
+    maintainers = with maintainers; [aidalgol];
     description = "Unofficial ProtonMail bridge";
     longDescription = ''
       Peroxide is a fork of the official ProtonMail bridge that aims to be

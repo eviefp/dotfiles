@@ -1,16 +1,20 @@
-/****************************************************************************
-  * Nextcloud module
-  *
-  * Everything is hardcoded because I have a single server which hosts this. No
-  * need to generalise!
-  * TODO: will I reuse this?
-  **************************************************************************/
-{ lib, config, ... }:
-let
-  cfg = config.evie.nextcloud;
-in
+/**
+**************************************************************************
+* Nextcloud module
+*
+* Everything is hardcoded because I have a single server which hosts this. No
+* need to generalise!
+* TODO: will I reuse this?
+*************************************************************************
+*/
 {
-  imports = [ ];
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.evie.nextcloud;
+in {
+  imports = [];
 
   options.evie.nextcloud = {
     enable = lib.options.mkEnableOption "Enable NextCloud service.";
@@ -61,8 +65,8 @@ in
     };
 
     systemd.services."nextcloud-setup" = {
-      requires = [ "postgresql.service" ];
-      after = [ "postgresql.service" ];
+      requires = ["postgresql.service"];
+      after = ["postgresql.service"];
     };
   };
 }

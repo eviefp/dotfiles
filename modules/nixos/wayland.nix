@@ -1,21 +1,26 @@
-/****************************************************************************
-  * Wayland module
-  *
-  **************************************************************************/
-{ config, lib, dotfiles, pkgs, ... }:
-let
-  cfg = config.evie.wayland;
-in
+/**
+**************************************************************************
+* Wayland module
+*
+*************************************************************************
+*/
 {
+  config,
+  lib,
+  dotfiles,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.wayland;
+in {
   options.evie.wayland = {
     enable = lib.mkEnableOption "wayland defaults";
     compositors = lib.mkOption {
-      type = lib.types.listOf (lib.types.enum [ "hyprland" "river" "plasma" ]);
-      default = [ "hyprland" ];
-      example = [ "hyprland" "river" ];
+      type = lib.types.listOf (lib.types.enum ["hyprland" "river" "plasma"]);
+      default = ["hyprland"];
+      example = ["hyprland" "river"];
       description = lib.mdDoc "Wayland compositor to use.";
     };
-
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge

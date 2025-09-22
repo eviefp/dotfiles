@@ -1,20 +1,26 @@
-/****************************************************************************
-  * GUI module
-  *
-  * GUI programs such as browsers, multimedia, etc.
-  **************************************************************************/
-{ dotfiles, lib, config, pkgs, ... }:
-let
+/**
+**************************************************************************
+* GUI module
+*
+* GUI programs such as browsers, multimedia, etc.
+*************************************************************************
+*/
+{
+  dotfiles,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.evie.programs.gui;
   scrcpy = dotfiles.self.lib.nuShellScript {
     name = "scrcpy";
     text = ''
       scrcpy --video-codec=h265 -m1920 --max-fps=60 -K --legacy-paste
     '';
-    runtimeInputs = [ pkgs.scrcpy ];
+    runtimeInputs = [pkgs.scrcpy];
   };
-in
-{
+in {
   options.evie.programs.gui = {
     enable = lib.mkEnableOption "gui defaults";
   };
@@ -60,8 +66,8 @@ in
       feh = {
         enable = true;
         keybindings = {
-          zoom_in = [ "plus" "J" ];
-          zoom_out = [ "minus" "K" ];
+          zoom_in = ["plus" "J"];
+          zoom_out = ["minus" "K"];
           zoom_default = "0";
           scroll_left = "h";
           scroll_right = "l";
@@ -80,6 +86,5 @@ in
         };
       };
     };
-
   };
 }

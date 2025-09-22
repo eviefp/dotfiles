@@ -1,9 +1,11 @@
 # wofi is really nice and simple, but is unmaintained so maybe not
-{ config, lib, ... }:
-let
-  cfg = config.evie.wayland.wofi;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.evie.wayland.wofi;
+in {
   options.evie.wayland.wofi = {
     enable = lib.mkEnableOption "wofi defaults";
   };
@@ -25,7 +27,7 @@ in
       };
 
       style = ''
-        '';
+      '';
     };
   };
 }

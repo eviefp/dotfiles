@@ -1,8 +1,13 @@
-{ dotfiles, config, lib, pkgs, ... }:
-with lib;
-let
+{
+  dotfiles,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.evie.peroxide;
-  settingsFormat = pkgs.formats.yaml { };
+  settingsFormat = pkgs.formats.yaml {};
   # peroxide deletes the cache directory on startup, which requires write
   # permission on the parent directory, so we can't use
   # /var/cache/peroxide
@@ -16,8 +21,7 @@ let
     CookieJar = "/var/lib/${stateDir}/cookies.json";
     CredentialsStore = "/var/lib/${stateDir}/credentials.json";
   };
-in
-{
+in {
   options.evie.peroxide = {
     enable = mkEnableOption (lib.mdDoc "peroxide");
 
@@ -27,7 +31,7 @@ in
     };
 
     logLevel = mkOption {
-      type = types.enum [ "Panic" "Fatal" "Error" "Warning" "Info" "Debug" "Trace" ];
+      type = types.enum ["Panic" "Fatal" "Error" "Warning" "Info" "Debug" "Trace"];
       default = "Warning";
       example = "Info";
       description = lib.mdDoc "Only log messages of this priority or higher.";
@@ -92,15 +96,15 @@ in
       isSystemUser = true;
       group = "peroxide";
     };
-    users.groups.peroxide = { };
+    users.groups.peroxide = {};
 
     systemd.services.peroxide = {
       description = "Peroxide ProtonMail bridge";
-      requires = [ "network.target" ];
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
+      requires = ["network.target"];
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
 
-      restartTriggers = [ config.environment.etc."peroxide.conf".source ];
+      restartTriggers = [config.environment.etc."peroxide.conf".source];
 
       serviceConfig = {
         Type = "simple";
@@ -109,7 +113,7 @@ in
         LogsDirectoryMode = "0750";
         # Specify just "peroxide" so that the user has write permission, because
         # peroxide deletes and recreates the cache directory on startup.
-        CacheDirectory = [ "peroxide" "peroxide/cache" ];
+        CacheDirectory = ["peroxide" "peroxide/cache"];
         CacheDirectoryMode = "0700";
         StateDirectory = stateDir;
         StateDirectoryMode = "0700";
@@ -143,6 +147,6 @@ in
     };
 
     environment.etc."peroxide.conf".source = settingsFormat.generate "peroxide.conf" cfg.settings;
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = [cfg.package];
   };
 }

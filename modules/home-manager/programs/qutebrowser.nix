@@ -1,12 +1,17 @@
-/****************************************************************************
-  * programs/qutebrowser module
-  *
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.programs.qutebrowser;
-in
+/**
+**************************************************************************
+* programs/qutebrowser module
+*
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.programs.qutebrowser;
+in {
   options.evie.programs.qutebrowser = {
     enable = lib.mkEnableOption "qutebrowser defaults";
   };
@@ -37,7 +42,7 @@ in
       '';
 
       settings = {
-        editor.command = [ "kitty" "-e" "nvim" "{}" ];
+        editor.command = ["kitty" "-e" "nvim" "{}"];
         auto_save.session = true;
         colors = {
           webpage = {

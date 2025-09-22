@@ -1,8 +1,11 @@
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.system.gpg;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.system.gpg;
+in {
   options.evie.system.gpg = {
     enable = lib.mkEnableOption "calendar defaults";
   };

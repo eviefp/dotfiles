@@ -1,15 +1,20 @@
-/****************************************************************************
-  * Common module
-  *
-  * This is basically just a shorthand for what most of my systems use.
-  **************************************************************************/
-{ dotfiles, lib, config, ... }:
-let
+/**
+**************************************************************************
+* Common module
+*
+* This is basically just a shorthand for what most of my systems use.
+*************************************************************************
+*/
+{
+  dotfiles,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.evie.common;
   removeCommon = n: _: n != "common";
   notAttrs = n: !(lib.isAttrs n);
-in
-{
+in {
   options.evie.common = {
     enable = lib.mkEnableOption "common config";
   };

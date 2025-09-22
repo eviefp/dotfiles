@@ -1,18 +1,23 @@
-/****************************************************************************
-  * programs/text module
-  *
-  * Enable packages I use for text-related development:
-  *   - 'mailcap' for reading MIME emails in emacs
-  *   - 'ispell' for spelling
-  *   - 'pandoc' for document formatting
-  *   - 'tectonic' for building latex packages
-  *   - 'texlab' for I'm not sure what
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.term.text;
-in
+/**
+**************************************************************************
+* programs/text module
+*
+* Enable packages I use for text-related development:
+*   - 'mailcap' for reading MIME emails in emacs
+*   - 'ispell' for spelling
+*   - 'pandoc' for document formatting
+*   - 'tectonic' for building latex packages
+*   - 'texlab' for I'm not sure what
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.term.text;
+in {
   options.evie.term.text = {
     enable = lib.mkEnableOption "text defaults";
   };

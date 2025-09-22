@@ -1,12 +1,16 @@
-{ lib, config, pkgs, dotfiles, ... }:
-let
+{
+  lib,
+  config,
+  pkgs,
+  dotfiles,
+  ...
+}: let
   cfg = config.evie.term;
   scripts = {
-    crypto = pkgs.concatScript "crypto" [ ../../../scripts/crypto.nu ];
-    misc = pkgs.concatScript "misc" [ ../../../scripts/misc.nu ];
+    crypto = pkgs.concatScript "crypto" [../../../scripts/crypto.nu];
+    misc = pkgs.concatScript "misc" [../../../scripts/misc.nu];
   };
-in
-{
+in {
   options.evie.term = {
     enable = lib.mkEnableOption "term defaults";
   };
@@ -27,6 +31,7 @@ in
       pkgs.wget
       pkgs.zip
       dotfiles.self.packages.${pkgs.system}.deploy
+      dotfiles.self.packages.${pkgs.system}.dotfiles
     ];
 
     programs = {
@@ -61,7 +66,6 @@ in
         enableFishIntegration = true;
         enableNushellIntegration = true;
       };
-
 
       fish = {
         enable = true;
@@ -129,12 +133,9 @@ in
         aliases = {
           ll = "log --graph --decorate --oneline --abbrev-commit";
           lola = "log --graph --decorate --oneline --abbrev-commit --all";
-          hist =
-            "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
-          lol =
-            "log --color --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
-          br =
-            "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
+          hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
+          lol = "log --color --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
+          br = "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
           work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
         };
         extraConfig = {
@@ -143,7 +144,7 @@ in
           pull.ff = "only";
           merge.conflictstyle = "diff3";
         };
-        ignores = [ "TAGS" ];
+        ignores = ["TAGS"];
         userEmail = "me@evie.ro";
         userName = "Evie Ciobanu";
       };
@@ -309,7 +310,7 @@ in
         enableBashIntegration = true;
         enableFishIntegration = true;
         enableNushellIntegration = true;
-        flags = [ ];
+        flags = [];
         settings = {
           auto_sync = false;
           update_check = false;
@@ -326,7 +327,6 @@ in
         enable = true;
         hidden = true;
       };
-
     };
   };
 }

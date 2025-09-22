@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.evie.wayland.rofi;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.wayland.rofi;
+in {
   options.evie.wayland.rofi = {
     enable = lib.mkEnableOption "wayland defaults";
   };

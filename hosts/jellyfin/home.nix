@@ -1,5 +1,4 @@
-{ dotfiles, ... }:
-{
+{dotfiles, ...}: {
   imports = with dotfiles.self.homeModules; [
     editors.neovim
     system.home-manager

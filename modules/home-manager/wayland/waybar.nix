@@ -1,8 +1,13 @@
-{ dotfiles, pkgs, config, lib, theme, ... }:
-let
-  cfg = config.evie.wayland.waybar;
-in
 {
+  dotfiles,
+  pkgs,
+  config,
+  lib,
+  theme,
+  ...
+}: let
+  cfg = config.evie.wayland.waybar;
+in {
   options.evie.wayland.waybar = {
     enable = lib.mkEnableOption "waybar defaults";
 
@@ -10,7 +15,6 @@ in
       type = lib.types.str;
       example = "DP-1";
     };
-
 
     modules = {
       enableTV = lib.mkEnableOption "enable TV indicator";
@@ -28,7 +32,6 @@ in
         description = "only show active workspaces";
         type = lib.types.bool;
       };
-
     };
   };
 
@@ -64,15 +67,28 @@ in
             "custom/window"
           ];
 
-          modules-center = [
-            "group/hardware"
-            "group/media"
-          ]
-          ++ (if cfg.modules.enableLaptop then [ "group/laptop" ] else [ ])
-          ++ (if cfg.modules.enableEmails then [ "group/email" ] else [ ]);
+          modules-center =
+            [
+              "group/hardware"
+              "group/media"
+            ]
+            ++ (
+              if cfg.modules.enableLaptop
+              then ["group/laptop"]
+              else []
+            )
+            ++ (
+              if cfg.modules.enableEmails
+              then ["group/email"]
+              else []
+            );
 
           modules-right =
-            (if cfg.modules.enableCalendar then [ "custom/events" ] else [ ])
+            (
+              if cfg.modules.enableCalendar
+              then ["custom/events"]
+              else []
+            )
             ++ [
               "custom/weather"
               "group/date-time"
@@ -157,7 +173,6 @@ in
             ];
           };
 
-
           "group/email" = {
             orientation = "horizontal";
             modules = [
@@ -215,10 +230,22 @@ in
           "group/media" = {
             orientation = "horizontal";
             modules =
-              [ "wireplumber" "custom/separator" "custom/hyprshade" ]
-              ++ (if cfg.modules.enableTV then [ "custom/separator" "custom/tv" ] else [ ])
-              ++ (if cfg.modules.enableBT then [ "custom/separator" "bluetooth" ] else [ ])
-              ++ (if cfg.modules.enableWebcam then [ "custom/separator" "custom/webcam" ] else [ ]);
+              ["wireplumber" "custom/separator" "custom/hyprshade"]
+              ++ (
+                if cfg.modules.enableTV
+                then ["custom/separator" "custom/tv"]
+                else []
+              )
+              ++ (
+                if cfg.modules.enableBT
+                then ["custom/separator" "bluetooth"]
+                else []
+              )
+              ++ (
+                if cfg.modules.enableWebcam
+                then ["custom/separator" "custom/webcam"]
+                else []
+              );
           };
 
           wireplumber = {
@@ -227,7 +254,7 @@ in
             format-source = " {}";
             format-source-muted = " ";
             format-icons = {
-              default = [ "" "" ];
+              default = ["" ""];
             };
             tooltip-format = "{node_name} {source_desc}";
             on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
@@ -322,7 +349,7 @@ in
           clock = {
             format = "{:%T %Z}"; # todo: add timezone
             interval = 1;
-            timezones = [ "Europe/Bucharest" "Europe/Berlin" "America/New_York" "America/Los_Angeles" ];
+            timezones = ["Europe/Bucharest" "Europe/Berlin" "America/New_York" "America/Los_Angeles"];
             tooltip = false;
             actions = {
               on-scroll-up = "tz_up";
@@ -354,188 +381,191 @@ in
               on-scroll-down = "shift_down";
             };
           };
-
         };
       };
       # can also be file
-      style = /*scss */ ''
-        @define-color pink ${theme.dark.pink};
-        @define-color mauve ${theme.dark.magenta};
-        @define-color red ${theme.dark.red};
-        @define-color yellow ${theme.dark.yellow};
-        @define-color green ${theme.dark.green};
-        @define-color blue ${theme.dark.blue};
+      style =
+        /*
+        scss
+        */
+        ''
+          @define-color pink ${theme.dark.pink};
+          @define-color mauve ${theme.dark.magenta};
+          @define-color red ${theme.dark.red};
+          @define-color yellow ${theme.dark.yellow};
+          @define-color green ${theme.dark.green};
+          @define-color blue ${theme.dark.blue};
 
-        @define-color base alpha(#000000, 0.1);
-        @define-color surface alpha(#000000, 0.7);
-        @define-color text ${theme.dark.fg};
-        @define-color hoverBg alpha(@mauve, 1);
-        @define-color hoverFg #000000;
-        @define-color activeBg alpha(@mauve, 1);
-        @define-color activeFg #000000;
-        @define-color shadow alpha(@blue, 0.7);
+          @define-color base alpha(#000000, 0.1);
+          @define-color surface alpha(#000000, 0.7);
+          @define-color text ${theme.dark.fg};
+          @define-color hoverBg alpha(@mauve, 1);
+          @define-color hoverFg #000000;
+          @define-color activeBg alpha(@mauve, 1);
+          @define-color activeFg #000000;
+          @define-color shadow alpha(@blue, 0.7);
 
-        * {
-          all: unset;
-          font-size: 1rem;
-          font-weight: 900;
-          color: @fg;
-          font-family:
-            JetBrainsMonoNerdFont,
-            Font Awesome,
-            Roboto,
-            Helvetica,
-            Arial,
-            sans-serif;
-          background-clip: border-box;
-        }
+          * {
+            all: unset;
+            font-size: 1rem;
+            font-weight: 900;
+            color: @fg;
+            font-family:
+              JetBrainsMonoNerdFont,
+              Font Awesome,
+              Roboto,
+              Helvetica,
+              Arial,
+              sans-serif;
+            background-clip: border-box;
+          }
 
-        button {
-          min-width: 32px;
-          min-height: 32px;
-          border-radius: 999px;
-          color: @text;
-          background-color: @surface;
-          box-shadow: 0px 0px 8px 4px @shadow inset;
-          transition:
-            all 50ms cubic-bezier(0.55, 0, 0.28, 1.682),
-            box-shadow 50ms ease-in-out,
-            background-color 200ms ease-in-out;
-        }
+          button {
+            min-width: 32px;
+            min-height: 32px;
+            border-radius: 999px;
+            color: @text;
+            background-color: @surface;
+            box-shadow: 0px 0px 8px 4px @shadow inset;
+            transition:
+              all 50ms cubic-bezier(0.55, 0, 0.28, 1.682),
+              box-shadow 50ms ease-in-out,
+              background-color 200ms ease-in-out;
+          }
 
-        button:hover {
-          color: @hoverFg;
-          background: @hoverBg;
-        }
+          button:hover {
+            color: @hoverFg;
+            background: @hoverBg;
+          }
 
-        button.active {
-          color: @activeFg;
-          background: @activeBg;
-        }
+          button.active {
+            color: @activeFg;
+            background: @activeBg;
+          }
 
-        #custom-window {
-          background-color: transparent;
-        }
+          #custom-window {
+            background-color: transparent;
+          }
 
-        #custom-window {
-          margin-right: 8px;
-        }
+          #custom-window {
+            margin-right: 8px;
+          }
 
-        .blue,
-        #custom-separator {
-          color: @blue;
-          padding: 0 0.3rem;
-        }
+          .blue,
+          #custom-separator {
+            color: @blue;
+            padding: 0 0.3rem;
+          }
 
-        /* all groups here except workspaces */
-        #custom-appmenu,
-        #custom-window,
-        #hardware,
-        #email,
-        #laptop,
-        #media,
-        #custom-events,
-        #custom-weather,
-        #date-time,
-        #tray {
-          background-color: @surface;
-          border-radius: 999px;
-          box-shadow: 0px 0px 8px 4px @shadow inset;
-        }
+          /* all groups here except workspaces */
+          #custom-appmenu,
+          #custom-window,
+          #hardware,
+          #email,
+          #laptop,
+          #media,
+          #custom-events,
+          #custom-weather,
+          #date-time,
+          #tray {
+            background-color: @surface;
+            border-radius: 999px;
+            box-shadow: 0px 0px 8px 4px @shadow inset;
+          }
 
-        /* all groups also here, except appmenu and workspaces */
-        #custom-window,
-        #hardware,
-        #email,
-        #laptop,
-        #media,
-        #custom-events,
-        #custom-weather,
-        #date-time,
-        #tray {
-          padding: 0 0.5rem;
-        }
+          /* all groups also here, except appmenu and workspaces */
+          #custom-window,
+          #hardware,
+          #email,
+          #laptop,
+          #media,
+          #custom-events,
+          #custom-weather,
+          #date-time,
+          #tray {
+            padding: 0 0.5rem;
+          }
 
-        #custom-appmenu {
-          font-size: 24px;
-          min-width: 32px;
-          min-height: 32px;
-          padding-right: 4px;
-          border-radius: 999px;
-        }
+          #custom-appmenu {
+            font-size: 24px;
+            min-width: 32px;
+            min-height: 32px;
+            padding-right: 4px;
+            border-radius: 999px;
+          }
 
-        #workspaces button {
-          margin-right: 2px;
-        }
-        #workspaces button:last-child {
-          margin-right: 0;
-        }
+          #workspaces button {
+            margin-right: 2px;
+          }
+          #workspaces button:last-child {
+            margin-right: 0;
+          }
 
-        @keyframes blink {
-          to {
+          @keyframes blink {
+            to {
+              background-color: @activeBg;
+            }
+          }
+
+          #battery.critical:not(.charging) {
+            background-color: @activeBg;
+            animation-name: blink;
+            animation-duration: 0.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+          }
+
+          #tray > .passive {
+            -gtk-icon-effect: dim;
+          }
+
+          #tray > .needs-attention {
+            -gtk-icon-effect: highlight;
             background-color: @activeBg;
           }
-        }
 
-        #battery.critical:not(.charging) {
-          background-color: @activeBg;
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-        }
+          #systemd-failed-units.ok {
+            color: @green;
+          }
 
-        #tray > .passive {
-          -gtk-icon-effect: dim;
-        }
+          #systemd-failed-units.degraded {
+            color: @red;
+          }
 
-        #tray > .needs-attention {
-          -gtk-icon-effect: highlight;
-          background-color: @activeBg;
-        }
+          #cpu.low, #memory.low {
+            color: @green;
+          }
+          #cpu.medium, #memory.medium, #wireplumber.medium, #custom-email-unread.unread {
+            color: @yellow;
+          }
+          #cpu.high, #memory.high, #wireplumber.low, #custom-email-important.unread, #custom-notifications.notification {
+            color: @red;
+          }
 
-        #systemd-failed-units.ok {
-          color: @green;
-        }
+          /* #custom-notifications.dnd-none, #custom-notifications.dnd-notification */
 
-        #systemd-failed-units.degraded {
-          color: @red;
-        }
+          label:focus {
+            background-color: @activeBg;
+          }
 
-        #cpu.low, #memory.low {
-          color: @green;
-        }
-        #cpu.medium, #memory.medium, #wireplumber.medium, #custom-email-unread.unread {
-          color: @yellow;
-        }
-        #cpu.high, #memory.high, #wireplumber.low, #custom-email-important.unread, #custom-notifications.notification {
-          color: @red;
-        }
+          tooltip {
+            background-color: @shadow;
+            border-radius: 12px;
+            border: 1px solid @mauve;
+            padding: 6px;
+          }
 
-        /* #custom-notifications.dnd-none, #custom-notifications.dnd-notification */
-
-        label:focus {
-          background-color: @activeBg;
-        }
-
-        tooltip {
-          background-color: @shadow;
-          border-radius: 12px;
-          border: 1px solid @mauve;
-          padding: 6px;
-        }
-
-        #custom-webcam.active {
-          color: @red;
-        }
-        #custom-webcam.enabled {
-          /* color: @green; */
-        }
-        #custom-webcam.none {
-          color: @yellow;
-        }
-      '';
+          #custom-webcam.active {
+            color: @red;
+          }
+          #custom-webcam.enabled {
+            /* color: @green; */
+          }
+          #custom-webcam.none {
+            color: @yellow;
+          }
+        '';
     };
   };
 }

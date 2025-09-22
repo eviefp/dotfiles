@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   options.evie.wayland = {
     enable = lib.mkEnableOption "wayland defaults";
 
@@ -16,7 +15,7 @@
           };
         };
       });
-      default = [ ];
+      default = [];
     };
 
     monitors = lib.mkOption {
@@ -45,7 +44,7 @@
           };
         };
       });
-      default = [ ];
+      default = [];
     };
   };
 }

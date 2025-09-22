@@ -1,20 +1,24 @@
-/****************************************************************************
-  * Email module
-  *
-  * Set up email account, imap sync, notmuch mail management.
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.system.email;
-in
+/**
+**************************************************************************
+* Email module
+*
+* Set up email account, imap sync, notmuch mail management.
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.system.email;
+in {
   options.evie.system.email = {
     enable = lib.mkEnableOption "calendar defaults";
   };
 
   config = lib.mkIf cfg.enable {
     accounts.email = {
-
       maildirBasePath = "/home/evie/mail";
 
       accounts = {
@@ -140,7 +144,7 @@ in
       };
       notmuch = {
         enable = true;
-        new.tags = [ "unread" "unsorted" "inbox" ];
+        new.tags = ["unread" "unsorted" "inbox"];
         hooks = {
           postNew = ''
             notmuch tag +evie -unsorted -- to:*@eevie.ro

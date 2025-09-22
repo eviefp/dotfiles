@@ -1,5 +1,8 @@
-{ dotfiles, theme, ... }:
 {
+  dotfiles,
+  theme,
+  ...
+}: {
   imports = with dotfiles.self.nixosModules; [
     users
     nix-settings
@@ -13,7 +16,7 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit dotfiles theme; };
+        extraSpecialArgs = {inherit dotfiles theme;};
         users.evie = ./home.nix;
       };
     }
@@ -31,7 +34,7 @@
 
     networking = {
       hostName = "jellyfin";
-      firewall.allowedTCPPorts = [ 80 443 ];
+      firewall.allowedTCPPorts = [80 443];
       useDHCP = true;
     };
 
@@ -39,14 +42,13 @@
 
     sops = {
       defaultSopsFile = ../../secrets/secrets/secrets.yaml;
-      age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       secrets = {
         thelxinoe-openvpn-key = {
           mode = "444";
         };
       };
     };
-
 
     services.nginx = {
       enable = true;

@@ -1,40 +1,30 @@
-{ pkgs, lib, ... }:
-let
-  my-lib = import ./../lib { inherit pkgs; };
-  haskell-programs = import ./haskell.nix;
-  make-haskell-program = name:
-    let
-      p = haskell-programs."${name}";
-      haskellLanguagePragmas = ''
-        {-# LANGUAGE BlockArguments #-}
-        {-# LANGUAGE DeriveAnyClass #-}
-        {-# LANGUAGE DeriveGeneric #-}
-        {-# LANGUAGE DerivingStrategies #-}
-        {-# LANGUAGE ExtendedDefaultRules #-}
-        {-# LANGUAGE LambdaCase #-}
-        {-# LANGUAGE MultiWayIf #-}
-        {-# LANGUAGE NamedFieldPuns #-}
-        {-# LANGUAGE OverloadedStrings #-}
-        {-# LANGUAGE QuasiQuotes #-}
-        {-# LANGUAGE RecordWildCards #-}
-        {-# LANGUAGE ScopedTypeVariables #-}
-        {-# LANGUAGE TemplateHaskell #-}
-        {-# LANGUAGE TupleSections #-}
-        {-# LANGUAGE TypeApplications #-}
-        {-# OPTIONS_GHC -Wno-type-defaults #-}
-      '';
-    in
-    pkgs.writers.writeHaskellBin
-      p.name
-      {
-        libraries = lib.lists.forEach p.libraries (lib: pkgs.haskellPackages."${lib}");
-      }
-      (haskellLanguagePragmas + "\n\n" + p.mkText pkgs);
-in
 {
+  pkgs,
+  lib,
+  ...
+}: let
+  my-lib = import ./../lib {inherit pkgs;};
+  haskell-programs = import ./haskell.nix;
+  make-haskell-program = name: let
+    p = haskell-programs.programs."${name}";
+    loadFromBins =
+      lib.strings.concatStringsSep
+      ","
+      (lib.lists.forEach p.loadFromBins (bin: "\"${pkgs.${bin}}\""));
+  in
+    pkgs.writers.writeHaskellBin
+    p.name
+    {
+      libraries = lib.lists.forEach p.libraries (lib: pkgs.haskellPackages."${lib}");
+    }
+    (lib.strings.replaceString
+      "$(loadEnv SearchPath)"
+      ("loadFromBins [ " + loadFromBins + " ]")
+      (haskell-programs.haskellLanguagePragmas + "\n\n" + p.text));
+in {
   get-active-window = pkgs.writeShellApplication {
     name = "get-active-window";
-    runtimeInputs = [ pkgs.socat pkgs.jq ];
+    runtimeInputs = [pkgs.socat pkgs.jq];
     text = ''
       #!/usr/bin/env bash
 
@@ -47,7 +37,7 @@ in
 
   tv-toggle = pkgs.writeShellApplication {
     name = "tv-toggle";
-    runtimeInputs = [ pkgs.jq ];
+    runtimeInputs = [pkgs.jq];
     text = ''
       #!/usr/bin/env bash
 
@@ -63,7 +53,7 @@ in
 
   tv-status = my-lib.nuShellScript {
     name = "tv-status";
-    runtimeInputs = [ pkgs.jq ];
+    runtimeInputs = [pkgs.jq];
     text = ''
       #!/usr/bin/env nu
 
@@ -83,6 +73,7 @@ in
   calendar-notify = make-haskell-program "calendar-notify";
   calendar-status = make-haskell-program "calendar-status";
   deploy = make-haskell-program "deploy";
+  dotfiles = make-haskell-program "dotfiles";
   email-status = make-haskell-program "email-status";
   hyprshade-ctl = make-haskell-program "hyprshade-ctl";
   webcam-status = make-haskell-program "webcam-status";

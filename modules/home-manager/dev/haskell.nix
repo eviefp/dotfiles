@@ -1,12 +1,17 @@
-/****************************************************************************
-  * dev/haskell module
-  *
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.dev.haskell;
-in
+/**
+**************************************************************************
+* dev/haskell module
+*
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.dev.haskell;
+in {
   options.evie.dev.haskell = {
     enable = lib.mkEnableOption "haskell defaults";
   };
@@ -26,6 +31,5 @@ in
         :set prompt "λ "
       '';
     };
-
   };
 }

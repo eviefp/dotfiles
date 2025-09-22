@@ -1,5 +1,10 @@
-{ dotfiles, config, pkgs, lib, ... }:
-let
+{
+  dotfiles,
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.evie.wayland.hyprland;
   wayland = config.evie.wayland;
   hyprland-package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
@@ -26,8 +31,7 @@ let
     rm ~/screenshot.png || true
     ${lib.getExe pkgs.grimblast} copysave area ~/screenshot.png
   '';
-in
-{
+in {
   options.evie.wayland.hyprland = {
     enable = lib.mkEnableOption "hyprland defaults";
     tryToFixNvidiaBullshit = lib.mkEnableOption "nvidia settings";
@@ -65,7 +69,7 @@ in
       plugins = [
       ];
 
-      systemd.variables = [ "--all" ];
+      systemd.variables = ["--all"];
 
       settings = {
         monitor =
@@ -233,14 +237,13 @@ in
 
         master = {
           allow_small_split = true;
-
         };
 
         windowrule = [
           "fullscreen, class:Minecraft(.*)"
           "float, class:xdg-desktop-portal-gtk"
         ];
-        plugin = { };
+        plugin = {};
 
         "$terminal" = "kitty";
         "$menu" = "rofi -show drun";
@@ -253,76 +256,77 @@ in
         "$ctrlMod" = "SUPER_CTRL";
         "$shiftCtrlSuper" = "SUPER_CTRL_SHIFT";
 
-        bind = [
-          # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-          # "$shiftMod, Return, exec, [float;tile] wezterm start --always-new-process"
-          "$shiftMod, Return, exec, $terminal"
-          "$shiftCtrlSuper, Q, exit,"
-          "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
-          "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
-          "$shiftMod, P, exec, $sleep"
-          "$shiftMod, T, exec, ${lib.getExe dotfiles.self.packages.${pkgs.system}.tv-toggle}"
-          "$shiftMod, E, exec, ${switch-colors}/bin/switch-colors"
+        bind =
+          [
+            # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+            # "$shiftMod, Return, exec, [float;tile] wezterm start --always-new-process"
+            "$shiftMod, Return, exec, $terminal"
+            "$shiftCtrlSuper, Q, exit,"
+            "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
+            "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
+            "$shiftMod, P, exec, $sleep"
+            "$shiftMod, T, exec, ${lib.getExe dotfiles.self.packages.${pkgs.system}.tv-toggle}"
+            "$shiftMod, E, exec, ${switch-colors}/bin/switch-colors"
 
-          "$shiftMod, C, killactive,"
-          "$mainMod, M, exec, ${lib.getExe grimblast}"
-          "$shiftMod, V, exec, $cliphist"
-          "$mainMod, F, togglefloating,"
-          "$mainMod, P, exec, $menu"
-          "$mainMod, Space, exec, $menu"
-          "$mainMod, N, exec, $notifications"
-          "$mainMod, Return, layoutmsg, swapwithmaster"
-          "$mainMod, G, fullscreen, 0"
+            "$shiftMod, C, killactive,"
+            "$mainMod, M, exec, ${lib.getExe grimblast}"
+            "$shiftMod, V, exec, $cliphist"
+            "$mainMod, F, togglefloating,"
+            "$mainMod, P, exec, $menu"
+            "$mainMod, Space, exec, $menu"
+            "$mainMod, N, exec, $notifications"
+            "$mainMod, Return, layoutmsg, swapwithmaster"
+            "$mainMod, G, fullscreen, 0"
 
-          # Move focus with mainMod + arrow keys
-          "$mainMod, J, cyclenext, prev"
-          "$mainMod, K, cyclenext"
-          "$mainMod, backslash, swapnext"
-          "$mainMod, apostrophe, swapnext, prev"
-          # "$mainMod, backslash, layoutmsg, addmaster"
-          # "$mainMod, apostrophe, layoutmsg, removemaster"
+            # Move focus with mainMod + arrow keys
+            "$mainMod, J, cyclenext, prev"
+            "$mainMod, K, cyclenext"
+            "$mainMod, backslash, swapnext"
+            "$mainMod, apostrophe, swapnext, prev"
+            # "$mainMod, backslash, layoutmsg, addmaster"
+            # "$mainMod, apostrophe, layoutmsg, removemaster"
 
-          # Switch workspaces with mainMod + [0-9]
-          "$mainMod, 1, focusworkspaceoncurrentmonitor, 1"
-          "$mainMod, 2, focusworkspaceoncurrentmonitor, 2"
-          "$mainMod, 3, focusworkspaceoncurrentmonitor, 3"
-          "$mainMod, 4, focusworkspaceoncurrentmonitor, 4"
-          "$mainMod, 5, focusworkspaceoncurrentmonitor, 5"
-          "$mainMod, 6, focusworkspaceoncurrentmonitor, 6"
-          "$mainMod, 7, focusworkspaceoncurrentmonitor, 7"
-          "$mainMod, 8, focusworkspaceoncurrentmonitor, 8"
-          "$mainMod, 9, focusworkspaceoncurrentmonitor, 9"
-          "$mainMod, 0, focusworkspaceoncurrentmonitor, 10"
+            # Switch workspaces with mainMod + [0-9]
+            "$mainMod, 1, focusworkspaceoncurrentmonitor, 1"
+            "$mainMod, 2, focusworkspaceoncurrentmonitor, 2"
+            "$mainMod, 3, focusworkspaceoncurrentmonitor, 3"
+            "$mainMod, 4, focusworkspaceoncurrentmonitor, 4"
+            "$mainMod, 5, focusworkspaceoncurrentmonitor, 5"
+            "$mainMod, 6, focusworkspaceoncurrentmonitor, 6"
+            "$mainMod, 7, focusworkspaceoncurrentmonitor, 7"
+            "$mainMod, 8, focusworkspaceoncurrentmonitor, 8"
+            "$mainMod, 9, focusworkspaceoncurrentmonitor, 9"
+            "$mainMod, 0, focusworkspaceoncurrentmonitor, 10"
 
-          # Move active window to a workspace with mainMod + SHIFT + [0-9]
-          "$mainMod SHIFT, 1, movetoworkspacesilent, 1"
-          "$mainMod SHIFT, 2, movetoworkspacesilent, 2"
-          "$mainMod SHIFT, 3, movetoworkspacesilent, 3"
-          "$mainMod SHIFT, 4, movetoworkspacesilent, 4"
-          "$mainMod SHIFT, 5, movetoworkspacesilent, 5"
-          "$mainMod SHIFT, 6, movetoworkspacesilent, 6"
-          "$mainMod SHIFT, 7, movetoworkspacesilent, 7"
-          "$mainMod SHIFT, 8, movetoworkspacesilent, 8"
-          "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
-          "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
+            # Move active window to a workspace with mainMod + SHIFT + [0-9]
+            "$mainMod SHIFT, 1, movetoworkspacesilent, 1"
+            "$mainMod SHIFT, 2, movetoworkspacesilent, 2"
+            "$mainMod SHIFT, 3, movetoworkspacesilent, 3"
+            "$mainMod SHIFT, 4, movetoworkspacesilent, 4"
+            "$mainMod SHIFT, 5, movetoworkspacesilent, 5"
+            "$mainMod SHIFT, 6, movetoworkspacesilent, 6"
+            "$mainMod SHIFT, 7, movetoworkspacesilent, 7"
+            "$mainMod SHIFT, 8, movetoworkspacesilent, 8"
+            "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
+            "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
 
-          # Example special workspace (scratchpad)
-          "$mainMod, I, togglespecialworkspace, magic"
-          "$shiftMod, I, movetoworkspace, special:magic"
+            # Example special workspace (scratchpad)
+            "$mainMod, I, togglespecialworkspace, magic"
+            "$shiftMod, I, movetoworkspace, special:magic"
 
-          # Groups
-          "$shiftMod, a, togglegroup,"
-          "$shiftMod, s, lockactivegroup, toggle"
-          "$shiftMod, h, moveintogroup, l"
-          "$shiftMod, l, moveintogroup, r"
-          "$shiftMod, j, moveintogroup, d"
-          "$shiftMod, k, moveintogroup, u"
-          "$shiftMod, m, moveoutofgroup,"
-          "$mainMod, a, changegroupactive, b"
-          "$mainMod, s, changegroupactive, f"
-        ]
-        ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors
-        ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.disabledMonitors;
+            # Groups
+            "$shiftMod, a, togglegroup,"
+            "$shiftMod, s, lockactivegroup, toggle"
+            "$shiftMod, h, moveintogroup, l"
+            "$shiftMod, l, moveintogroup, r"
+            "$shiftMod, j, moveintogroup, d"
+            "$shiftMod, k, moveintogroup, u"
+            "$shiftMod, m, moveoutofgroup,"
+            "$mainMod, a, changegroupactive, b"
+            "$mainMod, s, changegroupactive, f"
+          ]
+          ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.monitors
+          ++ map (mon: "$mainMod, ${mon.keybind}, focusmonitor, ${mon.name}") wayland.disabledMonitors;
 
         binde = [
           "$ctrlMod, H, resizeactive, -10   0"
@@ -368,6 +372,5 @@ in
         size = 11;
       };
     };
-
   };
 }

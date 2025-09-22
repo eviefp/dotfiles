@@ -1,5 +1,10 @@
-{ pkgs, dotfiles, theme, lib, ... }:
 {
+  pkgs,
+  dotfiles,
+  theme,
+  lib,
+  ...
+}: {
   imports = [
     dotfiles.home-manager.darwinModules.home-manager
     {
@@ -7,7 +12,7 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit dotfiles theme; };
+        extraSpecialArgs = {inherit dotfiles theme;};
         users.evie = ./home.nix;
       };
     }
@@ -15,7 +20,7 @@
 
   config = {
     environment = {
-      shells = [ pkgs.nushell ];
+      shells = [pkgs.nushell];
     };
 
     networking = {
@@ -26,7 +31,6 @@
     nix = {
       channel.enable = false;
       settings = {
-
         trusted-substituters = [
           "https://nix-community.cachix.org"
           "https://cache.lix.systems"
@@ -44,7 +48,7 @@
     };
 
     nixpkgs = {
-      overlays = [ (import dotfiles.emacs-overlay) dotfiles.nur.overlays.default ];
+      overlays = [(import dotfiles.emacs-overlay) dotfiles.nur.overlays.default];
       hostPlatform = "aarch64-darwin";
       config.allowUnfree = true;
     };
@@ -68,5 +72,4 @@
 
     system.stateVersion = 6;
   };
-
 }

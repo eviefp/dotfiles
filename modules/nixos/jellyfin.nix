@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
-  cfg = config.evie.jellyfin;
-in
 {
-  imports = [ ];
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.evie.jellyfin;
+in {
+  imports = [];
 
   options.evie.jellyfin = {
     enable = lib.options.mkEnableOption "Enable jellyfin server.";

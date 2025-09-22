@@ -1,15 +1,19 @@
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.term.spotify;
-  settingsFormat = pkgs.formats.toml { };
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.term.spotify;
+  settingsFormat = pkgs.formats.toml {};
+in {
   options.evie.term.spotify = {
     enable = lib.mkEnableOption "spotify";
-    package = lib.mkPackageOption pkgs "spotify-player" { };
+    package = lib.mkPackageOption pkgs "spotify-player" {};
     settings = lib.mkOption {
       type = settingsFormat.type;
-      example = lib.literalExpression ''
+      example =
+        lib.literalExpression ''
         '';
       description = ''
         Spotify-player configuration.
@@ -18,7 +22,8 @@ in
     };
     keymap = lib.mkOption {
       type = settingsFormat.type;
-      example = lib.literalExpression ''
+      example =
+        lib.literalExpression ''
         '';
       description = ''
         Spotify-player configuration.
@@ -183,7 +188,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
     xdg.configFile."spotify-player/app.toml".source = settingsFormat.generate "app.toml" cfg.settings;
     # xdg.configFile."spotify-player/theme.toml".source = settingsFormat.generate "theme.toml" cfg.theme;
     xdg.configFile."spotify-player/keymap.toml".source = settingsFormat.generate "keymap.toml" cfg.keymap;

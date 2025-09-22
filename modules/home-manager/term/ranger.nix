@@ -1,11 +1,16 @@
-/****************************************************************************
-  * term/ranger module
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.evie.term.ranger;
-in
+/**
+**************************************************************************
+* term/ranger module
+*************************************************************************
+*/
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.evie.term.ranger;
+in {
   options.evie.term.ranger = {
     enable = lib.mkEnableOption "ranger defaults";
   };

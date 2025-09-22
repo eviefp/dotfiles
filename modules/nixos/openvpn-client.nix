@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.evie.openvpn-client;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.evie.openvpn-client;
+in {
   options.evie.openvpn-client = {
     enable = lib.mkEnableOption "openvpn defaults";
   };
@@ -13,4 +15,3 @@ in
     };
   };
 }
-

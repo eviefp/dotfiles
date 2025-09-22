@@ -1,9 +1,15 @@
-/****************************************************************************
-  * programs/firefox module
-  *
-  **************************************************************************/
-{ lib, config, pkgs, ... }:
-let
+/**
+**************************************************************************
+* programs/firefox module
+*
+*************************************************************************
+*/
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.evie.programs.firefox;
   quickmarks = {
     tw = "https://twitch.tv/directory/all";
@@ -18,11 +24,9 @@ let
 
   '';
   generatedQuickmarks = lib.attrsets.foldlAttrs go "" quickmarks;
-
   # autocontain = container: url: acc: "${acc}autocontain -s ${lib.strings.replaceString "." "\\." url} ${container}\n";
   # generateAutocontain = container: xs: lib.lists.foldr (autocontain container) "" xs;
-in
-{
+in {
   options.evie.programs.firefox = {
     enable = lib.mkEnableOption "firefox defaults";
   };
@@ -84,8 +88,7 @@ in
         seturl ^https://nix-community.github.io/home-manager/options.xhtml noiframe true
 
       '';
-      ".mozilla/native-messaging-hosts/passff.json".source =
-        "${pkgs.passff-host}/share/passff-host/passff.json";
+      ".mozilla/native-messaging-hosts/passff.json".source = "${pkgs.passff-host}/share/passff-host/passff.json";
       ".mozilla/native-messaging-hosts/firenvim.json".text = ''
         { "name": "firenvim", "description": "Turn your browser into a Neovim GUI.", "path": "/home/evie/.local/share/firenvim/firenvim", "type": "stdio", "allowed_extensions": ["firenvim@lacamb.re"]}
       '';
@@ -95,7 +98,7 @@ in
       firefox = {
         enable = true;
         package = pkgs.firefox.override {
-          nativeMessagingHosts = [ pkgs.tridactyl-native ];
+          nativeMessagingHosts = [pkgs.tridactyl-native];
           cfg = {
             pipewireSupport = true;
             ffmpegSupport = true;
@@ -106,12 +109,12 @@ in
           "3rdparty" = {
             Extensions = {
               "uBlock0@raymondhill.net" = {
-                permissions = [ "internal:privateBrowsingAllowed" ];
-                origins = [ ];
+                permissions = ["internal:privateBrowsingAllowed"];
+                origins = [];
               };
               "tridactyl.vim@cmcaine.co.uk" = {
-                permissions = [ "internal:privateBrowsingAllowed" ];
-                origins = [ ];
+                permissions = ["internal:privateBrowsingAllowed"];
+                origins = [];
               };
             };
           };
@@ -221,7 +224,7 @@ in
 
             search = {
               default = "ddg";
-              order = [ "ddg" ];
+              order = ["ddg"];
               force = true;
             };
 
