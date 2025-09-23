@@ -988,6 +988,10 @@ in {
                 name = "*.pdf";
                 use = "zathura";
               }
+              {
+                name = "*.mp3";
+                use = "play";
+              }
             ];
           };
           opener = {
