@@ -11,6 +11,20 @@
   ...
 }: let
   cfg = config.evie.programs.firefox;
+  theme = pkgs.stdenv.mkDerivation {
+    name = "cybedream-theme-1.0.0";
+    src = ./cyberdream-evie.xpi;
+    preferLocalBuild = true;
+    buildCommand =
+      /*
+      bash
+      */
+      ''
+        dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        mkdir -p "$dst"
+        install -v -m644 "$src" "$dst/cyberdream-evie.xpi"
+      '';
+  };
   quickmarks = {
     tw = "https://twitch.tv/directory/all";
     gm = "https://www.group-meowing.ro/";
@@ -207,6 +221,7 @@ in {
             extensions = {
               packages = with pkgs.nur.repos.rycee.firefox-addons; [
                 ublock-origin-upstream
+                theme
                 betterttv
                 clearurls
                 darkreader
