@@ -66,6 +66,11 @@ in {
           pattern = ["*.purs"];
           command = ":setlocal filetype=purescript";
         }
+        {
+          event = ["BufEnter"];
+          pattern = ["*.el"];
+          command = ":setlocal filetype=lisp";
+        }
       ];
 
       diagnostic.settings = {
@@ -511,6 +516,7 @@ in {
           nixGrammars = true;
           grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
             agda
+            asm
             awk
             bash
             bibtex
@@ -522,16 +528,20 @@ in {
             css
             csv
             dhall
+            diff
             dockerfile
             dot
+            editorconfig
             ebnf
             elixir
             erlang
             fennel
             fish
+            fsharp
             gdscript
             gdshader
             git_config
+            git_rebase
             gitattributes
             gitcommit
             gitignore
@@ -582,6 +592,7 @@ in {
             yaml
             yuck
             zathurarc
+            zig
           ];
 
           settings = {
