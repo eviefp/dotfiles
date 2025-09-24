@@ -68,6 +68,11 @@ in {
         }
         {
           event = ["BufEnter"];
+          pattern = ["*.mdc"];
+          command = ":setlocal filetype=markdown";
+        }
+        {
+          event = ["BufEnter"];
           pattern = ["*.el"];
           command = ":setlocal filetype=lisp";
         }
