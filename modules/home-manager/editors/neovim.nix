@@ -1039,7 +1039,7 @@ in {
                 };
               };
             };
-            surces.default = ["lsp" "git" "path" "buffer" "emoji" "latex-symbols" "dictionary"];
+            surces.default = ["lsp" "git" "path" "buffer" "emoji" "latex-symbols"];
             fuzzy.implementation = "prefer_rust_with_warning";
 
             soruces.providers = {
