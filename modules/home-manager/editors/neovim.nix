@@ -690,6 +690,10 @@ in {
         lsp = {
           enable = true;
 
+          luaConfig.post = ''
+            vim.lsp.enable('omnisharp')
+          '';
+
           keymaps = {
             diagnostic = {
               # "]d" = "goto_next";
@@ -721,9 +725,11 @@ in {
               };
             };
 
-            csharp_ls = {
+            omnisharp = {
               enable = true;
-              package = pkgs.csharp-ls;
+              package = null;
+              cmd = [ "OmniSharp" ];
+              filetypes = [ "cs" ];
             };
 
             rust_analyzer = {
