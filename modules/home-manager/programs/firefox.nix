@@ -60,6 +60,8 @@ in {
           generateAutocontain "work"
           [
             "enpal.atlassian.net"
+            "id.atlassian.com"
+            "statics.teams.cdn.office.net"
             "outlook.office.com"
             "sonarcloud.io"
             "miro.com"
