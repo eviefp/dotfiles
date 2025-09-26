@@ -38,8 +38,8 @@
 
   '';
   generatedQuickmarks = lib.attrsets.foldlAttrs go "" quickmarks;
-  # autocontain = container: url: acc: "${acc}autocontain -s ${lib.strings.replaceString "." "\\." url} ${container}\n";
-  # generateAutocontain = container: xs: lib.lists.foldr (autocontain container) "" xs;
+  autocontain = container: url: acc: "${acc}autocontain -s ${lib.strings.replaceString "." "\\." url} ${container}\n";
+  generateAutocontain = container: xs: lib.lists.foldr (autocontain container) "" xs;
 in {
   options.evie.programs.firefox = {
     enable = lib.mkEnableOption "firefox defaults";
@@ -55,6 +55,19 @@ in {
         set allowautofocus false
         set searchengine duckduckgo
         set autocontainmode relaxed
+
+        ${
+          generateAutocontain "work"
+          [
+            "enpal.atlassian.net"
+            "outlook.office.com"
+            "sonarcloud.io"
+            "miro.com"
+            "dev.azure.com"
+            "app.datadoghq.eu"
+            "cloud.mongodb.com"
+          ]
+        }
 
         set hintfiltermode vimperator-reflow
         set hintchars fdsqjklmrezauiopwxcvghtybn
