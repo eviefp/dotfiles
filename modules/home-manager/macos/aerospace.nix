@@ -25,7 +25,7 @@ in {
       };
 
       userSettings = {
-        mode.map.binding = {
+        mode.main.binding = {
           alt-enter = "exec-and-forget open -n ${lib.getExe pkgs.kitty}";
         };
       };
