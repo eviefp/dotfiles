@@ -30,7 +30,7 @@ in {
         };
         mode = {
           main.binding = {
-            cmd-enter = "exec-and-forget open -a ${pkgs.kitty}/bin/kitty";
+            cmd-enter = "exec-and-forget open --new -a ${pkgs.kitty}/bin/kitty";
             cmd-space = "layout accordion tiles horizontal";
             cmd-f = "layout floating tiling";
             cmd-g = "fullscreen";
