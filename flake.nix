@@ -85,7 +85,7 @@
 
     # Hyprland stuff
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland";
     };
 
     hyprpaper = {
