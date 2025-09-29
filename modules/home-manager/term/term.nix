@@ -268,35 +268,39 @@ in {
           EDITOR = "nvim";
           DIRENV_WARN_TIMEOUT = "0";
         };
-        configFile.text = ''
-          use ${scripts.crypto} *
-          use ${scripts.misc} *
-          $env.config = {
-            edit_mode: vi
-            shell_integration: {
-              osc2: true
-              osc7: true
-              osc8: true
-              osc9_9: false
-              osc133: true
-              osc633: true
-              reset_application_mode: true
+        configFile.text =
+          /*
+          nu
+          */
+          ''
+            use ${scripts.crypto} *
+            use ${scripts.misc} *
+            $env.config = {
+              edit_mode: vi
+              shell_integration: {
+                osc2: true
+                osc7: true
+                osc8: true
+                osc9_9: false
+                osc133: true
+                osc633: true
+                reset_application_mode: true
+              }
+              keybindings: [
+              { name: evie_down
+                modifier: control
+                keycode: char_j
+                mode: vi_insert
+                event: { send: MenuNext }
+              }
+              { name: evie_u
+                modifier: control
+                keycode: char_k
+                mode: vi_insert
+                event: { send: MenuPrevious }
+              }]
             }
-            keybindings: [
-            { name: evie_down
-              modifier: control
-              keycode: char_j
-              mode: vi_insert
-              event: { send: MenuNext }
-            }
-            { name: evie_u
-              modifier: control
-              keycode: char_k
-              mode: vi_insert
-              event: { send: MenuPrevious }
-            }]
-          }
-        '';
+          '';
       };
 
       carapace = {
