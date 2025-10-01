@@ -728,8 +728,8 @@ in {
             omnisharp = {
               enable = true;
               package = null;
-              cmd = [ "OmniSharp" ];
-              filetypes = [ "cs" ];
+              cmd = ["OmniSharp"];
+              filetypes = ["cs"];
             };
 
             rust_analyzer = {
@@ -1296,6 +1296,7 @@ in {
           settings = {
             level = "warn";
             background_colour = "#000000";
+            max_width = 30;
           };
         };
 
