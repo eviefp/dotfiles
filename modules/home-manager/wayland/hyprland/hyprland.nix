@@ -14,15 +14,15 @@
     # TODO: this is now broken
     # colorMode=`eww get colorMode`
 
-    if [[ "$colorMode" == "light" ]]; then
-      emacsclient --eval "(load-theme 'modus-vivendi-tritanopia :no-confirm)"
-      ln -sf /home/evie/.config/kitty/dark.conf /home/evie/.config/kitty/theme.conf
-      pkill -USR1 kitty
-    else
-      emacsclient --eval "(load-theme 'modus-operandi-tritanopia :no-confirm)"
-      ln -sf /home/evie/.config/kitty/light.conf /home/evie/.config/kitty/theme.conf
-      pkill -USR1 kitty
-    fi
+    # if [[ "$colorMode" == "light" ]]; then
+    #   emacsclient --eval "(load-theme 'modus-vivendi-tritanopia :no-confirm)"
+    #   ln -sf /home/evie/.config/kitty/dark.conf /home/evie/.config/kitty/theme.conf
+    #   pkill -USR1 kitty
+    # else
+    #   emacsclient --eval "(load-theme 'modus-operandi-tritanopia :no-confirm)"
+    #   ln -sf /home/evie/.config/kitty/light.conf /home/evie/.config/kitty/theme.conf
+    #   pkill -USR1 kitty
+    # fi
   '';
 
   grimblast = pkgs.writeShellScriptBin "grimblast" ''
