@@ -27,6 +27,7 @@ in {
       pkgs.mailcap
       pkgs.ispell
       pkgs.pandoc
+      pkgs.mermaid-filter
       pkgs.tectonic
       pkgs.texlab
     ];

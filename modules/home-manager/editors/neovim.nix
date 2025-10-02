@@ -190,6 +190,17 @@ in {
           mode = "t";
           options.desc = "term: normal mode";
         }
+        {
+          key = "<leader>yy";
+          action = ":w !pandoc -t html -F mermaid-filter | wl-copy --type text/html<cr>";
+          options.desc = "copy html version of current file";
+        }
+        {
+          key = "<leader>yv";
+          action = ":'<,'>w !pandoc -t html -F mermaid-filter | wl-copy --type text/html<cr>";
+          options.desc = "copy html version of current file";
+          mode = "v";
+        }
         ## lsp
         {
           key = "gD";
