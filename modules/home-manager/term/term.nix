@@ -10,6 +10,18 @@
     crypto = pkgs.concatScript "crypto" [../../../scripts/crypto.nu];
     misc = pkgs.concatScript "misc" [../../../scripts/misc.nu];
   };
+  macNushellPathHack =
+    /*
+    nu
+    */
+    ''
+      use std/util "path add"
+
+      path add "/Users/evie/.nix-profile/bin"
+      path add "/etc/profiles/per-user/evie/bin"
+      path add "/run/current-system/sw/bin"
+      path add "/nix/var/nix/profiles/default/bin"
+    '';
 in {
   options.evie.term = {
     enable = lib.mkEnableOption "term defaults";
@@ -275,6 +287,13 @@ in {
           ''
             use ${scripts.crypto} *
             use ${scripts.misc} *
+
+            ${
+              if pkgs.stdenv.isDarwin
+              then macNushellPathHack
+              else ""
+            }
+
             $env.config = {
               edit_mode: vi
               shell_integration: {
