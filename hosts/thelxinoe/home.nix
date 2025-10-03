@@ -30,6 +30,8 @@
         twitch-tui.enable = true;
       };
 
+      term.presenterm.enable = true;
+
       system = {
         calendar.enable = true;
         email.enable = true;

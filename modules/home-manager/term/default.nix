@@ -1,6 +1,7 @@
 {
   experimental = ./experimental.nix;
   kitty = ./kitty.nix;
+  presenterm = ./presenterm.nix;
   ranger = ./ranger.nix;
   scripts = ./scripts.nix;
   shell = ./shell.nix;
