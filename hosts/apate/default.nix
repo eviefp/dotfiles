@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  chromium-overlay = self: super: {
+  chromium-overlay = _self: super: {
     chromium = super.stdenv.mkDerivation rec {
       version = "1368521";
 
@@ -32,6 +32,7 @@
         homepage = "http://www.chromium.org";
         maintainers = with super.maintainers; [robertogoam];
         platforms = ["aarch64-darwin"];
+        # TODO: mainProgram = "...";, needed by lib.getExe
       };
     };
   };

@@ -234,7 +234,7 @@ mkSshTarget =
 getDotfilesPath :: ByteString -> FilePath
 getDotfilesPath =
   \case
-    "apate" -> "/Users/evie"
+    "apate" -> "/Users/evie/code/dotfiles"
     "arche" -> "/home/every/code/dotfiles"
     _ -> "/home/evie/code/dotfiles"
 

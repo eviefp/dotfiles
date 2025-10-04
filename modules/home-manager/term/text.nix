@@ -31,6 +31,11 @@ in {
       pkgs.tectonic
       pkgs.texlab
     ];
+    # ++ (
+    #   if pkgs.stdenv.isLinux
+    #   then [pkgs.mermaid-filter] # needs chromium which doesn't work on aarch-darwin for some reason
+    #   else []
+    # );
 
     programs = {
       zathura = {
