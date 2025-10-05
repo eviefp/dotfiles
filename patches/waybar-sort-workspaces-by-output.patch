@@ -1,0 +1,59 @@
+diff --git a/include/modules/hyprland/workspaces.hpp b/include/modules/hyprland/workspaces.hpp
+index a5d94bbf..d10e538b 100644
+--- a/include/modules/hyprland/workspaces.hpp
++++ b/include/modules/hyprland/workspaces.hpp
+@@ -152,13 +152,14 @@ class Workspaces : public AModule, public EventHandler {
+   // and doesn't share windows across bars (a.k.a `all-outputs` = false)
+   std::map<WindowAddress, WindowRepr, std::less<>> m_orphanWindowMap;
+ 
+-  enum class SortMethod { ID, NAME, NUMBER, SPECIAL_CENTERED, DEFAULT };
++  enum class SortMethod { ID, NAME, NUMBER, SPECIAL_CENTERED, OUTPUT, DEFAULT };
+   util::EnumParser<SortMethod> m_enumParser;
+   SortMethod m_sortBy = SortMethod::DEFAULT;
+   std::map<std::string, SortMethod> m_sortMap = {{"ID", SortMethod::ID},
+                                                  {"NAME", SortMethod::NAME},
+                                                  {"NUMBER", SortMethod::NUMBER},
+                                                  {"SPECIAL-CENTERED", SortMethod::SPECIAL_CENTERED},
++                                                 {"OUTPUT", SortMethod::OUTPUT},
+                                                  {"DEFAULT", SortMethod::DEFAULT}};
+ 
+   std::string m_formatBefore;
+diff --git a/man/waybar-hyprland-workspaces.5.scd b/man/waybar-hyprland-workspaces.5.scd
+index 1d04157b..46f4513f 100644
+--- a/man/waybar-hyprland-workspaces.5.scd
++++ b/man/waybar-hyprland-workspaces.5.scd
+@@ -142,6 +142,7 @@ This setting is ignored if *workspace-taskbar.enable* is set to true.
+ 	If set to name, workspaces will sort by name.
+ 	If set to id, workspaces will sort by id.
+ 	If set to special-centered, workspaces will sort by default with special workspaces in the center.
++	If set to output, workspaces will sort by the output (monitor) name.
+ 	If none of those, workspaces will sort with default behavior.
+ 
+ *expand*: ++
+diff --git a/src/modules/hyprland/workspaces.cpp b/src/modules/hyprland/workspaces.cpp
+index 8360137f..9369344e 100644
+--- a/src/modules/hyprland/workspaces.cpp
++++ b/src/modules/hyprland/workspaces.cpp
+@@ -925,12 +925,15 @@ void Workspaces::sortWorkspaces() {
+         // Helper comparisons
+         auto isIdLess = a->id() < b->id();
+         auto isNameLess = a->name() < b->name();
++        auto isOutputLess = a->output() < b->output();
+ 
+         switch (m_sortBy) {
+           case SortMethod::ID:
+             return isIdLess;
+           case SortMethod::NAME:
+             return isNameLess;
++          case SortMethod::OUTPUT:
++            return isOutputLess;
+           case SortMethod::NUMBER:
+             try {
+               return std::stoi(a->name()) < std::stoi(b->name());
+@@ -1146,4 +1149,4 @@ std::optional<int> Workspaces::parseWorkspaceId(std::string const &workspaceIdSt
+   }
+ }
+ 
+-}  // namespace waybar::modules::hyprland
++}  // namespace waybar::modules::hyprland
+\ No newline at end of file

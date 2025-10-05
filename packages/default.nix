@@ -11,14 +11,17 @@
   # TODO: use Hydroxide or fork peroxide
   peroxide = pkgs-2411.callPackage ./peroxide.nix {};
 
-  # TODO: try patching instead
+  # TODO: stop overriding when https://github.com/Alexays/Waybar/pull/4400 gets merged
   waybar = pkgs.waybar.overrideAttrs (_: {
     src = pkgs.fetchFromGitHub {
-      owner = "eviefp";
+      owner = "Alexays";
       repo = "Waybar";
-      rev = "1b2d552c02cd5337fa47a924a85760538bc0656b";
-      hash = "sha256-CwwJnnERYR1CUVLywGsjqiyBLv8qDs1ss9g8syiOANY=";
+      rev = "559079e9a6afda77754afaf7c8d3f588c1d6206d";
+      hash = "sha256-ttmz2FOvDXNgvOMBXwvYY91yfc1v6n+LOfXCj56QdLo=";
     };
+    patches = [
+      ../patches/waybar-sort-workspaces-by-output.patch
+    ];
   });
 
   neovim = pkgs.neovim-unwrapped.overrideAttrs (_: {
