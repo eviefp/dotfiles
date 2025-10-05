@@ -30,7 +30,10 @@
         twitch-tui.enable = true;
       };
 
-      term.presenterm.enable = true;
+      term = {
+        kitty.outputName = "DP-2";
+        presenterm.enable = true;
+      };
 
       system = {
         calendar.enable = true;

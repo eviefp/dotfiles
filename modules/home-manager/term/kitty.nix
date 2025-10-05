@@ -15,6 +15,11 @@
 in {
   options.evie.term.kitty = {
     enable = lib.mkEnableOption "kitty defaults";
+    outputName = lib.mkOption {
+      type = lib.types.nullOr (lib.types.enum (lib.attrsets.catAttrs "name" config.evie.wayland.monitors));
+      default = null;
+      example = "DP-0";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -97,6 +102,17 @@ in {
     };
     programs.kitty = {
       enable = true;
+      quickAccessTerminalConfig = lib.mkMerge [
+        {
+          lines = 30;
+          edge = "top";
+          background_opacity = 0.75;
+          hide_on_focus_loss = true;
+        }
+        (lib.mkIf (cfg.outputName != null) {
+          output_name = cfg.outputName;
+        })
+      ];
       settings = {
         shell = "${lib.getExe pkgs.nushell} --login --interactive";
 

@@ -261,6 +261,7 @@ in {
             # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
             # "$shiftMod, Return, exec, [float;tile] wezterm start --always-new-process"
             "$shiftMod, Return, exec, $terminal"
+            "$mainMod, equal, exec, kitten quick-access-terminal"
             "$shiftCtrlSuper, Q, exit,"
             "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
             "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
