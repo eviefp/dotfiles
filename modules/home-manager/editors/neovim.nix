@@ -483,6 +483,95 @@ in {
         };
       };
 
+      lsp = {
+        keymaps = [
+          {
+            key = "gd";
+            lspBufAction = "definition";
+          }
+          {
+            key = "gj";
+            lspBufAction = "references";
+          }
+          {
+            key = "gt";
+            lspBufAction = "type_definition";
+          }
+          {
+            key = "gi";
+            lspBufAction = "implementation";
+          }
+          {
+            key = "K";
+            lspBufAction = "hover";
+          }
+          {
+            key = "]d";
+            action = "<lua>vim.diagnostic.goto_next<cr>";
+          }
+          {
+            key = "]d";
+            action = "<lua>vim.diagnostic.goto_prev<cr>";
+          }
+        ];
+
+        servers = {
+          hls = {
+            enable = true;
+            package = null;
+            settings = {
+              cmd = ["haskell-language-server-wrapper" "--logfile" "hls.log" "--debug" "--lsp"]; # "--debug" ];
+              haskell = {
+                formattingProvider = "fourmolu";
+                cabalFormattingProvider = "cabalfmt";
+              };
+            };
+          };
+
+          omnisharp = {
+            enable = true;
+            package = null;
+          };
+
+          rust_analyzer = {
+            enable = true;
+            package = null;
+          };
+
+          ts_ls = {
+            enable = true;
+            package = null;
+            settings = {
+              rootMarkers = ["package.json" "tsconfig.json"];
+            };
+          };
+
+          nil_ls = {
+            enable = true;
+          };
+
+          gopls = {
+            enable = true;
+            package = null;
+          };
+
+          nushell = {
+            enable = true;
+          };
+
+          purescriptls = {
+            enable = true;
+            package = null;
+            settings = {
+              purescript = {
+                formatter = "purs-tidy";
+                addSpagoSources = true;
+              };
+            };
+          };
+        };
+      };
+
       plugins = {
         ## Git
         neogit = {
@@ -694,90 +783,6 @@ in {
             };
             gotoPrevious = {
               "[f" = "@function.outer";
-            };
-          };
-        };
-
-        lsp = {
-          enable = true;
-
-          luaConfig.post = ''
-            vim.lsp.enable('omnisharp')
-          '';
-
-          keymaps = {
-            diagnostic = {
-              # "]d" = "goto_next";
-              # "]D" = "goto_prev";
-              # "[d" = "goto_prev";
-              # "[D" = "goto_next";
-            };
-
-            lspBuf = {
-              "gd" = "definition";
-              "gr" = "references";
-              "K" = "hover";
-            };
-          };
-
-          servers = {
-            hls = {
-              enable = true;
-              installGhc = false;
-              package = null;
-              cmd = ["haskell-language-server-wrapper" "--logfile" "hls.log" "--debug" "--lsp"]; # "--debug" ];
-              extraOptions = {
-                settings = {
-                  haskell = {
-                    formattingProvider = "fourmolu";
-                    cabalFormattingProvider = "cabalfmt";
-                  };
-                };
-              };
-            };
-
-            omnisharp = {
-              enable = true;
-              package = null;
-              cmd = ["OmniSharp"];
-              filetypes = ["cs"];
-            };
-
-            rust_analyzer = {
-              enable = true;
-              package = null;
-              installRustc = false;
-              installCargo = false;
-            };
-
-            ts_ls = {
-              enable = true;
-              package = null;
-              rootMarkers = ["package.json" "tsconfig.json"];
-            };
-
-            nil_ls = {
-              enable = true;
-            };
-
-            gopls = {
-              enable = true;
-              package = null;
-            };
-
-            nushell = {
-              enable = true;
-            };
-
-            purescriptls = {
-              enable = true;
-              package = null;
-              extraOptions = {
-                settings.purescript = {
-                  formatter = "purs-tidy";
-                  addSpagoSources = true;
-                };
-              };
             };
           };
         };
@@ -1027,7 +1032,7 @@ in {
           enable = true;
           settings = {
             keymap.preset = "default";
-            appearance.nerd_fond_variant = "mono";
+            appearance.nerd_font_variant = "mono";
             completion = {
               documentation.auto_show = true;
               menu.draw = {
@@ -1056,10 +1061,10 @@ in {
                 };
               };
             };
-            surces.default = ["lsp" "git" "path" "buffer" "emoji" "latex-symbols"];
+            sources.default = ["lsp" "git" "path" "buffer" "dictionary" "emoji" "latex-symbols"];
             fuzzy.implementation = "prefer_rust_with_warning";
 
-            soruces.providers = {
+            sources.providers = {
               dictionary = {
                 module = "blink-cmp-dictionary";
                 name = "Dict";
@@ -1068,13 +1073,13 @@ in {
               };
               git = {
                 module = "blink-cmp-git";
-                name = "git";
+                name = "Git";
                 score_offset = 100;
                 min_keyword_length = 3;
               };
               latex-symbols = {
                 module = "blink-cmp-latex";
-                name = "latex";
+                name = "Latex";
                 score_offset = 100;
                 opts = {
                   insert_command = false;
@@ -1091,6 +1096,11 @@ in {
             };
           };
         };
+
+        blink-cmp-git.enable = true;
+        blink-emoji.enable = true;
+        blink-cmp-latex.enable = true;
+        blink-cmp-dictionary.enable = true;
 
         # Color completion menus.
         colorful-menu = {
