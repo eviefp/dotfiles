@@ -152,6 +152,14 @@ in {
             isw -i seconds[,seconds,...]
           '';
         }
+        {
+          name = "jellyfin-tui";
+          package = pkgs.jellyfin-tui;
+          short = "jellyfin tui";
+          help = ''
+            jellyfin-tui
+          '';
+        }
       ];
     };
   };
