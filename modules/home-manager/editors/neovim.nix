@@ -381,6 +381,27 @@ in {
           action = ":lua require('origami').l()<cr>";
           options.desc = "un-fold region";
         }
+        # time-machine
+        {
+          key = "<leader>tm";
+          action = "<cmd>TimeMachineToggle<cr>";
+          options.desc = "Time Machine: toggle tree";
+        }
+        {
+          key = "<leader>tx";
+          action = "<cmd>TimeMachinePurgeCurrent<cr>";
+          options.desc = "Time Machine: purge current";
+        }
+        {
+          key = "<leader>tX";
+          action = "<cmd>TimeMachinePurgeAll<cr>";
+          options.desc = "Time Machine: purge ALL";
+        }
+        {
+          key = "<leader>tl";
+          action = "<cmd>TimeMachineLogShow<cr>";
+          options.desc = "Time Machine: show logs";
+        }
       ];
 
       extraPlugins = [
@@ -451,6 +472,7 @@ in {
         })
 
         require('time-machine').setup {
+          diff_tool = 'delta',
         }
 
         require('presenterm').setup {
