@@ -55,10 +55,6 @@ in {
         initrd.enable = true;
         overdrive.enable = true;
         opencl.enable = true;
-        amdvlk.enable = true;
-        amdvlk.support32Bit.enable = true;
-        # https://github.com/GPUOpen-Drivers/AMDVLK?tab=readme-ov-file#runtime-settings
-        amdvlk.settings = {};
       };
     })
   ]);

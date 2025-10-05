@@ -391,8 +391,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "FabijanZulj";
             repo = "blame.nvim";
-            rev = "b87b8c820e4cec06fbbd2f946b7b35c45906ee0c";
-            hash = "sha256-v4ieZ7NIWP1khvrcyzTSGX6IHHn0kjZICbyRqS2xqHM=";
+            rev = "d5f4ad5c8ebca3caecc773dda5983709c5a5da8f";
+            hash = "sha256-IP+KIwAANoRdZmSzAAtjLgeYOADc2t8Ld1ru0sNq/G0=";
           };
         }) # https://github.com/FabijanZulj/blame.nvim
         pkgs.vimPlugins.outline-nvim

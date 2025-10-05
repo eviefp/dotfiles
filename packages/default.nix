@@ -11,6 +11,7 @@
   # TODO: use Hydroxide or fork peroxide
   peroxide = pkgs-2411.callPackage ./peroxide.nix {};
 
+  # TODO: try patching instead
   waybar = pkgs.waybar.overrideAttrs (_: {
     src = pkgs.fetchFromGitHub {
       owner = "eviefp";
@@ -25,8 +26,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "fbb1caf5f8ce427272799b8f52e01575d72cb3e4";
-      hash = "sha256-q+mHkaPUjHbpGnNjI8OdqX+TTzv3zyPb1NA30YB7A04=";
+      rev = "ea124068f246eeb5e436c1fc62c9379d9b936f15";
+      hash = "sha256-4goAzSWn2el9o2r3OB4ywOiCmZ+3k4+MB+Q9M1vuN0I=";
     };
   });
 }
