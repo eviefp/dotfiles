@@ -1110,26 +1110,26 @@ in {
                 };
               };
             };
-            sources.default = ["lsp" "git" "path" "buffer" "dictionary" "emoji" "latex-symbols"];
+            sources.default = ["lsp" "git" "path" "dictionary" "emoji" "latex-symbols"];
             fuzzy.implementation = "prefer_rust_with_warning";
 
             sources.providers = {
-              dictionary = {
-                module = "blink-cmp-dictionary";
-                name = "Dict";
-                score_offset = 100;
-                min_keyword_length = 3;
+              lsp = {
+                score_offest = 100;
               };
               git = {
                 module = "blink-cmp-git";
                 name = "Git";
-                score_offset = 100;
+                score_offset = 90;
                 min_keyword_length = 3;
+              };
+              path = {
+                score_offset = 80;
               };
               latex-symbols = {
                 module = "blink-cmp-latex";
                 name = "Latex";
-                score_offset = 100;
+                score_offset = 50;
                 opts = {
                   insert_command = false;
                 };
@@ -1137,10 +1137,16 @@ in {
               emoji = {
                 module = "blink-emoji";
                 name = "emoji";
-                score_offset = 100;
+                score_offset = 30;
                 opts = {
                   insert = false;
                 };
+              };
+              dictionary = {
+                module = "blink-cmp-dictionary";
+                name = "Dict";
+                score_offset = 1;
+                min_keyword_length = 3;
               };
             };
           };
