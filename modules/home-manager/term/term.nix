@@ -127,7 +127,7 @@ in {
       git = {
         enable = true;
         delta = {
-          enable = false;
+          enable = true;
           options = {
             navigate = true;
           };
@@ -135,12 +135,6 @@ in {
         signing = {
           key = "CBD1E075BF7B2E7C";
           signByDefault = true;
-        };
-        difftastic = {
-          enable = true;
-          color = "auto";
-          background = "dark";
-          display = "side-by-side";
         };
         aliases = {
           ll = "log --graph --decorate --oneline --abbrev-commit";
@@ -151,7 +145,6 @@ in {
           work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
         };
         extraConfig = {
-          core.pager = "delta";
           init.defaultBranch = "main";
           pull.ff = "only";
           merge.conflictstyle = "diff3";
