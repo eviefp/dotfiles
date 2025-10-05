@@ -16,8 +16,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "eviefp";
       repo = "Waybar";
-      rev = "e8cf6a8f628cddb4c84e78ec0652e99178b43ec8";
-      hash = "sha256-JlusLRHRIpb3YlFv5zR0MKdudvpvUqnXisEW1NGyGMI=";
+      rev = "1b2d552c02cd5337fa47a924a85760538bc0656b";
+      hash = "sha256-CwwJnnERYR1CUVLywGsjqiyBLv8qDs1ss9g8syiOANY=";
     };
   });
 

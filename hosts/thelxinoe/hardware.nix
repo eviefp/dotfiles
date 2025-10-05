@@ -55,12 +55,7 @@
   fileSystems."/mnt/raid" = {
     device = "fractal:/mnt/raid1";
     fsType = "nfs";
-    options = [
-      "x-systemd.requires=network-online.target"
-      "x-systemd.after=network-online.target"
-      "x-systemd.required=multi-user.target"
-      "x-systemd.before=multi-user.target"
-    ];
+    options = ["x-systemd.automount" "noauto"];
   };
 
   swapDevices = [{device = "/dev/disk/by-uuid/5fbea3ce-b59a-40de-9330-9d4e0264c8f0";}];
