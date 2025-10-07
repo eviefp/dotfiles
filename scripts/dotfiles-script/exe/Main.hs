@@ -100,8 +100,9 @@ main = do
   traverse_ (uncurry output)
     . catMaybes
     $ [ Just (Ansi.Magenta, "-> ")
+      , Just . bool (Ansi.Green, "local ") (Ansi.Red, "remote ") $ buildRemotely
+      , Just (Ansi.White, "build ")
       , Just (Ansi.Red, "deploy ")
-      , Just . bool (Ansi.Green, "locally ") (Ansi.Red, "remotely ") $ buildRemotely
       , Just (Ansi.White, "for ")
       , Just (Ansi.Magenta, sshTarget)
       , Just (Ansi.White, " ")

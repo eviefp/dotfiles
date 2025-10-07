@@ -10,3 +10,4 @@ home/xmonad/xmonad.o
 .envrc
 scripts/dotfiles-script/dist-newstyle/
 scripts/dotfiles-script/hls.log
+hls.log
