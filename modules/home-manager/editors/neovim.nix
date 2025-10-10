@@ -456,12 +456,13 @@ in {
       ];
 
       extraConfigLua = ''
-        require('nu').setup{}
+        require('nu').setup {
+        }
 
-        require('blame').setup({
-        })
+        require('blame').setup {
+        }
 
-        require('outline').setup({
+        require('outline').setup{
           outline_window = {
             position = 'left',
             auto_close = true,
@@ -469,7 +470,7 @@ in {
           preview_window = {
             auto_preview = true,
           },
-        })
+        }
 
         require('time-machine').setup {
           diff_tool = 'delta',
@@ -656,15 +657,6 @@ in {
           };
         };
 
-        ## Completion
-        coq-nvim = {
-          enable = false;
-          installArtifacts = true;
-          settings = {
-            auto_start = true;
-          };
-        };
-
         ## Languages
         treesitter = {
           enable = true;
@@ -751,10 +743,6 @@ in {
           ];
 
           settings = {
-            # auto_install = true;
-            # ensure_installed = "all";
-            # sync_install = true;
-
             highlight = {
               enable = true;
               additional_vim_regex_highlighting = false;
@@ -1111,21 +1099,15 @@ in {
                 };
               };
             };
-            sources.default = ["lsp" "git" "path" "dictionary" "emoji" "latex-symbols"];
+            sources.default = ["lsp" "path" "dictionary" "emoji" "latex-symbols"];
             fuzzy.implementation = "prefer_rust_with_warning";
 
             sources.providers = {
+              path = {
+                score_offset = 200;
+              };
               lsp = {
                 score_offest = 100;
-              };
-              git = {
-                module = "blink-cmp-git";
-                name = "Git";
-                score_offset = 90;
-                min_keyword_length = 3;
-              };
-              path = {
-                score_offset = 80;
               };
               latex-symbols = {
                 module = "blink-cmp-latex";
@@ -1153,7 +1135,6 @@ in {
           };
         };
 
-        blink-cmp-git.enable = true;
         blink-emoji.enable = true;
         blink-cmp-latex.enable = true;
         blink-cmp-dictionary.enable = true;
@@ -1192,18 +1173,6 @@ in {
             integration = {
               nvim-tree.enable = false;
             };
-          };
-        };
-
-        # Floating terminal.
-        # Can also add multiple terminals and navigate through them.
-        floaterm = {
-          enable = true;
-          settings = {
-            shell = "nu";
-            position = "bottom";
-            keymap_new = "<A-T>";
-            keymap_toggle = "<A-t>";
           };
         };
 
@@ -1248,7 +1217,7 @@ in {
             };
             line_num = {
               enable = true;
-              style = "${theme.dark.bg}";
+              style = "${theme.dark.purple}";
             };
             blank = {
               enable = true;
@@ -1316,7 +1285,7 @@ in {
             markdown = {
               enable = true;
               list_items = {
-                enable = false; # indentation makes it weird
+                enable = true; # try it again
               };
             };
           };
@@ -1463,11 +1432,6 @@ in {
           };
         };
 
-        # REST API helper; use :Rest on a .http file
-        rest = {
-          enable = true;
-        };
-
         # cursor effect
         smear-cursor = {
           enable = true;
@@ -1482,26 +1446,6 @@ in {
               w = "w";
               e = "e";
               b = "b";
-            };
-          };
-        };
-
-        # travel through versions of a file; start with ':Tardis'
-        # TODO: review if I really want this. It's not exactly blame, but it can git travel.
-        tardis = {
-          enable = true;
-          settings = {
-            keymap = {
-              next = "<C-j>";
-              prev = "<C-k>";
-              quit = "q";
-              revision_message = "<C-m>";
-              commit = "<C-g>";
-            };
-            settings = {
-              initial_revisions = 10;
-              max_revisions = 256;
-              show_commit_index = true;
             };
           };
         };
