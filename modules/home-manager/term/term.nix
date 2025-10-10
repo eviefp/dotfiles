@@ -130,6 +130,8 @@ in {
           enable = true;
           options = {
             navigate = true;
+            line-numbers = false;
+            hyperlinks = true;
           };
         };
         signing = {
@@ -147,7 +149,7 @@ in {
         extraConfig = {
           init.defaultBranch = "main";
           pull.ff = "only";
-          merge.conflictstyle = "diff3";
+          merge.conflictstyle = "zdiff3";
         };
         ignores = ["TAGS"];
         userEmail = "me@evie.ro";
