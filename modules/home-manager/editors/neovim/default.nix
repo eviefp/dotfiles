@@ -17,6 +17,11 @@
 in {
   imports = [
     dotfiles.nixvim.homeModules.nixvim
+
+    # Git related
+    ./blame.nix
+
+    # Programming related
     ./nushell.nix
   ];
 
@@ -213,12 +218,6 @@ in {
           action = "<cmd>lua require('actions-preview').code_actions()<cr>";
           options.desc = "lsp: code actions";
         }
-        # blame
-        {
-          key = "<leader>gb";
-          action = "<cmd>BlameToggle<cr>";
-          options.desc = "blame toggle";
-        }
         # Neogit
         {
           key = "<leader>gs";
@@ -406,16 +405,6 @@ in {
       ];
 
       extraPlugins = [
-        (pkgs.vimUtils.buildVimPlugin {
-          pname = "blame.nvim";
-          version = "v1.0";
-          src = pkgs.fetchFromGitHub {
-            owner = "FabijanZulj";
-            repo = "blame.nvim";
-            rev = "d5f4ad5c8ebca3caecc773dda5983709c5a5da8f";
-            hash = "sha256-IP+KIwAANoRdZmSzAAtjLgeYOADc2t8Ld1ru0sNq/G0=";
-          };
-        }) # https://github.com/FabijanZulj/blame.nvim
         pkgs.vimPlugins.outline-nvim
         (pkgs.vimUtils.buildVimPlugin {
           pname = "co-author.nvim";
@@ -456,8 +445,6 @@ in {
       ];
 
       extraConfigLua = ''
-        require('blame').setup {
-        }
 
         require('outline').setup{
           outline_window = {
