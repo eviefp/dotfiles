@@ -450,7 +450,7 @@ in {
           };
           patches = [
             # https://github.com/Piotr1215/presenterm.nvim/pull/4
-            ../../../patches/presenterm-nvim-use-slide-marker.patch
+            ../../../../patches/presenterm-nvim-use-slide-marker.patch
           ];
         }) # https://github.com/Piotr1215/presenterm.nvim
       ];
