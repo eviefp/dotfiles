@@ -52,6 +52,7 @@ in {
     ./lsp.nix
     ./action-preview.nix
     ./conform.nix
+    ./fidget.nix
 
     ./lang/csharp.nix
     ./lang/haskell.nix
