@@ -32,6 +32,7 @@ in {
 
     # Programming languages
     ./nushell.nix
+    ./lsp.nix
 
     # Utilities / misc
     ./presenterm.nix
@@ -104,12 +105,7 @@ in {
       };
 
       keymaps = [
-        ## lsp
-        {
-          key = "gD";
-          action = ":split<cr>:lua vim.lsp.buf.definition()<cr>";
-          options.desc = "lsp definition: horizontal split";
-        }
+        ## actions-preview
         {
           key = "<leader>ac";
           action = "<cmd>lua require('actions-preview').code_actions()<cr>";
@@ -258,37 +254,6 @@ in {
       ];
 
       lsp = {
-        keymaps = [
-          {
-            key = "gd";
-            lspBufAction = "definition";
-          }
-          {
-            key = "gj";
-            lspBufAction = "references";
-          }
-          {
-            key = "gt";
-            lspBufAction = "type_definition";
-          }
-          {
-            key = "gi";
-            lspBufAction = "implementation";
-          }
-          {
-            key = "K";
-            lspBufAction = "hover";
-          }
-          {
-            key = "]d";
-            action = "<lua>vim.diagnostic.goto_next<cr>";
-          }
-          {
-            key = "]d";
-            action = "<lua>vim.diagnostic.goto_prev<cr>";
-          }
-        ];
-
         servers = {
           hls = {
             enable = true;
