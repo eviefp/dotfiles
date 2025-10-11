@@ -44,6 +44,7 @@ in {
     ./grug-far.nix
     ./gx.nix
     ./markview.nix
+    ./origami.nix
     ./surround.nix
     ./tabular.nix
     ./time-machine.nix
@@ -125,17 +126,6 @@ in {
           action = "<cmd>Yazi toggle<cr>";
           options.desc = "yazi toggle";
         }
-        # origami
-        {
-          key = "<C-h>";
-          action = ":lua require('origami').h()<cr>";
-          options.desc = "fold region";
-        }
-        {
-          key = "<C-l>";
-          action = ":lua require('origami').l()<cr>";
-          options.desc = "un-fold region";
-        }
       ];
 
       plugins = {
@@ -144,26 +134,6 @@ in {
         #######################################################################
         orgmode = {
           enable = true;
-        };
-
-        # folding
-        origami = {
-          enable = true;
-          settings = {
-            useLspFoldsWithTreesitterFallback = true;
-            pauseFoldsOnSearch = true;
-            foldtext = {
-              enabled = true;
-              padding = 2;
-            };
-            autoFold = {
-              enabled = false;
-            };
-            foldKeymaps = {
-              setup = false;
-              hOnlyOpensOnFirstColumn = false;
-            };
-          };
         };
 
         # cursor effect
