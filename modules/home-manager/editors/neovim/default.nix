@@ -31,6 +31,7 @@ in {
 
     # Text editing
     ./arrow.nix
+    ./blink-cmp.nix
     ./ccc.nix
     ./indent-o-matic.nix
     ./marks.nix
@@ -198,83 +199,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        blink-cmp = {
-          enable = true;
-          settings = {
-            keymap.preset = "default";
-            appearance.nerd_font_variant = "mono";
-            completion = {
-              documentation.auto_show = true;
-              menu.draw = {
-                columns = [
-                  {
-                    __unkeyed = "kind_icon";
-                  }
-                  {
-                    __unkeyed = "label";
-                    gap = 1;
-                  }
-                ];
-                components = {
-                  label = {
-                    text.__raw = ''
-                      function(ctx)
-                        return require("colorful-menu").blink_components_text(ctx)
-                      end
-                    '';
-                    highlight.__raw = ''
-                      function(ctx)
-                        return require("colorful-menu").blink_components_highlight(ctx)
-                      end
-                    '';
-                  };
-                };
-              };
-            };
-            sources.default = ["lsp" "path" "dictionary" "emoji" "latex-symbols"];
-            fuzzy.implementation = "prefer_rust_with_warning";
-
-            sources.providers = {
-              path = {
-                score_offset = 200;
-              };
-              lsp = {
-                score_offest = 100;
-              };
-              latex-symbols = {
-                module = "blink-cmp-latex";
-                name = "Latex";
-                score_offset = 50;
-                opts = {
-                  insert_command = false;
-                };
-              };
-              emoji = {
-                module = "blink-emoji";
-                name = "emoji";
-                score_offset = 30;
-                opts = {
-                  insert = false;
-                };
-              };
-              dictionary = {
-                module = "blink-cmp-dictionary";
-                name = "Dict";
-                score_offset = 1;
-                min_keyword_length = 3;
-              };
-            };
-          };
-        };
-
-        blink-emoji.enable = true;
-        blink-cmp-latex.enable = true;
-        blink-cmp-dictionary.enable = true;
-
-        # Color completion menus.
-        colorful-menu = {
-          enable = true;
-        };
 
         # Show mermaid diagrams in-line.
         diagram = {
