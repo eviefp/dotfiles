@@ -1,11 +1,5 @@
-{
-  lib,
-  config,
-  ...
-}: let
-  cfg = config.evie.editors.neovim;
-in {
-  config = lib.mkIf cfg.enable {
+{...}: {
+  config = {
     programs.nixvim = {
       keymaps = [
         # Unbind arrow keys.

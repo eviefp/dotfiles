@@ -1,12 +1,5 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
-  cfg = config.evie.editors.neovim;
-in {
-  config = lib.mkIf cfg.enable {
+{pkgs, ...}: {
+  config = {
     home.packages = [
       pkgs.nufmt
     ];
