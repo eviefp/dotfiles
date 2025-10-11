@@ -26,6 +26,7 @@ in {
     ./treesitter.nix
 
     # Text editing
+    ./ccc.nix
     ./tabular.nix
     ./time-machine.nix
 
@@ -152,12 +153,6 @@ in {
           action = "<cmd>Browse<cr>";
           options.desc = "browse link";
         }
-        # ccc
-        {
-          key = "<leader>cc";
-          action = "<cmd>CccPick<cr>";
-          options.desc = "color picker";
-        }
         # Obsidian
         {
           key = "<leader>fn";
@@ -231,16 +226,6 @@ in {
       ];
 
       plugins = {
-        ## misc
-        ccc = {
-          enable = true;
-          settings = {
-            highlighter = {
-              auto_enable = true;
-            };
-          };
-        };
-
         ## UI
 
         lualine = {
