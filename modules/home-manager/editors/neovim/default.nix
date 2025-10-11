@@ -46,6 +46,7 @@ in {
     ./gx.nix
     ./markview.nix
     ./presenterm.nix
+    ./surround.nix
     ./tabular.nix
     ./time-machine.nix
     ./rainbow-delimiters.nix
@@ -183,11 +184,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        # surround; ys/yS
-        nvim-surround = {
-          enable = true;
-        };
-
         obsidian = lib.mkIf cfg.obsidian {
           enable = true;
           settings = {
