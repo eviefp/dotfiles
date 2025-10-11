@@ -55,6 +55,7 @@ in {
     ./tabular.nix
     ./time-machine.nix
     ./todo-comments.nix
+    ./visual-multi.nix
     ./wrapping.nix
 
     # Git related
@@ -107,28 +108,9 @@ in {
 
     programs.nixvim = {
       enable = true;
-
       package = dotfiles.self.packages.${pkgs.system}.neovim;
-
       viAlias = true;
       vimAlias = true;
-
-      plugins = {
-        #######################################################################
-        # Experiments
-        #######################################################################
-
-        # visual multi cursors
-        visual-multi = {
-          enable = true;
-          settings = {
-            mouse_mappings = 0;
-            silent_exit = 1;
-            show_warnings = 1;
-            default_mappings = 1;
-          };
-        };
-      };
     };
   };
 }
