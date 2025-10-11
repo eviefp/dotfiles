@@ -65,6 +65,7 @@ in {
     # Programming languages
     ./lang/csharp.nix
     ./lang/haskell.nix
+    ./lang/lean.nix
     ./lang/nix.nix
     ./lang/nushell.nix
     ./lang/purescript.nix
@@ -196,44 +197,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # lean lsp
-        lean = {
-          enable = true;
-          settings = {
-            mappings = true;
-            lsp = {
-              init_options = {
-                edit_delay = 0;
-                hasWidgets = true;
-              };
-            };
-
-            abbreviations = {
-              enable = true;
-              extra = {
-                # Add a \wknight abbreviation to insert ♘
-                wknight = "♘";
-              };
-              leader = "\\";
-            };
-
-            infoview = {
-              autoopen = false;
-            };
-
-            progress_bars = {
-              enable = true;
-              character = "|";
-              priority = 10;
-            };
-
-            stderr = {
-              enable = true;
-              height = 5;
-            };
-          };
-        };
 
         # In-line errors.
         lsp-lines = {
