@@ -18,6 +18,9 @@ in {
   imports = [
     dotfiles.nixvim.homeModules.nixvim
 
+    # Text editing
+    ./tabular.nix
+
     # Git related
     ./blame.nix
     ./co-author.nix
@@ -292,12 +295,6 @@ in {
           action = "<cmd>CccPick<cr>";
           options.desc = "color picker";
         }
-        # tabularize
-        {
-          key = "<leader>ta";
-          action = ":Tabularize ";
-          options.desc = "custom align";
-        }
         # Obsidian
         {
           key = "<leader>fn";
@@ -392,7 +389,6 @@ in {
       ];
 
       extraPlugins = [
-        pkgs.vimPlugins.tabular
         (pkgs.vimUtils.buildVimPlugin {
           pname = "time-machine.nvim";
           version = "v1.5.4";
