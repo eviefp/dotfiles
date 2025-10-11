@@ -35,6 +35,7 @@ in {
     ./leap.nix
     ./tabular.nix
     ./time-machine.nix
+    ./rainbow-delimiters.nix
 
     # Git related
     ./blame.nix
@@ -236,8 +237,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        rainbow-delimiters.enable = true;
-
         actions-preview = {
           enable = true;
 
