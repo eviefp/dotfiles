@@ -182,11 +182,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        # Search through nerd fonts.
-        nerdy = {
-          enable = true;
-          enableTelescope = true;
-        };
 
         # UI improvements
         noice = {
