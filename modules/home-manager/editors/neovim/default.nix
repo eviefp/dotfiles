@@ -21,22 +21,27 @@ in {
     ./config.nix
 
     # Core
-    ./barbar.nix
     ./colorscheme.nix
     ./keybindings.nix
-    ./lualine.nix
-    ./telescope.nix
     ./treesitter.nix
+
+    # UI
+    ./barbar.nix
+    ./lualine.nix
+    ./marks.nix
+    ./telescope.nix
     ./web-devicons.nix
 
-    # Text editing
+    # Movement
     ./arrow.nix
+    ./leap.nix
+
+    # Text editing / viewing
     ./blink-cmp.nix
     ./ccc.nix
-    ./indent-o-matic.nix
     ./diagram.nix
-    ./marks.nix
-    ./leap.nix
+    ./indent-o-matic.nix
+    ./presenterm.nix
     ./tabular.nix
     ./time-machine.nix
     ./rainbow-delimiters.nix
@@ -48,12 +53,13 @@ in {
     ./gitsigns.nix
     ./neogit.nix
 
-    # Programming languages / lsp
-    ./lsp.nix
+    # LSP
     ./action-preview.nix
     ./conform.nix
     ./fidget.nix
+    ./lsp.nix
 
+    # Programming languages
     ./lang/csharp.nix
     ./lang/haskell.nix
     ./lang/nix.nix
@@ -63,7 +69,6 @@ in {
     ./lang/typescript.nix
 
     # Utilities / misc
-    ./presenterm.nix
     ./sops.nix
   ];
 
@@ -195,25 +200,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # Show LSP starting messages and other notifications.
-        fidget = {
-          enable = true;
-          settings = {
-            progress = {
-              display.done_ttl = 10;
-            };
-            notification = {
-              override_vim_notify = true;
-              window = {
-                border = "rounded";
-              };
-            };
-            integration = {
-              nvim-tree.enable = false;
-            };
-          };
-        };
 
         # Find-and-Replace UI.
         # alternative: nvim-spectre
