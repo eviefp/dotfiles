@@ -27,6 +27,7 @@ in {
 
     # UI
     ./barbar.nix
+    ./hlchunk.nix
     ./lualine.nix
     ./marks.nix
     ./telescope.nix
@@ -195,29 +196,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # Indentation highlighter.
-        hlchunk = {
-          enable = true;
-          settings = {
-            chunk = {
-              enable = true;
-              use_treesitter = true;
-            };
-            indent = {
-              enable = true;
-              chars = ["│" "¦" "┆" "┊"];
-            };
-            line_num = {
-              enable = true;
-              style = "${theme.dark.purple}";
-            };
-            blank = {
-              enable = true;
-              chars = [" " "․" "⁚" "⁖" "⁘" "⁙"];
-            };
-          };
-        };
 
         # lean lsp
         lean = {
