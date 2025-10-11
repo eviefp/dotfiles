@@ -47,6 +47,7 @@ in {
     ./markview.nix
     ./origami.nix
     ./surround.nix
+    ./spider.nix
     ./tabular.nix
     ./time-machine.nix
     ./rainbow-delimiters.nix
@@ -119,19 +120,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # make w, e, and b respect words with camelCase, etc.
-        spider = {
-          enable = true;
-          keymaps = {
-            silent = true;
-            motions = {
-              w = "w";
-              e = "e";
-              b = "b";
-            };
-          };
-        };
 
         # highlights FIX, TODO, HACK, WARN, PERF, NOTE, TEST. can be configured.
         todo-comments = {
