@@ -257,11 +257,6 @@ in {
           nil_ls = {
             enable = true;
           };
-
-          gopls = {
-            enable = true;
-            package = null;
-          };
         };
       };
 
@@ -472,7 +467,6 @@ in {
           enable = true;
           settings = {
             formatters_by_ft = {
-              go = ["gofmt"];
               nix = ["alejandra"];
               bash = ["shellcheck" "shfmt"];
               markdown = ["mdsf"];
