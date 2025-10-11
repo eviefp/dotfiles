@@ -30,6 +30,7 @@ in {
 
     # Text editing
     ./ccc.nix
+    ./indent-o-matic.nix
     ./marks.nix
     ./leap.nix
     ./tabular.nix
@@ -235,16 +236,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # TODO: sort through these
-        indent-o-matic = {
-          enable = true;
-          settings = {
-            skip_multiline = true;
-            standard_widths = [2 4];
-          };
-        };
-
         rainbow-delimiters.enable = true;
 
         actions-preview = {
