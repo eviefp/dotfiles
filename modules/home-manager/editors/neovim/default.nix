@@ -32,6 +32,7 @@ in {
 
     # Programming languages
     ./lsp.nix
+    ./lang/csharp.nix
     ./lang/haskell.nix
     ./lang/nushell.nix
 
@@ -255,11 +256,6 @@ in {
 
       lsp = {
         servers = {
-          omnisharp = {
-            enable = true;
-            package = null;
-          };
-
           rust_analyzer = {
             enable = true;
             package = null;
