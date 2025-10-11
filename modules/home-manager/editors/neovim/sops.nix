@@ -9,6 +9,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.nixvim = {
       extraPlugins = [pkgs.vimPlugins.nvim-sops];
+
       keymaps = [
         {
           key = "<leader>se";

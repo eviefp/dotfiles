@@ -16,6 +16,7 @@ in {
           options.desc = "outline";
         }
       ];
+
       extraConfigLua = ''
         require('outline').setup{
           outline_window = {

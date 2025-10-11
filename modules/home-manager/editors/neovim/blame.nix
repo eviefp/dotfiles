@@ -20,6 +20,7 @@ in {
           };
         }) # https://github.com/FabijanZulj/blame.nvim
       ];
+
       keymaps = [
         {
           key = "<leader>gb";
@@ -27,6 +28,7 @@ in {
           options.desc = "blame toggle";
         }
       ];
+
       extraConfigLua = ''
         require('blame').setup {}
       '';
