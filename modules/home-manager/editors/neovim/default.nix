@@ -346,12 +346,6 @@ in {
           action = ":Obsidian extract_note<cr>";
           options.desc = "obsidian extract note";
         }
-        # outline
-        {
-          key = "<leader>oo";
-          action = ":Outline<cr>";
-          options.desc = "outline";
-        }
         # lsp-lines
         {
           key = "<leader>dt";
@@ -405,7 +399,6 @@ in {
       ];
 
       extraPlugins = [
-        pkgs.vimPlugins.outline-nvim
         (pkgs.vimUtils.buildVimPlugin {
           pname = "co-author.nvim";
           version = "v1.0";
@@ -445,16 +438,6 @@ in {
       ];
 
       extraConfigLua = ''
-
-        require('outline').setup{
-          outline_window = {
-            position = 'left',
-            auto_close = true,
-          },
-          preview_window = {
-            auto_preview = true,
-          },
-        }
 
         require('time-machine').setup {
           diff_tool = 'delta',
