@@ -35,6 +35,7 @@ in {
     ./lang/csharp.nix
     ./lang/haskell.nix
     ./lang/nushell.nix
+    ./lang/purescript.nix
     ./lang/rust.nix
     ./lang/typescript.nix
 
@@ -84,11 +85,6 @@ in {
       vimAlias = true;
 
       autoCmd = [
-        {
-          event = ["BufEnter"];
-          pattern = ["*.purs"];
-          command = ":setlocal filetype=purescript";
-        }
         {
           event = ["BufEnter"];
           pattern = ["*.mdc"];
@@ -265,17 +261,6 @@ in {
           gopls = {
             enable = true;
             package = null;
-          };
-
-          purescriptls = {
-            enable = true;
-            package = null;
-            settings = {
-              purescript = {
-                formatter = "purs-tidy";
-                addSpagoSources = true;
-              };
-            };
           };
         };
       };
@@ -491,7 +476,6 @@ in {
               nix = ["alejandra"];
               bash = ["shellcheck" "shfmt"];
               markdown = ["mdsf"];
-              purescript = ["purs-tidy"];
               "*" = ["trim_whitespace"];
             };
 
