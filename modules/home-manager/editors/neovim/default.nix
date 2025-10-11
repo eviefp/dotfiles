@@ -52,8 +52,8 @@ in {
     # Git related
     ./blame.nix
     ./co-author.nix
-    ./git-conflict.nix
     ./gitsigns.nix
+    ./git-conflict.nix
     ./neogit.nix
 
     # LSP
@@ -61,6 +61,7 @@ in {
     ./conform.nix
     ./fidget.nix
     ./lsp.nix
+    ./lsp-lines.nix
 
     # Programming languages
     ./lang/csharp.nix
@@ -163,11 +164,6 @@ in {
           options.desc = "obsidian extract note";
         }
         # lsp-lines
-        {
-          key = "<leader>dt";
-          action = ":lua require('lsp_lines').toggle()<cr>";
-          options.desc = "line diagnostics toggle";
-        }
         # markview
         {
           key = "<leader>mv";
@@ -197,12 +193,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # In-line errors.
-        lsp-lines = {
-          enable = true;
-        };
-
         # Show signature help for multi-param functions.
         lsp-signature = {
           enable = true;
