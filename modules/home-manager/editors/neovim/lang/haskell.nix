@@ -23,7 +23,7 @@ in {
         };
       };
 
-      plugins.conform-nvim.settings = {
+      plugins.conform-nvim.settings.formatters_by_ft = {
         haskell = {
           __unkeyed-1 = "fourmolu";
           __unkeyed-2 = "ormolu";

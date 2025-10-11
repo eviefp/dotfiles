@@ -19,7 +19,7 @@ in {
 
       lsp.servers.nushell.enable = true;
 
-      plugins.conform-nvim.settings = {
+      plugins.conform-nvim.settings.formatters_by_ft = {
         nu = ["nufmt"];
       };
     };
