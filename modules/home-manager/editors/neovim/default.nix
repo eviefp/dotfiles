@@ -41,6 +41,7 @@ in {
     ./ccc.nix
     ./diagram.nix
     ./indent-o-matic.nix
+    ./grug-far.nix
     ./presenterm.nix
     ./tabular.nix
     ./time-machine.nix
@@ -82,7 +83,6 @@ in {
       pkgs.obsidian
 
       # grug-far
-      pkgs.ast-grep
 
       # snacks
       pkgs.ghostscript
@@ -200,26 +200,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # Find-and-Replace UI.
-        # alternative: nvim-spectre
-        grug-far = {
-          enable = true;
-          settings = {
-            debounceMs = 1000;
-            minSearchChars = 1;
-            maxSearchMatches = 2000;
-            normalModeSearch = false;
-            maxWorkers = 8;
-            engine = "ripgrep";
-            engines = {
-              ripgrep = {
-                path = "rg";
-                showReplaceDiff = true;
-              };
-            };
-          };
-        };
 
         # Open link in browser.
         # TODO: add handlers for stuff like "github:foo/bar" in flake.nix files or pkgs.bar, etc.
