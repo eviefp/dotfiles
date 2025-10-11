@@ -35,6 +35,7 @@ in {
     ./lang/csharp.nix
     ./lang/haskell.nix
     ./lang/nushell.nix
+    ./lang/rust.nix
 
     # Utilities / misc
     ./presenterm.nix
@@ -256,11 +257,6 @@ in {
 
       lsp = {
         servers = {
-          rust_analyzer = {
-            enable = true;
-            package = null;
-          };
-
           ts_ls = {
             enable = true;
             package = null;
@@ -509,7 +505,6 @@ in {
               "javascript.tsx" = ["prettier"];
               "typescript.tsx" = ["prettier"];
               purescript = ["purs-tidy"];
-              rust = ["rustfmt"];
               "*" = ["trim_whitespace"];
             };
 
