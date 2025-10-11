@@ -1,10 +1,3 @@
-/**
-**************************************************************************
-* Neovim module
-*
-* Neovim package, plugins, and init file.
-*************************************************************************
-*/
 {
   dotfiles,
   config,
@@ -99,11 +92,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      # snacks
-      pkgs.ghostscript
-    ];
-
     home.sessionVariables.EDITOR = "nvim";
 
     programs.nixvim = {
