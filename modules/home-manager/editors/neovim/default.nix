@@ -29,7 +29,8 @@ in {
     # Programming languages
     ./nushell.nix
 
-    # Utilities
+    # Utilities / misc
+    ./presenterm.nix
     ./sops.nix
   ];
 
@@ -367,43 +368,6 @@ in {
           options.desc = "un-fold region";
         }
       ];
-
-      extraPlugins = [
-        (pkgs.vimUtils.buildVimPlugin {
-          pname = "presenterm.nvim";
-          version = "v1.4.0";
-          src = pkgs.fetchFromGitHub {
-            owner = "Piotr1215";
-            repo = "presenterm.nvim";
-            rev = "9918cf87094be527af97ea5a8bd69f7c30c62a3e";
-            hash = "sha256-fpBj2dO437LW+cdWs8wg2GYJoZer5XBWq9BL4e2R/OM=";
-          };
-          patches = [
-            # https://github.com/Piotr1215/presenterm.nvim/pull/4
-            ../../../../patches/presenterm-nvim-use-slide-marker.patch
-          ];
-        }) # https://github.com/Piotr1215/presenterm.nvim
-      ];
-
-      extraConfigLua = ''
-
-        require('time-machine').setup {
-          diff_tool = 'delta',
-        }
-
-        require('presenterm').setup {
-          slide_marker = '---',
-          default_keybindings = true,
-          picker = {
-            provider = 'telescope',
-          },
-          preview = {
-            command = 'presenterm',
-            presentation_preview_sync = true,
-            login_shell = false,
-          },
-        }
-      '';
 
       colorschemes.cyberdream = {
         enable = true;
