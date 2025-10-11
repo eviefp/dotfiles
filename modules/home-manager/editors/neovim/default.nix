@@ -44,8 +44,9 @@ in {
     ./gitsigns.nix
     ./neogit.nix
 
-    # Programming languages
+    # Programming languages / lsp
     ./lsp.nix
+    ./action-preview.nix
     ./conform.nix
 
     ./lang/csharp.nix
@@ -113,12 +114,6 @@ in {
       };
 
       keymaps = [
-        ## actions-preview
-        {
-          key = "<leader>ac";
-          action = "<cmd>lua require('actions-preview').code_actions()<cr>";
-          options.desc = "lsp: code actions";
-        }
         # barbar
         {
           key = "gn";
@@ -237,24 +232,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        actions-preview = {
-          enable = true;
-
-          settings = {
-            highlight_command.__raw =
-              /*
-              lua
-              */
-              ''
-                {
-                  require('actions-preview.highlight').delta 'delta --side-by-side',
-                  require('actions-preview.highlight').diff_so_fancy(),
-                  require('actions-preview.highlight').diff_highlight(),
-                }
-              '';
-          };
-        };
-
         # Arrow: cross-session jump through files.
         # + easy ui
         # - breaks folding
