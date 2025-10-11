@@ -49,6 +49,7 @@ in {
     ./surround.nix
     ./spider.nix
     ./tabular.nix
+    ./todo-comments.nix
     ./time-machine.nix
     ./rainbow-delimiters.nix
 
@@ -120,11 +121,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # highlights FIX, TODO, HACK, WARN, PERF, NOTE, TEST. can be configured.
-        todo-comments = {
-          enable = true;
-        };
 
         # enforce transparency
         transparent = {
