@@ -19,6 +19,7 @@ in {
     dotfiles.nixvim.homeModules.nixvim
 
     ./config.nix
+    ./keybindings.nix
 
     # Text editing
     ./tabular.nix
@@ -101,123 +102,7 @@ in {
         };
       };
 
-      globals = {
-        mapleader = " ";
-        maplocalleader = ",";
-        markdown_recommended_style = 0;
-      };
-
-      opts = {
-        cmdheight = 0;
-        number = true;
-        relativenumber = true;
-
-        splitright = true;
-        splitbelow = true;
-
-        shiftwidth = 2;
-        shiftround = true;
-        expandtab = true;
-
-        termguicolors = true;
-
-        autoread = true;
-        backup = false;
-        swapfile = false;
-
-        visualbell = false;
-        errorbells = false;
-
-        clipboard = "unnamedplus";
-
-        showtabline = 2;
-
-        conceallevel = 1;
-
-        foldenable = true;
-        foldlevel = 99;
-        foldlevelstart = 99;
-      };
-
       keymaps = [
-        {
-          key = "\\";
-          action = ":nohl<cr>";
-          options.desc = "highlight clear";
-        }
-        {
-          key = "<S-Tab>";
-          action = ":set foldlevel=1<cr>";
-          options.desc = "fold first level";
-        }
-        {
-          key = "<A-Tab>";
-          action = ":set foldlevel=99<cr>";
-          options.desc = "un-fold all";
-        }
-        {
-          key = "<up>";
-          action = "";
-        }
-        {
-          key = "<down>";
-          action = "";
-        }
-        {
-          key = "<left>";
-          action = "";
-        }
-        {
-          key = "<right>";
-          action = "";
-        }
-        {
-          key = "<leader>fx";
-          action = ":let @+ = expand(\"%\")<cr>";
-          options.desc = "path to clipboard";
-        }
-        {
-          key = "<leader>wv";
-          action = ":vsplit<cr>";
-          options.desc = "split vertically";
-        }
-        {
-          key = "<leader>ws";
-          action = ":split<cr>";
-          options.desc = "split horizontally";
-        }
-        {
-          key = "<leader>ww";
-          action = ":w<cr>";
-          options.desc = "window: jump to next";
-        }
-        {
-          key = "<leader>tt";
-          action = ":vsplit<cr>:term<cr>a";
-          options.desc = "term: vertical split";
-        }
-        {
-          key = "<leader>ts";
-          action = ":split<cr>:term<cr>a";
-          options.desc = "term: horizontal split";
-        }
-        {
-          key = "<esc>";
-          action = "<C-\\><C-n>";
-          mode = "t";
-          options.desc = "term: normal mode";
-        }
-        {
-          key = "<leader>yy";
-          action = ":w !pandoc -t html -F mermaid-filter | wl-copy --type text/html<cr>";
-          options.desc = "copy html version of current file";
-        }
-        {
-          key = "<leader>yv";
-          action = ":'<,'>w !pandoc -t html -F mermaid-filter | wl-copy --type text/html<cr>";
-          options.desc = "copy html version of current file";
-          mode = "v";
-        }
         ## lsp
         {
           key = "gD";
