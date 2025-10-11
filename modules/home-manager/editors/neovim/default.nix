@@ -36,6 +36,7 @@ in {
     ./lang/haskell.nix
     ./lang/nushell.nix
     ./lang/rust.nix
+    ./lang/typescript.nix
 
     # Utilities / misc
     ./presenterm.nix
@@ -257,14 +258,6 @@ in {
 
       lsp = {
         servers = {
-          ts_ls = {
-            enable = true;
-            package = null;
-            settings = {
-              rootMarkers = ["package.json" "tsconfig.json"];
-            };
-          };
-
           nil_ls = {
             enable = true;
           };
@@ -498,12 +491,6 @@ in {
               nix = ["alejandra"];
               bash = ["shellcheck" "shfmt"];
               markdown = ["mdsf"];
-              javascript = ["prettier"];
-              javascriptreact = ["prettier"];
-              typescript = ["prettier"];
-              typescriptreact = ["prettier"];
-              "javascript.tsx" = ["prettier"];
-              "typescript.tsx" = ["prettier"];
               purescript = ["purs-tidy"];
               "*" = ["trim_whitespace"];
             };
