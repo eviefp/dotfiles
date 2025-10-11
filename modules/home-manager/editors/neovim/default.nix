@@ -31,8 +31,8 @@ in {
     ./co-author.nix
 
     # Programming languages
-    ./nushell.nix
     ./lsp.nix
+    ./lang/nushell.nix
 
     # Utilities / misc
     ./presenterm.nix
