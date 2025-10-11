@@ -10,7 +10,6 @@
   config,
   lib,
   pkgs,
-  theme,
   ...
 }: let
   cfg = config.evie.editors.neovim;
@@ -62,6 +61,7 @@ in {
     ./fidget.nix
     ./lsp.nix
     ./lsp-lines.nix
+    ./lsp-signature.nix
 
     # Programming languages
     ./lang/csharp.nix
@@ -163,7 +163,6 @@ in {
           action = ":Obsidian extract_note<cr>";
           options.desc = "obsidian extract note";
         }
-        # lsp-lines
         # markview
         {
           key = "<leader>mv";
@@ -193,14 +192,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        # Show signature help for multi-param functions.
-        lsp-signature = {
-          enable = true;
-          settings = {
-            select_signature_key = "<C-n>";
-          };
-        };
-
         # Nicer markdown.
         markview = {
           enable = true;
