@@ -34,6 +34,7 @@ in {
     ./blink-cmp.nix
     ./ccc.nix
     ./indent-o-matic.nix
+    ./diagram.nix
     ./marks.nix
     ./leap.nix
     ./tabular.nix
@@ -73,12 +74,6 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.obsidian
-
-      # diagram
-      pkgs.mermaid-cli
-      pkgs.plantuml
-      pkgs.d2
-      pkgs.gnuplot
 
       # grug-far
       pkgs.ast-grep
@@ -199,19 +194,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # Show mermaid diagrams in-line.
-        diagram = {
-          enable = true;
-        };
-
-        # Needed by 'diagram'.
-        image = {
-          enable = true;
-          settings = {
-            backend = "kitty";
-          };
-        };
 
         # Show LSP starting messages and other notifications.
         fidget = {
