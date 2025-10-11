@@ -1,6 +1,12 @@
 {...}: {
   config = {
     programs.nixvim = {
+      diagnostic.settings = {
+        virtual_lines = {
+          only_current_line = true;
+        };
+      };
+
       keymaps = [
         {
           key = "<leader>dt";

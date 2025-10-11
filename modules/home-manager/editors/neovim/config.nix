@@ -6,7 +6,6 @@
     };
 
     opts = {
-      cmdheight = 0;
       number = true;
       relativenumber = true;
 
@@ -26,16 +25,7 @@
       visualbell = false;
       errorbells = false;
 
-      # clipboard = "unnamedplus";
-
-      showtabline = 2;
-
-      # TODO: should these be moved to origami?
-      conceallevel = 1;
-
-      foldenable = true;
-      foldlevel = 99;
-      foldlevelstart = 99;
+      clipboard = "unnamedplus";
     };
   };
 }

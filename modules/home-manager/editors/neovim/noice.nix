@@ -1,6 +1,11 @@
 {...}: {
   config = {
     programs.nixvim = {
+      opts = {
+        # no need for the cmd line if it's a popup
+        cmdheight = 0;
+      };
+
       plugins = {
         noice = {
           enable = true;

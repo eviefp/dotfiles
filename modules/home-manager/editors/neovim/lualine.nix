@@ -1,5 +1,10 @@
 {...}: {
   config.programs.nixvim = {
+    opts = {
+      # allow second row for the winbar
+      showtabline = 2;
+    };
+
     plugins.lualine = {
       enable = true;
 

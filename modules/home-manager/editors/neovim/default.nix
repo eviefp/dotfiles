@@ -112,14 +112,7 @@ in {
         }
       ];
 
-      diagnostic.settings = {
-        virtual_lines = {
-          only_current_line = true;
-        };
-      };
-
       keymaps = [
-        # Obsidian
         # yazi
         {
           key = "<leader>ya";
