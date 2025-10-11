@@ -18,6 +18,8 @@ in {
   imports = [
     dotfiles.nixvim.homeModules.nixvim
 
+    ./config.nix
+
     # Text editing
     ./tabular.nix
     ./time-machine.nix
