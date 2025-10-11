@@ -38,6 +38,7 @@ in {
     # Git related
     ./blame.nix
     ./co-author.nix
+    ./git-conflict.nix
     ./gitsigns.nix
     ./neogit.nix
 
@@ -231,10 +232,6 @@ in {
       ];
 
       plugins = {
-        git-conflict = {
-          enable = true;
-        };
-
         #######################################################################
         # Experiments
         #######################################################################
