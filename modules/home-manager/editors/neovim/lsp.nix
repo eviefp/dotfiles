@@ -13,6 +13,16 @@ in {
           action = ":split<cr>:lua vim.lsp.buf.definition()<cr>";
           options.desc = "lsp definition: horizontal split";
         }
+        {
+          key = "]d";
+          action = ":lua vim.diagnostic.goto_next()<cr>";
+          options.desc = "lsp next diagnostic";
+        }
+        {
+          key = "]d";
+          action = ":lua vim.diagnostic.goto_prev()<cr>";
+          options.desc = "lsp prev diagnostic";
+        }
       ];
       lsp = {
         keymaps = [
@@ -35,14 +45,6 @@ in {
           {
             key = "K";
             lspBufAction = "hover";
-          }
-          {
-            key = "]d";
-            action = "<lua>vim.diagnostic.goto_next<cr>";
-          }
-          {
-            key = "]d";
-            action = "<lua>vim.diagnostic.goto_prev<cr>";
           }
         ];
       };
