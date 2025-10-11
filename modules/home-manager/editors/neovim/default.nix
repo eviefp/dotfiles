@@ -77,6 +77,7 @@ in {
     # Utilities / misc
     ./diagram.nix
     ./obsidian.nix
+    ./oil.nix
     ./presenterm.nix
     ./sops.nix
   ];
@@ -141,18 +142,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        # edit files in a buffer
-        oil = {
-          enable = true;
-          settings = {
-            default_file_explorer = true;
-            columns = ["icon" "permissions" "size" "mtime"];
-            view_options = {
-              show_hidden = true;
-            };
-          };
-        };
-
         orgmode = {
           enable = true;
         };
