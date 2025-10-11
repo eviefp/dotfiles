@@ -29,6 +29,7 @@ in {
 
     # Text editing
     ./ccc.nix
+    ./marks.nix
     ./leap.nix
     ./tabular.nix
     ./time-machine.nix
@@ -230,10 +231,6 @@ in {
 
       plugins = {
         ## UI
-        marks = {
-          enable = true;
-        };
-
         web-devicons = {
           enable = true;
           settings = {
