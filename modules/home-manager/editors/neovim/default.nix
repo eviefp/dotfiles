@@ -32,6 +32,7 @@ in {
 
     # Programming languages
     ./lsp.nix
+    ./lang/haskell.nix
     ./lang/nushell.nix
 
     # Utilities / misc
@@ -49,7 +50,6 @@ in {
       pkgs.obsidian
       pkgs.shellcheck
       pkgs.shfmt
-      pkgs.haskellPackages.cabal-fmt
 
       # diagram
       pkgs.mermaid-cli
@@ -255,18 +255,6 @@ in {
 
       lsp = {
         servers = {
-          hls = {
-            enable = true;
-            package = null;
-            settings = {
-              cmd = ["haskell-language-server-wrapper" "--logfile" "hls.log" "--debug" "--lsp"]; # "--debug" ];
-              haskell = {
-                formattingProvider = "fourmolu";
-                cabalFormattingProvider = "cabalfmt";
-              };
-            };
-          };
-
           omnisharp = {
             enable = true;
             package = null;
@@ -514,11 +502,6 @@ in {
           enable = true;
           settings = {
             formatters_by_ft = {
-              haskell = {
-                __unkeyed-1 = "fourmolu";
-                __unkeyed-2 = "ormolu";
-                stop_after_first = true;
-              };
               go = ["gofmt"];
               nix = ["alejandra"];
               bash = ["shellcheck" "shfmt"];
@@ -529,7 +512,6 @@ in {
               typescriptreact = ["prettier"];
               "javascript.tsx" = ["prettier"];
               "typescript.tsx" = ["prettier"];
-              cabalproject = ["cabal_fmt"];
               purescript = ["purs-tidy"];
               rust = ["rustfmt"];
               "*" = ["trim_whitespace"];
