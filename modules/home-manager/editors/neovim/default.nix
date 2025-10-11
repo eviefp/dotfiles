@@ -37,6 +37,8 @@ in {
 
     # Programming languages
     ./lsp.nix
+    ./conform.nix
+
     ./lang/csharp.nix
     ./lang/haskell.nix
     ./lang/nix.nix
@@ -58,17 +60,12 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.obsidian
-      pkgs.shellcheck
-      pkgs.shfmt
 
       # diagram
       pkgs.mermaid-cli
       pkgs.plantuml
       pkgs.d2
       pkgs.gnuplot
-
-      # conform.vim
-      pkgs.mdsf
 
       # grug-far
       pkgs.ast-grep
@@ -234,24 +231,6 @@ in {
       ];
 
       plugins = {
-        ## Languages
-
-        conform-nvim = {
-          enable = true;
-          settings = {
-            formatters_by_ft = {
-              bash = ["shellcheck" "shfmt"];
-              markdown = ["mdsf"];
-              "*" = ["trim_whitespace"];
-            };
-
-            format_on_save = {
-              timeout_ms = 500;
-              lsp_format = "fallback";
-            };
-          };
-        };
-
         ## misc
         ccc = {
           enable = true;
