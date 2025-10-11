@@ -69,6 +69,7 @@ in {
     ./lang/csharp.nix
     ./lang/haskell.nix
     ./lang/lean.nix
+    ./lang/lisp.nix
     ./lang/nix.nix
     ./lang/nushell.nix
     ./lang/purescript.nix
@@ -104,14 +105,6 @@ in {
       viAlias = true;
       vimAlias = true;
 
-      autoCmd = [
-        {
-          event = ["BufEnter"];
-          pattern = ["*.el"];
-          command = ":setlocal filetype=lisp";
-        }
-      ];
-
       keymaps = [
         # yazi
         {
@@ -125,10 +118,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        orgmode = {
-          enable = true;
-        };
-
         # cursor effect
         smear-cursor = {
           enable = true;
