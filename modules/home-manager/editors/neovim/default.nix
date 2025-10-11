@@ -33,6 +33,7 @@ in {
     ./smear-cursor.nix
     ./telescope.nix
     ./transparent.nix
+    ./trouble.nix
     ./web-devicons.nix
 
     # Movement
@@ -122,13 +123,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        trouble = {
-          enable = true;
-          settings = {
-            auto_refresh = true;
-          };
-        };
 
         which-key = {
           enable = true;
