@@ -22,8 +22,11 @@ in {
     ./blame.nix
     ./co-author.nix
 
-    # Programming related
+    # Programming languages
     ./nushell.nix
+
+    # Utilities
+    ./sops.nix
   ];
 
   options.evie.editors.neovim = {
@@ -289,17 +292,6 @@ in {
           action = "<cmd>CccPick<cr>";
           options.desc = "color picker";
         }
-        # sops
-        {
-          key = "<leader>ce";
-          action = "<cmd>SopsEncrypt<cr>";
-          options.desc = "sops: encrypt";
-        }
-        {
-          key = "<leader>cd";
-          action = "<cmd>SopsDecrypt<cr>";
-          options.desc = "sops: decrypt";
-        }
         # tabularize
         {
           key = "<leader>ta";
@@ -400,7 +392,6 @@ in {
       ];
 
       extraPlugins = [
-        pkgs.vimPlugins.nvim-sops
         pkgs.vimPlugins.tabular
         (pkgs.vimUtils.buildVimPlugin {
           pname = "time-machine.nvim";
