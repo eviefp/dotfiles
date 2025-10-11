@@ -55,6 +55,7 @@ in {
     ./todo-comments.nix
     ./time-machine.nix
     ./rainbow-delimiters.nix
+    ./wrapping.nix
 
     # Git related
     ./blame.nix
@@ -124,11 +125,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # provides 'yow' to toggle wrapping
-        wrapping = {
-          enable = true;
-        };
 
         # yazi-inside-neovim
         yazi = {
