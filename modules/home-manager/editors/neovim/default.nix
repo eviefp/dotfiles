@@ -17,6 +17,7 @@
 in {
   imports = [
     dotfiles.nixvim.homeModules.nixvim
+    ./nushell.nix
   ];
 
   options.evie.editors.neovim = {
@@ -405,7 +406,6 @@ in {
       ];
 
       extraPlugins = [
-        pkgs.vimPlugins.nvim-nu #
         (pkgs.vimUtils.buildVimPlugin {
           pname = "blame.nvim";
           version = "v1.0";
@@ -456,9 +456,6 @@ in {
       ];
 
       extraConfigLua = ''
-        require('nu').setup {
-        }
-
         require('blame').setup {
         }
 
@@ -603,10 +600,6 @@ in {
           gopls = {
             enable = true;
             package = null;
-          };
-
-          nushell = {
-            enable = true;
           };
 
           purescriptls = {
