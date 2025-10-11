@@ -30,6 +30,7 @@ in {
     ./lualine.nix
     ./marks.nix
     ./noice.nix
+    ./smear-cursor.nix
     ./telescope.nix
     ./web-devicons.nix
 
@@ -118,10 +119,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        # cursor effect
-        smear-cursor = {
-          enable = true;
-        };
 
         # make w, e, and b respect words with camelCase, etc.
         spider = {
