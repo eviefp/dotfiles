@@ -43,6 +43,7 @@ in {
     ./indent-o-matic.nix
     ./grug-far.nix
     ./gx.nix
+    ./markview.nix
     ./presenterm.nix
     ./tabular.nix
     ./time-machine.nix
@@ -105,11 +106,6 @@ in {
       autoCmd = [
         {
           event = ["BufEnter"];
-          pattern = ["*.mdc"];
-          command = ":setlocal filetype=markdown";
-        }
-        {
-          event = ["BufEnter"];
           pattern = ["*.el"];
           command = ":setlocal filetype=lisp";
         }
@@ -163,12 +159,6 @@ in {
           action = ":Obsidian extract_note<cr>";
           options.desc = "obsidian extract note";
         }
-        # markview
-        {
-          key = "<leader>mv";
-          action = "<cmd>Markview Toggle<cr>";
-          options.desc = "markview toggle";
-        }
         # yazi
         {
           key = "<leader>ya";
@@ -192,20 +182,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        # Nicer markdown.
-        markview = {
-          enable = true;
-          settings = {
-            preview.map_gx = false;
-            markdown = {
-              enable = true;
-              list_items = {
-                enable = true; # try it again
-              };
-            };
-          };
-        };
-
         # Search through nerd fonts.
         nerdy = {
           enable = true;
