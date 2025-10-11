@@ -29,6 +29,7 @@ in {
     # Git related
     ./blame.nix
     ./co-author.nix
+    ./neogit.nix
 
     # Programming languages
     ./lsp.nix
@@ -110,12 +111,6 @@ in {
           key = "<leader>ac";
           action = "<cmd>lua require('actions-preview').code_actions()<cr>";
           options.desc = "lsp: code actions";
-        }
-        # Neogit
-        {
-          key = "<leader>gs";
-          action = "<cmd>Neogit cwd=%:p:h<cr>";
-          options.desc = "neogit UI";
         }
         # gitsigns
         {
@@ -255,20 +250,6 @@ in {
 
       plugins = {
         ## Git
-        neogit = {
-          enable = true;
-
-          settings = {
-            graph_style = "kitty";
-            process_spinner = true;
-            disable_insert_on_commit = true;
-            integrations = {
-              telescope = true;
-              diffview = false;
-            };
-          };
-        };
-
         gitsigns = {
           enable = true;
 
