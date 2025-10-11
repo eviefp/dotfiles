@@ -44,33 +44,33 @@ in {
     # Text editing / viewing
     ./blink-cmp.nix
     ./ccc.nix
-    ./indent-o-matic.nix
     ./grug-far.nix
     ./gx.nix
+    ./indent-o-matic.nix
     ./markview.nix
     ./origami.nix
-    ./surround.nix
-    ./spider.nix
-    ./tabular.nix
-    ./todo-comments.nix
-    ./time-machine.nix
     ./rainbow-delimiters.nix
+    ./spider.nix
+    ./surround.nix
+    ./tabular.nix
+    ./time-machine.nix
+    ./todo-comments.nix
     ./wrapping.nix
 
     # Git related
     ./blame.nix
     ./co-author.nix
-    ./gitsigns.nix
     ./git-conflict.nix
+    ./gitsigns.nix
     ./neogit.nix
 
     # LSP
     ./action-preview.nix
     ./conform.nix
     ./fidget.nix
-    ./lsp.nix
     ./lsp-lines.nix
     ./lsp-signature.nix
+    ./lsp.nix
 
     # Programming languages
     ./lang/csharp.nix
