@@ -34,6 +34,7 @@ in {
     ./lsp.nix
     ./lang/csharp.nix
     ./lang/haskell.nix
+    ./lang/nix.nix
     ./lang/nushell.nix
     ./lang/purescript.nix
     ./lang/rust.nix
@@ -252,14 +253,6 @@ in {
         }
       ];
 
-      lsp = {
-        servers = {
-          nil_ls = {
-            enable = true;
-          };
-        };
-      };
-
       plugins = {
         ## Git
         neogit = {
@@ -467,7 +460,6 @@ in {
           enable = true;
           settings = {
             formatters_by_ft = {
-              nix = ["alejandra"];
               bash = ["shellcheck" "shfmt"];
               markdown = ["mdsf"];
               "*" = ["trim_whitespace"];
