@@ -29,6 +29,7 @@ in {
 
     # Text editing
     ./ccc.nix
+    ./leap.nix
     ./tabular.nix
     ./time-machine.nix
 
@@ -229,10 +230,6 @@ in {
 
       plugins = {
         ## UI
-        leap = {
-          enable = true;
-        };
-
         marks = {
           enable = true;
         };
