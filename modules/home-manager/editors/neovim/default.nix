@@ -32,6 +32,7 @@ in {
     ./noice.nix
     ./smear-cursor.nix
     ./telescope.nix
+    ./transparent.nix
     ./web-devicons.nix
 
     # Movement
@@ -121,15 +122,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # enforce transparency
-        transparent = {
-          enable = true;
-          settings = {
-            extra_groups = [];
-            exclude_grups = [];
-          };
-        };
 
         trouble = {
           enable = true;
