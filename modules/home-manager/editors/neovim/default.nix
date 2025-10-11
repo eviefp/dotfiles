@@ -29,6 +29,7 @@ in {
     ./web-devicons.nix
 
     # Text editing
+    ./arrow.nix
     ./ccc.nix
     ./indent-o-matic.nix
     ./marks.nix
@@ -232,19 +233,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-        # Arrow: cross-session jump through files.
-        # + easy ui
-        # - breaks folding
-        arrow = {
-          enable = true;
-          settings = {
-            show_icons = true;
-            always_show_path = true;
-            separate_by_branch = true;
-            leader_key = ";";
-          };
-        };
-
         # barbar: tabline plugin
         barbar = {
           enable = true;
