@@ -42,6 +42,7 @@ in {
     ./diagram.nix
     ./indent-o-matic.nix
     ./grug-far.nix
+    ./gx.nix
     ./presenterm.nix
     ./tabular.nix
     ./time-machine.nix
@@ -118,12 +119,6 @@ in {
       };
 
       keymaps = [
-        # gx
-        {
-          key = "gx";
-          action = "<cmd>Browse<cr>";
-          options.desc = "browse link";
-        }
         # Obsidian
         {
           key = "<leader>fn";
@@ -200,13 +195,6 @@ in {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # Open link in browser.
-        # TODO: add handlers for stuff like "github:foo/bar" in flake.nix files or pkgs.bar, etc.
-        # see https://github.com/chrishrb/gx.nvim
-        gx = {
-          enable = true;
-        };
 
         # Indentation highlighter.
         hlchunk = {
