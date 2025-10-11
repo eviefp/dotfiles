@@ -89,6 +89,7 @@ in {
     ./oil.nix
     ./presenterm.nix
     ./sops.nix
+    ./yazi.nix
   ];
 
   options.evie.editors.neovim = {
@@ -112,24 +113,10 @@ in {
       viAlias = true;
       vimAlias = true;
 
-      keymaps = [
-        # yazi
-        {
-          key = "<leader>ya";
-          action = "<cmd>Yazi toggle<cr>";
-          options.desc = "yazi toggle";
-        }
-      ];
-
       plugins = {
         #######################################################################
         # Experiments
         #######################################################################
-
-        # yazi-inside-neovim
-        yazi = {
-          enable = true;
-        };
 
         # visual multi cursors
         visual-multi = {
