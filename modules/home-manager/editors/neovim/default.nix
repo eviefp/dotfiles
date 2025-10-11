@@ -26,6 +26,7 @@ in {
     ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
+    ./web-devicons.nix
 
     # Text editing
     ./ccc.nix
@@ -230,15 +231,6 @@ in {
       ];
 
       plugins = {
-        ## UI
-        web-devicons = {
-          enable = true;
-          settings = {
-            default = true;
-            variant = "dark";
-          };
-        };
-
         git-conflict = {
           enable = true;
         };
