@@ -79,6 +79,7 @@ in {
 
     # Utilities / misc
     ./diagram.nix
+    ./luapad.nix
     ./obsidian.nix
     ./oil.nix
     ./presenterm.nix
