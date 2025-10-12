@@ -39,7 +39,7 @@
               score_offset = 200;
             };
             lsp = {
-              score_offest = 100;
+              score_offset = 100;
             };
             latex-symbols = {
               module = "blink-cmp-latex";
