@@ -1,75 +1,81 @@
-{...}: {
-  config.programs.nixvim = {
-    keymaps = [
+{pkgs, ...}: {
+  config = {
+    home.packages = [
+      pkgs.wordnet
     ];
 
-    plugins = {
-      blink-cmp = {
-        enable = true;
-        settings = {
-          keymap = {
-            preset = "default";
-            "<C-space>" = ["show"];
-          };
+    programs.nixvim = {
+      keymaps = [
+      ];
 
-          appearance.nerd_font_variant = "mono";
-
-          cmdline.enabled = true;
-
-          completion = {
-            documentation.auto_show = true;
-
-            keyword.range = "full";
-
-            ghost_text = {
-              enabled = true;
+      plugins = {
+        blink-cmp = {
+          enable = true;
+          settings = {
+            keymap = {
+              preset = "default";
+              "<C-space>" = ["show"];
             };
 
-            menu.draw = {
-              treesitter = ["lsp"];
-            };
-          };
+            appearance.nerd_font_variant = "mono";
 
-          sources.default = ["lsp" "path" "dictionary" "emoji" "latex-symbols"];
+            cmdline.enabled = true;
 
-          fuzzy.implementation = "prefer_rust_with_warning";
+            completion = {
+              documentation.auto_show = true;
 
-          sources.providers = {
-            path = {
-              score_offset = 200;
-            };
-            lsp = {
-              score_offset = 100;
-            };
-            latex-symbols = {
-              module = "blink-cmp-latex";
-              name = "Latex";
-              score_offset = 50;
-              opts = {
-                insert_command = false;
+              keyword.range = "full";
+
+              ghost_text = {
+                enabled = true;
+              };
+
+              menu.draw = {
+                treesitter = ["lsp"];
               };
             };
-            emoji = {
-              module = "blink-emoji";
-              name = "emoji";
-              score_offset = 30;
-              opts = {
-                insert = false;
+
+            sources.default = ["lsp" "path" "dictionary" "emoji" "latex-symbols"];
+
+            fuzzy.implementation = "prefer_rust_with_warning";
+
+            sources.providers = {
+              path = {
+                score_offset = 200;
               };
-            };
-            dictionary = {
-              module = "blink-cmp-dictionary";
-              name = "Dict";
-              score_offset = 1;
-              min_keyword_length = 3;
+              lsp = {
+                score_offset = 100;
+              };
+              latex-symbols = {
+                module = "blink-cmp-latex";
+                name = "Latex";
+                score_offset = 50;
+                opts = {
+                  insert_command = false;
+                };
+              };
+              emoji = {
+                module = "blink-emoji";
+                name = "emoji";
+                score_offset = 30;
+                opts = {
+                  insert = false;
+                };
+              };
+              dictionary = {
+                module = "blink-cmp-dictionary";
+                name = "Dict";
+                score_offset = 1;
+                min_keyword_length = 3;
+              };
             };
           };
         };
-      };
 
-      blink-emoji.enable = true;
-      blink-cmp-latex.enable = true;
-      blink-cmp-dictionary.enable = true;
+        blink-emoji.enable = true;
+        blink-cmp-latex.enable = true;
+        blink-cmp-dictionary.enable = true;
+      };
     };
   };
 }
