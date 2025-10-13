@@ -198,9 +198,9 @@ main = do
       , (Ansi.White, " ... \n")
       ]
     case (isLocal, buildRemotely, isMac) of
-      (True, False, False) -> exe "sudo" "nixos-rebuild" "switch" "--quiet" "--quiet" "--flake" hostPackage
+      (True, False, False) -> exe "nixos-rebuild" "switch" "--sudo" "--quiet" "--quiet" "--flake" hostPackage
       (True, False, True) -> exe "sudo" "darwin-rebuild" "switch" "--flake" hostPackage
-      (False, True, False) -> runSshCwd $ "sudo nixos-rebuild switch --quiet --quiet --flake " <> hostPackage
+      (False, True, False) -> runSshCwd $ "nixos-rebuild switch --sudo --quiet --quiet --flake " <> hostPackage
       (False, True, True) -> runSshCwd $ "sudo darwin-rebuild switch --flake " <> hostPackage
       _ ->
         -- the target cannot be macos, so this is always correct.
@@ -212,7 +212,7 @@ main = do
           hostPackage
           "--target-host"
           sshTarget
-          "--use-remote-sudo"
+          "--sudo"
           "switch"
 
 mkPackage :: ByteString -> ByteString
