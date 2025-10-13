@@ -204,7 +204,7 @@ in {
             exec = "swaync-client -swb";
             on-click = "swaync-client -t -sw";
             return-type = "json";
-            format = "{icon} {}";
+            format = "{icon} {0}";
             min-length = 3;
             format-icons = {
               notification = "<span foreground='red'><sup></sup></span>";

@@ -16,7 +16,7 @@
       lsp.servers.purescriptls = {
         enable = true;
         package = null;
-        settings = {
+        config = {
           purescript = {
             formatter = "purs-tidy";
             addSpagoSources = true;

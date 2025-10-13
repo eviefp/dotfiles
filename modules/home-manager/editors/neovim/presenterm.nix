@@ -7,13 +7,9 @@
         src = pkgs.fetchFromGitHub {
           owner = "Piotr1215";
           repo = "presenterm.nvim";
-          rev = "9918cf87094be527af97ea5a8bd69f7c30c62a3e";
-          hash = "sha256-fpBj2dO437LW+cdWs8wg2GYJoZer5XBWq9BL4e2R/OM=";
+          rev = "610ad9e44abbcff3fe41c71f14e42622b4f9a6f7";
+          hash = "sha256-Hw6Lw1CfJcrlMuCi16WHior6EeJqXJ7S+aMfIg29HWk=";
         };
-        patches = [
-          # https://github.com/Piotr1215/presenterm.nvim/pull/4
-          ../../../../patches/presenterm-nvim-use-slide-marker.patch
-        ];
       }) # https://github.com/Piotr1215/presenterm.nvim
     ];
 

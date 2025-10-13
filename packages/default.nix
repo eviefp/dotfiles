@@ -29,8 +29,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "ea124068f246eeb5e436c1fc62c9379d9b936f15";
-      hash = "sha256-4goAzSWn2el9o2r3OB4ywOiCmZ+3k4+MB+Q9M1vuN0I=";
+      rev = "a65202e6bd17f5daffaa2d2673128e6fc7b48d5d";
+      hash = "sha256-yza3hsg7qG1d0yU3RGIOrrxzbKSjJrkpGOxKgHoEtyA=";
     };
   });
 }

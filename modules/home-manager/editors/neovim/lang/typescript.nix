@@ -8,7 +8,7 @@
       lsp.servers.ts_ls = {
         enable = true;
         package = null;
-        settings = {
+        config = {
           rootMarkers = ["package.json" "tsconfig.json"];
         };
       };

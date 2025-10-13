@@ -7,7 +7,7 @@
       lsp.servers.hls = {
         enable = true;
         package = null;
-        settings = {
+        config = {
           cmd = ["haskell-language-server-wrapper" "--logfile" "hls.log" "--debug" "--lsp"]; # "--debug" ];
           haskell = {
             formattingProvider = "fourmolu";
