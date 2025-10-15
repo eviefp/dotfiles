@@ -154,6 +154,7 @@ in {
         ignores = ["TAGS"];
         userEmail = "me@evie.ro";
         userName = "Evie Ciobanu";
+        maintenance.enable = false;
       };
 
       jujutsu = {
