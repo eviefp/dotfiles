@@ -21,6 +21,9 @@ in {
       pass = {
         enable = true;
       };
+      plugins = [
+        pkgs.rofi-pass-wayland
+      ];
       # theme = "purple";
       theme = ./../../../config/rofi-rounded-common.rasi;
       extraConfig = {

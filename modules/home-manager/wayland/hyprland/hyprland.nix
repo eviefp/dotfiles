@@ -247,6 +247,7 @@ in {
 
         "$terminal" = "kitty";
         "$menu" = "rofi -show drun";
+        "$pass" = "tessen -p pass -d rofi -a autotype";
         "$screenshot" = "${lib.getExe config.evie.wayland.screenshot.package}";
         "$cliphist" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
         "$notifications" = "swaync-client -t -sw";
@@ -275,7 +276,8 @@ in {
             "$mainMod, F, togglefloating,"
             "$mainMod, P, exec, $menu"
             "$mainMod, Space, exec, $menu"
-            "$mainMod, N, exec, $notifications"
+          "$mainMod, O, exec, $pass"
+          "$mainMod, N, exec, $notifications"
             "$mainMod, Return, layoutmsg, swapwithmaster"
             "$mainMod, G, fullscreen, 0"
 
