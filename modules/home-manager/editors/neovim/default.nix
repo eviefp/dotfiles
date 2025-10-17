@@ -42,6 +42,7 @@ in {
     ./indent-o-matic.nix
     ./markview.nix
     ./origami.nix
+    ./outline.nix
     ./rainbow-delimiters.nix
     ./spider.nix
     ./surround.nix
