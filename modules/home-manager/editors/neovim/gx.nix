@@ -13,8 +13,11 @@
         enable = true;
         settings = {
           handlers = {
-            github = {
-              name = "github";
+            plugin = true;
+            github = true;
+            search = true;
+            nixgh = {
+              name = "nixgh";
               handle.__raw =
                 /*
                 lua
@@ -22,7 +25,9 @@
                 ''
                   function(mode, line, _)
                     local url = require('gx.helper').find(line, mode, 'github:([^/]+/[^/";]+)')
-                    return "https://github.com/" .. url
+                    if url then
+                      return "https://github.com/" .. url
+                    end
                   end
                 '';
             };
