@@ -124,37 +124,41 @@ in {
         enable = true;
       };
 
+      delta = {
+        enable = true;
+        options = {
+          navigate = true;
+          line-numbers = false;
+          hyperlinks = true;
+        };
+        enableGitIntegration = true;
+      };
+
       git = {
         enable = true;
-        delta = {
-          enable = true;
-          options = {
-            navigate = true;
-            line-numbers = false;
-            hyperlinks = true;
-          };
-        };
         signing = {
           key = "CBD1E075BF7B2E7C";
           signByDefault = true;
         };
-        aliases = {
-          ll = "log --graph --decorate --oneline --abbrev-commit";
-          lola = "log --graph --decorate --oneline --abbrev-commit --all";
-          hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
-          lol = "log --color --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
-          br = "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
-          work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
-        };
-        extraConfig = {
+        ignores = ["TAGS"];
+        maintenance.enable = false;
+        settings = {
+          user = {
+            email = "me@evie.ro";
+            name = "Evie Ciobanu";
+          };
           init.defaultBranch = "main";
           pull.ff = "only";
           merge.conflictstyle = "zdiff3";
+          alias = {
+            ll = "log --graph --decorate --oneline --abbrev-commit";
+            lola = "log --graph --decorate --oneline --abbrev-commit --all";
+            hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
+            lol = "log --color --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
+            br = "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
+            work = "log --pretty=format:'%h%x09%an%x09%ad%x09%s'";
+          };
         };
-        ignores = ["TAGS"];
-        userEmail = "me@evie.ro";
-        userName = "Evie Ciobanu";
-        maintenance.enable = false;
       };
 
       jujutsu = {
