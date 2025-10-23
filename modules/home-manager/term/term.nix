@@ -76,7 +76,7 @@ in {
         ];
         enableBashIntegration = true;
         enableFishIntegration = true;
-        enableNushellIntegration = true;
+        enableNushellIntegration = false;
       };
 
       fish = {
@@ -274,6 +274,7 @@ in {
           ki = "khal interactive";
           calm = "cal --week-start mo --month-names";
           caly = "cal --week-start mo --month-names --full-year 2025"; # todo: maybe make this a script instead
+          ll = "exa";
         };
         environmentVariables = {
           KEYID_EVIE = "6A9BDD4C9EE01C020EDD1F6E272D83521C488CCD";
