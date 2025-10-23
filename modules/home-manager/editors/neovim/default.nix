@@ -68,6 +68,7 @@ in {
     ./lsp.nix
 
     # Programming languages
+    ./lang/commie.nix
     ./lang/csharp.nix
     ./lang/haskell.nix
     ./lang/lean.nix
