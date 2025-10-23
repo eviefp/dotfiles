@@ -66,7 +66,7 @@ in {
         toml
         */
         ''
-          font_size 10.0
+          font_size 12.0
           background_opacity 0.8
           dynamic_background_opacity yes
           background_tint 0.8
@@ -119,7 +119,7 @@ in {
         scrollback_lines = 10000;
         repaint_delay = 4;
 
-        font_family = "Hasklug Nerd Font Mono";
+        font_family = "VictorMono Nerd Font Mono";
         disable_ligatures = "never";
 
         cursor_shape = "block";
