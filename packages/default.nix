@@ -24,13 +24,14 @@
     ];
   });
 
+  # https://github.com/neovim/neovim
   neovim = pkgs.neovim-unwrapped.overrideAttrs (_: {
     version = "0.12.0-dev";
     src = pkgs.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "be73c35943f85e7835c3a0fc89bddaeba944db29";
-      hash = "sha256-VYkZdjjMOYsugoSydDDWE/1l79swm4zc4NJl1Z0brjA=";
+      rev = "29e093c8f262007dd87412cf4a4c47cefef3c963";
+      hash = "sha256-ge3Sjg9RKw048o0JOGyAhYoVktZJ5vO4Z6zyL1himXA=";
     };
   });
 }

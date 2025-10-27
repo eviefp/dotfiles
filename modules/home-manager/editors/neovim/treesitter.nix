@@ -121,22 +121,24 @@
         treesitter-refactor = {
           enable = true;
 
-          highlightDefinitions.enable = false;
-          highlightCurrentScope.enable = false;
+          settings = {
+            highlightDefinitions.enable = false;
+            highlightCurrentScope.enable = false;
 
-          smartRename = {
-            enable = true;
-            keymaps.smartRename = "grr";
-          };
+            smartRename = {
+              enable = true;
+              keymaps.smartRename = "grr";
+            };
 
-          navigation = {
-            enable = false;
-            keymaps = {
-              gotoDefinitionLspFallback = "gd";
-              listDefinitions = "grd";
-              listDefinitionsToc = "gO";
-              gotoNextUsage = "grj";
-              gotoPreviousUsage = "grk";
+            navigation = {
+              enable = false;
+              keymaps = {
+                gotoDefinitionLspFallback = "gd";
+                listDefinitions = "grd";
+                listDefinitionsToc = "gO";
+                gotoNextUsage = "grj";
+                gotoPreviousUsage = "grk";
+              };
             };
           };
         };
@@ -145,29 +147,31 @@
         treesitter-textobjects = {
           enable = true;
 
-          select = {
-            enable = false;
-          };
+          settings = {
+            select = {
+              enable = false;
+            };
 
-          swap = {
-            enable = true;
-            swapNext = {
-              "]wf" = "@function.outer";
-              "]wp" = "@parameter.inner";
+            swap = {
+              enable = true;
+              swapNext = {
+                "]wf" = "@function.outer";
+                "]wp" = "@parameter.inner";
+              };
+              swapPrevious = {
+                "[wf" = "@function.outer";
+                "[wp" = "@parameter.inner";
+              };
             };
-            swapPrevious = {
-              "[wf" = "@function.outer";
-              "[wp" = "@parameter.inner";
-            };
-          };
 
-          move = {
-            enable = true;
-            gotoNext = {
-              "]f" = "@function.outer";
-            };
-            gotoPrevious = {
-              "[f" = "@function.outer";
+            move = {
+              enable = true;
+              gotoNext = {
+                "]f" = "@function.outer";
+              };
+              gotoPrevious = {
+                "[f" = "@function.outer";
+              };
             };
           };
         };

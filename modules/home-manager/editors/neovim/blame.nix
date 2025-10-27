@@ -7,8 +7,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "FabijanZulj";
           repo = "blame.nvim";
-          rev = "d5f4ad5c8ebca3caecc773dda5983709c5a5da8f";
-          hash = "sha256-IP+KIwAANoRdZmSzAAtjLgeYOADc2t8Ld1ru0sNq/G0=";
+          rev = "f3f6153ea94e1120f2776f22bbbd63c4aeebaf32";
+          hash = "sha256-CY768BvqU8zJ2qZKVC9s1lLctBzam1GeZD7UnD7nBBc=";
         };
       }) # https://github.com/FabijanZulj/blame.nvim
     ];
