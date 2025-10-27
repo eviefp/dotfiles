@@ -4,7 +4,7 @@
       plugins.lean = {
         # temporarily disable lean LSP because I'm not really using it, but
         # I am abusing the lean4 syntax highlighting for my language, sorry
-        enable = false;
+        enable = true;
         settings = {
           mappings = true;
           lsp = {

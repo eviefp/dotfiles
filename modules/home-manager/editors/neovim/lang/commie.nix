@@ -1,11 +1,11 @@
 {...}: {
   config.programs.nixvim = {
     autoCmd = [
-      {
-        event = ["BufEnter"];
-        pattern = ["*.commie"];
-        command = ":setlocal filetype=lean";
-      }
+      # {
+      #   event = ["BufEnter"];
+      #   pattern = ["*.commie"];
+      #   command = ":setlocal filetype=lean";
+      # }
     ];
   };
 }
