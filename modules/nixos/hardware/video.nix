@@ -29,16 +29,16 @@ in {
         enable32Bit = true;
         extraPackages =
           if cfg.nvidia.enable
-          then [pkgs.nvidia-vaapi-driver pkgs.libglvnd pkgs.libva-vpau-driver pkgs.libvdpau-va-gl]
+          then [pkgs.nvidia-vaapi-driver pkgs.libglvnd pkgs.libva-vdpau-driver pkgs.libvdpau-va-gl]
           else if cfg.amdgpu.enable
           then [pkgs.libvdpau-va-gl]
-          else with pkgs; [vaapiIntel libvdpau-va-gl intel-media-driver];
+          else with pkgs; [intel-vaapi-driver libvdpau-va-gl intel-media-driver];
         extraPackages32 =
           if cfg.nvidia.enable
           then []
           else if cfg.amdgpu.enable
           then with pkgs.pkgsi686Linux; [libvdpau-va-gl]
-          else with pkgs.pkgsi686Linux; [vaapiIntel libvdpau-va-gl intel-media-driver];
+          else with pkgs.pkgsi686Linux; [intel-vaapi-driver libvdpau-va-gl intel-media-driver];
       };
     }
     (lib.mkIf cfg.nvidia.enable {
