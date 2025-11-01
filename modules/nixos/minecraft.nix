@@ -42,6 +42,11 @@ in {
           autoStart = true;
           package = pkgs.fabricServers.fabric-1_21_8; # .override { loaderVersion = ""; };
 
+          operators = {
+            evie__ro = "372ca84a-dda2-4060-9f54-9b08e5dc9e6c";
+            gia1gia2gia3 = "54d21c56-1ea3-4a7b-8970-878b46e59424";
+          };
+
           serverProperties = {
             gamemode = mode.creative;
             difficulty = difficulty.peaceful;
