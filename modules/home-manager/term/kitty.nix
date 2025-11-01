@@ -29,7 +29,7 @@ in {
         toml
         */
         ''
-          font_size 12.0
+          font_size 10.0
           background_opacity 0.7
           dynamic_background_opacity yes
           background_tint 1.0
@@ -66,7 +66,7 @@ in {
         toml
         */
         ''
-          font_size 12.0
+          font_size 10.0
           background_opacity 0.8
           dynamic_background_opacity yes
           background_tint 0.8
