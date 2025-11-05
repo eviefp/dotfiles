@@ -36,7 +36,7 @@ in {
       pkgs.steam
       pkgs.prismlauncher
       # pkgs.instawow
-      pkgs.transmission_4
+      pkgs.transmission_4-gtk
       pkgs.xournalpp
       pkgs.libreoffice
 
