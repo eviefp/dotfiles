@@ -55,8 +55,11 @@ in {
             programs = {
               chat.enable = true;
               gui.enable = true;
-              qutebrowser.enable = true;
-              firefox.enable = true;
+              browser = {
+                qutebrowser.enable = true;
+                firefox.enable = true;
+                nyxt.enable = true;
+              };
             };
             term = {
               kitty.enable = true;

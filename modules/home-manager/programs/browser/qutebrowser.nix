@@ -1,24 +1,16 @@
-/**
-**************************************************************************
-* programs/qutebrowser module
-*
-*************************************************************************
-*/
 {
   lib,
   config,
   pkgs,
   ...
 }: let
-  cfg = config.evie.programs.qutebrowser;
+  cfg = config.evie.programs.browser.qutebrowser;
 in {
-  options.evie.programs.qutebrowser = {
+  options.evie.programs.browser.qutebrowser = {
     enable = lib.mkEnableOption "qutebrowser defaults";
   };
 
   config = lib.mkIf cfg.enable {
-    home.sessionVariables.BROWSER = "qutebrowser";
-
     programs.qutebrowser = {
       enable = true;
 

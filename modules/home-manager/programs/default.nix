@@ -1,8 +1,11 @@
 {
   chat = ./chat.nix;
-  firefox = ./firefox.nix;
   gui = ./gui.nix;
-  qutebrowser = ./qutebrowser.nix;
+  browser = {
+    firefox = ./browser/firefox.nix;
+    qutebrowser = ./browser/qutebrowser.nix;
+    nyxt = ./browser/nyxt.nix;
+  };
   streaming = ./streaming.nix;
   twitch-tui = ./twitch-tui.nix;
 }

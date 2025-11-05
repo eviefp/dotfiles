@@ -36,7 +36,7 @@
         home-manager.enable = lib.mkForce false;
       };
 
-      programs.firefox.enable = true;
+      programs.browser.firefox.enable = true;
       term.kitty.enable = true;
       term.experimental.enable = lib.mkForce false;
 

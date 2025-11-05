@@ -10,21 +10,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.evie.programs.firefox;
-  theme = pkgs.stdenv.mkDerivation {
-    name = "cybedream-theme-1.0.0";
-    src = ./cyberdream-evie.xpi;
-    preferLocalBuild = true;
-    buildCommand =
-      /*
-      bash
-      */
-      ''
-        dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-        mkdir -p "$dst"
-        install -v -m644 "$src" "$dst/cyberdream-evie.xpi"
-      '';
-  };
+  cfg = config.evie.programs.browser.firefox;
   quickmarks = {
     tw = "https://twitch.tv/directory/all";
     gm = "https://www.group-meowing.ro/";
@@ -41,7 +27,7 @@
   autocontain = container: url: acc: "${acc}autocontain -s ${lib.strings.replaceString "." "\\." url} ${container}\n";
   generateAutocontain = container: xs: lib.lists.foldr (autocontain container) "" xs;
 in {
-  options.evie.programs.firefox = {
+  options.evie.programs.browser.firefox = {
     enable = lib.mkEnableOption "firefox defaults";
   };
 
@@ -236,7 +222,6 @@ in {
             extensions = {
               packages = with pkgs.nur.repos.rycee.firefox-addons; [
                 ublock-origin-upstream
-                theme
                 betterttv
                 clearurls
                 darkreader
