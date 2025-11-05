@@ -997,7 +997,7 @@ in {
           opener = {
             zathura = [
               {
-                run = "zathura";
+                run = "zathura \"$0\"";
                 orphan = false;
                 for = "unix";
               }
