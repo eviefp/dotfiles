@@ -58,7 +58,6 @@ in {
               browser = {
                 qutebrowser.enable = true;
                 firefox.enable = true;
-                nyxt.enable = true;
               };
             };
             term = {
