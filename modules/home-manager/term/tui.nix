@@ -1006,7 +1006,7 @@ in {
         };
 
         theme = {
-          manager = {
+          mgr = {
             synect_theme = "${syntectTheme}";
             border_style = {fg = "${theme.dark.bg_highlight}";};
             cwd = {fg = "${theme.dark.cyan}";};
