@@ -32,7 +32,6 @@
 
       term = {
         kitty.outputName = "DP-2";
-        presenterm.enable = true;
       };
 
       system = {

@@ -44,6 +44,7 @@ in {
             term = {
               enable = true;
               experimental.enable = true;
+              presenterm.enable = true;
               scripts.enable = true;
               text.enable = true;
               tui.enable = true;
