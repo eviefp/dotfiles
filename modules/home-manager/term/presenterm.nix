@@ -41,11 +41,6 @@ in {
           render.threads = 2;
         };
 
-        speaker_notes = {
-          listen_address = "127.0.0.1:58418";
-          publish_address = "127.0.0.1:59418";
-        };
-
         bindings = {
           next = ["l" "j" "<right>" "<down>" " "];
           next_fast = ["n"];
