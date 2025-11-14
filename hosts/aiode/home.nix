@@ -32,6 +32,7 @@
           enable = true;
           outputMonitor = "eDP-1";
           modules = {
+            enableTV = true;
             enableBT = true;
             enableWebcam = true;
             enableLaptop = true;
@@ -48,11 +49,11 @@
             position = "0x0";
             keybind = "W";
           }
+        ];
+        disabledMonitors = [
           {
-            name = "DP-2";
-            resolution = "1920x1080";
-            position = "1920x0";
-            keybind = "E";
+            name = "HDMI-A-1";
+            keybind = "T";
           }
         ];
       };

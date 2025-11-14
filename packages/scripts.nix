@@ -43,8 +43,11 @@ in {
 
       num_monitors=$(hyprctl monitors -j | jq length)
 
-      if [ "$num_monitors" -lt "4" ]; then
+
+      if [ "$num_monitors" -eq "3" ]; then
         hyprctl keyword monitor "HDMI-A-1,1920x1080@60,0x395,1"
+      elif [ "$num_monitors" -eq "1" ]; then
+        hyprctl keyword monitor "HDMI-A-1,1920x1080@60,1920x0,1"
       else
         hyprctl keyword monitor "HDMI-A-1,disabled"
       fi
