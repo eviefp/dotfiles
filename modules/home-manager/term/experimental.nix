@@ -160,6 +160,14 @@ in {
             jellyfin-tui
           '';
         }
+        {
+          name = "lue";
+          package = dotfiles.self.packages.${pkgs.system}.lue;
+          short = "TUI ebook text-to-speech";
+          help = ''
+            lue
+          '';
+        }
       ];
     };
   };

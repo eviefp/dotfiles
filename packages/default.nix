@@ -4,12 +4,15 @@
   lib,
   ...
 }:
-{
+rec {
   isw = pkgs.callPackage ./isw.nix {};
 
   # peroxide uses buildGo122Module which has been deprecated in nixpkgs-25.05
   # TODO: use Hydroxide or fork peroxide
   peroxide = pkgs-2411.callPackage ./peroxide.nix {};
+
+  edge-tts = pkgs.callPackage ./edge-tts.nix {};
+  lue = pkgs.callPackage ./lue.nix {inherit edge-tts;};
 
   # TODO: stop overriding when https://github.com/Alexays/Waybar/pull/4400 gets merged
   waybar = pkgs.waybar.overrideAttrs (_: {
