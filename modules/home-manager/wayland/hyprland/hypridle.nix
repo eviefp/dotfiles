@@ -37,7 +37,7 @@ in {
         ];
 
       packages = [
-        dotfiles.hypridle.packages.${pkgs.system}.hypridle
+        dotfiles.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle
       ];
     };
   };

@@ -66,7 +66,7 @@ in {
       '';
 
       packages = [
-        dotfiles.hyprlock.packages.${pkgs.system}.hyprlock
+        dotfiles.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock
       ];
     };
   };

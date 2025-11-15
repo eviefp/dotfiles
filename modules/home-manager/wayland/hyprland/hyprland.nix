@@ -7,7 +7,7 @@
 }: let
   cfg = config.evie.wayland.hyprland;
   wayland = config.evie.wayland;
-  hyprland-package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
+  hyprland-package = dotfiles.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   switch-colors = pkgs.writeShellScriptBin "switch-colors" ''
     #!/usr/bin/env bash
 
@@ -41,7 +41,7 @@ in {
     evie.wayland.screenshot.enable = true;
 
     home.packages = [
-      dotfiles.hyprpicker.packages.${pkgs.system}.hyprpicker
+      dotfiles.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.hyprpicker
       pkgs.egl-wayland
       pkgs.libsForQt5.qt5ct
       pkgs.libsForQt5.qtwayland
@@ -64,7 +64,7 @@ in {
 
       package = hyprland-package;
 
-      portalPackage = dotfiles.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      portalPackage = dotfiles.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
       plugins = [
       ];
@@ -267,7 +267,7 @@ in {
             "$shiftMod, O, exec, hyprctl setprop active opaque toggle"
             "$shiftMod, U, exec, hyprpicker --format=hex --no-fancy --autocopy"
             "$shiftMod, P, exec, $sleep"
-            "$shiftMod, T, exec, ${lib.getExe dotfiles.self.packages.${pkgs.system}.tv-toggle}"
+            "$shiftMod, T, exec, ${lib.getExe dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.tv-toggle}"
             "$shiftMod, E, exec, ${switch-colors}/bin/switch-colors"
 
             "$shiftMod, C, killactive,"
@@ -276,8 +276,8 @@ in {
             "$mainMod, F, togglefloating,"
             "$mainMod, P, exec, $menu"
             "$mainMod, Space, exec, $menu"
-          "$mainMod, O, exec, $pass"
-          "$mainMod, N, exec, $notifications"
+            "$mainMod, O, exec, $pass"
+            "$mainMod, N, exec, $notifications"
             "$mainMod, Return, layoutmsg, swapwithmaster"
             "$mainMod, G, fullscreen, 0"
 

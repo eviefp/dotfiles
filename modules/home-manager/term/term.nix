@@ -42,8 +42,8 @@ in {
       pkgs.unzip
       pkgs.wget
       pkgs.zip
-      dotfiles.self.packages.${pkgs.system}.deploy
-      dotfiles.self.packages.${pkgs.system}.dotfiles
+      dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.deploy
+      dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.dotfiles
     ];
 
     programs = {

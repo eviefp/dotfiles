@@ -39,7 +39,7 @@ in {
         options = {
           package = lib.mkOption {
             type = lib.types.package;
-            default = dotfiles.self.packages.${pkgs.system}.peroxide;
+            default = dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.peroxide;
           };
           name = lib.mkOption {
             type = lib.types.str;
@@ -146,7 +146,7 @@ in {
         }
         {
           name = "isw";
-          package = dotfiles.self.packages.${pkgs.system}.isw;
+          package = dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.isw;
           short = "stopwatch tui";
           help = ''
             isw -i seconds[,seconds,...]
@@ -162,7 +162,7 @@ in {
         }
         {
           name = "lue";
-          package = dotfiles.self.packages.${pkgs.system}.lue;
+          package = dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.lue;
           short = "TUI ebook text-to-speech";
           help = ''
             lue

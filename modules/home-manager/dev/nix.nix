@@ -23,7 +23,7 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.haskellPackages.niv
-      dotfiles.nil.packages.${pkgs.system}.nil
+      dotfiles.nil.packages.${pkgs.stdenv.hostPlatform.system}.nil
       pkgs.nix-diff
       pkgs.nixpkgs-fmt
     ];

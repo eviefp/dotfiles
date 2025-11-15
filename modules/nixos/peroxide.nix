@@ -27,7 +27,7 @@ in {
 
     package = mkOption {
       type = types.package;
-      default = dotfiles.self.packages.${pkgs.system}.peroxide;
+      default = dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.peroxide;
     };
 
     logLevel = mkOption {

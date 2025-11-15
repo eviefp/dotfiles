@@ -958,7 +958,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      dotfiles.treetop.packages.${pkgs.system}.default
+      dotfiles.treetop.packages.${pkgs.stdenv.hostPlatform.system}.default
       pkgs.calc
     ];
 

@@ -38,7 +38,7 @@ in {
       (lib.mkIf (lib.elem "hyprland" cfg.compositors) {
         programs.hyprland = {
           enable = true;
-          package = dotfiles.hyprland.packages.${pkgs.system}.hyprland;
+          package = dotfiles.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
           xwayland.enable = true;
         };
       })

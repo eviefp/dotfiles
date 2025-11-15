@@ -113,7 +113,7 @@ in {
 
       Service = {
         Type = "oneshot";
-        ExecStart = "${lib.getExe dotfiles.self.packages.${pkgs.system}.calendar-notify}";
+        ExecStart = "${lib.getExe dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.calendar-notify}";
       };
     };
   };

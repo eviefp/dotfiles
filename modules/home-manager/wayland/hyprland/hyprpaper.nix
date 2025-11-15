@@ -35,7 +35,7 @@ in {
       '';
 
       packages = [
-        dotfiles.hyprpaper.packages.${pkgs.system}.hyprpaper
+        dotfiles.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
       ];
     };
   };

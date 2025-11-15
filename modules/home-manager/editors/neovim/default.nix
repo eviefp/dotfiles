@@ -99,7 +99,7 @@ in {
 
     programs.nixvim = {
       enable = true;
-      package = dotfiles.self.packages.${pkgs.system}.neovim;
+      package = dotfiles.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
       viAlias = true;
       vimAlias = true;
     };
