@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "fabric-api",
+    "sha512": "2bd2ed0cee22305b7ff49597c103a57c8fbe5f64be54a906796d48b589862626c951ff4cbf5cb1ed764a4d6479d69c3077594e693b7a291240eeea2bb3132b0c",
+    "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/UapVHwiP/fabric-api-0.92.6%2B1.20.1.jar"
+  },
+  {
+    "slug": "create-fabric",
+    "sha512": "15ec2c9d3ac2840cb472d01983a3029e85af606f15e87714fb55921fc10de50ae31ec5dfd55704b3ba3b3609c7989e43258b5dea09962f2b33d74ace0cc99164",
+    "url": "https://cdn.modrinth.com/data/Xbc0uyRg/versions/XwEwQH3o/create-fabric-6.0.8.0%2Bbuild.1734-mc1.20.1.jar"
+  }
+]
