@@ -33,8 +33,8 @@ in {
 
         kb-mode-next = "Control+l";
         kb-mode-previous = "Control+h";
-        kb-row-up = "Control+k";
-        kb-row-down = "Control+j";
+        kb-row-up = "Control+p";
+        kb-row-down = "Control+n";
         kb-remove-to-eol = "";
         kb-accept-entry = "Return";
         kb-mode-complete = "";

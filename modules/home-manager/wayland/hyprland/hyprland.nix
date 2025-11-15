@@ -138,7 +138,7 @@ in {
           layout = "dwindle";
           no_focus_fallback = true;
           resize_on_border = true;
-          hover_icon_on_border = true;
+          hover_icon_on_border = false;
           allow_tearing = false;
         };
 
