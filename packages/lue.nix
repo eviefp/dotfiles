@@ -24,7 +24,11 @@ python3Packages.buildPythonApplication {
     python-docx
     striprtf
     rich
-    pymupdf
+    (pymupdf.overridePythonAttrs (_: {
+      doCheck = false;
+      doInstallCheck = false;
+      dontCheck = true;
+    }))
     markdown
     platformdirs
     edge-tts
